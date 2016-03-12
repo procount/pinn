@@ -33,5 +33,6 @@
         <file>icons/network-wireless-connected-75.png</file>
         <file>icons/network-wireless-connected-100.png</file>
         <file>icons/tick.png</file>
+        <file>icons/usbstick.png</file>
     </qresource>
 </RCC>

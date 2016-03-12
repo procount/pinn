@@ -44,6 +44,9 @@
 #define SETTINGS_PARTITION  "/dev/mmcblk0p5"
 #define SETTINGS_PARTITION_SIZE  (32 * 2048 - PARTITION_GAP)
 
+#define USB_MOUNTPOINT "/media"
+#define USB_DEVICE "/dev/sda1"
+
 /* If the image name matches this exactly, mark it as recommended */
 #define RECOMMENDED_IMAGE "Raspbian"
 

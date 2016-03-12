@@ -38,22 +38,33 @@
 
 void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode)
 {
-#ifdef Q_WS_QWS
-    QWSServer::setBackground(Qt::white);
-    QWSServer::setCursorVisible(true);
-#endif
-    BootSelectionDialog bsd(defaultPartition);
-    if (setDisplayMode)
-        bsd.setDisplayMode();
-    bsd.exec();
+    // Unmount any open file systems
+    QProcess::execute("umount -r /mnt");
+    QProcess::execute("umount -r /settings");
+    if (QFile::exists(USB_MOUNTPOINT))
+    {
+        QProcess::execute("umount -r " USB_MOUNTPOINT);
+    }
 
-    // Shut down networking
-    QProcess::execute("ifdown -a");
-    // Unmount file systems
-    QProcess::execute("umount -ar");
-    ::sync();
-    // Reboot
-    ::reboot(RB_AUTOBOOT);
+    if (QFile::exists("/dev/mmcblk0p7"))
+    {
+#ifdef Q_WS_QWS
+        QWSServer::setBackground(Qt::white);
+        QWSServer::setCursorVisible(true);
+#endif
+        BootSelectionDialog bsd(defaultPartition);
+        if (setDisplayMode)
+            bsd.setDisplayMode();
+        bsd.exec();
+
+        // Shut down networking
+        QProcess::execute("ifdown -a");
+        // Unmount file systems
+        QProcess::execute("umount -ar");
+        ::sync();
+        // Reboot
+        ::reboot(RB_AUTOBOOT);
+    }
 }
 
 bool hasInstalledOS()

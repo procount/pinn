@@ -47,6 +47,7 @@ protected:
     QSplashScreen *_splash;
     QSettings *_settings;
     bool _hasWifi;
+    bool _hasUSB;
     int _numInstalledOS;
     QNetworkAccessManager *_netaccess;
     int _neededMB, _availableMB, _numMetaFilesToDownload, _numIconsToDownload;
@@ -56,6 +57,7 @@ protected:
     QString _model;
 
     QMap<QString,QVariantMap> listImages();
+    QMap<QString,QVariantMap> listImagesInDir(const QString &mountpoint, const QString &source);
     virtual void changeEvent(QEvent * event);
     virtual bool eventFilter(QObject *obj, QEvent *event);
     void inputSequence();
