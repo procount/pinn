@@ -38,8 +38,15 @@ echo 2 >/sys/module/vt/parameters/cur_default
 if grep -q vncinstall /proc/cmdline; then
     # VNC server mode. Mainly useful for making screenshots
     export QWS_DISPLAY="VNC:size=800x600:depth=32:0"
-    ifup eth0
 fi
+
+if grep -q ssh /proc/cmdline; then
+    # SSH server mode. Mainly useful for debugging
+    /bin/mkdir -p /dev/pts
+    /bin/mount -t devpts devpts /dev/pts
+    . /etc/S50dropbear start &
+fi
+
 
 # Mouse acceleration
 #export QWS_MOUSE_PROTO=:accel=1
@@ -52,6 +59,8 @@ fi
 SAFE_MODE=`vcgencmd get_config safe_mode_gpio`
 
 if ( [ ${SAFE_MODE#*=} -eq 1 ] && ! grep -q disablesafemode /proc/cmdline ) || grep -q rescueshell /proc/cmdline; then
+    sleep 5
+    ifup eth0
     sh
 else
     RUN_INSTALLER=

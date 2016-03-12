@@ -166,6 +166,20 @@ To boot into a basic busybox shell rather than launching the NOOBS GUI, you can 
 
 2. Insert a physical jumper between pins 5 & 6 of GPIO header P1. If you have external hardware or an addon board connected to the GPIO header, you may find that pin 5 is being pulled low and accidentally triggering "Safe Mode". To prevent this you can append `disablesafemode` to the argument list in the `recovery.cmdline` file which is found in the root NOOBS directory.
 
+#### How to access the shell or SSH into NOOBS
+
+1. Even if the NOOBS GUI is launched, the busybox shell can still be accessed by pressing CTRL-ALT-F2. Use CTL-ALT-F1 to get back to the gui. 
+
+2. You can now also SSH into the NOOBS basic busybox shell. To enable this feature, add `ssh` to the argument list in the recovery.cmdline. SSH is also accessible from the rescueshell, but allow 5 seconds after boot to allow the network to establish. NOOBS SSH does not store any keys so it takes a while to connect at first after each boot as it generates new keys for that session.
+
+Use the username of 'root' and password 'raspberry' to login to the shell via the console or SSH.
+
+#### How to use NOOBS Headlessly (VNC)
+
+It is possible to access NOOBS without a keyboard and mouse using VNC over a network.
+
+Append `vncinstall` to the argument list in the `recovery.cmdline` file which is found in the root NOOBS directory. Using `forcetrigger` in addition can be useful as it is not always easy to connect quickly enough to see the splash screen and hold the shift key remotely. This will force you to use VNC to continue the boot process into your installed OS on each boot, so it is best to remove `forcetrigger` once the required OS's have been installed. Alternatively you could use `gpiotriggerenable`.
+
 #### How to enable using the GPIO to trigger entering Recovery Mode
 
 To force Recovery Mode to be entered on boot and to show the NOOBS interface, you normally press the `SHIFT` key during bootup. If you don't have a keyboard or the `SHIFT` keypress isn't being detected, you should complete the following steps to force the NOOBS interface to be displayed on boot:
