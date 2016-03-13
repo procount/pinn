@@ -170,6 +170,18 @@ After you have installed your chosen OSes, add the following file to the root di
 
 This will also prevent the splashscreen from being displayed at boot. The partition number can be found by running `sudo fdisk -l` the partition will be one of the FAT32 partitions `/dev/mmcblk0p5` would be partition 5. Note that once an `autoboot.txt` file is present, there's then no way to force the NOOBS GUI to display, until you delete (or rename) the `autoboot.txt` file.
 
+### How to use with Gert's VGA666 DPI display screen
+
+The VGA666 adaptor connects to the GPIO pins and allows a VGA display to be attached to the RPi. The normal VGA666 installation instructions should be followed to allow it to work with NOOBS.
+
+Create a config.txt file with the following lines in it:
+
+add dtoverlay=VGA666
+enable_dpi_lcd=1
+display_default_lcd=1
+dpi_group=<group> (e.g. dpi_group=1, or dpi_group=2)
+dpi_mode=<mode> (e.g. dpi_mode=28 - see tvservice for a list of possible modes)
+
 ===
 
 ## Troubleshooting
