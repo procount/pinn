@@ -62,6 +62,7 @@ else
     DEFAULT_KBD=
     DEFAULT_DISPLAY=
     DEFAULT_PARTITION=
+    DEFAULT_NOCONFIG=
 
     if grep -q runinstaller /proc/cmdline; then
         RUN_INSTALLER=-runinstaller
@@ -74,6 +75,9 @@ else
     fi
     if grep -q forcetrigger /proc/cmdline; then
         FORCE_TRIGGER=-forcetrigger
+    fi
+    if grep -q noobsconfig /proc/cmdline; then
+        DEFAULT_NOCONFIG=-noconfig
     fi
     for p in `cat /proc/cmdline` ; do
         if [ "${p%%=*}" == "lang" ] ; then
@@ -90,7 +94,7 @@ else
         fi
     done
 
-    /usr/bin/recovery $RUN_INSTALLER $GPIO_TRIGGER $KEYBOARD_NO_TRIGGER $FORCE_TRIGGER $DEFAULT_KBD $DEFAULT_LANG $DEFAULT_DISPLAY $DEFAULT_PARTITION -qws 2>/tmp/debug
+    /usr/bin/recovery $RUN_INSTALLER $GPIO_TRIGGER $KEYBOARD_NO_TRIGGER $FORCE_TRIGGER $DEFAULT_KBD $DEFAULT_LANG $DEFAULT_DISPLAY $DEFAULT_PARTITION $DEFAULT_NOCONFIG -qws 2>/tmp/debug
 
 fi
 

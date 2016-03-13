@@ -138,6 +138,7 @@ int main(int argc, char *argv[])
     bool gpio_trigger = false;
     bool keyboard_trigger = true;
     bool force_trigger = false;
+    bool noobsconfig = true;
 
     QString defaultLang = "en";
     QString defaultKeyboard = "gb";
@@ -159,6 +160,9 @@ int main(int argc, char *argv[])
         // Forces display of recovery GUI every time
         else if (strcmp(argv[i], "-forcetrigger") == 0)
             force_trigger = true;
+        // Force recovery to do noobsconfig
+        else if (strcmp(argv[i], "-noconfig") == 0)
+            noobsconfig = false;
         // Allow default language to be specified in commandline
         else if (strcmp(argv[i], "-lang") == 0)
         {
@@ -286,7 +290,7 @@ int main(int argc, char *argv[])
 #endif
 
     // Main window in the middle of screen
-    MainWindow mw(drive, defaultDisplay, splash);
+    MainWindow mw(drive, defaultDisplay, splash, noobsconfig);
     mw.setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, mw.size(), a.desktop()->availableGeometry()));
     mw.show();
 

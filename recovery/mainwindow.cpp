@@ -69,12 +69,12 @@ bool MainWindow::_partInited = false;
 /* Flag to keep track of current display mode. */
 int MainWindow::_currentMode = 0;
 
-MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSplashScreen *splash, QWidget *parent) :
+MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSplashScreen *splash, bool noobsconfig, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     _qpd(NULL), _kcpos(0), _defaultDisplay(defaultDisplay),
     _silent(false), _allowSilent(false), _showAll(false), _fixate(false), _splash(splash), _settings(NULL),
-    _hasWifi(false), _numInstalledOS(0), _devlistcount(0), _netaccess(NULL), _displayModeBox(NULL), _drive(drive), _bootdrive(drive)
+    _hasWifi(false), _numInstalledOS(0), _devlistcount(0), _netaccess(NULL), _displayModeBox(NULL), _noobsconfig(noobsconfig), _drive(drive), _bootdrive(drive)
 {
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
@@ -1515,7 +1515,7 @@ void MainWindow::downloadMetaComplete()
 void MainWindow::startImageWrite()
 {
     /* All meta files downloaded, extract slides tarball, and launch image writer thread */
-    MultiImageWriteThread *imageWriteThread = new MultiImageWriteThread(_bootdrive, _drive);
+    MultiImageWriteThread *imageWriteThread = new MultiImageWriteThread(_bootdrive, _drive, _noobsconfig);
     QString folder, slidesFolder;
     QStringList slidesFolders;
 

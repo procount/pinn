@@ -19,8 +19,8 @@
 #include <sys/ioctl.h>
 #include <QtEndian>
 
-MultiImageWriteThread::MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive, QObject *parent) :
-    QThread(parent), _drive(rootdrive), _bootdrive(bootdrive), _extraSpacePerPartition(0), _part(5)
+MultiImageWriteThread::MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive, bool noobsconfig, QObject *parent) :
+    QThread(parent), _drive(rootdrive), _bootdrive(bootdrive), _extraSpacePerPartition(0), _part(5), _noobsconfig(noobsconfig)
 {
     QDir dir;
     _multiDrives = (bootdrive != rootdrive);
@@ -617,6 +617,24 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
             emit error(tr("%1: Error executing partition setup script").arg(os_name)+"\n"+proc.readAll());
             return false;
         }
+
+    }
+    /* Now see if there are any customisations
+     */
+    if (_noobsconfig)
+    {
+        emit statusUpdate(tr("%1: Configuring flavour").arg(os_name));
+        qDebug() <<"Checking for partition customisations"    ;
+        foreach (PartitionInfo *p, *partitions)
+        {
+            QByteArray part = p->partitionDevice();
+            QByteArray label = p->label();
+            QString customName = image->flavour() + "_"+label;
+
+            //qDebug() << "part" << folder << part << label << customName;
+            postInstallConfig(image->folder(), part, customName);
+
+        }
     }
 
     emit statusUpdate(tr("%1: Unmounting FAT partition").arg(os_name));
@@ -656,8 +674,191 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     installed_os.append(ventry);
 
     Json::saveToFile("/settings/installed_os.json", installed_os);
+    QProcess::execute("mount -o remount,ro /settings");
 
     return true;
+}
+
+void MultiImageWriteThread::postInstallConfig(const QString &folder, const QString &part, const QString &customName)
+{
+    QString arg_dstfolder("/tmp/custom");
+    QDir dir;
+    dir.mkdir(arg_dstfolder);
+    qDebug() << "postInstallConfig: "+ arg_dstfolder;
+    if (QProcess::execute("mount "+part+" "+arg_dstfolder) != 0)
+    {
+        emit error(tr("%1: Error mounting file system").arg(customName));
+        return;
+    }
+
+    QString tarfile = customName;
+    tarfile.replace(' ', '_');
+    tarfile = folder + "/" + tarfile + ".tar";
+    QFileInfo fi(tarfile);
+    if (fi.exists())
+    {
+        QString cmd;
+        cmd = "tar xvf "+folder+"/"+tarfile+" -C "+arg_dstfolder;
+        qDebug() << cmd;
+        QProcess::execute(cmd);
+    }
+
+    tarfile = tarfile+".xz";
+    fi.setFile(tarfile);
+    if (fi.exists())
+    {
+        QString cmd;
+        cmd = "xz -dc "+folder+"/"+tarfile+" | tar x -C "+arg_dstfolder;
+        qDebug() << cmd;
+        QProcess::execute(cmd);
+    }
+
+    tarfile = customName + ".txt";
+    tarfile.replace(' ', '_');
+    postInstallProcessConfigFile(folder, tarfile);
+
+    QProcess::execute("umount /tmp/custom");
+}
+
+QStringList MultiImageWriteThread::parseQuotedString(const QString &tarfile, int nArgs)
+{
+    QStringList argList;
+    QString arg;
+    int inQuote=0;
+    int inArg=0;
+    int pos;
+
+    qDebug() << "Parsing: " << tarfile;
+    for (pos=0; pos < tarfile.size(); pos++)
+    {
+        int add=0;
+        int inc=0;
+        QChar c = tarfile.at(pos);
+
+        switch(c.toAscii())
+        {
+        case '\"':
+            inQuote = 1-inQuote;
+            if (inQuote == 0)
+                inc =1; //indicate end of an argument
+            else
+                inArg=1; //indicate we have started an argument
+            break;
+
+        case ' ':
+            if (inArg==1)
+            {
+                if (inQuote==0)
+                {
+                    inc=1; //indicate end of an argument
+                }
+                else
+                {
+                    add=1; //add embedded space to argument
+                }
+            }
+            break;
+        default:
+            inArg=1;
+            add=1;
+            break;
+        }
+        if (add==1)
+            arg+=c;
+        if (inc==1)
+        {
+           argList.append(arg);
+           inArg=0;
+           arg="";
+        }
+    }
+    if (inArg==1)
+    {
+        if (arg=="#")
+            arg="";
+        argList.append(arg);
+        inArg=0;
+        arg="";
+    }
+
+    while (argList.count()>nArgs)
+        argList.removeLast();
+
+    while (argList.count()<nArgs)
+        argList.append("");
+
+    return(argList);
+}
+
+void MultiImageWriteThread::postInstallProcessConfigFile(const QString &sourcefolder, const QString &fileName)
+{
+    QFileInfo fi(sourcefolder + "/" + fileName);
+    qDebug() << "processConfigFile: " + fi.filePath();
+    if (fi.exists())
+    {
+        QFile file(fi.filePath());
+        qDebug() << "Processing " + fileName;
+        if (file.open(QFile::ReadOnly))
+        {
+            QTextStream in (&file);
+            while (!in.atEnd())
+            {
+                QString line = in.readLine();
+                qDebug() << line;
+                if ((line.length()>1) && (line.at(0)!='#'))
+                {
+                    QStringList args = parseQuotedString(line,5);
+                    QString tarfile = args.at(0);
+                    QString dstSubFolder = args.at(1);
+                    QString attributes = args.at(2);
+                    QString user = args.at(3);
+                    QString group = args.at(4);
+
+                    QString arg_dstfolder("/tmp/custom");
+
+                    if (tarfile.at(0)=='@')
+                    {
+                        tarfile=tarfile.mid(1);
+                        postInstallProcessConfigFile(sourcefolder,tarfile);
+                    }
+                    else
+                    {
+                        QFileInfo fi(sourcefolder+"/"+tarfile);
+                        if (fi.exists())
+                        {
+                            QString ug;
+                            QString cmd;
+                            cmd = "Copying file";
+                            qDebug() << cmd;
+                            QString fname=fi.fileName();
+
+                            QString dstfolder = arg_dstfolder + dstSubFolder;
+                            if (dstfolder.at( dstfolder.size()-1) !='/')
+                                dstfolder += "/";
+                            QProcess::execute("mkdir -p " + arg_dstfolder + dstSubFolder);
+                            QProcess::execute("cp " + sourcefolder +"/"+ tarfile + " " + dstfolder + fname);
+                            if (attributes != "")
+                            {
+                                QProcess::execute("chmod "+attributes+ " "+ arg_dstfolder + dstSubFolder+"/"+fname);
+                            }
+
+                            if (user!="")
+                                ug=user;
+                            else
+                                ug="";
+
+                            if (group!="")
+                                ug=ug+":"+group;
+
+                            if (ug != "")
+                                QProcess::execute("chown "+ug + " " + arg_dstfolder + dstSubFolder + "/" + fname);
+                        }
+                    }
+                }
+            }
+            file.close();
+        }
+    }
 }
 
 bool MultiImageWriteThread::mkfs(const QByteArray &device, const QByteArray &fstype, const QByteArray &label, const QByteArray &mkfsopt)

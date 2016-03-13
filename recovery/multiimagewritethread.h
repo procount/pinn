@@ -14,12 +14,17 @@ class MultiImageWriteThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive, QObject *parent = 0);
+    explicit MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive,bool noobsconfig=false, QObject *parent = 0);
     void addImage(const QString &folder, const QString &flavour);
 
 protected:
     virtual void run();
+    void clearEBR();
     bool processImage(OsInfo *image);
+    void postInstallConfig(const QString &folder, const QString &part, const QString &customName);
+    void postInstallProcessConfigFile(const QString &sourcefolder, const QString &tarfile);
+    QStringList parseQuotedString(const QString &tarfile, int args);
+    bool addPartitionEntry(int sizeInSectors, int type, int specialOffset = 0);
     bool mkfs(const QByteArray &device, const QByteArray &fstype = "ext4", const QByteArray &label = "", const QByteArray &mkfsopt = "");
     bool dd(const QString &imagePath, const QString &device);
     bool partclone_restore(const QString &imagePath, const QString &device);
@@ -42,7 +47,8 @@ protected:
     int _extraSpacePerPartition, _sectorOffset, _part;
     QVariantList installed_os;
     bool _multiDrives;
-    
+    bool _noobsconfig;
+
 signals:
     void error(const QString &msg);
     void statusUpdate(const QString &msg);
@@ -50,9 +56,7 @@ signals:
     void completed();
     void runningMKFS();
     void finishedMKFS();
-    
 public slots:
-    
 };
 
 #endif // MULTIIMAGEWRITETHREAD_H
