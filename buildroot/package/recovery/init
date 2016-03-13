@@ -90,6 +90,8 @@ else
         fi
     done
 
+    if [ -e /mnt/background.sh ]; then /mnt/background.sh & fi;
+
     /usr/bin/recovery $RUN_INSTALLER $GPIO_TRIGGER $KEYBOARD_NO_TRIGGER $FORCE_TRIGGER $DEFAULT_KBD $DEFAULT_LANG $DEFAULT_DISPLAY $DEFAULT_PARTITION -qws 2>/tmp/debug
 
 fi
