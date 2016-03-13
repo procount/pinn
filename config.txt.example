@@ -1,0 +1,15 @@
+#Example VGA666 configuration
+
+hdmi_force_hotplug=1
+config_hdmi_boost=4
+overscan_left=0
+overscan_right=0
+overscan_top=0
+overscan_bottom=0
+disable_overscan=1
+
+enable_dpi_lcd=1
+display_default_lcd=1
+dpi_group=2
+dpi_mode=28
+
