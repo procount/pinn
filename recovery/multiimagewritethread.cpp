@@ -442,7 +442,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
                 else
                     emit statusUpdate(tr("%1: Extracting filesystem").arg(os_name));
 
-                bool result = untar(tarball);
+                bool result = untar(tarball,fstype);
 
                 QProcess::execute("umount /mnt2");
 
@@ -828,7 +828,7 @@ bool MultiImageWriteThread::isLabelAvailable(const QByteArray &label)
     return (QProcess::execute("/sbin/findfs LABEL="+label) != 0);
 }
 
-bool MultiImageWriteThread::untar(const QString &tarball)
+bool MultiImageWriteThread::untar(const QString &tarball, const QByteArray &fstype)
 {
     QString cmd = "sh -o pipefail -c \"";
 
@@ -865,7 +865,16 @@ bool MultiImageWriteThread::untar(const QString &tarball)
     {
         cmd += " "+tarball;
     }
-    cmd += " | tar x -C /mnt2 ";
+
+    if (fstype == "fat" || fstype == "FAT")
+    {
+        cmd += " | tar xp -C /mnt2 ";
+    }
+    else
+    {
+        cmd += " | bsdtar xpf - -C /mnt2 ";
+    }
+
     cmd += "\"";
 
     QTime t1;
