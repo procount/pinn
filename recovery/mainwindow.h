@@ -32,7 +32,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(const QString &defaultDisplay, QSplashScreen *splash, QWidget *parent = 0);
+    explicit MainWindow(const QString &defaultDisplay, QSplashScreen *splash, bool noobsconfig, QWidget *parent = 0);
     ~MainWindow();
 
 protected:
@@ -55,6 +55,7 @@ protected:
     QTimer _networkStatusPollTimer;
     QTime _time;
     QString _model;
+    int _noobsconfig;
 
     QMap<QString,QVariantMap> listImages();
     QMap<QString,QVariantMap> listImagesInDir(const QString &mountpoint, const QString &source);
