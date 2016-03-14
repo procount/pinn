@@ -269,7 +269,7 @@ bool MultiImageWriteThread::writePartitionTable(const QMap<int, PartitionInfo *>
 {
     /* Write partition table using sfdisk */
 
-    /* Fixed NOOBS partition */
+    /* Fixed PINN partition */
     int startP1 = getFileContents("/sys/class/block/mmcblk0p1/start").trimmed().toInt();
     int sizeP1  = getFileContents("/sys/class/block/mmcblk0p1/size").trimmed().toInt();
     /* Fixed start of extended partition. End is not fixed, as it depends on primary partition 3 & 4 */
@@ -836,7 +836,7 @@ void MultiImageWriteThread::patchConfigTxt()
 
         QFile f("/mnt2/config.txt");
         f.open(f.Append);
-        f.write("\r\n# NOOBS Auto-generated Settings:\r\n"+dispOptions);
+        f.write("\r\n# PINN Auto-generated Settings:\r\n"+dispOptions);
         f.close();
 
 }

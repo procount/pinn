@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
         // Flag to indicate first boot
         if (strcmp(argv[i], "-runinstaller") == 0)
             runinstaller = true;
-        // Enables use of GPIO 3 to force NOOBS to launch by pulling low
+        // Enables use of GPIO 3 to force PINN to launch by pulling low
         else if (strcmp(argv[i], "-gpiotriggerenable") == 0)
             gpio_trigger = true;
         // Disables use of keyboard to trigger recovery GUI
