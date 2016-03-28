@@ -179,7 +179,7 @@ MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, boo
 
     /* Disable online help buttons until network is functional */
     ui->actionBrowser->setEnabled(false);
-    QTimer::singleShot(1, this, SLOT(populate()));
+    QTimer::singleShot(2000, this, SLOT(populate()));
 }
 
 MainWindow::~MainWindow()
@@ -426,7 +426,6 @@ bool MainWindow::canInstallOs(const QString &name, const QVariantMap &values)
 bool MainWindow::isSupportedOs(const QString &name, const QVariantMap &values)
 {
     /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
-
     /* If it's not bootable, it isn't really an OS, so is always supported */
     if (!canBootOs(name, values))
     {
@@ -446,7 +445,6 @@ bool MainWindow::isSupportedOs(const QString &name, const QVariantMap &values)
                 return true;
             }
         }
-
         return false;
     }
 

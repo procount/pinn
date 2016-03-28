@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
              if (argc > i+1)
              {
                  QString url(argv[i+1]);
-                 if (url.startsWith("http://"))
+                 if (url.startsWith("http"))
                     downloadRepoUrls << url;
              }
 
