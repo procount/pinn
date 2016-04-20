@@ -111,6 +111,8 @@ private slots:
     void on_list_doubleClicked(const QModelIndex &index);
     void on_list_itemChanged(QListWidgetItem *item);
     void on_actionWifi_triggered();
+    void on_actionAdvanced_triggered();
+    void on_actionPassword_triggered();
 
     void on_targetCombo_currentIndexChanged(int index);
 

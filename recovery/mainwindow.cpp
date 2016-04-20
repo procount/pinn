@@ -10,6 +10,7 @@
 #include "util.h"
 #include "twoiconsdelegate.h"
 #include "wifisettingsdialog.h"
+#include "passwd.h"
 #include <QMessageBox>
 #include <QProgressDialog>
 #include <QMap>
@@ -48,6 +49,8 @@
 #ifdef Q_WS_QWS
 #include <QWSServer>
 #endif
+
+#define KHDBG 0
 
 /* Main window
  *
@@ -136,6 +139,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     _qpd->show();
     QApplication::processEvents();
 
+    ui->list->clear();
     if (QProcess::execute("mount -t ext4 "+settingsPartition+" /settings") != 0)
     {
         _qpd->hide();
@@ -309,7 +313,6 @@ void MainWindow::populate()
 void MainWindow::repopulate()
 {
     QMap<QString,QVariantMap> images = listImages();
-    ui->list->clear();
     bool haveicons = false;
     QSize currentsize = ui->list->iconSize();
     QIcon localIcon(":/icons/hdd.png");
@@ -370,6 +373,9 @@ void MainWindow::repopulate()
         }
         QListWidgetItem *item = new QListWidgetItem(icon, friendlyname);
         item->setData(Qt::UserRole, m);
+#ifdef KHDBG
+        qDebug() << "Repopulate: " << m << "\n";
+#endif
         if (installed)
         {
             item->setData(Qt::BackgroundColorRole, INSTALLED_OS_BACKGROUND_COLOR);
@@ -546,6 +552,8 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder, bool in
             if (images.contains(name))
             {
                 images[name]["partitions"] = m["partitions"];
+                images[name]["username"] = m["username"];
+                images[name]["password"] = m["password"];
             }
             else
             {
@@ -697,6 +705,10 @@ void MainWindow::on_list_currentRowChanged()
 {
     QListWidgetItem *item = ui->list->currentItem();
     ui->actionEdit_config->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
+    ui->actionPassword->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
+
+    QVariantMap m = item->data(Qt::UserRole).toMap();
+    qDebug() << "RowChanged: " << m;
 }
 
 void MainWindow::update_window_title()
@@ -921,6 +933,14 @@ void MainWindow::on_actionEdit_config_triggered()
 
 void MainWindow::on_actionBrowser_triggered()
 {
+#if KHDBG
+    for (int i=0; i<ui->list->count(); i++)
+    {
+        QListWidgetItem *item = ui->list->item(i);
+        QVariantMap m = item->data(Qt::UserRole).toMap();
+        qDebug() << m;
+    }
+#endif
     startBrowser();
 }
 
@@ -1279,6 +1299,10 @@ void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QS
         else
             ui->list->addItem(witem);
     }
+#ifdef KHDBG
+        qDebug() << "ProcessJsonOS: " << new_details << "\n";
+#endif
+
 }
 
 void MainWindow::downloadIcon(const QString &urlstring, const QString &originalurl)
@@ -1890,6 +1914,25 @@ void MainWindow::filterList()
                 witem->setCheckState(Qt::Unchecked);
                 witem->setHidden(true);
             }
+        }
+    }
+}
+
+void MainWindow::on_actionPassword_triggered()
+{
+    /* If no installed OS is selected, default to first extended partition */
+    QListWidgetItem *item = ui->list->currentItem();
+    QVariantMap m;
+
+    if (item)
+    {
+        m = item->data(Qt::UserRole).toMap();
+        qDebug() << "Passwd triggered: " << m;
+        if (m.contains("partitions"))
+        {
+            //QVariantList l = item->data(Qt::UserRole).toMap().value("partitions").toList();
+            Passwd pDlg(m);
+            pDlg.exec();
         }
     }
 }

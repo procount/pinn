@@ -38,7 +38,8 @@ SOURCES += \
     wpa_supplicant/bss.cpp \
     osinfo.cpp \
     partitioninfo.cpp \
-    longpresshandler.cpp
+    longpresshandler.cpp \
+    passwd.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -65,7 +66,8 @@ HEADERS  += \
     wpa_supplicant/bss.h \
     osinfo.h \
     partitioninfo.h \
-    longpresshandler.h
+    longpresshandler.h \
+    passwd.h
 
 FORMS    += \
     mainwindow.ui \
@@ -73,7 +75,8 @@ FORMS    += \
     progressslideshowdialog.ui \
     confeditdialog.ui \
     bootselectiondialog.ui \
-    wifisettingsdialog.ui
+    wifisettingsdialog.ui \
+    passwd.ui
 
 RESOURCES += \
     icons.qrc
