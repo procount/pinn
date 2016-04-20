@@ -579,6 +579,8 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     ventry["release_date"]= image->releaseDate();
     ventry["partitions"]  = vpartitions;
     ventry["bootable"]    = image->bootable();
+    ventry["username"]    = image->username();
+    ventry["password"]    = image->password();
     QString iconfilename  = image->folder()+"/"+image->flavour()+".png";
     iconfilename.replace(" ", "_");
     if (QFile::exists(iconfilename))

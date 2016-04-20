@@ -63,8 +63,18 @@ public:
         return _riscosOffset;
     }
 
+    inline QString username()
+    {
+        return _username;
+    }
+
+    inline QString password()
+    {
+        return _password;
+    }
+
 protected:
-    QString _folder, _flavour, _name, _description, _version, _releaseDate;
+    QString _folder, _flavour, _name, _description, _version, _releaseDate, _username, _password;
     bool _bootable;
     QList<PartitionInfo *> _partitions;
     int _riscosOffset;

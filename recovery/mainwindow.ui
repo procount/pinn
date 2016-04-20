@@ -94,12 +94,30 @@
    <addaction name="actionBrowser"/>
    <addaction name="actionCancel"/>
   </widget>
-  <widget class="QToolBar" name="advToolBar">
+  <widget class="QToolBar" name="toolBar">
    <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="accessibleDescription">
     <string/>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>40</width>
+     <height>40</height>
+    </size>
    </property>
    <property name="toolButtonStyle">
     <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -108,8 +126,47 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
+   <addaction name="actionPassword"/>
+   <addaction name="actionBackup"/>
+   <addaction name="actionFschk"/>
+  </widget>
+  <widget class="QToolBar" name="advToolBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="windowTitle">
+    <string>Advanced</string>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>40</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionAdvanced"/>
   </widget>
   <action name="actionWrite_image_to_disk">
    <property name="enabled">
@@ -153,7 +210,13 @@
      <normaloff>:/icons/setting_tools.png</normaloff>:/icons/setting_tools.png</iconset>
    </property>
    <property name="text">
+    <string>Advanced (a)</string>
+   </property>
+   <property name="toolTip">
     <string>Advanced</string>
+   </property>
+   <property name="shortcut">
+    <string>A</string>
    </property>
   </action>
   <action name="actionEdit_config">
@@ -198,13 +261,55 @@
      <normaloff>:/icons/network-wireless.png</normaloff>:/icons/network-wireless.png</iconset>
    </property>
    <property name="text">
-    <string>Wifi networks (w)</string>
+    <string>Wifi (w)</string>
    </property>
    <property name="toolTip">
     <string>Select a wifi network to connect to</string>
    </property>
    <property name="shortcut">
     <string>W</string>
+   </property>
+  </action>
+  <action name="actionPassword">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/lock_edit.png</normaloff>:/icons/lock_edit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Password (p)</string>
+   </property>
+   <property name="toolTip">
+    <string>Change password</string>
+   </property>
+   <property name="shortcut">
+    <string>P</string>
+   </property>
+  </action>
+  <action name="actionBackup">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/backup_manager.png</normaloff>:/icons/backup_manager.png</iconset>
+   </property>
+   <property name="text">
+    <string>Backup (b)</string>
+   </property>
+   <property name="shortcut">
+    <string>B</string>
+   </property>
+  </action>
+  <action name="actionFschk">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/backup_wizard.png</normaloff>:/icons/backup_wizard.png</iconset>
+   </property>
+   <property name="text">
+    <string>fschk (f)</string>
+   </property>
+   <property name="shortcut">
+    <string>F</string>
    </property>
   </action>
  </widget>
