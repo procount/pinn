@@ -12,6 +12,7 @@
 #include "config.h"
 #include "json.h"
 #include "util.h"
+#include <unistd.h>
 #include <QDir>
 #include <QMessageBox>
 #include <QProcess>
@@ -25,9 +26,10 @@
 #include <QRegExp>
 #include <QDebug>
 
-BootSelectionDialog::BootSelectionDialog(const QString &drive, const QString &defaultPartition, QWidget *parent) :
+BootSelectionDialog::BootSelectionDialog(const QString &drive, const QString &defaultPartition, bool dsi=false, QWidget *parent) :
     QDialog(parent),
     _countdown(11),
+    _dsi(dsi),
     ui(new Ui::BootSelectionDialog)
 {
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
@@ -38,7 +40,6 @@ BootSelectionDialog::BootSelectionDialog(const QString &drive, const QString &de
 
     QDir dir;
     dir.mkdir("/settings");
-
     if (QProcess::execute("mount -o remount,ro /settings") != 0
         && QProcess::execute("mount -t ext4 -o ro "+partdev(drive, SETTINGS_PARTNR)+" /settings") != 0)
     {
@@ -51,7 +52,6 @@ BootSelectionDialog::BootSelectionDialog(const QString &drive, const QString &de
     {
         /* Not fatal if this fails */
     }
-
     QVariantList installed_os = Json::loadFromFile("/settings/installed_os.json").toList();
     QSize currentsize = ui->list->iconSize();
 
@@ -143,8 +143,10 @@ void BootSelectionDialog::bootPartition()
 {
     QSettings settings("/settings/noobs.conf", QSettings::IniFormat, this);
     QByteArray partition = settings.value("default_partition_to_boot", 800).toByteArray();
-    qDebug() << "Booting partition" << partition;
+    qDebug() << "Booting partition" << partition << "DSI=" << _dsi;
     setRebootPartition(partition);
+    if (_dsi)
+        updateConfig4dsi(partition);
     QDialog::accept();
 }
 
@@ -266,4 +268,47 @@ void BootSelectionDialog::countdown()
         _timer.stop();
         bootPartition();
     }
+}
+
+void BootSelectionDialog::updateConfig4dsi(QByteArray partition)
+{
+    QProcess *update = new QProcess(this);
+    update->start(QString("sh -c \"tvservice -n\""));
+    update->waitForFinished(4000);
+    update->setProcessChannelMode(QProcess::MergedChannels);
+    bool bHDMI=true;
+    QString status = update->readAll();
+    QByteArray qba = status.toAscii();
+    const char * result= qba.constData();
+
+    if (status.length())
+    {
+        if (strncmp("[E] No device present",result,21)==0)
+            bHDMI=false;
+    }
+    else
+        bHDMI=false;
+
+    qDebug() << "tvservice name: "<< status << " " << bHDMI << " "<< status.length();
+
+    QByteArray partstr = "/dev/mmcblk0p";
+    partstr.append(partition);
+    qDebug() << partstr;
+    QProcess::execute("mkdir -p /tmp/3");
+
+    QString mntcmd = "mount "+partstr+" /tmp/3";
+
+    QProcess::execute(mntcmd);
+    if (bHDMI)
+    {   //HDMI attached
+        qDebug() << "HDMI selected";
+        QProcess::execute("sh -c \"cp /tmp/3/config.hdmi /tmp/3/config.txt\"");
+    }
+    else
+    {   //Assume DSI
+        qDebug() << "DSI selected";
+        QProcess::execute("sh -c \"cp /tmp/3/config.dsi /tmp/3/config.txt\"");
+    }
+    sync();
+    QProcess::execute("umount "+partstr);
 }
