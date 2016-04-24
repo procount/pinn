@@ -37,7 +37,7 @@
  */
 
 QStringList downloadRepoUrls;
-
+bool dsi=false;
 
 void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode)
 {
@@ -49,25 +49,23 @@ void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode)
         QProcess::execute("umount -r " USB_MOUNTPOINT);
     }
 
-    if (QFile::exists("/dev/mmcblk0p7"))
-    {
 #ifdef Q_WS_QWS
-        QWSServer::setBackground(Qt::white);
-        QWSServer::setCursorVisible(true);
+    QWSServer::setBackground(Qt::white);
+    QWSServer::setCursorVisible(true);
 #endif
-        BootSelectionDialog bsd(defaultPartition);
-        if (setDisplayMode)
-            bsd.setDisplayMode();
-        bsd.exec();
+    BootSelectionDialog bsd(defaultPartition,dsi);
+    if (setDisplayMode)
+        bsd.setDisplayMode();
+    bsd.exec();
 
-        // Shut down networking
-        QProcess::execute("ifdown -a");
-        // Unmount file systems
-        QProcess::execute("umount -ar");
-        ::sync();
-        // Reboot
-        ::reboot(RB_AUTOBOOT);
-    }
+    // Shut down networking
+    QProcess::execute("ifdown -a");
+    // Unmount file systems
+    QProcess::execute("umount -ar");
+    ::sync();
+    // Reboot
+    ::reboot(RB_AUTOBOOT);
+
 }
 
 bool hasInstalledOS()
@@ -136,6 +134,9 @@ int main(int argc, char *argv[])
         // Force recovery to do noobsconfig
         else if (strcmp(argv[i], "-noconfig") == 0)
             noobsconfig = false;
+        // Force dsi switching
+        else if (strcmp(argv[i], "-dsi")==0)
+            dsi = true;
         // Allow default language to be specified in commandline
         else if (strcmp(argv[i], "-lang") == 0)
         {
