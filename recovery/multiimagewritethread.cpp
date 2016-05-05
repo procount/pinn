@@ -607,8 +607,9 @@ void MultiImageWriteThread::postInstallConfig(const QString &folder, const QStri
         return;
     }
 
-    QString tarfile;
-    tarfile = folder + "/" + customName + ".tar";
+    QString tarfile = customName;
+    tarfile.replace(' ', '_');
+    tarfile = folder + "/" + tarfile + ".tar";
     QFileInfo fi(tarfile);
     if (fi.exists())
     {
@@ -629,6 +630,7 @@ void MultiImageWriteThread::postInstallConfig(const QString &folder, const QStri
     }
 
     tarfile = customName + ".txt";
+    tarfile.replace(' ', '_');
     postInstallProcessConfigFile(folder, tarfile);
 
     QProcess::execute("umount /tmp/custom");
