@@ -590,7 +590,6 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     installed_os.append(ventry);
 
     Json::saveToFile("/settings/installed_os.json", installed_os);
-    QProcess::execute("mount -o remount,ro /settings");
 
     return true;
 }
