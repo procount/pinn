@@ -70,9 +70,13 @@ Edit recovery.cmdline and add `alt-image-source=https://kent.dl.sourceforge.net/
 
 In addition, the recovery.cmdline should have `disablesafemode` added as a parameter since without it, the VGA666 will force NOOBS into safe mode due to its connections to the GPIO header.
 
-### noobsconfig bugfix
+### Noobsconfig bugfix
 
 All configuration filenames based on <osname>_<partition> (with a .txt, .tar or .tar.xz extension) now have all spaces converted to underscores. This was omitted in the previous version compared with the noobsconfig scripts.
+
+### Multiple OS bugfix
+
+Information about multiply installed OSes was not stored properly, so only the first installed OS would be selectable.
 
 ### How to auto-switch HDMI/DSI screen configurations
 
@@ -81,9 +85,9 @@ If an HDMI and a DSI screeen (such as the Raspberry Pi Touch Screen) are both co
 This use case assumes that the DSI screen is always connected, and is normally used. But if an HDMI screen is connected, then the display will automatically switch to it. 
 
 [li] 
-[*] Create a config.txt file in the PINN root partition. Ensure it has the line ********* to disable the DSI screen and select the HDMI screen.
+[*] Create a config.txt file in the PINN root partition. Ensure it has the line `ignore_lcd=1` to disable the DSI screen and select the HDMI screen.
 [*] Edit recovery.cmdline and add the `dsi` keyword.
-[*] In the boot partition of any installed OS, create a config.dsi file to configure the DSI screen, and a config.hdmi file to configure the hdmi screen.
+[*] In the boot partition of any installed OS, create a config.dsi file to configure the DSI screen, and a config.hdmi file to configure the hdmi screen. This can mostly be setup using a custom flavour with the noobsconfig feature so it can be installed automatically.
 [/li]
 When PINN boots, the HDMI screen will be selected, so to use any PINN feature, an HDMI screen must be connected. 
 PINN will automatically boot the last selected OS after it times out. If a HDMI screen is attached, PINN will copy the config.hdmi file to config.txt on the selected OS and reboot into it.
