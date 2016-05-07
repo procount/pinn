@@ -1,3 +1,4 @@
+# V1.9 Features
 #### How to access the shell or SSH into NOOBS
 
 1. Even if the NOOBS GUI is launched, the busybox shell can still be accessed by pressing CTRL-ALT-F2. Use CTL-ALT-F1 to get back to the gui. 
@@ -10,13 +11,17 @@ Use the username of 'root' and password 'raspberry' to login to the shell via th
 
 Due to the increasing size of OSes, it is becoming increasingly difficult to store their compressed installation files on the NOOBS SD card. So NOOBS-full now only includes one default Raspbian installation and the remainder are downloadable using a network connection.
 To counter this, NOOBS supports storing the compressed OSes on a USB stick aswell. This has the following advantages:
+
 1. The OSes are available to install when a network is not available.
-2. They do not take up any valuable space on the SD card.
+* They do not take up any valuable space on the SD card.
+
 The OSes should be stored on the USB stick in the same format as they would be on a NOOBS SD card:
+
 1. Each OS should be stored in its own folder beneath the /os/ folder.
-2. They should contain compressed images of their partitions in .tar.xz format
-3. All supporting json files etc. shall also be included.
+* They should contain compressed images of their partitions in .tar.xz format
+* All supporting json files etc. shall also be included.
 The USB stick should be inserted into the RPi before NOOBS is booted. Ideally it should be connected to the RPi and not via a usb hub as this may introduce a delay preventing the USB stick from being recognised.
+
 If the same OS is available on the SD card, the USB stick and the network, only the most recent version is displayed.
 
 ### How to install OSes from an alternative source
@@ -31,11 +36,11 @@ The VGA666 adaptor connects to the GPIO pins and allows a VGA display to be atta
 
 Create a config.txt file with the following lines in it:
 
-add dtoverlay=VGA666
-enable_dpi_lcd=1
-display_default_lcd=1
-dpi_group=<group> (e.g. dpi_group=1, or dpi_group=2)
-dpi_mode=<mode> (e.g. dpi_mode=28 - see tvservice for a list of possible modes)
+<code>add dtoverlay=VGA666<br>
+enable_dpi_lcd=1<br>
+display_default_lcd=1<br>
+dpi_group=<group> (e.g. dpi_group=1, or dpi_group=2)<br>
+dpi_mode=<mode> (e.g. dpi_mode=28 - see tvservice for a list of possible modes)<br></code>
 
 ### How to customise an OS install
 
@@ -70,38 +75,39 @@ Edit recovery.cmdline and add `alt-image-source=https://kent.dl.sourceforge.net/
 
 In addition, the recovery.cmdline should have `disablesafemode` added as a parameter since without it, the VGA666 will force NOOBS into safe mode due to its connections to the GPIO header.
 
-### Noobsconfig bugfix
+# V1.9.2 Features
+### Bugfixes
 
-All configuration filenames based on <osname>_<partition> (with a .txt, .tar or .tar.xz extension) now have all spaces converted to underscores. This was omitted in the previous version compared with the noobsconfig scripts.
-
-### Multiple OS bugfix
-
-Information about multiply installed OSes was not stored properly, so only the first installed OS would be selectable.
+1. **Noobsconfig filenames** - All configuration filenames based on `<osname>_<partition>` (with a .txt, .tar or .tar.xz extension) now have all spaces converted to underscores. This was omitted in the previous version compared with the noobsconfig scripts.
+* **Multiple OS selection** - Information about multiply installed OSes was not stored properly, so only the first installed OS would be selectable.
+* **DHCP** - NOOBS Issue #336 & PR #337 have been implemented to allow DHCP to work with Microsoft hardened servers.
 
 ### How to auto-switch HDMI/DSI screen configurations
 
-If an HDMI and a DSI screeen (such as the Raspberry Pi Touch Screen) are both connected to the Raspberry Pi, the selection of which screen is to be used as the default needs to be selected in the config.txt file, which means constantly having to change config.txt to match whichever screen is required. This is because the DSI screen can only be selected at boot time, although without [i]any[/i] configuration the GPU will select the DSI screen in preference to the HDMI. PINN provides some limited ability to reverse this prioriy. 
+If an HDMI and a DSI screeen (such as the Raspberry Pi Touch Screen) are both connected to the Raspberry Pi, the selection of which screen is to be used as the default needs to be selected in the config.txt file, which means constantly having to change config.txt to match whichever screen is required. This is because the DSI screen can only be selected at boot time, although without *any* configuration the GPU will select the DSI screen in preference to the HDMI. PINN provides some limited ability to reverse this prioriy. 
 
 This use case assumes that the DSI screen is always connected, and is normally used. But if an HDMI screen is connected, then the display will automatically switch to it. 
 
-[li] 
-[*] Create a config.txt file in the PINN root partition. Ensure it has the line `ignore_lcd=1` to disable the DSI screen and select the HDMI screen.
-[*] Edit recovery.cmdline and add the `dsi` keyword.
-[*] In the boot partition of any installed OS, create a config.dsi file to configure the DSI screen, and a config.hdmi file to configure the hdmi screen. This can mostly be setup using a custom flavour with the noobsconfig feature so it can be installed automatically.
-[/li]
+
+1. Create a `config.txt` file in the PINN root partition. Ensure it has the line `ignore_lcd=1` to disable the DSI screen and select the HDMI screen.
+* Edit `recovery.cmdline` and add the `dsi` keyword.
+* In the boot partition of any installed OS, create a `config.dsi` file to configure the DSI screen, and a `config.hdmi` file to configure the hdmi screen. (This can mostly be setup using a custom flavour with the noobsconfig feature so it can be installed automatically.)
+
 When PINN boots, the HDMI screen will be selected, so to use any PINN feature, an HDMI screen must be connected. 
+
 PINN will automatically boot the last selected OS after it times out. If a HDMI screen is attached, PINN will copy the config.hdmi file to config.txt on the selected OS and reboot into it.
+
 If an HDMI screen was not detected, PINN will copy the config.dsi file to config.txt on the selected OS and reboot into it.
 
 ### How to Recover from a lost password
 
 If you have changed your login password for an OS and forget what it is, PINN will allow you to set it back to its default or set it to a new value.
-[li]
-[*] On the PINN screen, select the `Advanced` menu.
-[*] Select the installed OS that you want to reset the password in.
-[*] Selecting the change password option will display a dialog box to enter the new password details.
-[*] Enter the username you want to change the password of.
-[*] Enter the new password (twice). Both copies must match.
-[*] The password strength meter is a useful indication of how good a password you have created.
-[*] The `Use Dafault` button will enter the default username and password for the selected OS.
-[/li]
+
+1. On the PINN screen, select the new `Advanced` menu.
+* Select the installed OS that you want to reset the password in.
+* Selecting the change password button will display a dialog box to enter the new password details.
+* Enter the username you want to change the password of.
+* Enter the new password (twice). Both copies must match. The second will be displayed red if it is different.
+* The password strength meter is a useful indication of how good a password you have created.
+* The `Use Dafault` button will enter the default username and password for the selected OS.
+* Tick the `show password` box to display the passwords on the screen.

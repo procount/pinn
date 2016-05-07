@@ -289,8 +289,11 @@
    </property>
   </action>
   <action name="actionBackup">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset>
      <normaloff>:/icons/backup_manager.png</normaloff>:/icons/backup_manager.png</iconset>
    </property>
    <property name="text">
@@ -299,10 +302,16 @@
    <property name="shortcut">
     <string>B</string>
    </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
   </action>
   <action name="actionFschk">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset>
      <normaloff>:/icons/backup_wizard.png</normaloff>:/icons/backup_wizard.png</iconset>
    </property>
    <property name="text">
@@ -310,6 +319,9 @@
    </property>
    <property name="shortcut">
     <string>F</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
    </property>
   </action>
  </widget>

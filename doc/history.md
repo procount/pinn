@@ -3,6 +3,8 @@
 
 PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi with the following additional features:
 
+## Change History
+
 ### V1.9.2 
 
 - **Password** - Change or reset your password for each OS.
@@ -24,10 +26,4 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 - **SSH support** - SSH remotely into you PINN installation.
 - **Progress indication** - View your installation progress via alternative means
 
-Documentation on how to use PINN can be found **[here](README_PINN.md)**, which includes all of the original NOOBS documentation.
-
-If you are already familiar with NOOBS' features, you may prefer to read the reduced documenation that just contains **[PINN's new features](changes.md)** alone.
-
-The latest version of **[PINN-lite](http://sourceforge.net/projects/pinn/files/pinn-lite.zip)** can be downloaded from [sourceforge](http://www.sourceforge.net/projects/pinn).
-
-Source code is available from [github](https://github.com/procount/pinn)
+see  [github](https://github.com/procount/pinn) for full information

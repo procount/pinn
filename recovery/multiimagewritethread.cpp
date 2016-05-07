@@ -719,7 +719,7 @@ void MultiImageWriteThread::postInstallProcessConfigFile(const QString &sourcefo
             while (!in.atEnd())
             {
                 QString line = in.readLine();
-                qDebug() << line;
+                //qDebug() << line;
                 if ((line.length()>1) && (line.at(0)!='#'))
                 {
                     QStringList args = parseQuotedString(line,5);
@@ -744,7 +744,7 @@ void MultiImageWriteThread::postInstallProcessConfigFile(const QString &sourcefo
                             QString ug;
                             QString cmd;
                             cmd = "Copying file";
-                            qDebug() << cmd;
+                            //qDebug() << cmd;
                             QString fname=fi.fileName();
 
                             QString dstfolder = arg_dstfolder + dstSubFolder;
