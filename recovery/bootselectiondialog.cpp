@@ -280,11 +280,11 @@ void BootSelectionDialog::updateConfig4dsi(QByteArray partition)
     else
         bHDMI=false;
 
-    qDebug() << "tvservice name: "<< status << " " << bHDMI << " "<< status.length();
+    //qDebug() << "tvservice name: "<< status << " " << bHDMI << " "<< status.length();
 
     QByteArray partstr = "/dev/mmcblk0p";
     partstr.append(partition);
-    qDebug() << partstr;
+    //qDebug() << partstr;
     QProcess::execute("mkdir -p /tmp/3");
 
     QString mntcmd = "mount "+partstr+" /tmp/3";
@@ -292,12 +292,12 @@ void BootSelectionDialog::updateConfig4dsi(QByteArray partition)
     QProcess::execute(mntcmd);
     if (bHDMI)
     {   //HDMI attached
-        qDebug() << "HDMI selected";
+        //qDebug() << "HDMI selected";
         QProcess::execute("sh -c \"cp /tmp/3/config.hdmi /tmp/3/config.txt\"");
     }
     else
     {   //Assume DSI
-        qDebug() << "DSI selected";
+        //qDebug() << "DSI selected";
         QProcess::execute("sh -c \"cp /tmp/3/config.dsi /tmp/3/config.txt\"");
     }
     sync();

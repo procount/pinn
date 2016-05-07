@@ -51,7 +51,7 @@
 #endif
 
 extern QStringList downloadRepoUrls;
-#define KHDBG 0
+//#define KHDBG 0
 
 /* Main window
  *
@@ -701,7 +701,7 @@ void MainWindow::on_list_currentRowChanged()
     ui->actionPassword->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
 
     QVariantMap m = item->data(Qt::UserRole).toMap();
-    qDebug() << "RowChanged: " << m;
+    //qDebug() << "RowChanged: " << m;
 }
 
 void MainWindow::update_window_title()
@@ -927,14 +927,6 @@ void MainWindow::on_actionEdit_config_triggered()
 
 void MainWindow::on_actionBrowser_triggered()
 {
-#if KHDBG
-    for (int i=0; i<ui->list->count(); i++)
-    {
-        QListWidgetItem *item = ui->list->item(i);
-        QVariantMap m = item->data(Qt::UserRole).toMap();
-        qDebug() << m;
-    }
-#endif
     startBrowser();
 }
 
@@ -1682,7 +1674,7 @@ void MainWindow::on_actionPassword_triggered()
     if (item)
     {
         m = item->data(Qt::UserRole).toMap();
-        qDebug() << "Passwd triggered: " << m;
+        //qDebug() << "Passwd triggered: " << m;
         if (m.contains("partitions"))
         {
             //QVariantList l = item->data(Qt::UserRole).toMap().value("partitions").toList();

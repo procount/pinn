@@ -3,7 +3,18 @@
 
 PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi with the following additional features:
 
-**PINN V1.9p1 (based on NOOBS v1.9)**
+### V1.9.2 
+
+- **Password** - Change or reset your password for each OS.
+- **DSI/HDMI** - Auto-switching of DSI/HDMI screen with HDMI taking priority 
+
+#### BugFixes
+
+- **NoobsConfig** - Config filenames now now have all spaces converted to underscores 
+- **Multiple Os** - Multiple installed OSes can now be selected again. 
+- **DHCP** - ClientID is now used instead of DUID to request an IP address 
+
+### V1.9.1 (based on NOOBS v1.9)
 
 - **USB support** - store your OS installations on USB stick to avoid wasting SD card space and avoid downloading each time.
 - **Alternative Source** - Install OSes from an alternative website, or local webserver
@@ -17,6 +28,6 @@ Documentation on how to use PINN can be found **[here](README_PINN.md)**, which 
 
 If you are already familiar with NOOBS' features, you may prefer to read the reduced documenation that just contains **[PINN's new features](changes.md)** alone.
 
-The latest version of **[PINN-lite](http://downloads.sourceforge.net/projects/pinn/pinn-lite.zip)** can be downloaded from [sourceforge](http://www.sourceforge.net/projects/pinn).
+The latest version of **[PINN-lite](http://sourceforge.net/projects/pinn/files/pinn-lite.zip)** can be downloaded from [sourceforge](http://www.sourceforge.net/projects/pinn).
 
 Source code is available from [github](https://github.com/procount/pinn)
