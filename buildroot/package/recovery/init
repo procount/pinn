@@ -53,7 +53,8 @@ SAFE_MODE=`vcgencmd get_config safe_mode_gpio`
 
 if ( [ ${SAFE_MODE#*=} -eq 1 ] && ! grep -q disablesafemode /proc/cmdline ) || grep -q rescueshell /proc/cmdline; then
     sh
-else
+fi
+
     RUN_INSTALLER=
     GPIO_TRIGGER=
     KEYBOARD_NO_TRIGGER=
@@ -92,7 +93,6 @@ else
 
     /usr/bin/recovery $RUN_INSTALLER $GPIO_TRIGGER $KEYBOARD_NO_TRIGGER $FORCE_TRIGGER $DEFAULT_KBD $DEFAULT_LANG $DEFAULT_DISPLAY $DEFAULT_PARTITION -qws 2>/tmp/debug
 
-fi
 
 # Recovery should have rebooted
 
