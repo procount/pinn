@@ -62,7 +62,8 @@ if ( [ ${SAFE_MODE#*=} -eq 1 ] && ! grep -q disablesafemode /proc/cmdline ) || g
     sleep 5
     ifup eth0
     sh
-else
+fi
+
     RUN_INSTALLER=
     GPIO_TRIGGER=
     KEYBOARD_NO_TRIGGER=
@@ -119,7 +120,6 @@ else
 
     /usr/bin/recovery $RUN_INSTALLER $GPIO_TRIGGER $KEYBOARD_NO_TRIGGER $FORCE_TRIGGER $DEFAULT_KBD $DEFAULT_LANG $DEFAULT_DISPLAY $DEFAULT_PARTITION $DEFAULT_REPOS $EXTRA_REPOS $DEFAULT_NOCONFIG $DEFAULT_DSI -qws 2>/tmp/debug
 
-fi
 
 # Recovery should have rebooted
 
