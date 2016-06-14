@@ -30,11 +30,13 @@ public:
 
 public slots:
     void setLabelText(const QString &text);
+    void setMBWrittenText(const QString &text);
     void setMaximum(qint64 bytes);
     void nextSlide();
     void updateIOstats();
     void pauseIOaccounting();
     void resumeIOaccounting();
+    void updateProgress(qint64 value);
 
 protected:
     QString _drive;

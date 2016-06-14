@@ -38,7 +38,11 @@ SOURCES += \
     wpa_supplicant/bss.cpp \
     osinfo.cpp \
     partitioninfo.cpp \
-    longpresshandler.cpp
+    longpresshandler.cpp \
+    passwd.cpp \
+    piclonedialog.cpp \
+    piclonethread.cpp \
+    copythread.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -65,7 +69,11 @@ HEADERS  += \
     wpa_supplicant/bss.h \
     osinfo.h \
     partitioninfo.h \
-    longpresshandler.h
+    longpresshandler.h \
+    passwd.h \
+    piclonedialog.h \
+    piclonethread.h \
+    copythread.h
 
 FORMS    += \
     mainwindow.ui \
@@ -73,7 +81,9 @@ FORMS    += \
     progressslideshowdialog.ui \
     confeditdialog.ui \
     bootselectiondialog.ui \
-    wifisettingsdialog.ui
+    wifisettingsdialog.ui \
+    passwd.ui \
+    piclonedialog.ui
 
 RESOURCES += \
     icons.qrc

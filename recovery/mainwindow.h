@@ -91,6 +91,8 @@ protected slots:
     /* Events from ImageWriterThread */
     void onError(const QString &msg);
     void onCompleted();
+    void onCloneError(const QString &msg);
+    void onCloneCompleted();
     void downloadIconComplete();
     void downloadMetaRedirectCheck();
     void downloadIconRedirectCheck();
@@ -113,6 +115,8 @@ private slots:
     void on_actionWifi_triggered();
 
     void on_targetCombo_currentIndexChanged(int index);
+
+    void on_actionClone_triggered();
 
 signals:
     void networkUp();
