@@ -11,6 +11,9 @@
 #include "twoiconsdelegate.h"
 #include "wifisettingsdialog.h"
 #include "passwd.h"
+#include "piclonedialog.h"
+#include "piclonethread.h"
+
 #include <QMessageBox>
 #include <QProgressDialog>
 #include <QMap>
@@ -172,6 +175,9 @@ MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, boo
     {
         _showAll = true;
     }
+
+    copyWpa();
+
     if (cmdline.contains("silentinstall"))
     {
         /* If silentinstall is specified, auto-install single image in /os */
@@ -896,6 +902,7 @@ void MainWindow::inputSequence()
 
 void MainWindow::on_actionAdvanced_triggered(bool checked)
 {
+    Q_UNUSED(checked)
     if (ui->actionAdvanced->isChecked())
     {
         ui->toolBar->setVisible(true);
@@ -967,7 +974,7 @@ void MainWindow::on_list_doubleClicked(const QModelIndex &index)
     }
 }
 
-void MainWindow::startNetworking()
+void MainWindow::copyWpa()
 {
     QFile f("/settings/wpa_supplicant.conf");
 
@@ -976,19 +983,26 @@ void MainWindow::startNetworking()
         /* Remove corrupt file */
         f.remove();
     }
-    if ( !f.exists() )
+    /* If user supplied a wpa_supplicant.conf on the FAT partition copy that one to settings
+       otherwise copy the default one stored in the initramfs */
+    if (QFile::exists("/mnt/wpa_supplicant.conf"))
     {
-        /* If user supplied a wpa_supplicant.conf on the FAT partition copy that one to settings
-           otherwise copy the default one stored in the initramfs */
-        if (QFile::exists("/mnt/wpa_supplicant.conf"))
-            QFile::copy("/mnt/wpa_supplicant.conf", "/settings/wpa_supplicant.conf");
-        else
-        {
-            qDebug() << "Copying /etc/wpa_supplicant.conf to /settings/wpa_supplicant.conf";
-            QFile::copy("/etc/wpa_supplicant.conf", "/settings/wpa_supplicant.conf");
-        }
+        QFile::copy("/mnt/wpa_supplicant.conf", "/settings/wpa_supplicant.conf");
+        QProcess::execute("mount -o remount,rw /mnt");
+        QFile::remove("/mnt/wpa_supplicant.conf.bak");
+        QFile::rename("/mnt/wpa_supplicant.conf","/mnt/wpa_supplicant.conf.bakf");
+        QProcess::execute("mount -o remount,ro /mnt");
+    }
+    else
+    {
+        qDebug() << "Copying /etc/wpa_supplicant.conf to /settings/wpa_supplicant.conf";
+        QFile::copy("/etc/wpa_supplicant.conf", "/settings/wpa_supplicant.conf");
     }
     QFile::remove("/etc/wpa_supplicant.conf");
+}
+
+void MainWindow::startNetworking()
+{
 
     /* Enable dbus so that we can use it to talk to wpa_supplicant later */
     qDebug() << "Starting dbus";
@@ -1056,10 +1070,10 @@ void MainWindow::onOnlineStateChanged(bool online)
             QNetworkDiskCache *_cache = new QNetworkDiskCache(this);
             _cache->setCacheDirectory("/settings/cache");
             _cache->setMaximumCacheSize(8 * 1024 * 1024);
+            _cache->clear();
             _netaccess->setCache(_cache);
             QNetworkConfigurationManager manager;
             _netaccess->setConfiguration(manager.defaultConfiguration());
-
             downloadLists();
         }
         ui->actionBrowser->setEnabled(true);
@@ -1131,26 +1145,12 @@ void MainWindow::downloadListComplete()
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
-    /* Set our clock to server time if we currently have a date before 2015 */
-    QByteArray dateStr = reply->rawHeader("Date");
-    if (!dateStr.isEmpty() && QDate::currentDate().year() < 2015)
-    {
-        // Qt 4 does not have a standard function for parsing the Date header, but it does
-        // have one for parsing a Last-Modified header that uses the same date/time format, so just use that
-        QNetworkRequest dummyReq;
-        dummyReq.setRawHeader("Last-Modified", dateStr);
-        QDateTime parsedDate = dummyReq.header(dummyReq.LastModifiedHeader).toDateTime();
-
-        struct timeval tv;
-        tv.tv_sec = parsedDate.toTime_t();
-        tv.tv_usec = 0;
-        settimeofday(&tv, NULL);
-    }
-
     if (reply->error() != reply->NoError || httpstatuscode < 200 || httpstatuscode > 399)
     {
         if (_qpd)
-	    _qpd->hide();
+            _qpd->hide();
+
+        qDebug() << "Error Downloading "<< reply->url()<<" reply: "<< reply->error() << " httpstatus: "<< httpstatuscode;
         QMessageBox::critical(this, tr("Download error"), tr("Error downloading distribution list from Internet"), QMessageBox::Close);
     }
     else
@@ -1439,6 +1439,22 @@ void MainWindow::downloadListRedirectCheck()
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
 
+    QByteArray dateStr = reply->rawHeader("Date");
+    if (!dateStr.isEmpty() && QDate::currentDate().year() < 2015)
+    {
+        // Qt 4 does not have a standard function for parsing the Date header, but it does
+        // have one for parsing a Last-Modified header that uses the same date/time format, so just use that
+        QNetworkRequest dummyReq;
+        dummyReq.setRawHeader("Last-Modified", dateStr);
+        QDateTime parsedDate = dummyReq.header(dummyReq.LastModifiedHeader).toDateTime();
+        struct timeval tv;
+        tv.tv_sec = parsedDate.toTime_t();
+        tv.tv_usec = 0;
+        settimeofday(&tv, NULL);
+
+        qDebug() << "Time set to " << parsedDate;
+    }
+
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
         qDebug() << "Redirection - Re-trying download from" << redirectionurl;
@@ -1674,13 +1690,91 @@ void MainWindow::on_actionPassword_triggered()
     if (item)
     {
         m = item->data(Qt::UserRole).toMap();
-        //qDebug() << "Passwd triggered: " << m;
         if (m.contains("partitions"))
         {
-            //QVariantList l = item->data(Qt::UserRole).toMap().value("partitions").toList();
             Passwd pDlg(m);
             pDlg.exec();
         }
     }
 
+}
+
+void MainWindow::on_actionClone_triggered()
+{
+    char buffer[256];
+    QString src;
+    QString dst;
+    QString src_dev;
+    QString dst_dev;
+    piclonedialog pDlg;
+    int result = pDlg.exec();
+
+    if (result==QDialog::Rejected)
+        return;
+
+    src=pDlg.get_src();
+    dst=pDlg.get_dst();
+    src_dev=pDlg.get_src_dev();
+    dst_dev=pDlg.get_dst_dev();
+
+    if (src_dev == dst_dev)
+        return;
+
+    sprintf (buffer, tr("This will erase all content on the device '%s'. Are you sure?").toUtf8().constData(), dst.toUtf8().constData());
+
+    QMessageBox msgBox(QMessageBox::Warning, tr("Clone SD Card"),
+                       buffer, 0, this);
+    msgBox.addButton(tr("Yes"), QMessageBox::AcceptRole);
+    msgBox.addButton(tr("No"), QMessageBox::RejectRole);
+    if (msgBox.exec() == QMessageBox::AcceptRole)
+    {
+        msgBox.close();
+        piCloneThread *cloneThread = new piCloneThread(src_dev, dst_dev);
+        QStringList DirList;
+        setEnabled(false);
+        //Reuse the existing Progress Slide Dialog
+        _qpd = new ProgressSlideshowDialog(DirList, "", 20);//Add dst_dev
+        _qpd->setWindowTitle("Clone SD Card");
+        ((ProgressSlideshowDialog*)_qpd)->disableIOaccounting();
+        connect(cloneThread, SIGNAL(setMaxProgress(qint64)), _qpd, SLOT(setMaximum(qint64)));
+        connect(cloneThread, SIGNAL(completed()), this, SLOT(onCloneCompleted()));
+        connect(cloneThread, SIGNAL(error(QString)), this, SLOT(onCloneError(QString)));
+        connect(cloneThread, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
+        connect(cloneThread, SIGNAL(secondaryUpdate(QString)), _qpd, SLOT(setMBWrittenText(QString)));
+        connect(cloneThread, SIGNAL(setProgress(qint64)), _qpd, SLOT(updateProgress(qint64)));
+        cloneThread->start();
+        _qpd->exec();
+        setEnabled(true);
+    }
+}
+
+void MainWindow::onCloneCompleted()
+{
+    _qpd->hide();
+
+    QMessageBox::information(this,
+                             tr("Clone Completed"),
+                             tr("Clone Completed Successfully"), QMessageBox::Ok);
+    _qpd->deleteLater();
+    _qpd = NULL;
+}
+
+void MainWindow::onCloneError(const QString &msg)
+{
+    qDebug() << "Error:" << msg;
+    if (_qpd)
+        _qpd->hide();
+    _qpd->deleteLater();
+    _qpd = NULL;
+    QMessageBox::critical(this, tr("Error"), msg, QMessageBox::Close);
+
+    //Anything could have happened, so umount all then mount what we need
+    QProcess::execute("sh -c \"umount /tmp/src");
+    QProcess::execute("sh -c \"umount /tmp/dst");
+    QProcess::execute("sh -c \"umount /dev/mmcblk0p1 /mnt\"");
+    QProcess::execute("rmdir "+QString("/tmp/src"));
+    QProcess::execute("rmdir "+QString("/tmp/dst"));
+    QProcess::execute("sh -c \"mount -o ro /dev/mmcblk0p1 /mnt\"");
+
+    setEnabled(true);
 }

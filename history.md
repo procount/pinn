@@ -5,6 +5,18 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V1.9.3
+
+- **Clone SD Card** - Copy the SD card to another card in a USB reader (BETA)
+- **Rescue shell** - Exiting the rescue shell now enters the PINN recovery program instead of another shell.
+- **VNCSHARE** - Sets up PINN to use VNC at the same time as an attached screen
+
+#### Bugfixes
+
+- **https** - Fixed the ability to use https protocol (which was preventing Arch from installing sometimes).
+- **wifi config** - A user supplied wpa_supplicant.conf file is now ALWAYS copied to /settings and then renamed to wpa_supplicant.conf.bak so that it does not continually overwrite any manual changes made through the GUI.
+
+
 ### V1.9.2 
 
 - **Password** - Change or reset your password for each OS.

@@ -38,7 +38,10 @@ SOURCES += main.cpp\
     osinfo.cpp \
     partitioninfo.cpp \
     longpresshandler.cpp \
-    passwd.cpp
+    passwd.cpp \
+    piclonedialog.cpp \
+    piclonethread.cpp \
+    copythread.cpp
 
 HEADERS  += mainwindow.h \
     languagedialog.h \
@@ -65,7 +68,10 @@ HEADERS  += mainwindow.h \
     osinfo.h \
     partitioninfo.h \
     longpresshandler.h \
-    passwd.h
+    passwd.h \
+    piclonedialog.h \
+    piclonethread.h \
+    copythread.h
 
 FORMS    += mainwindow.ui \
     languagedialog.ui \
@@ -73,7 +79,8 @@ FORMS    += mainwindow.ui \
     confeditdialog.ui \
     bootselectiondialog.ui \
     wifisettingsdialog.ui \
-    passwd.ui
+    passwd.ui \
+    piclonedialog.ui
 
 RESOURCES += \
     icons.qrc

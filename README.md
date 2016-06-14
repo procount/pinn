@@ -173,7 +173,7 @@ Edit recovery.cmdline and add `alt-image-source=https://raw.githubusercontent.co
 
 ### Preconfiguring a WiFi network
 
-If you already know your WiFi details, you can preconfigure PINN to use it straight away. Put a copy of your `wpa_supplicant.conf` file on the PINN root partition and PINN will read it and store it in its settings for all future uses.
+If you already know your WiFi details, you can preconfigure PINN to use it straight away. Put a copy of your `wpa_supplicant.conf` file on the PINN root partition and PINN will read it and store it in its settings for all future uses. The file will be renamed to `wpa_supplicant.conf.bak` to provent it overwriting any subsequent changes you make to the wifi networks using the GUI. 
 
 ### How to create a custom OS version
 
@@ -297,6 +297,21 @@ If you have changed your login password for an OS and forget what it is, PINN wi
 * The `Use Dafault` button will enter the default username and password for the selected OS.
 * Tick the `show password` box to display the passwords on the screen.
 
+### How to Clone an SD Card
+
+Raspbian has recently added an SD Card Copier tool called piclone, which is great. For anyone concerned about it cloning a live system, 
+it has now been ported into PINN so that it can clone the SD card offline, whilst the OS is not running. 
+1. On the PINN screen, select the new `Advanced` menu.
+* Insert a second SD card into the Pi using a USB card reader
+* Select the Clone SD card button
+* Select your internal SD card as the source (/dev/mmcblk0) and the SD card in the USB reader as the desination (usually /dev/sda)
+* Selct OK to clone your SD card.
+
+All partitions will be copied onto the second card whilst the last partition will be sized fit the remainder of the SD card. 
+In this way your existing data can be migrated to a smaller or larger SD card.
+
+Note that if you have installed multiple OSes using PINN, only the last partition on the SD card will be resized. 
+
 ===
 
 ## Troubleshooting
@@ -309,7 +324,7 @@ Try pressing shift only when the grey splashscreen is displayed rather than hold
 
 To boot into a basic busybox shell rather than launching the PINN GUI, you can *either*:
 
-1. Append `rescueshell` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory.
+1. Append `rescueshell` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory. Exiting from this shell will now enter the PINN recovery program.
 
 2. Insert a physical jumper between pins 5 & 6 of GPIO header P1. If you have external hardware or an addon board connected to the GPIO header, you may find that pin 5 is being pulled low and accidentally triggering "Safe Mode". To prevent this you can append `disablesafemode` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory.
 
@@ -330,6 +345,8 @@ Append `vncinstall` to the argument list in the `recovery.cmdline` file which is
 To connect over VNC you need to know the IP address of the Pi. Connect to port 5900 of this IP address. Using tightvnc, you need to specify this as <ip address>:5900 e.g. 192.168.1.0:5900.
 
 When VNC is selected there will be no GUI present on any attached display as all output is redirected over the VNC network connection.
+
+Appending `vncshare` to the argument list instead of `vncinstall` will share the screen between the locally attached display and redirect it over the VNC network connection simultaneously.
 
 #### How to enable using the GPIO to trigger entering Recovery Mode
 

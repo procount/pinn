@@ -89,8 +89,9 @@ int main(int argc, char *argv[])
     if (!hasTouchScreen)
         KeyDetection::waitForKeyboard();
 
-    int rev = readBoardRevision();
+    qDebug() << VERSION_NUMBER;
 
+    int rev = readBoardRevision();
     qDebug() << "Board revision is " << rev;
 
     int gpioChannel;
@@ -185,9 +186,12 @@ int main(int argc, char *argv[])
         QStringList urls = QString(DEFAULT_REPO_SERVER).split(' ', QString::SkipEmptyParts);
         foreach (QString url, urls)
         {
-            downloadRepoUrls << url;
+            //Add standard sources(http) to the beginning so the time
+            //can be set before https is used.
+            downloadRepoUrls.prepend(url);
         }
     }
+    qDebug() << downloadRepoUrls;
 
     // Intercept right mouse clicks sent to the title bar
     a.installEventFilter(&rbf);

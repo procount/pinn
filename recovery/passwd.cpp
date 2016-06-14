@@ -251,6 +251,7 @@ void Passwd::on_checkBox_toggled(bool checked)
 
 void Passwd::on_passwordEdit_2_textChanged(const QString &arg1)
 {
+    Q_UNUSED(arg1)
     CheckPasswdsEqual();
 }
 
@@ -260,7 +261,7 @@ bool Passwd::CheckPasswdsEqual(void)
     QString pass2 = ui->passwordEdit_2->text();
     QPalette palette;
     bool equal;
-    if (equal=(pass1==pass2))
+    if ((equal=(pass1==pass2)))
     {
         palette.setColor(QPalette::Base,Qt::white);
         palette.setColor(QPalette::Text,Qt::black);

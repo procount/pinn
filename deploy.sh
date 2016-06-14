@@ -2,12 +2,11 @@
 
 # backup the source code to pinn
 git push -f pinn pinn:master
-cp README.md ../pinn/README_PINN.md
 cd ~/pinn
 git checkout -f master
 # move the readme documentation around
-cp README.md README_PINN.md
-cp README_SUM.md README.md
+cp ../noobs_test/README.md README_PINN.md
+cp ../noobs_test/README_SUM.md README.md
 git add README.md
 git add README_PINN.md
 git commit --amend 
