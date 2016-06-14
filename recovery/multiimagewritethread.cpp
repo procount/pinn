@@ -235,7 +235,6 @@ void MultiImageWriteThread::run()
         p->setPartitionSizeSectors(partsizeSectors);
         offset += partsizeSectors;
     }
-
     /* Delete information about previously installed operating systems */
     QFile f("/settings/installed_os.json");
     if (f.exists())

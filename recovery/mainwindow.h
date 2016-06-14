@@ -47,11 +47,11 @@ protected:
     QSplashScreen *_splash;
     QSettings *_settings;
     bool _hasWifi;
+    QMessageBox *_displayModeBox;
     bool _hasUSB;
     int _numInstalledOS;
     QNetworkAccessManager *_netaccess;
     int _neededMB, _availableMB, _numMetaFilesToDownload, _numIconsToDownload;
-    QMessageBox *_displayModeBox;
     QTimer _networkStatusPollTimer;
     QTime _time;
     QString _model;
@@ -83,6 +83,7 @@ protected:
 protected slots:
     void populate();
     void startBrowser();
+    void copyWpa();
     void startNetworking();
     void pollNetworkStatus();
     void onOnlineStateChanged(bool online);
@@ -92,6 +93,8 @@ protected slots:
     /* Events from ImageWriterThread */
     void onError(const QString &msg);
     void onCompleted();
+    void onCloneError(const QString &msg);
+    void onCloneCompleted();
     void downloadIconComplete();
     void downloadMetaRedirectCheck();
     void downloadIconRedirectCheck();
@@ -113,6 +116,8 @@ private slots:
     void on_actionWifi_triggered();
     void on_actionAdvanced_triggered();
     void on_actionPassword_triggered();
+
+    void on_actionClone_triggered();
 
 signals:
     void networkUp();

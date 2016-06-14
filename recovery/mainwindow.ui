@@ -131,6 +131,7 @@
    <addaction name="actionPassword"/>
    <addaction name="actionBackup"/>
    <addaction name="actionFschk"/>
+   <addaction name="actionClone"/>
   </widget>
   <widget class="QToolBar" name="advToolBar">
    <property name="enabled">
@@ -322,6 +323,18 @@
    </property>
    <property name="visible">
     <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionClone">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/backups.png</normaloff>:/icons/backups.png</iconset>
+   </property>
+   <property name="text">
+    <string>Clone (c)</string>
+   </property>
+   <property name="shortcut">
+    <string>C</string>
    </property>
   </action>
  </widget>
