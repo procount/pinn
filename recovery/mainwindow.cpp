@@ -178,6 +178,7 @@ MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, boo
 
     copyWpa();
 
+    _networkOK = true; //flag to close _qpd dialog
     if (cmdline.contains("silentinstall"))
     {
         /* If silentinstall is specified, auto-install single image in /os */
@@ -1149,6 +1150,7 @@ void MainWindow::downloadListComplete()
     {
         if (_qpd)
             _qpd->hide();
+        _networkOK = false;
 
         qDebug() << "Error Downloading "<< reply->url()<<" reply: "<< reply->error() << " httpstatus: "<< httpstatuscode;
         QMessageBox::critical(this, tr("Download error"), tr("Error downloading distribution list from Internet"), QMessageBox::Close);
@@ -1622,7 +1624,7 @@ void MainWindow::hideDialogIfNoNetwork()
 {
     if (_qpd)
     {
-        if (!isOnline())
+        if (!isOnline() || !_networkOK)
         {
             /* No network cable inserted */
             _qpd->hide();
