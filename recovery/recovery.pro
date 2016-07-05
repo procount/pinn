@@ -95,4 +95,5 @@ TRANSLATIONS += translation_nl.ts \
 
 OTHER_FILES += \
     README.txt \
-    wpa_supplicant/wpa_supplicant.xml
+    wpa_supplicant/wpa_supplicant.xml \
+    ../buildroot/package/recovery/init

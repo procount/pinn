@@ -13,6 +13,11 @@ define RPI_WIFI_FIRMWARE_INSTALL_TARGET_CMDS
 	$(INSTALL) -D -m 0644 $(@D)/brcm80211/brcm/brcmfmac43143.bin $(TARGET_DIR)/lib/firmware/brcm/brcmfmac43143.bin
 	$(INSTALL) -D -m 0644 $(@D)/brcm80211/brcm/brcmfmac43430-sdio.bin $(TARGET_DIR)/lib/firmware/brcm/brcmfmac43430-sdio.bin
 	$(INSTALL) -D -m 0644 $(@D)/brcm80211/brcm/brcmfmac43430-sdio.txt $(TARGET_DIR)/lib/firmware/brcm/brcmfmac43430-sdio.txt
+
+	#Added more wifi dongle firmware that got missed
+	$(INSTALL) -D -m 0644 $(@D)/ralink/mt7601u.bin $(TARGET_DIR)/lib/firmware/mt7601u.bin
+	$(INSTALL) -D -m 0644 $(@D)/ralink/rt3290.bin $(TARGET_DIR)/lib/firmware/rt3290.bin  
+
 endef
 
 $(eval $(generic-package))

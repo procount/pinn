@@ -47,6 +47,7 @@ protected:
     QSplashScreen *_splash;
     QSettings *_settings;
     bool _hasWifi;
+    bool _networkOK;
     QMessageBox *_displayModeBox;
     bool _hasUSB;
     int _numInstalledOS;

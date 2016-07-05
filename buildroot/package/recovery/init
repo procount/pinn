@@ -17,6 +17,7 @@
 (cd /sys/class/firmware
 for F in *; do
     if [ -d "$F" ]; then
+        echo "$F" >>/tmp/debug
         echo 1 > "$F/loading"
         cat "/lib/firmware/${F/!//}" > "$F/data"
         echo 0 > "$F/loading"
