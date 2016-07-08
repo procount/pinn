@@ -138,4 +138,25 @@ Adding `vncshare` to recovery.cmdline is similar to `vncinstall` except the disp
 remote VNC client simultaneously. This avoids having to keep editing recovery.cmdline to switch from one to the other as they are both 
 always available.
 
+# V1.9.4 Features
+
+### Bugfixes
+1. Removed the "Please wait while PINN initialises" dialog box under some rare network circumstances.
+
+### Additional Network Drivers
+
+The following network drivers have been added to support a wider range of wifi and network adapters:
+* zd1211rw
+* rtl8192cu
+* rt2500usb
+* rt73usb
+* rt2800usb
+* mt7601u
+* rtl8150
+* r8152
+* asix
+* ax88179_178a
+* dm9601
+* smsc95xx
+
 
