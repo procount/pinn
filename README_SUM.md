@@ -3,6 +3,14 @@
 
 PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi with the following additional features:
 
+### V1.9.4
+
+- **Network Drivers** - A number of additional wifi and ethernet drivers have been added.
+
+#### Bugfixes
+
+- **Dialog Box** - The initialisation dialog box is removed under network errors.
+
 ### V1.9.3
 
 - **Clone SD Card** - Copy the SD card to another card in a USB reader
