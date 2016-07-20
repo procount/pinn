@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 /* Version number displayed in the title bar */
-#define VERSION_NUMBER "1.9.4"
+#define VERSION_NUMBER "1.9.5a"
 
 /* Color of the background */
 // #define BACKGROUND_COLOR  Qt::white
@@ -19,6 +19,8 @@
 
 /* Website launched when launching Arora */
 #define HOMEPAGE  "http://www.raspberrypi.org/help/"
+
+#define AGENT "Wget/1.15 (linux-gnu)"
 
 /* Location to download the list of available distributions from
  * Multiple lists can be specified by space separating the URLs */

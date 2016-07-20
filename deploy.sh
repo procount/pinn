@@ -33,3 +33,4 @@ cp ~/pinn-release/recovery.cmdline $dst
 # Create the Zip file
 cd $dst
 zip -r ../pinn-lite.zip *
+cp BUILD-DATA ..
