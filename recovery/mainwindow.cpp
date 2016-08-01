@@ -10,6 +10,8 @@
 #include "util.h"
 #include "twoiconsdelegate.h"
 #include "wifisettingsdialog.h"
+#include "builddata.h"
+
 #include <QMessageBox>
 #include <QProgressDialog>
 #include <QMap>
@@ -48,6 +50,8 @@
 #ifdef Q_WS_QWS
 #include <QWSServer>
 #endif
+
+void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode);
 
 /* Main window
  *
@@ -1053,7 +1057,10 @@ void MainWindow::onOnlineStateChanged(bool online)
 
 void MainWindow::downloadList(const QString &urlstring)
 {
-    QNetworkReply *reply = _netaccess->get(QNetworkRequest(QUrl(urlstring)));
+    QUrl url(urlstring);
+    QNetworkRequest request(url);
+    request.setRawHeader("User-Agent", AGENT);
+    QNetworkReply *reply = _netaccess->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(downloadListRedirectCheck()));
 }
 
@@ -1061,6 +1068,8 @@ void MainWindow::downloadLists()
 {
     _numIconsToDownload = 0;
     QStringList urls = _repo.split(' ', QString::SkipEmptyParts);
+
+    checkForUpdates();
 
     foreach (QString url, urls)
     {
@@ -1204,6 +1213,9 @@ void MainWindow::processJson(QVariant json)
          _numIconsToDownload += iconurls.count();
         foreach (QString iconurl, iconurls)
         {
+            //QString origurl(iconurl);
+            //if (origurl.endsWith("/download"))
+            //    origurl.chop(9);
             downloadIcon(iconurl, iconurl);
         }
     }
@@ -1276,6 +1288,7 @@ void MainWindow::downloadIcon(const QString &urlstring, const QString &originalu
     QUrl url(urlstring);
     QNetworkRequest request(url);
     request.setAttribute(QNetworkRequest::User, originalurl);
+    request.setRawHeader("User-Agent", AGENT);
     QNetworkReply *reply = _netaccess->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(downloadIconRedirectCheck()));
 }
@@ -1415,6 +1428,7 @@ void MainWindow::downloadMetaFile(const QString &urlstring, const QString &saveA
     QUrl url(urlstring);
     QNetworkRequest request(url);
     request.setAttribute(QNetworkRequest::User, saveAs);
+    request.setRawHeader("User-Agent", AGENT);
     QNetworkReply *reply = _netaccess->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(downloadMetaRedirectCheck()));
 }
@@ -1881,5 +1895,188 @@ void MainWindow::filterList()
                 witem->setHidden(true);
             }
         }
+    }
+}
+
+void MainWindow::checkForUpdates()
+{
+    _numBuildsToDownload=0;
+    downloadUpdate(BUILD_URL,  "BUILD|" BUILD_NEW);
+    downloadUpdate(README_URL,  "README|" README_NEW);
+}
+
+void MainWindow::downloadUpdate(const QString &urlstring, const QString &saveAs)
+{
+    //NOTE: saveAs=type|filename
+    _numBuildsToDownload++;
+    qDebug() << "Downloading" << urlstring << "to" << saveAs;
+    QUrl url(urlstring);
+    QNetworkRequest request(url);
+    request.setRawHeader("User-Agent", AGENT);
+    request.setAttribute(QNetworkRequest::User, saveAs);
+    QNetworkReply *reply = _netaccess->get(request);
+    connect(reply, SIGNAL(finished()), this, SLOT(downloadUpdateRedirectCheck()));
+}
+
+void MainWindow::downloadUpdateRedirectCheck()
+{
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
+    QString saveAs = reply->request().attribute(QNetworkRequest::User).toString();
+    //NOTE: saveAs=type|filename
+    //qDebug() << "Redirect check" << redirectionurl << "to" << saveAs << " Reply="<<httpstatuscode;
+
+    if (httpstatuscode > 300 && httpstatuscode < 400)
+    {
+        qDebug() << "Redirection - Re-trying download from" << redirectionurl;
+        _numBuildsToDownload--;
+        downloadUpdate(redirectionurl, saveAs);
+    }
+    else
+    {
+        downloadUpdateComplete();
+    }
+}
+
+void MainWindow::downloadUpdateComplete()
+{
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    QString userInfo = reply->request().attribute(QNetworkRequest::User).toString();
+    //NOTE: userInfo=type|filename
+    QStringList userInfoList = userInfo.split("|");
+
+    QString saveAs = userInfoList.at(0);
+    QString type="";
+    if (userInfoList.count()>1)
+    {
+        type = saveAs;
+        saveAs = userInfoList.at(1);
+    }
+
+    qDebug() << type;
+
+    if (reply->error() != reply->NoError || httpstatuscode < 200 || httpstatuscode > 399)
+    {
+        if (type == "UPDATE")
+        {   // We only care if the user initiated upgrade fails. Others are non-fatal.
+            QMessageBox::critical(this, tr("Download error"), tr("Error downloading update file")+"\n"+reply->url().toString(), QMessageBox::Close);
+        }
+        else
+        {
+            _numBuildsToDownload--;
+        }
+        setEnabled(true);
+        return;
+    }
+
+    //Successful download
+
+    QFile f(saveAs);
+    f.open(f.WriteOnly);
+    if (f.write(reply->readAll()) == -1)
+    {
+        if (type == "UPDATE")
+        {   // We only care if the user initiated upgrade fails. Others are non-fatal.
+            QMessageBox::critical(this, tr("Download error"), tr("Error writing downloaded file to SD card. SD card or file system may be damaged."), QMessageBox::Close);
+        }
+        else
+        {
+            _numBuildsToDownload--;
+        }
+    }
+    else
+    {
+        qDebug() << "Downloaded " << type << ":" << saveAs;
+        _numBuildsToDownload--;
+        //?
+    }
+    f.close();
+
+    setEnabled(true);
+
+    if ((type!="UPDATE") && (_numBuildsToDownload==0))
+    {
+        BuildData currentver, newver;
+
+        currentver.read(BUILD_IGNORE);
+        if (currentver.isEmpty())
+            currentver.read(BUILD_CURRENT);
+        newver.read(BUILD_NEW);
+
+        if (newver > currentver)
+        {
+            emit (newVersion());
+        }
+    }
+    else if (type=="UPDATE") //upgrade
+    {
+        qDebug() << "Time to update PINN!";
+        QProcess::execute("mount -o remount,rw /mnt");
+        QProcess::execute("unzip /tmp/pinn-lite.zip -o -x recovery.cmdline -d /mnt");
+        QProcess::execute("mount -o remount,ro /mnt");
+        QProcess::execute("sync");
+        if (_qpd)
+        {
+            _qpd->hide();
+            _qpd->deleteLater();
+            _qpd = NULL;
+        }
+
+        QByteArray partition("1");
+        setRebootPartition(partition);
+        ::sync();
+        // Reboot
+        ::reboot(RB_AUTOBOOT);
+    }
+}
+
+void MainWindow::on_newVersion()
+{
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("PINN UPDATE");
+    msgBox.setText("A new version of PINN is available");
+    msgBox.setInformativeText("Do you want to download this version?");
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Ignore);
+    msgBox.setDefaultButton(QMessageBox::No);
+
+    QFile f(README_NEW);
+    QString history;
+
+    if (f.exists())
+    {
+        if (f.open(QFile::ReadOnly | QFile::Text))
+        {
+            QTextStream in(&f);
+            history = in.readAll();
+            msgBox.setDetailedText(history);
+            f.close();
+        }
+    }
+
+    int ret = msgBox.exec();
+    switch (ret)
+    {
+        case QMessageBox::Yes:
+            // Yes was clicked
+            setEnabled(false);
+            _qpd = new QProgressDialog( tr("Downloading Update"), QString(), 0, 0, this);
+            _qpd->setWindowModality(Qt::WindowModal);
+            _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+            _qpd->show();
+            downloadUpdate(UPDATE_URL,  "UPDATE|" UPDATE_NEW);
+            break;
+        case QMessageBox::No:
+            // No was clicked
+            break;
+        case QMessageBox::Ignore:
+            // Ignore was clicked
+            QString cmd = "cp ";
+            cmd.append(BUILD_NEW);
+            cmd.append(" ");
+            cmd.append(BUILD_IGNORE);
+            QProcess::execute(cmd);
+            break;
     }
 }

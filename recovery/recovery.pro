@@ -38,7 +38,9 @@ SOURCES += \
     wpa_supplicant/bss.cpp \
     osinfo.cpp \
     partitioninfo.cpp \
-    longpresshandler.cpp
+    longpresshandler.cpp \
+    copythread.cpp \
+    builddata.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -65,7 +67,9 @@ HEADERS  += \
     wpa_supplicant/bss.h \
     osinfo.h \
     partitioninfo.h \
-    longpresshandler.h
+    longpresshandler.h \
+    copythread.h \
+    builddata.h
 
 FORMS    += \
     mainwindow.ui \
