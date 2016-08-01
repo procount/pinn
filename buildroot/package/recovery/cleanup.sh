@@ -15,6 +15,7 @@ BUILDROOT_TARGET_DIR="$BUILDROOT_OUTPUT_DIR/target"
 #fi
 
 cp output/target/etc/init.d/S50dropbear output/target/etc/S50dropbear
+cp $BUILDROOT_TARGET_DIR/lib/firmware/rtlwifi/* $BUILDROOT_TARGET_DIR/lib/firmware
 # We do not use busybox's init system
 #rm -f "$BUILDROOT_TARGET_DIR/etc/init.d/"*
 

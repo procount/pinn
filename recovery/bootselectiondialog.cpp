@@ -280,11 +280,8 @@ void BootSelectionDialog::updateConfig4dsi(QByteArray partition)
     else
         bHDMI=false;
 
-    //qDebug() << "tvservice name: "<< status << " " << bHDMI << " "<< status.length();
-
     QByteArray partstr = "/dev/mmcblk0p";
     partstr.append(partition);
-    //qDebug() << partstr;
     QProcess::execute("mkdir -p /tmp/3");
 
     QString mntcmd = "mount "+partstr+" /tmp/3";
