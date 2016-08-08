@@ -302,11 +302,11 @@ If an HDMI screen was not detected, PINN will copy the config.dsi file to config
 
 ### How to Recover from a lost password
 
-If you have changed your login password for an OS and forget what it is, PINN will allow you to set it back to its default or set it to a new value.
+If you have changed your login password for an OS and forget what it is, PINN will allow you to reset it back to its default or set it to a new value.
 
 1. On the PINN screen, select the new `Advanced` menu.
 * Select the installed OS that you want to reset the password in.
-* Selecting the change password button will display a dialog box to enter the new password details.
+* Selecting the Password button will display a dialog box to enter the new password details.
 * Enter the username you want to change the password of.
 * Enter the new password (twice). Both copies must match. The second will be displayed red if it is different.
 * The password strength meter is a useful indication of how good a password you have created.
