@@ -41,7 +41,8 @@ SOURCES += main.cpp\
     passwd.cpp \
     piclonedialog.cpp \
     piclonethread.cpp \
-    copythread.cpp
+    copythread.cpp \
+    builddata.cpp
 
 HEADERS  += mainwindow.h \
     languagedialog.h \
@@ -71,7 +72,8 @@ HEADERS  += mainwindow.h \
     passwd.h \
     piclonedialog.h \
     piclonethread.h \
-    copythread.h
+    copythread.h \
+    builddata.h
 
 FORMS    += mainwindow.ui \
     languagedialog.ui \
