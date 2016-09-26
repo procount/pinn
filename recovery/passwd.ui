@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Change Password</string>
+   <string>Reset Password</string>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
