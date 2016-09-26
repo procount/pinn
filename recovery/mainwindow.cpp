@@ -1084,7 +1084,10 @@ void MainWindow::onOnlineStateChanged(bool online)
 
 void MainWindow::downloadList(const QString &urlstring)
 {
-    QNetworkReply *reply = _netaccess->get(QNetworkRequest(QUrl(urlstring)));
+    QUrl url(urlstring);
+    QNetworkRequest request(url);
+    request.setRawHeader("User-Agent", AGENT);
+    QNetworkReply *reply = _netaccess->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(downloadListRedirectCheck()));
 }
 
@@ -1292,6 +1295,7 @@ void MainWindow::downloadIcon(const QString &urlstring, const QString &originalu
     QUrl url(urlstring);
     QNetworkRequest request(url);
     request.setAttribute(QNetworkRequest::User, originalurl);
+    request.setRawHeader("User-Agent", AGENT);
     QNetworkReply *reply = _netaccess->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(downloadIconRedirectCheck()));
 }
@@ -1431,6 +1435,7 @@ void MainWindow::downloadMetaFile(const QString &urlstring, const QString &saveA
     QUrl url(urlstring);
     QNetworkRequest request(url);
     request.setAttribute(QNetworkRequest::User, saveAs);
+    request.setRawHeader("User-Agent", AGENT);
     QNetworkReply *reply = _netaccess->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(downloadMetaRedirectCheck()));
 }

@@ -20,6 +20,8 @@
 /* Website launched when launching Arora */
 #define HOMEPAGE  "http://www.raspberrypi.org/help/"
 
+#define AGENT "Wget/1.15 (linux-gnu)"
+
 /* Location to download the list of available distributions from
  * Multiple lists can be specified by space separating the URLs */
 #define DEFAULT_REPO_SERVER  "http://downloads.raspberrypi.org/os_list_v3.json"
