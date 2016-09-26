@@ -159,4 +159,18 @@ The following network drivers have been added to support a wider range of wifi a
 * dm9601
 * smsc95xx
 
+#V1.9.5 Features
+
+### Bugfixes
+
+1. The rtl8188cus driver has been updated to work with the cfg80211 interface.
+2. The ACT LED will now work properly on the RPi 3B
+
+### Self Update
+
+If PINN is connected to the internet, it will check for the latest version available for download. If a newer version is available, a dialog box will pop-up showing the latest version number and the recent cahnges made. You then have the option to cancel the update, download it, or ignore this version.
+If you cancel, the dialog box will keep popping up to remind you each time PINN starts.
+If you select ignore, this version will be ignored and no dialogs will popup again until another later version is released.
+If you choose to download this update, the zip file will be downloaded and will overwrite your current version of PINN. PINN will then reboot the RPi and restart PINN.
+
 

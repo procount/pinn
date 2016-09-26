@@ -62,7 +62,7 @@ If you have the official [Rapberry Pi USB wifi Dongle](https://www.raspberrypi.o
 
 From v1.9.4, the following network drivers have been added to support a wider range of wifi and network adapters:
 * zd1211rw
-* rtl8192cu
+* rtl8192cu - fixed in v1.9.5
 * rt2500usb
 * rt73usb
 * rt2800usb
@@ -122,6 +122,13 @@ After multiple OSes have been installed, you can select which OS to boot through
 Note that if only one OS is installed then the boot selector will not be displayed and the OS will be automatically booted.
 
 ![alt text](screenshots/boot_select.png "Easily select which OS you want to boot from a list of those currently installed")
+
+#### Self Update
+
+If PINN is connected to the internet, it will check for the latest version available for download. If a newer version is available, a dialog box will pop-up showing the latest version number and the recent cahnges made. You then have the option to cancel the update, download it, or ignore this version.
+If you cancel, the dialog box will keep popping up to remind you each time PINN starts.
+If you select ignore, this version will be ignored and no dialogs will popup again until another later version is released.
+If you choose to download this update, the zip file will be downloaded and will overwrite your current version of PINN. PINN will then reboot the RPi and restart PINN.
 
 ==
 
