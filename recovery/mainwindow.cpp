@@ -1898,7 +1898,8 @@ void MainWindow::downloadUpdateComplete()
 
         if (newver > currentver)
         {
-            emit (newVersion());
+            //emit (newVersion());
+            on_newVersion();
         }
     }
     else if (type=="UPDATE") //upgrade
