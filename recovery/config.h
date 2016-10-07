@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 /* Version number displayed in the title bar */
-#define VERSION_NUMBER "1.9.5.1"
+#define VERSION_NUMBER "2.0a"
 
 /* Color of the background */
 // #define BACKGROUND_COLOR  Qt::white
@@ -49,7 +49,7 @@
 /* Partitioning settings */
 #define PARTITION_ALIGNMENT  8192
 #define PARTITION_GAP  2
-/* Allow partitions to be shrinked PARTITION_GAP sectors
+/* Allow partitions to be shrunk PARTITION_GAP sectors
    if that prevents having a 4 MiB gap between the next one */
 #define SHRINK_PARTITIONS_TO_MINIMIZE_GAPS
 
