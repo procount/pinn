@@ -1,0 +1,13 @@
+diff --git a/drivers/net/usb/usbnet.c b/drivers/net/usb/usbnet.c
+index 1d4da74..7e98106 100644
+--- a/drivers/net/usb/usbnet.c
++++ b/drivers/net/usb/usbnet.c
+@@ -473,7 +473,7 @@ static int rx_submit (struct usbnet *dev, struct urb *urb, gfp_t flags)
+ 		return -ENOLINK;
+ 	}
+ 
+-	skb = __netdev_alloc_skb_ip_align(dev->net, size, flags);
++	skb = __netdev_alloc_skb_ip_align(dev->net, size * 2, flags);
+ 	if (!skb) {
+ 		netif_dbg(dev, rx_err, dev->net, "no rx skb\n");
+ 		usbnet_defer_kevent (dev, EVENT_RX_MEMORY);
