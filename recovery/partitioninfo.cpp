@@ -1,7 +1,23 @@
 #include "partitioninfo.h"
 
+
+PartitionInfo::PartitionInfo(QObject *parent) :
+    QObject(parent)
+{
+}
+
 PartitionInfo::PartitionInfo(const QVariantMap &m, QObject *parent) :
     QObject(parent)
+{
+    importMap(m);
+}
+
+PartitionInfo::PartitionInfo(int partitionNr, int offset, int sectors, const QByteArray &partType, QObject *parent) :
+    QObject(parent), _partitionType(partType), _requiresPartitionNumber(partitionNr), _offset(offset), _partitionSizeSectors(sectors), _active(false)
+{
+}
+
+void PartitionInfo::importMap(const QVariantMap& m)
 {
     _fstype        = m.value("filesystem_type").toByteArray().toLower();
     _mkfsOptions   = m.value("mkfs_options").toByteArray();
@@ -26,9 +42,4 @@ PartitionInfo::PartitionInfo(const QVariantMap &m, QObject *parent) :
         defaultPartType = "83"; /* Linux native */
 
     _partitionType = m.value("partition_type", defaultPartType).toByteArray();
-}
-
-PartitionInfo::PartitionInfo(int partitionNr, int offset, int sectors, const QByteArray &partType, QObject *parent) :
-    QObject(parent), _partitionType(partType), _requiresPartitionNumber(partitionNr), _offset(offset), _partitionSizeSectors(sectors), _active(false)
-{
 }

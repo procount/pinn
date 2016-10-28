@@ -1,6 +1,7 @@
 #include "ossource.h"
 #include "config.h"
 #include "json.h"
+#include "osinfo.h"
 
 #include <QThread>
 #include <QTimer>
@@ -72,6 +73,7 @@ void OSSource::listImagesInDir()
         QString basename = osv.value("name").toString();
 
         //if (canInstallOs(basename, osv))
+        //We will list ALL images that are available and filter them later
         {
             if (QFile::exists(imagefolder+"/flavours.json"))
             {
@@ -90,6 +92,9 @@ void OSSource::listImagesInDir()
                         fm["release_date"] = osv.value("release_date");
                         fm["source"] = osv.value("source");
                         images[name] = fm;
+                        OsInfo * newOs = new OsInfo();
+                        newOs->importMap(fm);
+                        oses[name] = newOs;
                     }
                 }
             }
@@ -100,6 +105,9 @@ void OSSource::listImagesInDir()
                     osv["recommended"] = true;
                 osv["folder"] = imagefolder;
                 images[name] = osv;
+                OsInfo * newOs = new OsInfo();
+                newOs->importMap(osv);
+                oses[name] = newOs;
             }
         }
     }

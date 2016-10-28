@@ -18,6 +18,7 @@ class OsInfo : public QObject
 public:
     /* Constructor parses the json files in <folder>, and stores information in local variables */
     explicit OsInfo(const QString &folder, const QString &flavour = "", QObject *parent = 0);
+    OsInfo();
 
     inline QString folder()
     {

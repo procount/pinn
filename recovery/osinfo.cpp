@@ -2,6 +2,10 @@
 #include "partitioninfo.h"
 #include "json.h"
 
+OsInfo::OsInfo()
+{
+}
+
 OsInfo::OsInfo(const QString &folder, const QString &flavour, QObject *parent) :
     QObject(parent), _folder(folder), _flavour(flavour)
 {

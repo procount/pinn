@@ -6,6 +6,7 @@
 #include <QString>
 #include <QMap>
 #include <QVariant>
+#include "osinfo.h"
 
 class OSSource : public QObject
 {
@@ -28,6 +29,7 @@ private:
     QString device;     // dev/sda1
     QString location;   // /media or http://...
     QMap<QString,QVariantMap> images;
+    QMap<QString,OsInfo *> oses;
 };
 
 

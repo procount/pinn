@@ -19,6 +19,8 @@ public:
 
     explicit PartitionInfo(int partitionNr, int offset, int sectors, const QByteArray &partType, QObject *parent = 0);
 
+    PartitionInfo(QObject *parent);
+
     inline void setPartitionDevice(const QByteArray &partdevice)
     {
         _partitionDevice = partdevice;
@@ -113,6 +115,8 @@ public:
     {
         return _partitionType;
     }
+
+    void importMap(const QVariantMap& m);
 
 protected:
     QByteArray _fstype, _mkfsOptions, _label, _partitionDevice, _partitionType;
