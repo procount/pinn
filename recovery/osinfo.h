@@ -8,6 +8,7 @@
 
 #include <QObject>
 #include <QList>
+#include <QVariantMap>
 
 class PartitionInfo;
 
@@ -72,6 +73,8 @@ public:
     {
         return _password;
     }
+
+    void importMap(QVariantMap& m);
 
 protected:
     QString _folder, _flavour, _name, _description, _version, _releaseDate, _username, _password;

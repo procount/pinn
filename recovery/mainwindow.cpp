@@ -15,6 +15,7 @@
 #include "piclonethread.h"
 #include "builddata.h"
 #include "ceclistener.h"
+#include "ossource.h"
 
 #include <QMessageBox>
 #include <QProgressDialog>
@@ -265,6 +266,23 @@ void MainWindow::populate()
     _settings->setValue("display_mode", _defaultDisplay);
     _settings->sync();
 
+    qDebug() <<"Checking USB....";
+
+    OSSource *usb;
+    usb->setDevice("/dev/sda1");
+    source.append(usb);
+    OSSource *sd;
+    sd->setDevice("/dev/mmcblk0p1");
+    source.append(sd);
+
+    foreach (OSSource *src, source)
+    {
+        src->checkDeviceExists();
+    }
+
+    //QTimer::singleShot(100, usb_source, SLOT(checkDeviceExists()));
+    //usb_source.checkDeviceExists();
+
     if (QFile::exists(USB_DEVICE))
     {
         QDir dir;
@@ -272,9 +290,9 @@ void MainWindow::populate()
         if (QProcess::execute("mount -o ro -t vfat " USB_DEVICE " " USB_MOUNTPOINT) == 0)
         {
             _hasUSB = true;
+            qDebug() << "USB detected";
         }
     }
-
     // Fill in list of images
     repopulate();
     _availableMB = (getFileContents("/sys/class/block/mmcblk0/size").trimmed().toULongLong()-getFileContents("/sys/class/block/mmcblk0p5/start").trimmed().toULongLong()-getFileContents("/sys/class/block/mmcblk0p5/size").trimmed().toULongLong())/2048;
@@ -316,6 +334,8 @@ void MainWindow::populate()
 #endif
 
 }
+
+
 
 void MainWindow::repopulate()
 {

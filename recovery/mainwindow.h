@@ -11,6 +11,8 @@
  */
 
 #include "languagedialog.h"
+#include "ossource.h"
+
 #include <QMainWindow>
 #include <QModelIndex>
 #include <QSplashScreen>
@@ -34,6 +36,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(const QString &defaultDisplay, QSplashScreen *splash, bool noobsconfig, QWidget *parent = 0);
     ~MainWindow();
+    QList<OSSource *> source;
+    OSSource uiSource;
 
 protected:
     Ui::MainWindow *ui;
