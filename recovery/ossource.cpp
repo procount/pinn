@@ -35,13 +35,12 @@ void OsSource::setLocation(const char * locn)
     location = locn;
 }
 
-void OsSource::readImages()
-{
-    qDebug() << "OsSource::readImages";
-}
-
 void OsSource::monitorDevice()
 {
-    qDebug() << "OsSource::monitorDevices";
+    qDebug() << "OsSource::monitorDevice";
+}
 
+void OsSource::monitorNetwork(QNetworkAccessManager *netaccess)
+{
+    qDebug() << "OsSource::monitorNetwork";
 }

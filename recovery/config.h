@@ -59,6 +59,13 @@
 #define USB_MOUNTPOINT "/media"
 #define USB_DEVICE "/dev/sda1"
 
+/* To keep track of where the different OSes get 'installed' from */
+#define SOURCE_SDCARD "sdcard"
+#define SOURCE_USB "usb"
+#define SOURCE_NETWORK "network"
+#define SOURCE_INSTALLED_OS "installed_os"
+
+
 /* If the image name matches this exactly, mark it as recommended */
 #define RECOMMENDED_IMAGE "Raspbian"
 

@@ -17,6 +17,7 @@
 #include "ceclistener.h"
 #include "ossource.h"
 #include "ossourcelocal.h"
+#include "ossourceremote.h"
 
 #include <QMessageBox>
 #include <QProgressDialog>
@@ -79,11 +80,6 @@ extern CecListener * cec;
  *
  */
 
-/* To keep track of where the different OSes get 'installed' from */
-#define SOURCE_SDCARD "sdcard"
-#define SOURCE_USB "usb"
-#define SOURCE_NETWORK "network"
-#define SOURCE_INSTALLED_OS "installed_os"
 
 /* Flag to keep track wheter or not we already repartitioned. */
 bool MainWindow::_partInited = false;
@@ -269,18 +265,29 @@ void MainWindow::populate()
 
     qDebug() <<"Checking USB....";
 
-    OsSourceLocal *usb=new OsSourceLocal();
+    OsSourceLocal *usb=new OsSourceLocal(this);
+    usb->setSource(SOURCE_USB);
     usb->setDevice("/dev/sda1");
     usb->setLocation("/tmp/usb");
     source.append(usb);
-    OsSourceLocal *sd=new OsSourceLocal();
+
+    OsSourceLocal *sd=new OsSourceLocal(this);
+    sd->setSource(SOURCE_SDCARD);
     sd->setDevice("/dev/mmcblk0p1");
     //source.append(sd);
+
+    foreach (QString url, downloadRepoUrls)
+    {
+        OsSourceRemote * repo = new OsSourceRemote(this);
+        repo->setSource(SOURCE_NETWORK);
+        repo->setLocation(url.toUtf8().constData());
+        source.append(usb);
+    }
 
     foreach (OsSource *src, source)
     {
         connect(src,SIGNAL(newSource(OsSource*)),this,SLOT(onNewSource(OsSource*)));
-        src->monitorDevice();
+        src->monitorDevice(); //setup monitoring for devices. Network will be done from network startup.
     }
 
     //QTimer::singleShot(100, usb_source, SLOT(checkDeviceExists()));
@@ -1123,6 +1130,12 @@ void MainWindow::onOnlineStateChanged(bool online)
             _netaccess->setCache(_cache);
             QNetworkConfigurationManager manager;
             _netaccess->setConfiguration(manager.defaultConfiguration());
+
+            foreach (OsSource *src, source)
+            {
+                src->monitorNetwork(_netaccess);
+            }
+            //@@ remove
             downloadLists();
         }
         ui->actionBrowser->setEnabled(true);

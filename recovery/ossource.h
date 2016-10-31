@@ -8,6 +8,8 @@
 #include <QVariant>
 #include "osinfo.h"
 
+class QNetworkAccessManager;
+
 class OsSource : public QObject
 {
     Q_OBJECT
@@ -17,8 +19,6 @@ public:
     void setDevice(const char * id);
     void setLocation(const char * locn);
     QString getDevice();
-
-    virtual void readImages();
 
 protected:
     QString source;     // SDcard/USB/NETWORK etc.
@@ -35,6 +35,7 @@ protected:
 
 public slots:
     virtual void monitorDevice();
+    virtual void monitorNetwork(QNetworkAccessManager *netaccess);
 };
 
 

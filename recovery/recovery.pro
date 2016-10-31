@@ -55,7 +55,8 @@ SOURCES += main.cpp\
     builddata.cpp \
     ceclistener.cpp \
     ossource.cpp \
-    ossourcelocal.cpp
+    ossourcelocal.cpp \
+    ossourceremote.cpp
 
 HEADERS  += mainwindow.h \
     languagedialog.h \
@@ -89,7 +90,8 @@ HEADERS  += mainwindow.h \
     builddata.h \
     ceclistener.h \
     ossource.h \
-    ossourcelocal.h
+    ossourcelocal.h \
+    ossourceremote.h
 
 FORMS    += mainwindow.ui \
     languagedialog.ui \

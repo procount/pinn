@@ -15,13 +15,12 @@ class OsSourceLocal : public OsSource
 public:
     explicit OsSourceLocal(QObject *parent = 0);
 
-    virtual void readImages();
 
 signals:
     void newSource(OsSourceLocal *src);
 
 protected:
-
+    void readImages();
 
 public slots:
     virtual void monitorDevice();
