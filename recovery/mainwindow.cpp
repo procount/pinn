@@ -16,6 +16,7 @@
 #include "builddata.h"
 #include "ceclistener.h"
 #include "ossource.h"
+#include "ossourcelocal.h"
 
 #include <QMessageBox>
 #include <QProgressDialog>
@@ -268,16 +269,18 @@ void MainWindow::populate()
 
     qDebug() <<"Checking USB....";
 
-    OSSource *usb;
+    OsSourceLocal *usb=new OsSourceLocal();
     usb->setDevice("/dev/sda1");
+    usb->setLocation("/tmp/usb");
     source.append(usb);
-    OSSource *sd;
+    OsSourceLocal *sd=new OsSourceLocal();
     sd->setDevice("/dev/mmcblk0p1");
-    source.append(sd);
+    //source.append(sd);
 
-    foreach (OSSource *src, source)
+    foreach (OsSource *src, source)
     {
-        src->checkDeviceExists();
+        connect(src,SIGNAL(newSource(OsSource*)),this,SLOT(onNewSource(OsSource*)));
+        src->monitorDevice();
     }
 
     //QTimer::singleShot(100, usb_source, SLOT(checkDeviceExists()));
@@ -335,7 +338,10 @@ void MainWindow::populate()
 
 }
 
-
+void MainWindow::onNewSource(OsSource *src)
+{
+    qDebug() << "Found New Source " <<src->getDevice();
+}
 
 void MainWindow::repopulate()
 {

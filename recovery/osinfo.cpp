@@ -13,10 +13,7 @@ OsInfo::OsInfo(const QString &folder, const QString &flavour, QObject *parent) :
     importMap(m);
 
     QVariantList parts = Json::loadFromFile(folder+"/partitions.json").toMap().value("partitions").toList();
-    foreach (QVariant pv, parts)
-    {
-        _partitions.append(new PartitionInfo(pv.toMap(), this));
-    }
+    importParts(parts);
 }
 
 void OsInfo::importMap(QVariantMap& m)
@@ -29,4 +26,13 @@ void OsInfo::importMap(QVariantMap& m)
     _riscosOffset = m.value("riscos_offset").toInt();
     _username = m.value("username").toString();
     _password = m.value("password").toString();
+}
+
+void OsInfo::importParts(QVariantList& parts)
+{
+    foreach (QVariant pv, parts)
+    {
+        _partitions.append(new PartitionInfo(pv.toMap(), this));
+    }
+
 }

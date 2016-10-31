@@ -76,6 +76,7 @@ public:
     }
 
     void importMap(QVariantMap& m);
+    void importParts(QVariantList& parts);
 
 protected:
     QString _folder, _flavour, _name, _description, _version, _releaseDate, _username, _password;

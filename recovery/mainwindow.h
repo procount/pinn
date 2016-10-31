@@ -36,8 +36,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(const QString &defaultDisplay, QSplashScreen *splash, bool noobsconfig, QWidget *parent = 0);
     ~MainWindow();
-    QList<OSSource *> source;
-    OSSource uiSource;
+    QList<OsSource *> source;
+    OsSource uiSource;
 
 protected:
     Ui::MainWindow *ui;
@@ -86,6 +86,10 @@ protected:
     void startImageWrite();
     bool canInstallOs(const QString &name, const QVariantMap &values);
     bool isSupportedOs(const QString &name, const QVariantMap &values);
+    void on_newVersion();
+
+public slots:
+    void onNewSource(OsSource *src);
 
 protected slots:
     void populate();
@@ -129,7 +133,6 @@ private slots:
     void on_actionPassword_triggered();
 
     void on_actionClone_triggered();
-    void on_newVersion();
 
 signals:
     void networkUp();

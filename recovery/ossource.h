@@ -1,5 +1,5 @@
-#ifndef OSSOURCE_H
-#define OSSOURCE_H
+#ifndef OsSource_H
+#define OsSource_H
 
 #include <QObject>
 #include <QThread>
@@ -8,30 +8,35 @@
 #include <QVariant>
 #include "osinfo.h"
 
-class OSSource : public QObject
+class OsSource : public QObject
 {
     Q_OBJECT
 public:
-    explicit OSSource(QObject *parent = 0);
+    explicit OsSource(QObject *parent = 0);
     void setSource(const char * type);
     void setDevice(const char * id);
     void setLocation(const char * locn);
-    void listImagesInDir();
+    QString getDevice();
+
+    virtual void readImages();
 
 protected:
-
-signals:
-
-public slots:
-    void checkDeviceExists();
-private:
     QString source;     // SDcard/USB/NETWORK etc.
     QString device;     // dev/sda1
     QString location;   // /media or http://...
-    QMap<QString,QVariantMap> images;
+    //QMap<QString,QVariantMap> images;
     QMap<QString,OsInfo *> oses;
+
+signals:
+    void newSource(OsSource *src);
+
+protected:
+
+
+public slots:
+    virtual void monitorDevice();
 };
 
 
 
-#endif // OSSource_H
+#endif // OsSource_H
