@@ -20,7 +20,7 @@ public:
     explicit OsInfo(const QString &folder, const QString &flavour = "", QObject *parent = 0);
     OsInfo();
 
-    inline QString folder()
+    inline  QString folder()
     {
         return _folder;
     }

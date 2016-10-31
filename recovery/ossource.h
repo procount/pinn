@@ -19,13 +19,17 @@ public:
     void setDevice(const char * id);
     void setLocation(const char * locn);
     QString getDevice();
+    QString getLocation();
+    QString getSource();
+    void clearOSes();
+    void addOS(OsInfo * os,const QString source);
+    QMap<QString,OsInfo *> oses;
 
 protected:
     QString source;     // SDcard/USB/NETWORK etc.
     QString device;     // dev/sda1
     QString location;   // /media or http://...
     //QMap<QString,QVariantMap> images;
-    QMap<QString,OsInfo *> oses;
 
 signals:
     void newSource(OsSource *src);

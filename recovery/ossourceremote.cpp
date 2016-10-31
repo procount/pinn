@@ -28,6 +28,7 @@ OsSourceRemote::OsSourceRemote(QObject *parent) :
 void OsSourceRemote::monitorNetwork(QNetworkAccessManager *netaccess)
 {
     _netaccess = netaccess;
+    qDebug() << "OsSourceRemote::monitorNetwork "<< location;
     downloadList(location);
 }
 

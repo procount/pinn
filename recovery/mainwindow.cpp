@@ -281,7 +281,8 @@ void MainWindow::populate()
         OsSourceRemote * repo = new OsSourceRemote(this);
         repo->setSource(SOURCE_NETWORK);
         repo->setLocation(url.toUtf8().constData());
-        source.append(usb);
+        qDebug() << "Adding repo " << repo->getLocation();
+        source.append(repo);
     }
 
     foreach (OsSource *src, source)
@@ -347,7 +348,12 @@ void MainWindow::populate()
 
 void MainWindow::onNewSource(OsSource *src)
 {
-    qDebug() << "Found New Source " <<src->getDevice();
+    qDebug() << "Found New Source " << src->getDevice() << " " << src->getLocation();
+    foreach (OsInfo *os, src->oses)
+    {
+        //qDebug() << *os;
+        uiSource.addOS(os, src->getSource());
+    }
 }
 
 void MainWindow::repopulate()
@@ -1133,6 +1139,7 @@ void MainWindow::onOnlineStateChanged(bool online)
 
             foreach (OsSource *src, source)
             {
+                qDebug() <<"Starting monitorNetwork";
                 src->monitorNetwork(_netaccess);
             }
             //@@ remove
