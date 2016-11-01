@@ -18,72 +18,12 @@ piclonedialog::piclonedialog(QWidget *parent) :
     src_count=0;
     dst_count=0;
     on_drives_changed();
-    timer = new QTimer(this);
-    connect(timer,SIGNAL(timeout()),this,SLOT(checkDrives()));
-    startMonitoringDrives();
 }
 
 piclonedialog::~piclonedialog()
 {
     delete ui;
 }
-void piclonedialog::startMonitoringDrives(void)
-{
-    timer->start(2000);
-}
-
-void piclonedialog::stopMonitoringDrives(void)
-{
-    timer->stop();
-}
-
-/* Monitor drives for changes (USB sticks) */
-void piclonedialog::checkDrives(void)
-{
-    static int lastNumDrives=0;
-
-#if 0
-    //This detects the device change quickly,
-    //but too soon before parted knows what it's name is.
-    QDir blockdir("/sys/class/block");
-    QStringList namefilter;
-    namefilter << "sd*";
-    QStringList devs=blockdir.entryList(namefilter); //namefilter,QDir::AllEntries,QDir::Name);
-    if (devs.count() != lastNumDrives)
-    {
-        qDebug() << "New Drive list: " << devs;
-        lastNumDrives = devs.count();
-        on_drives_changed();
-    }
-
-#else
-    char device[32];
-    qDebug() << "Check:";
-    FILE *fp = popen ("parted -l | grep \"^Disk /dev/\" | cut -d ' ' -f 2 | cut -d ':' -f 1", "r");
-    int n=0;
-    if (fp != NULL)
-    {
-        while (1)
-        {
-            if (fgets (device, sizeof (device) - 1, fp) == NULL)
-                break;
-            qDebug() << device;
-            if (!strncmp (device + 5, "sd", 2) || !strncmp (device + 5, "mmcblk1", 7) )
-            {
-                n=n+1;
-            }
-        }
-    }
-    if (n != lastNumDrives)
-    {
-        qDebug() << "New Drive list";
-        lastNumDrives = n;
-        on_drives_changed();
-    }
-    pclose(fp);
-#endif
-}
-
 
 /* Parse the partition table to get a device name */
 int piclonedialog::get_dev_name (const char *dev, char *name)
@@ -198,5 +138,4 @@ void piclonedialog::on_buttonBox_accepted()
     end   = _dst.lastIndexOf(')');
     dst_dev = _dst.mid(start+1,end-start-1);
     qDebug() << "Dst: " << dst_dev;
-    stopMonitoringDrives();
 }

@@ -36,12 +36,12 @@ void OsSourceLocal::monitorDevice()
             qDebug() << device <<" mounted at " << location;
         }
         readImages();
-        emit newSource(this);
+        emit newSource( (OsSource*) this);
         //set timer to check for device gone?
     }
     else
     {
-        QTimer::singleShot(1000, this, SLOT(monitorDevice()));
+        //QTimer::singleShot(1000, this, SLOT(monitorDevice()));
     }
 }
 

@@ -29,7 +29,9 @@ protected:
     QString source;     // SDcard/USB/NETWORK etc.
     QString device;     // dev/sda1
     QString location;   // /media or http://...
-    //QMap<QString,QVariantMap> images;
+
+    bool showall;       //
+    QString model;
 
 signals:
     void newSource(OsSource *src);

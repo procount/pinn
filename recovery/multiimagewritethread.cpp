@@ -26,9 +26,9 @@ MultiImageWriteThread::MultiImageWriteThread(bool noobsconfig, QObject *parent) 
         dir.mkdir("/mnt2");
 }
 
-void MultiImageWriteThread::addImage(const QString &folder, const QString &flavour)
+void MultiImageWriteThread::addImage(const QString &folder, const QString &source, const QString &flavour)
 {
-    _images.append(new OsInfo(folder, flavour, this));
+    _images.append(new OsInfo(folder, source, flavour, this));
     //_images.insert(folder, flavour);
 }
 

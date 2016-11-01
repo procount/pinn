@@ -68,7 +68,6 @@ void OsSource::addOS(OsInfo *os, const QString source)
     if (i != oses.end())
     {   //Already exists
         //Check if new OS is newer
-        //if ((existing_details["release_date"].toString() < new_details["release_date"].toString()) || (existing_details["source"].toString() == SOURCE_INSTALLED_OS))
         if ( (os->releaseDate() > i.value()->releaseDate()) || source == SOURCE_INSTALLED_OS)
             //replace with Newer OS.
             i.value() = os;

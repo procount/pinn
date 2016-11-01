@@ -16,8 +16,8 @@ public:
     explicit OsSourceLocal(QObject *parent = 0);
 
 
-signals:
-    void newSource(OsSourceLocal *src);
+//signals:
+//    void newSource(OsSourceLocal *src);
 
 protected:
     void readImages();

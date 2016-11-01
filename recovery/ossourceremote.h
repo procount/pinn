@@ -18,8 +18,8 @@ class OsSourceRemote : public OsSource
 public:
     explicit OsSourceRemote(QObject *parent = 0);
 
-signals:
-    void newSource(OsSourceRemote *src);
+//signals:
+//    void newSource(OsSourceRemote *src);
 
 protected:
     QDialog *_qpd;

@@ -22,11 +22,11 @@ public:
 protected:
     int get_dev_name(const char *dev, char *name);
     void on_cb_Changed(const QString &arg1);
+
+public slots:
     void on_drives_changed(void);
-    void startMonitoringDrives(void);
-    void stopMonitoringDrives(void);
+
 private slots:
-    void checkDrives(void);
     void on_from_cb_currentIndexChanged(const QString &arg1);
     void on_to_cb_currentIndexChanged(const QString &arg1);
     void on_buttonBox_accepted();

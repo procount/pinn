@@ -15,7 +15,7 @@ class MultiImageWriteThread : public QThread
     Q_OBJECT
 public:
     explicit MultiImageWriteThread(bool noobsconfig=false, QObject *parent = 0);
-    void addImage(const QString &folder, const QString &flavour);
+    void addImage(const QString &folder, const QString &source, const QString &flavour);
 
 protected:
     virtual void run();

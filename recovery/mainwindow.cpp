@@ -270,11 +270,17 @@ void MainWindow::populate()
     usb->setDevice("/dev/sda1");
     usb->setLocation("/tmp/usb");
     source.append(usb);
+    //When myUsb detects a new device, it will trigger usb::monitorDevice
+    connect(&myUsb, SIGNAL(drivesChanged()),usb, SLOT(monitorDevice()));
 
     OsSourceLocal *sd=new OsSourceLocal(this);
     sd->setSource(SOURCE_SDCARD);
     sd->setDevice("/dev/mmcblk0p1");
-    //source.append(sd);
+    //source.append(sd);    connect(&myUsb, SIGNAL(drivesChanged()),&pDlg, SLOT(on_drives_changed()));
+
+    //connect(&myUsb, SIGNAL(drivesChanged()), sd, SLOT(on_drives_changed()));
+
+    myUsb.startMonitoringDrives();
 
     foreach (QString url, downloadRepoUrls)
     {
@@ -287,8 +293,8 @@ void MainWindow::populate()
 
     foreach (OsSource *src, source)
     {
+        //When a list of OS are found, lets tell mainWindow to update.
         connect(src,SIGNAL(newSource(OsSource*)),this,SLOT(onNewSource(OsSource*)));
-        src->monitorDevice(); //setup monitoring for devices. Network will be done from network startup.
     }
 
     //QTimer::singleShot(100, usb_source, SLOT(checkDeviceExists()));
@@ -351,8 +357,13 @@ void MainWindow::onNewSource(OsSource *src)
     qDebug() << "Found New Source " << src->getDevice() << " " << src->getLocation();
     foreach (OsInfo *os, src->oses)
     {
-        //qDebug() << *os;
+        qDebug() << os->name();
         uiSource.addOS(os, src->getSource());
+    }
+    foreach (OsInfo *os, uiSource.oses)
+    {
+        //qDebug() << os->name() <<":"<< os->source();
+        os->print();
     }
 }
 
@@ -1673,7 +1684,7 @@ void MainWindow::startImageWrite()
         {
             slidesFolder = folder+"/slides_vga";
         }
-        imageWriteThread->addImage(folder, entry.value("name").toString());
+        imageWriteThread->addImage(folder, entry.value("source").toString(), entry.value("name").toString());
         if (!slidesFolder.isEmpty())
             slidesFolders.append(slidesFolder);
     }
@@ -1782,6 +1793,9 @@ void MainWindow::on_actionClone_triggered()
     QString src_dev;
     QString dst_dev;
     piclonedialog pDlg;
+
+    connect(&myUsb, SIGNAL(drivesChanged()),&pDlg, SLOT(on_drives_changed()));
+
     int result = pDlg.exec();
 
     if (result==QDialog::Rejected)

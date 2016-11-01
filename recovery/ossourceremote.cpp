@@ -23,6 +23,7 @@
 OsSourceRemote::OsSourceRemote(QObject *parent) :
     OsSource(parent)
 {
+    _qpd=NULL;
 }
 
 void OsSourceRemote::monitorNetwork(QNetworkAccessManager *netaccess)
@@ -93,6 +94,8 @@ void OsSourceRemote::downloadListComplete()
     }
 
     reply->deleteLater();
+
+    emit newSource( (OsSource*) this);
 }
 
 void OsSourceRemote::processJson(QVariant json)
@@ -171,7 +174,13 @@ void OsSourceRemote::processJsonOs(const QString &name, QVariantMap &new_details
     newOs->importMap(new_details);
     //@@ Partitions? iconurls?
     oses[name] = newOs;
+    qDebug() << "OsSourceRemote: got "<<name;
+
+    QString iconurl = new_details.value("icon").toString();
+    if (!iconurl.isEmpty())
+        iconurls.insert(iconurl);
 }
+
 
 void OsSourceRemote::downloadIcon(const QString &urlstring, const QString &originalurl)
 {
@@ -213,6 +222,8 @@ void OsSourceRemote::downloadIconComplete()
     }
     else
     {
+        qDebug() << "OsSourceRemote: icon "<<originalurl;
+
         QPixmap pix;
         pix.loadFromData(reply->readAll());
         QIcon icon(pix);

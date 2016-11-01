@@ -117,6 +117,7 @@ public:
     }
 
     void importMap(const QVariantMap& m);
+    void print();
 
 protected:
     QByteArray _fstype, _mkfsOptions, _label, _partitionDevice, _partitionType;
