@@ -9,6 +9,8 @@
 #include <QObject>
 #include <QList>
 #include <QVariantMap>
+#include <QString>
+#include <QStringList>
 
 class PartitionInfo;
 
@@ -80,15 +82,23 @@ public:
         return _source;
     }
 
+    inline void setShowAll(bool all)
+    {
+        _showAll = all;
+    }
+
+
     void importMap(QVariantMap& m);
     void importParts(QVariantList& parts);
     void print();
 
 protected:
     QString _folder, _flavour, _name, _description, _version, _releaseDate, _username, _password, _source;
-    bool _bootable;
+    QString _icon, _osInfo, _partitionsInfo, _partitionSetup, _marketingInfo, _url;
+    bool _bootable, _recommended, _showAll;
     QList<PartitionInfo *> _partitions;
-    int _riscosOffset;
+    QStringList _models;
+    int _riscosOffset, _nominalSize;
 
 };
 

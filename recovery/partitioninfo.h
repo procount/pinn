@@ -19,7 +19,7 @@ public:
 
     explicit PartitionInfo(int partitionNr, int offset, int sectors, const QByteArray &partType, QObject *parent = 0);
 
-    PartitionInfo(QObject *parent);
+    PartitionInfo(QObject *parent = 0);
 
     inline void setPartitionDevice(const QByteArray &partdevice)
     {
@@ -116,6 +116,11 @@ public:
         return _partitionType;
     }
 
+    inline void setTarball(QString tarball)
+    {
+        _tarball =tarball;
+    }
+
     void importMap(const QVariantMap& m);
     void print();
 
@@ -124,6 +129,8 @@ protected:
     QString _tarball;
     int _partitionSizeNominal, _requiresPartitionNumber, _offset, _uncompressedTarballSize, _partitionSizeSectors;
     bool _emptyFS, _wantMaximised, _active;
+    void init();
+
 };
 
 #endif // PARTITIONINFO_H

@@ -5,6 +5,28 @@
 
 OsInfo::OsInfo()
 {
+    _folder="";
+    _flavour="";
+    _name="";
+    _description="";
+    _version="";
+    _releaseDate="";
+    _username="";
+    _password="";
+    _source="";
+    _icon="";
+    _osInfo="";
+    _partitionsInfo="";
+    _partitionSetup="";
+    _marketingInfo="";
+    _url="";
+    _bootable=false;
+    _recommended=false;
+    _showAll=false;
+    _riscosOffset=0;
+    _nominalSize=0;
+    //QList<PartitionInfo *> _partitions;
+    //QStringList _models;
 }
 
 OsInfo::OsInfo(const QString &folder, const QString &source, const QString &flavour, QObject *parent) :
@@ -21,52 +43,66 @@ OsInfo::OsInfo(const QString &folder, const QString &source, const QString &flav
 
 void OsInfo::importMap(QVariantMap& m)
 {
-    //From local
-    _name = m.value("name").toString();
-    _version = m.value("version").toString();
-    _description = m.value("description").toString();
-    _releaseDate = m.value("release_date").toString();
-    _bootable = m.value("bootable", true).toBool();
-    _riscosOffset = m.value("riscos_offset").toInt();
-    _username = m.value("username").toString();
-    _password = m.value("password").toString();
-    _source = m.value("source").toString();
-
-
-    qDebug() << m.value("partitions").toList();
-    qDebug() << m.value("partitions").toMap();
-
-
-    if (m.contains("partitions"))
+    for(QVariantMap::iterator iter = m.begin(); iter != m.end(); ++iter)
     {
-        //QVariantMap pv = m.value("partitions").toMap();
-        QVariantList pvl = m.value("partitions").toList();
-        importParts(pvl);
+        QString key = iter.key();
+        if ((key == "name") || (key=="os_name"))
+            _name = iter.value().toString();
+        else if (key == "version")
+            _version = iter.value().toString();
+        else if (key == "description")
+            _description = iter.value().toString();
+        else if (key == "release_date")
+            _releaseDate = iter.value().toString();
+        else if (key == "bootable")
+            _bootable = iter.value().toBool();
+        else if (key == "riscos_offset")
+            _riscosOffset = iter.value().toInt();
+        else if (key == "username")
+            _username = iter.value().toString();
+        else if (key == "password")
+            _password = iter.value().toString();
+        else if (key == "icon")
+            _icon = iter.value().toString();
+        else if (key == "marketing_info")
+            _marketingInfo = iter.value().toString();
+        else if (key == "nominal_size")
+            _nominalSize = iter.value().toInt();
+        else if (key == "os_info")
+            _osInfo = iter.value().toString();
+        else if (key == "partition_setup")
+            _partitionSetup = iter.value().toString();
+        else if (key == "partitions_info")
+            _partitionsInfo = iter.value().toString();
+        else if (key == "folder")
+            _folder = iter.value().toString();
+        else if (key == "url")
+            _url = iter.value().toString();
+        else if (key == "source")
+            _source = iter.value().toString();
+        else if (key == "recommended")
+            _recommended = iter.value().toBool();
+        else if ((key == "kernel") || (key == "feature_level") || (key == "supported_hex_revisions") || (key=="slice_exclude"))
+            ;
+        else if (key == "supported_models")
+        {
+            _models = iter.value().toStringList();
+        }
+        else if (key=="tarballs")
+        {
+            //@@ Maybe check if the partitions already exist and set them, or create new.
+            _partitions.clear();
+            QStringList pvl = iter.value().toStringList();
+            foreach (QString tarball, pvl)
+            {
+                PartitionInfo *part = new PartitionInfo();
+                part->setTarball(tarball);
+                _partitions.append(part);
+            }
+        }
+        else
+            qDebug() << "Unknown: " << key << iter.value();
     }
-/*
-            "os_name": "Arch1",
-            "description": "An Arch Linux port for ARM devices RPi1",
-            "release_date": "2016-03-17",
-            "feature_level": 35644412,
-            "supported_hex_revisions": "2,3,4,5,6,7,8,9,d,e,f,10,11,12,13,14,19,0092",
-            "supported_models": [
-               "Pi Model",
-               "Pi Compute Module",
-               "Pi Zero"
-            ],
-            "os_info": "https://raw.githubusercontent.com/procount/pinn-os/master/os/Arch1/os.json",
-            "partitions_info": "https://raw.githubusercontent.com/procount/pinn-os/master/os/Arch1/partitions.json",
-            "icon": "https://raw.githubusercontent.com/procount/pinn-os/master/os/Arch1/Arch.png",
-            "marketing_info": "https://raw.githubusercontent.com/procount/pinn-os/master/os/Arch1/marketing.tar",
-            "partition_setup": "https://raw.githubusercontent.com/procount/pinn-os/master/os/Arch1/partition_setup.sh",
-            "nominal_size": 1600,
-            "tarballs": [
-                "https://raw.githubusercontent.com/procount/pinn-os/master/os/Arch1/boot.tar.xz",
-                "http://archlinuxarm.org/os/ArchLinuxARM-rpi-latest.tar.gz"
-            ]
-        },
-
- */
 }
 
 void OsInfo::importParts(QVariantList& parts)
@@ -89,6 +125,19 @@ void OsInfo::print()
     qDebug() << "_riscosOffset=" <<_riscosOffset;
     qDebug() << "_username=" <<_username;
     qDebug() << "_password=" <<_password;
+    qDebug() << "_source=" <<_source;
+    qDebug() << "_folder=" << _folder;
+    qDebug() << "_flavour=" << _flavour;
+    qDebug() << "_icon=" << _icon;
+    qDebug() << "_osinfo=" << _osInfo;
+    qDebug() << "_partitionsInfo=" << _partitionsInfo;
+    qDebug() << "_partitionSetup=" << _partitionSetup;
+    qDebug() << "_marketingInfo=" << _marketingInfo;
+    qDebug() << "_url=" << _url;
+    qDebug() << "_recommended=" << _recommended;
+    qDebug() << "_showAll=" << _showAll;
+    qDebug() << "_nominalSize=" << _nominalSize;
+    qDebug() << "_models=" <<_models;
     qDebug() << "_source=" <<_source;
     foreach (PartitionInfo * p, _partitions)
         p->print();
