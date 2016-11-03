@@ -92,6 +92,7 @@ protected:
 
 public slots:
     void onNewSource(OsSource *src);
+    void on_drives_changed(void);
 
 protected slots:
     void populate();

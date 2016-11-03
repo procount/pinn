@@ -263,7 +263,15 @@ void MainWindow::populate()
     _settings->setValue("display_mode", _defaultDisplay);
     _settings->sync();
 
-    qDebug() <<"Checking USB....";
+
+    //====Create SD card source========//
+    OsSourceLocal *sd=new OsSourceLocal(this);
+    sd->setSource(SOURCE_SDCARD);
+    sd->setDevice("/dev/mmcblk0p1");
+    connect(&myUsb, SIGNAL(drivesChanged()), sd, SLOT(on_drives_changed()));
+    source.append(sd);
+
+
 
     OsSourceLocal *usb=new OsSourceLocal(this);
     usb->setSource(SOURCE_USB);
@@ -273,12 +281,8 @@ void MainWindow::populate()
     //When myUsb detects a new device, it will trigger usb::monitorDevice
     connect(&myUsb, SIGNAL(drivesChanged()),usb, SLOT(monitorDevice()));
 
-    OsSourceLocal *sd=new OsSourceLocal(this);
-    sd->setSource(SOURCE_SDCARD);
-    sd->setDevice("/dev/mmcblk0p1");
-    //source.append(sd);    connect(&myUsb, SIGNAL(drivesChanged()),&pDlg, SLOT(on_drives_changed()));
 
-    //connect(&myUsb, SIGNAL(drivesChanged()), sd, SLOT(on_drives_changed()));
+    connect(&myUsb, SIGNAL(drivesChanged()), this, SLOT(on_drives_changed()));
 
     myUsb.startMonitoringDrives();
 
@@ -350,6 +354,47 @@ void MainWindow::populate()
     }
 #endif
 
+}
+
+void MainWindow::on_drives_changed(void)
+{
+    char buffer[256], name[128], device[32];
+    FILE *fp;
+    QStringList drives;
+
+    fp = popen ("parted -l | grep \"^Disk /dev/\" | cut -d ' ' -f 2 | cut -d ':' -f 1", "r");
+    if (fp != NULL)
+    {
+        while (1)
+        {
+            if (fgets (device, sizeof (device) - 1, fp) == NULL)
+                break;
+
+            if (!strncmp (device + 5, "sd", 2))
+            {
+                device[strlen (device) - 1] = 0;
+                bool found=false;
+                foreach (OsSource *src, source)
+                {
+                    if (src->getDevice() == device)
+                        found=true;
+                }
+                if (!found)
+                {
+                    //====Create USB source========//
+                    OsSourceLocal *usb=new OsSourceLocal(this);
+                    usb->setSource(SOURCE_USB);
+                    usb->setDevice(device);
+                    strcpy(name,"/tmp");
+                    strcat(name,device);
+                    usb->setLocation(name);
+                    source.append(usb);
+                    usb->monitorDevice();
+                }
+            }
+        }
+        pclose(fp);
+    }
 }
 
 void MainWindow::onNewSource(OsSource *src)
