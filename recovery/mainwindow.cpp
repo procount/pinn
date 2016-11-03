@@ -43,6 +43,7 @@
 #include <QtNetwork/QNetworkConfigurationManager>
 #include <QtDBus/QDBusConnection>
 #include <QHostInfo>
+#include <QTextStream>
 
 #include <unistd.h>
 #include <sys/types.h>
@@ -263,7 +264,7 @@ void MainWindow::populate()
     _settings->setValue("display_mode", _defaultDisplay);
     _settings->sync();
 
-
+#if 0
     //====Create SD card source========//
     OsSourceLocal *sd=new OsSourceLocal(this);
     sd->setSource(SOURCE_SDCARD);
@@ -274,22 +275,21 @@ void MainWindow::populate()
 
 
     OsSourceLocal *usb=new OsSourceLocal(this);
-    usb->setSource(SOURCE_USB);
+    usb->setSourceType(SOURCE_USB);
     usb->setDevice("/dev/sda1");
     usb->setLocation("/tmp/usb");
     source.append(usb);
     //When myUsb detects a new device, it will trigger usb::monitorDevice
     connect(&myUsb, SIGNAL(drivesChanged()),usb, SLOT(monitorDevice()));
-
+#endif
 
     connect(&myUsb, SIGNAL(drivesChanged()), this, SLOT(on_drives_changed()));
-
     myUsb.startMonitoringDrives();
 
     foreach (QString url, downloadRepoUrls)
     {
         OsSourceRemote * repo = new OsSourceRemote(this);
-        repo->setSource(SOURCE_NETWORK);
+        repo->setSourceType(SOURCE_NETWORK);
         repo->setLocation(url.toUtf8().constData());
         qDebug() << "Adding repo " << repo->getLocation();
         source.append(repo);
@@ -362,39 +362,54 @@ void MainWindow::on_drives_changed(void)
     FILE *fp;
     QStringList drives;
 
-    fp = popen ("parted -l | grep \"^Disk /dev/\" | cut -d ' ' -f 2 | cut -d ':' -f 1", "r");
+    //Get a list of all partitions
+    fp = popen ("lsblk -pl| grep 'part' | cut -d ' ' -f 1", "r");
     if (fp != NULL)
     {
-        while (1)
+        QTextStream textStream(fp);
+        while (true)
         {
-            if (fgets (device, sizeof (device) - 1, fp) == NULL)
+            QString line = textStream.readLine();
+            if (line.isNull())
                 break;
-
-            if (!strncmp (device + 5, "sd", 2))
-            {
-                device[strlen (device) - 1] = 0;
-                bool found=false;
-                foreach (OsSource *src, source)
-                {
-                    if (src->getDevice() == device)
-                        found=true;
-                }
-                if (!found)
-                {
-                    //====Create USB source========//
-                    OsSourceLocal *usb=new OsSourceLocal(this);
-                    usb->setSource(SOURCE_USB);
-                    usb->setDevice(device);
-                    strcpy(name,"/tmp");
-                    strcat(name,device);
-                    usb->setLocation(name);
-                    source.append(usb);
-                    usb->monitorDevice();
-                }
-            }
+            else
+                drives.append(line);
         }
         pclose(fp);
     }
+    qDebug() <<"MainWindow::on_drives_changed:" << drives;
+#if 0
+    while (1)
+    {
+        if (fgets (device, sizeof (device) - 1, fp) == NULL)
+            break;
+
+        if (!strncmp (device + 5, "sd", 2))
+        {
+            device[strlen (device) - 1] = 0;
+            bool found=false;
+            foreach (OsSource *src, source)
+            {
+                if (src->getDevice() == device)
+                    found=true;
+            }
+            if (!found)
+            {
+                //====Create USB source========//
+                OsSourceLocal *usb=new OsSourceLocal(this);
+                usb->setSourceType(SOURCE_USB);
+                usb->setDevice(device);
+                strcpy(name,"/tmp");
+                strcat(name,device);
+                usb->setLocation(name);
+                source.append(usb);
+                usb->monitorDevice();
+            }
+        }
+    }
+    pclose(fp);
+
+#endif
 }
 
 void MainWindow::onNewSource(OsSource *src)
@@ -403,7 +418,7 @@ void MainWindow::onNewSource(OsSource *src)
     foreach (OsInfo *os, src->oses)
     {
         qDebug() << os->name();
-        uiSource.addOS(os, src->getSource());
+        uiSource.addOS(os, src->getSourceType());
     }
     foreach (OsInfo *os, uiSource.oses)
     {

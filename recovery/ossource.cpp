@@ -17,14 +17,14 @@ OsSource::OsSource(QObject *parent) :
 {
 }
 
-void OsSource::setSource(const char * type)
+void OsSource::setSourceType(const char * type)
 {
-    source = type;
+    sourceType = type;
 }
 
-QString OsSource::getSource()
+QString OsSource::getSourceType()
 {
-    return(source);
+    return(sourceType);
 }
 
 void OsSource::setDevice(const char * id)

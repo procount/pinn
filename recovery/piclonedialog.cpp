@@ -58,7 +58,7 @@ void piclonedialog::on_drives_changed(void)
     ui->from_cb->insertItem(0,"Internal SD card  (/dev/mmcblk0)");
 	src_count++;
 
-    fp = popen ("parted -l | grep \"^Disk /dev/\" | cut -d ' ' -f 2 | cut -d ':' -f 1", "r");
+    fp = popen ("lsblk -pl| grep 'disk' | cut -d ' ' -f 1", "r");
     if (fp != NULL)
     {
 	    while (1)

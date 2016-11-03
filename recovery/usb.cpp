@@ -5,52 +5,54 @@
 
 #include <QDir>
 #include <QDialog>
-
+#include <QStringList>
 
 usb::usb(QObject *parent) :
     QObject(parent)
 {
-    timer = new QTimer(this);
-    connect(timer,SIGNAL(timeout()),this,SLOT(checkDrives()));
+    _timer = new QTimer(this);
+    connect(_timer,SIGNAL(timeout()),this,SLOT(checkDrives()));
 }
 
 void usb::startMonitoringDrives(void)
 {
-    timer->start(2000);
+    _timer->start(2000);
 }
 
 void usb::stopMonitoringDrives(void)
 {
-    timer->stop();
+    _timer->stop();
 }
 
 /* Monitor drives for changes (USB sticks) */
 void usb::checkDrives(void)
 {
-    static int lastNumDrives=0;
-
+    QStringList newlist;
     char device[32];
-    qDebug() << "Check:";
-    FILE *fp = popen ("parted -l | grep \"^Disk /dev/\" | cut -d ' ' -f 2 | cut -d ':' -f 1", "r");
-    int n=0;
+
+    //Get list of all block devices starting SD or MMCBLK
+    FILE *fp = popen ("blkid | cut -d: -f 1", "r");
     if (fp != NULL)
     {
         while (1)
         {
             if (fgets (device, sizeof (device) - 1, fp) == NULL)
                 break;
-            qDebug() << device;
-            if (!strncmp (device + 5, "sd", 2) || !strncmp (device + 5, "mmcblk1", 7) )
-            {
-                n=n+1;
+            //qDebug() << device;
+            if (!strncmp (device + 5, "sd", 2) || !strncmp (device + 5, "mmcblk", 6) )
+            {   //remove trailing LF
+                device [strlen(device)-1] ='\0';
+                newlist << device;
             }
         }
     }
-    if (n != lastNumDrives)
+    newlist.sort();
+    if (newlist != _driveList)
     {
-        qDebug() << "New Drive list";
-        lastNumDrives = n;
+        qDebug() << "New Drive list" <<newlist;
+        _driveList = newlist;
         emit drivesChanged();
     }
     pclose(fp);
 }
+

@@ -59,7 +59,7 @@ void OsSourceLocal::readImages()
         if (!QFile::exists(imagefolder+"/os.json"))
             continue;
         QVariantMap osv = Json::loadFromFile(imagefolder+"/os.json").toMap();
-        osv["source"] = source;
+        osv["source"] = sourceType;
 
         QString basename = osv.value("name").toString();
 

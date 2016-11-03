@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QTimer>
+#include <QStringList>
 
 class usb : public QObject
 {
@@ -13,6 +14,10 @@ public:
 public:
     void startMonitoringDrives(void);
     void stopMonitoringDrives(void);
+    inline QStringList getDriveList()
+    {
+        return (_driveList);
+    }
 
 signals:
     void drivesChanged();
@@ -21,8 +26,8 @@ private slots:
     void checkDrives(void);
 
 private:
-    QTimer *timer;
-
+    QTimer      *_timer;
+    QStringList _driveList;
 };
 
 #endif // USB_H
