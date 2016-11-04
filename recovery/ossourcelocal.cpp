@@ -20,12 +20,12 @@ void OsSourceLocal::monitorDevice()
 {
     static int counter=0;
     counter +=1;
-    qDebug() << "OsSourceLocal::monitorDevices";
+    //qDebug() << "OsSourceLocal::monitorDevices";
 
-    qDebug() << "Checking "<< device<< " "<<counter;
+    //qDebug() << "Checking "<< device<< " "<<counter;
     if (QFile::exists(device))
     {
-        qDebug() << device << "detected after "<<counter;
+        //qDebug() << device << "detected after "<<counter;
         counter=0;
         QDir dir;
         dir.mkpath(location);
@@ -33,7 +33,7 @@ void OsSourceLocal::monitorDevice()
         if (QProcess::execute(cmd) == 0)
         {
             //_hasUSB = true;
-            qDebug() << device <<" mounted at " << location;
+            //qDebug() << device <<" mounted at " << location;
         }
         readImages();
         emit newSource( (OsSource*) this);
@@ -48,7 +48,7 @@ void OsSourceLocal::monitorDevice()
 
 void OsSourceLocal::readImages()
 {
-    qDebug() << "OsSourceLocal::readImages";
+    //qDebug() << "OsSourceLocal::readImages";
     QString path=location+"/os";
     QDir dir(path, "", QDir::Name, QDir::Dirs | QDir::NoDotAndDotDot);
     QStringList list = dir.entryList();
@@ -88,6 +88,7 @@ void OsSourceLocal::readImages()
                         QVariantList parts = Json::loadFromFile(imagefolder+"/partitions.json").toMap().value("partitions").toList();
                         newOs->importParts(parts);
                         oses[name] = newOs;
+                        //qDebug() <<"Added new local flavour: "<<name;
                     }
                 }
             }
@@ -103,6 +104,8 @@ void OsSourceLocal::readImages()
                 QVariantList parts = Json::loadFromFile(imagefolder+"/partitions.json").toMap().value("partitions").toList();
                 newOs->importParts(parts);
                 oses[name] = newOs;
+                //qDebug() <<"Added new local os: "<<name;
+
             }
         }
     }

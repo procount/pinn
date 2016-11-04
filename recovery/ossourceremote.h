@@ -11,6 +11,8 @@
 #include <QVariant>
 #include <QDialog>
 #include <QtNetwork/QNetworkAccessManager>
+#include <QIcon>
+#include <QString>
 
 class OsSourceRemote : public OsSource
 {
@@ -18,8 +20,9 @@ class OsSourceRemote : public OsSource
 public:
     explicit OsSourceRemote(QObject *parent = 0);
 
-//signals:
+signals:
 //    void newSource(OsSourceRemote *src);
+    void iconDownloaded(QString, QIcon );
 
 protected:
     QDialog *_qpd;

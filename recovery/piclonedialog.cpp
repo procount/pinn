@@ -17,7 +17,7 @@ piclonedialog::piclonedialog(QWidget *parent) :
     ui->setupUi(this);
     src_count=0;
     dst_count=0;
-    on_drives_changed();
+    onDrivesChanged();
 }
 
 piclonedialog::~piclonedialog()
@@ -41,7 +41,7 @@ int piclonedialog::get_dev_name (const char *dev, char *name)
 }
 
 
-void piclonedialog::on_drives_changed(void)
+void piclonedialog::onDrivesChanged(void)
 {
     char buffer[256], name[128], device[32];
 	FILE *fp;

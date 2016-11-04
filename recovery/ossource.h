@@ -24,14 +24,13 @@ public:
     void clearOSes();
     void addOS(OsInfo * os,const QString source);
     QMap<QString,OsInfo *> oses;
+    void filterAddSource(OsSource *src);
 
 protected:
     QString sourceType;     // SDcard/USB/NETWORK etc.
     QString device;     // dev/sda1
     QString location;   // /media or http://...
 
-    bool showall;       //
-    QString model;
 
 signals:
     void newSource(OsSource *src);

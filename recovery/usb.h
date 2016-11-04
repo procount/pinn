@@ -20,7 +20,7 @@ public:
     }
 
 signals:
-    void drivesChanged();
+    void drivesChanged(void);
 
 private slots:
     void checkDrives(void);

@@ -12,6 +12,7 @@
 #include <QPixmap>
 #include <QMessageBox>
 #include <QIcon>
+#include <QString>
 
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkRequest>
@@ -29,7 +30,7 @@ OsSourceRemote::OsSourceRemote(QObject *parent) :
 void OsSourceRemote::monitorNetwork(QNetworkAccessManager *netaccess)
 {
     _netaccess = netaccess;
-    qDebug() << "OsSourceRemote::monitorNetwork "<< location;
+    //qDebug() << "OsSourceRemote::monitorNetwork "<< location;
     downloadList(location);
 }
 
@@ -67,7 +68,7 @@ void OsSourceRemote::downloadListRedirectCheck()
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
-        qDebug() << "Redirection - Re-trying download from" << redirectionurl;
+        //qDebug() << "Redirection - Re-trying download from" << redirectionurl;
         downloadList(redirectionurl);
     }
     else
@@ -174,7 +175,7 @@ void OsSourceRemote::processJsonOs(const QString &name, QVariantMap &new_details
     newOs->importMap(new_details);
     //@@ Partitions? iconurls?
     oses[name] = newOs;
-    qDebug() << "OsSourceRemote: got "<<name;
+    //qDebug() << "OsSourceRemote: got "<<name;
 
     QString iconurl = new_details.value("icon").toString();
     if (!iconurl.isEmpty())
@@ -222,21 +223,13 @@ void OsSourceRemote::downloadIconComplete()
     }
     else
     {
-        qDebug() << "OsSourceRemote: icon "<<originalurl;
+        //qDebug() << "OsSourceRemote: icon "<<originalurl;
 
         QPixmap pix;
         pix.loadFromData(reply->readAll());
         QIcon icon(pix);
 
-//@@        for (int i=0; i<ui->list->count(); i++)
-//        {
-//            QVariantMap m = ui->list->item(i)->data(Qt::UserRole).toMap();
-//            ui->list->setIconSize(QSize(40,40));
-//            if (m.value("icon") == originalurl)
-//            {
-//                ui->list->item(i)->setIcon(icon);
-//            }
-//        }
+        emit iconDownloaded(originalurl,icon);
     }
     if (--_numIconsToDownload == 0 && _qpd)
     {

@@ -92,7 +92,7 @@ MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, boo
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     _qpd(NULL), _kcpos(0), _defaultDisplay(defaultDisplay),
-    _silent(false), _allowSilent(false), _showAll(false), _splash(splash), _settings(NULL),
+    _silent(false), _allowSilent(false), _splash(splash), _settings(NULL),
     _hasWifi(false), _numInstalledOS(0), _netaccess(NULL), _displayModeBox(NULL), _hasUSB(false), _noobsconfig(noobsconfig)
 {
     ui->setupUi(this);
@@ -186,7 +186,7 @@ MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, boo
     QString cmdline = getFileContents("/proc/cmdline");
     if (cmdline.contains("showall"))
     {
-        _showAll = true;
+        OsInfo::_showAll = true;
     }
 
     copyWpa();
@@ -269,7 +269,7 @@ void MainWindow::populate()
     OsSourceLocal *sd=new OsSourceLocal(this);
     sd->setSource(SOURCE_SDCARD);
     sd->setDevice("/dev/mmcblk0p1");
-    connect(&myUsb, SIGNAL(drivesChanged()), sd, SLOT(on_drives_changed()));
+    connect(&myUsb, SIGNAL(drivesChanged()), sd, SLOT(onDrivesChanged()));
     source.append(sd);
 
 
@@ -282,8 +282,7 @@ void MainWindow::populate()
     //When myUsb detects a new device, it will trigger usb::monitorDevice
     connect(&myUsb, SIGNAL(drivesChanged()),usb, SLOT(monitorDevice()));
 #endif
-
-    connect(&myUsb, SIGNAL(drivesChanged()), this, SLOT(on_drives_changed()));
+    connect(&myUsb, SIGNAL(drivesChanged()), this, SLOT(onDrivesChanged()));
     myUsb.startMonitoringDrives();
 
     foreach (QString url, downloadRepoUrls)
@@ -291,7 +290,8 @@ void MainWindow::populate()
         OsSourceRemote * repo = new OsSourceRemote(this);
         repo->setSourceType(SOURCE_NETWORK);
         repo->setLocation(url.toUtf8().constData());
-        qDebug() << "Adding repo " << repo->getLocation();
+        connect(repo, SIGNAL(iconDownloaded(QString,QIcon)),this,SLOT(onIconDownloaded(QString,QIcon)));
+        //qDebug() << "Adding repo " << repo->getLocation();
         source.append(repo);
     }
 
@@ -311,7 +311,7 @@ void MainWindow::populate()
         if (QProcess::execute("mount -o ro -t vfat " USB_DEVICE " " USB_MOUNTPOINT) == 0)
         {
             _hasUSB = true;
-            qDebug() << "USB detected";
+            //qDebug() << "USB detected";
         }
     }
     // Fill in list of images
@@ -356,9 +356,11 @@ void MainWindow::populate()
 
 }
 
-void MainWindow::on_drives_changed(void)
+void MainWindow::onDrivesChanged(void)
 {
-    char buffer[256], name[128], device[32];
+//    char buffer[256],
+    char name[128];
+//    char device[32];
     FILE *fp;
     QStringList drives;
 
@@ -373,57 +375,45 @@ void MainWindow::on_drives_changed(void)
             if (line.isNull())
                 break;
             else
+            {
                 drives.append(line);
+                bool found=false;
+                foreach (OsSource *src, source)
+                {
+                    if (src->getDevice() == line)
+                        found=true;
+                }
+                if (!found)
+                {
+                    //====Create USB source========//
+                    OsSourceLocal *usb=new OsSourceLocal(this);
+                    if (line.contains("/dev/sd"))
+                        usb->setSourceType(SOURCE_USB);
+                    if (line.contains("/dev/mmcblk"))
+                        usb->setSourceType((SOURCE_SDCARD));
+                    usb->setDevice(line.toUtf8().constData());
+                    strcpy(name,"/tmp");
+                    strcat(name,line.toUtf8().constData());
+                    usb->setLocation(name);
+                    source.append(usb);
+                    connect (usb, SIGNAL(newSource(OsSource*)), this, SLOT(onNewSource(OsSource*)));
+                    usb->monitorDevice();
+                }
+            }
         }
         pclose(fp);
     }
-    qDebug() <<"MainWindow::on_drives_changed:" << drives;
-#if 0
-    while (1)
-    {
-        if (fgets (device, sizeof (device) - 1, fp) == NULL)
-            break;
-
-        if (!strncmp (device + 5, "sd", 2))
-        {
-            device[strlen (device) - 1] = 0;
-            bool found=false;
-            foreach (OsSource *src, source)
-            {
-                if (src->getDevice() == device)
-                    found=true;
-            }
-            if (!found)
-            {
-                //====Create USB source========//
-                OsSourceLocal *usb=new OsSourceLocal(this);
-                usb->setSourceType(SOURCE_USB);
-                usb->setDevice(device);
-                strcpy(name,"/tmp");
-                strcat(name,device);
-                usb->setLocation(name);
-                source.append(usb);
-                usb->monitorDevice();
-            }
-        }
-    }
-    pclose(fp);
-
-#endif
+    //qDebug() <<"MainWindow::onDrivesChanged:" << drives;
 }
 
 void MainWindow::onNewSource(OsSource *src)
 {
-    qDebug() << "Found New Source " << src->getDevice() << " " << src->getLocation();
-    foreach (OsInfo *os, src->oses)
-    {
-        qDebug() << os->name();
-        uiSource.addOS(os, src->getSourceType());
-    }
+    //qDebug() << "Found New Source " << src->getDevice() << " " << src->getLocation();
+    uiSource.filterAddSource(src);
     foreach (OsInfo *os, uiSource.oses)
     {
-        //qDebug() << os->name() <<":"<< os->source();
-        os->print();
+        //qDebug() << os->name() <<":"<< os->source()<<":"<<os->releaseDate();
+        //os->print();
     }
 }
 
@@ -568,7 +558,7 @@ bool MainWindow::canInstallOs(const QString &name, const QVariantMap &values)
     }
 
     /* Display OS in list if it is supported or "showall" is specified in recovery.cmdline */
-    if (_showAll)
+    if (OsInfo::_showAll)
     {
         return true;
     }
@@ -1453,6 +1443,19 @@ QListWidgetItem *MainWindow::findItem(const QVariant &name)
     return NULL;
 }
 
+void MainWindow::onIconDownloaded(QString originalurl, QIcon icon)
+{
+    for (int i=0; i<ui->list->count(); i++)
+    {
+        QVariantMap m = ui->list->item(i)->data(Qt::UserRole).toMap();
+        ui->list->setIconSize(QSize(40,40));
+        if (m.value("icon") == originalurl)
+        {
+            ui->list->item(i)->setIcon(icon);
+        }
+    }
+}
+
 void MainWindow::downloadIconComplete()
 {
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
@@ -1854,7 +1857,7 @@ void MainWindow::on_actionClone_triggered()
     QString dst_dev;
     piclonedialog pDlg;
 
-    connect(&myUsb, SIGNAL(drivesChanged()),&pDlg, SLOT(on_drives_changed()));
+    connect(&myUsb, SIGNAL(drivesChanged()),&pDlg, SLOT(onDrivesChanged()));
 
     int result = pDlg.exec();
 

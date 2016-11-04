@@ -1,7 +1,11 @@
 #include "osinfo.h"
 #include "partitioninfo.h"
 #include "json.h"
+#include "util.h"
+#include "config.h"
 #include <QDebug>
+
+bool OsInfo::_showAll=false;
 
 OsInfo::OsInfo()
 {
@@ -20,9 +24,8 @@ OsInfo::OsInfo()
     _partitionSetup="";
     _marketingInfo="";
     _url="";
-    _bootable=false;
+    _bootable=true;
     _recommended=false;
-    _showAll=false;
     _riscosOffset=0;
     _nominalSize=0;
     //QList<PartitionInfo *> _partitions;
@@ -142,4 +145,90 @@ void OsInfo::print()
     foreach (PartitionInfo * p, _partitions)
         p->print();
     qDebug() << "}";
+}
+
+/* Whether this OS should be displayed in the list of bootable OSes */
+bool OsInfo::canBootOs()
+{
+    /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
+
+    if (!_bootable)
+    {
+        //qDebug() <<"Not bootable";
+        return false;
+    }
+
+    /* Data Partition isn't bootable */
+    if (_name == "Data Partition")
+    {
+        //qDebug() <<"Data";
+        return false;
+    }
+
+    return true;
+}
+
+/* Whether this OS should be displayed in the list of installable OSes */
+bool OsInfo::canInstallOs()
+{
+    /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
+
+    /* If it's not bootable, it isn't really an OS, so is always installable */
+    if (!canBootOs())
+    {
+        //qDebug()<<"Installable";
+        return true;
+    }
+
+    /* RISC_OS needs a matching riscos_offset */
+    if (nameMatchesRiscOS(_name))
+    {
+        if (_riscosOffset != RISCOS_OFFSET)
+        {
+            return false;
+        }
+    }
+
+    /* Display OS in list if it is supported or "showall" is specified in recovery.cmdline */
+    if (_showAll)
+    {
+        //qDebug()<<"SHowall:installable";
+        return true;
+    }
+    else
+    {
+        return isSupportedOs();
+    }
+}
+
+/* Whether this OS is supported */
+bool OsInfo::isSupportedOs()
+{
+    /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
+    /* If it's not bootable, it isn't really an OS, so is always supported */
+    if (!canBootOs())
+    {
+        //qDebug() << "Supported";
+        return true;
+    }
+
+    QString model = getFileContents("/proc/device-tree/model");
+
+    //qDebug() << "Checking " << _name << ": " << model << ": " << _models;
+    if (!_models.isEmpty())
+    {
+        foreach (QString m, _models)
+        {
+            /* Check if the full formal model name (e.g. "Raspberry Pi 2 Model B Rev 1.1")
+             * contains the string we are told to look for (e.g. "Pi 2") */
+            if (model.contains(m, Qt::CaseInsensitive))
+            {
+                //qDebug() <<"found";
+                return true;
+            }
+        }
+        return false;
+    }
+
+    return true;
 }

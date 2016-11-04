@@ -31,7 +31,8 @@ void usb::checkDrives(void)
     char device[32];
 
     //Get list of all block devices starting SD or MMCBLK
-    FILE *fp = popen ("blkid | cut -d: -f 1", "r");
+    //FILE *fp = popen ("blkid | cut -d: -f 1", "r");
+    FILE *fp = popen ("parted -l | grep \"^Disk /dev/\" | cut -d ' ' -f 2 | cut -d ':' -f 1", "r");
     if (fp != NULL)
     {
         while (1)

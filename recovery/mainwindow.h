@@ -46,7 +46,7 @@ protected:
     QList <int> _kc;
     int _kcpos;
     const QString _defaultDisplay;
-    bool _silent, _allowSilent, _showAll;
+    bool _silent, _allowSilent;
     static bool _partInited;
     static int _currentMode;
     QSplashScreen *_splash;
@@ -92,7 +92,8 @@ protected:
 
 public slots:
     void onNewSource(OsSource *src);
-    void on_drives_changed(void);
+    void onDrivesChanged(void);
+    void onIconDownloaded(QString, QIcon );
 
 protected slots:
     void populate();

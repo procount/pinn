@@ -24,7 +24,7 @@ protected:
     void on_cb_Changed(const QString &arg1);
 
 public slots:
-    void on_drives_changed(void);
+    void onDrivesChanged(void);
 
 private slots:
     void on_from_cb_currentIndexChanged(const QString &arg1);

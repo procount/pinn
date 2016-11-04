@@ -22,6 +22,8 @@ public:
     explicit OsInfo(const QString &folder, const QString & source, const QString &flavour = "", QObject *parent = 0);
     OsInfo();
 
+    static bool _showAll;
+
     inline  QString folder()
     {
         return _folder;
@@ -92,13 +94,18 @@ public:
     void importParts(QVariantList& parts);
     void print();
 
+    bool canBootOs();
+    bool canInstallOs();
+    bool isSupportedOs();
+
 protected:
     QString _folder, _flavour, _name, _description, _version, _releaseDate, _username, _password, _source;
     QString _icon, _osInfo, _partitionsInfo, _partitionSetup, _marketingInfo, _url;
-    bool _bootable, _recommended, _showAll;
+    bool _bootable, _recommended;
     QList<PartitionInfo *> _partitions;
     QStringList _models;
     int _riscosOffset, _nominalSize;
+
 
 };
 
