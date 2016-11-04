@@ -14,6 +14,8 @@ class OsSource : public QObject
 {
     Q_OBJECT
 public:
+    QMap<QString,OsInfo *> oses;
+
     explicit OsSource(QObject *parent = 0);
     void setSourceType(const char * type);
     void setDevice(const char * id);
@@ -23,8 +25,8 @@ public:
     QString getSourceType();
     void clearOSes();
     void addOS(OsInfo * os,const QString source);
-    QMap<QString,OsInfo *> oses;
     void filterAddSource(OsSource *src);
+    OsInfo * findOs(QString name);
 
 protected:
     QString sourceType;     // SDcard/USB/NETWORK etc.

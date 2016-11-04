@@ -54,6 +54,21 @@ public:
         return _releaseDate;
     }
 
+    inline QString partitionsInfo()
+    {
+        return _partitionsInfo;
+    }
+
+    inline QString marketingInfo()
+    {
+        return _marketingInfo;
+    }
+
+    inline QString partitionsSetup()
+    {
+        return _partitionSetup;
+    }
+
     inline bool bootable()
     {
         return _bootable;
@@ -79,6 +94,26 @@ public:
         return _password;
     }
 
+    inline QString osInfo()
+    {
+        return _osInfo;
+    }
+
+    inline QString icon()
+    {
+        return _icon;
+    }
+
+    inline bool installed()
+    {
+        return _installed;
+    }
+
+    inline bool recommended()
+    {
+        return _recommended;
+    }
+
     inline QString source()
     {
         return _source;
@@ -101,7 +136,7 @@ public:
 protected:
     QString _folder, _flavour, _name, _description, _version, _releaseDate, _username, _password, _source;
     QString _icon, _osInfo, _partitionsInfo, _partitionSetup, _marketingInfo, _url;
-    bool _bootable, _recommended;
+    bool _bootable, _recommended, _installed;
     QList<PartitionInfo *> _partitions;
     QStringList _models;
     int _riscosOffset, _nominalSize;

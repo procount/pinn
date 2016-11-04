@@ -26,6 +26,7 @@ OsInfo::OsInfo()
     _url="";
     _bootable=true;
     _recommended=false;
+    _installed=false;
     _riscosOffset=0;
     _nominalSize=0;
     //QList<PartitionInfo *> _partitions;
@@ -85,6 +86,8 @@ void OsInfo::importMap(QVariantMap& m)
             _source = iter.value().toString();
         else if (key == "recommended")
             _recommended = iter.value().toBool();
+        else if (key == "installed")
+            _installed = iter.value().toBool();
         else if ((key == "kernel") || (key == "feature_level") || (key == "supported_hex_revisions") || (key=="slice_exclude"))
             ;
         else if (key == "supported_models")
@@ -138,6 +141,7 @@ void OsInfo::print()
     qDebug() << "_marketingInfo=" << _marketingInfo;
     qDebug() << "_url=" << _url;
     qDebug() << "_recommended=" << _recommended;
+    qDebug() << "_installed=" << _installed;
     qDebug() << "_showAll=" << _showAll;
     qDebug() << "_nominalSize=" << _nominalSize;
     qDebug() << "_models=" <<_models;

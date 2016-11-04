@@ -264,26 +264,10 @@ void MainWindow::populate()
     _settings->setValue("display_mode", _defaultDisplay);
     _settings->sync();
 
-#if 0
-    //====Create SD card source========//
-    OsSourceLocal *sd=new OsSourceLocal(this);
-    sd->setSource(SOURCE_SDCARD);
-    sd->setDevice("/dev/mmcblk0p1");
-    connect(&myUsb, SIGNAL(drivesChanged()), sd, SLOT(onDrivesChanged()));
-    source.append(sd);
-
-
-
-    OsSourceLocal *usb=new OsSourceLocal(this);
-    usb->setSourceType(SOURCE_USB);
-    usb->setDevice("/dev/sda1");
-    usb->setLocation("/tmp/usb");
-    source.append(usb);
-    //When myUsb detects a new device, it will trigger usb::monitorDevice
-    connect(&myUsb, SIGNAL(drivesChanged()),usb, SLOT(monitorDevice()));
-#endif
     connect(&myUsb, SIGNAL(drivesChanged()), this, SLOT(onDrivesChanged()));
     myUsb.startMonitoringDrives();
+
+    //@@ Create OsSource for installed_os
 
     foreach (QString url, downloadRepoUrls)
     {
@@ -291,76 +275,17 @@ void MainWindow::populate()
         repo->setSourceType(SOURCE_NETWORK);
         repo->setLocation(url.toUtf8().constData());
         connect(repo, SIGNAL(iconDownloaded(QString,QIcon)),this,SLOT(onIconDownloaded(QString,QIcon)));
-        //qDebug() << "Adding repo " << repo->getLocation();
+        connect(repo,SIGNAL(newSource(OsSource*)),this,SLOT(onNewSource(OsSource*)));
         source.append(repo);
     }
 
-    foreach (OsSource *src, source)
-    {
-        //When a list of OS are found, lets tell mainWindow to update.
-        connect(src,SIGNAL(newSource(OsSource*)),this,SLOT(onNewSource(OsSource*)));
-    }
-
-    //QTimer::singleShot(100, usb_source, SLOT(checkDeviceExists()));
-    //usb_source.checkDeviceExists();
-
-    if (QFile::exists(USB_DEVICE))
-    {
-        QDir dir;
-        dir.mkdir(USB_MOUNTPOINT);
-        if (QProcess::execute("mount -o ro -t vfat " USB_DEVICE " " USB_MOUNTPOINT) == 0)
-        {
-            _hasUSB = true;
-            //qDebug() << "USB detected";
-        }
-    }
-    // Fill in list of images
-    repopulate();
     _availableMB = (getFileContents("/sys/class/block/mmcblk0/size").trimmed().toULongLong()-getFileContents("/sys/class/block/mmcblk0p5/start").trimmed().toULongLong()-getFileContents("/sys/class/block/mmcblk0p5/size").trimmed().toULongLong())/2048;
     updateNeeded();
-
-    if (ui->list->count() != 0)
-    {
-        QList<QListWidgetItem *> l = ui->list->findItems(RECOMMENDED_IMAGE, Qt::MatchExactly);
-
-        if (!l.isEmpty())
-        {
-            ui->list->setCurrentItem(l.first());
-        }
-        else
-        {
-            ui->list->setCurrentRow(0);
-        }
-
-        if (_allowSilent && !QFile::exists(FAT_PARTITION_OF_IMAGE) && ui->list->count() == 1)
-        {
-            // No OS installed, perform silent installation
-            qDebug() << "Performing silent installation";
-            _silent = true;
-            ui->list->item(0)->setCheckState(Qt::Checked);
-            on_actionWrite_image_to_disk_triggered();
-        }
-    }
-
-    bool osInstalled = QFile::exists(FAT_PARTITION_OF_IMAGE);
-    ui->actionCancel->setEnabled(osInstalled);
-
-#ifdef KHDBG
-    qDebug() <<"End of Populate: ";
-    for (int i=0; i < ui->list->count(); i++)
-    {
-        QVariantMap m = ui->list->item(i)->data(Qt::UserRole).toMap();
-        qDebug() << "Repopulate: " << m << "\n";
-    }
-#endif
-
 }
 
 void MainWindow::onDrivesChanged(void)
 {
-//    char buffer[256],
     char name[128];
-//    char device[32];
     FILE *fp;
     QStringList drives;
 
@@ -410,13 +335,158 @@ void MainWindow::onNewSource(OsSource *src)
 {
     //qDebug() << "Found New Source " << src->getDevice() << " " << src->getLocation();
     uiSource.filterAddSource(src);
-    foreach (OsInfo *os, uiSource.oses)
+    repopulate();
+
+    if (ui->list->count() != 0)
     {
-        //qDebug() << os->name() <<":"<< os->source()<<":"<<os->releaseDate();
-        //os->print();
+        QList<QListWidgetItem *> l = ui->list->findItems(RECOMMENDED_IMAGE, Qt::MatchExactly);
+
+        if (!l.isEmpty())
+        {
+            ui->list->setCurrentItem(l.first());
+        }
+        else
+        {
+            ui->list->setCurrentRow(0);
+        }
+
+        if (_allowSilent && !QFile::exists(FAT_PARTITION_OF_IMAGE) && ui->list->count() == 1)
+        {
+            // No OS installed, perform silent installation
+            qDebug() << "Performing silent installation";
+            _silent = true;
+            ui->list->item(0)->setCheckState(Qt::Checked);
+            on_actionWrite_image_to_disk_triggered();
+        }
     }
+
+    bool osInstalled = QFile::exists(FAT_PARTITION_OF_IMAGE);
+    ui->actionCancel->setEnabled(osInstalled);
 }
 
+//Refreshes the list of OSes from the OsSources
+void MainWindow::repopulate()
+{
+    QMap<QString,OsInfo*> images = uiSource.oses;
+    bool haveicons = false;
+    QSize currentsize = ui->list->iconSize();
+    QIcon localIcon(":/icons/hdd.png");
+    QIcon usbIcon(":/icons/usbstick.png");
+    QIcon internetIcon(":/icons/download.png");
+    _numInstalledOS = 0;
+
+    foreach (OsInfo *pv, images.values())
+    {
+        QString flavour = pv->name();
+        QString description = pv->description();
+        QString folder  = pv->description();
+        QString iconFilename = pv->icon();
+        bool installed = pv->installed();
+        bool recommended = pv->recommended();
+
+        if (!iconFilename.isEmpty() && !iconFilename.contains('/'))
+            iconFilename = folder+"/"+iconFilename;
+        if (!QFile::exists(iconFilename))
+        {
+            iconFilename = folder+"/"+flavour+".png";
+            iconFilename.replace(' ', '_');
+        }
+
+        QString friendlyname = flavour;
+        if (recommended)
+            friendlyname += " ["+tr("RECOMMENDED")+"]";
+        if (installed)
+        {
+            friendlyname += " ["+tr("INSTALLED")+"]";
+            _numInstalledOS++;
+        }
+        if (!description.isEmpty())
+            friendlyname += "\n"+description;
+
+        QIcon icon;
+        if (QFile::exists(iconFilename))
+        {
+            icon = QIcon(iconFilename);
+            QList<QSize> avs = icon.availableSizes();
+            if (avs.isEmpty())
+            {
+                /* Icon file corrupt */
+                icon = QIcon();
+            }
+            else
+            {
+                QSize iconsize = avs.first();
+                haveicons = true;
+
+                if (iconsize.width() > currentsize.width() || iconsize.height() > currentsize.height())
+                {
+                    /* Make all icons as large as the largest icon we have */
+                    currentsize = QSize(qMax(iconsize.width(), currentsize.width()),qMax(iconsize.height(), currentsize.height()));
+                    ui->list->setIconSize(currentsize);
+                }
+            }
+        }
+        QListWidgetItem *item = new QListWidgetItem(icon, friendlyname);
+        QVariant name = pv->name();
+        item->setData(Qt::UserRole, name);
+
+#ifdef KHDBG
+        qDebug() << "Repopulate: " << m << "\n";
+#endif
+        if (installed)
+        {
+            item->setData(Qt::BackgroundColorRole, INSTALLED_OS_BACKGROUND_COLOR);
+            item->setCheckState(Qt::Checked);
+        }
+        else
+            item->setCheckState(Qt::Unchecked);
+
+        if (pv->source() == SOURCE_INSTALLED_OS)
+        {
+            item->setData(SecondIconRole, QIcon());
+        }
+        else
+        {
+            if (folder.startsWith("/mnt"))
+            {
+                item->setData(SecondIconRole, localIcon);
+            }
+            else if (folder.startsWith(USB_MOUNTPOINT))
+            {
+                item->setData(SecondIconRole, usbIcon);
+            }
+            else
+            {
+                item->setData(SecondIconRole, internetIcon);
+            }
+        }
+
+        if (recommended)
+            ui->list->insertItem(0, item);
+        else
+            ui->list->addItem(item);
+    }
+
+    if (haveicons)
+    {
+        /* Giving items without icon a dummy icon to make them have equal height and text alignment */
+        QPixmap dummyicon = QPixmap(currentsize.width(), currentsize.height());
+        dummyicon.fill();
+
+        for (int i=0; i< ui->list->count(); i++)
+        {
+            if (ui->list->item(i)->icon().isNull())
+            {
+                ui->list->item(i)->setIcon(dummyicon);
+            }
+        }
+    }
+
+    if (_numInstalledOS)
+        ui->actionCancel->setEnabled(true);
+}
+
+#if 0
 void MainWindow::repopulate()
 {
     QMap<QString,QVariantMap> images = listImages();
@@ -480,7 +550,7 @@ void MainWindow::repopulate()
             }
         }
         QListWidgetItem *item = new QListWidgetItem(icon, friendlyname);
-        item->setData(Qt::UserRole, m);
+        //item->setData(Qt::UserRole, m);
 #ifdef KHDBG
         qDebug() << "Repopulate: " << m << "\n";
 #endif
@@ -536,6 +606,7 @@ void MainWindow::repopulate()
     if (_numInstalledOS)
         ui->actionCancel->setEnabled(true);
 }
+#endif
 
 /* Whether this OS should be displayed in the list of installable OSes */
 bool MainWindow::canInstallOs(const QString &name, const QVariantMap &values)
@@ -730,9 +801,11 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
         QList<QListWidgetItem *> selected = selectedItems();
         foreach (QListWidgetItem *item, selected)
         {
-            QVariantMap entry = item->data(Qt::UserRole).toMap();
-            QString name = entry.value("name").toString();
-            if (!isSupportedOs(name, entry))
+            QString itemname = item->data(Qt::UserRole).toString();
+            OsInfo *pOs = uiSource.findOs(itemname);
+
+            QString name = pOs->name();
+            if (!pOs->isSupportedOs())
             {
                 allSupported = false;
                 unsupportedOses += "\n" + name;
@@ -749,27 +822,28 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
             QList<QListWidgetItem *> selected = selectedItems();
             foreach (QListWidgetItem *item, selected)
             {
-                QVariantMap entry = item->data(Qt::UserRole).toMap();
+                QString itemname = item->data(Qt::UserRole).toString();
+                OsInfo *pOs = uiSource.findOs(itemname);
 
-                if (!entry.contains("folder"))
+                if (!pOs->folder().isEmpty())
                 {
                     QDir d;
-                    QString folder = "/settings/os/"+entry.value("name").toString();
+                    QString folder = "/settings/os/"+pOs->name();
                     folder.replace(' ', '_');
                     if (!d.exists(folder))
                         d.mkpath(folder);
 
-                    downloadMetaFile(entry.value("os_info").toString(), folder+"/os.json");
-                    downloadMetaFile(entry.value("partitions_info").toString(), folder+"/partitions.json");
+                    downloadMetaFile(pOs->osInfo(), folder+"/os.json");
+                    downloadMetaFile(pOs->partitionsInfo(), folder+"/partitions.json");
 
-                    if (entry.contains("marketing_info"))
-                        downloadMetaFile(entry.value("marketing_info").toString(), folder+"/marketing.tar");
+                    if (!pOs->marketingInfo().isEmpty())
+                        downloadMetaFile(pOs->marketingInfo(), folder+"/marketing.tar");
 
-                    if (entry.contains("partition_setup"))
-                        downloadMetaFile(entry.value("partition_setup").toString(), folder+"/partition_setup.sh");
+                    if (!pOs->partitionsSetup().isEmpty())
+                        downloadMetaFile(pOs->partitionsSetup(), folder+"/partition_setup.sh");
 
-                    if (entry.contains("icon"))
-                        downloadMetaFile(entry.value("icon").toString(), folder+"/icon.png");
+                    if (!pOs->icon().isEmpty())
+                        downloadMetaFile(pOs->icon(), folder+"/icon.png");
                 }
             }
 

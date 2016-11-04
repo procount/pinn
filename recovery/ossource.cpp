@@ -99,3 +99,12 @@ void OsSource::filterAddSource(OsSource *src)
     }
 }
 
+
+OsInfo * OsSource::findOs(QString name)
+{
+    QMap<QString,OsInfo *>::Iterator i = oses.find(name);
+    if (i != oses.end())
+        return (i.value());
+    else
+        return(NULL);
+}
