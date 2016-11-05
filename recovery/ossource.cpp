@@ -2,10 +2,10 @@
 #include "config.h"
 #include "json.h"
 #include "osinfo.h"
+#include "mydebug.h"
 
 #include <QThread>
 #include <QTimer>
-#include <QDebug>
 #include <QFile>
 #include <QDir>
 #include <QProcess>
@@ -65,6 +65,7 @@ void OsSource::clearOSes()
 // Add/replace an OsInfo to OsSource::oses if newer
 void OsSource::addOS(OsInfo *os, const QString source)
 {
+    MYDEBUG
     QMap<QString,OsInfo *>::Iterator i = oses.find(os->name());
     if (i != oses.end())
     {   //Already exists
@@ -73,12 +74,12 @@ void OsSource::addOS(OsInfo *os, const QString source)
         {
             //replace with Newer OS.
             i.value() = os;
-            //qDebug() << "Adding newer os: " << os->name();
+            //##DBG("Adding newer os: " << os->name());
         }
     }
     else
     {   //New OS
-        //qDebug() << "Adding NEW os: " << os->name();
+        //##DBG("Adding NEW os: " << os->name());
         oses[os->name()] = os;
     }
 }
@@ -87,13 +88,14 @@ void OsSource::addOS(OsInfo *os, const QString source)
 
 void OsSource::filterAddSource(OsSource *src)
 {
+    MYDEBUG
     QMap<QString,OsInfo *>::Iterator i;
     for (i=src->oses.begin(); i!=src->oses.end(); i++)
     {
         OsInfo * pOs = i.value();
         if (pOs->canInstallOs())
         {
-            //qDebug()<<"Adding " << pOs->name() << " from " << src->getDevice();
+            //##DBG("Adding " << pOs->name() << " from " << src->getDevice());
             addOS(pOs, pOs->source());
         }
     }
@@ -102,6 +104,7 @@ void OsSource::filterAddSource(OsSource *src)
 
 OsInfo * OsSource::findOs(QString name)
 {
+    MYDEBUG
     QMap<QString,OsInfo *>::Iterator i = oses.find(name);
     if (i != oses.end())
         return (i.value());

@@ -11,6 +11,7 @@
 #include <QVariantMap>
 #include <QString>
 #include <QStringList>
+#include <QIcon>
 
 class PartitionInfo;
 
@@ -124,6 +125,15 @@ public:
         _showAll = all;
     }
 
+    inline QIcon iconImage()
+    {
+        return _iconImage;
+    }
+
+    inline void setIconImage(QIcon image)
+    {
+        _iconImage =image;
+    }
 
     void importMap(QVariantMap& m);
     void importParts(QVariantList& parts);
@@ -132,6 +142,14 @@ public:
     bool canBootOs();
     bool canInstallOs();
     bool isSupportedOs();
+    void readIcon();
+
+protected:
+    void downloadIcon(const QString &urlstring);
+
+protected slots:
+    void downloadIconRedirectCheck();
+    void downloadIconComplete();
 
 protected:
     QString _folder, _flavour, _name, _description, _version, _releaseDate, _username, _password, _source;
@@ -140,7 +158,7 @@ protected:
     QList<PartitionInfo *> _partitions;
     QStringList _models;
     int _riscosOffset, _nominalSize;
-
+    QIcon _iconImage;
 
 };
 

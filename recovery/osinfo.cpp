@@ -3,7 +3,12 @@
 #include "json.h"
 #include "util.h"
 #include "config.h"
-#include <QDebug>
+#include "mydebug.h"
+
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkRequest>
+#include <QtNetwork/QNetworkReply>
+#include <QFile>
 
 bool OsInfo::_showAll=false;
 
@@ -154,6 +159,7 @@ void OsInfo::print()
 /* Whether this OS should be displayed in the list of bootable OSes */
 bool OsInfo::canBootOs()
 {
+    MYDEBUG
     /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
 
     if (!_bootable)
@@ -175,6 +181,7 @@ bool OsInfo::canBootOs()
 /* Whether this OS should be displayed in the list of installable OSes */
 bool OsInfo::canInstallOs()
 {
+    MYDEBUG
     /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
 
     /* If it's not bootable, it isn't really an OS, so is always installable */
@@ -208,6 +215,7 @@ bool OsInfo::canInstallOs()
 /* Whether this OS is supported */
 bool OsInfo::isSupportedOs()
 {
+    MYDEBUG
     /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
     /* If it's not bootable, it isn't really an OS, so is always supported */
     if (!canBootOs())
@@ -218,7 +226,7 @@ bool OsInfo::isSupportedOs()
 
     QString model = getFileContents("/proc/device-tree/model");
 
-    //qDebug() << "Checking " << _name << ": " << model << ": " << _models;
+    //##DBG( "Checking " << _name << ": " << model << ": " << _models);
     if (!_models.isEmpty())
     {
         foreach (QString m, _models)
@@ -227,12 +235,80 @@ bool OsInfo::isSupportedOs()
              * contains the string we are told to look for (e.g. "Pi 2") */
             if (model.contains(m, Qt::CaseInsensitive))
             {
-                //qDebug() <<"found";
+                DBG("found");
                 return true;
             }
         }
         return false;
     }
 
+    DBG("(No Models, so found");
     return true;
+}
+
+void OsInfo::readIcon()
+{
+    if (QFile::exists(_icon))
+    {
+        _iconImage = QIcon(_icon);
+        QList<QSize> avs = _iconImage.availableSizes();
+        if (avs.isEmpty())
+        {
+            /* Icon file corrupt */
+             _iconImage = QIcon();
+        }
+    }
+}
+
+void OsInfo::downloadIcon(const QString &urlstring)
+{
+    QUrl url(urlstring);
+    QNetworkRequest request(url);
+    //request.setAttribute(QNetworkRequest::User, _icon);
+    request.setRawHeader("User-Agent", AGENT);
+    QNetworkReply *reply = _netaccess->get(request);
+    connect(reply, SIGNAL(finished()), this, SLOT(downloadIconRedirectCheck()));
+}
+
+void OsInfo::downloadIconRedirectCheck()
+{
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
+    //QString originalurl = reply->request().attribute(QNetworkRequest::User).toString();;
+
+    if (httpstatuscode > 300 && httpstatuscode < 400)
+    {
+        qDebug() << "Redirection - Re-trying download from" << redirectionurl;
+        downloadIcon(redirectionurl);
+    }
+    else
+        downloadIconComplete();
+}
+
+void OsInfo::downloadIconComplete()
+{
+    MYDEBUG
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    QString url = reply->url().toString();
+    //QString originalurl = reply->request().attribute(QNetworkRequest::User).toString();
+    int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+
+    if (reply->error() != reply->NoError || httpstatuscode < 200 || httpstatuscode > 399)
+    {
+        //QMessageBox::critical(parent(), tr("Download error"), tr("Error downloading icon '%1'").arg(reply->url().toString()), QMessageBox::Close);
+        qDebug() << "Error downloading icon" << url;
+    }
+    else
+    {
+        //qDebug() << "OsSourceRemote: icon "<<originalurl;
+
+        QPixmap pix;
+        pix.loadFromData(reply->readAll());
+        _iconImage = QIcon(pix);
+
+        emit iconDownloaded(_icon,_iconImage);
+    }
+
+    reply->deleteLater();
 }

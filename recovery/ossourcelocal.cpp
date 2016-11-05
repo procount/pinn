@@ -2,6 +2,7 @@
 #include "config.h"
 #include "json.h"
 #include "osinfo.h"
+#include "mydebug.h"
 
 #include <QThread>
 #include <QTimer>
@@ -18,6 +19,7 @@ OsSourceLocal::OsSourceLocal(QObject *parent) :
 
 void OsSourceLocal::monitorDevice()
 {
+    MYDEBUG
     static int counter=0;
     counter +=1;
     //qDebug() << "OsSourceLocal::monitorDevices";
@@ -48,6 +50,7 @@ void OsSourceLocal::monitorDevice()
 
 void OsSourceLocal::readImages()
 {
+    MYDEBUG
     //qDebug() << "OsSourceLocal::readImages";
     QString path=location+"/os";
     QDir dir(path, "", QDir::Name, QDir::Dirs | QDir::NoDotAndDotDot);
@@ -83,6 +86,7 @@ void OsSourceLocal::readImages()
                         fm["release_date"] = osv.value("release_date");
                         fm["source"] = osv.value("source");
                         OsInfo * newOs = new OsInfo();
+                        newOs->importMap(osv);
                         newOs->importMap(fm);
 
                         QVariantList parts = Json::loadFromFile(imagefolder+"/partitions.json").toMap().value("partitions").toList();
@@ -107,6 +111,7 @@ void OsSourceLocal::readImages()
                 //qDebug() <<"Added new local os: "<<name;
 
             }
+            QIcon()
         }
     }
 }

@@ -57,7 +57,8 @@ SOURCES += main.cpp\
     ossource.cpp \
     ossourcelocal.cpp \
     ossourceremote.cpp \
-    usb.cpp
+    usb.cpp \
+    mydebug.cpp
 
 HEADERS  += mainwindow.h \
     languagedialog.h \
@@ -93,7 +94,8 @@ HEADERS  += mainwindow.h \
     ossource.h \
     ossourcelocal.h \
     ossourceremote.h \
-    usb.h
+    usb.h \
+    mydebug.h
 
 FORMS    += mainwindow.ui \
     languagedialog.ui \

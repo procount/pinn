@@ -2,6 +2,7 @@
 #include "config.h"
 #include "json.h"
 #include "osinfo.h"
+#include "mydebug.h"
 
 #include <QThread>
 #include <QTimer>
@@ -29,6 +30,7 @@ OsSourceRemote::OsSourceRemote(QObject *parent) :
 
 void OsSourceRemote::monitorNetwork(QNetworkAccessManager *netaccess)
 {
+    MYDEBUG
     _netaccess = netaccess;
     //qDebug() << "OsSourceRemote::monitorNetwork "<< location;
     downloadList(location);
@@ -77,6 +79,7 @@ void OsSourceRemote::downloadListRedirectCheck()
 
 void OsSourceRemote::downloadListComplete()
 {
+    MYDEBUG
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
@@ -101,6 +104,7 @@ void OsSourceRemote::downloadListComplete()
 
 void OsSourceRemote::processJson(QVariant json)
 {
+    MYDEBUG
     if (json.isNull())
     {
         QMessageBox::critical((QWidget*)parent(), tr("Error"), tr("Error parsing list.json downloaded from server"), QMessageBox::Close);
@@ -169,6 +173,7 @@ void OsSourceRemote::processJson(QVariant json)
 
 void OsSourceRemote::processJsonOs(const QString &name, QVariantMap &new_details, QSet<QString> &iconurls)
 {
+    MYDEBUG
     QIcon internetIcon(":/icons/download.png");
 
     OsInfo * newOs = new OsInfo();
@@ -211,6 +216,7 @@ void OsSourceRemote::downloadIconRedirectCheck()
 
 void OsSourceRemote::downloadIconComplete()
 {
+    MYDEBUG
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     QString url = reply->url().toString();
     QString originalurl = reply->request().attribute(QNetworkRequest::User).toString();
@@ -228,6 +234,7 @@ void OsSourceRemote::downloadIconComplete()
         QPixmap pix;
         pix.loadFromData(reply->readAll());
         QIcon icon(pix);
+        _iconImage = icon;
 
         emit iconDownloaded(originalurl,icon);
     }

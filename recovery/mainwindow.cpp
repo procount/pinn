@@ -18,13 +18,13 @@
 #include "ossource.h"
 #include "ossourcelocal.h"
 #include "ossourceremote.h"
+#include "mydebug.h"
 
 #include <QMessageBox>
 #include <QProgressDialog>
 #include <QMap>
 #include <QProcess>
 #include <QDir>
-#include <QDebug>
 #include <QTimer>
 #include <QLabel>
 #include <QPixmap>
@@ -95,6 +95,8 @@ MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, boo
     _silent(false), _allowSilent(false), _splash(splash), _settings(NULL),
     _hasWifi(false), _numInstalledOS(0), _netaccess(NULL), _displayModeBox(NULL), _hasUSB(false), _noobsconfig(noobsconfig)
 {
+    MYDEBUG
+
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
     setContextMenuPolicy(Qt::NoContextMenu);
@@ -228,6 +230,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 /* Discover which images we have, and fill in the list */
 void MainWindow::populate()
 {
+    MYDEBUG
     if (!QFile::exists("/dev/mmcblk0p1"))
     {
         // mmcblk0p1 not ready yet, check back in a tenth of a second
@@ -285,10 +288,19 @@ void MainWindow::populate()
 
 void MainWindow::onDrivesChanged(void)
 {
+    MYDEBUG
     char name[128];
     FILE *fp;
     QStringList drives;
 
+    QString Msg;
+    Msg = "MainWindow::onDrivesChanged:";
+    foreach (QString drive, drives)
+    {
+        Msg += drive;
+        Msg += ",";
+    }
+    DBG(Msg);
     //Get a list of all partitions
     fp = popen ("lsblk -pl| grep 'part' | cut -d ' ' -f 1", "r");
     if (fp != NULL)
@@ -328,12 +340,12 @@ void MainWindow::onDrivesChanged(void)
         }
         pclose(fp);
     }
-    //qDebug() <<"MainWindow::onDrivesChanged:" << drives;
 }
 
 void MainWindow::onNewSource(OsSource *src)
 {
-    //qDebug() << "Found New Source " << src->getDevice() << " " << src->getLocation();
+    MYDEBUG
+    //##DBG("Found New Source " << src->getDevice() << " " << src->getLocation());
     uiSource.filterAddSource(src);
     repopulate();
 
@@ -367,6 +379,7 @@ void MainWindow::onNewSource(OsSource *src)
 //Refreshes the list of OSes from the OsSources
 void MainWindow::repopulate()
 {
+    MYDEBUG
     QMap<QString,OsInfo*> images = uiSource.oses;
     bool haveicons = false;
     QSize currentsize = ui->list->iconSize();
@@ -375,9 +388,13 @@ void MainWindow::repopulate()
     QIcon internetIcon(":/icons/download.png");
     _numInstalledOS = 0;
 
+    DBG("Repopulate");
+    ui->list->clear();
+
     foreach (OsInfo *pv, images.values())
     {
         QString flavour = pv->name();
+        //##DBG("Repop: " << flavour );
         QString description = pv->description();
         QString folder  = pv->description();
         QString iconFilename = pv->icon();
@@ -404,26 +421,23 @@ void MainWindow::repopulate()
             friendlyname += "\n"+description;
 
         QIcon icon;
-        if (QFile::exists(iconFilename))
+        icon = pv->iconImage();
+        QList<QSize> avs = icon.availableSizes();
+        if (avs.isEmpty())
         {
-            icon = QIcon(iconFilename);
-            QList<QSize> avs = icon.availableSizes();
-            if (avs.isEmpty())
-            {
-                /* Icon file corrupt */
-                icon = QIcon();
-            }
-            else
-            {
-                QSize iconsize = avs.first();
-                haveicons = true;
+            /* Icon file corrupt */
+            icon = QIcon();
+        }
+        else
+        {
+            QSize iconsize = avs.first();
+            haveicons = true;
 
-                if (iconsize.width() > currentsize.width() || iconsize.height() > currentsize.height())
-                {
-                    /* Make all icons as large as the largest icon we have */
-                    currentsize = QSize(qMax(iconsize.width(), currentsize.width()),qMax(iconsize.height(), currentsize.height()));
-                    ui->list->setIconSize(currentsize);
-                }
+            if (iconsize.width() > currentsize.width() || iconsize.height() > currentsize.height())
+            {
+                /* Make all icons as large as the largest icon we have */
+                currentsize = QSize(qMax(iconsize.width(), currentsize.width()),qMax(iconsize.height(), currentsize.height()));
+                ui->list->setIconSize(currentsize);
             }
         }
         QListWidgetItem *item = new QListWidgetItem(icon, friendlyname);
@@ -609,8 +623,10 @@ void MainWindow::repopulate()
 #endif
 
 /* Whether this OS should be displayed in the list of installable OSes */
+
 bool MainWindow::canInstallOs(const QString &name, const QVariantMap &values)
 {
+    MYDEBUG
     /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
 
     /* If it's not bootable, it isn't really an OS, so is always installable */
@@ -642,6 +658,7 @@ bool MainWindow::canInstallOs(const QString &name, const QVariantMap &values)
 /* Whether this OS is supported */
 bool MainWindow::isSupportedOs(const QString &name, const QVariantMap &values)
 {
+    MYDEBUG
     /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
     /* If it's not bootable, it isn't really an OS, so is always supported */
     if (!canBootOs(name, values))
@@ -670,6 +687,7 @@ bool MainWindow::isSupportedOs(const QString &name, const QVariantMap &values)
 
 QMap<QString, QVariantMap> MainWindow::listImagesInDir(const QString& mountpoint, const QString& source)
 {
+    MYDEBUG
     QMap<QString,QVariantMap> images;
 
     QDir dir(mountpoint, "", QDir::Name, QDir::Dirs | QDir::NoDotAndDotDot);
@@ -721,6 +739,7 @@ QMap<QString, QVariantMap> MainWindow::listImagesInDir(const QString& mountpoint
 
 QMap<QString, QVariantMap> MainWindow::listImages()
 {
+    MYDEBUG
     QMap<QString,QVariantMap> images;
 
     /* Local image folders */
@@ -787,6 +806,7 @@ QMap<QString, QVariantMap> MainWindow::listImages()
 
     return images;
 }
+
 
 void MainWindow::on_actionWrite_image_to_disk_triggered()
 {
@@ -899,11 +919,12 @@ void MainWindow::onQuery(const QString &msg, const QString &title, QMessageBox::
 
 void MainWindow::on_list_currentRowChanged()
 {
+    MYDEBUG
     QListWidgetItem *item = ui->list->currentItem();
-    ui->actionEdit_config->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
-    ui->actionPassword->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
+//@@    ui->actionEdit_config->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
+//    ui->actionPassword->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
 
-    QVariantMap m = item->data(Qt::UserRole).toMap();
+//    QVariantMap m = item->data(Qt::UserRole).toMap();
     //qDebug() << "RowChanged: " << m;
 }
 
@@ -914,6 +935,7 @@ void MainWindow::update_window_title()
 
 void MainWindow::changeEvent(QEvent* event)
 {
+    MYDEBUG
     if (event && event->type() == QEvent::LanguageChange)
     {
         ui->retranslateUi(this);
@@ -1200,6 +1222,7 @@ void MainWindow::copyWpa()
 
 void MainWindow::startNetworking()
 {
+    MYDEBUG
 
     /* Enable dbus so that we can use it to talk to wpa_supplicant later */
     qDebug() << "Starting dbus";
@@ -1256,6 +1279,7 @@ void MainWindow::pollNetworkStatus()
 
 void MainWindow::onOnlineStateChanged(bool online)
 {
+    MYDEBUG
     if (online)
     {
         qDebug() << "Network up in" << _time.elapsed()/1000.0 << "seconds";
@@ -1278,7 +1302,7 @@ void MainWindow::onOnlineStateChanged(bool online)
                 src->monitorNetwork(_netaccess);
             }
             //@@ remove
-            downloadLists();
+//            downloadLists();
         }
         ui->actionBrowser->setEnabled(true);
         emit networkUp();
@@ -1287,6 +1311,7 @@ void MainWindow::onOnlineStateChanged(bool online)
 
 void MainWindow::downloadList(const QString &urlstring)
 {
+    MYDEBUG
     QUrl url(urlstring);
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent", AGENT);
@@ -1296,6 +1321,7 @@ void MainWindow::downloadList(const QString &urlstring)
 
 void MainWindow::downloadLists()
 {
+    MYDEBUG
     _numIconsToDownload = 0;
     checkForUpdates();
     foreach (QString url, downloadRepoUrls)
@@ -1349,6 +1375,7 @@ void MainWindow::rebuildInstalledList()
 
 void MainWindow::downloadListComplete()
 {
+    MYDEBUG
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
@@ -1371,6 +1398,7 @@ void MainWindow::downloadListComplete()
 
 void MainWindow::processJson(QVariant json)
 {
+    MYDEBUG
     if (json.isNull())
     {
         QMessageBox::critical(this, tr("Error"), tr("Error parsing list.json downloaded from server"), QMessageBox::Close);
@@ -1439,6 +1467,7 @@ void MainWindow::processJson(QVariant json)
 
 void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QSet<QString> &iconurls)
 {
+    MYDEBUG
     QIcon internetIcon(":/icons/download.png");
 
     QListWidgetItem *witem = findItem(name);
@@ -1495,6 +1524,7 @@ void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QS
 
 void MainWindow::downloadIcon(const QString &urlstring, const QString &originalurl)
 {
+    MYDEBUG
     QUrl url(urlstring);
     QNetworkRequest request(url);
     request.setAttribute(QNetworkRequest::User, originalurl);
@@ -1519,11 +1549,15 @@ QListWidgetItem *MainWindow::findItem(const QVariant &name)
 
 void MainWindow::onIconDownloaded(QString originalurl, QIcon icon)
 {
+    MYDEBUG
     for (int i=0; i<ui->list->count(); i++)
     {
-        QVariantMap m = ui->list->item(i)->data(Qt::UserRole).toMap();
+        QListWidgetItem *item = ui->list->item(i);
+        QString itemname = item->data(Qt::UserRole).toString();
+        OsInfo *pOs = uiSource.findOs(itemname);
+
         ui->list->setIconSize(QSize(40,40));
-        if (m.value("icon") == originalurl)
+        if (pOs->icon() == originalurl)
         {
             ui->list->item(i)->setIcon(icon);
         }
@@ -1532,6 +1566,7 @@ void MainWindow::onIconDownloaded(QString originalurl, QIcon icon)
 
 void MainWindow::downloadIconComplete()
 {
+    MYDEBUG
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     QString url = reply->url().toString();
     QString originalurl = reply->request().attribute(QNetworkRequest::User).toString();
@@ -1586,9 +1621,13 @@ QList<QListWidgetItem *> MainWindow::selectedItems()
 
 void MainWindow::updateNeeded()
 {
+    MYDEBUG
     bool enableOk = false;
     QColor colorNeededLabel = Qt::black;
     bool bold = false;
+
+    return;
+    //@@
 
     _neededMB = 0;
     QList<QListWidgetItem *> selected = selectedItems();
@@ -1722,6 +1761,7 @@ void MainWindow::downloadMetaRedirectCheck()
 
 void MainWindow::downloadMetaComplete()
 {
+    MYDEBUG
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
