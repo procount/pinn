@@ -234,7 +234,7 @@ void OsSourceRemote::downloadIconComplete()
         QPixmap pix;
         pix.loadFromData(reply->readAll());
         QIcon icon(pix);
-        _iconImage = icon;
+        //_iconImage = icon;
 
         emit iconDownloaded(originalurl,icon);
     }

@@ -111,7 +111,7 @@ void OsSourceLocal::readImages()
                 //qDebug() <<"Added new local os: "<<name;
 
             }
-            QIcon()
+            //QIcon()
         }
     }
 }

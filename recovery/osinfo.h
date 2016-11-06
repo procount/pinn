@@ -12,6 +12,7 @@
 #include <QString>
 #include <QStringList>
 #include <QIcon>
+#include <QtNetwork/QNetworkAccessManager>
 
 class PartitionInfo;
 
@@ -144,7 +145,12 @@ public:
     bool isSupportedOs();
     void readIcon();
 
+signals:
+    void iconDownloaded(QString, QIcon );
+
 protected:
+    QNetworkAccessManager *_netaccess;
+
     void downloadIcon(const QString &urlstring);
 
 protected slots:
