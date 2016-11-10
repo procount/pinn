@@ -29,7 +29,7 @@ The PINN interface provides the following functionality:
 Note that all user settings (language, keyboard layout, display mode) will persist between reboots and will also be automatically passed to the installed OSes. This means that if you can see the PINN interface on your display device then you should be able to see the OS CLI/GUI when it boots too!
 ### Setup
 
-To setup a blank SD card with PINN:
+To set up a blank SD card with PINN:
 - Format an SD card that is 4GB or greater in size as FAT (see instructions on how to do this below)
 - Download and extract the files from the PINN zip file. (Windows built-in zip features may have trouble with this file. If so, use another program such as 7zip.)
 - Copy the extracted files onto the SD card that you just formatted so that this file is at the root directory of the SD card.
@@ -73,6 +73,9 @@ From v1.9.4, the following network drivers have been added to support a wider ra
 * ax88179_178a
 * dm9601
 * smsc95xx
+
+from v2.0
+* rtl8188eu - for hubpiwi and others
 
 ### How to Format an SD card as FAT
 

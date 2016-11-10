@@ -173,4 +173,8 @@ If you cancel, the dialog box will keep popping up to remind you each time PINN 
 If you select ignore, this version will be ignored and no dialogs will popup again until another later version is released.
 If you choose to download this update, the zip file will be downloaded and will overwrite your current version of PINN. PINN will then reboot the RPi and restart PINN.
 
+#v2.0 Features
+
+rtl8188eu wifi driver with cfg80211 interface added (for e.g. HubPiWi)
+Linux Kernel and rpi-firmware updated to match NOOBS v2.0
 
