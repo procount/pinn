@@ -74,6 +74,9 @@ From v1.9.4, the following network drivers have been added to support a wider ra
 * dm9601
 * smsc95xx
 
+from v2.0
+* rtl8188eu - for hubpiwi and others
+
 ### How to Format an SD card as FAT
 
 For <b>Windows</b> users, we recommend formatting your SD card using the SD Association's Formatting Tool, which can be downloaded from https://www.sdcard.org/downloads/formatter_4/ You will need to set "FORMAT SIZE ADJUSTMENT" option to "ON" in the "Options" menu to ensure that the entire SD card volume is formatted - not just a single partition. For more detailed and beginner-friendly formatting instructions, please refer to http://www.raspberrypi.org/quick-start-guide

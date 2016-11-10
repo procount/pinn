@@ -5,6 +5,11 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V2.0
+
+- **Network Drivers** - Added the popular RTL8188eu wifi driver (for HubPiWi and others)
+- **New Firmware**    - Updated Firmware and Kernel to match NOOBS 2.0
+
 ### V1.9.5 
 
 - **Self-Update**     - Notification and download of new releases
