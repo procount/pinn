@@ -178,3 +178,7 @@ If you choose to download this update, the zip file will be downloaded and will 
 rtl8188eu wifi driver with cfg80211 interface added (for e.g. HubPiWi)
 Linux Kernel and rpi-firmware updated to match NOOBS v2.0
 
+#V2.1 Features
+
+Updated to match NOOBS v2.1
+Now supports the IoTpHAT wifi.

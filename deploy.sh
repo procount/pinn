@@ -12,6 +12,8 @@ git add README_PINN.md
 git commit --amend 
 
 # Copy the distributable files
+cp history.md ../pinn-release/README.md
+
 cd ~/noobs_test/output
 dst=~/pinn-release/dist/
 

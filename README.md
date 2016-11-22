@@ -76,6 +76,8 @@ From v1.9.4, the following network drivers have been added to support a wider ra
 
 from v2.0
 * rtl8188eu - for hubpiwi and others
+from v2.1
+* IoTpHAT
 
 ### How to Format an SD card as FAT
 
