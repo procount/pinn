@@ -8,6 +8,8 @@
 #include "json.h"
 #include "util.h"
 #include "bootselectiondialog.h"
+#include "ceclistener.h"
+
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/reboot.h>
@@ -38,6 +40,9 @@
 
 QStringList downloadRepoUrls;
 bool dsi=false;
+CecListener *cec = NULL;
+
+CecListener *enableCEC(QObject *parent=0);
 
 void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode)
 {
@@ -104,6 +109,7 @@ int main(int argc, char *argv[])
     RightButtonFilter rbf;
     LongPressHandler lph;
     GpioInput *gpio = NULL;
+    cec = enableCEC();
 
     bool runinstaller = false;
 
@@ -245,12 +251,19 @@ int main(int argc, char *argv[])
                 qDebug() << "Tap detected";
                 break;
             }
+            if (cec->hasKeyPressed())
+            {
+                bailout = false;
+                qDebug() << "cec key detected";
+                break;
+            }
         }
     }
 
     if (bailout)
     {
         splash->hide();
+        cec->clearKeyPressed();
         reboot_to_extended(defaultPartition, true);
     }
 
@@ -271,7 +284,23 @@ int main(int argc, char *argv[])
 #endif
 
     a.exec();
+
     reboot_to_extended(defaultPartition, false);
 
     return 0;
+}
+
+CecListener *enableCEC(QObject *parent)
+{
+    QFile f("/proc/cpuinfo");
+    f.open(f.ReadOnly);
+    QByteArray cpuinfo = f.readAll();
+    f.close();
+
+    if (cpuinfo.contains("BCM2708") || cpuinfo.contains("BCM2709")) /* Only supported on the Raspberry for now */
+    {
+        cec = new CecListener(parent);
+        cec->start();
+    }
+    return(cec);
 }

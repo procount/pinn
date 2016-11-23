@@ -33,6 +33,7 @@ public:
 protected slots:
     void countdown();
     void bootPartition();
+    void onKeyPress(int);
 
 private slots:
     void on_list_activated(const QModelIndex &index);

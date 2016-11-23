@@ -12,9 +12,12 @@
 #include "config.h"
 #include "json.h"
 #include "util.h"
+#include "ceclistener.h"
+#include <QDebug>
 #include <unistd.h>
 #include <QDir>
 #include <QMessageBox>
+
 #include <QProcess>
 #include <QListWidgetItem>
 #include <QPushButton>
@@ -24,6 +27,16 @@
 #include <QScreen>
 #include <QWSServer>
 #include <QDebug>
+#include <QMouseEvent>
+
+#ifdef RASPBERRY_CEC_SUPPORT
+extern "C" {
+#include <interface/vmcs_host/vc_cecservice.h>
+}
+#endif
+
+
+extern CecListener * cec;
 
 BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool dsi=false, QWidget *parent) :
     QDialog(parent),
@@ -36,7 +49,6 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool d
     QRect s = QApplication::desktop()->screenGeometry();
     if (s.height() < 500)
         resize(s.width()-10, s.height()-100);
-
     QDir dir;
     dir.mkdir("/settings");
     if (QProcess::execute("mount -o remount,ro /settings") != 0
@@ -45,6 +57,9 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool d
         QMessageBox::critical(this, tr("Cannot display boot menu"), tr("Error mounting settings partition"));
         return;
     }
+
+    connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+
 
     /* Also mount /dev/mmcblk0p1 as it may contain icons we need */
     if (QProcess::execute("mount -t vfat -o ro /dev/mmcblk0p1 /mnt") != 0)
@@ -96,6 +111,7 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool d
 
         if (partition != 800)
         {
+            cec->clearKeyPressed();
             // Start timer
             qDebug() << "Starting 10 second timer before booting into partition" << partition;
             _timer.setInterval(1000);
@@ -237,7 +253,8 @@ void BootSelectionDialog::setDisplayMode()
 
 bool BootSelectionDialog::eventFilter(QObject *obj, QEvent *event)
 {
-    if (event->type() == QEvent::KeyPress || event->type() == QEvent::MouseButtonPress)
+    qDebug() << event->type();
+    if (event->type() == QEvent::KeyPress || event->type() == QEvent::MouseButtonPress || event->type() == QEvent::Enter)
     {
         stopCountdown();
     }
@@ -254,6 +271,8 @@ void BootSelectionDialog::stopCountdown()
 void BootSelectionDialog::countdown()
 {
     setWindowTitle(tr("Previously selected OS will boot in %1 seconds").arg(--_countdown));
+    if (cec->hasKeyPressed())
+        stopCountdown();
     if (_countdown == 0)
     {
         _timer.stop();
@@ -299,4 +318,69 @@ void BootSelectionDialog::updateConfig4dsi(QByteArray partition)
     }
     sync();
     QProcess::execute("umount "+partstr);
+}
+
+/* Key on TV remote pressed */
+void BootSelectionDialog::onKeyPress(int cec_code)
+{
+#ifdef Q_WS_QWS
+    Qt::KeyboardModifiers modifiers = Qt::NoModifier;
+    int key=0;
+    QPoint p = QCursor::pos();
+    switch (cec_code)
+    {
+/* MOUSE SIMULATION */
+    case CEC_User_Control_Select:
+    {
+        QWidget* widget = dynamic_cast<QWidget*>(QApplication::widgetAt(QCursor::pos()));
+        QPoint pos = QCursor::pos();
+        QMouseEvent *event = new QMouseEvent(QEvent::MouseButtonPress,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
+        QCoreApplication::sendEvent(widget,event);
+        QMouseEvent *event1 = new QMouseEvent(QEvent::MouseButtonRelease,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
+        QCoreApplication::sendEvent(widget,event1);
+        qApp->processEvents();
+    }
+    case CEC_User_Control_Left:
+        p.rx()-=10;
+        QCursor::setPos(p);
+        break;
+    case CEC_User_Control_Right:
+        p.rx()+=10;
+        QCursor::setPos(p);
+        break;
+    case CEC_User_Control_Up:
+        p.ry()-=10;
+        QCursor::setPos(p);
+        break;
+    case CEC_User_Control_Down:
+        p.ry()+=10;
+        QCursor::setPos(p);
+        break;
+/* ARROW KEY SIMULATION */
+    case CEC_User_Control_Number0:
+        key = Qt::Key_Enter;
+        break;
+    case CEC_User_Control_Exit:
+        key = Qt::Key_Escape;
+        break;
+    case CEC_User_Control_ChannelUp:
+        key = Qt::Key_Up;
+        break;
+    case CEC_User_Control_ChannelDown:
+        key = Qt::Key_Down;
+        break;
+    default:
+        break;
+    }
+
+    if (key)
+    {
+        // key press
+        QWSServer::sendKeyEvent(0, key, modifiers, true, false);
+        // key release
+        QWSServer::sendKeyEvent(0, key, modifiers, false, false);
+    }
+#else
+    qDebug() << "onKeyPress" << key;
+#endif
 }
