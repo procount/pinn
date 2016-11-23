@@ -8,9 +8,19 @@ QT       += core gui network dbus
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+RPI_USERLAND_DIR=../../staging/usr
+exists($${RPI_USERLAND_DIR}/include/interface/vmcs_host/vc_cecservice.h) {
+    INCLUDEPATH += $${RPI_USERLAND_DIR}/include $${RPI_USERLAND_DIR}/include/interface/vcos/pthreads
+    LIBS += -lbcm_host -lvcos -lvchiq_arm -lvchostif -L$${RPI_USERLAND_DIR}/lib -lrt -ldl
+    DEFINES += RASPBERRY_CEC_SUPPORT
+} else {
+    message(Disabling CEC support for Raspberry Pi - rpi-userland headers not found at $${RPI_USERLAND_DIR})
+}
+
+
 TARGET = recovery
 TEMPLATE = app
-LIBS += -lqjson
+LIBS += -lqjson 
 
 system(sh updateqm.sh 2>/dev/null)
 
@@ -42,7 +52,8 @@ SOURCES += main.cpp\
     piclonedialog.cpp \
     piclonethread.cpp \
     copythread.cpp \
-    builddata.cpp
+    builddata.cpp \
+    ceclistener.cpp
 
 HEADERS  += mainwindow.h \
     languagedialog.h \
@@ -73,7 +84,8 @@ HEADERS  += mainwindow.h \
     piclonedialog.h \
     piclonethread.h \
     copythread.h \
-    builddata.h
+    builddata.h \
+    ceclistener.h
 
 FORMS    += mainwindow.ui \
     languagedialog.ui \
