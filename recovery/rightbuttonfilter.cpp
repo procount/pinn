@@ -1,5 +1,6 @@
 #include "rightbuttonfilter.h"
 #include <QMouseEvent>
+#include <QDebug>
 
 /* Eats right button clicks
  *

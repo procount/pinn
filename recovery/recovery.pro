@@ -8,9 +8,19 @@ QT       += core gui network dbus
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+RPI_USERLAND_DIR=../../staging/usr
+exists($${RPI_USERLAND_DIR}/include/interface/vmcs_host/vc_cecservice.h) {
+    INCLUDEPATH += $${RPI_USERLAND_DIR}/include $${RPI_USERLAND_DIR}/include/interface/vcos/pthreads
+    LIBS += -lbcm_host -lvcos -lvchiq_arm -lvchostif -L$${RPI_USERLAND_DIR}/lib -lrt -ldl
+    DEFINES += RASPBERRY_CEC_SUPPORT
+} else {
+    message(Disabling CEC support for Raspberry Pi - rpi-userland headers not found at $${RPI_USERLAND_DIR})
+}
+
+
 TARGET = recovery
 TEMPLATE = app
-LIBS += -lqjson
+LIBS += -lqjson 
 
 system(sh updateqm.sh 2>/dev/null)
 
@@ -38,7 +48,8 @@ SOURCES += \
     wpa_supplicant/bss.cpp \
     osinfo.cpp \
     partitioninfo.cpp \
-    longpresshandler.cpp
+    longpresshandler.cpp \
+    ceclistener.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -65,7 +76,8 @@ HEADERS  += \
     wpa_supplicant/bss.h \
     osinfo.h \
     partitioninfo.h \
-    longpresshandler.h
+    longpresshandler.h \
+    ceclistener.h
 
 FORMS    += \
     mainwindow.ui \

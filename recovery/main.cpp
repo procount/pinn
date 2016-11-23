@@ -8,6 +8,8 @@
 #include "json.h"
 #include "util.h"
 #include "bootselectiondialog.h"
+#include "ceclistener.h"
+
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/reboot.h>
@@ -35,6 +37,10 @@
  * See LICENSE.txt for license details
  *
  */
+
+CecListener *cec = NULL;
+
+CecListener *enableCEC(QObject *parent=0);
 
 void showBootMenu(const QString &drive, const QString &defaultPartition, bool setDisplayMode)
 {
@@ -132,10 +138,10 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     RightButtonFilter rbf;
     LongPressHandler lph;
-    GpioInput gpio(gpioChannel);
+    GpioInput *gpio=NULL;
+    cec = enableCEC();
 
     bool runinstaller = false;
-    bool gpio_trigger = false;
     bool keyboard_trigger = true;
     bool force_trigger = false;
 
@@ -152,7 +158,7 @@ int main(int argc, char *argv[])
             runinstaller = true;
         // Enables use of GPIO 3 to force NOOBS to launch by pulling low
         else if (strcmp(argv[i], "-gpiotriggerenable") == 0)
-            gpio_trigger = true;
+             gpio = new GpioInput(gpioChannel);
         // Disables use of keyboard to trigger recovery GUI
         else if (strcmp(argv[i], "-keyboardtriggerdisable") == 0)
             keyboard_trigger = false;
@@ -250,7 +256,7 @@ int main(int argc, char *argv[])
     // or no OS is installed (/settings/installed_os.json does not exist)
     bool bailout = !runinstaller
         && !force_trigger
-        && !(gpio_trigger && (gpio.value() == 0 ))
+        && !(gpio && (gpio-.value() == 0 ))
         && hasInstalledOS(drive);
 
     if (bailout && keyboard_trigger)
@@ -272,12 +278,19 @@ int main(int argc, char *argv[])
                 qDebug() << "Tap detected";
                 break;
             }
+            if (cec->hasKeyPressed())
+            {
+                bailout = false;
+                qDebug() << "cec key detected";
+                break;
+            }
         }
     }
 
     if (bailout)
     {
         splash->hide();
+        cec->clearKeyPressed();
         showBootMenu(drive, defaultPartition, true);
     }
 
@@ -301,4 +314,19 @@ int main(int argc, char *argv[])
     showBootMenu(drive, defaultPartition, false);
 
     return 0;
+}
+
+CecListener *enableCEC(QObject *parent)
+{
+    QFile f("/proc/cpuinfo");
+    f.open(f.ReadOnly);
+    QByteArray cpuinfo = f.readAll();
+    f.close();
+
+    if (cpuinfo.contains("BCM2708") || cpuinfo.contains("BCM2709")) /* Only supported on the Raspberry for now */
+    {
+        cec = new CecListener(parent);
+        cec->start();
+    }
+    return(cec);
 }
