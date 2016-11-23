@@ -24,6 +24,10 @@ bool RightButtonFilter::eventFilter(QObject *, QEvent *event)
 
         if (mouseEvent->button() == Qt::RightButton)
             return true; /* Eat right mouse button clicks */
+        else
+        {
+            qDebug()<<"Mouse: " << mouseEvent->pos() << " global: " << mouseEvent->globalPos();
+        }
     }
 
     return false;
