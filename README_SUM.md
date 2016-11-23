@@ -5,6 +5,10 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V2.1.1c
+
+- **CEC Support**     - Added CEC support to control PINN with a TV remote
+
 ### V2.1
 
 - **IoTpHAT support** - Updated to match NOOBS v2.1 for IoTpHAT wifi

@@ -14,6 +14,7 @@
 #include "piclonedialog.h"
 #include "piclonethread.h"
 #include "builddata.h"
+#include "ceclistener.h"
 
 #include <QMessageBox>
 #include <QProgressDialog>
@@ -50,6 +51,12 @@
 #include <linux/reboot.h>
 #include <sys/time.h>
 
+#ifdef RASPBERRY_CEC_SUPPORT
+extern "C" {
+#include <interface/vmcs_host/vc_cecservice.h>
+}
+#endif
+
 #ifdef Q_WS_QWS
 #include <QWSServer>
 #endif
@@ -57,6 +64,8 @@
 void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode);
 
 extern QStringList downloadRepoUrls;
+extern CecListener * cec;
+
 //#define KHDBG 0
 
 /* Main window
@@ -101,6 +110,8 @@ MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, boo
     QRect s = QApplication::desktop()->screenGeometry();
     if (s.height() < 500)
         resize(s.width()-10, s.height()-100);
+
+    connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
 
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
     {
@@ -199,12 +210,20 @@ MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, boo
 
 MainWindow::~MainWindow()
 {
+    disconnect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+
     if (_hasUSB)
     {
         QProcess::execute("umount " USB_MOUNTPOINT);
     }
     QProcess::execute("umount /mnt");
     delete ui;
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    disconnect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+    event->accept();
 }
 
 /* Discover which images we have, and fill in the list */
@@ -1971,4 +1990,100 @@ void MainWindow::on_newVersion()
             QProcess::execute(cmd);
             break;
     }
+}
+
+/* Key on TV remote pressed */
+void MainWindow::onKeyPress(int cec_code)
+{
+#ifdef Q_WS_QWS
+    Qt::KeyboardModifiers modifiers = Qt::NoModifier;
+    int key=0;
+    QPoint p = QCursor::pos();
+    int menu =0;
+    if (ui->actionAdvanced->isChecked())
+        menu=1;
+
+    switch (cec_code)
+    {
+/* MOUSE SIMULATION */
+    case CEC_User_Control_Left:
+        p.rx()-=10;
+        QCursor::setPos(p);
+        break;
+    case CEC_User_Control_Right:
+        p.rx()+=10;
+        QCursor::setPos(p);
+        break;
+    case CEC_User_Control_Up:
+        p.ry()-=10;
+        QCursor::setPos(p);
+        break;
+    case CEC_User_Control_Down:
+        p.ry()+=10;
+        QCursor::setPos(p);
+        break;
+    case CEC_User_Control_Select:
+        { //CLick!
+            QWidget* widget = dynamic_cast<QWidget*>(QApplication::widgetAt(QCursor::pos()));
+            QPoint pos = QCursor::pos();
+            QMouseEvent *event = new QMouseEvent(QEvent::MouseButtonPress,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
+            QCoreApplication::sendEvent(widget,event);
+            QMouseEvent *event1 = new QMouseEvent(QEvent::MouseButtonRelease,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
+            QCoreApplication::sendEvent(widget,event1);
+            qApp->processEvents();
+        }
+        break;
+
+/* ARROW KEY SIMULATION */
+    case CEC_User_Control_Number0:
+        key = Qt::Key_Space;
+        break;
+    case CEC_User_Control_Exit:
+        key = Qt::Key_Escape;
+        break;
+    case CEC_User_Control_ChannelUp:
+        key = Qt::Key_Up;
+        break;
+    case CEC_User_Control_ChannelDown:
+        key = Qt::Key_Down;
+        break;
+
+    case CEC_User_Control_F2Red:
+        key = Qt::Key_A;
+        modifiers = Qt::ControlModifier;
+        break;
+
+/* SPECIAL KEYS FOR THIS DIALOG */
+    case CEC_User_Control_Number1:
+        key = (menu==0) ? Qt::Key_I : Qt::Key_P;
+        break;
+    case CEC_User_Control_Number2:
+        key = (menu==0) ? Qt::Key_E : Qt::Key_C;
+        break;
+    case CEC_User_Control_Number3:
+        key = (menu==0) ? Qt::Key_W : 0;
+        break;
+    case CEC_User_Control_Number4:
+        key = (menu==0) ? Qt::Key_H : 0;
+        break;
+    case CEC_User_Control_Number5:
+        key = (menu==0) ? Qt::Key_Escape : 0;
+        break;
+/* Key 9 is always menu selection toggle */
+    case CEC_User_Control_Number9:
+        key = Qt::Key_A;
+        break;
+    default:
+        break;
+    }
+    if (key)
+    {
+        // key press
+        QWSServer::sendKeyEvent(0, key, modifiers, true, false);
+        // key release
+        QWSServer::sendKeyEvent(0, key, modifiers, false, false);
+    }
+#else
+    qDebug() << "onKeyPress" << key;
+#endif
 }

@@ -135,6 +135,23 @@ If you cancel, the dialog box will keep popping up to remind you each time PINN 
 If you select ignore, this version will be ignored and no dialogs will popup again until another later version is released.
 If you choose to download this update, the zip file will be downloaded and will overwrite your current version of PINN. PINN will then reboot the RPi and restart PINN.
 
+#### CEC Control (v2.1.1c onwards)
+
+PINN can be controlled with a TV remote if the HDMI TV has CEC support.
+The CEC remote keys are mapped as follows:
+To simulate a mouse the following keys are used:
+- Cursor Up/Down/Left/Right - moves the mouse cursor in each direction
+- Select - mouse click
+For quicker selection the following keys may be easier:
+- Channel Up - previous list item
+- Channel Down - next list item
+- 0 key - Enter Key
+- Exit Key - Escape
+- 9 key - Toggles the advanced menu
+- 1-8 keys - select the menu buttons numbered from left to right
+
+Any of the above remote keys can be used instead of the keyboard shift key on startup to access the main menu.
+
 ==
 
 ## Advanced Usage (for experts and teachers)
