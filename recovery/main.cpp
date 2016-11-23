@@ -8,6 +8,8 @@
 #include "json.h"
 #include "util.h"
 #include "bootselectiondialog.h"
+#include "ceclistener.h"
+
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/syscall.h>
@@ -35,6 +37,9 @@
  * See LICENSE.txt for license details
  *
  */
+
+CecListener *cec = NULL;
+CecListener *enableCEC(QObject *parent=0);
 
 void showBootMenu(const QString &drive, const QString &defaultPartition, bool setDisplayMode)
 {
@@ -135,6 +140,7 @@ int main(int argc, char *argv[])
     RightButtonFilter rbf;
     LongPressHandler lph;
     GpioInput gpio(gpioChannel);
+    cec = enableCEC();
 
     bool runinstaller = false;
     bool gpio_trigger = false;
@@ -248,6 +254,8 @@ int main(int argc, char *argv[])
     }
     qDebug() << "NOOBS drive:" << drive;
 
+    cec->loadCECmap("/mnt/cec_keys.json");
+
     // If -runinstaller is not specified, only continue if SHIFT is pressed, GPIO is triggered,
     // or no OS is installed (/settings/installed_os.json does not exist)
     bool bailout = !runinstaller
@@ -268,6 +276,12 @@ int main(int argc, char *argv[])
                 qDebug() << "Shift detected";
                 break;
             }
+            if (cec->hasKeyPressed())
+            {
+                bailout = false;
+                qDebug() << "cec key detected";
+                break;
+            }
             if (hasTouchScreen && QApplication::mouseButtons().testFlag(Qt::LeftButton))
             {
                 bailout = false;
@@ -276,6 +290,8 @@ int main(int argc, char *argv[])
             }
         }
     }
+
+    cec->clearKeyPressed();
 
     if (bailout)
     {
@@ -303,4 +319,20 @@ int main(int argc, char *argv[])
     showBootMenu(drive, defaultPartition, false);
 
     return 0;
+}
+
+CecListener *enableCEC(QObject *parent)
+{
+    QFile f("/proc/cpuinfo");
+    f.open(f.ReadOnly);
+    QByteArray cpuinfo = f.readAll();
+    f.close();
+
+    if (cpuinfo.contains("BCM2708") || cpuinfo.contains("BCM2709") || cpuinfo.contains("BCM2835")) /* Only supported on the Raspberry for now */
+    {
+        cec = new CecListener(parent);
+        cec->start();
+    }
+
+    return(cec);
 }

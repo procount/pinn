@@ -64,5 +64,6 @@
         <file>icons/tick.png</file>
         <file>icons/hdd_usb_unmount.png</file>
         <file>wallpaper.jpg</file>
+        <file>cec_keys.json</file>
     </qresource>
 </RCC>

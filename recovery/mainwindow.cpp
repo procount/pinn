@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "multiimagewritethread.h"
 #include "initdrivethread.h"
+#include "ceclistener.h"
 #include "confeditdialog.h"
 #include "progressslideshowdialog.h"
 #include "config.h"
@@ -49,6 +50,15 @@
 #include <QWSServer>
 #endif
 
+#ifdef RASPBERRY_CEC_SUPPORT
+extern "C" {
+#include <interface/vmcs_host/vc_cecservice.h>
+}
+#endif
+
+extern CecListener * cec;
+
+
 /* Main window
  *
  * Initial author: Floris Bos
@@ -89,6 +99,13 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     QRect s = QApplication::desktop()->screenGeometry();
     if (s.height() < 500)
         resize(s.width()-10, s.height()-100);
+
+    if (cec)
+    {
+        cec->setWindow("mainwindow");
+        cec->setMenu("Main Menu");
+        connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+    }
 
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
     {
@@ -240,6 +257,9 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
 
 MainWindow::~MainWindow()
 {
+    if (cec)
+        disconnect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+
     QProcess::execute("umount /mnt");
     delete ui;
 }
@@ -1905,4 +1925,10 @@ void MainWindow::filterList()
             }
         }
     }
+}
+
+/* Key on TV remote pressed */
+void MainWindow::onKeyPress(int cec_code)
+{
+    cec->process_cec(cec_code);
 }
