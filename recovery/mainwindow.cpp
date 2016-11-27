@@ -206,6 +206,10 @@ MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, boo
 
     /* Disable online help buttons until network is functional */
     ui->actionBrowser->setEnabled(false);
+
+    //@@connect(drive_monitor,SIGNAL(drives_changed(void)), this, SLOT(onDrivesChanged(void)));
+    drive_monitor.startMonitoringDrives(1000);
+
     QTimer::singleShot(2000, this, SLOT(populate()));
 }
 
@@ -267,8 +271,8 @@ void MainWindow::populate()
     _settings->setValue("display_mode", _defaultDisplay);
     _settings->sync();
 
-    connect(&myUsb, SIGNAL(drivesChanged()), this, SLOT(onDrivesChanged()));
-    myUsb.startMonitoringDrives();
+    connect(&drive_monitor, SIGNAL(drivesChanged()), this, SLOT(onDrivesChanged()));
+    drive_monitor.startMonitoringDrives();
 
     //@@ Create OsSource for installed_os
 
@@ -1971,7 +1975,7 @@ void MainWindow::on_actionClone_triggered()
     QString dst_dev;
     piclonedialog pDlg;
 
-    connect(&myUsb, SIGNAL(drivesChanged()),&pDlg, SLOT(onDrivesChanged()));
+    connect(&drive_monitor, SIGNAL(drivesChanged()),&pDlg, SLOT(onDrivesChanged()));
 
     int result = pDlg.exec();
 

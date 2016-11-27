@@ -10,9 +10,9 @@
  *
  */
 
+#include "drvmon.h"
 #include "languagedialog.h"
 #include "ossource.h"
-#include "usb.h"
 
 #include <QMainWindow>
 #include <QModelIndex>
@@ -62,7 +62,7 @@ protected:
     QTime _time;
     QString _model;
     int _noobsconfig;
-    usb myUsb;
+    drvmon drive_monitor;
 
     QMap<QString,QVariantMap> listImages();
     QMap<QString,QVariantMap> listImagesInDir(const QString &mountpoint, const QString &source);

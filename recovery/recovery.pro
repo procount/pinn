@@ -57,7 +57,6 @@ SOURCES += main.cpp\
     ossource.cpp \
     ossourcelocal.cpp \
     ossourceremote.cpp \
-    usb.cpp \
     mydebug.cpp \
     drvmon.cpp
 
@@ -95,7 +94,6 @@ HEADERS  += mainwindow.h \
     ossource.h \
     ossourcelocal.h \
     ossourceremote.h \
-    usb.h \
     mydebug.h \
     drvmon.h
 
