@@ -41,7 +41,7 @@ public:
     explicit CecListener(QObject *parent = 0);
     virtual ~CecListener();
     static int hasKeyPressed() {return(keyPressed);}
-    static int clearKeyPressed() {keyPressed=0;}
+    static void clearKeyPressed() {keyPressed=0;}
 
 signals:
     void keyPress(int key);

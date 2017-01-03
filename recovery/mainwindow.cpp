@@ -70,7 +70,7 @@ void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode);
 extern QStringList downloadRepoUrls;
 extern CecListener * cec;
 
-//#define KHDBG 0
+#define KHDBG 1
 
 /* Main window
  *
@@ -207,7 +207,7 @@ MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, boo
     /* Disable online help buttons until network is functional */
     ui->actionBrowser->setEnabled(false);
 
-    //@@connect(drive_monitor,SIGNAL(drives_changed(void)), this, SLOT(onDrivesChanged(void)));
+    connect(&drive_monitor,SIGNAL(drivesChanged(void)), this, SLOT(onDrivesChanged(void)));
     drive_monitor.startMonitoringDrives(1000);
 
     QTimer::singleShot(2000, this, SLOT(populate()));
@@ -297,14 +297,6 @@ void MainWindow::onDrivesChanged(void)
     FILE *fp;
     QStringList drives;
 
-    QString Msg;
-    Msg = "MainWindow::onDrivesChanged:";
-    foreach (QString drive, drives)
-    {
-        Msg += drive;
-        Msg += ",";
-    }
-    DBG(Msg);
     //Get a list of all partitions
     fp = popen ("lsblk -pl| grep 'part' | cut -d ' ' -f 1", "r");
     if (fp != NULL)
@@ -317,6 +309,7 @@ void MainWindow::onDrivesChanged(void)
                 break;
             else
             {
+                DBG(line);
                 drives.append(line);
                 bool found=false;
                 foreach (OsSource *src, source)
@@ -326,19 +319,19 @@ void MainWindow::onDrivesChanged(void)
                 }
                 if (!found)
                 {
-                    //====Create USB source========//
-                    OsSourceLocal *usb=new OsSourceLocal(this);
+                    //====Create local source========//
+                    OsSourceLocal *drv=new OsSourceLocal(this);
                     if (line.contains("/dev/sd"))
-                        usb->setSourceType(SOURCE_USB);
+                        drv->setSourceType(SOURCE_USB);
                     if (line.contains("/dev/mmcblk"))
-                        usb->setSourceType((SOURCE_SDCARD));
-                    usb->setDevice(line.toUtf8().constData());
+                        drv->setSourceType((SOURCE_SDCARD));
+                    drv->setDevice(line.toUtf8().constData());
                     strcpy(name,"/tmp");
                     strcat(name,line.toUtf8().constData());
-                    usb->setLocation(name);
-                    source.append(usb);
-                    connect (usb, SIGNAL(newSource(OsSource*)), this, SLOT(onNewSource(OsSource*)));
-                    usb->monitorDevice();
+                    drv->setLocation(name);
+                    source.append(drv);
+                    connect (drv, SIGNAL(newSource(OsSource*)), this, SLOT(onNewSource(OsSource*)));
+                    drv->monitorDevice();
                 }
             }
         }
@@ -449,7 +442,7 @@ void MainWindow::repopulate()
         item->setData(Qt::UserRole, name);
 
 #ifdef KHDBG
-        qDebug() << "Repopulate: " << m << "\n";
+        //qDebug() << "Repopulate: " << m << "\n";
 #endif
         if (installed)
         {
