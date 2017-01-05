@@ -77,7 +77,6 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool d
         QVariantMap m = v.toMap();
         QString iconfilename = m.value("icon").toString();
         QIcon icon;
-
         if (!iconfilename.isEmpty() && QFile::exists(iconfilename))
         {
             icon = QIcon(iconfilename);
@@ -90,7 +89,6 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool d
             else
             {
                 QSize iconsize = avs.first();
-
                 if (iconsize.width() > currentsize.width() || iconsize.height() > currentsize.height())
                 {
                     /* Make all icons as large as the largest icon we have */

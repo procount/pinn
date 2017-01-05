@@ -214,7 +214,7 @@ MainWindow::~MainWindow()
 
     if (_hasUSB)
     {
-        QProcess::execute("umount " USB_MOUNTPOINT);
+//        QProcess::execute("umount " USB_MOUNTPOINT);
     }
     QProcess::execute("umount /mnt");
     delete ui;

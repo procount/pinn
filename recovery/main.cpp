@@ -51,7 +51,7 @@ void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode)
     QProcess::execute("umount -r /settings");
     if (QFile::exists(USB_MOUNTPOINT))
     {
-        QProcess::execute("umount -r " USB_MOUNTPOINT);
+        //QProcess::execute("umount -r " USB_MOUNTPOINT);
     }
 
 #ifdef Q_WS_QWS
