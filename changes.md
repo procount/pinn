@@ -183,6 +183,6 @@ Linux Kernel and rpi-firmware updated to match NOOBS v2.0
 Updated to match NOOBS v2.1
 Now supports the IoTpHAT wifi.
 
-#V2.1.1c Features
+#V2.1.1 Features
 
 Added CEC support

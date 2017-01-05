@@ -135,7 +135,7 @@ If you cancel, the dialog box will keep popping up to remind you each time PINN 
 If you select ignore, this version will be ignored and no dialogs will popup again until another later version is released.
 If you choose to download this update, the zip file will be downloaded and will overwrite your current version of PINN. PINN will then reboot the RPi and restart PINN.
 
-#### CEC Control (v2.1.1c onwards)
+#### CEC Control (v2.1.1 onwards)
 
 PINN can be controlled with a TV remote if the HDMI TV has CEC support.
 The CEC remote keys are mapped as follows:
