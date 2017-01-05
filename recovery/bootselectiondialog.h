@@ -10,8 +10,11 @@
  *
  */
 
+#include <QListWidgetItem>
+#include <QModelIndex>
 #include <QDialog>
 #include <QVariantList>
+#include <QVariantMap>
 #include <QModelIndex>
 #include <QTimer>
 
@@ -37,15 +40,18 @@ protected slots:
 
 private slots:
     void on_list_activated(const QModelIndex &index);
+    void on_list_itemChanged(QListWidgetItem *item);
 
 protected:
     QTimer _timer;
     int _countdown;
     void stopCountdown();
     void updateConfig4dsi(QByteArray partition);
+    int extractPartition(QVariantMap m);
     bool _dsi;
 private:
     Ui::BootSelectionDialog *ui;
+    bool _inSelection;
 };
 
 #endif // BOOTSELECTIONDIALOG_H

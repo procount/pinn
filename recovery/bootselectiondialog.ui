@@ -16,7 +16,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Select OS to boot</string>
+   <string>PINN - Select OS to boot</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
