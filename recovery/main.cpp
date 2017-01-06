@@ -58,7 +58,8 @@ void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode)
     QWSServer::setBackground(Qt::white);
     QWSServer::setCursorVisible(true);
 #endif
-    BootSelectionDialog bsd(defaultPartition,dsi);
+    //Just reuse of setDisplayMode to indicate it is a direct boot for sticky mode.
+    BootSelectionDialog bsd(defaultPartition,setDisplayMode,dsi);
     if (setDisplayMode)
         bsd.setDisplayMode();
     bsd.exec();

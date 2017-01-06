@@ -37,7 +37,7 @@ extern "C" {
 
 extern CecListener * cec;
 
-BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool dsi=false, QWidget *parent) :
+BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool stickyBoot, bool dsi, QWidget *parent) :
     QDialog(parent),
     _countdown(11),
     _dsi(dsi),
@@ -103,7 +103,6 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool d
             item->setData(Qt::UserRole, m);
             item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
             item->setCheckState(Qt::Unchecked);
-            int bootPart = extractPartition(m);
         }
     }
 
@@ -112,6 +111,7 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool d
         // If default boot partition set then boot to that after N seconds
         QSettings settings("/settings/noobs.conf", QSettings::IniFormat, this);
         int partition = settings.value("default_partition_to_boot", defaultPartition).toInt();
+        // But if we have a stickyBoot partition, use that instead.
         if (oldSticky != 800)
             partition=oldSticky;
 
@@ -130,9 +130,6 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool d
                     _countdown = params.at(1).toInt() +1;
                 }
             }
-            //Speed up if we have set a sticky boot partition
-            if (oldSticky != 800)
-                _countdown=2;
 
             // Start timer
             qDebug() << "Starting " << _countdown-1 << " second timer before booting into partition" << partition;
@@ -167,6 +164,12 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool d
     if (ui->list->count() == 1)
     {
         // Only one OS, boot that
+        qDebug() << "accepting";
+        QTimer::singleShot(1, this, SLOT(accept()));
+    }
+    if (stickyBoot && (oldSticky!=800))
+    {
+        // StickyBoot is set, and user has not intervened, so boot it directly.
         qDebug() << "accepting";
         QTimer::singleShot(1, this, SLOT(accept()));
     }
