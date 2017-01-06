@@ -51,7 +51,7 @@ void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode)
     QProcess::execute("umount -r /settings");
     if (QFile::exists(USB_MOUNTPOINT))
     {
-        //QProcess::execute("umount -r " USB_MOUNTPOINT);
+        QProcess::execute("umount -r " USB_MOUNTPOINT);
     }
 
 #ifdef Q_WS_QWS
@@ -246,10 +246,10 @@ int main(int argc, char *argv[])
                 qDebug() << "Shift detected";
                 break;
             }
-            if (hasTouchScreen && QApplication::mouseButtons().testFlag(Qt::LeftButton))
+            if (QApplication::mouseButtons().testFlag(Qt::LeftButton))
             {
                 bailout = false;
-                qDebug() << "Tap detected";
+                qDebug() << "Tap or mouse detected";
                 break;
             }
             if (cec->hasKeyPressed())

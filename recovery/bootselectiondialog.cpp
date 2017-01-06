@@ -58,6 +58,14 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool s
         return;
     }
 
+    if (QFile::exists(USB_DEVICE))
+    {
+        QDir dir;
+        dir.mkdir(USB_MOUNTPOINT);
+        QProcess::execute("mount -o ro -t vfat " USB_DEVICE " " USB_MOUNTPOINT);
+    }
+
+
     connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
 
 
@@ -227,7 +235,7 @@ void BootSelectionDialog::accept()
         Qt::CheckState state = row->checkState();
         if (state == Qt::Checked)
         {
-            stickyBoot    = extractPartition(item->data(Qt::UserRole).toMap());
+            stickyBoot    = extractPartition(row->data(Qt::UserRole).toMap());
         }
     }
     int oldSticky = settings.value("sticky_boot", 800).toInt();
