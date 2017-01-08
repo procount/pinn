@@ -16,6 +16,7 @@ On first boot PINN will format your SD card and allow you to select which OSes y
 Only the latest version of each OS will ever be displayed meaning that you can be sure that you have installed the most up-to-date release of your selected OS.
 
 On any subsequent boot you can then press the SHIFT key to enter the PINN interface and easily reinstall your choice of OSes.
+In addition to the SHIFT key, it is also possible to press the Left mouse button, or any key on a CEC enabled TV remote, to enter the PINN interface.
 
 The PINN interface provides the following functionality:
 - <b>Install</b>: Installs the selected OSes onto your SD card. Changing this selection erases all OSes currently installed.
@@ -41,6 +42,16 @@ On first boot the "RECOVERY" FAT partition will be automatically resized to a mi
 
 PINN is only available in 1 format:
 - `PINN-Lite` does not include any Operating Systems at all.
+
+#### Local Images on SD card
+
+PINN can install local images that are found in the /os folder on the SD card. These can include any of the original NOOBS images, or any other OS that is formatted with a .tar.xz file for each partition.
+Whilst this can be a convenient way to host the installable images as they can be installed offline, it does take up some valuable SD card space.
+
+#### Local Images on USB stick
+
+PINN can install local images that are found in the /os folder on a USB memory stick. These can include any of the original NOOBS images, or any other OS that is formatted with a .tar.xz file for each partition.
+This is a convenient way to install images whilst offline, yet it doesn't use up any additional space on the SD card.
 
 #### OS Network Download
 
@@ -122,9 +133,13 @@ An installer slideshow guides you through your first steps with each OS while it
 
 #### OS Boot Selector
 
-After multiple OSes have been installed, you can select which OS to boot through this selection window that is automatically displayed. PINN will remember your choice and boot this OS by default unless a different option has been selected within 10 seconds.
 
-Note that if only one OS is installed then the boot selector will not be displayed and the OS will be automatically booted.
+If only one OS is installed then the boot selector will not be displayed and the OS will be automatically booted.
+
+After multiple OSes have been installed, you can select which OS to boot through this selection window that is automatically displayed. PINN will remember your choice and boot this OS by default unless a different option has been selected within 10 seconds.
+It is possible to change this menu timeout by adding 'bootmenutimeout=X' in the recovery.cmdline file, where X is the desired timeout in seconds.
+
+Each OS entry now has a checkbox next to it to select it as a sticky default OS. If an OS is checked, then PINN will operate as if that was the only OS installed, so it will boot it automatically without showing the boot selection dialog. To change or remove the sticky checkbox, the boot selection dialog can be shown again by pressing the Shift key on boot up.
 
 ![alt text](screenshots/boot_select.png "Easily select which OS you want to boot from a list of those currently installed")
 

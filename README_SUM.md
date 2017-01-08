@@ -5,6 +5,12 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V2.1.2
+
+- **Default Boot**    - A default OS can be set in a multi-boot setup for quicker boots.
+- **Bootmenutimout**  - The timeout of the boot selection dialog can be changed.
+- **SHIFT key**       - The PINN interface can be reached using the Left mouse button as well as shift.
+
 ### V2.1.1
 
 - **CEC Support**     - Added CEC support to control PINN with a TV remote
