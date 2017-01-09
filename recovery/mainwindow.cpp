@@ -698,6 +698,7 @@ void MainWindow::onCompleted()
     _qpd->hide();
     QSettings settings("/settings/noobs.conf", QSettings::IniFormat, this);
     settings.setValue("default_partition_to_boot", "800");
+    settings.remove("sticky_boot");
     settings.sync();
 
     if (!_silent)
