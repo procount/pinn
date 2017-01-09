@@ -13,7 +13,6 @@
 #include "json.h"
 #include "util.h"
 #include "ceclistener.h"
-#include <QDebug>
 #include <unistd.h>
 #include <QDir>
 #include <QMessageBox>
@@ -38,10 +37,11 @@ extern "C" {
 
 extern CecListener * cec;
 
-BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool dsi=false, QWidget *parent) :
+BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool stickyBoot, bool dsi, QWidget *parent) :
     QDialog(parent),
     _countdown(11),
     _dsi(dsi),
+    _inSelection(false),
     ui(new Ui::BootSelectionDialog)
 {
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
@@ -58,6 +58,14 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool d
         return;
     }
 
+    if (QFile::exists(USB_DEVICE))
+    {
+        QDir dir;
+        dir.mkdir(USB_MOUNTPOINT);
+        QProcess::execute("mount -o ro -t vfat " USB_DEVICE " " USB_MOUNTPOINT);
+    }
+
+
     connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
 
 
@@ -69,12 +77,14 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool d
     QVariantList installed_os = Json::loadFromFile("/settings/installed_os.json").toList();
     QSize currentsize = ui->list->iconSize();
 
+    QSettings settings("/settings/noobs.conf", QSettings::IniFormat, this);
+    int oldSticky = settings.value("sticky_boot", 800).toInt();
+
     foreach (QVariant v, installed_os)
     {
         QVariantMap m = v.toMap();
         QString iconfilename = m.value("icon").toString();
         QIcon icon;
-
         if (!iconfilename.isEmpty() && QFile::exists(iconfilename))
         {
             icon = QIcon(iconfilename);
@@ -87,7 +97,6 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool d
             else
             {
                 QSize iconsize = avs.first();
-
                 if (iconsize.width() > currentsize.width() || iconsize.height() > currentsize.height())
                 {
                     /* Make all icons as large as the largest icon we have */
@@ -100,20 +109,38 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool d
         {
             QListWidgetItem *item = new QListWidgetItem(icon, m.value("name").toString()+"\n"+m.value("description").toString(), ui->list);
             item->setData(Qt::UserRole, m);
+            item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+            item->setCheckState(Qt::Unchecked);
         }
     }
 
     if (ui->list->count() != 0)
     {
-        // If default boot partition set then boot to that after 5 seconds
+        // If default boot partition set then boot to that after N seconds
         QSettings settings("/settings/noobs.conf", QSettings::IniFormat, this);
         int partition = settings.value("default_partition_to_boot", defaultPartition).toInt();
+        // But if we have a stickyBoot partition, use that instead.
+        if (oldSticky != 800)
+            partition=oldSticky;
 
         if (partition != 800)
         {
             cec->clearKeyPressed();
+
+            //Check for bootmenutimeout override (default==11)
+            QString cmdline = getFileContents("/proc/cmdline");
+            QStringList args = cmdline.split(QChar(' '),QString::SkipEmptyParts);
+            foreach (QString s, args)
+            {
+                if (s.contains("bootmenutimeout"))
+                {
+                    QStringList params = s.split(QChar('='));
+                    _countdown = params.at(1).toInt() +1;
+                }
+            }
+
             // Start timer
-            qDebug() << "Starting 10 second timer before booting into partition" << partition;
+            qDebug() << "Starting " << _countdown-1 << " second timer before booting into partition" << partition;
             _timer.setInterval(1000);
             connect(&_timer, SIGNAL(timeout()), this, SLOT(countdown()));
             _timer.start();
@@ -122,13 +149,18 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool d
 
             // Select OS booted previously
             QByteArray partstr = "/dev/mmcblk0p"+QByteArray::number(partition);
+            QByteArray stickystr = "/dev/mmcblk0p"+QByteArray::number(oldSticky);
             for (int i=0; i<ui->list->count(); i++)
             {
                 QVariantMap m = ui->list->item(i)->data(Qt::UserRole).toMap();
-                if (m.value("partitions").toList().first() == partstr)
+                QByteArray bootstr = m.value("partitions").toList().first().toByteArray();
+                if ( bootstr == partstr)
                 {
                     ui->list->setCurrentRow(i);
-                    break;
+                }
+                if (bootstr == stickystr)
+                {
+                     ui->list->item(i)->setCheckState(Qt::Checked);
                 }
             }
         }
@@ -143,7 +175,12 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool d
         qDebug() << "accepting";
         QTimer::singleShot(1, this, SLOT(accept()));
     }
-
+    if (stickyBoot && (oldSticky!=800))
+    {
+        // StickyBoot is set, and user has not intervened, so boot it directly.
+        qDebug() << "accepting";
+        QTimer::singleShot(1, this, SLOT(accept()));
+    }
 }
 
 BootSelectionDialog::~BootSelectionDialog()
@@ -162,6 +199,13 @@ void BootSelectionDialog::bootPartition()
     QDialog::accept();
 }
 
+int BootSelectionDialog::extractPartition(QVariantMap m)
+{
+    QByteArray partition = m.value("partitions").toList().first().toByteArray();
+    partition.replace("/dev/mmcblk0p", "");
+    return    (partition.toInt());
+}
+
 void BootSelectionDialog::accept()
 {
     QListWidgetItem *item = ui->list->currentItem();
@@ -169,10 +213,8 @@ void BootSelectionDialog::accept()
         return;
 
     QSettings settings("/settings/noobs.conf", QSettings::IniFormat, this);
-    QVariantMap m = item->data(Qt::UserRole).toMap();
-    QByteArray partition = m.value("partitions").toList().first().toByteArray();
-    partition.replace("/dev/mmcblk0p", "");
-    int partitionNr    = partition.toInt();
+    /* Get the partition to be booted from the list */
+    int partitionNr    = extractPartition(item->data(Qt::UserRole).toMap());
     int oldpartitionNr = settings.value("default_partition_to_boot", 0).toInt();
 
     if (partitionNr != oldpartitionNr)
@@ -180,6 +222,36 @@ void BootSelectionDialog::accept()
         // Save OS boot choice as the new default
         QProcess::execute("mount -o remount,rw /settings");
         settings.setValue("default_partition_to_boot", partitionNr);
+        settings.sync();
+        QProcess::execute("mount -o remount,ro /settings");
+    }
+
+    /* Identify if any sticky checks have been set */
+    int count = ui->list->count();
+    int stickyBoot = 800;
+    for (int i=0; i<count; i++)
+    {
+        QListWidgetItem *row = ui->list->item(i);
+        Qt::CheckState state = row->checkState();
+        if (state == Qt::Checked)
+        {
+            stickyBoot    = extractPartition(row->data(Qt::UserRole).toMap());
+        }
+    }
+    int oldSticky = settings.value("sticky_boot", 800).toInt();
+    if (stickyBoot != oldSticky)
+    {
+        QProcess::execute("mount -o remount,rw /settings");
+        if (stickyBoot != 800)
+        {
+            // Save sticky boot choice as the new default
+            settings.setValue("sticky_boot", stickyBoot);
+        }
+        else
+        {
+            //delete sticky boot entry
+            settings.remove("sticky_boot");
+        }
         settings.sync();
         QProcess::execute("mount -o remount,ro /settings");
     }
@@ -253,7 +325,6 @@ void BootSelectionDialog::setDisplayMode()
 
 bool BootSelectionDialog::eventFilter(QObject *obj, QEvent *event)
 {
-    qDebug() << event->type();
     if (event->type() == QEvent::KeyPress || event->type() == QEvent::MouseButtonPress || event->type() == QEvent::Enter)
     {
         stopCountdown();
@@ -265,12 +336,12 @@ bool BootSelectionDialog::eventFilter(QObject *obj, QEvent *event)
 void BootSelectionDialog::stopCountdown()
 {
     _timer.stop();
-    setWindowTitle(tr("Select OS to boot"));
+    setWindowTitle(tr("PINN - Select OS to boot"));
 }
 
 void BootSelectionDialog::countdown()
 {
-    setWindowTitle(tr("Previously selected OS will boot in %1 seconds").arg(--_countdown));
+    setWindowTitle(tr("PINN - Previously selected OS will boot in %1 seconds").arg(--_countdown));
     if (cec->hasKeyPressed())
         stopCountdown();
     if (_countdown == 0)
@@ -383,4 +454,21 @@ void BootSelectionDialog::onKeyPress(int cec_code)
 #else
     qDebug() << "onKeyPress" << key;
 #endif
+}
+
+void BootSelectionDialog::on_list_itemChanged(QListWidgetItem *item)
+{
+    if (!_inSelection)
+    {
+        _inSelection=true;
+        Qt::CheckState state = item->checkState();
+        int count = ui->list->count();
+        for (int i=0; i<count; i++)
+        {
+            QListWidgetItem *row = ui->list->item(i);
+            row->setCheckState(Qt::Unchecked);
+        }
+        item->setCheckState(state);
+        _inSelection=false;
+    }
 }
