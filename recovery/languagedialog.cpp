@@ -80,6 +80,11 @@ LanguageDialog::LanguageDialog(const QString &defaultLang, const QString &defaul
         /* QString languagename = QLocale::languageToString(loc.language()); */
         /* should Display languagename in native language, e.g. Deutsch, Français  */
         QString languagename = loc.nativeLanguageName();
+
+        //An exception for this language
+        if (langcode.compare("ast", Qt::CaseInsensitive) == 0)
+            languagename = "Asturian";
+
         QString iconfilename = ":/icons/"+langcode+".png";
 
         if (QFile::exists(iconfilename))
@@ -179,8 +184,9 @@ void LanguageDialog::changeLanguage(const QString &langcode)
     }
     else
     {
-        defaultKeyboardLayout = langcode;
+        defaultKeyboardLayout = langcode.left(2);   //Only use 2 letter country code for keyboard as best guess
     }
+
     int idx = ui->keyCombo->findData(defaultKeyboardLayout);
 
     if (idx == -1)

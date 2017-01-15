@@ -104,10 +104,10 @@ int piclonedialog::get_dev_name (const char *dev, char *name)
 void piclonedialog::on_drives_changed(void)
 {
     char buffer[256], name[128], device[32];
-	FILE *fp;
+    FILE *fp;
     QStringList drives;
 
-	// empty the comboboxes
+    // empty the comboboxes
     ui->from_cb->clear();
     src_count=0;        
     
@@ -115,7 +115,7 @@ void piclonedialog::on_drives_changed(void)
     dst_count=0;        
 
 	// populate the comboboxes
-    ui->from_cb->insertItem(0,"Internal SD card  (/dev/mmcblk0)");
+    ui->from_cb->insertItem(0, tr("Internal SD card  (/dev/mmcblk0)"));
 	src_count++;
 
     fp = popen ("parted -l | grep \"^Disk /dev/\" | cut -d ' ' -f 2 | cut -d ':' -f 1", "r");
@@ -147,7 +147,7 @@ void piclonedialog::on_drives_changed(void)
 
     if (dst_count == 0)
 	{
-        ui->to_cb->insertItem(dst_count, "No devices available");
+        ui->to_cb->insertItem(dst_count, tr("No devices available"));
         ui->to_cb->setEnabled(false);
 	}
 	else 
