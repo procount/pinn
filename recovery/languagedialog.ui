@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>450</width>
     <height>45</height>
    </rect>
   </property>
@@ -85,7 +85,7 @@
   <property name="windowTitle">
    <string notr="true"/>
   </property>
-   <property name="styleSheet">
+  <property name="styleSheet">
    <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
