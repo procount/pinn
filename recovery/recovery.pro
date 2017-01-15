@@ -24,8 +24,9 @@ LIBS += -lqjson
 
 system(sh updateqm.sh 2>/dev/null)
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
+SOURCES += \
+    main.cpp\
+    mainwindow.cpp \
     languagedialog.cpp \
     initdrivethread.cpp \
     keydetection.cpp \
@@ -55,7 +56,8 @@ SOURCES += main.cpp\
     builddata.cpp \
     ceclistener.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
+    mainwindow.h \
     languagedialog.h \
     initdrivethread.h \
     config.h \
@@ -87,7 +89,8 @@ HEADERS  += mainwindow.h \
     builddata.h \
     ceclistener.h
 
-FORMS    += mainwindow.ui \
+FORMS    += \
+    mainwindow.ui \
     languagedialog.ui \
     progressslideshowdialog.ui \
     confeditdialog.ui \
@@ -99,13 +102,25 @@ FORMS    += mainwindow.ui \
 RESOURCES += \
     icons.qrc
 
-TRANSLATIONS += translation_nl.ts \
+TRANSLATIONS += \
+    translation_ca.ts \
     translation_de.ts \
-    translation_pt.ts \
-    translation_ja.ts \
+    translation_es.ts \
+    translation_es_XA.ts \
+    translation_eu.ts \
+    translation_fi.ts \
     translation_fr.ts \
     translation_hu.ts \
-    translation_fi.ts
+    translation_it.ts \
+    translation_ja.ts \
+    translation_ko.ts \
+    translation_nl.ts \
+    translation_pl.ts \
+    translation_pt.ts \
+    translation_ru.ts \
+    translation_sv.ts \
+    translation_tr.ts \
+    translation_zh_TW.ts
 
 OTHER_FILES += \
     README.txt \
