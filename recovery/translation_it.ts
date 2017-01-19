@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it" sourcelanguage="en">
+<TS version="2.1" language="it" sourcelanguage="en">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -807,27 +807,27 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="passwd.cpp" line="226"/>
         <source>Very Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>Molto debole</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="227"/>
         <source>Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>Debole</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="228"/>
         <source>Good</source>
-        <translation type="unfinished"></translation>
+        <translation>Buona</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="229"/>
         <source>Strong</source>
-        <translation type="unfinished"></translation>
+        <translation>Ababstanza sicura</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="230"/>
         <source>Very Strong</source>
-        <translation type="unfinished"></translation>
+        <translation>Sicura</translation>
     </message>
 </context>
 <context>
@@ -1022,12 +1022,12 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="piclonedialog.cpp" line="118"/>
         <source>Internal SD card  (/dev/mmcblk0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Scheda SD interna ( (/dev/mmcblk0)</translation>
     </message>
     <message>
         <location filename="piclonedialog.cpp" line="150"/>
         <source>No devices available</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessun dispositvo disponibile</translation>
     </message>
 </context>
 </TS>
