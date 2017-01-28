@@ -404,12 +404,15 @@ void BootSelectionDialog::onKeyPress(int cec_code)
     case CEC_User_Control_Select:
     {
         QWidget* widget = dynamic_cast<QWidget*>(QApplication::widgetAt(QCursor::pos()));
-        QPoint pos = QCursor::pos();
-        QMouseEvent *event = new QMouseEvent(QEvent::MouseButtonPress,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
-        QCoreApplication::sendEvent(widget,event);
-        QMouseEvent *event1 = new QMouseEvent(QEvent::MouseButtonRelease,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
-        QCoreApplication::sendEvent(widget,event1);
-        qApp->processEvents();
+        if (widget)
+        {
+            QPoint pos = QCursor::pos();
+            QMouseEvent *event = new QMouseEvent(QEvent::MouseButtonPress,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
+            QCoreApplication::sendEvent(widget,event);
+            QMouseEvent *event1 = new QMouseEvent(QEvent::MouseButtonRelease,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
+            QCoreApplication::sendEvent(widget,event1);
+            qApp->processEvents();
+        }
     }
     case CEC_User_Control_Left:
         p.rx()-=10;
@@ -428,7 +431,7 @@ void BootSelectionDialog::onKeyPress(int cec_code)
         QCursor::setPos(p);
         break;
 /* ARROW KEY SIMULATION */
-    case CEC_User_Control_Number0:
+    case CEC_User_Control_Play:
         key = Qt::Key_Enter;
         break;
     case CEC_User_Control_Exit:
@@ -471,4 +474,9 @@ void BootSelectionDialog::on_list_itemChanged(QListWidgetItem *item)
         item->setCheckState(state);
         _inSelection=false;
     }
+}
+
+void BootSelectionDialog::on_pushButton_clicked()
+{
+    accept();
 }

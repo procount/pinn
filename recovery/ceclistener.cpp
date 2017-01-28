@@ -111,10 +111,8 @@ void CecListener::cec_callback(uint32_t reason, uint32_t param1, uint32_t, uint3
 #ifdef RASPBERRY_CEC_SUPPORT
     if (CEC_CB_REASON(reason) == VC_CEC_BUTTON_PRESSED)
     {
-        int c = 0;
         int cec_buttoncode = CEC_CB_OPERAND1(param1);
         keyPressed=1;
-
         emit keyPress(cec_buttoncode);
     }
 #else

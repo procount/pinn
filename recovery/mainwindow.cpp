@@ -1997,6 +1997,7 @@ void MainWindow::on_newVersion()
 void MainWindow::onKeyPress(int cec_code)
 {
 #ifdef Q_WS_QWS
+
     Qt::KeyboardModifiers modifiers = Qt::NoModifier;
     int key=0;
     QPoint p = QCursor::pos();
@@ -2026,17 +2027,20 @@ void MainWindow::onKeyPress(int cec_code)
     case CEC_User_Control_Select:
         { //CLick!
             QWidget* widget = dynamic_cast<QWidget*>(QApplication::widgetAt(QCursor::pos()));
-            QPoint pos = QCursor::pos();
-            QMouseEvent *event = new QMouseEvent(QEvent::MouseButtonPress,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
-            QCoreApplication::sendEvent(widget,event);
-            QMouseEvent *event1 = new QMouseEvent(QEvent::MouseButtonRelease,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
-            QCoreApplication::sendEvent(widget,event1);
-            qApp->processEvents();
+            if (widget)
+            {
+                QPoint pos = QCursor::pos();
+                QMouseEvent *event = new QMouseEvent(QEvent::MouseButtonPress,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
+                QCoreApplication::sendEvent(widget,event);
+                QMouseEvent *event1 = new QMouseEvent(QEvent::MouseButtonRelease,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
+                QCoreApplication::sendEvent(widget,event1);
+                qApp->processEvents();
+            }
         }
         break;
 
 /* ARROW KEY SIMULATION */
-    case CEC_User_Control_Number0:
+    case CEC_User_Control_Play:
         key = Qt::Key_Space;
         break;
     case CEC_User_Control_Exit:
