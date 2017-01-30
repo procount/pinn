@@ -120,7 +120,19 @@ TRANSLATIONS += \
     translation_ru.ts \
     translation_sv.ts \
     translation_tr.ts \
-    translation_zh_TW.ts
+    translation_zh_TW.ts \
+    qt_de.ts \
+    qt_es.ts \
+    qt_eu.ts \
+    qt_fr.ts \
+    qt_hu.ts \
+    qt_ja.ts \
+    qt_ko.ts \
+    qt_pl.ts \
+    qt_pt.ts \
+    qt_ru.ts \
+    qt_sv.ts \
+    qt_zh_TW.ts
 
 OTHER_FILES += \
     README.txt \

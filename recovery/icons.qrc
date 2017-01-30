@@ -57,5 +57,17 @@
         <file>icons/lock_edit.png</file>
         <file>icons/ast.png</file>
         <file>translation_ast.qm</file>
+        <file>qt_de.qm</file>
+        <file>qt_es.qm</file>
+        <file>qt_eu.qm</file>
+        <file>qt_fr.qm</file>
+        <file>qt_hu.qm</file>
+        <file>qt_ja.qm</file>
+        <file>qt_ko.qm</file>
+        <file>qt_pl.qm</file>
+        <file>qt_pt.qm</file>
+        <file>qt_ru.qm</file>
+        <file>qt_sv.qm</file>
+        <file>qt_zh_TW.qm</file>
     </qresource>
 </RCC>
