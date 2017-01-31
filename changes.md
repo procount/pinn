@@ -185,7 +185,26 @@ Now supports the IoTpHAT wifi.
 
 #V2.1.1 Features
 
-Added CEC support
+### CEC Control 
+
+PINN can be controlled with a TV remote if the HDMI TV has CEC support.
+The CEC remote keys are mapped as follows:
+To simulate a mouse the following keys are used:
+- Cursor Up/Down/Left/Right - moves the mouse cursor in each direction
+- Select - mouse click
+
+For quicker selection the following keys may be easier:
+- Channel Up - previous list item
+- Channel Down - next list item
+- 0 key - Enter Key
+- Exit Key - Escape
+- 9 key - Toggles the advanced menu
+- 1-8 keys - select the menu buttons numbered from left to right
+
+Any of the above remote keys can be used instead of the keyboard shift key on startup to access the main menu.
+
+NOTE: CEC currently works on Samsung TVs supporting their Anynet+. Other TV brands may not work as well.
+If your TV does not work as above and are willing to help, please let me know so I can identify the differences and include support for your brand of TV.
 
 #v2.1.2 Features
 
@@ -193,6 +212,19 @@ Default Boot    - A default OS can be set in a multi-boot setup for quicker boot
 Bootmenutimout  - The timeout of the boot selection dialog can be changed.
 SHIFT key       - The PINN interface can be reached using the Left mouse button or a CEC enabled TV remote key as well as the SHIFT key.
 
+#### OS Boot Selector
+
+If only one OS is installed then the boot selector will not be displayed and the OS will be automatically booted.
+
+After multiple OSes have been installed, you can select which OS to boot through this selection window that is automatically displayed. PINN will remember your choice and boot this OS by default unless a different option has been selected within 10 seconds.
+It is possible to change this menu timeout by adding 'bootmenutimeout=X' in the recovery.cmdline file, where X is the desired timeout in seconds.
+
+Each OS entry now has a checkbox next to it to select it as a sticky default OS. If an OS is checked, then PINN will operate as if that was the only OS installed, so it will boot it automatically without showing the boot selection dialog. To change or remove the sticky checkbox, the boot selection dialog can be shown again by pressing the Shift key on boot up.
+
 ### Bugfixes
 
 The build dependencies introduced in v2.1.1 have been fixed.
+
+#v2.1.3 Features
+
+Added many translations from the community. 

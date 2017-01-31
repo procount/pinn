@@ -133,7 +133,6 @@ An installer slideshow guides you through your first steps with each OS while it
 
 #### OS Boot Selector
 
-
 If only one OS is installed then the boot selector will not be displayed and the OS will be automatically booted.
 
 After multiple OSes have been installed, you can select which OS to boot through this selection window that is automatically displayed. PINN will remember your choice and boot this OS by default unless a different option has been selected within 10 seconds.
@@ -157,6 +156,7 @@ The CEC remote keys are mapped as follows:
 To simulate a mouse the following keys are used:
 - Cursor Up/Down/Left/Right - moves the mouse cursor in each direction
 - Select - mouse click
+
 For quicker selection the following keys may be easier:
 - Channel Up - previous list item
 - Channel Down - next list item
@@ -166,6 +166,9 @@ For quicker selection the following keys may be easier:
 - 1-8 keys - select the menu buttons numbered from left to right
 
 Any of the above remote keys can be used instead of the keyboard shift key on startup to access the main menu.
+
+NOTE: CEC currently works on Samsung TVs supporting their Anynet+. Other TV brands may not work as well.   
+If your TV does not work as above and are willing to help, please let me know so I can identify the differences and include support for your brand of TV.
 
 ==
 
