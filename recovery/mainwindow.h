@@ -17,6 +17,7 @@
 #include <QMessageBox>
 #include <QTimer>
 #include <QTime>
+#include <QHostAddress>
 
 namespace Ui {
 class MainWindow;
@@ -57,6 +58,7 @@ protected:
     QTime _time;
     QString _model;
     int _noobsconfig;
+    QHostAddress _ipaddress;
 
     QMap<QString,QVariantMap> listImages();
     QMap<QString,QVariantMap> listImagesInDir(const QString &mountpoint, const QString &source);
