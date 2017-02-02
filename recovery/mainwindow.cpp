@@ -86,6 +86,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     ui->list->installEventFilter(this);
     ui->advToolBar->setVisible(false);
 
+    _ipaddress=QHostAddress();
+
     QRect s = QApplication::desktop()->screenGeometry();
     if (s.height() < 500)
         resize(s.width()-10, s.height()-100);
@@ -700,7 +702,7 @@ void MainWindow::on_list_currentRowChanged()
 
 void MainWindow::update_window_title()
 {
-    setWindowTitle(QString(tr("NOOBS v%1 - Built: %2")).arg(VERSION_NUMBER, QString::fromLocal8Bit(__DATE__)));
+    setWindowTitle(QString(tr("NOOBS v%1 - Built: %2 (%3)")).arg(VERSION_NUMBER).arg(QString::fromLocal8Bit(__DATE__)).arg(_ipaddress.toString()));
 }
 
 void MainWindow::changeEvent(QEvent* event)
@@ -1007,9 +1009,12 @@ bool MainWindow::isOnline()
     foreach (QHostAddress a, addresses)
     {
         if (a != QHostAddress::LocalHost && a != QHostAddress::LocalHostIPv6)
+        {
+            _ipaddress=a;
+            update_window_title();
             return true;
+        }
     }
-
     return false;
 }
 
