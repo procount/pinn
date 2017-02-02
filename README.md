@@ -1,4 +1,3 @@
-
 # PINN (PINN Is Not NOOBS)
 #### An easy enhanced Operating System installer for the Raspberry Pi
 
@@ -31,7 +30,7 @@ Note that all user settings (language, keyboard layout, display mode) will persi
 ### Setup
 
 To set up a blank SD card with PINN:
-- Format an SD card that is 4GB or greater in size as FAT (see instructions on how to do this below)
+- Format an SD card that is 8GB or greater in size as FAT32 (see instructions on how to do this below)
 - Download and extract the files from the PINN zip file. (Windows built-in zip features may have trouble with this file. If so, use another program such as 7zip.)
 - Copy the extracted files onto the SD card that you just formatted so that this file is at the root directory of the SD card.
 <b> Please note that in some cases it may extract the files into a folder, if this is the case then please copy across the files from inside the folder rather than the folder itself.</b>
@@ -133,6 +132,7 @@ An installer slideshow guides you through your first steps with each OS while it
 
 #### OS Boot Selector
 
+
 If only one OS is installed then the boot selector will not be displayed and the OS will be automatically booted.
 
 After multiple OSes have been installed, you can select which OS to boot through this selection window that is automatically displayed. PINN will remember your choice and boot this OS by default unless a different option has been selected within 10 seconds.
@@ -156,7 +156,6 @@ The CEC remote keys are mapped as follows:
 To simulate a mouse the following keys are used:
 - Cursor Up/Down/Left/Right - moves the mouse cursor in each direction
 - Select - mouse click
-
 For quicker selection the following keys may be easier:
 - Channel Up - previous list item
 - Channel Down - next list item
@@ -166,9 +165,6 @@ For quicker selection the following keys may be easier:
 - 1-8 keys - select the menu buttons numbered from left to right
 
 Any of the above remote keys can be used instead of the keyboard shift key on startup to access the main menu.
-
-NOTE: CEC currently works on Samsung TVs supporting their Anynet+. Other TV brands may not work as well.   
-If your TV does not work as above and are willing to help, please let me know so I can identify the differences and include support for your brand of TV.
 
 ==
 
@@ -475,7 +471,7 @@ If your build machine also has some QT5 components, it is useful to `export QT_S
 ## How to run your Build
 
 In order to setup an SD card with a newly built version of PINN, you will need to:
-- Format an SD card that is 4GB or greater in size as FAT
+- Format an SD card that is 8GB or greater in size as FAT32
 - Replace the `/os` directory in `/output` with the copy contained in the release version of PINN (see above for download links)
 - Copy the files in the `/output` directory onto the SD card
 
