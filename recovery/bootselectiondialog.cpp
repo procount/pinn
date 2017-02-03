@@ -47,8 +47,8 @@ BootSelectionDialog::BootSelectionDialog(const QString &defaultPartition, bool s
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
     ui->setupUi(this);
     QRect s = QApplication::desktop()->screenGeometry();
-    if (s.height() < 500)
-        resize(s.width()-10, s.height()-100);
+    //if (s.height() < 500)
+    //    resize(s.width()-10, s.height()-100);
     QDir dir;
     dir.mkdir("/settings");
     if (QProcess::execute("mount -o remount,ro /settings") != 0
