@@ -196,14 +196,15 @@ To simulate a mouse the following keys are used:
 For quicker selection the following keys may be easier:
 - Channel Up - previous list item
 - Channel Down - next list item
-- 0 key - Enter Key
+- PLAY key - Enter Key
 - Exit Key - Escape
 - 9 key - Toggles the advanced menu
 - 1-8 keys - select the menu buttons numbered from left to right
 
 Any of the above remote keys can be used instead of the keyboard shift key on startup to access the main menu.
 
-NOTE: CEC currently works on Samsung TVs supporting their Anynet+. Other TV brands may not work as well.
+NOTE: CEC implementations vary between TV manufacturers. The above key mappings work on Samsung TVs supporting their Anynet+. Other TV brands may not work as well, but the mouse simulation 
+is designed to work on most TVs.
 If your TV does not work as above and are willing to help, please let me know so I can identify the differences and include support for your brand of TV.
 
 #v2.1.2 Features
@@ -218,6 +219,7 @@ If only one OS is installed then the boot selector will not be displayed and the
 
 After multiple OSes have been installed, you can select which OS to boot through this selection window that is automatically displayed. PINN will remember your choice and boot this OS by default unless a different option has been selected within 10 seconds.
 It is possible to change this menu timeout by adding 'bootmenutimeout=X' in the recovery.cmdline file, where X is the desired timeout in seconds.
+A Boot button has been added for easier selection with limited CEC TV remotes.
 
 Each OS entry now has a checkbox next to it to select it as a sticky default OS. If an OS is checked, then PINN will operate as if that was the only OS installed, so it will boot it automatically without showing the boot selection dialog. To change or remove the sticky checkbox, the boot selection dialog can be shown again by pressing the Shift key on boot up.
 
@@ -228,3 +230,15 @@ The build dependencies introduced in v2.1.1 have been fixed.
 #v2.1.3 Features
 
 Added many translations from the community. 
+
+###V2.1.4
+
+- **IP address**      - Shown in window title 
+- **CEC key mapping** - Replaced  0 button with PLAY button for greater applicability
+- **BOOT**            - Added BOOT button to boot selection dialog for use with limited TV remotes
+- **Tarball names     - Allow local tarballs to have a different name to the partition labell
+- **SD Card**         - Recommend 8GB card minimum
+- **SD Card**         - Update SD card requirements
+- **Network**         - Do not continue polling for connectivity during installation
+- **Update**          - Bump kernel and firmware versions
+

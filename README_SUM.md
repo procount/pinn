@@ -5,6 +5,17 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+###V2.1.4
+
+- **IP address**      - Shown in window title
+- **CEC key mapping** - Replaced  0 button with PLAY button for greater applicability
+- **BOOT**            - Added BOOT button to boot selection dialog for use with limited TV remotes
+- **Tarball names     - Allow local tarballs to have a different name to the partition labell
+- **SD Card**         - Recommend 8GB card minimum
+- **SD Card**         - Update SD card requirements
+- **Network**         - Do not continue polling for connectivity during installation
+- **Update**          - Bump kernel and firmware versions
+
 ### V2.1.3
 
 - **Translations**    - Added many translations from the community

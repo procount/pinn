@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="it" sourcelanguage="en">
+<TS version="2.0" language="it" sourcelanguage="en">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -34,10 +34,20 @@
         <translation>PINN - Il SO precedente selezionato sia vvierà tra %1 secondi</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="19"/>
+        <location filename="bootselectiondialog.ui" line="25"/>
         <location filename="bootselectiondialog.cpp" line="339"/>
         <source>PINN - Select OS to boot</source>
         <translation>PINN - Selezione SO da avviare</translation>
+    </message>
+    <message>
+        <location filename="bootselectiondialog.ui" line="45"/>
+        <source>Sticky default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bootselectiondialog.ui" line="52"/>
+        <source>BOOT</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -351,233 +361,233 @@ ATTENZIONE: questo eliminerà tutti dati nella scheda SD. </translation>
         <translation>W</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="121"/>
+        <location filename="mainwindow.cpp" line="123"/>
         <source>Setting up SD card</source>
         <translation>Impostazione scheda SD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="350"/>
-        <location filename="mainwindow.cpp" line="1296"/>
+        <location filename="mainwindow.cpp" line="353"/>
+        <location filename="mainwindow.cpp" line="1304"/>
         <source>RECOMMENDED</source>
         <translation>RACCOMANDATO</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="623"/>
-        <location filename="mainwindow.cpp" line="642"/>
+        <location filename="mainwindow.cpp" line="626"/>
+        <location filename="mainwindow.cpp" line="645"/>
         <source>Confirm</source>
         <translation>Conferma</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="167"/>
+        <location filename="mainwindow.cpp" line="169"/>
         <source>Error mounting settings partition</source>
         <translation>Errore montaggio partizione di sistema</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="168"/>
+        <location filename="mainwindow.cpp" line="170"/>
         <source>Persistent settings partition seems corrupt. Reformat?</source>
         <translation>La partizione delle impostazioni permanenti sembra corrotta. Vuoi riformattarla?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="175"/>
+        <location filename="mainwindow.cpp" line="177"/>
         <source>Reformat failed</source>
         <translation>Riformattazione fallita</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="175"/>
+        <location filename="mainwindow.cpp" line="177"/>
         <source>SD card might be damaged</source>
         <translation>La scheda SD potrebbe essere danneggiata</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="242"/>
+        <location filename="mainwindow.cpp" line="245"/>
         <source>Please wait while PINN initialises</source>
         <translation>Attendi l&apos;inizializzazione di PINN</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="624"/>
+        <location filename="mainwindow.cpp" line="627"/>
         <source>Warning: this will install the selected Operating System(s). All existing data on the SD card will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will install the selected Operating System. All existing data on the SD card will be overwritten.</oldsource>
         <translation>Attenzione: verranno installati i sistemi operativi selezionati. Tutti i dati esistenti nella scheda SD verranno sovrascritti, inclusi i SO già installati.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="718"/>
-        <location filename="mainwindow.cpp" line="1196"/>
-        <location filename="mainwindow.cpp" line="1799"/>
+        <location filename="mainwindow.cpp" line="723"/>
+        <location filename="mainwindow.cpp" line="1204"/>
+        <location filename="mainwindow.cpp" line="1807"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="353"/>
+        <location filename="mainwindow.cpp" line="356"/>
         <source>INSTALLED</source>
         <translation>INSTALLATO</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="839"/>
+        <location filename="mainwindow.cpp" line="744"/>
+        <source>PINN v%1 - Built: %2 (%3)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="844"/>
         <source>Display Mode Changed</source>
         <translation>Modo visualizzazione modificato</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="771"/>
+        <location filename="mainwindow.cpp" line="776"/>
         <source>HDMI preferred mode</source>
         <translation>Modo HDMI preferenziale</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="141"/>
+        <location filename="mainwindow.cpp" line="143"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation>Attesa scheda SD (partizione impostazioni)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="154"/>
+        <location filename="mainwindow.cpp" line="156"/>
         <source>Mounting settings partition</source>
         <translation>Montaggio partizione impostazioni</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="643"/>
+        <location filename="mainwindow.cpp" line="646"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>Attenzione: rilevati sistema operativi non compatibili. I seguenti SO non sono supportati in questa revisione di Raspberry Pi e potrebbero fallire l&apos;avvio o non funzionare correttamente:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="683"/>
+        <location filename="mainwindow.cpp" line="688"/>
         <source>The install process will begin shortly.</source>
         <translation>Il processo di installazionione inizierà a breve.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="706"/>
+        <location filename="mainwindow.cpp" line="711"/>
         <source>OS(es) installed</source>
         <oldsource>OS installed</oldsource>
         <translation>SO installati</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="707"/>
+        <location filename="mainwindow.cpp" line="712"/>
         <source>OS(es) Installed Successfully</source>
         <oldsource>OS Installed Successfully</oldsource>
         <translation>SO installati correttamente</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="739"/>
-        <source>PINN v%1 - Built: %2</source>
-        <translation>PINN v. %1 - Build: %2</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="775"/>
+        <location filename="mainwindow.cpp" line="780"/>
         <source>HDMI safe mode</source>
         <translation>Modo HDMI sicuro</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="779"/>
+        <location filename="mainwindow.cpp" line="784"/>
         <source>composite PAL mode</source>
         <translation>Modo PAL composito</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="783"/>
+        <location filename="mainwindow.cpp" line="788"/>
         <source>composite NTSC mode</source>
         <translation>Modo NTSC composito</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="840"/>
+        <location filename="mainwindow.cpp" line="845"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>Modo visualizzazione modificato in %1.
 Vuoi rendere questa impostazione permanente?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1182"/>
-        <location filename="mainwindow.cpp" line="1543"/>
-        <location filename="mainwindow.cpp" line="1553"/>
-        <location filename="mainwindow.cpp" line="1875"/>
-        <location filename="mainwindow.cpp" line="1893"/>
+        <location filename="mainwindow.cpp" line="1190"/>
+        <location filename="mainwindow.cpp" line="1551"/>
+        <location filename="mainwindow.cpp" line="1561"/>
+        <location filename="mainwindow.cpp" line="1883"/>
+        <location filename="mainwindow.cpp" line="1901"/>
         <source>Download error</source>
         <translation>Errore download</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1182"/>
+        <location filename="mainwindow.cpp" line="1190"/>
         <source>Error downloading distribution list from Internet</source>
         <translation>Errore download da internet elenco distribuzioni</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1196"/>
+        <location filename="mainwindow.cpp" line="1204"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>Errore analisi file list.json scaricato dal server</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1419"/>
+        <location filename="mainwindow.cpp" line="1427"/>
         <source>Needed</source>
         <translation>Necessario</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1420"/>
+        <location filename="mainwindow.cpp" line="1428"/>
         <source>Available</source>
         <translation>Disponibile</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1543"/>
+        <location filename="mainwindow.cpp" line="1551"/>
         <source>Error downloading meta file</source>
         <translation>Errore download file meta</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1553"/>
-        <location filename="mainwindow.cpp" line="1893"/>
+        <location filename="mainwindow.cpp" line="1561"/>
+        <location filename="mainwindow.cpp" line="1901"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>Errore scrittura su SD file scaricato. La scheda SD o il file system potrebbero essere danneggiati.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1669"/>
+        <location filename="mainwindow.cpp" line="1677"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>Per usare PINN senza immagini locali è richiesto l&apos;accesso alla rete. Seleziona la rete Wi-Fi nella prossima fienstra.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1677"/>
+        <location filename="mainwindow.cpp" line="1685"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>Per usare PINN senza immagini locali è richiesto l&apos;accesso alla rete. Inserisci il cavo di rete nella porta ethernet.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1753"/>
+        <location filename="mainwindow.cpp" line="1761"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>Questo eliminerà tutto il contenuto nel dispositivo &quot;%s&quot;. Vuoi continuare?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1755"/>
+        <location filename="mainwindow.cpp" line="1763"/>
         <source>Clone SD Card</source>
         <translation>Clona scheda SD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1757"/>
+        <location filename="mainwindow.cpp" line="1765"/>
         <source>Yes</source>
         <translation>Sì</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1758"/>
+        <location filename="mainwindow.cpp" line="1766"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1786"/>
+        <location filename="mainwindow.cpp" line="1794"/>
         <source>Clone Completed</source>
         <translation>Clonazione completata</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1787"/>
+        <location filename="mainwindow.cpp" line="1795"/>
         <source>Clone Completed Successfully</source>
         <translation>Clonazione completata correttamente</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1875"/>
+        <location filename="mainwindow.cpp" line="1883"/>
         <source>Error downloading update file</source>
         <translation>Errore nel download del file aggiornamento</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1976"/>
+        <location filename="mainwindow.cpp" line="1984"/>
         <source>Downloading Update</source>
         <translation>Download aggiornamento</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="969"/>
-        <location filename="mainwindow.cpp" line="1668"/>
+        <location filename="mainwindow.cpp" line="974"/>
         <location filename="mainwindow.cpp" line="1676"/>
+        <location filename="mainwindow.cpp" line="1684"/>
         <source>No network access</source>
         <translation>Nessun accesso alla rete</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="970"/>
+        <location filename="mainwindow.cpp" line="975"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Per questa funzione è richiesto l&apos;accesso alla rete cablata. Inserisci un cavo di rete nella porta ethernet.</translation>
     </message>
@@ -585,184 +595,184 @@ Vuoi rendere questa impostazione permanente?</translation>
 <context>
     <name>MultiImageWriteThread</name>
     <message>
-        <location filename="multiimagewritethread.cpp" line="52"/>
+        <location filename="multiimagewritethread.cpp" line="54"/>
         <source>partitions.json invalid</source>
         <translation>File partitions.json non valido</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="76"/>
+        <location filename="multiimagewritethread.cpp" line="78"/>
         <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
         <translation>RISCOS non può essere installato. Dimensione partizione recovery troppo grande.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="108"/>
+        <location filename="multiimagewritethread.cpp" line="110"/>
         <source>Operating system cannot require a system partition (1,5)</source>
         <translation>Il sistema operativo non può richiedere la partizione sistema {1,5)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="113"/>
+        <location filename="multiimagewritethread.cpp" line="115"/>
         <source>Operating system cannot claim both primary partitions 2 and 4</source>
         <translation>Il sistema operativo non può usare entrambe le partizioni primarie 2 e 4</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="141"/>
+        <location filename="multiimagewritethread.cpp" line="143"/>
         <source>Not enough disk space. Need %1 MB, got %2 MB</source>
         <translation>Spazio disco insufficiente. Necessari %1 MB, disponibili %2 MB</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="262"/>
+        <location filename="multiimagewritethread.cpp" line="264"/>
         <source>Finish writing (sync)</source>
         <translation>Completamento scrittura (sync)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="384"/>
+        <location filename="multiimagewritethread.cpp" line="386"/>
         <source>File &apos;%1&apos; does not exist</source>
         <translation>Il file &apos;%1&apos; non esiste</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="407"/>
-        <location filename="multiimagewritethread.cpp" line="413"/>
+        <location filename="multiimagewritethread.cpp" line="419"/>
+        <location filename="multiimagewritethread.cpp" line="425"/>
         <source>%1: Writing OS image</source>
         <oldsource>Writing image</oldsource>
         <translation>%1: scrittura immagine SO</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="427"/>
+        <location filename="multiimagewritethread.cpp" line="439"/>
         <source>%1: Mounting file system</source>
         <oldsource>Mounting file system</oldsource>
         <translation>%1: montaggio file system</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="435"/>
-        <location filename="multiimagewritethread.cpp" line="459"/>
-        <location filename="multiimagewritethread.cpp" line="604"/>
+        <location filename="multiimagewritethread.cpp" line="447"/>
+        <location filename="multiimagewritethread.cpp" line="471"/>
+        <location filename="multiimagewritethread.cpp" line="616"/>
         <source>%1: Error mounting file system</source>
         <oldsource>Error mounting file system</oldsource>
         <translation>%1: errore montaggio file system</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="420"/>
+        <location filename="multiimagewritethread.cpp" line="432"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation>%1: creazione file system (%2)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="65"/>
+        <location filename="multiimagewritethread.cpp" line="67"/>
         <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
         <translation>RISCOS non può essere installato. Errore valore offset RISCOS.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="71"/>
+        <location filename="multiimagewritethread.cpp" line="73"/>
         <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
         <translation>RISCOS non può essere installato. Manca il valore offset RISCOS.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="103"/>
+        <location filename="multiimagewritethread.cpp" line="105"/>
         <source>More than one operating system requires partition number %1</source>
         <translation>Più di un sistema operativo richiede la partizione %1</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="183"/>
+        <location filename="multiimagewritethread.cpp" line="185"/>
         <source>Fixed partition offset too low</source>
         <translation>Offset partizione fissa troppo basso</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="243"/>
+        <location filename="multiimagewritethread.cpp" line="245"/>
         <source>Writing partition table</source>
         <translation>Scrittura tabella partizioni</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="248"/>
+        <location filename="multiimagewritethread.cpp" line="250"/>
         <source>Zero&apos;ing start of each partition</source>
         <translation>Inizializzazione di ogni partizione</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="282"/>
+        <location filename="multiimagewritethread.cpp" line="284"/>
         <source>Error reading existing partition table</source>
         <translation>Errore durante lettura tabella partizione esistente</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="352"/>
+        <location filename="multiimagewritethread.cpp" line="354"/>
         <source>Error creating partition table</source>
         <translation>Errore durante creazione tabella partizioni</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="440"/>
+        <location filename="multiimagewritethread.cpp" line="452"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation>%1: download ed estrazione file system</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="442"/>
+        <location filename="multiimagewritethread.cpp" line="454"/>
         <source>%1: Extracting filesystem</source>
         <oldsource>%1 Extracting filesystem</oldsource>
         <translation>%1: estrazione file system</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="456"/>
+        <location filename="multiimagewritethread.cpp" line="468"/>
         <source>%1: Mounting FAT partition</source>
         <oldsource>Mouning FAT partition</oldsource>
         <translation>%1: montaggio partizione FAT</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="463"/>
+        <location filename="multiimagewritethread.cpp" line="475"/>
         <source>%1: Creating os_config.json</source>
         <oldsource>Creating os_config.json</oldsource>
         <translation>%1: creazione file os_config.json</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="488"/>
+        <location filename="multiimagewritethread.cpp" line="500"/>
         <source>%1: Saving display mode to config.txt</source>
         <oldsource>Saving display mode to config.txt</oldsource>
         <translation>%1: salvataggio modo visualizzazione in file config.txt</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="499"/>
+        <location filename="multiimagewritethread.cpp" line="511"/>
         <source>%1: Running partition setup script</source>
         <oldsource>Running partition setup script</oldsource>
         <translation>%1: esecuzione script impostazione partizione</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="544"/>
+        <location filename="multiimagewritethread.cpp" line="556"/>
         <source>%1: Error executing partition setup script</source>
         <oldsource>Error executing partition setup script</oldsource>
         <translation>%1: errore esecuzione script installazione partizione</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="553"/>
+        <location filename="multiimagewritethread.cpp" line="565"/>
         <source>%1: Configuring flavour</source>
         <translation>%1: configurazione impostazioni</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="567"/>
+        <location filename="multiimagewritethread.cpp" line="579"/>
         <source>%1: Unmounting FAT partition</source>
         <oldsource>%1: Patching BCD file</oldsource>
         <translation>%1: smontaggio partizione FAT</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="570"/>
+        <location filename="multiimagewritethread.cpp" line="582"/>
         <source>%1: Error unmounting</source>
         <oldsource>Error unmounting</oldsource>
         <translation>%1: errore smontaggio</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="821"/>
+        <location filename="multiimagewritethread.cpp" line="833"/>
         <source>Error creating file system</source>
         <translation>Errore creazione file system</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="863"/>
-        <location filename="multiimagewritethread.cpp" line="934"/>
-        <location filename="multiimagewritethread.cpp" line="993"/>
+        <location filename="multiimagewritethread.cpp" line="875"/>
+        <location filename="multiimagewritethread.cpp" line="946"/>
+        <location filename="multiimagewritethread.cpp" line="1005"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
         <translation>Estensione file tipo compressione sconosciuta. Attesa: .lzo, .gz, .xz, .bz2,o .zip </translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="896"/>
+        <location filename="multiimagewritethread.cpp" line="908"/>
         <source>Error downloading or extracting tarball</source>
         <translation>Errore download od estrazione tarball</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="955"/>
-        <location filename="multiimagewritethread.cpp" line="1014"/>
+        <location filename="multiimagewritethread.cpp" line="967"/>
+        <location filename="multiimagewritethread.cpp" line="1026"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>Errore download o scrittura su SD del SO</translation>
     </message>
