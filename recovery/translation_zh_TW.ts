@@ -34,10 +34,20 @@
         <translation>PINN - 先前選取的作業系統將會在 %1 秒後開機</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="19"/>
+        <location filename="bootselectiondialog.ui" line="25"/>
         <location filename="bootselectiondialog.cpp" line="339"/>
         <source>PINN - Select OS to boot</source>
         <translation>PINN - 選取要開機的作業系統</translation>
+    </message>
+    <message>
+        <location filename="bootselectiondialog.ui" line="45"/>
+        <source>Sticky default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bootselectiondialog.ui" line="52"/>
+        <source>BOOT</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -351,230 +361,230 @@ WARNING: This will erase all data on your SD card</source>
         <translation>W</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="121"/>
+        <location filename="mainwindow.cpp" line="123"/>
         <source>Setting up SD card</source>
         <translation>正在設定 SD 記憶卡</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="141"/>
+        <location filename="mainwindow.cpp" line="143"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation>正在等待 SD 記憶卡（settings 分割區）</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="154"/>
+        <location filename="mainwindow.cpp" line="156"/>
         <source>Mounting settings partition</source>
         <translation>正在掛載 settings 分割區</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="167"/>
+        <location filename="mainwindow.cpp" line="169"/>
         <source>Error mounting settings partition</source>
         <translation>掛載 settings 分割區時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="168"/>
+        <location filename="mainwindow.cpp" line="170"/>
         <source>Persistent settings partition seems corrupt. Reformat?</source>
         <translation>持續性的 settings 分割區似乎已毀損。重新格式化？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="175"/>
+        <location filename="mainwindow.cpp" line="177"/>
         <source>Reformat failed</source>
         <translation>重新格式化失敗</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="175"/>
+        <location filename="mainwindow.cpp" line="177"/>
         <source>SD card might be damaged</source>
         <translation>SD 記憶卡可能已受損</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="350"/>
-        <location filename="mainwindow.cpp" line="1296"/>
+        <location filename="mainwindow.cpp" line="353"/>
+        <location filename="mainwindow.cpp" line="1304"/>
         <source>RECOMMENDED</source>
         <translation>建議</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="353"/>
+        <location filename="mainwindow.cpp" line="356"/>
         <source>INSTALLED</source>
         <translation>已安裝</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="623"/>
-        <location filename="mainwindow.cpp" line="642"/>
+        <location filename="mainwindow.cpp" line="626"/>
+        <location filename="mainwindow.cpp" line="645"/>
         <source>Confirm</source>
         <translation>確認</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="624"/>
+        <location filename="mainwindow.cpp" line="627"/>
         <source>Warning: this will install the selected Operating System(s). All existing data on the SD card will be overwritten, including any OSes that are already installed.</source>
         <translation>警告：這將會安裝選定的作業系統。所有在 SD 記憶卡上的資料鄒將會被覆寫，包含任何已安裝的作業系統。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="643"/>
+        <location filename="mainwindow.cpp" line="646"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>警告：已偵測到不相容的作業系統。以下的作業系統在此版本的 Raspberry Pi 不被支援，它們可能會啟動失敗，或是有功能執行不正確：</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="683"/>
+        <location filename="mainwindow.cpp" line="688"/>
         <source>The install process will begin shortly.</source>
         <translation>安裝過程將很快開始。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="706"/>
+        <location filename="mainwindow.cpp" line="711"/>
         <source>OS(es) installed</source>
         <translation>作業系統已安裝</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="707"/>
+        <location filename="mainwindow.cpp" line="712"/>
         <source>OS(es) Installed Successfully</source>
         <translation>作業系統已成功安裝</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="718"/>
-        <location filename="mainwindow.cpp" line="1196"/>
-        <location filename="mainwindow.cpp" line="1799"/>
+        <location filename="mainwindow.cpp" line="723"/>
+        <location filename="mainwindow.cpp" line="1204"/>
+        <location filename="mainwindow.cpp" line="1807"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="242"/>
+        <location filename="mainwindow.cpp" line="245"/>
         <source>Please wait while PINN initialises</source>
         <translation>PINN 初始化中，請稍候</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="739"/>
-        <source>PINN v%1 - Built: %2</source>
-        <translation>PINN v%1 - 建構於：%2</translation>
+        <location filename="mainwindow.cpp" line="744"/>
+        <source>PINN v%1 - Built: %2 (%3)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="771"/>
+        <location filename="mainwindow.cpp" line="776"/>
         <source>HDMI preferred mode</source>
         <translation>偏好 HDMI 模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="775"/>
+        <location filename="mainwindow.cpp" line="780"/>
         <source>HDMI safe mode</source>
         <translation>HDMI 安全模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="779"/>
+        <location filename="mainwindow.cpp" line="784"/>
         <source>composite PAL mode</source>
         <translation>合成 PAL 模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="783"/>
+        <location filename="mainwindow.cpp" line="788"/>
         <source>composite NTSC mode</source>
         <translation>合成 NTSC 模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="839"/>
+        <location filename="mainwindow.cpp" line="844"/>
         <source>Display Mode Changed</source>
         <translation>顯示模式已變更</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="840"/>
+        <location filename="mainwindow.cpp" line="845"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>顯示模式已變更為 %1
 您想要讓這個設定永久生效嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="969"/>
-        <location filename="mainwindow.cpp" line="1668"/>
+        <location filename="mainwindow.cpp" line="974"/>
         <location filename="mainwindow.cpp" line="1676"/>
+        <location filename="mainwindow.cpp" line="1684"/>
         <source>No network access</source>
         <translation>無法存取網路</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="970"/>
+        <location filename="mainwindow.cpp" line="975"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>這個功能要求有線網路連線。請插入一條網路纜線至網路埠中。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1182"/>
-        <location filename="mainwindow.cpp" line="1543"/>
-        <location filename="mainwindow.cpp" line="1553"/>
-        <location filename="mainwindow.cpp" line="1875"/>
-        <location filename="mainwindow.cpp" line="1893"/>
+        <location filename="mainwindow.cpp" line="1190"/>
+        <location filename="mainwindow.cpp" line="1551"/>
+        <location filename="mainwindow.cpp" line="1561"/>
+        <location filename="mainwindow.cpp" line="1883"/>
+        <location filename="mainwindow.cpp" line="1901"/>
         <source>Download error</source>
         <translation>下載錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1182"/>
+        <location filename="mainwindow.cpp" line="1190"/>
         <source>Error downloading distribution list from Internet</source>
         <translation>從網際網路下載散佈版清單時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1196"/>
+        <location filename="mainwindow.cpp" line="1204"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>解析從伺服器上下載的 list.json 時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1419"/>
+        <location filename="mainwindow.cpp" line="1427"/>
         <source>Needed</source>
         <translation>需要</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1420"/>
+        <location filename="mainwindow.cpp" line="1428"/>
         <source>Available</source>
         <translation>可用</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1543"/>
+        <location filename="mainwindow.cpp" line="1551"/>
         <source>Error downloading meta file</source>
         <translation>下載後設檔案時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1553"/>
-        <location filename="mainwindow.cpp" line="1893"/>
+        <location filename="mainwindow.cpp" line="1561"/>
+        <location filename="mainwindow.cpp" line="1901"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>寫入已下載的檔案至 SD 記憶卡時發生錯誤。SD 記憶卡或檔案系統可能受損。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1669"/>
+        <location filename="mainwindow.cpp" line="1677"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>使用無本機映像檔的 PINN 時必須有網路存取。請在下一個畫面中選取您的 wifi 網路。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1677"/>
+        <location filename="mainwindow.cpp" line="1685"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>使用無本機映像檔的 PINN 時必須有有線網路存取。請在網路埠中插入網路線。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1753"/>
+        <location filename="mainwindow.cpp" line="1761"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>這將會抹除所有在「%s」裝置上的內容。您確定嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1755"/>
+        <location filename="mainwindow.cpp" line="1763"/>
         <source>Clone SD Card</source>
         <translation>複製 SD 記憶卡</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1757"/>
+        <location filename="mainwindow.cpp" line="1765"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1758"/>
+        <location filename="mainwindow.cpp" line="1766"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1786"/>
+        <location filename="mainwindow.cpp" line="1794"/>
         <source>Clone Completed</source>
         <translation>複製完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1787"/>
+        <location filename="mainwindow.cpp" line="1795"/>
         <source>Clone Completed Successfully</source>
         <translation>複製成功完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1875"/>
+        <location filename="mainwindow.cpp" line="1883"/>
         <source>Error downloading update file</source>
         <translation>下載更新檔案時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1976"/>
+        <location filename="mainwindow.cpp" line="1984"/>
         <source>Downloading Update</source>
         <translation>正在下載更新</translation>
     </message>
@@ -582,173 +592,173 @@ Would you like to make this setting permanent?</source>
 <context>
     <name>MultiImageWriteThread</name>
     <message>
-        <location filename="multiimagewritethread.cpp" line="52"/>
+        <location filename="multiimagewritethread.cpp" line="54"/>
         <source>partitions.json invalid</source>
         <translation>partitions.json 無效</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="65"/>
+        <location filename="multiimagewritethread.cpp" line="67"/>
         <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
         <translation>RISCOS 無法被安裝。RISCOS 偏移量不符合。</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="71"/>
+        <location filename="multiimagewritethread.cpp" line="73"/>
         <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
         <translation>RISCOS 無法被安裝。RISCOS 偏移量遺失。</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="76"/>
+        <location filename="multiimagewritethread.cpp" line="78"/>
         <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
         <translation>RISCOS 無法被安裝。recovery 分割區的大小太大。</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="103"/>
+        <location filename="multiimagewritethread.cpp" line="105"/>
         <source>More than one operating system requires partition number %1</source>
         <translation>多於一個作業系統需要分割區號碼 %1</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="108"/>
+        <location filename="multiimagewritethread.cpp" line="110"/>
         <source>Operating system cannot require a system partition (1,5)</source>
         <translation>作業系統無法要求系統分割區 (1,5)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="113"/>
+        <location filename="multiimagewritethread.cpp" line="115"/>
         <source>Operating system cannot claim both primary partitions 2 and 4</source>
         <translation>作業系統無法同時要求兩個主要分割區 2 與 4</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="141"/>
+        <location filename="multiimagewritethread.cpp" line="143"/>
         <source>Not enough disk space. Need %1 MB, got %2 MB</source>
         <translation>磁碟空間不足。需要 %1 MB，剩餘 %2 MB</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="183"/>
+        <location filename="multiimagewritethread.cpp" line="185"/>
         <source>Fixed partition offset too low</source>
         <translation>固定分割區偏移量過低</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="243"/>
+        <location filename="multiimagewritethread.cpp" line="245"/>
         <source>Writing partition table</source>
         <translation>正在寫入分割表</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="248"/>
+        <location filename="multiimagewritethread.cpp" line="250"/>
         <source>Zero&apos;ing start of each partition</source>
         <translation>正在將每一個分割區的開頭歸零</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="262"/>
+        <location filename="multiimagewritethread.cpp" line="264"/>
         <source>Finish writing (sync)</source>
         <translation>寫入完成 (sync)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="282"/>
+        <location filename="multiimagewritethread.cpp" line="284"/>
         <source>Error reading existing partition table</source>
         <translation>讀取已有的分割表時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="352"/>
+        <location filename="multiimagewritethread.cpp" line="354"/>
         <source>Error creating partition table</source>
         <translation>建立分割表時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="384"/>
+        <location filename="multiimagewritethread.cpp" line="386"/>
         <source>File &apos;%1&apos; does not exist</source>
         <translation>檔案「%1」不存在</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="407"/>
-        <location filename="multiimagewritethread.cpp" line="413"/>
+        <location filename="multiimagewritethread.cpp" line="419"/>
+        <location filename="multiimagewritethread.cpp" line="425"/>
         <source>%1: Writing OS image</source>
         <translation>%1：正在寫入作業系統映像檔</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="420"/>
+        <location filename="multiimagewritethread.cpp" line="432"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation>%1：正在建立檔案系統 (%2)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="427"/>
+        <location filename="multiimagewritethread.cpp" line="439"/>
         <source>%1: Mounting file system</source>
         <translation>%1：正在掛載檔案系統</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="435"/>
-        <location filename="multiimagewritethread.cpp" line="459"/>
-        <location filename="multiimagewritethread.cpp" line="604"/>
+        <location filename="multiimagewritethread.cpp" line="447"/>
+        <location filename="multiimagewritethread.cpp" line="471"/>
+        <location filename="multiimagewritethread.cpp" line="616"/>
         <source>%1: Error mounting file system</source>
         <translation>%1：掛載檔案系統時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="440"/>
+        <location filename="multiimagewritethread.cpp" line="452"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation>%1：正在下載並解壓縮檔案系統</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="442"/>
+        <location filename="multiimagewritethread.cpp" line="454"/>
         <source>%1: Extracting filesystem</source>
         <translation>%1：正在解壓縮檔案系統</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="456"/>
+        <location filename="multiimagewritethread.cpp" line="468"/>
         <source>%1: Mounting FAT partition</source>
         <translation>%1：正在掛載 FAT 分割區</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="463"/>
+        <location filename="multiimagewritethread.cpp" line="475"/>
         <source>%1: Creating os_config.json</source>
         <translation>%1：正在建立 os_config.json</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="488"/>
+        <location filename="multiimagewritethread.cpp" line="500"/>
         <source>%1: Saving display mode to config.txt</source>
         <translation>%1：已經儲存顯示模式至 config.txt</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="499"/>
+        <location filename="multiimagewritethread.cpp" line="511"/>
         <source>%1: Running partition setup script</source>
         <translation>%1：正在執行分割區設定指令稿</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="544"/>
+        <location filename="multiimagewritethread.cpp" line="556"/>
         <source>%1: Error executing partition setup script</source>
         <translation>%1：執行分割區設定指令稿時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="553"/>
+        <location filename="multiimagewritethread.cpp" line="565"/>
         <source>%1: Configuring flavour</source>
         <translation>%1：正在設定口味</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="567"/>
+        <location filename="multiimagewritethread.cpp" line="579"/>
         <source>%1: Unmounting FAT partition</source>
         <translation>%1：正在解除掛載 FAT 分割區</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="570"/>
+        <location filename="multiimagewritethread.cpp" line="582"/>
         <source>%1: Error unmounting</source>
         <translation>%1：解除掛載錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="821"/>
+        <location filename="multiimagewritethread.cpp" line="833"/>
         <source>Error creating file system</source>
         <translation>建立檔案系統時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="863"/>
-        <location filename="multiimagewritethread.cpp" line="934"/>
-        <location filename="multiimagewritethread.cpp" line="993"/>
+        <location filename="multiimagewritethread.cpp" line="875"/>
+        <location filename="multiimagewritethread.cpp" line="946"/>
+        <location filename="multiimagewritethread.cpp" line="1005"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
         <translation>未知的壓縮格式副檔名。預期為：.lzo、.gz、.xz、.bz2 或是 .zip</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="896"/>
+        <location filename="multiimagewritethread.cpp" line="908"/>
         <source>Error downloading or extracting tarball</source>
         <translation>下載或解壓縮 tarball 時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="955"/>
-        <location filename="multiimagewritethread.cpp" line="1014"/>
+        <location filename="multiimagewritethread.cpp" line="967"/>
+        <location filename="multiimagewritethread.cpp" line="1026"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>下載或寫入作業系統至 SD 記憶卡時發生錯誤</translation>
     </message>

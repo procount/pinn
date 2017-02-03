@@ -34,9 +34,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="+19"/>
+        <location filename="bootselectiondialog.ui" line="+25"/>
         <location filename="bootselectiondialog.cpp" line="-5"/>
         <source>PINN - Select OS to boot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Sticky default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>BOOT</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -350,19 +360,19 @@ WARNING: This will erase all data on your SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="+350"/>
-        <location line="+946"/>
+        <location filename="mainwindow.cpp" line="+353"/>
+        <location line="+951"/>
         <source>RECOMMENDED</source>
         <translation>RECOMENDADO</translation>
     </message>
     <message>
-        <location line="-673"/>
+        <location line="-678"/>
         <location line="+19"/>
         <source>Confirm</source>
         <translation>Confirmar</translation>
     </message>
     <message>
-        <location line="-521"/>
+        <location line="-522"/>
         <source>Setting up SD card</source>
         <translation>Configurando cartão SD</translation>
     </message>
@@ -387,7 +397,7 @@ WARNING: This will erase all data on your SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+67"/>
+        <location line="+68"/>
         <source>Please wait while PINN initialises</source>
         <translation type="unfinished"></translation>
     </message>
@@ -398,19 +408,24 @@ WARNING: This will erase all data on your SD card</source>
         <translation>Você tem certeza que deseja gravar a imagem? ISSO EXCLUIRÁ TODOS OS DADOS EXISTENTES!</translation>
     </message>
     <message>
-        <location line="+94"/>
-        <location line="+478"/>
+        <location line="+96"/>
+        <location line="+481"/>
         <location line="+603"/>
         <source>Error</source>
         <translation></translation>
     </message>
     <message>
-        <location line="-1446"/>
+        <location line="-1451"/>
         <source>INSTALLED</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+486"/>
+        <location line="+388"/>
+        <source>PINN v%1 - Built: %2 (%3)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+100"/>
         <source>Display Mode Changed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -420,7 +435,7 @@ WARNING: This will erase all data on your SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-630"/>
+        <location line="-633"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -430,12 +445,12 @@ WARNING: This will erase all data on your SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+489"/>
+        <location line="+490"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+40"/>
+        <location line="+42"/>
         <source>The install process will begin shortly.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -452,12 +467,7 @@ WARNING: This will erase all data on your SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+32"/>
-        <source>PINN v%1 - Built: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+36"/>
+        <location line="+68"/>
         <source>HDMI safe mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -478,7 +488,7 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+342"/>
+        <location line="+345"/>
         <location line="+361"/>
         <location line="+10"/>
         <location line="+322"/>
@@ -568,14 +578,14 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1007"/>
-        <location line="+699"/>
+        <location line="-1010"/>
+        <location line="+702"/>
         <location line="+8"/>
         <source>No network access</source>
         <translation>Sem acesso de rede</translation>
     </message>
     <message>
-        <location line="-706"/>
+        <location line="-709"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Acesso de rede cabeado é necessário para este recurso. Por favor, insira um cabo de rede.</translation>
     </message>
@@ -583,7 +593,7 @@ Would you like to make this setting permanent?</source>
 <context>
     <name>MultiImageWriteThread</name>
     <message>
-        <location filename="multiimagewritethread.cpp" line="+52"/>
+        <location filename="multiimagewritethread.cpp" line="+54"/>
         <source>partitions.json invalid</source>
         <translation type="unfinished"></translation>
     </message>
@@ -618,7 +628,7 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+33"/>
         <location line="+6"/>
         <source>%1: Writing OS image</source>
         <oldsource>Writing image</oldsource>
@@ -644,7 +654,7 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-355"/>
+        <location line="-365"/>
         <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -684,7 +694,7 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+88"/>
+        <location line="+98"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation type="unfinished"></translation>
     </message>

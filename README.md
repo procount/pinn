@@ -1,3 +1,4 @@
+
 # PINN (PINN Is Not NOOBS)
 #### An easy enhanced Operating System installer for the Raspberry Pi
 
@@ -15,7 +16,7 @@ On first boot PINN will format your SD card and allow you to select which OSes y
 Only the latest version of each OS will ever be displayed meaning that you can be sure that you have installed the most up-to-date release of your selected OS.
 
 On any subsequent boot you can then press the SHIFT key to enter the PINN interface and easily reinstall your choice of OSes.
-In addition to the SHIFT key, it is also possible to press the Left mouse button, or any key on a CEC enabled TV remote, to enter the PINN interface.
+In addition to the SHIFT key, it is also possible to press the Left mouse button, any key on a CEC enabled TV remote, or touch the Raspberry logo on the touchscreen to enter the PINN interface.
 
 The PINN interface provides the following functionality:
 - <b>Install</b>: Installs the selected OSes onto your SD card. Changing this selection erases all OSes currently installed.
@@ -57,6 +58,8 @@ This is a convenient way to install images whilst offline, yet it doesn't use up
 PINN allows additional Operating Systems to be downloaded from a remote repository. To do this, the Raspberry Pi must be connected to a wired network, or it can connect over Wifi using the [Raspberry Pi USB wifi dongle](https://www.raspberrypi.org/products/usb-wifi-dongle/) or the Raspberry Pi 3 Model B built-in wifi.
 
 Once connected, the Pi will only show a list of Operating Systems that are appropriate to your Pi Model. If you want to see ALL available OSes, edit the `recovery.cmdline` file in the root PINN directory and append `showall` to the arguments list.
+
+The IP address of the PI is now shown in the window title bar.
 
 ####Wired Networks
 
@@ -132,13 +135,13 @@ An installer slideshow guides you through your first steps with each OS while it
 
 #### OS Boot Selector
 
-
 If only one OS is installed then the boot selector will not be displayed and the OS will be automatically booted.
 
 After multiple OSes have been installed, you can select which OS to boot through this selection window that is automatically displayed. PINN will remember your choice and boot this OS by default unless a different option has been selected within 10 seconds.
 It is possible to change this menu timeout by adding 'bootmenutimeout=X' in the recovery.cmdline file, where X is the desired timeout in seconds.
 
 Each OS entry now has a checkbox next to it to select it as a sticky default OS. If an OS is checked, then PINN will operate as if that was the only OS installed, so it will boot it automatically without showing the boot selection dialog. To change or remove the sticky checkbox, the boot selection dialog can be shown again by pressing the Shift key on boot up.
+A Boot button has been added for easier selection with limited CEC TV remotes.
 
 ![alt text](screenshots/boot_select.png "Easily select which OS you want to boot from a list of those currently installed")
 
@@ -156,15 +159,20 @@ The CEC remote keys are mapped as follows:
 To simulate a mouse the following keys are used:
 - Cursor Up/Down/Left/Right - moves the mouse cursor in each direction
 - Select - mouse click
+
 For quicker selection the following keys may be easier:
 - Channel Up - previous list item
 - Channel Down - next list item
-- 0 key - Enter Key
+- PLAY key - Enter Key
 - Exit Key - Escape
 - 9 key - Toggles the advanced menu
 - 1-8 keys - select the menu buttons numbered from left to right
 
 Any of the above remote keys can be used instead of the keyboard shift key on startup to access the main menu.
+
+NOTE: CEC implementations vary between TV manufacturers. The above key mappings work on Samsung TVs supporting their Anynet+. Other TV brands may not work as well, but the mouse simulation 
+is designed to work on most TVs.
+If your TV does not work as above and are willing to help, please let me know so I can identify the differences and include support for your brand of TV.
 
 ==
 
@@ -309,7 +317,7 @@ This will also prevent the splashscreen from being displayed at boot. The partit
 ### How to use with the Raspberry Pi Touch Display
 
 If PINN detects you are using the [Raspberry Pi Touch Display](https://www.raspberrypi.org/products/raspberry-pi-touch-display/), it will enable the following functionality:
-- A tap on the touchscreen can activate PINN aswell as holding the shift key down.
+- A tap on the touchscreen on the Raspberry logo can activate PINN as well as holding the shift key down.
 - A tap on the touchscreen will simulate a mouse click
 - A longpress on the touchscreen will simulate a mouse double-click.
 
@@ -393,6 +401,8 @@ To boot into a basic busybox shell rather than launching the PINN GUI, you can *
 
 2. You can now also SSH into the PINN basic busybox shell. To enable this feature, add `ssh` to the argument list in the recovery.cmdline. SSH is also accessible from the rescueshell, but allow 5 seconds after boot to allow the network to establish. PINN SSH does not store any keys so it takes a while to connect at first after each boot as it generates new keys for that session.
 
+The IP address of the PI is now shown in the window title bar for ease of connection.
+
 Use the username of 'root' and password 'raspberry' to login to the shell via the console or SSH.
 
 #### How to use PINN Headlessly (VNC)
@@ -401,7 +411,7 @@ It is possible to access PINN without a keyboard and mouse using VNC over a netw
 
 Append `vncinstall` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory. Using `forcetrigger` in addition can be useful as it is not always easy to connect quickly enough to see the splash screen and hold the shift key remotely. This will force you to use VNC to continue the boot process into your installed OS on each boot, so it is best to remove `forcetrigger` once the required OS's have been installed. Alternatively you could use `gpiotriggerenable` (see below).
 
-To connect over VNC you need to know the IP address of the Pi. Connect to port 5900 of this IP address. Using tightvnc, you need to specify this as <ip address>:5900 e.g. 192.168.1.0:5900.
+To connect over VNC you need to know the IP address of the Pi. The IP address of the PI is now shown in the window title bar for ease of connection. Connect to port 5900 of this IP address. Using tightvnc, you need to specify this as <ip address>:5900 e.g. 192.168.1.0:5900.
 
 When VNC is selected there will be no GUI present on any attached display as all output is redirected over the VNC network connection.
 
