@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it" sourcelanguage="en">
+<TS version="2.1" language="it" sourcelanguage="en">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -42,12 +42,12 @@
     <message>
         <location filename="bootselectiondialog.ui" line="45"/>
         <source>Sticky default</source>
-        <translation type="unfinished"></translation>
+        <translation>Sticky predefinito</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="52"/>
         <source>BOOT</source>
-        <translation type="unfinished"></translation>
+        <translation>BOOT</translation>
     </message>
 </context>
 <context>
@@ -423,7 +423,7 @@ ATTENZIONE: questo eliminerà tutti dati nella scheda SD. </translation>
     <message>
         <location filename="mainwindow.cpp" line="744"/>
         <source>PINN v%1 - Built: %2 (%3)</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN v%1 - Build: %2 (%3)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="844"/>
