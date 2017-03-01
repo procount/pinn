@@ -32,6 +32,9 @@ QT_TRANSLATE_NOOP("QDialogButtonBox","Close")
 QT_TRANSLATE_NOOP("QDialogButtonBox","&Close")
 QT_TRANSLATE_NOOP("QDialogButtonBox","&Yes")
 QT_TRANSLATE_NOOP("QDialogButtonBox","&No")
+QT_TRANSLATE_NOOP("QDialogButtonBox","Ignore")
+QT_TRANSLATE_NOOP("QDialogButtonBox","Show Details...")
+QT_TRANSLATE_NOOP("QDialogButtonBox","Hide Details...")
 #endif
 
 LanguageDialog *LanguageDialog::_instance = NULL;

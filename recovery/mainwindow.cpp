@@ -1955,9 +1955,9 @@ void MainWindow::downloadUpdateComplete()
 void MainWindow::on_newVersion()
 {
     QMessageBox msgBox;
-    msgBox.setWindowTitle("PINN UPDATE");
-    msgBox.setText("A new version of PINN is available");
-    msgBox.setInformativeText("Do you want to download this version?");
+    msgBox.setWindowTitle( tr("PINN UPDATE"));
+    msgBox.setText( tr("A new version of PINN is available"));
+    msgBox.setInformativeText( tr("Do you want to download this version?") );
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Ignore);
     msgBox.setDefaultButton(QMessageBox::No);
 
@@ -1981,7 +1981,7 @@ void MainWindow::on_newVersion()
         case QMessageBox::Yes:
             // Yes was clicked
             setEnabled(false);
-            _qpd = new QProgressDialog( tr("Downloading Update"), QString(), 0, 0, this);
+            _qpd = new QProgressDialog( QString(tr("Downloading Update")), QString(tr("Press ESC to cancel")), 0, 0, this);
             _qpd->setWindowModality(Qt::WindowModal);
             _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
             _qpd->show();

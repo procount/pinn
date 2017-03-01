@@ -410,12 +410,12 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location line="+96"/>
         <location line="+481"/>
-        <location line="+603"/>
+        <location line="+604"/>
         <source>Error</source>
         <translation></translation>
     </message>
     <message>
-        <location line="-1451"/>
+        <location line="-1452"/>
         <source>INSTALLED</source>
         <translation type="unfinished"></translation>
     </message>
@@ -491,13 +491,13 @@ Would you like to make this setting permanent?</source>
         <location line="+345"/>
         <location line="+361"/>
         <location line="+10"/>
-        <location line="+322"/>
+        <location line="+323"/>
         <location line="+18"/>
         <source>Download error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-711"/>
+        <location line="-712"/>
         <source>Error downloading distribution list from Internet</source>
         <translation type="unfinished"></translation>
     </message>
@@ -523,7 +523,7 @@ Would you like to make this setting permanent?</source>
     </message>
     <message>
         <location line="+10"/>
-        <location line="+340"/>
+        <location line="+341"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -573,19 +573,39 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+101"/>
+        <location line="+75"/>
+        <source>PINN UPDATE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>A new version of PINN is available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Do you want to download this version?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+24"/>
         <source>Downloading Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1010"/>
-        <location line="+702"/>
+        <location line="+0"/>
+        <source>Press ESC to cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1011"/>
+        <location line="+703"/>
         <location line="+8"/>
         <source>No network access</source>
         <translation>Sem acesso de rede</translation>
     </message>
     <message>
-        <location line="-709"/>
+        <location line="-710"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Acesso de rede cabeado é necessário para este recurso. Por favor, insira um cabo de rede.</translation>
     </message>
@@ -889,7 +909,22 @@ Would you like to make this setting permanent?</source>
         <translation>&amp;Não</translation>
     </message>
     <message>
-        <location line="-6"/>
+        <location line="+1"/>
+        <source>Ignore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show Details...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Hide Details...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-9"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>

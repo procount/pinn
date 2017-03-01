@@ -84,6 +84,7 @@ protected:
     void startImageWrite();
     bool canInstallOs(const QString &name, const QVariantMap &values);
     bool isSupportedOs(const QString &name, const QVariantMap &values);
+    void on_newVersion();
 
 protected slots:
     void populate();
@@ -127,7 +128,6 @@ private slots:
     void on_actionPassword_triggered();
 
     void on_actionClone_triggered();
-    void on_newVersion();
 
 signals:
     void networkUp();
