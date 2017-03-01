@@ -5,6 +5,10 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+###V2.2
+
+- **PiZeroW**         - Update firmware/kernel for PiZero Wifi version
+
 ###V2.1.4
 
 - **IP address**      - Shown in window title

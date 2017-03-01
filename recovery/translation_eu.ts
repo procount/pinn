@@ -449,59 +449,79 @@ KONTUZ: Honek SD txarteleko datu guztiak ezabatuko ditu</translation>
     <message>
         <location filename="mainwindow.cpp" line="723"/>
         <location filename="mainwindow.cpp" line="1204"/>
-        <location filename="mainwindow.cpp" line="1807"/>
+        <location filename="mainwindow.cpp" line="1808"/>
         <source>Error</source>
         <translation>Errorea</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1677"/>
+        <location filename="mainwindow.cpp" line="1678"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>Sareko sarbidea behar da PINN irudi lokalik gabe erabiltzeko. Mesedez, hautatu zure wifi sarea hurrengo pantailan.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1685"/>
+        <location filename="mainwindow.cpp" line="1686"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>Haridun sareko sarbidea behar da PINN irudi lokalik gabe erabiltzeko . Mesedez sartu sareko kable bat sareko atakan.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1761"/>
+        <location filename="mainwindow.cpp" line="1762"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>Honek &apos;%s&apos; gailuko eduki guztiak ezabatuko ditu. Ziur zaude?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1763"/>
+        <location filename="mainwindow.cpp" line="1764"/>
         <source>Clone SD Card</source>
         <translation>Klonatu SD txartela</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1765"/>
+        <location filename="mainwindow.cpp" line="1766"/>
         <source>Yes</source>
         <translation>Bai</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1766"/>
+        <location filename="mainwindow.cpp" line="1767"/>
         <source>No</source>
         <translation>Ez</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1794"/>
+        <location filename="mainwindow.cpp" line="1795"/>
         <source>Clone Completed</source>
         <translation>Klonazioa amaitu da</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1795"/>
+        <location filename="mainwindow.cpp" line="1796"/>
         <source>Clone Completed Successfully</source>
         <translation>Klonazioa behar bezala amaitu da</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1883"/>
+        <location filename="mainwindow.cpp" line="1884"/>
         <source>Error downloading update file</source>
         <translation>Errorea eguneraketa-fitxategia deskargatzean</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1984"/>
+        <location filename="mainwindow.cpp" line="1959"/>
+        <source>PINN UPDATE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1960"/>
+        <source>A new version of PINN is available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1961"/>
+        <source>Do you want to download this version?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1985"/>
         <source>Downloading Update</source>
         <translation>Eguneraketa deskargatzen</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1985"/>
+        <source>Press ESC to cancel</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="776"/>
@@ -542,8 +562,8 @@ Ezarpen hau iraunkortu nahi duzu?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="974"/>
-        <location filename="mainwindow.cpp" line="1676"/>
-        <location filename="mainwindow.cpp" line="1684"/>
+        <location filename="mainwindow.cpp" line="1677"/>
+        <location filename="mainwindow.cpp" line="1685"/>
         <source>No network access</source>
         <translation>Sareko sarbiderik ez</translation>
     </message>
@@ -556,8 +576,8 @@ Ezarpen hau iraunkortu nahi duzu?</translation>
         <location filename="mainwindow.cpp" line="1190"/>
         <location filename="mainwindow.cpp" line="1551"/>
         <location filename="mainwindow.cpp" line="1561"/>
-        <location filename="mainwindow.cpp" line="1883"/>
-        <location filename="mainwindow.cpp" line="1901"/>
+        <location filename="mainwindow.cpp" line="1884"/>
+        <location filename="mainwindow.cpp" line="1902"/>
         <source>Download error</source>
         <translation>Errorea deskargatzean</translation>
     </message>
@@ -588,7 +608,7 @@ Ezarpen hau iraunkortu nahi duzu?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1561"/>
-        <location filename="mainwindow.cpp" line="1901"/>
+        <location filename="mainwindow.cpp" line="1902"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>Errorea deskargatutako fitxategia SD txartelean idaztean. SD txartela edo fitxategi-sistema hondatuta egon daitezke.</translation>
     </message>
@@ -886,6 +906,21 @@ Ezarpen hau iraunkortu nahi duzu?</translation>
         <location filename="languagedialog.cpp" line="34"/>
         <source>&amp;No</source>
         <translation>&amp;Ez</translation>
+    </message>
+    <message>
+        <location filename="languagedialog.cpp" line="35"/>
+        <source>Ignore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="languagedialog.cpp" line="36"/>
+        <source>Show Details...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="languagedialog.cpp" line="37"/>
+        <source>Hide Details...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

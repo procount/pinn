@@ -1,4 +1,4 @@
-# V1.9 Features
+## V1.9 Features
 #### How to access the shell or SSH into NOOBS
 
 1. Even if the NOOBS GUI is launched, the busybox shell can still be accessed by pressing CTRL-ALT-F2. Use CTL-ALT-F1 to get back to the gui. 
@@ -241,4 +241,8 @@ Added many translations from the community.
 - **SD Card**         - Update SD card requirements
 - **Network**         - Do not continue polling for connectivity during installation
 - **Update**          - Bump kernel and firmware versions
+
+####V2.2
+
+- **PiZeroW**         - Update firmware/kernel for PiZero Wifi version
 
