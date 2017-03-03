@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -42,12 +42,12 @@
     <message>
         <location filename="bootselectiondialog.ui" line="45"/>
         <source>Sticky default</source>
-        <translation type="unfinished"></translation>
+        <translation>預設值</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="52"/>
         <source>BOOT</source>
-        <translation type="unfinished"></translation>
+        <translation>開機</translation>
     </message>
 </context>
 <context>
@@ -452,7 +452,7 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.cpp" line="744"/>
         <source>PINN v%1 - Built: %2 (%3)</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN v%1 - 構建： %2 (%3)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="776"/>
@@ -586,17 +586,17 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="mainwindow.cpp" line="1959"/>
         <source>PINN UPDATE</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN 更新</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1960"/>
         <source>A new version of PINN is available</source>
-        <translation type="unfinished"></translation>
+        <translation>有可用的新版 PINN</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1961"/>
         <source>Do you want to download this version?</source>
-        <translation type="unfinished"></translation>
+        <translation>您想要下載此版本嗎？</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1985"/>
@@ -606,7 +606,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="mainwindow.cpp" line="1985"/>
         <source>Press ESC to cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>按下 ESC 以取消</translation>
     </message>
 </context>
 <context>
@@ -823,27 +823,27 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="passwd.cpp" line="226"/>
         <source>Very Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>非常弱</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="227"/>
         <source>Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>弱</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="228"/>
         <source>Good</source>
-        <translation type="unfinished"></translation>
+        <translation>好</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="229"/>
         <source>Strong</source>
-        <translation type="unfinished"></translation>
+        <translation>強</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="230"/>
         <source>Very Strong</source>
-        <translation type="unfinished"></translation>
+        <translation>非常強</translation>
     </message>
 </context>
 <context>
@@ -904,17 +904,17 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="languagedialog.cpp" line="35"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>忽略</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="36"/>
         <source>Show Details...</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示詳細資訊...</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="37"/>
         <source>Hide Details...</source>
-        <translation type="unfinished"></translation>
+        <translation>隱藏詳細資訊...</translation>
     </message>
 </context>
 <context>
@@ -1053,12 +1053,12 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="piclonedialog.cpp" line="118"/>
         <source>Internal SD card  (/dev/mmcblk0)</source>
-        <translation type="unfinished"></translation>
+        <translation>內部 SD 記憶卡 (/dev/mmcblk0)</translation>
     </message>
     <message>
         <location filename="piclonedialog.cpp" line="150"/>
         <source>No devices available</source>
-        <translation type="unfinished"></translation>
+        <translation>無可用裝置</translation>
     </message>
 </context>
 </TS>
