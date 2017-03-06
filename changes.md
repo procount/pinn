@@ -246,3 +246,6 @@ Added many translations from the community.
 
 - **PiZeroW**         - Update firmware/kernel for PiZero Wifi version
 
+####V2.3
+
+- **PiZeroW**         - Further update to match NOOBS 2.3. Added regDB for channel 13 & missing DTBs
