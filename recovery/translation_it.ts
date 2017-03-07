@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it" sourcelanguage="en">
+<TS version="2.1" language="it" sourcelanguage="en">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -411,7 +411,7 @@ ATTENZIONE: questo eliminerà tutti dati nella scheda SD. </translation>
     <message>
         <location filename="mainwindow.cpp" line="723"/>
         <location filename="mainwindow.cpp" line="1204"/>
-        <location filename="mainwindow.cpp" line="1808"/>
+        <location filename="mainwindow.cpp" line="1807"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
@@ -493,8 +493,8 @@ Vuoi rendere questa impostazione permanente?</translation>
         <location filename="mainwindow.cpp" line="1190"/>
         <location filename="mainwindow.cpp" line="1551"/>
         <location filename="mainwindow.cpp" line="1561"/>
-        <location filename="mainwindow.cpp" line="1884"/>
-        <location filename="mainwindow.cpp" line="1902"/>
+        <location filename="mainwindow.cpp" line="1883"/>
+        <location filename="mainwindow.cpp" line="1901"/>
         <source>Download error</source>
         <translation>Errore download</translation>
     </message>
@@ -525,84 +525,84 @@ Vuoi rendere questa impostazione permanente?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1561"/>
-        <location filename="mainwindow.cpp" line="1902"/>
+        <location filename="mainwindow.cpp" line="1901"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>Errore scrittura su SD file scaricato. La scheda SD o il file system potrebbero essere danneggiati.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1678"/>
+        <location filename="mainwindow.cpp" line="1677"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>Per usare PINN senza immagini locali è richiesto l&apos;accesso alla rete. Seleziona la rete Wi-Fi nella prossima fienstra.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1686"/>
+        <location filename="mainwindow.cpp" line="1685"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>Per usare PINN senza immagini locali è richiesto l&apos;accesso alla rete. Inserisci il cavo di rete nella porta ethernet.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1762"/>
+        <location filename="mainwindow.cpp" line="1761"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>Questo eliminerà tutto il contenuto nel dispositivo &quot;%s&quot;. Vuoi continuare?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1764"/>
+        <location filename="mainwindow.cpp" line="1763"/>
         <source>Clone SD Card</source>
         <translation>Clona scheda SD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1766"/>
+        <location filename="mainwindow.cpp" line="1765"/>
         <source>Yes</source>
         <translation>Sì</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1767"/>
+        <location filename="mainwindow.cpp" line="1766"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1795"/>
+        <location filename="mainwindow.cpp" line="1794"/>
         <source>Clone Completed</source>
         <translation>Clonazione completata</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1796"/>
+        <location filename="mainwindow.cpp" line="1795"/>
         <source>Clone Completed Successfully</source>
         <translation>Clonazione completata correttamente</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1884"/>
+        <location filename="mainwindow.cpp" line="1883"/>
         <source>Error downloading update file</source>
         <translation>Errore nel download del file aggiornamento</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1959"/>
+        <location filename="mainwindow.cpp" line="1958"/>
         <source>PINN UPDATE</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiornamento PINN</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1959"/>
+        <source>A new version of PINN is available</source>
+        <translation>È disponibile una nuova versione di PINN</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1960"/>
-        <source>A new version of PINN is available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="1961"/>
         <source>Do you want to download this version?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vuoi aggiornare ora a questa versione?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1985"/>
+        <location filename="mainwindow.cpp" line="1984"/>
         <source>Downloading Update</source>
         <translation>Download aggiornamento</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1985"/>
+        <location filename="mainwindow.cpp" line="1984"/>
         <source>Press ESC to cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Premi ESC per annullare</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="974"/>
-        <location filename="mainwindow.cpp" line="1677"/>
-        <location filename="mainwindow.cpp" line="1685"/>
+        <location filename="mainwindow.cpp" line="1676"/>
+        <location filename="mainwindow.cpp" line="1684"/>
         <source>No network access</source>
         <translation>Nessun accesso alla rete</translation>
     </message>
@@ -913,17 +913,17 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="languagedialog.cpp" line="35"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignora</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="36"/>
         <source>Show Details...</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizza dettagli...</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="37"/>
         <source>Hide Details...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nascondi dettagli...</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="28"/>
