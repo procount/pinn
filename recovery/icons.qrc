@@ -57,5 +57,6 @@
         <file>icons/lock_edit.png</file>
         <file>icons/ast.png</file>
         <file>translation_ast.qm</file>
+        <file>icons/hdd_usb_unmount.png</file>
     </qresource>
 </RCC>

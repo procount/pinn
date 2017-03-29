@@ -44,7 +44,7 @@ CecListener *cec = NULL;
 
 CecListener *enableCEC(QObject *parent=0);
 
-void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode)
+void showBootMenu(const QString &drive, const QString &defaultPartition, bool setDisplayMode)
 {
     // Unmount any open file systems
     QProcess::execute("umount -r /mnt");
@@ -59,7 +59,7 @@ void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode)
     QWSServer::setCursorVisible(true);
 #endif
     //Just reuse of setDisplayMode to indicate it is a direct boot for sticky mode.
-    BootSelectionDialog bsd(defaultPartition,setDisplayMode,dsi);
+    BootSelectionDialog bsd(drive, defaultPartition,setDisplayMode,dsi);
     if (setDisplayMode)
         bsd.setDisplayMode();
     bsd.exec();
@@ -74,17 +74,57 @@ void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode)
 
 }
 
-bool hasInstalledOS()
+bool hasInstalledOS(const QString &drive)
 {
     bool installedOsFileExists = false;
 
-    if (QProcess::execute("mount -o ro " SETTINGS_PARTITION " /settings") == 0)
+    if (QProcess::execute("mount -o ro "+partdev(drive, SETTINGS_PARTNR)+" /settings") == 0)
     {
         installedOsFileExists = QFile::exists("/settings/installed_os.json");
         QProcess::execute("umount /settings");
     }
 
     return installedOsFileExists;
+}
+
+QString findRecoveryDrive()
+{
+    /* Search for drive with recovery.rfs */
+    QString drive;
+    QString dirname  = "/sys/class/block";
+    QDir    dir(dirname);
+    QStringList list = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+
+    foreach (QString devname, list)
+    {
+        /* Only search first partition and partitionless devices. Skip virtual devices (such as ramdisk) */
+        if ((devname.right(1).at(0).isDigit() && !devname.endsWith("1"))
+                || QFile::symLinkTarget("/sys/class/block/"+devname).contains("/devices/virtual/"))
+            continue;
+
+        if (QProcess::execute("mount -t vfat -o ro /dev/"+devname+" /mnt") == 0)
+        {
+
+            if (QFile::exists("/mnt/recovery.rfs"))
+            {
+                qDebug() << "Found recovery.rfs at" << devname;
+
+                // We are interested in the drive, not the exact partition
+                drive = "/dev/"+devname;
+                if (drive.endsWith("p1"))
+                    drive.chop(2);
+                else if (drive.endsWith("1"))
+                    drive.chop(1);
+            }
+
+            QProcess::execute("umount /mnt");
+        }
+
+        if (!drive.isEmpty())
+            break;
+    }
+
+    return drive;
 }
 
 int main(int argc, char *argv[])
@@ -219,18 +259,54 @@ int main(int argc, char *argv[])
         a.setWindowIcon(QIcon(":/icons/raspberry_icon.png"));
 
 #ifdef Q_WS_QWS
-        QWSServer::setBackground(BACKGROUND_COLOR);
+    QWSServer::setBackground(BACKGROUND_COLOR);
 #endif
-        QSplashScreen *splash = new QSplashScreen(QPixmap(":/wallpaper.png"));
-        splash->show();
-        QApplication::processEvents();
+    QSplashScreen *splash = new QSplashScreen(QPixmap(":/wallpaper.png"));
+    splash->show();
+    QApplication::processEvents();
+
+    // Wait for drive device to show up
+    QString drive;
+    bool driveReady = false;
+    QTime t;
+    t.start();
+
+    while (t.elapsed() < 10000)
+    {
+        if (drive.isEmpty())
+        {
+            /* We do not know the exact drive name to wait for */
+            drive = findRecoveryDrive();
+            if (!drive.isEmpty())
+            {
+                driveReady = true;
+                break;
+            }
+        }
+        else if (drive.startsWith("/dev"))
+        {
+            if (QFile::exists(drive))
+            {
+                driveReady = true;
+                break;
+            }
+        }
+
+        QApplication::processEvents(QEventLoop::WaitForMoreEvents, 100);
+    }
+    if (!driveReady)
+    {
+        QMessageBox::critical(NULL, "Files not found", QString("Cannot find the drive with PINN files %1").arg(drive), QMessageBox::Close);
+        return 1;
+    }
+    qDebug() << "PINN drive:" << drive;
 
     // If -runinstaller is not specified, only continue if SHIFT is pressed, GPIO is triggered,
     // or no OS is installed (/settings/installed_os.json does not exist)
     bool bailout = !runinstaller
         && !force_trigger
         && !(gpio && (gpio->value() == 0 ))
-        && hasInstalledOS();
+        && hasInstalledOS(drive);
 
     if (bailout && keyboard_trigger)
     {
@@ -265,7 +341,7 @@ int main(int argc, char *argv[])
     {
         splash->hide();
         cec->clearKeyPressed();
-        reboot_to_extended(defaultPartition, true);
+        showBootMenu(drive, defaultPartition, true);
     }
 
 #ifdef Q_WS_QWS
@@ -273,7 +349,7 @@ int main(int argc, char *argv[])
 #endif
 
     // Main window in the middle of screen
-    MainWindow mw(defaultDisplay, splash, noobsconfig);
+    MainWindow mw(drive, defaultDisplay, splash, noobsconfig);
     mw.setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, mw.size(), a.desktop()->availableGeometry()));
     mw.show();
 
@@ -286,7 +362,7 @@ int main(int argc, char *argv[])
 
     a.exec();
 
-    reboot_to_extended(defaultPartition, false);
+    showBootMenu(drive, defaultPartition, false);
 
     return 0;
 }

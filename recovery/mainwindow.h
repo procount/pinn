@@ -33,7 +33,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(const QString &defaultDisplay, QSplashScreen *splash, bool noobsconfig, QWidget *parent = 0);
+    explicit MainWindow(const QString &drive, const QString &defaultDisplay, QSplashScreen *splash, bool noobsconfig, QWidget *parent = 0);
     ~MainWindow();
 
 protected:
@@ -49,16 +49,17 @@ protected:
     QSettings *_settings;
     bool _hasWifi;
     bool _networkOK;
-    QMessageBox *_displayModeBox;
-    bool _hasUSB;
     int _numInstalledOS;
     QNetworkAccessManager *_netaccess;
+    QMessageBox *_displayModeBox;
+    bool _hasUSB;
     int _neededMB, _availableMB, _numMetaFilesToDownload, _numIconsToDownload, _numBuildsToDownload;
     QTimer _networkStatusPollTimer;
     QTime _time;
     QString _model;
     int _noobsconfig;
     QHostAddress _ipaddress;
+    QString _drive, _bootdrive;
 
     QMap<QString,QVariantMap> listImages();
     QMap<QString,QVariantMap> listImagesInDir(const QString &mountpoint, const QString &source);

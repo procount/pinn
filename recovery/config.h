@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 /* Version number displayed in the title bar */
-#define VERSION_NUMBER "2.3a"
+#define VERSION_NUMBER "2.3c"
 
 /* Color of the background */
 // #define BACKGROUND_COLOR  Qt::white
@@ -53,7 +53,8 @@
    if that prevents having a 4 MiB gap between the next one */
 #define SHRINK_PARTITIONS_TO_MINIMIZE_GAPS
 
-#define SETTINGS_PARTITION  "/dev/mmcblk0p5"
+#define SETTINGS_PARTNR   5 //new
+#define SETTINGS_PARTITION  "/dev/mmcblk0p5"   //OLD: TO BE DELETED
 #define SETTINGS_PARTITION_SIZE  (32 * 2048 - PARTITION_GAP)
 
 #define USB_MOUNTPOINT "/media"

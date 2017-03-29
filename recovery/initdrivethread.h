@@ -18,7 +18,8 @@ class InitDriveThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit InitDriveThread(QObject *parent = 0);
+    explicit InitDriveThread(const QString &drive, QObject *parent = 0);
+    bool formatUsbDrive();
 
 protected:
     virtual void run();
@@ -29,11 +30,19 @@ protected:
     bool mountSystemPartition();
     bool umountSystemPartition();
     bool zeroMbr();
-    bool formatBootPartition();
     bool formatSettingsPartition();
 #ifdef RISCOS_BLOB_FILENAME
     bool writeRiscOSblob();
 #endif
+    bool method_reformatDrive();
+    bool saveBootFiles();
+    bool restoreBootFiles();
+    bool formatBootPartition();
+    bool partitionDrive();
+    bool setDiskId();
+
+    QString _drive;
+
 
 signals:
     void error(const QString &msg);

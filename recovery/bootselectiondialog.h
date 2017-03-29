@@ -27,7 +27,7 @@ class BootSelectionDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit BootSelectionDialog(const QString &defaultPartition, bool stickyBoot, bool dsi=false, QWidget *parent = 0);
+    explicit BootSelectionDialog(const QString &drive, const QString &defaultPartition, bool stickyBoot, bool dsi=false, QWidget *parent = 0);
     ~BootSelectionDialog();
     virtual void accept();
     void setDisplayMode();
@@ -46,14 +46,15 @@ private slots:
 
 protected:
     QTimer _timer;
+    QString _drive;
     int _countdown;
     void stopCountdown();
     void updateConfig4dsi(QByteArray partition);
     int extractPartition(QVariantMap m);
     bool _dsi;
 private:
-    Ui::BootSelectionDialog *ui;
     bool _inSelection;
+    Ui::BootSelectionDialog *ui;
 };
 
 #endif // BOOTSELECTIONDIALOG_H

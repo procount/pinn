@@ -14,7 +14,8 @@ class MultiImageWriteThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit MultiImageWriteThread(bool noobsconfig=false, QObject *parent = 0);
+    explicit MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive, bool noobsconfig=false, QObject *parent = 0);
+
     void addImage(const QString &folder, const QString &flavour);
 
 protected:
@@ -34,15 +35,19 @@ protected:
     QByteArray getUUID(const QString part);
     void patchConfigTxt();
     QString getDescription(const QString &folder, const QString &flavour);
-    bool writePartitionTable(const QMap<int, PartitionInfo *> &partitionMap);
+    bool writePartitionTable(const QString &drive, const QMap<int, PartitionInfo *> &partitionMap);
     bool isURL(const QString &s);
+    QByteArray getDiskId(const QString &device);
+    QByteArray getPartUUID(const QString &devpart);
 
     /* key: folder, value: flavour */
     QList<OsInfo *> _images;
 
+    QString _drive, _bootdrive;
     int _extraSpacePerPartition, _sectorOffset, _part;
     QVariantList installed_os;
     bool _noobsconfig;
+    bool _multiDrives;
 
 signals:
     void error(const QString &msg);

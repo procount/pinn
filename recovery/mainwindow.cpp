@@ -61,7 +61,7 @@ extern "C" {
 #include <QWSServer>
 #endif
 
-void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode);
+void showBootMenu(const QString &drive, const QString &defaultPartition, bool setDisplayMode);
 
 extern QStringList downloadRepoUrls;
 extern CecListener * cec;
@@ -89,12 +89,12 @@ bool MainWindow::_partInited = false;
 /* Flag to keep track of current display mode. */
 int MainWindow::_currentMode = 0;
 
-MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, bool noobsconfig, QWidget *parent) :
+MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSplashScreen *splash, bool noobsconfig, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     _qpd(NULL), _kcpos(0), _defaultDisplay(defaultDisplay),
     _silent(false), _allowSilent(false), _showAll(false), _splash(splash), _settings(NULL),
-    _hasWifi(false), _numInstalledOS(0), _netaccess(NULL), _displayModeBox(NULL), _hasUSB(false), _noobsconfig(noobsconfig)
+    _hasWifi(false), _numInstalledOS(0), _netaccess(NULL), _displayModeBox(NULL), _hasUSB(false), _noobsconfig(noobsconfig), _drive(drive), _bootdrive(drive)
 {
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
@@ -124,7 +124,7 @@ MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, boo
         _qpd->setWindowModality(Qt::WindowModal);
         _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 
-        InitDriveThread *idt = new InitDriveThread(this);
+        InitDriveThread *idt = new InitDriveThread(_bootdrive, this);
         connect(idt, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
         connect(idt, SIGNAL(completed()), _qpd, SLOT(deleteLater()));
         connect(idt, SIGNAL(error(QString)), this, SLOT(onError(QString)));
@@ -138,14 +138,15 @@ MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, boo
     }
 
     /* Make sure the SD card is ready, and partition table is read by Linux */
-    if (!QFile::exists(SETTINGS_PARTITION))
+    QByteArray settingsPartition = partdev(_bootdrive, SETTINGS_PARTNR);
+    if (!QFile::exists(settingsPartition))
     {
         _qpd = new QProgressDialog( tr("Waiting for SD card (settings partition)"), QString(), 0, 0, this);
         _qpd->setWindowModality(Qt::WindowModal);
         _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
         _qpd->show();
 
-        while (!QFile::exists(SETTINGS_PARTITION))
+        while (!QFile::exists(settingsPartition))
         {
             QApplication::processEvents(QEventLoop::WaitForMoreEvents, 250);
         }
@@ -161,7 +162,7 @@ MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, boo
 
     ui->list->clear();
 
-    if (QProcess::execute("mount -t ext4 " SETTINGS_PARTITION " /settings") != 0)
+    if (QProcess::execute("mount -t ext4 "+settingsPartition+" /settings") != 0)
     {
         _qpd->hide();
 
@@ -171,8 +172,8 @@ MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, boo
                                   QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
         {
             QProcess::execute("umount /settings");
-            if (QProcess::execute("/usr/sbin/mkfs.ext4 " SETTINGS_PARTITION) != 0
-                || QProcess::execute("mount " SETTINGS_PARTITION " /settings") != 0)
+            if (QProcess::execute("/usr/sbin/mkfs.ext4 "+settingsPartition) != 0
+                || QProcess::execute("mount "+settingsPartition+" /settings") != 0)
             {
                 QMessageBox::critical(this, tr("Reformat failed"), tr("SD card might be damaged"), QMessageBox::Close);
             }
@@ -183,7 +184,7 @@ MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, boo
     _qpd->hide();
     _qpd->deleteLater();
     _qpd = NULL;
-    QProcess::execute("mount -o ro -t vfat /dev/mmcblk0p1 /mnt");
+    QProcess::execute("mount -o ro -t vfat "+partdev(_bootdrive, 1)+" /mnt");
 
     _model = getFileContents("/proc/device-tree/model");
     QString cmdline = getFileContents("/proc/cmdline");
@@ -209,6 +210,9 @@ MainWindow::MainWindow(const QString &defaultDisplay, QSplashScreen *splash, boo
     /* Disable online help buttons until network is functional */
     ui->actionBrowser->setEnabled(false);
     QTimer::singleShot(2000, this, SLOT(populate()));
+    ui->targetLabel->setHidden(true);
+    ui->targetCombo->setHidden(true);
+
 }
 
 MainWindow::~MainWindow()
@@ -232,12 +236,12 @@ void MainWindow::closeEvent(QCloseEvent *event)
 /* Discover which images we have, and fill in the list */
 void MainWindow::populate()
 {
-    if (!QFile::exists("/dev/mmcblk0p1"))
-    {
+    //if (!QFile::exists("/dev/mmcblk0p1"))
+   // {
         // mmcblk0p1 not ready yet, check back in a tenth of a second
-        QTimer::singleShot(100, this, SLOT(populate()));
-        return;
-    }
+     //   QTimer::singleShot(100, this, SLOT(populate()));
+     //   return;
+    //}
 
     /* Ask user to wait while list is populated */
     if (!_allowSilent)
@@ -280,7 +284,7 @@ void MainWindow::populate()
 
     // Fill in list of images
     repopulate();
-    _availableMB = (getFileContents("/sys/class/block/mmcblk0/size").trimmed().toULongLong()-getFileContents("/sys/class/block/mmcblk0p5/start").trimmed().toULongLong()-getFileContents("/sys/class/block/mmcblk0p5/size").trimmed().toULongLong())/2048;
+    _availableMB = (getFileContents(sysclassblock(_drive)+"/size").trimmed().toULongLong()-getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toULongLong()-getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toULongLong())/2048;
     updateNeeded();
 
     if (ui->list->count() != 0)
@@ -1144,8 +1148,7 @@ void MainWindow::rebuildInstalledList()
 
     for (int i=5; i<=MAXIMUM_PARTITIONS; i++)
     {
-        QString part = "/dev/mmcblk0p"+QString::number(i);
-
+        QString part = partdev(_drive, i);
         if (QFile::exists(part) && QProcess::execute("mount -t vfat "+part+" /mnt2") == 0)
         {
             qDebug() << "Scanning" << part;
@@ -1416,7 +1419,7 @@ void MainWindow::updateNeeded()
         if (nameMatchesRiscOS(entry.value("name").toString()))
         {
             /* RiscOS needs to start at a predetermined sector, calculate the extra space needed for that */
-            int startSector = getFileContents("/sys/class/block/mmcblk0p5/start").trimmed().toULongLong()+getFileContents("/sys/class/block/mmcblk0p5/size").trimmed().toULongLong();
+            int startSector = getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toULongLong()+getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toULongLong();
             if (RISCOS_SECTOR_OFFSET > startSector)
             {
                 _neededMB += (RISCOS_SECTOR_OFFSET - startSector)/2048;
@@ -1583,7 +1586,8 @@ void MainWindow::downloadMetaComplete()
 void MainWindow::startImageWrite()
 {
     /* All meta files downloaded, extract slides tarball, and launch image writer thread */
-    MultiImageWriteThread *imageWriteThread = new MultiImageWriteThread(_noobsconfig);
+    MultiImageWriteThread *imageWriteThread = new MultiImageWriteThread(_bootdrive, _drive, _noobsconfig);
+
     QString folder, slidesFolder;
     QStringList slidesFolders;
 
@@ -1644,7 +1648,7 @@ void MainWindow::startImageWrite()
     if (slidesFolders.isEmpty())
         slidesFolder.append("/mnt/defaults/slides");
 
-    _qpd = new ProgressSlideshowDialog(slidesFolders, "", 20, this);
+    _qpd = new ProgressSlideshowDialog(slidesFolders, "", 20, _drive, this);
     connect(imageWriteThread, SIGNAL(parsedImagesize(qint64)), _qpd, SLOT(setMaximum(qint64)));
     connect(imageWriteThread, SIGNAL(completed()), this, SLOT(onCompleted()));
     connect(imageWriteThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
@@ -1809,10 +1813,11 @@ void MainWindow::onCloneError(const QString &msg)
     //Anything could have happened, so umount all then mount what we need
     QProcess::execute("sh -c \"umount /tmp/src");
     QProcess::execute("sh -c \"umount /tmp/dst");
-    QProcess::execute("sh -c \"umount /dev/mmcblk0p1 /mnt\"");
+
+    QProcess::execute("sh -c \"umount "+partdev(_bootdrive, 1)+" /mnt\"");
     QProcess::execute("rmdir "+QString("/tmp/src"));
     QProcess::execute("rmdir "+QString("/tmp/dst"));
-    QProcess::execute("sh -c \"mount -o ro /dev/mmcblk0p1 /mnt\"");
+    QProcess::execute("sh -c \"mount -o ro "+partdev(_bootdrive, 1)+" /mnt\"");
 
     setEnabled(true);
 }
