@@ -6,7 +6,7 @@ set -e
 
 # Final directory where NOOBS files will be copied to
 NOOBS_OUTPUT_DIR="output"
-
+export QT_SELECT=4
 
 function get_package_version {
   PACKAGE=$1
