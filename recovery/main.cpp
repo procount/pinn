@@ -36,13 +36,14 @@
  *
  */
 
+bool dsi=false;
 void showBootMenu(const QString &drive, const QString &defaultPartition, bool setDisplayMode)
 {
 #ifdef Q_WS_QWS
     QWSServer::setBackground(Qt::white);
     QWSServer::setCursorVisible(true);
 #endif
-    BootSelectionDialog bsd(drive, defaultPartition);
+    BootSelectionDialog bsd(drive, defaultPartition,dsi);
     if (setDisplayMode)
         bsd.setDisplayMode();
     bsd.exec();
@@ -54,6 +55,7 @@ void showBootMenu(const QString &drive, const QString &defaultPartition, bool se
     ::sync();
     // Reboot
     ::reboot(RB_AUTOBOOT);
+
 }
 
 bool hasInstalledOS(const QString &drive)
@@ -163,6 +165,9 @@ int main(int argc, char *argv[])
         // Force recovery to do noobsconfig
         else if (strcmp(argv[i], "-noconfig") == 0)
             noobsconfig = false;
+        // Force dsi switching
+        else if (strcmp(argv[i], "-dsi")==0)
+            dsi = true;
         // Allow default language to be specified in commandline
         else if (strcmp(argv[i], "-lang") == 0)
         {

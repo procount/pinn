@@ -78,6 +78,7 @@ fi
     DEFAULT_DISPLAY=
     DEFAULT_PARTITION=
     DEFAULT_NOCONFIG=
+    DEFAULT_DSI=
 
     if grep -q runinstaller /proc/cmdline; then
         RUN_INSTALLER=-runinstaller
@@ -93,6 +94,9 @@ fi
     fi
     if grep -q noobsconfig /proc/cmdline; then
         DEFAULT_NOCONFIG=-noconfig
+    fi
+    if grep -q dsi /proc/cmdline; then
+        DEFAULT_DSI=-dsi
     fi
     for p in `cat /proc/cmdline` ; do
         if [ "${p%%=*}" == "lang" ] ; then
@@ -111,7 +115,7 @@ fi
 
     if [ -e /mnt/background.sh ]; then /mnt/background.sh & fi;
 
-    /usr/bin/recovery $RUN_INSTALLER $GPIO_TRIGGER $KEYBOARD_NO_TRIGGER $FORCE_TRIGGER $DEFAULT_KBD $DEFAULT_LANG $DEFAULT_DISPLAY $DEFAULT_PARTITION $DEFAULT_NOCONFIG -qws 2>/tmp/debug
+    /usr/bin/recovery $RUN_INSTALLER $GPIO_TRIGGER $KEYBOARD_NO_TRIGGER $FORCE_TRIGGER $DEFAULT_KBD $DEFAULT_LANG $DEFAULT_DISPLAY $DEFAULT_PARTITION $DEFAULT_NOCONFIG $DEFAULT_DSI -qws 2>/tmp/debug
 
 
 # Recovery should have rebooted
