@@ -968,7 +968,10 @@ void MainWindow::copyWpa()
     /* If user supplied a wpa_supplicant.conf on the FAT partition copy that one to settings regardless */
     if (QFile::exists("/mnt/wpa_supplicant.conf"))
     {
+        qDebug() << "Copying  user wpa_supplicant.conf to /settings/wpa_supplicant.conf";
+        QProcess::execute("mount -o remount,rw /settings");
         QFile::copy("/mnt/wpa_supplicant.conf", "/settings/wpa_supplicant.conf");
+        QProcess::execute("mount -o remount,ro /settings");
 
         /* But then rename the user file to avoid overwriting any manually set SSIDs */
         QProcess::execute("mount -o remount,rw /mnt");
