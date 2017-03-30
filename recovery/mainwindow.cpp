@@ -215,6 +215,9 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     {
         _fixate = true;
     }
+
+    copyWpa();
+
     if (cmdline.contains("silentinstall"))
     {
         /* If silentinstall is specified, auto-install single image in /os */
@@ -951,8 +954,9 @@ void MainWindow::on_list_doubleClicked(const QModelIndex &index)
     }
 }
 
-void MainWindow::startNetworking()
+void MainWindow::copyWpa()
 {
+    //This file is the one used by dhcpcd
     QFile f("/settings/wpa_supplicant.conf");
 
     if ( f.exists() && f.size() == 0 )
@@ -960,20 +964,30 @@ void MainWindow::startNetworking()
         /* Remove corrupt file */
         f.remove();
     }
-    if ( !f.exists() )
+
+    /* If user supplied a wpa_supplicant.conf on the FAT partition copy that one to settings regardless */
+    if (QFile::exists("/mnt/wpa_supplicant.conf"))
     {
-        /* If user supplied a wpa_supplicant.conf on the FAT partition copy that one to settings
-           otherwise copy the default one stored in the initramfs */
-        if (QFile::exists("/mnt/wpa_supplicant.conf"))
-            QFile::copy("/mnt/wpa_supplicant.conf", "/settings/wpa_supplicant.conf");
-        else
-        {
-            qDebug() << "Copying /etc/wpa_supplicant.conf to /settings/wpa_supplicant.conf";
-            QFile::copy("/etc/wpa_supplicant.conf", "/settings/wpa_supplicant.conf");
-        }
+        QFile::copy("/mnt/wpa_supplicant.conf", "/settings/wpa_supplicant.conf");
+
+        /* But then rename the user file to avoid overwriting any manually set SSIDs */
+        QProcess::execute("mount -o remount,rw /mnt");
+        QFile::remove("/mnt/wpa_supplicant.conf.bak");
+        QFile::rename("/mnt/wpa_supplicant.conf","/mnt/wpa_supplicant.conf.bak");
+        QProcess::execute("mount -o remount,ro /mnt");
+    }
+    else if ( !f.exists() )
+    {
+        /* There is no existing file, must be first installation */
+        qDebug() << "Copying /etc/wpa_supplicant.conf to /settings/wpa_supplicant.conf";
+        QFile::copy("/etc/wpa_supplicant.conf", "/settings/wpa_supplicant.conf");
     }
     QFile::remove("/etc/wpa_supplicant.conf");
+}
 
+
+void MainWindow::startNetworking()
+{
     /* Enable dbus so that we can use it to talk to wpa_supplicant later */
     qDebug() << "Starting dbus";
     QProcess::execute("/etc/init.d/S30dbus start");
