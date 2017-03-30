@@ -84,7 +84,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
         << 0x01000014 << 0x01000012 << 0x01000014 << 0x42 << 0x41;
     ui->list->setItemDelegate(new TwoIconsDelegate(this));
     ui->list->installEventFilter(this);
-    ui->advToolBar->setVisible(false);
+    ui->advToolBar->setVisible(true);
+    ui->toolBar->setVisible(false);
 
     QRect s = QApplication::desktop()->screenGeometry();
     if (s.height() < 500)
@@ -893,7 +894,16 @@ void MainWindow::inputSequence()
 
 void MainWindow::on_actionAdvanced_triggered(bool checked)
 {
-    ui->advToolBar->setVisible(checked);
+    if (ui->actionAdvanced->isChecked())
+    {
+        ui->toolBar->setVisible(true);
+        ui->mainToolBar->setVisible(false);
+    }
+    else
+    {
+        ui->toolBar->setVisible(false);
+        ui->mainToolBar->setVisible(true);
+    }
 }
 
 void MainWindow::on_actionEdit_config_triggered()
