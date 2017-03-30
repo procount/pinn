@@ -40,6 +40,11 @@ if grep -q vncinstall /proc/cmdline; then
     export QWS_DISPLAY="VNC:size=800x600:depth=32:0"
 fi
 
+if grep -q vncshare /proc/cmdline; then
+    #VNC server AND framebuffer for screen sharing
+    export QWS_DISPLAY="VNC:LinuxFB:size=800x600:depth=32:0"
+fi
+
 if grep -q ssh /proc/cmdline; then
     # SSH server mode. Mainly useful for debugging
     /bin/mkdir -p /dev/pts
