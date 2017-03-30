@@ -6,6 +6,7 @@
 #include <QPixmap>
 #include <QDesktopWidget>
 #include <QDebug>
+#include <QProcess>
 
 /* Progress dialog with slideshow
  *
@@ -103,6 +104,7 @@ void ProgressSlideshowDialog::enableIOaccounting()
     _sectorsStart = sectorsWritten();
     _t1.start();
     _iotimer.start(1000);
+    QProcess::execute("rm /tmp/progress");
 }
 
 void ProgressSlideshowDialog::disableIOaccounting()
@@ -131,7 +133,9 @@ void ProgressSlideshowDialog::setMaximum(qint64 bytes)
 
 void ProgressSlideshowDialog::updateIOstats()
 {
+    static int last_percent=-1;
     int sectors = sectorsWritten()-_sectorsStart;
+	
     double sectorsPerSec = sectors * 1000.0 / _t1.elapsed();
     if (_maxSectors)
     {
@@ -139,11 +143,36 @@ void ProgressSlideshowDialog::updateIOstats()
         ui->progressBar->setValue(sectors);
         ui->mbwrittenLabel->setText(tr("%1 MB of %2 MB written (%3 MB/sec)")
                                     .arg(QString::number(sectors/2048), QString::number(_maxSectors/2048), QString::number(sectorsPerSec/2048.0, 'f', 1)));
+
+        int percent = (100*sectors)/_maxSectors;
+        if (last_percent != percent)
+        {
+            last_percent=percent;
+            QString progress = QString("%1 %\n").arg(QString::number(percent));
+            QByteArray output= progress.toUtf8();
+            QFile f("/tmp/progress");
+            f.open(f.Append);
+            f.write(output);
+            f.close();
+
+        }
     }
     else
     {
         ui->mbwrittenLabel->setText(tr("%1 MB written (%2 MB/sec)")
                                     .arg(QString::number(sectors/2048), QString::number(sectorsPerSec/2048.0, 'f', 1)));
+
+        int percent = sectors/2048;
+        if (last_percent != percent)
+        {
+            last_percent=percent;
+            QString progress = QString("%1 MB\n").arg(QString::number(percent));
+            QByteArray output= progress.toUtf8();
+            QFile f("/tmp/progress");
+            f.open(f.Append);
+            f.write(output);
+            f.close();
+        }
     }
 }
 
