@@ -969,14 +969,21 @@ void MainWindow::copyWpa()
     if (QFile::exists("/mnt/wpa_supplicant.conf"))
     {
         qDebug() << "Copying  user wpa_supplicant.conf to /settings/wpa_supplicant.conf";
-        QProcess::execute("mount -o remount,rw /settings");
-        QFile::copy("/mnt/wpa_supplicant.conf", "/settings/wpa_supplicant.conf");
-        QProcess::execute("mount -o remount,ro /settings");
 
-        /* But then rename the user file to avoid overwriting any manually set SSIDs */
+        QProcess::execute("mount -o remount,rw /settings");
         QProcess::execute("mount -o remount,rw /mnt");
+
+        QFile::remove("/settings/wpa_supplicant.conf.bak");
+        QFile::rename("/settings/wpa_supplicant.conf","/settings/wpa_supplicant.conf.bak");
+        QFile::copy("/mnt/wpa_supplicant.conf", "/settings/wpa_supplicant.conf");
+        f.setPermissions( QFile::WriteUser | QFile::ReadGroup | QFile::ReadOther | QFile::ReadUser );
+
+        /* rename the user file to avoid overwriting any manually set SSIDs */
         QFile::remove("/mnt/wpa_supplicant.conf.bak");
         QFile::rename("/mnt/wpa_supplicant.conf","/mnt/wpa_supplicant.conf.bak");
+
+        QProcess::execute("sync");
+        QProcess::execute("mount -o remount,ro /settings");
         QProcess::execute("mount -o remount,ro /mnt");
     }
     else if ( !f.exists() )
