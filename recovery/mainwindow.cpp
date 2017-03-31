@@ -10,6 +10,10 @@
 #include "util.h"
 #include "twoiconsdelegate.h"
 #include "wifisettingsdialog.h"
+#include "passwd.h"
+#include "piclonedialog.h"
+#include "piclonethread.h"
+
 #include <QMessageBox>
 #include <QProgressDialog>
 #include <QMap>
@@ -968,7 +972,6 @@ void MainWindow::copyWpa()
 {
     //This file is the one used by dhcpcd
     QFile f("/settings/wpa_supplicant.conf");
-
     if ( f.exists() && f.size() == 0 )
     {
         /* Remove corrupt file */
@@ -1074,10 +1077,10 @@ void MainWindow::onOnlineStateChanged(bool online)
             QNetworkDiskCache *_cache = new QNetworkDiskCache(this);
             _cache->setCacheDirectory("/settings/cache");
             _cache->setMaximumCacheSize(8 * 1024 * 1024);
+            _cache->clear();
             _netaccess->setCache(_cache);
             QNetworkConfigurationManager manager;
             _netaccess->setConfiguration(manager.defaultConfiguration());
-
             downloadLists();
         }
         ui->actionBrowser->setEnabled(true);
@@ -1172,7 +1175,9 @@ void MainWindow::downloadListComplete()
     if (reply->error() != reply->NoError || httpstatuscode < 200 || httpstatuscode > 399)
     {
         if (_qpd)
-	    _qpd->hide();
+            _qpd->hide();
+
+        qDebug() << "Error Downloading "<< reply->url()<<" reply: "<< reply->error() << " httpstatus: "<< httpstatuscode;
         QMessageBox::critical(this, tr("Download error"), tr("Error downloading distribution list from Internet"), QMessageBox::Close);
     }
     else
@@ -1870,6 +1875,7 @@ void MainWindow::addImagesFromUSB(const QString &device)
     filterList();
 }
 
+
 /* Dynamically hide items from list depending on target drive */
 void MainWindow::filterList()
 {
@@ -1916,4 +1922,84 @@ void MainWindow::filterList()
             }
         }
     }
+}
+
+void MainWindow::on_actionClone_triggered()
+{
+    char buffer[256];
+    QString src;
+    QString dst;
+    QString src_dev;
+    QString dst_dev;
+    piclonedialog pDlg;
+    int result = pDlg.exec();
+
+    if (result==QDialog::Rejected)
+        return;
+
+    src=pDlg.get_src();
+    dst=pDlg.get_dst();
+    src_dev=pDlg.get_src_dev();
+    dst_dev=pDlg.get_dst_dev();
+
+    if (src_dev == dst_dev)
+        return;
+
+    sprintf (buffer, tr("This will erase all content on the device '%s'. Are you sure?").toUtf8().constData(), dst.toUtf8().constData());
+
+    QMessageBox msgBox(QMessageBox::Warning, tr("Clone SD Card"),
+                       buffer, 0, this);
+    msgBox.addButton(tr("Yes"), QMessageBox::AcceptRole);
+    msgBox.addButton(tr("No"), QMessageBox::RejectRole);
+    if (msgBox.exec() == QMessageBox::AcceptRole)
+    {
+        msgBox.close();
+        piCloneThread *cloneThread = new piCloneThread(src_dev, dst_dev);
+        QStringList DirList;
+        setEnabled(false);
+        //Reuse the existing Progress Slide Dialog
+        _qpd = new ProgressSlideshowDialog(DirList, "", 20);//Add dst_dev
+        _qpd->setWindowTitle("Clone SD Card");
+        ((ProgressSlideshowDialog*)_qpd)->disableIOaccounting();
+        connect(cloneThread, SIGNAL(setMaxProgress(qint64)), _qpd, SLOT(setMaximum(qint64)));
+        connect(cloneThread, SIGNAL(completed()), this, SLOT(onCloneCompleted()));
+        connect(cloneThread, SIGNAL(error(QString)), this, SLOT(onCloneError(QString)));
+        connect(cloneThread, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
+        connect(cloneThread, SIGNAL(secondaryUpdate(QString)), _qpd, SLOT(setMBWrittenText(QString)));
+        connect(cloneThread, SIGNAL(setProgress(qint64)), _qpd, SLOT(updateProgress(qint64)));
+        cloneThread->start();
+        _qpd->exec();
+        setEnabled(true);
+    }
+}
+
+void MainWindow::onCloneCompleted()
+{
+    _qpd->hide();
+
+    QMessageBox::information(this,
+                             tr("Clone Completed"),
+                             tr("Clone Completed Successfully"), QMessageBox::Ok);
+    _qpd->deleteLater();
+    _qpd = NULL;
+}
+
+void MainWindow::onCloneError(const QString &msg)
+{
+    qDebug() << "Error:" << msg;
+    if (_qpd)
+        _qpd->hide();
+    _qpd->deleteLater();
+    _qpd = NULL;
+    QMessageBox::critical(this, tr("Error"), msg, QMessageBox::Close);
+
+    //Anything could have happened, so umount all then mount what we need
+    QProcess::execute("sh -c \"umount /tmp/src");
+    QProcess::execute("sh -c \"umount /tmp/dst");
+    QProcess::execute("sh -c \"umount /dev/mmcblk0p1 /mnt\"");
+    QProcess::execute("rmdir "+QString("/tmp/src"));
+    QProcess::execute("rmdir "+QString("/tmp/dst"));
+    QProcess::execute("sh -c \"mount -o ro /dev/mmcblk0p1 /mnt\"");
+
+    setEnabled(true);
 }

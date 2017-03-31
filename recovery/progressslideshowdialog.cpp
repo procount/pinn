@@ -84,8 +84,17 @@ void ProgressSlideshowDialog::setLabelText(const QString &text)
     QString txt = text;
     txt.replace('\n',' ');
     ui->statusLabel->setText(txt);
-    qDebug() << text;
+    //qDebug() << text;
 }
+
+void ProgressSlideshowDialog::setMBWrittenText(const QString &text)
+{
+    QString txt = text;
+    txt.replace('\n',' ');
+    ui->mbwrittenLabel->setText(txt);
+    //qDebug() << text;
+}
+
 
 void ProgressSlideshowDialog::nextSlide()
 {
@@ -135,12 +144,13 @@ void ProgressSlideshowDialog::updateIOstats()
 {
     static int last_percent=-1;
     int sectors = sectorsWritten()-_sectorsStart;
-	
+
     double sectorsPerSec = sectors * 1000.0 / _t1.elapsed();
     if (_maxSectors)
     {
         sectors = qMin(_maxSectors, sectors);
         ui->progressBar->setValue(sectors);
+        setMBWrittenText(tr("%1 MB of %2 MB written (%3 MB/sec)")
         ui->mbwrittenLabel->setText(tr("%1 MB of %2 MB written (%3 MB/sec)")
                                     .arg(QString::number(sectors/2048), QString::number(_maxSectors/2048), QString::number(sectorsPerSec/2048.0, 'f', 1)));
 
@@ -174,6 +184,13 @@ void ProgressSlideshowDialog::updateIOstats()
             f.close();
         }
     }
+}
+
+void ProgressSlideshowDialog::updateProgress(qint64 value)
+{
+    int fraction = (int)(value>>9);
+    ui->progressBar->setValue(fraction);
+    //qDebug() << "updateProgress " << fraction;
 }
 
 int ProgressSlideshowDialog::sectorsWritten()

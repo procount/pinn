@@ -120,8 +120,9 @@ int main(int argc, char *argv[])
     if (!hasTouchScreen)
         KeyDetection::waitForKeyboard();
 
-    int rev = readBoardRevision();
+    qDebug() << VERSION_NUMBER;
 
+    int rev = readBoardRevision();
     qDebug() << "Board revision is " << rev;
 
     int gpioChannel;
