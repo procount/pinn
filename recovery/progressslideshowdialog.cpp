@@ -151,8 +151,7 @@ void ProgressSlideshowDialog::updateIOstats()
         sectors = qMin(_maxSectors, sectors);
         ui->progressBar->setValue(sectors);
         setMBWrittenText(tr("%1 MB of %2 MB written (%3 MB/sec)")
-        ui->mbwrittenLabel->setText(tr("%1 MB of %2 MB written (%3 MB/sec)")
-                                    .arg(QString::number(sectors/2048), QString::number(_maxSectors/2048), QString::number(sectorsPerSec/2048.0, 'f', 1)));
+            .arg(QString::number(sectors/2048), QString::number(_maxSectors/2048), QString::number(sectorsPerSec/2048.0, 'f', 1)));
 
         int percent = (100*sectors)/_maxSectors;
         if (last_percent != percent)
@@ -169,8 +168,8 @@ void ProgressSlideshowDialog::updateIOstats()
     }
     else
     {
-        ui->mbwrittenLabel->setText(tr("%1 MB written (%2 MB/sec)")
-                                    .arg(QString::number(sectors/2048), QString::number(sectorsPerSec/2048.0, 'f', 1)));
+        setMBWrittenText(tr("%1 MB written (%2 MB/sec)")
+            .arg(QString::number(sectors/2048), QString::number(sectorsPerSec/2048.0, 'f', 1)));
 
         int percent = sectors/2048;
         if (last_percent != percent)

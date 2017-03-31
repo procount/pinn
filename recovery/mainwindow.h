@@ -109,15 +109,14 @@ private slots:
     void on_actionWrite_image_to_disk_triggered();
     void on_actionCancel_triggered();
     void on_list_currentRowChanged();
-    void on_actionAdvanced_triggered(bool checked);
+    void on_actionAdvanced_triggered();
     void on_actionEdit_config_triggered();
     void on_actionBrowser_triggered();
     void on_list_doubleClicked(const QModelIndex &index);
     void on_list_itemChanged(QListWidgetItem *item);
     void on_actionWifi_triggered();
-
+    void on_actionPassword_triggered();
     void on_targetCombo_currentIndexChanged(int index);
-
     void on_actionClone_triggered();
 
 signals:
