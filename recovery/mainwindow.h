@@ -17,6 +17,7 @@
 #include <QMessageBox>
 #include <QTimer>
 #include <QTime>
+#include <QHostAddress>
 
 namespace Ui {
 class MainWindow;
@@ -55,6 +56,7 @@ protected:
     QTime _time;
     QString _model, _repo, _drive, _bootdrive;
     int _noobsconfig;
+    QHostAddress _ipaddress;
 
     QMap<QString,QVariantMap> listImages(const QString &folder = "/mnt/os", bool includeInstalled = true);
     virtual void changeEvent(QEvent * event);
