@@ -20,9 +20,21 @@
 /* Website launched when launching Arora */
 #define HOMEPAGE  "http://www.raspberrypi.org/help/"
 
+#define AGENT "Wget/1.15 (linux-gnu)"
+
 /* Location to download the list of available distributions from
  * Multiple lists can be specified by space separating the URLs */
 #define DEFAULT_REPO_SERVER  "http://downloads.raspberrypi.org/os_list_v3.json"
+
+/* Location of data for self-updating */
+#define BUILD_URL       "http://downloads.sourceforge.net/project/pinn/BUILD-DATA"
+#define UPDATE_URL      "http://downloads.sourceforge.net/project/pinn/pinn-lite.zip"
+#define README_URL      "http://downloads.sourceforge.net/project/pinn/README.md"
+#define BUILD_CURRENT   "/mnt/BUILD-DATA"
+#define BUILD_NEW       "/tmp/BUILD-DATA"
+#define BUILD_IGNORE    "/settings/BUILD-DATA"
+#define UPDATE_NEW      "/tmp/pinn-lite.zip"
+#define README_NEW      "/tmp/README.md"
 
 /* Size of recovery FAT partition in MB when using reformat drive initialization method. */
 #define RESCUE_PARTITION_SIZE  63

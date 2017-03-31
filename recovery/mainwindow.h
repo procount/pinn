@@ -49,7 +49,7 @@ protected:
     bool _hasWifi;
     int _numInstalledOS, _devlistcount;
     QNetworkAccessManager *_netaccess;
-    int _neededMB, _availableMB, _numMetaFilesToDownload, _numIconsToDownload;
+    int _neededMB, _availableMB, _numMetaFilesToDownload, _numIconsToDownload, _numBuildsToDownload;
     QMessageBox *_displayModeBox;
     QTimer _networkStatusPollTimer, _piDrivePollTimer;
     QTime _time;
@@ -74,6 +74,8 @@ protected:
     void downloadIcon(const QString &urlstring, const QString &originalurl);
     void downloadList(const QString &urlstring);
     void downloadLists();
+    void checkForUpdates(void);
+    void downloadUpdate(const QString &urlstring, const QString &saveAs);
     void startImageWrite();
     bool canInstallOs(const QString &name, const QVariantMap &values);
     bool isSupportedOs(const QString &name, const QVariantMap &values);
@@ -95,11 +97,14 @@ protected slots:
     void onCompleted();
     void onCloneError(const QString &msg);
     void onCloneCompleted();
+
+    void downloadIconRedirectCheck();
     void downloadIconComplete();
     void downloadMetaRedirectCheck();
-    void downloadIconRedirectCheck();
-    void downloadListRedirectCheck();
     void downloadMetaComplete();
+    void downloadListRedirectCheck();
+    void downloadUpdateRedirectCheck();
+    void downloadUpdateComplete();
     void onQuery(const QString &msg, const QString &title, QMessageBox::StandardButton* answer);
     void hideDialogIfNoNetwork();
     void pollForNewDisks();
@@ -118,9 +123,11 @@ private slots:
     void on_actionPassword_triggered();
     void on_targetCombo_currentIndexChanged(int index);
     void on_actionClone_triggered();
+    void on_newVersion();
 
 signals:
     void networkUp();
+    void newVersion();
 };
 
 #endif // MAINWINDOW_H

@@ -42,7 +42,8 @@ SOURCES += \
     passwd.cpp \
     piclonedialog.cpp \
     piclonethread.cpp \
-    copythread.cpp
+    copythread.cpp \
+    builddata.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -73,7 +74,8 @@ HEADERS  += \
     passwd.h \
     piclonedialog.h \
     piclonethread.h \
-    copythread.h
+    copythread.h \
+    builddata.h
 
 FORMS    += \
     mainwindow.ui \
