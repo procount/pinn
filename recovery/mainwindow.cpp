@@ -1175,22 +1175,6 @@ void MainWindow::downloadListComplete()
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
-    /* Set our clock to server time if we currently have a date before 2015 */
-    QByteArray dateStr = reply->rawHeader("Date");
-    if (!dateStr.isEmpty() && QDate::currentDate().year() < 2015)
-    {
-        // Qt 4 does not have a standard function for parsing the Date header, but it does
-        // have one for parsing a Last-Modified header that uses the same date/time format, so just use that
-        QNetworkRequest dummyReq;
-        dummyReq.setRawHeader("Last-Modified", dateStr);
-        QDateTime parsedDate = dummyReq.header(dummyReq.LastModifiedHeader).toDateTime();
-
-        struct timeval tv;
-        tv.tv_sec = parsedDate.toTime_t();
-        tv.tv_usec = 0;
-        settimeofday(&tv, NULL);
-    }
-
     if (reply->error() != reply->NoError || httpstatuscode < 200 || httpstatuscode > 399)
     {
         if (_qpd)
@@ -1486,6 +1470,26 @@ void MainWindow::downloadListRedirectCheck()
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
+
+    /* Set our clock to server time if we currently have a date before 2015 */
+    QByteArray dateStr = reply->rawHeader("Date");
+    if (!dateStr.isEmpty() && QDate::currentDate().year() < 2016)
+    {
+        // Qt 4 does not have a standard function for parsing the Date header, but it does
+        // have one for parsing a Last-Modified header that uses the same date/time format, so just use that
+        QNetworkRequest dummyReq;
+        dummyReq.setRawHeader("Last-Modified", dateStr);
+        QDateTime parsedDate = dummyReq.header(dummyReq.LastModifiedHeader).toDateTime();
+
+        struct timeval tv;
+        tv.tv_sec = parsedDate.toTime_t();
+        tv.tv_usec = 0;
+        settimeofday(&tv, NULL);
+
+	qDebug() << "Time set to: " << parsedDate;
+    }
+
+
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
