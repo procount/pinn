@@ -47,10 +47,11 @@ cd buildroot
 if [ "$(get_kernelconfig)" != "$ARCH" ]; then
     select_kernelconfig $ARCH
     KERNEL_BUILD_DIR=output/build/linux-$(get_kernel_version)
-    rm "$KERNEL_BUILD_DIR/.stamp_patched"
+    #rm "$KERNEL_BUILD_DIR/.stamp_patched"
     rm "$KERNEL_BUILD_DIR/.stamp_configured"
 fi
 
 # Run specific command
 make "$MAKECMD"
+make linux-update-defconfig
 
