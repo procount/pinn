@@ -283,7 +283,7 @@ int main(int argc, char *argv[])
                 qDebug() << "Shift detected";
                 break;
             }
-            if (hasTouchScreen && QApplication::mouseButtons().testFlag(Qt::LeftButton))
+            if (QApplication::mouseButtons().testFlag(Qt::LeftButton))
             {
                 bailout = false;
                 qDebug() << "Tap detected";

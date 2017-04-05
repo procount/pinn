@@ -223,11 +223,11 @@ void Passwd::CheckPasswordWithDetails(QString pwd)
 
     /* Determine complexity based on overall score */
     if (nScore > 100) { nScore = 100; } else if (nScore < 0) { nScore = 0; }
-    if (nScore >= 0 && nScore < 20) { sComplexity = "Very Weak"; }
-    else if (nScore >= 20 && nScore < 40) { sComplexity = "Weak"; }
-    else if (nScore >= 40 && nScore < 60) { sComplexity = "Good"; }
-    else if (nScore >= 60 && nScore < 80) { sComplexity = "Strong"; }
-    else if (nScore >= 80 && nScore <= 100) { sComplexity = "Very Strong"; }
+    if (nScore >= 0 && nScore < 20) { sComplexity = tr("Very Weak"); }
+    else if (nScore >= 20 && nScore < 40) { sComplexity = tr("Weak"); }
+    else if (nScore >= 40 && nScore < 60) { sComplexity = tr("Good"); }
+    else if (nScore >= 60 && nScore < 80) { sComplexity = tr("Strong"); }
+    else if (nScore >= 80 && nScore <= 100) { sComplexity = tr("Very Strong"); }
 
     // Store score and complexity in dataset
     _nScore = nScore;
