@@ -10,8 +10,11 @@
  *
  */
 
+#include <QListWidgetItem>
+#include <QModelIndex>
 #include <QDialog>
 #include <QVariantList>
+#include <QVariantMap>
 #include <QModelIndex>
 #include <QTimer>
 #include <QListWidgetItem>
@@ -25,7 +28,7 @@ class BootSelectionDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit BootSelectionDialog(const QString &drive, const QString &defaultPartition, bool dsi, QWidget *parent = 0);
+    explicit BootSelectionDialog(const QString &drive, const QString &defaultPartition, bool stickyboot, bool dsi=false, QWidget *parent = 0);
     ~BootSelectionDialog();
     virtual void accept();
     void setDisplayMode();
@@ -47,10 +50,11 @@ protected:
     void stopCountdown();
     void updateConfig4dsi(QByteArray partition);
     bool _dsi;
-    int _inSelection;
+    int extractPartition(QVariantMap m);
 
 private:
     Ui::BootSelectionDialog *ui;
+    bool _inSelection;
 };
 
 #endif // BOOTSELECTIONDIALOG_H
