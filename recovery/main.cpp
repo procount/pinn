@@ -42,7 +42,8 @@ void showBootMenu(const QString &drive, const QString &defaultPartition, bool se
     QWSServer::setBackground(Qt::white);
     QWSServer::setCursorVisible(true);
 #endif
-    BootSelectionDialog bsd(drive, defaultPartition);
+    //Just reuse setDisplayMode as indicator for sticky boot direct mode
+    BootSelectionDialog bsd(drive, defaultPartition, setDisplayMode);
     if (setDisplayMode)
         bsd.setDisplayMode();
     bsd.exec();
