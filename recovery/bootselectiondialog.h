@@ -14,6 +14,7 @@
 #include <QVariantList>
 #include <QModelIndex>
 #include <QTimer>
+#include <QListWidgetItem>
 
 namespace Ui {
 class BootSelectionDialog;
@@ -33,9 +34,12 @@ public:
 protected slots:
     void countdown();
     void bootPartition();
+    void onKeyPress(int);
 
 private slots:
     void on_list_activated(const QModelIndex &index);
+    void on_list_itemChanged(QListWidgetItem *item);
+    void on_pushButton_clicked();
 
 protected:
     QTimer _timer;
@@ -43,6 +47,8 @@ protected:
     void stopCountdown();
     void updateConfig4dsi(QByteArray partition);
     bool _dsi;
+    int _inSelection;
+
 private:
     Ui::BootSelectionDialog *ui;
 };
