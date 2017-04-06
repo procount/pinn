@@ -1157,6 +1157,7 @@ void MainWindow::downloadLists()
 
     foreach (QString url, urls)
     {
+        qDebug() << "Downloading list from " << url;
         if (url.startsWith("/"))
             processJson( Json::parse(getFileContents(url)) );
         else
@@ -2201,7 +2202,7 @@ void MainWindow::downloadUpdateComplete()
 
         if (newver > currentver)
         {
-            emit (newVersion());
+            on_newVersion();
         }
     }
     else if (type=="UPDATE") //upgrade
