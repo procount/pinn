@@ -65,6 +65,7 @@ void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode);
 
 extern CecListener * cec;
 
+extern QStringList downloadRepoUrls;
 
 /* Main window
  *
@@ -223,8 +224,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
             end = end-pos-searchForLen;
         _repo = cmdline.mid(pos+searchForLen, end);
     }
-    else
-    {
+    else if (!cmdline.contains ("-no_default_source"))
+    {	//Only add if not excluded
         _repo = DEFAULT_REPO_SERVER;
     }
 
@@ -1147,6 +1148,10 @@ void MainWindow::downloadLists()
 {
     _numIconsToDownload = 0;
     QStringList urls = _repo.split(' ', QString::SkipEmptyParts);
+
+    //Add-in PINN's list of repos
+    urls << downloadRepoUrls;
+    urls.removeDuplicates();
 
     checkForUpdates();
 
