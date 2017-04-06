@@ -1211,9 +1211,9 @@ void MainWindow::downloadListComplete()
     {
         if (_qpd)
             _qpd->hide();
-
+        QString errstr = tr("Error downloading distribution list from Internet:\n") + reply->url().toString();
         qDebug() << "Error Downloading "<< reply->url()<<" reply: "<< reply->error() << " httpstatus: "<< httpstatuscode;
-        QMessageBox::critical(this, tr("Download error"), tr("Error downloading distribution list from Internet"), QMessageBox::Close);
+        QMessageBox::critical(this, tr("Download error"), errstr, QMessageBox::Close);
     }
     else
     {
