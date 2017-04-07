@@ -65,6 +65,7 @@ void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode);
 
 extern CecListener * cec;
 
+extern QStringList downloadRepoUrls;
 
 /* Main window
  *
@@ -223,8 +224,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
             end = end-pos-searchForLen;
         _repo = cmdline.mid(pos+searchForLen, end);
     }
-    else
-    {
+    else if (!cmdline.contains ("-no_default_source"))
+    {	//Only add if not excluded
         _repo = DEFAULT_REPO_SERVER;
     }
 
@@ -1148,10 +1149,15 @@ void MainWindow::downloadLists()
     _numIconsToDownload = 0;
     QStringList urls = _repo.split(' ', QString::SkipEmptyParts);
 
+    //Add-in PINN's list of repos
+    urls << downloadRepoUrls;
+    urls.removeDuplicates();
+
     checkForUpdates();
 
     foreach (QString url, urls)
     {
+        qDebug() << "Downloading list from " << url;
         if (url.startsWith("/"))
             processJson( Json::parse(getFileContents(url)) );
         else
@@ -1211,9 +1217,9 @@ void MainWindow::downloadListComplete()
     {
         if (_qpd)
             _qpd->hide();
-
+        QString errstr = tr("Error downloading distribution list from Internet:\n") + reply->url().toString();
         qDebug() << "Error Downloading "<< reply->url()<<" reply: "<< reply->error() << " httpstatus: "<< httpstatuscode;
-        QMessageBox::critical(this, tr("Download error"), tr("Error downloading distribution list from Internet"), QMessageBox::Close);
+        QMessageBox::critical(this, tr("Download error"), errstr, QMessageBox::Close);
     }
     else
     {
@@ -2196,7 +2202,7 @@ void MainWindow::downloadUpdateComplete()
 
         if (newver > currentver)
         {
-            emit (newVersion());
+            on_newVersion();
         }
     }
     else if (type=="UPDATE") //upgrade

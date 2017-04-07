@@ -40,8 +40,9 @@
 
 bool dsi=false;
 CecListener *cec = NULL;
-
 CecListener *enableCEC(QObject *parent=0);
+
+QStringList downloadRepoUrls;
 
 void showBootMenu(const QString &drive, const QString &defaultPartition, bool setDisplayMode)
 {
@@ -149,6 +150,7 @@ int main(int argc, char *argv[])
     bool keyboard_trigger = true;
     bool force_trigger = false;
     bool noobsconfig = true;
+    bool use_default_source = true;
 
     QString defaultLang = "en";
     QString defaultKeyboard = "gb";
@@ -199,6 +201,32 @@ int main(int argc, char *argv[])
         {
             if (argc > i+1)
                 defaultPartition = argv[i+1];
+        }
+        // Allow default repos to be specified in commandline
+        else if (strcmp(argv[i], "-no_default_source") == 0)
+        {
+             use_default_source = false;
+        }
+        // Allow Extra repos to be specified in commandline
+        else if (strcmp(argv[i], "-alt_image_source") == 0)
+        {
+             //This could append multiple URLs now
+             if (argc > i+1)
+             {
+                 QString url(argv[i+1]);
+                 if (url.startsWith("http://"))
+                    downloadRepoUrls << url;
+             }
+
+        }
+    }
+
+    if (use_default_source)
+    {
+        QStringList urls = QString(DEFAULT_REPO_SERVER).split(' ', QString::SkipEmptyParts);
+        foreach (QString url, urls)
+        {
+            downloadRepoUrls << url;
         }
     }
 

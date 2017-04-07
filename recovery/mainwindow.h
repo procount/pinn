@@ -84,6 +84,7 @@ protected:
     void addImagesFromUSB(const QString &device);
     void filterList();
     void copyWpa();
+    void on_newVersion();
 
 protected slots:
     void populate();
@@ -127,7 +128,6 @@ private slots:
     void on_actionPassword_triggered();
     void on_targetCombo_currentIndexChanged(int index);
     void on_actionClone_triggered();
-    void on_newVersion();
 
 signals:
     void networkUp();
