@@ -387,3 +387,11 @@ QString WifiSettingsDialog::removeQuotes(QString str)
 
     return str;
 }
+
+void WifiSettingsDialog::on_checkBox_stateChanged(int arg1)
+{
+    enum QLineEdit::EchoMode mode = QLineEdit::Password;
+    if (arg1)
+        mode = QLineEdit::Normal;
+    ui->passwordEdit->setEchoMode(mode);
+}
