@@ -282,7 +282,7 @@ void MainWindow::populate()
     /* Ask user to wait while list is populated */
     if (!_allowSilent)
     {
-        _qpd = new QProgressDialog(tr("Please wait while NOOBS initialises"), QString(), 0, 0, this);
+        _qpd = new QProgressDialog(tr("Please wait while PINN initialises"), QString(), 0, 0, this);
         _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
         _qpd->show();
 
@@ -744,7 +744,7 @@ void MainWindow::on_list_currentRowChanged()
 
 void MainWindow::update_window_title()
 {
-    setWindowTitle(QString(tr("NOOBS v%1 - Built: %2 (%3)")).arg(VERSION_NUMBER).arg(QString::fromLocal8Bit(__DATE__)).arg(_ipaddress.toString()));
+    setWindowTitle(QString(tr("PINN v%1 - Built: %2 (%3)")).arg(VERSION_NUMBER).arg(QString::fromLocal8Bit(__DATE__)).arg(_ipaddress.toString()));
 }
 
 void MainWindow::changeEvent(QEvent* event)
@@ -881,7 +881,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
 
         // Let user find the best display mode for their display
-        // experimentally by using keys 1-4. NOOBS will default to using HDMI preferred mode.
+        // experimentally by using keys 1-4. PINN will default to using HDMI preferred mode.
 
         // HDMI preferred mode
         if (keyEvent->key() == Qt::Key_1 && _currentMode != 0)
@@ -1715,7 +1715,7 @@ void MainWindow::hideDialogIfNoNetwork()
                 {
                     QMessageBox::critical(this,
                                           tr("No network access"),
-                                          tr("Network access is required to use NOOBS without local images. Please select your wifi network in the next screen."),
+                                          tr("Network access is required to use PINN without local images. Please select your wifi network in the next screen."),
                                           QMessageBox::Close);
                     on_actionWifi_triggered();
                 }
@@ -1723,7 +1723,7 @@ void MainWindow::hideDialogIfNoNetwork()
                 {
                     QMessageBox::critical(this,
                                           tr("No network access"),
-                                          tr("Wired network access is required to use NOOBS without local images. Please insert a network cable into the network port."),
+                                          tr("Wired network access is required to use PINN without local images. Please insert a network cable into the network port."),
                                           QMessageBox::Close);
                 }
             }
