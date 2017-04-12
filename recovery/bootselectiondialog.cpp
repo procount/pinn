@@ -353,12 +353,12 @@ bool BootSelectionDialog::eventFilter(QObject *obj, QEvent *event)
 void BootSelectionDialog::stopCountdown()
 {
     _timer.stop();
-    setWindowTitle(tr("Select OS to boot"));
+    setWindowTitle(tr("PINN - Select OS to boot"));
 }
 
 void BootSelectionDialog::countdown()
 {
-    setWindowTitle(tr("Previously selected OS will boot in %1 seconds").arg(--_countdown));
+    setWindowTitle(tr("PINN - Previously selected OS will boot in %1 seconds").arg(--_countdown));
     if (cec->hasKeyPressed())
         stopCountdown();
     if (_countdown == 0)
