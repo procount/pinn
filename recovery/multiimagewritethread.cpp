@@ -316,7 +316,7 @@ bool MultiImageWriteThread::writePartitionTable(const QString &drive, const QMap
 {
     /* Write partition table using sfdisk */
 
-    /* Fixed NOOBS partition */
+    /* Fixed PINN partition */
     int startP1 = getFileContents(sysclassblock(drive, 1)+"/start").trimmed().toInt();
     int sizeP1  = getFileContents(sysclassblock(drive, 1)+"/size").trimmed().toInt();
     /* Fixed start of extended partition. End is not fixed, as it depends on primary partition 3 & 4 */
