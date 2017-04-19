@@ -146,21 +146,26 @@ BootSelectionDialog::BootSelectionDialog(const QString &drive, const QString &de
             QString partnrStr = QString::number(partition);
             QString stickynrStr = QString::number(oldSticky);
 
+            qDebug() << "partnrStr = " << partnrStr;
+            qDebug() << "stickynrStr = " << stickynrStr;
+
             QRegExp partnrRx("([0-9]+)$");
             for (int i=0; i<ui->list->count(); i++)
             {
                 QVariantMap m = ui->list->item(i)->data(Qt::UserRole).toMap();
                 QString bootpart = m.value("partitions").toList().first().toString();
+                qDebug() << "Partition " << i << " = " << bootpart;
                 if (partnrRx.indexIn(bootpart) != -1)
                 {
+                    qDebug() << "partnrRx = " << partnrRx.cap(1);
                     if (partnrRx.cap(1) == partnrStr)
                     {
-                        qDebug() << "Previous OS at" << bootpart;
+                        qDebug() << "Previous OS " << bootpart << " at " <<i;
                         ui->list->setCurrentRow(i);
-                        break;
                     }
                     if (partnrRx.cap(1) == stickynrStr)
                     {
+                        qDebug() << "found sticky at " << i;
                         ui->list->item(i)->setCheckState(Qt::Checked);
                     }
                 }
