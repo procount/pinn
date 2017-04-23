@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # backup the source code to pinn
-git push -f pinn pinn:master
+#git push -f pinn2 pinn:master
 cd ~/pinn
 git checkout -f master
 # move the readme documentation around
@@ -12,6 +12,8 @@ git add README_PINN.md
 git commit --amend 
 
 # Copy the distributable files
+cp history.md ../pinn-release/README.md
+
 cd ~/noobs_test/output
 dst=~/pinn-release/dist/
 
