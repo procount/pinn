@@ -1838,7 +1838,7 @@ void MainWindow::on_targetCombo_currentIndexChanged(int index)
         {
             if (QMessageBox::question(this,
                                       tr("Reformat drive?"),
-                                      tr("Are you sure you want to reformat the drive '%1' for use with NOOBS? All existing data on the drive will be deleted!").arg(devname),
+                                      tr("Are you sure you want to reformat the drive '%1' for use with PINN? All existing data on the drive will be deleted!").arg(devname),
                                       QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
             {
                 InitDriveThread idt("/dev/"+devname);

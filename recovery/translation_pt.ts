@@ -4,13 +4,7 @@
 <context>
     <name>BootSelectionDialog</name>
     <message>
-        <location filename="bootselectiondialog.ui" line="+19"/>
-        <location filename="bootselectiondialog.cpp" line="+258"/>
-        <source>Select OS to boot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="bootselectiondialog.cpp" line="-213"/>
+        <location filename="bootselectiondialog.cpp" line="+59"/>
         <source>Cannot display boot menu</source>
         <translation type="unfinished"></translation>
     </message>
@@ -20,7 +14,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+154"/>
+        <location line="+242"/>
         <source>HDMI safe mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -35,8 +29,24 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+56"/>
-        <source>Previously selected OS will boot in %1 seconds</source>
+        <location line="+57"/>
+        <source>PINN - Previously selected OS will boot in %1 seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="bootselectiondialog.ui" line="+25"/>
+        <location filename="bootselectiondialog.cpp" line="-5"/>
+        <source>PINN - Select OS to boot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Sticky default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>BOOT</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -96,8 +106,10 @@
     </message>
     <message>
         <location line="-197"/>
-        <source>Would you like NOOBS to create one for you?
+        <source>Would you like PINN to create one for you?
 WARNING: This will erase all data on your SD card</source>
+        <oldsource>Would you like PINN to create one for you?
+WARNING: This will erase all data on your SD card</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -117,7 +129,8 @@ WARNING: This will erase all data on your SD card</source>
     </message>
     <message>
         <location line="+8"/>
-        <source>SD card has now been formatted ready for NOOBS installation. Please re-copy the NOOBS files onto the card and reboot</source>
+        <source>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</source>
+        <oldsource>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -252,7 +265,7 @@ WARNING: This will erase all data on your SD card</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.ui" line="+53"/>
+        <location filename="mainwindow.ui" line="+47"/>
         <source>Disk space</source>
         <translation type="unfinished"></translation>
     </message>
@@ -272,7 +285,12 @@ WARNING: This will erase all data on your SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+63"/>
+        <location line="+42"/>
+        <source>toolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+79"/>
         <source>Install (i)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -297,9 +315,70 @@ WARNING: This will erase all data on your SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location line="+66"/>
+        <source>Wifi (w)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>Password (p)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Change password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>P</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Backup (b)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+15"/>
+        <source>fschk (f)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>F</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Clone (c)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-196"/>
+        <location line="+76"/>
         <source>Advanced</source>
         <translation>Avançado</translation>
+    </message>
+    <message>
+        <location line="-3"/>
+        <source>Advanced (a)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>A</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+12"/>
@@ -322,12 +401,7 @@ WARNING: This will erase all data on your SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+15"/>
-        <source>Wifi networks (w)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+3"/>
+        <location line="+18"/>
         <source>Select a wifi network to connect to</source>
         <translation type="unfinished"></translation>
     </message>
@@ -337,30 +411,25 @@ WARNING: This will erase all data on your SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="+338"/>
-        <location line="+920"/>
-        <location line="+560"/>
+        <location filename="mainwindow.cpp" line="+372"/>
+        <location line="+969"/>
+        <location line="+586"/>
         <source>RECOMMENDED</source>
         <translation>RECOMENDADO</translation>
     </message>
     <message>
-        <location line="-1228"/>
+        <location line="-1298"/>
         <location line="+19"/>
         <source>Confirm</source>
         <translation>Confirmar</translation>
     </message>
     <message>
-        <location line="+94"/>
-        <source>NOOBS v%1 - Built: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-605"/>
+        <location line="-527"/>
         <source>Setting up SD card</source>
         <translation>Configurando cartão SD</translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+46"/>
         <source>Error mounting settings partition</source>
         <translation type="unfinished"></translation>
     </message>
@@ -380,24 +449,30 @@ WARNING: This will erase all data on your SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+434"/>
+        <location line="+110"/>
+        <source>Please wait while PINN initialises</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+339"/>
         <source>Warning: this will install the selected Operating System(s). All existing data on the SD card will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will install the selected Operating System. All existing data on the SD card will be overwritten.</oldsource>
         <translation>Você tem certeza que deseja gravar a imagem? ISSO EXCLUIRÁ TODOS OS DADOS EXISTENTES!</translation>
     </message>
     <message>
-        <location line="+101"/>
-        <location line="+470"/>
+        <location line="+102"/>
+        <location line="+510"/>
+        <location line="+828"/>
         <source>Error</source>
         <translation></translation>
     </message>
     <message>
-        <location line="-815"/>
+        <location line="-1689"/>
         <source>INSTALLED</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+462"/>
+        <location line="+472"/>
         <source>Display Mode Changed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -407,7 +482,7 @@ WARNING: This will erase all data on your SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-616"/>
+        <location line="-637"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -417,12 +492,7 @@ WARNING: This will erase all data on your SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+118"/>
-        <source>Please wait while NOOBS initialises</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+337"/>
+        <location line="+471"/>
         <source>SD card</source>
         <translation type="unfinished"></translation>
     </message>
@@ -442,7 +512,7 @@ WARNING: This will erase all data on your SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+22"/>
+        <location line="+23"/>
         <source>OS(es) installed</source>
         <oldsource>OS installed</oldsource>
         <translation type="unfinished"></translation>
@@ -454,7 +524,12 @@ WARNING: This will erase all data on your SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+64"/>
+        <location line="+32"/>
+        <source>PINN v%1 - Built: %2 (%3)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+36"/>
         <source>HDMI safe mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -475,24 +550,102 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+338"/>
-        <location line="+341"/>
+        <location line="+372"/>
+        <source>Error downloading distribution list from Internet:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <location line="+370"/>
         <location line="+10"/>
+        <location line="+557"/>
+        <location line="+18"/>
         <source>Download error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-351"/>
-        <source>Error downloading distribution list from Internet</source>
+        <location line="-459"/>
+        <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+8"/>
+        <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+115"/>
+        <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+177"/>
+        <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Clone SD Card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>Clone Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Clone Completed Successfully</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+107"/>
+        <source>Error downloading update file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+74"/>
+        <source>PINN UPDATE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>A new version of PINN is available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Do you want to download this version?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>Downloading Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Press ESC to cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1023"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+220"/>
+        <location line="+228"/>
         <source>Needed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -502,44 +655,30 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+106"/>
+        <location line="+127"/>
         <source>Error downloading meta file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+10"/>
+        <location line="+575"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+116"/>
-        <source>Network access is required to use NOOBS without local images. Please select your wifi network in the next screen.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+8"/>
-        <source>Wired network access is required to use NOOBS without local images. Please insert a network cable into the network port.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+114"/>
+        <location line="-337"/>
         <source>Reformat drive?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with NOOBS? All existing data on the drive will be deleted!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-810"/>
-        <location line="+686"/>
+        <location line="-857"/>
+        <location line="+734"/>
         <location line="+8"/>
         <source>No network access</source>
         <translation>Sem acesso de rede</translation>
     </message>
     <message>
-        <location line="-693"/>
+        <location line="-741"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Acesso de rede cabeado é necessário para este recurso. Por favor, insira um cabo de rede.</translation>
     </message>
@@ -572,7 +711,7 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+167"/>
+        <location line="+166"/>
         <source>Finish writing (sync)</source>
         <translation>Finalizando a gravação</translation>
     </message>
@@ -582,7 +721,7 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+33"/>
         <location line="+6"/>
         <source>%1: Writing OS image</source>
         <oldsource>Writing image</oldsource>
@@ -597,17 +736,18 @@ Would you like to make this setting permanent?</source>
     <message>
         <location line="+8"/>
         <location line="+24"/>
+        <location line="+168"/>
         <source>%1: Error mounting file system</source>
         <oldsource>Error mounting file system</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-39"/>
+        <location line="-207"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-416"/>
+        <location line="-425"/>
         <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -627,7 +767,7 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+61"/>
+        <location line="+60"/>
         <source>Writing partition table</source>
         <translation type="unfinished"></translation>
     </message>
@@ -652,7 +792,7 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+88"/>
+        <location line="+98"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation type="unfinished"></translation>
     </message>
@@ -693,7 +833,12 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="+9"/>
+        <source>%1: Configuring flavour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
         <source>%1: Unmounting FAT partition</source>
         <oldsource>%1: Patching BCD file</oldsource>
         <translation type="unfinished"></translation>
@@ -705,7 +850,7 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+81"/>
+        <location line="+265"/>
         <source>Error creating file system</source>
         <translation type="unfinished"></translation>
     </message>
@@ -729,14 +874,77 @@ Would you like to make this setting permanent?</source>
     </message>
 </context>
 <context>
+    <name>Passwd</name>
+    <message>
+        <location filename="passwd.ui" line="+14"/>
+        <source>Reset Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+39"/>
+        <source>Retype Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Strength</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+35"/>
+        <source>Show Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Use Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="passwd.cpp" line="+226"/>
+        <source>Very Weak</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Weak</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Good</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Strong</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Very Strong</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ProgressSlideshowDialog</name>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="+140"/>
+        <location filename="progressslideshowdialog.cpp" line="+153"/>
         <source>%1 MB of %2 MB written (%3 MB/sec)</source>
         <translation>%1 MB de %2 MB gravado(s) (%3 MB/s)</translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="+18"/>
         <source>%1 MB written (%2 MB/sec)</source>
         <translation>%1 MB gravado(s) (%2 MB/s)</translation>
     </message>
@@ -779,7 +987,22 @@ Would you like to make this setting permanent?</source>
         <translation>&amp;Não</translation>
     </message>
     <message>
-        <location line="-6"/>
+        <location line="+1"/>
+        <source>Ignore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show Details...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Hide Details...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-9"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
@@ -864,6 +1087,62 @@ Would you like to make this setting permanent?</source>
     <message>
         <location line="+14"/>
         <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Show Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>piCloneThread</name>
+    <message>
+        <location filename="piclonethread.cpp" line="+87"/>
+        <source>Preparing target...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>Reading Partitions...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+46"/>
+        <source>Preparing Partitions...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Creating partition %1 of %2 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+106"/>
+        <source>Copying partition %d of %d...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+71"/>
+        <source>Copying %1 MB of %2 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>piclonedialog</name>
+    <message>
+        <location filename="piclonedialog.ui" line="+14"/>
+        <source>Clone SD Card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>Copy From Device:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+33"/>
+        <source>Copy To Device:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

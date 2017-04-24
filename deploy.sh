@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # backup the source code to pinn
-#git push -f pinn2 pinn:master
+git push -f pinn pinn2:master
 cd ~/pinn
 git checkout -f master
 # move the readme documentation around
