@@ -31,23 +31,23 @@
     <message>
         <location filename="bootselectiondialog.cpp" line="366"/>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN - Aurrez hautatutako SEa %1 segundo barru abiaraziko da</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="25"/>
         <location filename="bootselectiondialog.cpp" line="361"/>
         <source>PINN - Select OS to boot</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN - Hautatu SEa abiarazteko</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="45"/>
         <source>Sticky default</source>
-        <translation type="unfinished"></translation>
+        <translation>Lehenespen itsaskorra</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="52"/>
         <source>BOOT</source>
-        <translation type="unfinished"></translation>
+        <translation>ABIOA</translation>
     </message>
 </context>
 <context>
@@ -149,42 +149,42 @@
     <message>
         <location filename="initdrivethread.cpp" line="342"/>
         <source>Saving boot files to memory</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="345"/>
         <source>Error saving boot files to memory. SD card may be damaged.</source>
-        <translation type="unfinished"></translation>
+        <translation>Errorea abioko fitxategiak memorian gordetzean. SD txartela hondatuta egon daiteke.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="361"/>
         <source>Creating partitions</source>
-        <translation type="unfinished"></translation>
+        <translation>Partizioak sortzen</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="365"/>
         <source>Error partitioning</source>
-        <translation type="unfinished"></translation>
+        <translation>Erroreak partizioak egitean</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="369"/>
         <source>Formatting boot partition (fat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Abioko partizioa formateatzen (fat)</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="372"/>
         <source>Error formatting boot partition (fat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Errorea abioko partizioa formateatzean (fat)</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="376"/>
         <source>Copying boot files to storage</source>
-        <translation type="unfinished"></translation>
+        <translation>Abioko fitxategiak biltegira kopiatzen</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="452"/>
         <source>Setting disk volume ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Diskoaren bolumen IDa ezartzen</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="160"/>
@@ -192,7 +192,7 @@
 WARNING: This will erase all data on your SD card</source>
         <oldsource>Would you like PINN to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
-        <translation type="unfinished">PINNek bat sortzea nahi duzu?
+        <translation>PINNek bat sortzea nahi duzu?
 KONTUZ: Honek zure SD txarteleko datu guztiak ezabatuko ditu</translation>
     </message>
     <message>
@@ -214,7 +214,7 @@ KONTUZ: Honek zure SD txarteleko datu guztiak ezabatuko ditu</translation>
         <location filename="initdrivethread.cpp" line="190"/>
         <source>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</source>
         <oldsource>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</oldsource>
-        <translation type="unfinished">SD txartela formateatu da eta PINN instalaziorako prest dago. Mesedez, kopiatu berriz PINN fitxategiak txartelean eta berrabiarazi</translation>
+        <translation>SD txartela formateatu da eta PINN instalaziorako prest dago. Mesedez, kopiatu berriz PINN fitxategiak txartelean eta berrabiarazi</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="195"/>
@@ -276,7 +276,7 @@ KONTUZ: Honek zure SD txarteleko datu guztiak ezabatuko ditu</translation>
     <message>
         <location filename="mainwindow.ui" line="59"/>
         <source>Destination drive:</source>
-        <translation type="unfinished"></translation>
+        <translation>Helburuko unitatea:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="82"/>
@@ -291,7 +291,7 @@ KONTUZ: Honek zure SD txarteleko datu guztiak ezabatuko ditu</translation>
     <message>
         <location filename="mainwindow.ui" line="131"/>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation>tresnaBarra</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="210"/>
@@ -322,52 +322,52 @@ KONTUZ: Honek zure SD txarteleko datu guztiak ezabatuko ditu</translation>
     <message>
         <location filename="mainwindow.ui" line="294"/>
         <source>Wifi (w)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wifia (w)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="312"/>
         <source>Password (p)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasahitza (p)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="315"/>
         <source>Change password</source>
-        <translation type="unfinished"></translation>
+        <translation>Aldatu pasahitza</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="318"/>
         <source>P</source>
-        <translation type="unfinished"></translation>
+        <translation>P</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="330"/>
         <source>Backup (b)</source>
-        <translation type="unfinished"></translation>
+        <translation>Babeskopia (b)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="333"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="348"/>
         <source>fschk (f)</source>
-        <translation type="unfinished"></translation>
+        <translation>fschk (f)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="351"/>
         <source>F</source>
-        <translation type="unfinished"></translation>
+        <translation>F</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="363"/>
         <source>Clone (c)</source>
-        <translation type="unfinished"></translation>
+        <translation>Klonatu (c)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="366"/>
         <source>C</source>
-        <translation type="unfinished"></translation>
+        <translation>C</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="170"/>
@@ -378,12 +378,12 @@ KONTUZ: Honek zure SD txarteleko datu guztiak ezabatuko ditu</translation>
     <message>
         <location filename="mainwindow.ui" line="243"/>
         <source>Advanced (a)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aurreratua (a)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="249"/>
         <source>A</source>
-        <translation type="unfinished"></translation>
+        <translation>A</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="261"/>
@@ -453,7 +453,7 @@ KONTUZ: Honek zure SD txarteleko datu guztiak ezabatuko ditu</translation>
     <message>
         <location filename="mainwindow.cpp" line="285"/>
         <source>Please wait while PINN initialises</source>
-        <translation type="unfinished"></translation>
+        <translation>Mesedez itxaron PINN hasieratu arte</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="372"/>
@@ -476,82 +476,82 @@ KONTUZ: Honek zure SD txarteleko datu guztiak ezabatuko ditu</translation>
     <message>
         <location filename="mainwindow.cpp" line="747"/>
         <source>PINN v%1 - Built: %2 (%3)</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN v%1 - Eraikitzea: %2 (%3)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1718"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sareko sarbidea behar da PINN irudi lokalik gabe erabiltzeko. Hautatu zure wifi sarea hurrengo pantailan.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1726"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
-        <translation type="unfinished"></translation>
+        <translation>Haridun sareko sarbidea behar da PINN irudi lokalik gabe erabiltzeko. Txertatu sareko kable bat sareko atakan.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1841"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ziur zaude &apos;%1&apos; unitatea PINNekin erabiltzeko birformateatu nahi duzula? Unitateko datu guztiak ezabatuko dira!</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2018"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>Honek &apos;%s&apos; gailuko eduki guztiak ezabatuko ditu. Ziur zaude?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2020"/>
         <source>Clone SD Card</source>
-        <translation type="unfinished"></translation>
+        <translation>Klonatu SD txartela</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2022"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Bai</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2023"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2051"/>
         <source>Clone Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Klonazio burututa</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2052"/>
         <source>Clone Completed Successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>Klonazioa behar bezala burutu da</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2159"/>
         <source>Error downloading update file</source>
-        <translation type="unfinished"></translation>
+        <translation>Errorea eguneraketa fitxategia deskargatzean</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2233"/>
         <source>PINN UPDATE</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN EGUNERAKETA</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2234"/>
         <source>A new version of PINN is available</source>
-        <translation type="unfinished"></translation>
+        <translation>PINNen bertsio berri bat eskuragarri dago</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2235"/>
         <source>Do you want to download this version?</source>
-        <translation type="unfinished"></translation>
+        <translation>Bertsio hau deskargatu nahi duzu?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2259"/>
         <source>Downloading Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Eguneraketa deskargatzen</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2259"/>
         <source>Press ESC to cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Sakatu ESC ezeztatzeko</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="624"/>
@@ -561,12 +561,12 @@ KONTUZ: Honek zure SD txarteleko datu guztiak ezabatuko ditu</translation>
     <message>
         <location filename="mainwindow.cpp" line="626"/>
         <source>SD card</source>
-        <translation type="unfinished"></translation>
+        <translation>SD txartela</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="626"/>
         <source>drive</source>
-        <translation type="unfinished"></translation>
+        <translation>unitatea</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="649"/>
@@ -643,7 +643,7 @@ Ezarpen hau iraunkortu nahi duzu?</translation>
         <location filename="mainwindow.cpp" line="1220"/>
         <source>Error downloading distribution list from Internet:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Errorea banaketa zerrenda Internetetik deskargatzean:</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1222"/>
@@ -683,7 +683,7 @@ Ezarpen hau iraunkortu nahi duzu?</translation>
     <message>
         <location filename="mainwindow.cpp" line="1840"/>
         <source>Reformat drive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Unitatea birformateatu?</translation>
     </message>
 </context>
 <context>
@@ -753,7 +753,7 @@ Ezarpen hau iraunkortu nahi duzu?</translation>
     <message>
         <location filename="multiimagewritethread.cpp" line="280"/>
         <source>Writing boot partition table</source>
-        <translation type="unfinished"></translation>
+        <translation>Abioko partizio-taula idazten</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="296"/>
@@ -831,7 +831,7 @@ Ezarpen hau iraunkortu nahi duzu?</translation>
     <message>
         <location filename="multiimagewritethread.cpp" line="635"/>
         <source>%1: Configuring flavour</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: Zaporea konfiguratzen</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="649"/>
@@ -872,62 +872,62 @@ Ezarpen hau iraunkortu nahi duzu?</translation>
     <message>
         <location filename="passwd.ui" line="14"/>
         <source>Reset Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Berrezarri pasahitza</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="45"/>
         <source>Username</source>
-        <translation type="unfinished">Erabiltzaile-izena</translation>
+        <translation>Erabiltzaile-izena</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="71"/>
         <source>Password</source>
-        <translation type="unfinished">Pasahitza</translation>
+        <translation>Pasahitza</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="110"/>
         <source>Retype Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Idatzi berriz pasahitza</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="123"/>
         <source>Strength</source>
-        <translation type="unfinished"></translation>
+        <translation>Sendotasuna</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="158"/>
         <source>Show Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Erakutsi pasahitza</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="171"/>
         <source>Use Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Erabili lehenetsia</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="226"/>
         <source>Very Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>Oso ahula</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="227"/>
         <source>Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>Ahula</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="228"/>
         <source>Good</source>
-        <translation type="unfinished"></translation>
+        <translation>Ona</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="229"/>
         <source>Strong</source>
-        <translation type="unfinished"></translation>
+        <translation>Sendoa</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="230"/>
         <source>Very Strong</source>
-        <translation type="unfinished"></translation>
+        <translation>Oso sendoa</translation>
     </message>
 </context>
 <context>
@@ -988,17 +988,17 @@ Ezarpen hau iraunkortu nahi duzu?</translation>
     <message>
         <location filename="languagedialog.cpp" line="35"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez ikusi egin</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="36"/>
         <source>Show Details...</source>
-        <translation type="unfinished"></translation>
+        <translation>Erakutsi xehetasunak...</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="37"/>
         <source>Hide Details...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezkutatu xehetasunak...</translation>
     </message>
 </context>
 <context>
@@ -1041,7 +1041,7 @@ Ezarpen hau iraunkortu nahi duzu?</translation>
     <message>
         <location filename="wifisettingsdialog.ui" line="124"/>
         <source>Show Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Erakutsi pasahitza</translation>
     </message>
     <message>
         <location filename="wifisettingsdialog.cpp" line="44"/>
@@ -1094,32 +1094,32 @@ Ezarpen hau iraunkortu nahi duzu?</translation>
     <message>
         <location filename="piclonethread.cpp" line="87"/>
         <source>Preparing target...</source>
-        <translation type="unfinished"></translation>
+        <translation>Helburua prestatzen...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="116"/>
         <source>Reading Partitions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Partizioak irakurtzen...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="162"/>
         <source>Preparing Partitions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Partizioak prestatzen...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="169"/>
         <source>Creating partition %1 of %2 </source>
-        <translation type="unfinished"></translation>
+        <translation>Partizioa sortzen: %1 / %2</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="275"/>
         <source>Copying partition %d of %d...</source>
-        <translation type="unfinished"></translation>
+        <translation>Partizioa kopiatzen: %d / %d...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="346"/>
         <source>Copying %1 MB of %2 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MB / %2 MBetik kopiatzen</translation>
     </message>
 </context>
 <context>
@@ -1127,17 +1127,17 @@ Ezarpen hau iraunkortu nahi duzu?</translation>
     <message>
         <location filename="piclonedialog.ui" line="14"/>
         <source>Clone SD Card</source>
-        <translation type="unfinished"></translation>
+        <translation>Klonatu SD txartela</translation>
     </message>
     <message>
         <location filename="piclonedialog.ui" line="42"/>
         <source>Copy From Device:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiatu gailutik:</translation>
     </message>
     <message>
         <location filename="piclonedialog.ui" line="75"/>
         <source>Copy To Device:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiatu gailura:</translation>
     </message>
 </context>
 </TS>
