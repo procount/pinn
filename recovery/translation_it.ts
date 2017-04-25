@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it" sourcelanguage="en">
+<TS version="2.1" language="it" sourcelanguage="en">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -31,23 +31,23 @@
     <message>
         <location filename="bootselectiondialog.cpp" line="366"/>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN - Il sistema operativo precedentemente selezionato si avvierà tra %1 secondi</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="25"/>
         <location filename="bootselectiondialog.cpp" line="361"/>
         <source>PINN - Select OS to boot</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN - Seleziona il SO di avvio</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="45"/>
         <source>Sticky default</source>
-        <translation type="unfinished"></translation>
+        <translation>Etichetta predefinita</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="52"/>
         <source>BOOT</source>
-        <translation type="unfinished"></translation>
+        <translation>BOOT</translation>
     </message>
 </context>
 <context>
@@ -110,7 +110,7 @@
 WARNING: This will erase all data on your SD card</source>
         <oldsource>Would you like PINN to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
-        <translation type="unfinished">Vuoi che PINN ne crei una per te?
+        <translation>Vuoi che PINN ne crei una per te?
 ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     </message>
     <message>
@@ -132,7 +132,7 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
         <location filename="initdrivethread.cpp" line="190"/>
         <source>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</source>
         <oldsource>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</oldsource>
-        <translation type="unfinished">La scheda SD è stata formattata ed è pronta per l&apos;installazione di PINN. Ricopia i file PINN nella scheda SD e riavvia</translation>
+        <translation>La scheda SD è stata formattata ed è pronta per l&apos;installazione di PINN. Ricopia i file PINN nella scheda SD e riavvia</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="195"/>
@@ -167,42 +167,42 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="initdrivethread.cpp" line="342"/>
         <source>Saving boot files to memory</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvataggio file di boot nella memoria</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="345"/>
         <source>Error saving boot files to memory. SD card may be damaged.</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore salvataggio file di boot nella memoria. La scheda SD potrebbe essere danneggiata.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="361"/>
         <source>Creating partitions</source>
-        <translation type="unfinished"></translation>
+        <translation>Creazione partizioni</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="365"/>
         <source>Error partitioning</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore nel partizionamento</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="369"/>
         <source>Formatting boot partition (fat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Formattazione partizione di boot (FAT)</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="372"/>
         <source>Error formatting boot partition (fat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore nella formattazione partizione di boot (FAT)</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="376"/>
         <source>Copying boot files to storage</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia file di boot nello storage</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="452"/>
         <source>Setting disk volume ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazione ID volume disco</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="73"/>
@@ -273,22 +273,22 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.ui" line="59"/>
         <source>Destination drive:</source>
-        <translation type="unfinished"></translation>
+        <translation>Unità destinazione:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="82"/>
         <source>Needed:</source>
-        <translation>Richiesto:</translation>
+        <translation>Richiesti:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="89"/>
         <source>Available:</source>
-        <translation>Disponibile:</translation>
+        <translation>Disponibili:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="131"/>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation>barra strumenti</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="210"/>
@@ -313,57 +313,57 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.ui" line="228"/>
         <source>Exits and boots the installed operating system.</source>
-        <translation>Esci e avvia il sistema operativo installato.</translation>
+        <translation>Esce e avvia il sistema operativo installato.</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="294"/>
         <source>Wifi (w)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wi-Fi (w)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="312"/>
         <source>Password (p)</source>
-        <translation type="unfinished"></translation>
+        <translation>Password (p)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="315"/>
         <source>Change password</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifica password</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="318"/>
         <source>P</source>
-        <translation type="unfinished"></translation>
+        <translation>P</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="330"/>
         <source>Backup (b)</source>
-        <translation type="unfinished"></translation>
+        <translation>Backup (b)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="333"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="348"/>
         <source>fschk (f)</source>
-        <translation type="unfinished"></translation>
+        <translation>fschk (f)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="351"/>
         <source>F</source>
-        <translation type="unfinished"></translation>
+        <translation>F</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="363"/>
         <source>Clone (c)</source>
-        <translation type="unfinished"></translation>
+        <translation>Clona (c)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="366"/>
         <source>C</source>
-        <translation type="unfinished"></translation>
+        <translation>C</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="170"/>
@@ -374,12 +374,12 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.ui" line="243"/>
         <source>Advanced (a)</source>
-        <translation type="unfinished"></translation>
+        <translation>Avanzate (a)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="249"/>
         <source>A</source>
-        <translation type="unfinished"></translation>
+        <translation>A</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="261"/>
@@ -404,7 +404,7 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.ui" line="297"/>
         <source>Select a wifi network to connect to</source>
-        <translation>Seleziona la rete Wi-Fi a cui connetterti</translation>
+        <translation>Seleziona la rete Wi-Fi a cui connettersi</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="300"/>
@@ -452,7 +452,7 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.cpp" line="285"/>
         <source>Please wait while PINN initialises</source>
-        <translation type="unfinished"></translation>
+        <translation>Attendi l&apos;inizializzazione di PINN</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="624"/>
@@ -495,12 +495,12 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.cpp" line="626"/>
         <source>SD card</source>
-        <translation type="unfinished"></translation>
+        <translation>Scheda SD</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="626"/>
         <source>drive</source>
-        <translation type="unfinished"></translation>
+        <translation>unità</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="649"/>
@@ -522,12 +522,12 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
         <location filename="mainwindow.cpp" line="715"/>
         <source>OS(es) Installed Successfully</source>
         <oldsource>OS Installed Successfully</oldsource>
-        <translation>SO installati correttamente</translation>
+        <translation>SO installato correttamente</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="747"/>
         <source>PINN v%1 - Built: %2 (%3)</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN v. %1 - Data build: %2 (%3)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="783"/>
@@ -555,7 +555,7 @@ Vuoi rendere questa impostazione permanente?</translation>
         <location filename="mainwindow.cpp" line="1220"/>
         <source>Error downloading distribution list from Internet:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Errore download lista distribuzione da internet:</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1222"/>
@@ -569,77 +569,77 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="mainwindow.cpp" line="1718"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
-        <translation type="unfinished"></translation>
+        <translation>Per usare PINN senza immagini locali è richiesto l&apos;accesso alla rete. Seleziona nella finestra successiva la rete Wi-Fi.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1726"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
-        <translation type="unfinished"></translation>
+        <translation>Per usare PINN senza immagini locali è richiesto l&apos;accesso alla rete cablata. Inserisci un cavo di rete nella porta ethernet.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1841"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
-        <translation type="unfinished"></translation>
+        <translation>Sei sicuro di voler riformattare l&apos;unità &apos;%1&apos; per l&apos;uso con PINN? Tutti i dati esistenti nell&apos;unità verranno eliminati!</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2018"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>Questo cancellerà tutto il contenuto del dispositivo &apos;%s&apos;. Sei sicuro di voler continuare?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2020"/>
         <source>Clone SD Card</source>
-        <translation type="unfinished"></translation>
+        <translation>Clona scheda SD</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2022"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Sì</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2023"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>No</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2051"/>
         <source>Clone Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Clonazione completata</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2052"/>
         <source>Clone Completed Successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>Clonazione completata correttamente</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2159"/>
         <source>Error downloading update file</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore download file aggiornamento</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2233"/>
         <source>PINN UPDATE</source>
-        <translation type="unfinished"></translation>
+        <translation>AGGIORNAMENTO PINN</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2234"/>
         <source>A new version of PINN is available</source>
-        <translation type="unfinished"></translation>
+        <translation>È disponibile una nuova versione di PINN</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2235"/>
         <source>Do you want to download this version?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vuoi scaricare questa versione?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2259"/>
         <source>Downloading Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Download aggiornamento</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2259"/>
         <source>Press ESC to cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Premi ESC per annullare</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1236"/>
@@ -665,12 +665,12 @@ Vuoi rendere questa impostazione permanente?</translation>
         <location filename="mainwindow.cpp" line="1602"/>
         <location filename="mainwindow.cpp" line="2177"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
-        <translation>Errore scrittura su SD file scaricato. La scheda SD o il file system potrebbero essere danneggiati.</translation>
+        <translation>Errore scrittura su SD del file scaricato. La scheda SD o il file system potrebbero essere danneggiati.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1840"/>
         <source>Reformat drive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Riformattare l&apos;unità?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="983"/>
@@ -776,7 +776,7 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="multiimagewritethread.cpp" line="280"/>
         <source>Writing boot partition table</source>
-        <translation type="unfinished"></translation>
+        <translation>Scrittura tabella partizione boot</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="296"/>
@@ -837,7 +837,7 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="multiimagewritethread.cpp" line="635"/>
         <source>%1: Configuring flavour</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: configurazione impostazioni</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="649"/>
@@ -861,7 +861,7 @@ Vuoi rendere questa impostazione permanente?</translation>
         <location filename="multiimagewritethread.cpp" line="1030"/>
         <location filename="multiimagewritethread.cpp" line="1089"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
-        <translation>Estensione file tipo compressione sconosciuta. Attesa: .lzo, .gz, .xz, .bz2,o .zip </translation>
+        <translation>Estensione file tipo compressione sconosciuta. Attesi: .lzo, .gz, .xz, .bz2,o .zip </translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="992"/>
@@ -880,62 +880,62 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="passwd.ui" line="14"/>
         <source>Reset Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Ripristina password</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="45"/>
         <source>Username</source>
-        <translation type="unfinished">Utente</translation>
+        <translation>Utente</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="71"/>
         <source>Password</source>
-        <translation type="unfinished">Password</translation>
+        <translation>Password</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="110"/>
         <source>Retype Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Ridigita password</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="123"/>
         <source>Strength</source>
-        <translation type="unfinished"></translation>
+        <translation>Livello sicurezza</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="158"/>
         <source>Show Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizza password</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="171"/>
         <source>Use Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa predefinita</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="226"/>
         <source>Very Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>Molto semplice</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="227"/>
         <source>Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>Semplice</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="228"/>
         <source>Good</source>
-        <translation type="unfinished"></translation>
+        <translation>Buona</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="229"/>
         <source>Strong</source>
-        <translation type="unfinished"></translation>
+        <translation>Elevata</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="230"/>
         <source>Very Strong</source>
-        <translation type="unfinished"></translation>
+        <translation>Molto elevata</translation>
     </message>
 </context>
 <context>
@@ -991,17 +991,17 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="languagedialog.cpp" line="35"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignora</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="36"/>
         <source>Show Details...</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizza dettagli...</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="37"/>
         <source>Hide Details...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nascondi dettagli...</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="28"/>
@@ -1094,7 +1094,7 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="wifisettingsdialog.ui" line="124"/>
         <source>Show Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizza password</translation>
     </message>
 </context>
 <context>
@@ -1102,32 +1102,32 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="piclonethread.cpp" line="87"/>
         <source>Preparing target...</source>
-        <translation type="unfinished"></translation>
+        <translation>Preparazione destinazione...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="116"/>
         <source>Reading Partitions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lettura partizioni...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="162"/>
         <source>Preparing Partitions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Preparazione partizioni...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="169"/>
         <source>Creating partition %1 of %2 </source>
-        <translation type="unfinished"></translation>
+        <translation>Creazione partizione %1 di %2</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="275"/>
         <source>Copying partition %d of %d...</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia partizione %d di %d...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="346"/>
         <source>Copying %1 MB of %2 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia %1 MB / %2 MB</translation>
     </message>
 </context>
 <context>
@@ -1135,17 +1135,17 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="piclonedialog.ui" line="14"/>
         <source>Clone SD Card</source>
-        <translation type="unfinished"></translation>
+        <translation>Clona scheda SD</translation>
     </message>
     <message>
         <location filename="piclonedialog.ui" line="42"/>
         <source>Copy From Device:</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia dal dispositivo:</translation>
     </message>
     <message>
         <location filename="piclonedialog.ui" line="75"/>
         <source>Copy To Device:</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia nel dispositivo:</translation>
     </message>
 </context>
 </TS>
