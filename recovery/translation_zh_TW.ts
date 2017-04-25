@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -31,23 +31,23 @@
     <message>
         <location filename="bootselectiondialog.cpp" line="366"/>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN - 先前選擇的作業系統將會在 %1 秒內啟動</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="25"/>
         <location filename="bootselectiondialog.cpp" line="361"/>
         <source>PINN - Select OS to boot</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN - 選取要啟動的作業系統</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="45"/>
         <source>Sticky default</source>
-        <translation type="unfinished"></translation>
+        <translation>預設值</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="52"/>
         <source>BOOT</source>
-        <translation type="unfinished"></translation>
+        <translation>開機</translation>
     </message>
 </context>
 <context>
@@ -143,7 +143,7 @@
 WARNING: This will erase all data on your SD card</source>
         <oldsource>Would you like PINN to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
-        <translation type="unfinished">您想要讓 PINN 為您建立一個嗎？
+        <translation>您想要讓 PINN 為您建立一個嗎？
 警告：這將會抹除您 SD 記憶卡上所有的資料</translation>
     </message>
     <message>
@@ -177,7 +177,7 @@ WARNING: This will erase all data on your SD card</oldsource>
         <location filename="initdrivethread.cpp" line="190"/>
         <source>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</source>
         <oldsource>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</oldsource>
-        <translation type="unfinished">SD 記憶卡已經被格式化完成，準備好給 PINN 使用了。請重新複製 PINN 檔案到記憶卡上並重新開機</translation>
+        <translation>SD 記憶卡已經被格式化完成，準備好給 PINN 使用了。請重新複製 PINN 檔案到記憶卡上並重新開機</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="195"/>
@@ -212,42 +212,42 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="initdrivethread.cpp" line="342"/>
         <source>Saving boot files to memory</source>
-        <translation type="unfinished"></translation>
+        <translation>正在將開機檔案複製到記憶體中</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="345"/>
         <source>Error saving boot files to memory. SD card may be damaged.</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存開機檔案到記憶體時發生錯誤。SD 記憶卡可能已毀損。</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="361"/>
         <source>Creating partitions</source>
-        <translation type="unfinished"></translation>
+        <translation>正在建立分割區</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="365"/>
         <source>Error partitioning</source>
-        <translation type="unfinished"></translation>
+        <translation>分割時發生錯誤</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="369"/>
         <source>Formatting boot partition (fat)</source>
-        <translation type="unfinished"></translation>
+        <translation>正在格式化開機分割區 (fat)</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="372"/>
         <source>Error formatting boot partition (fat)</source>
-        <translation type="unfinished"></translation>
+        <translation>格式化開機分割區 (fat) 時發生錯誤</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="376"/>
         <source>Copying boot files to storage</source>
-        <translation type="unfinished"></translation>
+        <translation>正在複製開機檔案到儲存空間中</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="452"/>
         <source>Setting disk volume ID</source>
-        <translation type="unfinished"></translation>
+        <translation>正在設定磁碟卷冊 ID</translation>
     </message>
 </context>
 <context>
@@ -273,7 +273,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="59"/>
         <source>Destination drive:</source>
-        <translation type="unfinished"></translation>
+        <translation>目標磁碟：</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="82"/>
@@ -288,7 +288,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="131"/>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation>工具列</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="210"/>
@@ -318,52 +318,52 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="294"/>
         <source>Wifi (w)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wifi (w)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="312"/>
         <source>Password (p)</source>
-        <translation type="unfinished"></translation>
+        <translation>密碼 (p)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="315"/>
         <source>Change password</source>
-        <translation type="unfinished"></translation>
+        <translation>變更密碼</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="318"/>
         <source>P</source>
-        <translation type="unfinished"></translation>
+        <translation>P</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="330"/>
         <source>Backup (b)</source>
-        <translation type="unfinished"></translation>
+        <translation>備份 (b)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="333"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="348"/>
         <source>fschk (f)</source>
-        <translation type="unfinished"></translation>
+        <translation>fschk (f)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="351"/>
         <source>F</source>
-        <translation type="unfinished"></translation>
+        <translation>F</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="363"/>
         <source>Clone (c)</source>
-        <translation type="unfinished"></translation>
+        <translation>再製 (c)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="366"/>
         <source>C</source>
-        <translation type="unfinished"></translation>
+        <translation>C</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="170"/>
@@ -374,12 +374,12 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="243"/>
         <source>Advanced (a)</source>
-        <translation type="unfinished"></translation>
+        <translation>進階 (a)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="249"/>
         <source>A</source>
-        <translation type="unfinished"></translation>
+        <translation>A</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="261"/>
@@ -472,17 +472,17 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="285"/>
         <source>Please wait while PINN initialises</source>
-        <translation type="unfinished"></translation>
+        <translation>請等待 PINN 初始化</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="626"/>
         <source>SD card</source>
-        <translation type="unfinished"></translation>
+        <translation>SD 記憶卡</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="626"/>
         <source>drive</source>
-        <translation type="unfinished"></translation>
+        <translation>磁碟</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="649"/>
@@ -514,82 +514,82 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="747"/>
         <source>PINN v%1 - Built: %2 (%3)</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN v%1 - 建置於：%2 (%3)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1718"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
-        <translation type="unfinished"></translation>
+        <translation>不使用本機映像檔的 PINN 需要網路。請在下一個畫面選擇您的 wifi 連線。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1726"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
-        <translation type="unfinished"></translation>
+        <translation>不使用本機映像檔的 PINN 需要有線網路。請將網路線插入網路孔。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1841"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
-        <translation type="unfinished"></translation>
+        <translation>您確定您要重新格式化磁碟 &apos;%1&apos; 以供 PINN 使用嗎？所有在該磁碟上的資料都會被刪除！</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2018"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>這將會抹除在裝置 &apos;%s&apos; 上的所有內容。您確定嗎？</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2020"/>
         <source>Clone SD Card</source>
-        <translation type="unfinished"></translation>
+        <translation>再製 SD 記憶卡</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2022"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>是</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2023"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>否</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2051"/>
         <source>Clone Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>再製完成</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2052"/>
         <source>Clone Completed Successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>再製成功完成</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2159"/>
         <source>Error downloading update file</source>
-        <translation type="unfinished"></translation>
+        <translation>下載更新檔時發生錯誤</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2233"/>
         <source>PINN UPDATE</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN 更新</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2234"/>
         <source>A new version of PINN is available</source>
-        <translation type="unfinished"></translation>
+        <translation>已有新版的 PINN 可用</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2235"/>
         <source>Do you want to download this version?</source>
-        <translation type="unfinished"></translation>
+        <translation>您想要下載此版本嗎？</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2259"/>
         <source>Downloading Update</source>
-        <translation type="unfinished"></translation>
+        <translation>正在下載更新</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2259"/>
         <source>Press ESC to cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>按 ESC 取消</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="779"/>
@@ -639,7 +639,8 @@ Would you like to make this setting permanent?</source>
         <location filename="mainwindow.cpp" line="1220"/>
         <source>Error downloading distribution list from Internet:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>從網路上下載散佈版清單時發生錯誤：
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1222"/>
@@ -679,7 +680,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="mainwindow.cpp" line="1840"/>
         <source>Reformat drive?</source>
-        <translation type="unfinished"></translation>
+        <translation>重新格式化磁碟？</translation>
     </message>
 </context>
 <context>
@@ -737,7 +738,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="280"/>
         <source>Writing boot partition table</source>
-        <translation type="unfinished"></translation>
+        <translation>正在寫入開機分割表</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="296"/>
@@ -825,7 +826,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="635"/>
         <source>%1: Configuring flavour</source>
-        <translation type="unfinished"></translation>
+        <translation>%1：正在設定風味</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="649"/>
@@ -866,62 +867,62 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="passwd.ui" line="14"/>
         <source>Reset Password</source>
-        <translation type="unfinished"></translation>
+        <translation>重設密碼</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="45"/>
         <source>Username</source>
-        <translation type="unfinished">使用者名稱</translation>
+        <translation>使用者名稱</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="71"/>
         <source>Password</source>
-        <translation type="unfinished">密碼</translation>
+        <translation>密碼</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="110"/>
         <source>Retype Password</source>
-        <translation type="unfinished"></translation>
+        <translation>重新輸入密碼</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="123"/>
         <source>Strength</source>
-        <translation type="unfinished"></translation>
+        <translation>強度</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="158"/>
         <source>Show Password</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示密碼</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="171"/>
         <source>Use Default</source>
-        <translation type="unfinished"></translation>
+        <translation>使用預設值</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="226"/>
         <source>Very Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>非常弱</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="227"/>
         <source>Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>弱</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="228"/>
         <source>Good</source>
-        <translation type="unfinished"></translation>
+        <translation>好</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="229"/>
         <source>Strong</source>
-        <translation type="unfinished"></translation>
+        <translation>強</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="230"/>
         <source>Very Strong</source>
-        <translation type="unfinished"></translation>
+        <translation>非常強</translation>
     </message>
 </context>
 <context>
@@ -982,17 +983,17 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="languagedialog.cpp" line="35"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>忽略</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="36"/>
         <source>Show Details...</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示詳細資訊...</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="37"/>
         <source>Hide Details...</source>
-        <translation type="unfinished"></translation>
+        <translation>隱藏詳細資訊...</translation>
     </message>
 </context>
 <context>
@@ -1035,7 +1036,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="wifisettingsdialog.ui" line="124"/>
         <source>Show Password</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示密碼</translation>
     </message>
     <message>
         <location filename="wifisettingsdialog.cpp" line="44"/>
@@ -1088,32 +1089,32 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="piclonethread.cpp" line="87"/>
         <source>Preparing target...</source>
-        <translation type="unfinished"></translation>
+        <translation>正在準備目標...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="116"/>
         <source>Reading Partitions...</source>
-        <translation type="unfinished"></translation>
+        <translation>正在讀取分割區...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="162"/>
         <source>Preparing Partitions...</source>
-        <translation type="unfinished"></translation>
+        <translation>正在準備分割區...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="169"/>
         <source>Creating partition %1 of %2 </source>
-        <translation type="unfinished"></translation>
+        <translation>正在建立分割區 %2 中的 %1</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="275"/>
         <source>Copying partition %d of %d...</source>
-        <translation type="unfinished"></translation>
+        <translation>正在複製分割區 %d 的 %d...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="346"/>
         <source>Copying %1 MB of %2 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>正在複製 %2 MB 中的 %1 MB</translation>
     </message>
 </context>
 <context>
@@ -1121,17 +1122,17 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="piclonedialog.ui" line="14"/>
         <source>Clone SD Card</source>
-        <translation type="unfinished"></translation>
+        <translation>再製 SD 記憶卡</translation>
     </message>
     <message>
         <location filename="piclonedialog.ui" line="42"/>
         <source>Copy From Device:</source>
-        <translation type="unfinished"></translation>
+        <translation>從裝置複製：</translation>
     </message>
     <message>
         <location filename="piclonedialog.ui" line="75"/>
         <source>Copy To Device:</source>
-        <translation type="unfinished"></translation>
+        <translation>複製到裝置：</translation>
     </message>
 </context>
 </TS>
