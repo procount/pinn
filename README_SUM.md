@@ -42,21 +42,25 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
-###V2.4
+### V2.4.1
+
+- **btrfs**           - Added support for btrfs file systems
+
+### V2.4
 
 - **Update**          - Rebase onto NOOBS 2.4
 - **repo**            - Support "repo=" from NOOBS
 - **USB support**     - Supports USB BOOT and USB ROOTFS
 
-###V2.3
+### V2.3
 
 - **PiZeroW**         - Further update to match NOOBS 2.3. Added regDB for channel 13 & missing DTBs
 
-###V2.2
+### V2.2
 
 - **PiZeroW**         - Update firmware/kernel for PiZero Wifi version
 
-###V2.1.4
+### V2.1.4
 
 - **IP address**      - Shown in window title
 - **CEC key mapping** - Replaced  0 button with PLAY button for greater applicability

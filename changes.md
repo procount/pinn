@@ -159,7 +159,7 @@ The following network drivers have been added to support a wider range of wifi a
 * dm9601
 * smsc95xx
 
-#V1.9.5 Features
+# V1.9.5 Features
 
 ### Bugfixes
 
@@ -173,17 +173,17 @@ If you cancel, the dialog box will keep popping up to remind you each time PINN 
 If you select ignore, this version will be ignored and no dialogs will popup again until another later version is released.
 If you choose to download this update, the zip file will be downloaded and will overwrite your current version of PINN. PINN will then reboot the RPi and restart PINN.
 
-#v2.0 Features
+# v2.0 Features
 
 rtl8188eu wifi driver with cfg80211 interface added (for e.g. HubPiWi)
 Linux Kernel and rpi-firmware updated to match NOOBS v2.0
 
-#V2.1 Features
+# V2.1 Features
 
 Updated to match NOOBS v2.1
 Now supports the IoTpHAT wifi.
 
-#V2.1.1 Features
+# V2.1.1 Features
 
 ### CEC Control 
 
@@ -207,7 +207,7 @@ NOTE: CEC implementations vary between TV manufacturers. The above key mappings 
 is designed to work on most TVs.
 If your TV does not work as above and are willing to help, please let me know so I can identify the differences and include support for your brand of TV.
 
-#v2.1.2 Features
+# v2.1.2 Features
 
 Default Boot    - A default OS can be set in a multi-boot setup for quicker boots.
 Bootmenutimout  - The timeout of the boot selection dialog can be changed.
@@ -227,11 +227,11 @@ Each OS entry now has a checkbox next to it to select it as a sticky default OS.
 
 The build dependencies introduced in v2.1.1 have been fixed.
 
-#v2.1.3 Features
+# v2.1.3 Features
 
 Added many translations from the community. 
 
-###V2.1.4
+### V2.1.4
 
 - **IP address**      - Shown in window title 
 - **CEC key mapping** - Replaced  0 button with PLAY button for greater applicability
@@ -242,17 +242,21 @@ Added many translations from the community.
 - **Network**         - Do not continue polling for connectivity during installation
 - **Update**          - Bump kernel and firmware versions
 
-####V2.2
+#### V2.2
 
 - **PiZeroW**         - Update firmware/kernel for PiZero Wifi version
 
-####V2.3
+#### V2.3
 
 - **PiZeroW**         - Further update to match NOOBS 2.3. Added regDB for channel 13 & missing DTBs
 
-####V2.4
+#### V2.4
 
 - **Update**          - Rebase onto NOOBS 2.4
 - **repo**            - Support "repo=" from NOOBS
 - **USB support**     - Supports USB BOOT and USB ROOTFS
+
+#### V2.4.1
+
+- **btrfs**           - Added support for btrfs file systems
 
