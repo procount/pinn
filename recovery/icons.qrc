@@ -57,5 +57,7 @@
         <file>icons/tick.png</file>
         <file>icons/hdd_usb_unmount.png</file>
         <file>icons/lock_edit.png</file>
+        <file>icons/download_cloud.png</file>
+        <file>icons/reject.png</file>
     </qresource>
 </RCC>

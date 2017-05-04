@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "multiimagewritethread.h"
+#include "multiimagedownloadthread.h"
 #include "initdrivethread.h"
 #include "confeditdialog.h"
 #include "progressslideshowdialog.h"
@@ -92,7 +93,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     ui(new Ui::MainWindow),
     _qpd(NULL), _kcpos(0), _defaultDisplay(defaultDisplay),
     _silent(false), _allowSilent(false), _showAll(false), _fixate(false), _splash(splash), _settings(NULL),
-    _hasWifi(false), _numInstalledOS(0), _devlistcount(0), _netaccess(NULL), _displayModeBox(NULL), _drive(drive), _bootdrive(drive), _noobsconfig(noobsconfig)
+    _hasWifi(false), _numInstalledOS(0), _devlistcount(0), _netaccess(NULL), _displayModeBox(NULL), _drive(drive), _bootdrive(drive), _noobsconfig(noobsconfig), _bDownload(false)
 {
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
@@ -621,6 +622,8 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder, bool in
 
 void MainWindow::on_actionWrite_image_to_disk_triggered()
 {
+    _bDownload = false;
+
     QString warning = tr("Warning: this will install the selected Operating System(s). All existing data on the SD card will be overwritten, including any OSes that are already installed.");
     if (_drive != "mmcblk0")
         warning.replace(tr("SD card"), tr("drive"));
@@ -696,6 +699,89 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
     }
 }
 
+void MainWindow::on_actionDownload_triggered()
+{
+//@@
+    _local = "/tmp/1";
+    QProcess::execute("mkdir "+ _local);
+    QProcess::execute("mount "+ partdev("/dev/sda",1)+" "+_local);
+    QProcess::execute("mkdir "+ _local+"/os");
+
+
+    _bDownload = true;
+
+    //@@ maybe here decide if to download to /mnt or /settings and only mount that one rw
+    QProcess::execute("mount -o remount,rw /mnt");
+
+    if (_silent || QMessageBox::warning(this,
+                                        tr("Confirm"),
+                                        tr("Warning: this will download the selected Operating System(s)."),
+                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+    {
+        /* See if any of the OSes are unsupported */
+        bool allSupported = true;
+        QString unsupportedOses;
+        QList<QListWidgetItem *> selected = selectedItems();
+
+        if (_silent || allSupported || QMessageBox::warning(this,
+                                        tr("Confirm"),
+                                        tr("Warning: incompatible Operating System(s) detected. The following OSes aren't supported on this revision of Raspberry Pi and may fail to boot or function correctly:") + unsupportedOses,
+                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+        {
+            setEnabled(false);
+            _numMetaFilesToDownload = 0;
+
+            QList<QListWidgetItem *> selected = selectedItems();
+            foreach (QListWidgetItem *item, selected)
+            {
+                QVariantMap entry = item->data(Qt::UserRole).toMap();
+
+                if (!entry.contains("folder"))
+                {
+                    QDir d;
+                    QString folder = _local+"/os/"+entry.value("name").toString();
+                    folder.replace(' ', '_');
+                    if (!d.exists(folder))
+                        d.mkpath(folder);
+
+                    downloadMetaFile(entry.value("os_info").toString(), folder+"/os.json");
+                    downloadMetaFile(entry.value("partitions_info").toString(), folder+"/partitions.json");
+
+                    if (entry.contains("marketing_info"))
+                        downloadMetaFile(entry.value("marketing_info").toString(), folder+"/marketing.tar");
+
+                    if (entry.contains("partition_setup"))
+                        downloadMetaFile(entry.value("partition_setup").toString(), folder+"/partition_setup.sh");
+
+                    if (entry.contains("icon"))
+                    {
+                        //Extract icon filename from URL
+                        QStringList splitted = entry.value("icon").toString().split("/");
+                        QString icon_name   = splitted.last();
+
+                        downloadMetaFile(entry.value("icon").toString(), folder+"/"+icon_name);
+                    }
+                    //@@Create JSON files for the os/flavours
+                }
+            }
+
+            if (_numMetaFilesToDownload == 0)
+            {
+                /* All OSes selected are local */
+                startImageDownload();
+            }
+            else if (!_silent)
+            {
+                _qpd = new QProgressDialog(tr("The install process will begin shortly."), QString(), 0, 0, this);
+                _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+                _qpd->show();
+            }
+        }
+    }
+}
+
+
+
 void MainWindow::on_actionCancel_triggered()
 {
     close();
@@ -705,17 +791,35 @@ void MainWindow::onCompleted()
 {
     _qpd->hide();
     QSettings settings("/settings/noobs.conf", QSettings::IniFormat, this);
-    settings.setValue("default_partition_to_boot", "800");
-    settings.remove("sticky_boot");
-    settings.sync();
+    if (!_bDownload)
+    {
+        settings.setValue("default_partition_to_boot", "800");
+        settings.remove("sticky_boot");
+        settings.sync();
+    }
 
     if (!_silent)
-        QMessageBox::information(this,
-                                 tr("OS(es) installed"),
-                                 tr("OS(es) Installed Successfully"), QMessageBox::Ok);
+    {
+        if (_bDownload)
+        {
+            QMessageBox::information(this,
+                                     tr("OS(es) downloaded"),
+                                     tr("OS(es) Downloaded Successfully"), QMessageBox::Ok);
+        }
+        else
+        {
+            QMessageBox::information(this,
+                                     tr("OS(es) installed"),
+                                     tr("OS(es) Installed Successfully"), QMessageBox::Ok);
+        }
+    }
     _qpd->deleteLater();
     _qpd = NULL;
-    close();
+
+    if (_bDownload)
+        repopulate();
+    else
+        close();
 }
 
 void MainWindow::onError(const QString &msg)
@@ -1126,6 +1230,7 @@ void MainWindow::onOnlineStateChanged(bool online)
             _cache->setMaximumCacheSize(8 * 1024 * 1024);
             _cache->clear();
             _netaccess->setCache(_cache);
+            _listno = 0;
             QNetworkConfigurationManager manager;
             _netaccess->setConfiguration(manager.defaultConfiguration());
             downloadLists();
@@ -1418,6 +1523,10 @@ void MainWindow::downloadIconComplete()
     }
 
     reply->deleteLater();
+    _listno++;
+    //@@? if (_listno ==1)
+    //@@?    downloadList(DEFAULT_REPO_SERVER);
+
 }
 
 QList<QListWidgetItem *> MainWindow::selectedItems()
@@ -1443,12 +1552,27 @@ void MainWindow::updateNeeded()
     bool bold = false;
 
     _neededMB = 0;
+    _neededDownloadMB = 0;
     QList<QListWidgetItem *> selected = selectedItems();
 
     foreach (QListWidgetItem *item, selected)
     {
+        int result;
         QVariantMap entry = item->data(Qt::UserRole).toMap();
         _neededMB += entry.value("nominal_size").toInt();
+
+        //@@
+        if (!entry.value("tarball").toString().isEmpty())
+        {
+            QProcess p;
+            p.start("wget --spider "+entry.value("tarball").toString()+" | grep \"Length\" | cut -d \" \" -f 2");
+            p.waitForFinished();
+
+            if (p.exitCode() == 0)
+                result = p.readAll().toInt();
+            qDebug() << "size=" << result;
+            _neededDownloadMB += result;
+        }
 
         if (nameMatchesRiscOS(entry.value("name").toString()))
         {
@@ -1480,6 +1604,8 @@ void MainWindow::updateNeeded()
     }
 
     ui->actionWrite_image_to_disk->setEnabled(enableOk);
+    ui->actionDownload->setEnabled(_neededMB > 0);
+
     QPalette p = ui->neededLabel->palette();
     if (p.color(QPalette::WindowText) != colorNeededLabel)
     {
@@ -1617,7 +1743,10 @@ void MainWindow::downloadMetaComplete()
             _qpd->deleteLater();
             _qpd = NULL;
         }
-        startImageWrite();
+        if (_bDownload)
+            startImageDownload();
+        else
+            startImageWrite();
     }
 }
 
@@ -1695,6 +1824,90 @@ void MainWindow::startImageWrite()
     imageWriteThread->start();
     hide();
     _qpd->exec();
+}
+
+void MainWindow::startImageDownload()
+{
+
+    qDebug() <<"startImageDownload";
+ //@@
+    _local = "/tmp/1";
+
+    //@@mount /mnt=rw, /usb=rw, settings=r0
+
+    /* All meta files downloaded, extract slides tarball, and launch image writer thread */
+    MultiImageDownloadThread *imageWriteThread = new MultiImageDownloadThread(0, _local);
+    QString folder, slidesFolder;
+    QStringList slidesFolders;
+
+    QList<QListWidgetItem *> selected = selectedItems();
+    foreach (QListWidgetItem *item, selected)
+    {
+        QVariantMap entry = item->data(Qt::UserRole).toMap();
+
+        if (entry.contains("folder"))
+        {
+            /* Local image */
+            folder = entry.value("folder").toString();
+            /* No need to download these! */
+        }
+        else
+        {
+            folder = _local+"/os/"+entry.value("name").toString();
+            folder.replace(' ', '_');
+
+            qDebug() << "folder = "+folder;
+            QString marketingTar = folder+"/marketing.tar";
+            if (QFile::exists(marketingTar))
+            {
+                /* Extract tarball with slides */
+                QProcess::execute("tar xf "+marketingTar+" -C "+folder);
+                QFile::remove(marketingTar);
+            }
+
+            /* Insert tarball download URL information into partition_info.json */
+            QVariantMap json = Json::loadFromFile(folder+"/partitions.json").toMap();
+            QVariantList partitions = json["partitions"].toList();
+            int i=0;
+            QStringList tarballs = entry.value("tarballs").toStringList();
+            foreach (QString tarball, tarballs)
+            {
+                QVariantMap partition = partitions[i].toMap();
+                partition.insert("tarball", tarball);
+                partitions[i] = partition;
+                i++;
+            }
+            json["partitions"] = partitions;
+            Json::saveToFile(folder+"/partitions.json", json);
+
+            slidesFolder.clear();
+            if (QFile::exists(folder+"/slides_vga"))
+            {
+                slidesFolder = folder+"/slides_vga";
+            }
+
+            imageWriteThread->addImage(folder, entry.value("name").toString());
+            if (!slidesFolder.isEmpty())
+                slidesFolders.append(slidesFolder);
+        }
+    }
+
+    if (slidesFolders.isEmpty())
+        slidesFolder.append("/mnt/defaults/slides");
+
+    _qpd = new ProgressSlideshowDialog(slidesFolders, "", 20, _drive, this);
+    connect(imageWriteThread, SIGNAL(parsedImagesize(qint64)), _qpd, SLOT(setMaximum(qint64)));
+    connect(imageWriteThread, SIGNAL(completed()), this, SLOT(onCompleted()));
+    connect(imageWriteThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
+    connect(imageWriteThread, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
+    connect(imageWriteThread, SIGNAL(runningMKFS()), _qpd, SLOT(pauseIOaccounting()), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(finishedMKFS()), _qpd , SLOT(resumeIOaccounting()), Qt::BlockingQueuedConnection);
+    imageWriteThread->start();
+    hide();
+    _qpd->exec();
+
+    //QProcess::execute("mount -o remount,ro /mnt");
+
 }
 
 void MainWindow::hideDialogIfNoNetwork()

@@ -307,6 +307,9 @@ void MultiImageWriteThread::run()
             return;
     }
 
+    QProcess::execute("umount /tmp/1");
+    QProcess::execute("rmdir /tmp/1");
+
     emit statusUpdate(tr("Finish writing (sync)"));
     sync();
     emit completed();

@@ -118,6 +118,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionWrite_image_to_disk"/>
+   <addaction name="actionDownload"/>
    <addaction name="actionEdit_config"/>
    <addaction name="actionWifi"/>
    <addaction name="actionBrowser"/>
@@ -364,6 +365,21 @@
    </property>
    <property name="shortcut">
     <string>C</string>
+   </property>
+  </action>
+  <action name="actionDownload">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/download_cloud.png</normaloff>:/icons/download_cloud.png</iconset>
+   </property>
+   <property name="text">
+    <string>Download (d)</string>
+   </property>
+   <property name="toolTip">
+    <string>Downloads the selected operating system image to USB for local installation</string>
+   </property>
+   <property name="shortcut">
+    <string>D</string>
    </property>
   </action>
  </widget>

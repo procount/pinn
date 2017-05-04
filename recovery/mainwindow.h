@@ -59,6 +59,12 @@ protected:
     QHostAddress _ipaddress;
 
     QMap<QString,QVariantMap> listImages(const QString &folder = "/mnt/os", bool includeInstalled = true);
+
+    bool _bDownload;
+    QString _local;
+    int _neededDownloadMB;
+    int _listno;
+
     virtual void changeEvent(QEvent * event);
     virtual bool eventFilter(QObject *obj, QEvent *event);
     void inputSequence();
@@ -85,6 +91,7 @@ protected:
     void filterList();
     void copyWpa();
     void on_newVersion();
+    void startImageDownload();
 
 protected slots:
     void populate();
@@ -117,6 +124,7 @@ protected slots:
 private slots:
     /* UI events */
     void on_actionWrite_image_to_disk_triggered();
+    void on_actionDownload_triggered();
     void on_actionCancel_triggered();
     void on_list_currentRowChanged();
     void on_actionAdvanced_triggered();
