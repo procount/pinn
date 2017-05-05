@@ -92,6 +92,10 @@ protected:
     void copyWpa();
     void on_newVersion();
     void startImageDownload();
+    bool LooksLikePiDrive(QString devname);
+    bool LooksLikeOSDrive(QString devname);
+    void recalcAvailableMB();
+
 
 protected slots:
     void populate();

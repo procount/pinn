@@ -108,8 +108,10 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
 
     _ipaddress=QHostAddress();
 
+    //Check if mainwindow is larger than the screen and resize it slightly smaller if necessary
     QRect s = QApplication::desktop()->screenGeometry();
-    if (s.height() < 500)
+    QRect w = frameGeometry();
+    if (w.height() > s.height() || w.width() > s.width() )
         resize(s.width()-10, s.height()-100);
 
     connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
@@ -311,7 +313,7 @@ void MainWindow::populate()
 
     // Fill in list of images
     repopulate();
-    _availableMB = (getFileContents(sysclassblock(_drive)+"/size").trimmed().toULongLong()-getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toULongLong()-getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toULongLong())/2048;
+    recalcAvailableMB();
     updateNeeded();
 
     if (ui->list->count() != 0)
@@ -704,7 +706,7 @@ void MainWindow::on_actionDownload_triggered()
 //@@
     _local = "/tmp/1";
     QProcess::execute("mkdir "+ _local);
-    QProcess::execute("mount "+ partdev("/dev/sda",1)+" "+_local);
+    QProcess::execute("mount /dev/"+ partdev(_drive,1)+" "+_local);
     QProcess::execute("mkdir "+ _local+"/os");
 
 
@@ -805,6 +807,8 @@ void MainWindow::onCompleted()
             QMessageBox::information(this,
                                      tr("OS(es) downloaded"),
                                      tr("OS(es) Downloaded Successfully"), QMessageBox::Ok);
+            QProcess::execute("umount /tmp/1");
+            QProcess::execute("rmdir /tmp/1");
         }
         else
         {
@@ -1757,6 +1761,22 @@ void MainWindow::startImageWrite()
     QString folder, slidesFolder;
     QStringList slidesFolders;
 
+    if ( _drive != "mmcblk0" && !LooksLikePiDrive(_drive) )
+    {
+        if (QMessageBox::question(this,
+                                  tr("Reformat drive?"),
+                                  tr("Are you sure you want to reformat the drive '%1' for use with PINN? All existing data on the drive will be deleted!").arg(_drive),
+                                  QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+        {
+            InitDriveThread idt("/dev/"+_drive);
+            idt.formatUsbDrive();
+        }
+        else
+        {
+            return;
+        }
+    }
+
     QList<QListWidgetItem *> selected = selectedItems();
     foreach (QListWidgetItem *item, selected)
     {
@@ -2020,10 +2040,7 @@ void MainWindow::pollForNewDisks()
                 ui->targetCombo->addItem(icon, devname+": "+model, devname);
 
                 /* does the partition structure look like a preloaded Pi drive, then select it by default? */
-                if (devname == "sda"
-                        && QFile::exists(sysclassblock(devname, 1))
-                        && QFile::exists(sysclassblock(devname, 5))
-                        && getFileContents(sysclassblock(devname, 5)+"/size").trimmed().toInt() == SETTINGS_PARTITION_SIZE)
+                if (devname == "sda" && LooksLikePiDrive(devname))
                     ui->targetCombo->setCurrentIndex(ui->targetCombo->count()-1);
             }
         }
@@ -2038,24 +2055,50 @@ void MainWindow::pollForNewDisks()
     }
 }
 
+bool MainWindow::LooksLikePiDrive(QString devname)
+{
+    /* Returne TRUE if the drive partition structure looks like it haws been PINN formatted */
+    return( QFile::exists(sysclassblock(devname, 1))
+            && QFile::exists(sysclassblock(devname, 5))
+            && getFileContents(sysclassblock(devname, 5)+"/size").trimmed().toInt() == SETTINGS_PARTITION_SIZE );
+}
+
+bool MainWindow::LooksLikeOSDrive(QString devname)
+{
+    //@@ maybe mount and check for /os folder present?
+    return  ( devname != "mmcblk0" && !LooksLikePiDrive(devname) );
+}
+
+void MainWindow::recalcAvailableMB()
+{
+    _availableMB = (getFileContents(sysclassblock(_drive)+"/size").trimmed().toULongLong()-getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toULongLong()-getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toULongLong())/2048;
+
+    //If the drive is not already partitioned, some space will be lost.
+    if (_drive != "mmcblk0" && !LooksLikePiDrive(_drive))
+    {
+        _availableMB -= RESCUE_PARTITION_SIZE + 32 + 8 ; //for the SETTINGS partition & some spare
+        if (_availableMB <0)
+            _availableMB = 0;
+    }
+}
+
+
 void MainWindow::on_targetCombo_currentIndexChanged(int index)
 {
     if (index != -1)
     {
         QString devname = ui->targetCombo->itemData(index).toString();
 
-        if (devname != "mmcblk0" && (
-                   !QFile::exists(sysclassblock(devname, 1))
-                || !QFile::exists(sysclassblock(devname, 5))
-                || getFileContents(sysclassblock(devname, 5)+"/size").trimmed().toInt() != SETTINGS_PARTITION_SIZE))
+        if (devname != "mmcblk0" && (!LooksLikePiDrive(devname)) )
         {
             if (QMessageBox::question(this,
                                       tr("Reformat drive?"),
                                       tr("Are you sure you want to reformat the drive '%1' for use with PINN? All existing data on the drive will be deleted!").arg(devname),
                                       QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
             {
-                InitDriveThread idt("/dev/"+devname);
-                idt.formatUsbDrive();
+                QMessageBox::information(this,
+                                         tr("Reformat Drive"),
+                                         tr("Drive will be reformatted when OSes are installed"), QMessageBox::Ok);
             }
             else
             {
@@ -2068,7 +2111,7 @@ void MainWindow::on_targetCombo_currentIndexChanged(int index)
 
         qDebug() << "New drive selected:" << devname;
         _drive = "/dev/"+devname;
-        _availableMB = (getFileContents(sysclassblock(_drive)+"/size").trimmed().toULongLong()-getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toULongLong()-getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toULongLong())/2048;
+        recalcAvailableMB();
         filterList();
         updateNeeded();
     }
