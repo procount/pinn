@@ -697,7 +697,7 @@ void MultiImageWriteThread::postInstallConfig(const QString &folder, const QStri
     qDebug() << "postInstallConfig: "+ arg_dstfolder;
     if (QProcess::execute("mount "+part+" "+arg_dstfolder) != 0)
     {
-        emit error(tr("%1: Error mounting file system").arg(customName));
+        qDebug() << (tr("%1: Error mounting file system").arg(customName));
         return;
     }
 
