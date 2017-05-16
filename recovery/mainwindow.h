@@ -86,6 +86,9 @@ protected:
     void copyWpa();
     void on_newVersion();
 
+    void downloadRepoList(const QString &urlstring);
+    void processRepoListJson(QVariant json);
+
 protected slots:
     void populate();
     void startBrowser();
@@ -108,6 +111,8 @@ protected slots:
     void downloadListRedirectCheck();
     void downloadUpdateRedirectCheck();
     void downloadUpdateComplete();
+    void downloadRepoListComplete();
+    void downloadRepoListRedirectCheck();
     void onQuery(const QString &msg, const QString &title, QMessageBox::StandardButton* answer);
     void hideDialogIfNoNetwork();
     void pollForNewDisks();

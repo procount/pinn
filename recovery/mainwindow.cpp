@@ -66,6 +66,7 @@ void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode);
 extern CecListener * cec;
 
 extern QStringList downloadRepoUrls;
+extern QString repoList;
 
 /* Main window
  *
@@ -224,9 +225,16 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
             end = end-pos-searchForLen;
         _repo = cmdline.mid(pos+searchForLen, end);
     }
-    else if (!cmdline.contains ("-no_default_source"))
+    else if (!cmdline.contains ("no_default_source"))
     {	//Only add if not excluded
         _repo = DEFAULT_REPO_SERVER;
+    }
+
+    if (QFile::exists("/mnt/repo_list.json"))
+    {
+        /* We have a local repo_list.json for testing purposes */
+        qDebug() << "Using local repo_list.json";
+        repoList = "/mnt/repo_list.json";
     }
 
     _usbimages = !cmdline.contains("disableusbimages");
@@ -1128,10 +1136,133 @@ void MainWindow::onOnlineStateChanged(bool online)
             _netaccess->setCache(_cache);
             QNetworkConfigurationManager manager;
             _netaccess->setConfiguration(manager.defaultConfiguration());
-            downloadLists();
+
+            checkForUpdates();
+
+            downloadRepoList(repoList);
         }
         ui->actionBrowser->setEnabled(true);
         emit networkUp();
+    }
+}
+
+void MainWindow::downloadRepoList(const QString &urlstring)
+{
+    qDebug() << "downloadRepoList: " << urlstring;
+    if (urlstring.isEmpty())
+        downloadLists();
+    else
+    {
+        if (urlstring.startsWith("http"))
+        {
+            QUrl url(urlstring);
+            QNetworkRequest request(url);
+            request.setRawHeader("User-Agent", AGENT);
+            QNetworkReply *reply = _netaccess->get(request);
+            connect(reply, SIGNAL(finished()), this, SLOT(downloadRepoListRedirectCheck()));
+        }
+        else
+        {
+            processRepoListJson( Json::parse(getFileContents(urlstring)) );
+        }
+    }
+}
+
+void MainWindow::downloadRepoListRedirectCheck()
+{
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
+
+    /* Set our clock to server time if we currently have a date before 2015 */
+    QByteArray dateStr = reply->rawHeader("Date");
+    if (!dateStr.isEmpty() && QDate::currentDate().year() < 2016)
+    {
+        // Qt 4 does not have a standard function for parsing the Date header, but it does
+        // have one for parsing a Last-Modified header that uses the same date/time format, so just use that
+        QNetworkRequest dummyReq;
+        dummyReq.setRawHeader("Last-Modified", dateStr);
+        QDateTime parsedDate = dummyReq.header(dummyReq.LastModifiedHeader).toDateTime();
+
+        struct timeval tv;
+        tv.tv_sec = parsedDate.toTime_t();
+        tv.tv_usec = 0;
+        settimeofday(&tv, NULL);
+
+        qDebug() << "Time set to: " << parsedDate;
+    }
+
+    if (httpstatuscode > 300 && httpstatuscode < 400)
+    {
+        qDebug() << "Redirection - Re-trying download from" << redirectionurl;
+        downloadRepoList(redirectionurl);
+    }
+    else
+        downloadRepoListComplete();
+}
+
+void MainWindow::downloadRepoListComplete()
+{
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+
+    if (reply->error() != reply->NoError || httpstatuscode < 200 || httpstatuscode > 399)
+    {
+        if (_qpd)
+            _qpd->hide();
+        QString errstr = tr("Error downloading distribution list from Internet:\n") + reply->url().toString();
+        qDebug() << "Error Downloading "<< reply->url()<<" reply: "<< reply->error() << " httpstatus: "<< httpstatuscode;
+        QMessageBox::critical(this, tr("Download error"), errstr, QMessageBox::Close);
+    }
+    else
+    {
+        processRepoListJson(Json::parse( reply->readAll() ));
+    }
+
+    reply->deleteLater();
+}
+
+void MainWindow::processRepoListJson(QVariant json)
+{
+    if (json.isNull())
+    {
+        QMessageBox::critical(this, tr("Error"), tr("Error parsing repolist.json downloaded from server"), QMessageBox::Close);
+        return;
+    }
+
+    QVariantList list = json.toMap().value("repo_list").toList();
+
+    qDebug() << "processRepoListJson: " << list;
+
+    foreach (QVariant osv, list)
+    {
+        QVariantMap  os = osv.toMap();
+
+        if (os.contains("name"))
+            QString basename = os.value("name").toString();
+        if (os.contains("url"))
+            downloadRepoUrls << os.value("url").toString();
+    }
+
+    downloadLists();
+}
+
+void MainWindow::downloadLists()
+{
+    _numIconsToDownload = 0;
+    QStringList urls = _repo.split(' ', QString::SkipEmptyParts);
+
+    //Add-in PINN's list of repos
+    urls << downloadRepoUrls;
+    urls.removeDuplicates();
+
+    foreach (QString url, urls)
+    {
+        qDebug() << "Downloading list from " << url;
+        if (url.startsWith("/"))
+            processJson( Json::parse(getFileContents(url)) );
+        else
+            downloadList(url);
     }
 }
 
@@ -1144,26 +1275,6 @@ void MainWindow::downloadList(const QString &urlstring)
     connect(reply, SIGNAL(finished()), this, SLOT(downloadListRedirectCheck()));
 }
 
-void MainWindow::downloadLists()
-{
-    _numIconsToDownload = 0;
-    QStringList urls = _repo.split(' ', QString::SkipEmptyParts);
-
-    //Add-in PINN's list of repos
-    urls << downloadRepoUrls;
-    urls.removeDuplicates();
-
-    checkForUpdates();
-
-    foreach (QString url, urls)
-    {
-        qDebug() << "Downloading list from " << url;
-        if (url.startsWith("/"))
-            processJson( Json::parse(getFileContents(url)) );
-        else
-            downloadList(url);
-    }
-}
 
 void MainWindow::rebuildInstalledList()
 {
