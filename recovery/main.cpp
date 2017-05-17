@@ -43,6 +43,7 @@ CecListener *cec = NULL;
 CecListener *enableCEC(QObject *parent=0);
 
 QStringList downloadRepoUrls;
+QString repoList;
 
 void showBootMenu(const QString &drive, const QString &defaultPartition, bool setDisplayMode)
 {
@@ -217,7 +218,13 @@ int main(int argc, char *argv[])
                  if (url.startsWith("http://"))
                     downloadRepoUrls << url;
              }
-
+        }
+        else if (strcmp(argv[i], "-repo_list")==0)
+        {
+            if (argc > i+1)
+            {
+                  repoList = argv[i+1];
+            }
         }
     }
 

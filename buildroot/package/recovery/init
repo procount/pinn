@@ -81,7 +81,8 @@ fi
     DEFAULT_DSI=
     DEFAULT_REPOS=
     EXTRA_REPOS=
- 
+    REPO_LIST=
+
     if grep -q runinstaller /proc/cmdline; then
         RUN_INSTALLER=-runinstaller
     fi
@@ -119,11 +120,14 @@ fi
         if [ "${p%%=*}" == "alt_image_source" ] ; then
             EXTRA_REPOS="-alt_image_source ${p#*=}"
         fi
+        if [ "${p%%=*}" == "repo_list" ] ; then
+            REPO_LIST="-repo_list ${p#*=}"
+        fi
     done
 
     if [ -e /mnt/background.sh ]; then /mnt/background.sh & fi;
 
-    /usr/bin/recovery $RUN_INSTALLER $GPIO_TRIGGER $KEYBOARD_NO_TRIGGER $FORCE_TRIGGER $DEFAULT_KBD $DEFAULT_LANG $DEFAULT_DISPLAY $DEFAULT_PARTITION $DEFAULT_NOCONFIG $DEFAULT_DSI $DEFAULT_REPOS $EXTRA_REPOS -qws 2>/tmp/debug
+    /usr/bin/recovery $RUN_INSTALLER $GPIO_TRIGGER $KEYBOARD_NO_TRIGGER $FORCE_TRIGGER $DEFAULT_KBD $DEFAULT_LANG $DEFAULT_DISPLAY $DEFAULT_PARTITION $DEFAULT_NOCONFIG $DEFAULT_DSI $DEFAULT_REPOS $EXTRA_REPOS $REPO_LIST -qws 2>/tmp/debug
 
 
 # Recovery should have rebooted
