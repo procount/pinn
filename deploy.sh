@@ -1,11 +1,11 @@
 #!/bin/sh
-
+set -x
 # backup the source code to pinn
 git push -f pinn pinn2:master
 cd ~/pinn
 git checkout -f master
 # move the readme documentation around
-cp ../noobs_test/README.md README_PINN.md
+#cp ../noobs_test/README.md README_PINN.md
 cp ../noobs_test/README_SUM.md README.md
 git add README.md
 git add README_PINN.md
@@ -31,6 +31,7 @@ cp RECOVERY_FILES_DO_NOT_EDIT $dst
 
 # Make amendments
 cp ~/pinn-release/recovery.cmdline $dst
+cp ~/pinn-release/recovery.cmdline.new $dst
 
 # Create the Zip file
 cd $dst

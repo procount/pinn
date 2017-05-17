@@ -42,6 +42,15 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V2.4.2
+
+- **repo_list**       - Added repo_list cmdline argument
+
+#### Bugfixes
+
+- **Win10IoT**        - Fixed annoying warning messages on installation
+- **RTAndrod**        - re-included missing cpio to allow installation
+
 ### V2.4.1
 
 - **btrfs**           - Added support for btrfs file systems

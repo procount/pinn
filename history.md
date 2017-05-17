@@ -5,6 +5,15 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V2.4.2
+
+- **repo_list**       - Added repo_list cmdline argument
+
+#### Bugfixes
+
+- **Win10IoT**        - Fixed annoying warning messages on installation
+- **RTAndrod**        - re-included missing cpio to allow installation
+
 ### V2.4.1
 
 - **btrfs**           - Included support for btrfs file systems

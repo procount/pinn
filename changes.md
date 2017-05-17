@@ -260,3 +260,12 @@ Added many translations from the community.
 
 - **btrfs**           - Added support for btrfs file systems
 
+### V2.4.2
+
+- **repo_list**       - Added repo_list cmdline argument
+
+#### Bugfixes
+
+- **Win10IoT**        - Fixed annoying warning messages on installation
+- **RTAndrod**        - re-included missing cpio to allow installation
+

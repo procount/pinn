@@ -2306,9 +2306,14 @@ void MainWindow::downloadUpdateComplete()
     {
         BuildData currentver, newver;
 
+        qDebug()<<"BUILD_IGNORE...";
         currentver.read(BUILD_IGNORE);
         if (currentver.isEmpty())
+        {
+            qDebug()<<"BUILD_CURRENT...";
             currentver.read(BUILD_CURRENT);
+        }
+        qDebug()<<"BUILD_NEW...";
         newver.read(BUILD_NEW);
 
         if (newver > currentver)
