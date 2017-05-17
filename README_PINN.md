@@ -19,7 +19,7 @@ On any subsequent boot you can then press the SHIFT key to enter the PINN interf
 In addition to the SHIFT key, it is also possible to press the Left mouse button, any key on a CEC enabled TV remote, or touch the Raspberry logo on the touchscreen to enter the PINN interface.
 
 ### BOOT MODES
-From v2.4, PINN supports installing the OS on an external USB storage device.
+From v2.4, PINN supports installing the OS to an external USB storage device.
 If an external USB storage device is plugged in, a 'destination drive' option will appear, permitting the ROOTFS to be installed on that device. The BOOT partition will remain on the SD card.
 If you have a RPi with a BCM2837 CPU (RPi3 or RPi2Bv2) with USB boot mode enabled, it is now possible to install PINN to the USB device. Any OSes will then be fully installed to the USB device and the SD card will not be required.
 
@@ -187,11 +187,14 @@ If your TV does not work as above and are willing to help, please let me know so
 
 If your Pi is connected to the internet, PINN will present a list of OSes available from the Raspberry Pi website. An alternative source of OSes to be downloaded from the internet can be specified by adding <b>alt_image_source=http://newurl.com/os_list_v3.json</b> to the argument list in recovery.cmdline, where `newurl.com` is the name of the alternative server and `os_list_v3.json` is the list of information about the alternative OSes. This list of OSes will be added to the default download list. This can be useful for storing the default repository on a local LAN server, or for adding your own list of OSes to those available in PINN.
 
-To suppress the default URL and only use the alternative image source for downloading OS images, add <b>no_default_source</b>. Using this option without `alt_image_source` will prevent all internet downloads and just allow local OSes on the SD card or USB memory stick to be listed.
+To suppress the default URL and only use the alternative image sources for downloading OS images, add <b>no_default_source</b>. Using this option without `alt_image_source` will prevent all internet downloads and just allow local OSes on the SD card or USB memory stick to be listed.
 
-PINN 2.4 now also supports the similar "repo=" option from NOOBS. Using repo will replace the default RPF server repository, whereas 'alt_image_source' simply adds a repository.
+PINN v2.4 now also supports the similar `repo=` option from NOOBS. Using `repo` will replace the default RPF server repository, whereas 'alt_image_source' simply adds a repository.
 
-To add multiple respoitories, add multiple 'alt_image_source' options, or add multiple space-separated urls to the single quoted repo option.
+To add multiple repositories, add multiple 'alt_image_source' options, or add multiple space-separated urls to the single "quoted" repo option.
+
+PINN v2.4.2 introduces the `repo_list` option. This URL references a json file that includes a list of remote repositories to retrieve OSes from, rather than including each source in recovery.cmdline. This makes it easier to maintain the OS list remotely for a set of users, rather than editing it manually on each Pi. For testing purposes, including a `repo_list.json` file on the PINN recovery partition will override any cmdline option and will be read instead.
+
 
 ### How to Automatically Install an OS
 
@@ -234,18 +237,6 @@ This feature mimics the progress dialog on the display and is useful in headless
 ### Background shell script
 
 To make use of the installation progress feature a background shell script can be used. If a /background.sh script exists, it will be executed in the background whilst PINN runs. This can be used to read the /tmp/progress file and display the progress on the serial port, or a GPIO display etc.
-
-### Installing Arch linux
-
-Arch linux distros use extended file attributes that are not stored in a standard TAR archive.
-Therefore they use BSDTAR to create their distro archives which are not compatible with PINN.
-PINN adds BSDTAR support to install these files, allowing ARCH linux to be installed.
-The partition_setup.sh file has been modified to allow ARCH linux distros to be
-installed directly from their website without converting into PINN's XZ format.
-
-To install Arch it is necessary to add another repository to PINN.
-Edit recovery.cmdline and add `alt-image-source=https://raw.githubusercontent.com/procount/pinn-os/master/os/os_list_v3.json`
-(This is included by default)
 
 ### Preconfiguring a WiFi network
 
