@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it" sourcelanguage="en">
+<TS version="2.1" language="it" sourcelanguage="en">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -572,7 +572,7 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="mainwindow.cpp" line="1229"/>
         <source>Error parsing repolist.json downloaded from server</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore analisi repolist.json scaricato dal server</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1829"/>
