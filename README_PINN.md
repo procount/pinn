@@ -66,7 +66,7 @@ Once connected, the Pi will only show a list of Operating Systems that are appro
 
 The IP address of the PI is now shown in the window title bar.
 
-####Wired Networks
+#### Wired Networks
 
 If a wired ethernet cable is plugged into the Pi before PINN starts, PINN will connect via DHCP to a remote download repository and present a list of available Operating Systems that are available for installation.
 

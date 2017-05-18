@@ -411,20 +411,20 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="+372"/>
-        <location line="+969"/>
+        <location filename="mainwindow.cpp" line="+380"/>
+        <location line="+1072"/>
         <location line="+586"/>
         <source>RECOMMENDED</source>
         <translation>RECOMENDADO</translation>
     </message>
     <message>
-        <location line="-1298"/>
+        <location line="-1401"/>
         <location line="+19"/>
         <source>Confirm</source>
         <translation>Confirmar</translation>
     </message>
     <message>
-        <location line="-527"/>
+        <location line="-534"/>
         <source>Setting up SD card</source>
         <translation>Configurando cartão SD</translation>
     </message>
@@ -449,7 +449,7 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+110"/>
+        <location line="+117"/>
         <source>Please wait while PINN initialises</source>
         <translation type="unfinished"></translation>
     </message>
@@ -461,13 +461,14 @@ WARNING: This will erase all data on your SD card</oldsource>
     </message>
     <message>
         <location line="+102"/>
-        <location line="+510"/>
+        <location line="+495"/>
+        <location line="+118"/>
         <location line="+828"/>
         <source>Error</source>
         <translation></translation>
     </message>
     <message>
-        <location line="-1689"/>
+        <location line="-1792"/>
         <source>INSTALLED</source>
         <translation type="unfinished"></translation>
     </message>
@@ -482,7 +483,7 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-637"/>
+        <location line="-644"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -492,7 +493,7 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+471"/>
+        <location line="+478"/>
         <source>SD card</source>
         <translation type="unfinished"></translation>
     </message>
@@ -550,13 +551,15 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+372"/>
+        <location line="+357"/>
+        <location line="+118"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="-116"/>
+        <location line="+118"/>
         <location line="+370"/>
         <location line="+10"/>
         <location line="+557"/>
@@ -565,7 +568,12 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-459"/>
+        <location line="-1059"/>
+        <source>Error parsing repolist.json downloaded from server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+600"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -615,7 +623,7 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+74"/>
+        <location line="+79"/>
         <source>PINN UPDATE</source>
         <translation type="unfinished"></translation>
     </message>
@@ -640,7 +648,7 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1023"/>
+        <location line="-1028"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation type="unfinished"></translation>
     </message>
@@ -671,14 +679,14 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-857"/>
-        <location line="+734"/>
+        <location line="-960"/>
+        <location line="+837"/>
         <location line="+8"/>
         <source>No network access</source>
         <translation>Sem acesso de rede</translation>
     </message>
     <message>
-        <location line="-741"/>
+        <location line="-844"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Acesso de rede cabeado é necessário para este recurso. Por favor, insira um cabo de rede.</translation>
     </message>
