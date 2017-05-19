@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -520,7 +520,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="1229"/>
         <source>Error parsing repolist.json downloaded from server</source>
-        <translation type="unfinished"></translation>
+        <translation>解析從伺服器下載的 replist.json 時發生錯誤</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1829"/>
