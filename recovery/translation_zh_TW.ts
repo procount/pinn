@@ -520,7 +520,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="1229"/>
         <source>Error parsing repolist.json downloaded from server</source>
-        <translation type="unfinished"></translation>
+        <translation>解析從伺服器下載的 repolist.json 時發生錯誤</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1829"/>
