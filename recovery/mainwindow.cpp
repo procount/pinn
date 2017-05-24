@@ -747,7 +747,9 @@ void MainWindow::on_list_currentRowChanged()
     ui->actionPassword->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
 
     QVariantMap m = item->data(Qt::UserRole).toMap();
+#ifdef KHDBG
     qDebug() << "RowChanged: " << m;
+#endif
 }
 
 void MainWindow::update_window_title()
