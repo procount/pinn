@@ -139,6 +139,9 @@ done
 # Let buildroot build everything
 make
 
+# copy any updated translation files
+cp $BUILD_DIR/recovery-$(get_package_version recovery)/*.ts ../recovery
+
 # Create output dir and copy files
 FINAL_OUTPUT_DIR="../$NOOBS_OUTPUT_DIR"
 mkdir -p "$FINAL_OUTPUT_DIR"

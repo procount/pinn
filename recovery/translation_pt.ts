@@ -412,13 +412,13 @@ WARNING: This will erase all data on your SD card</oldsource>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="+380"/>
-        <location line="+1072"/>
+        <location line="+1074"/>
         <location line="+586"/>
         <source>RECOMMENDED</source>
         <translation>RECOMENDADO</translation>
     </message>
     <message>
-        <location line="-1401"/>
+        <location line="-1403"/>
         <location line="+19"/>
         <source>Confirm</source>
         <translation>Confirmar</translation>
@@ -461,19 +461,19 @@ WARNING: This will erase all data on your SD card</oldsource>
     </message>
     <message>
         <location line="+102"/>
-        <location line="+495"/>
+        <location line="+497"/>
         <location line="+118"/>
         <location line="+828"/>
         <source>Error</source>
         <translation></translation>
     </message>
     <message>
-        <location line="-1792"/>
+        <location line="-1794"/>
         <source>INSTALLED</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+472"/>
+        <location line="+474"/>
         <source>Display Mode Changed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -483,7 +483,7 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-644"/>
+        <location line="-646"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -525,7 +525,7 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+34"/>
         <source>PINN v%1 - Built: %2 (%3)</source>
         <translation type="unfinished"></translation>
     </message>
