@@ -87,6 +87,9 @@ LanguageDialog::LanguageDialog(const QString &defaultLang, const QString &defaul
         /* Exception for Asturian (not in ISO639-1) */
         if (langcode.compare("ast", Qt::CaseInsensitive) == 0)
             languagename = "Asturian";
+        /* Exception for Arabic (Dunno why not displayed) */
+        if (langcode.compare("ae", Qt::CaseInsensitive) == 0)
+            languagename = "Arabic";
 
         QString iconfilename = ":/icons/"+langcode+".png";
 

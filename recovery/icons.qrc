@@ -57,5 +57,9 @@
         <file>icons/tick.png</file>
         <file>icons/hdd_usb_unmount.png</file>
         <file>icons/lock_edit.png</file>
+        <file>icons/ae.png</file>
+        <file>icons/no.png</file>
+        <file>translation_ae.qm</file>
+        <file>translation_no.qm</file>
     </qresource>
 </RCC>
