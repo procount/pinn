@@ -141,8 +141,8 @@ void InitDriveThread::run()
 
 bool InitDriveThread::method_resizePartitions()
 {
-    int newStartOfRescuePartition = getFileContents(sysclassblock(_drive, 1)+"/start").trimmed().toInt();
-    int newSizeOfRescuePartition  = sizeofBootFilesInKB()*1.024/1000 + 100;
+    uint newStartOfRescuePartition = getFileContents(sysclassblock(_drive, 1)+"/start").trimmed().toUInt();
+    uint newSizeOfRescuePartition  = sizeofBootFilesInKB()*1.024/1000 + 100;
 
     if (!umountSystemPartition())
     {
@@ -157,7 +157,7 @@ bool InitDriveThread::method_resizePartitions()
         // Warn user that their SD card does not have an MBR and ask
         // if they would like us to create one for them
         QMessageBox::StandardButton answer;
-        emit query(tr("Would you like PINN to create one for you?\nWARNING: This will erase all data on your SD card"),
+        emit query(tr("Would you like NOOBS to create one for you?\nWARNING: This will erase all data on your SD card"),
                    tr("Error: No MBR present on SD Card"),
                    &answer);
 
@@ -185,9 +185,9 @@ bool InitDriveThread::method_resizePartitions()
             qDebug() << "Created missing MBR on SD card. parted output:" << proc.readAll();
 
             // Advise user that their SD card has now been formatted
-            // suitably for installing PINN and that they will have to
+            // suitably for installing NOOBS and that they will have to
             // re-copy the files before rebooting
-            emit error(tr("SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot"));
+            emit error(tr("SD card has now been formatted ready for NOOBS installation. Please re-copy the NOOBS files onto the card and reboot"));
             return false;
         }
         else
@@ -245,12 +245,12 @@ bool InitDriveThread::method_resizePartitions()
     emit statusUpdate(tr("Creating extended partition"));
 
     QByteArray partitionTable;
-    int startOfOurPartition = getFileContents(sysclassblock(_drive, 1)+"/start").trimmed().toInt();
-    int sizeOfOurPartition  = getFileContents(sysclassblock(_drive, 1)+"/size").trimmed().toInt();
-    int startOfExtended = startOfOurPartition+sizeOfOurPartition;
+    uint startOfOurPartition = getFileContents(sysclassblock(_drive, 1)+"/start").trimmed().toUInt();
+    uint sizeOfOurPartition  = getFileContents(sysclassblock(_drive, 1)+"/size").trimmed().toUInt();
+    uint startOfExtended = startOfOurPartition+sizeOfOurPartition;
 
     // Align start of settings partition on 4 MiB boundary
-    int startOfSettings = startOfExtended + PARTITION_GAP;
+    uint startOfSettings = startOfExtended + PARTITION_GAP;
     if (startOfSettings % PARTITION_ALIGNMENT != 0)
          startOfSettings += PARTITION_ALIGNMENT-(startOfSettings % PARTITION_ALIGNMENT);
 
@@ -292,11 +292,11 @@ int InitDriveThread::sizeofBootFilesInKB()
     return proc.readAll().split('\t').first().toInt();
 }
 
-int InitDriveThread::sizeofSDCardInBlocks()
+uint InitDriveThread::sizeofSDCardInBlocks()
 {
     QFile f(sysclassblock(_drive)+"/size");
     f.open(f.ReadOnly);
-    int blocks = f.readAll().trimmed().toULongLong();
+    uint blocks = f.readAll().trimmed().toUInt();
     f.close();
 
     return blocks;
@@ -405,15 +405,15 @@ bool InitDriveThread::partitionDrive()
      * First 4 MB kept empty for alignment
      * Followed by FAT partition of RESCUE_PARTITION_SIZE
      * Followed by extended partition spanning remainder of space
-     * First logical partition has PINN persistent settings partition
+     * First logical partition has NOOBS persistent settings partition
      */
     QByteArray partitionTable;
-    int sizeOfOurPartition = RESCUE_PARTITION_SIZE*1024*2;
-    int startOfOurPartition = PARTITION_ALIGNMENT;
-    int startOfExtended = startOfOurPartition+sizeOfOurPartition;
+    uint sizeOfOurPartition = RESCUE_PARTITION_SIZE*1024*2;
+    uint startOfOurPartition = PARTITION_ALIGNMENT;
+    uint startOfExtended = startOfOurPartition+sizeOfOurPartition;
 
     // Align start of settings partition on 4 MiB boundary
-    int startOfSettings = startOfExtended + PARTITION_GAP;
+    uint startOfSettings = startOfExtended + PARTITION_GAP;
     if (startOfSettings % PARTITION_ALIGNMENT != 0)
          startOfSettings += PARTITION_ALIGNMENT-(startOfSettings % PARTITION_ALIGNMENT);
 

@@ -106,7 +106,7 @@
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="160"/>
-        <source>Would you like PINN to create one for you?
+        <source>Would you like NOOBS to create one for you?
 WARNING: This will erase all data on your SD card</source>
         <oldsource>Would you like PINN to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
@@ -130,7 +130,7 @@ FIGYELEM: ez letörli az SD kártyát lévő összes adatot</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="190"/>
-        <source>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</source>
+        <source>SD card has now been formatted ready for NOOBS installation. Please re-copy the NOOBS files onto the card and reboot</source>
         <oldsource>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</oldsource>
         <translation type="unfinished">Az SD kártya meg lett formázva a PINN telepítéshez. Kérlek, másold rá a PINN fájlokat újra a kártyára, és indítsd újra a rendszert</translation>
     </message>
@@ -721,38 +721,38 @@ El szeretnéd menteni ezt a beállítást?</translation>
         <translation>Nincs elég szabad hely. %1 MB szükséges, és csak %2 MB van</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="310"/>
+        <location filename="multiimagewritethread.cpp" line="311"/>
         <source>Finish writing (sync)</source>
         <translation>Írás befejezése (szink.)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="447"/>
+        <location filename="multiimagewritethread.cpp" line="448"/>
         <source>File &apos;%1&apos; does not exist</source>
         <translation>&apos;%1&apos; fájl nem létezik</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="480"/>
-        <location filename="multiimagewritethread.cpp" line="486"/>
+        <location filename="multiimagewritethread.cpp" line="481"/>
+        <location filename="multiimagewritethread.cpp" line="487"/>
         <source>%1: Writing OS image</source>
         <oldsource>Writing image</oldsource>
         <translation>%1: OS lemezképfájl kiírása</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="500"/>
+        <location filename="multiimagewritethread.cpp" line="501"/>
         <source>%1: Mounting file system</source>
         <oldsource>Mounting file system</oldsource>
         <translation>%1: Fájlrendszer felcsatolása</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="508"/>
-        <location filename="multiimagewritethread.cpp" line="532"/>
-        <location filename="multiimagewritethread.cpp" line="700"/>
+        <location filename="multiimagewritethread.cpp" line="509"/>
+        <location filename="multiimagewritethread.cpp" line="533"/>
+        <location filename="multiimagewritethread.cpp" line="701"/>
         <source>%1: Error mounting file system</source>
         <oldsource>Error mounting file system</oldsource>
         <translation>%1: Nem sikerült a fájlrendszer felcsatolása</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="493"/>
+        <location filename="multiimagewritethread.cpp" line="494"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation>%1: Fájlrendszer létrehozása (%2)</translation>
     </message>
@@ -772,113 +772,113 @@ El szeretnéd menteni ezt a beállítást?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="213"/>
+        <location filename="multiimagewritethread.cpp" line="214"/>
         <source>Fixed partition offset too low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="273"/>
+        <location filename="multiimagewritethread.cpp" line="274"/>
         <source>Writing partition table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="280"/>
+        <location filename="multiimagewritethread.cpp" line="281"/>
         <source>Writing boot partition table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="296"/>
+        <location filename="multiimagewritethread.cpp" line="297"/>
         <source>Zero&apos;ing start of each partition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="330"/>
+        <location filename="multiimagewritethread.cpp" line="331"/>
         <source>Error reading existing partition table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="415"/>
+        <location filename="multiimagewritethread.cpp" line="416"/>
         <source>Error creating partition table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="513"/>
+        <location filename="multiimagewritethread.cpp" line="514"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation>%1: A fájlrendszer letöltése és kibontása</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="515"/>
+        <location filename="multiimagewritethread.cpp" line="516"/>
         <source>%1: Extracting filesystem</source>
         <oldsource>%1 Extracting filesystem</oldsource>
         <translation>%1: A fájlrendszer kibontása</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="529"/>
+        <location filename="multiimagewritethread.cpp" line="530"/>
         <source>%1: Mounting FAT partition</source>
         <oldsource>Mouning FAT partition</oldsource>
         <translation>%1: FAT partíció felcsatolása</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="541"/>
+        <location filename="multiimagewritethread.cpp" line="542"/>
         <source>%1: Creating os_config.json</source>
         <oldsource>Creating os_config.json</oldsource>
         <translation>%1: os_config.json létrehozása</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="566"/>
+        <location filename="multiimagewritethread.cpp" line="567"/>
         <source>%1: Saving display mode to config.txt</source>
         <oldsource>Saving display mode to config.txt</oldsource>
         <translation>%1: Megjelenítési mód elmentése a config.txt fájlba</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="577"/>
+        <location filename="multiimagewritethread.cpp" line="578"/>
         <source>%1: Running partition setup script</source>
         <oldsource>Running partition setup script</oldsource>
         <translation>%1: Partícióbeállító parancsfájl futtatása</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="626"/>
+        <location filename="multiimagewritethread.cpp" line="627"/>
         <source>%1: Error executing partition setup script</source>
         <oldsource>Error executing partition setup script</oldsource>
         <translation>%1: Hiba történt a partícióbeállító parancsfájl futtatása közben</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="635"/>
+        <location filename="multiimagewritethread.cpp" line="636"/>
         <source>%1: Configuring flavour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="649"/>
+        <location filename="multiimagewritethread.cpp" line="650"/>
         <source>%1: Unmounting FAT partition</source>
         <oldsource>%1: Patching BCD file</oldsource>
         <translation>%1: FAT partíció lecsatolása</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="652"/>
+        <location filename="multiimagewritethread.cpp" line="653"/>
         <source>%1: Error unmounting</source>
         <oldsource>Error unmounting</oldsource>
         <translation>%1: Nem sikerült a lecsatolás</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="917"/>
+        <location filename="multiimagewritethread.cpp" line="918"/>
         <source>Error creating file system</source>
         <translation>Nem sikerült a fájlrendszer létrehozása</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="959"/>
-        <location filename="multiimagewritethread.cpp" line="1030"/>
-        <location filename="multiimagewritethread.cpp" line="1089"/>
+        <location filename="multiimagewritethread.cpp" line="960"/>
+        <location filename="multiimagewritethread.cpp" line="1031"/>
+        <location filename="multiimagewritethread.cpp" line="1090"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
         <translation>Ismeretlen tömörítettfájl-kiterjesztés. Elfogadottak: .lzo, .gz, .xz, .bz2 vagy .zip</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="992"/>
+        <location filename="multiimagewritethread.cpp" line="993"/>
         <source>Error downloading or extracting tarball</source>
         <translation>Nem sikerült a tömörített fájl letöltése vagy kibontása</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1051"/>
-        <location filename="multiimagewritethread.cpp" line="1110"/>
+        <location filename="multiimagewritethread.cpp" line="1052"/>
+        <location filename="multiimagewritethread.cpp" line="1111"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>Nem sikerült az OS letöltése vagy kiírása az SD kártyára</translation>
     </message>
@@ -949,12 +949,12 @@ El szeretnéd menteni ezt a beállítást?</translation>
 <context>
     <name>ProgressSlideshowDialog</name>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="153"/>
+        <location filename="progressslideshowdialog.cpp" line="157"/>
         <source>%1 MB of %2 MB written (%3 MB/sec)</source>
         <translation>%1 MB lett eddig kiírva a %2 MB-ból (%3 MB/mp)</translation>
     </message>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="171"/>
+        <location filename="progressslideshowdialog.cpp" line="175"/>
         <source>%1 MB written (%2 MB/sec)</source>
         <translation>%1 MB lett eddig kiírva (%2 MB/mp)</translation>
     </message>

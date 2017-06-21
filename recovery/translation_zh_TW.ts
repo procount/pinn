@@ -139,11 +139,11 @@
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="160"/>
-        <source>Would you like PINN to create one for you?
+        <source>Would you like NOOBS to create one for you?
 WARNING: This will erase all data on your SD card</source>
         <oldsource>Would you like PINN to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
-        <translation>您想要讓 PINN 為您建立一個嗎？
+        <translation type="unfinished">您想要讓 PINN 為您建立一個嗎？
 警告：這將會抹除您 SD 記憶卡上所有的資料</translation>
     </message>
     <message>
@@ -175,9 +175,9 @@ WARNING: This will erase all data on your SD card</oldsource>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="190"/>
-        <source>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</source>
+        <source>SD card has now been formatted ready for NOOBS installation. Please re-copy the NOOBS files onto the card and reboot</source>
         <oldsource>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</oldsource>
-        <translation>SD 記憶卡已經被格式化完成，準備好給 PINN 使用了。請重新複製 PINN 檔案到記憶卡上並重新開機</translation>
+        <translation type="unfinished">SD 記憶卡已經被格式化完成，準備好給 PINN 使用了。請重新複製 PINN 檔案到記憶卡上並重新開機</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="195"/>
@@ -734,138 +734,138 @@ Would you like to make this setting permanent?</source>
         <translation>磁碟空間不足。需要 %1 MB，剩餘 %2 MB</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="213"/>
+        <location filename="multiimagewritethread.cpp" line="214"/>
         <source>Fixed partition offset too low</source>
         <translation>固定分割區偏移量過低</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="273"/>
+        <location filename="multiimagewritethread.cpp" line="274"/>
         <source>Writing partition table</source>
         <translation>正在寫入分割表</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="280"/>
+        <location filename="multiimagewritethread.cpp" line="281"/>
         <source>Writing boot partition table</source>
         <translation>正在寫入開機分割表</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="296"/>
+        <location filename="multiimagewritethread.cpp" line="297"/>
         <source>Zero&apos;ing start of each partition</source>
         <translation>正在將每一個分割區的開頭歸零</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="310"/>
+        <location filename="multiimagewritethread.cpp" line="311"/>
         <source>Finish writing (sync)</source>
         <translation>寫入完成 (sync)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="330"/>
+        <location filename="multiimagewritethread.cpp" line="331"/>
         <source>Error reading existing partition table</source>
         <translation>讀取已有的分割表時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="415"/>
+        <location filename="multiimagewritethread.cpp" line="416"/>
         <source>Error creating partition table</source>
         <translation>建立分割表時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="447"/>
+        <location filename="multiimagewritethread.cpp" line="448"/>
         <source>File &apos;%1&apos; does not exist</source>
         <translation>檔案「%1」不存在</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="480"/>
-        <location filename="multiimagewritethread.cpp" line="486"/>
+        <location filename="multiimagewritethread.cpp" line="481"/>
+        <location filename="multiimagewritethread.cpp" line="487"/>
         <source>%1: Writing OS image</source>
         <translation>%1：正在寫入作業系統映像檔</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="493"/>
+        <location filename="multiimagewritethread.cpp" line="494"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation>%1：正在建立檔案系統 (%2)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="500"/>
+        <location filename="multiimagewritethread.cpp" line="501"/>
         <source>%1: Mounting file system</source>
         <translation>%1：正在掛載檔案系統</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="508"/>
-        <location filename="multiimagewritethread.cpp" line="532"/>
-        <location filename="multiimagewritethread.cpp" line="700"/>
+        <location filename="multiimagewritethread.cpp" line="509"/>
+        <location filename="multiimagewritethread.cpp" line="533"/>
+        <location filename="multiimagewritethread.cpp" line="701"/>
         <source>%1: Error mounting file system</source>
         <translation>%1：掛載檔案系統時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="513"/>
+        <location filename="multiimagewritethread.cpp" line="514"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation>%1：正在下載並解壓縮檔案系統</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="515"/>
+        <location filename="multiimagewritethread.cpp" line="516"/>
         <source>%1: Extracting filesystem</source>
         <translation>%1：正在解壓縮檔案系統</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="529"/>
+        <location filename="multiimagewritethread.cpp" line="530"/>
         <source>%1: Mounting FAT partition</source>
         <translation>%1：正在掛載 FAT 分割區</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="541"/>
+        <location filename="multiimagewritethread.cpp" line="542"/>
         <source>%1: Creating os_config.json</source>
         <translation>%1：正在建立 os_config.json</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="566"/>
+        <location filename="multiimagewritethread.cpp" line="567"/>
         <source>%1: Saving display mode to config.txt</source>
         <translation>%1：已經儲存顯示模式至 config.txt</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="577"/>
+        <location filename="multiimagewritethread.cpp" line="578"/>
         <source>%1: Running partition setup script</source>
         <translation>%1：正在執行分割區設定指令稿</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="626"/>
+        <location filename="multiimagewritethread.cpp" line="627"/>
         <source>%1: Error executing partition setup script</source>
         <translation>%1：執行分割區設定指令稿時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="635"/>
+        <location filename="multiimagewritethread.cpp" line="636"/>
         <source>%1: Configuring flavour</source>
         <translation>%1：正在設定風味</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="649"/>
+        <location filename="multiimagewritethread.cpp" line="650"/>
         <source>%1: Unmounting FAT partition</source>
         <translation>%1：正在解除掛載 FAT 分割區</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="652"/>
+        <location filename="multiimagewritethread.cpp" line="653"/>
         <source>%1: Error unmounting</source>
         <translation>%1：解除掛載錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="917"/>
+        <location filename="multiimagewritethread.cpp" line="918"/>
         <source>Error creating file system</source>
         <translation>建立檔案系統時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="959"/>
-        <location filename="multiimagewritethread.cpp" line="1030"/>
-        <location filename="multiimagewritethread.cpp" line="1089"/>
+        <location filename="multiimagewritethread.cpp" line="960"/>
+        <location filename="multiimagewritethread.cpp" line="1031"/>
+        <location filename="multiimagewritethread.cpp" line="1090"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
         <translation>未知的壓縮格式副檔名。預期為：.lzo、.gz、.xz、.bz2 或是 .zip</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="992"/>
+        <location filename="multiimagewritethread.cpp" line="993"/>
         <source>Error downloading or extracting tarball</source>
         <translation>下載或解壓縮 tarball 時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1051"/>
-        <location filename="multiimagewritethread.cpp" line="1110"/>
+        <location filename="multiimagewritethread.cpp" line="1052"/>
+        <location filename="multiimagewritethread.cpp" line="1111"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>下載或寫入作業系統至 SD 記憶卡時發生錯誤</translation>
     </message>
@@ -936,12 +936,12 @@ Would you like to make this setting permanent?</source>
 <context>
     <name>ProgressSlideshowDialog</name>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="153"/>
+        <location filename="progressslideshowdialog.cpp" line="157"/>
         <source>%1 MB of %2 MB written (%3 MB/sec)</source>
         <translation>%2 MB 中的 %1 MB 已寫入（%3 MB／秒）</translation>
     </message>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="171"/>
+        <location filename="progressslideshowdialog.cpp" line="175"/>
         <source>%1 MB written (%2 MB/sec)</source>
         <translation>%1 MB 已寫入（%2 MB／秒）</translation>
     </message>

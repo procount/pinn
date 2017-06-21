@@ -41,11 +41,12 @@ public slots:
 protected:
     QString _drive;
     QStringList _slides;
-    int _pos, _changeInterval, _sectorsStart, _maxSectors, _pausedAt;
+    int _pos, _changeInterval;
+    uint _sectorsStart, _maxSectors, _pausedAt;
     QTimer _timer, _iotimer;
     QTime _t1;
 
-    int sectorsWritten();
+    uint sectorsWritten();
 
 
 private:
