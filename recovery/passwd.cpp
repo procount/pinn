@@ -308,8 +308,25 @@ void Passwd::accept()
 
             //Change the password
             executeLog(1,QString("sh -c \"echo " +username +":" +password +" | chpasswd\""));
-            //set field 3? of /etc/shadow to 16858?
-            executeLog(1,QString("sh -c \"sed -i.bak -e \"s/\(" +username+ "\):\(.*\):\(.*\):\(.*\):\(.*\):\(.*\):\(.*\):\(.*\):\(.*\)/\1:\2:16850:\4:\5:\6\:\7:\8:\9/\" /etc/shadow\""));
+
+/* Shadow format:
+
+smithj:Ep6mckrOLChF.:10063:0:99999:7:::
+As with the passwd file, each field in the shadow file is also separated with ":" colon characters, and are as follows:
+
+1. Username, up to 8 characters. Case-sensitive, usually all lowercase. A direct match to the username in the /etc/passwd file.
+2. Password, 13 character encrypted. A blank entry (eg. ::) indicates a password is not required to log in (usually a bad idea), and a ``*'' entry (eg. :*:) indicates the account has been disabled.
+3. The number of days (since January 1, 1970) since the password was last changed.
+4. The number of days before password may be changed (0 indicates it may be changed at any time)
+5. The number of days after which password must be changed (99999 indicates user can keep his or her password unchanged for many, many years)
+6. The number of days to warn user of an expiring password (7 for a full week)
+7. The number of days after password expires that account is disabled
+8. The number of days since January 1, 1970 that an account has been disabled
+9. A reserved field for possible future use
+*/
+            //set field 3 of /etc/shadow to 16858?
+            //set field 5 of /etc/shadow to 99999 so it does nto expire straight-away (in fact ever!)
+            executeLog(1,QString("sh -c \"sed -i.bak -e \"s/\(" +username+ "\):\(.*\):\(.*\):\(.*\):\(.*\):\(.*\):\(.*\):\(.*\):\(.*\)/\1:\2:16850:\4:99999:\6\:\7:\8:\9/\" /etc/shadow\""));
 
             executeLog(1,QString("sh -c \"umount /etc\""));
             executeLog(1,QString("sh -c \"umount /tmp/part\""));
