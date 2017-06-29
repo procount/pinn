@@ -186,9 +186,9 @@
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="160"/>
-        <source>Would you like NOOBS to create one for you?
+        <source>Would you like PINN to create one for you?
 WARNING: This will erase all data on your SD card</source>
-        <oldsource>Would you like PINN to create one for you?
+        <oldsource>Would you like NOOBS to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
         <translation type="unfinished">¿Prestaríate que PINN cree una por ti?
 AVISU: Esto desaniciará tolos datos na to tarxeta SD</translation>
@@ -210,8 +210,8 @@ AVISU: Esto desaniciará tolos datos na to tarxeta SD</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="190"/>
-        <source>SD card has now been formatted ready for NOOBS installation. Please re-copy the NOOBS files onto the card and reboot</source>
-        <oldsource>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</oldsource>
+        <source>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</source>
+        <oldsource>SD card has now been formatted ready for NOOBS installation. Please re-copy the NOOBS files onto the card and reboot</oldsource>
         <translation type="unfinished">Agora formatióse la tarxeta SD tresnada pa la instalación de PINN. Por favor, copia de nueves los ficheros PINN na tarxeta y reanicia</translation>
     </message>
     <message>
@@ -935,12 +935,12 @@ Would you like to make this setting permanent?</source>
 <context>
     <name>ProgressSlideshowDialog</name>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="157"/>
+        <location filename="progressslideshowdialog.cpp" line="172"/>
         <source>%1 MB of %2 MB written (%3 MB/sec)</source>
         <translation>%1 MB de %2 MB escritos (%3 MB/seg)</translation>
     </message>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="175"/>
+        <location filename="progressslideshowdialog.cpp" line="190"/>
         <source>%1 MB written (%2 MB/sec)</source>
         <translation>%1 MB escritos (%2 MB/seg)</translation>
     </message>

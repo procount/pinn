@@ -157,7 +157,7 @@ bool InitDriveThread::method_resizePartitions()
         // Warn user that their SD card does not have an MBR and ask
         // if they would like us to create one for them
         QMessageBox::StandardButton answer;
-        emit query(tr("Would you like NOOBS to create one for you?\nWARNING: This will erase all data on your SD card"),
+        emit query(tr("Would you like PINN to create one for you?\nWARNING: This will erase all data on your SD card"),
                    tr("Error: No MBR present on SD Card"),
                    &answer);
 
@@ -185,9 +185,9 @@ bool InitDriveThread::method_resizePartitions()
             qDebug() << "Created missing MBR on SD card. parted output:" << proc.readAll();
 
             // Advise user that their SD card has now been formatted
-            // suitably for installing NOOBS and that they will have to
+            // suitably for installing PINN and that they will have to
             // re-copy the files before rebooting
-            emit error(tr("SD card has now been formatted ready for NOOBS installation. Please re-copy the NOOBS files onto the card and reboot"));
+            emit error(tr("SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot"));
             return false;
         }
         else
@@ -405,7 +405,7 @@ bool InitDriveThread::partitionDrive()
      * First 4 MB kept empty for alignment
      * Followed by FAT partition of RESCUE_PARTITION_SIZE
      * Followed by extended partition spanning remainder of space
-     * First logical partition has NOOBS persistent settings partition
+     * First logical partition has PINN persistent settings partition
      */
     QByteArray partitionTable;
     uint sizeOfOurPartition = RESCUE_PARTITION_SIZE*1024*2;

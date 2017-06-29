@@ -42,6 +42,13 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V2.4.2h
+
+- **Translations**    - udpate to Portugese + other translations
+- **Password**        - A new password will not expire
+- **Slideshow**       - Slides during installation are now scaled to be the same size.
+- **>1TB MSDs**       - Installing OSes to a USB Mass Storage Device > 1TB would fail. 2TB is the maximum size.
+
 ### V2.4.2
 
 - **repo_list**       - Added repo_list cmdline argument
