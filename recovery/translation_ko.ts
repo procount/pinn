@@ -106,9 +106,9 @@
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="160"/>
-        <source>Would you like NOOBS to create one for you?
+        <source>Would you like PINN to create one for you?
 WARNING: This will erase all data on your SD card</source>
-        <oldsource>Would you like PINN to create one for you?
+        <oldsource>Would you like NOOBS to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
         <translation type="unfinished">PINN로 작업을 시작하시겠습니까?
 경고: SD 카드의 모든 데이터가 지워집니다.</translation>
@@ -130,8 +130,8 @@ WARNING: This will erase all data on your SD card</oldsource>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="190"/>
-        <source>SD card has now been formatted ready for NOOBS installation. Please re-copy the NOOBS files onto the card and reboot</source>
-        <oldsource>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</oldsource>
+        <source>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</source>
+        <oldsource>SD card has now been formatted ready for NOOBS installation. Please re-copy the NOOBS files onto the card and reboot</oldsource>
         <translation type="unfinished">SD 카드가 PINN 설치 준비를 위해 포맷되었습니다.SD 카드에 PINN를 다시 복사한 다음 재부팅하십시오.</translation>
     </message>
     <message>
@@ -950,12 +950,12 @@ Would you like to make this setting permanent?</source>
 <context>
     <name>ProgressSlideshowDialog</name>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="157"/>
+        <location filename="progressslideshowdialog.cpp" line="172"/>
         <source>%1 MB of %2 MB written (%3 MB/sec)</source>
         <translation>%2 MB 중 %1 MB 기록 완료 (%3 MB/초)</translation>
     </message>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="175"/>
+        <location filename="progressslideshowdialog.cpp" line="190"/>
         <source>%1 MB written (%2 MB/sec)</source>
         <translation>%1 MB 기록 완료 (%2 MB/초)</translation>
     </message>

@@ -269,3 +269,9 @@ Added many translations from the community.
 - **Win10IoT**        - Fixed annoying warning messages on installation
 - **RTAndrod**        - re-included missing cpio to allow installation
 
+### V2.4.2h
+
+- **Translations**    - udpate to Portugese + other translations
+- **Password**        - A new password will not expire
+- **Slideshow**       - Slides during installation are now scaled to be the same size.
+- **>1TB MSDs**       - Installing OSes to a USB Mass Storage Device > 1TB would fail. 2TB is the maximum size.
