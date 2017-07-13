@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -143,7 +143,7 @@
 WARNING: This will erase all data on your SD card</source>
         <oldsource>Would you like NOOBS to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
-        <translation type="unfinished">您想要讓 PINN 為您建立一個嗎？
+        <translation>您想要讓 PINN 為您建立一個嗎？
 警告：這將會抹除您 SD 記憶卡上所有的資料</translation>
     </message>
     <message>
@@ -177,7 +177,7 @@ WARNING: This will erase all data on your SD card</oldsource>
         <location filename="initdrivethread.cpp" line="190"/>
         <source>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</source>
         <oldsource>SD card has now been formatted ready for NOOBS installation. Please re-copy the NOOBS files onto the card and reboot</oldsource>
-        <translation type="unfinished">SD 記憶卡已經被格式化完成，準備好給 PINN 使用了。請重新複製 PINN 檔案到記憶卡上並重新開機</translation>
+        <translation>SD 記憶卡已經被格式化完成，準備好給 PINN 使用了。請重新複製 PINN 檔案到記憶卡上並重新開機</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="195"/>
