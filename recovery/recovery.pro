@@ -54,7 +54,8 @@ SOURCES += \
     piclonethread.cpp \
     copythread.cpp \
     builddata.cpp \
-    ceclistener.cpp
+    ceclistener.cpp \
+    mydebug.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -87,7 +88,8 @@ HEADERS  += \
     piclonethread.h \
     copythread.h \
     builddata.h \
-    ceclistener.h
+    ceclistener.h \
+    mydebug.h
 
 FORMS    += \
     mainwindow.ui \
