@@ -1980,7 +1980,7 @@ void MainWindow::addImagesFromUSB(const QString &device)
     QString mntpath = "/tmp/media/"+device;
 
     dir.mkpath(mntpath);
-    if (QProcess::execute("mount -o ro -t vfat /dev/"+device+" "+mntpath) != 0)
+    if (QProcess::execute("mount -o ro /dev/"+device+" "+mntpath) != 0)
     {
         dir.rmdir(mntpath);
         return;
