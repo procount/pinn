@@ -109,8 +109,12 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     _ipaddress=QHostAddress();
 
     QRect s = QApplication::desktop()->screenGeometry();
-    if (s.height() < 500)
-        resize(s.width()-10, s.height()-100);
+    int w = s.width()-100;
+    int h = s.height() - 100;
+
+    w =qMin(w,700);
+    h =qMin(h,500);
+    resize(w,h);
 
     connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
 
@@ -829,10 +833,12 @@ void MainWindow::displayMode(int modenr, bool silent)
 
     // Resize this window depending on screen resolution
     QRect s = QApplication::desktop()->screenGeometry();
-    if (s.height() < 500)
-        resize(s.width()-10, s.height()-100);
-    else
-        resize(575, 450);
+    int w = s.width()-100;
+    int h = s.height() - 100;
+
+    w =qMin(w,700);
+    h =qMin(h,500);
+    resize(w,h);
 
     // Update UI item locations
     _splash->setPixmap(QPixmap(":/wallpaper.png"));

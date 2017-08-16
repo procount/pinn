@@ -416,280 +416,280 @@ KONTUZ: Honek zure SD txarteleko datu guztiak ezabatuko ditu</translation>
         <translation>W</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="122"/>
+        <location filename="mainwindow.cpp" line="126"/>
         <source>Setting up SD card</source>
         <translation>SD txartela prestatzen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="168"/>
+        <location filename="mainwindow.cpp" line="172"/>
         <source>Error mounting settings partition</source>
         <translation>Errorea ezarpenen partizioa muntatzean</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="143"/>
+        <location filename="mainwindow.cpp" line="147"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation>SD txartelaren zain (ezarpenak partizioa)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="156"/>
+        <location filename="mainwindow.cpp" line="160"/>
         <source>Mounting settings partition</source>
         <translation>Ezarpenak partizioa muntatzen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="169"/>
+        <location filename="mainwindow.cpp" line="173"/>
         <source>Persistent settings partition seems corrupt. Reformat?</source>
         <translation>Ezarpen iraunkorren partizioa hondatuta dagoela dirudi. Berriz formateatu?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="176"/>
+        <location filename="mainwindow.cpp" line="180"/>
         <source>Reformat failed</source>
         <translation>Berriz formateatzeak huts egin du</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="176"/>
+        <location filename="mainwindow.cpp" line="180"/>
         <source>SD card might be damaged</source>
         <translation>SD txartela hondatuta egon daiteke</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="293"/>
+        <location filename="mainwindow.cpp" line="297"/>
         <source>Please wait while PINN initialises</source>
         <translation>Mesedez itxaron PINN hasieratu arte</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="380"/>
-        <location filename="mainwindow.cpp" line="1454"/>
-        <location filename="mainwindow.cpp" line="2040"/>
+        <location filename="mainwindow.cpp" line="384"/>
+        <location filename="mainwindow.cpp" line="1460"/>
+        <location filename="mainwindow.cpp" line="2046"/>
         <source>RECOMMENDED</source>
         <translation>GOMENDATUA</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="383"/>
+        <location filename="mainwindow.cpp" line="387"/>
         <source>INSTALLED</source>
         <translation>INSTALATUA</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="637"/>
-        <location filename="mainwindow.cpp" line="656"/>
+        <location filename="mainwindow.cpp" line="641"/>
+        <location filename="mainwindow.cpp" line="660"/>
         <source>Confirm</source>
         <translation>Berretsi</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="757"/>
+        <location filename="mainwindow.cpp" line="761"/>
         <source>PINN v%1 - Built: %2 (%3)</source>
         <translation>PINN v%1 - Eraikitzea: %2 (%3)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1231"/>
+        <location filename="mainwindow.cpp" line="1237"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1831"/>
+        <location filename="mainwindow.cpp" line="1837"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>Sareko sarbidea behar da PINN irudi lokalik gabe erabiltzeko. Hautatu zure wifi sarea hurrengo pantailan.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1839"/>
+        <location filename="mainwindow.cpp" line="1845"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>Haridun sareko sarbidea behar da PINN irudi lokalik gabe erabiltzeko. Txertatu sareko kable bat sareko atakan.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1954"/>
+        <location filename="mainwindow.cpp" line="1960"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>Ziur zaude &apos;%1&apos; unitatea PINNekin erabiltzeko birformateatu nahi duzula? Unitateko datu guztiak ezabatuko dira!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2131"/>
+        <location filename="mainwindow.cpp" line="2137"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>Honek &apos;%s&apos; gailuko eduki guztiak ezabatuko ditu. Ziur zaude?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2133"/>
+        <location filename="mainwindow.cpp" line="2139"/>
         <source>Clone SD Card</source>
         <translation>Klonatu SD txartela</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2135"/>
+        <location filename="mainwindow.cpp" line="2141"/>
         <source>Yes</source>
         <translation>Bai</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2136"/>
+        <location filename="mainwindow.cpp" line="2142"/>
         <source>No</source>
         <translation>Ez</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2164"/>
+        <location filename="mainwindow.cpp" line="2170"/>
         <source>Clone Completed</source>
         <translation>Klonazio burututa</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2165"/>
+        <location filename="mainwindow.cpp" line="2171"/>
         <source>Clone Completed Successfully</source>
         <translation>Klonazioa behar bezala burutu da</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2272"/>
+        <location filename="mainwindow.cpp" line="2278"/>
         <source>Error downloading update file</source>
         <translation>Errorea eguneraketa fitxategia deskargatzean</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2351"/>
+        <location filename="mainwindow.cpp" line="2357"/>
         <source>PINN UPDATE</source>
         <translation>PINN EGUNERAKETA</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2352"/>
+        <location filename="mainwindow.cpp" line="2358"/>
         <source>A new version of PINN is available</source>
         <translation>PINNen bertsio berri bat eskuragarri dago</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2353"/>
+        <location filename="mainwindow.cpp" line="2359"/>
         <source>Do you want to download this version?</source>
         <translation>Bertsio hau deskargatu nahi duzu?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2377"/>
+        <location filename="mainwindow.cpp" line="2383"/>
         <source>Downloading Update</source>
         <translation>Eguneraketa deskargatzen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2377"/>
+        <location filename="mainwindow.cpp" line="2383"/>
         <source>Press ESC to cancel</source>
         <translation>Sakatu ESC ezeztatzeko</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="632"/>
+        <location filename="mainwindow.cpp" line="636"/>
         <source>Warning: this will install the selected Operating System(s). All existing data on the SD card will be overwritten, including any OSes that are already installed.</source>
         <translation>Kontuz: honek hautatutako sistema eragilea(k) instalatuko d(it)u. SD txartelean lehendik dauden datu guztiak gainidatziko dira, aurretik instalatutako SEak barne.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="634"/>
+        <location filename="mainwindow.cpp" line="638"/>
         <source>SD card</source>
         <translation>SD txartela</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="634"/>
+        <location filename="mainwindow.cpp" line="638"/>
         <source>drive</source>
         <translation>unitatea</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="657"/>
+        <location filename="mainwindow.cpp" line="661"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>Kontuz: sistema eragile bateraezina(k) detektatu d(ir)a. Ondorengo SEek ez dute euskarririk Raspberry Piren bertsio honetan eta baliteke ez abiaraztea edo gaizki funtzionatzea:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="699"/>
+        <location filename="mainwindow.cpp" line="703"/>
         <source>The install process will begin shortly.</source>
         <translation>Instalazio prozesua laster hasiko da.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="722"/>
+        <location filename="mainwindow.cpp" line="726"/>
         <source>OS(es) installed</source>
         <translation>SEa(k) instalatu dira</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="723"/>
+        <location filename="mainwindow.cpp" line="727"/>
         <source>OS(es) Installed Successfully</source>
         <translation>SEa(k) behar bezala instalatu dira</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="734"/>
-        <location filename="mainwindow.cpp" line="1231"/>
-        <location filename="mainwindow.cpp" line="1349"/>
-        <location filename="mainwindow.cpp" line="2177"/>
+        <location filename="mainwindow.cpp" line="738"/>
+        <location filename="mainwindow.cpp" line="1237"/>
+        <location filename="mainwindow.cpp" line="1355"/>
+        <location filename="mainwindow.cpp" line="2183"/>
         <source>Error</source>
         <translation>Errorea</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="789"/>
+        <location filename="mainwindow.cpp" line="793"/>
         <source>HDMI preferred mode</source>
         <translation>HDMI modu hobetsia</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="793"/>
+        <location filename="mainwindow.cpp" line="797"/>
         <source>HDMI safe mode</source>
         <translation>HDMI modu segurua</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="797"/>
+        <location filename="mainwindow.cpp" line="801"/>
         <source>composite PAL mode</source>
         <translation>PAL konposatu modua</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="801"/>
+        <location filename="mainwindow.cpp" line="805"/>
         <source>composite NTSC mode</source>
         <translation>NTSC konposatu modua</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="857"/>
+        <location filename="mainwindow.cpp" line="863"/>
         <source>Display Mode Changed</source>
         <translation>Bistaratze-modua aldatuta</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="858"/>
+        <location filename="mainwindow.cpp" line="864"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>Bistaratze modua %1(e)ra aldatu da
 Ezarpen hau iraunkortu nahi duzu?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="993"/>
-        <location filename="mainwindow.cpp" line="1830"/>
-        <location filename="mainwindow.cpp" line="1838"/>
+        <location filename="mainwindow.cpp" line="999"/>
+        <location filename="mainwindow.cpp" line="1836"/>
+        <location filename="mainwindow.cpp" line="1844"/>
         <source>No network access</source>
         <translation>Sareko sarbiderik ez</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="994"/>
+        <location filename="mainwindow.cpp" line="1000"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Haridun sareko sarbidea behar da ezaugarri honentzat. Mesedez sartu sareko kable bat sareko atakan.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1215"/>
-        <location filename="mainwindow.cpp" line="1333"/>
+        <location filename="mainwindow.cpp" line="1221"/>
+        <location filename="mainwindow.cpp" line="1339"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation>Errorea banaketa zerrenda Internetetik deskargatzean:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1217"/>
-        <location filename="mainwindow.cpp" line="1335"/>
-        <location filename="mainwindow.cpp" line="1705"/>
-        <location filename="mainwindow.cpp" line="1715"/>
-        <location filename="mainwindow.cpp" line="2272"/>
-        <location filename="mainwindow.cpp" line="2290"/>
+        <location filename="mainwindow.cpp" line="1223"/>
+        <location filename="mainwindow.cpp" line="1341"/>
+        <location filename="mainwindow.cpp" line="1711"/>
+        <location filename="mainwindow.cpp" line="1721"/>
+        <location filename="mainwindow.cpp" line="2278"/>
+        <location filename="mainwindow.cpp" line="2296"/>
         <source>Download error</source>
         <translation>Errorea deskargatzean</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1349"/>
+        <location filename="mainwindow.cpp" line="1355"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>Errorea zerbitzaritik deskargatutako list.json fitxategia analizatzean</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1577"/>
+        <location filename="mainwindow.cpp" line="1583"/>
         <source>Needed</source>
         <translation>Behar dena</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1578"/>
+        <location filename="mainwindow.cpp" line="1584"/>
         <source>Available</source>
         <translation>Erabilgarri dagoena</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1705"/>
+        <location filename="mainwindow.cpp" line="1711"/>
         <source>Error downloading meta file</source>
         <translation>Errorea meta fitxategia deskargatzean</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1715"/>
-        <location filename="mainwindow.cpp" line="2290"/>
+        <location filename="mainwindow.cpp" line="1721"/>
+        <location filename="mainwindow.cpp" line="2296"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>Errorea deskargatutako fitxategia SD txartelean idaztean. SD txartela edo fitxategi-sistema hondatuta egon daitezke.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1953"/>
+        <location filename="mainwindow.cpp" line="1959"/>
         <source>Reformat drive?</source>
         <translation>Unitatea birformateatu?</translation>
     </message>
