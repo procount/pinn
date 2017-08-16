@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>575</width>
+    <width>700</width>
     <height>450</height>
    </rect>
   </property>
@@ -160,6 +160,7 @@
    <addaction name="actionPassword"/>
    <addaction name="actionBackup"/>
    <addaction name="actionFschk"/>
+   <addaction name="actionRestore"/>
    <addaction name="actionClone"/>
   </widget>
   <widget class="QToolBar" name="advToolBar">
@@ -233,17 +234,17 @@
   </action>
   <action name="actionAdvanced">
    <property name="checkable">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="icon">
     <iconset resource="icons.qrc">
-     <normaloff>:/icons/setting_tools.png</normaloff>:/icons/setting_tools.png</iconset>
+     <normaloff>:/icons/bullet_arrow_right.png</normaloff>:/icons/bullet_arrow_right.png</iconset>
    </property>
    <property name="text">
-    <string>Advanced (a)</string>
+    <string>More</string>
    </property>
    <property name="toolTip">
-    <string>Advanced</string>
+    <string>More menus</string>
    </property>
    <property name="shortcut">
     <string>A</string>
