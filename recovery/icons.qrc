@@ -61,5 +61,6 @@
         <file>icons/no.png</file>
         <file>translation_ae.qm</file>
         <file>translation_no.qm</file>
+        <file>icons/information.png</file>
     </qresource>
 </RCC>

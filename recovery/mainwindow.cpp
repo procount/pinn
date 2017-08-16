@@ -2493,3 +2493,21 @@ void MainWindow::onKeyPress(int cec_code)
     qDebug() << "onKeyPress" << key;
 #endif
 }
+
+void MainWindow::on_actionInfo_triggered()
+{
+    if (!requireNetwork())
+        return;
+
+    QListWidgetItem * item = ui->list->currentItem();
+    QVariantMap m = item->data(Qt::UserRole).toMap();
+    if (m.contains("url"))
+    {
+        QProcess *proc = new QProcess(this);
+        QString lang = LanguageDialog::instance("en", "gb")->currentLanguage();
+        if (lang == "gb" || lang == "us" || lang == "ko" || lang == "")
+            lang = "en";
+        proc->start("arora -lang "+lang+" "+m.value("url").toString());
+    }
+}
+

@@ -134,6 +134,7 @@ private slots:
     void on_actionPassword_triggered();
     void on_targetCombo_currentIndexChanged(int index);
     void on_actionClone_triggered();
+    void on_actionInfo_triggered();
 
 signals:
     void networkUp();
