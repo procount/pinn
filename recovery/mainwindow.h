@@ -11,6 +11,8 @@
  */
 
 #include "languagedialog.h"
+#include "osgroup.h"
+
 #include <QMainWindow>
 #include <QModelIndex>
 #include <QSplashScreen>
@@ -38,6 +40,7 @@ public:
 
 protected:
     Ui::MainWindow *ui;
+    OsGroup * ug;
     QDialog *_qpd;
     QList <int> _kc;
     int _kcpos;
