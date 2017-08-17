@@ -82,6 +82,12 @@ extern QString repoList;
 #define SOURCE_NETWORK "network"
 #define SOURCE_INSTALLED_OS "installed_os"
 
+//TODO Change to enums
+#define TOOLBAR_MAIN 0
+#define TOOLBAR_ARCHIVAL 1
+#define TOOLBAR_MAINTENANCE 2
+#define NUM_TOOLBARS 2
+
 /* Flag to keep track wheter or not we already repartitioned. */
 bool MainWindow::_partInited = false;
 
@@ -103,8 +109,37 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
         << 0x01000014 << 0x01000012 << 0x01000014 << 0x42 << 0x41;
     ui->list->setItemDelegate(new TwoIconsDelegate(this));
     ui->list->installEventFilter(this);
+
+    _menuLabel = new QLabel();
+    _menuLabel->setText("Main Menu");
+    ui->advToolBar->addWidget(_menuLabel);
+
+    QPalette p = _menuLabel->palette();
+    if (p.color(QPalette::WindowText) != Qt::darkBlue)
+    {
+        p.setColor(QPalette::WindowText, Qt::darkBlue);
+        _menuLabel->setPalette(p);
+    }
+    QFont font;
+    font.setItalic(true);
+    font.setBold(true);
+    _menuLabel->setFont(font);
+
+
+    QWidget* spacer = new QWidget();
+    spacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
+    ui->advToolBar->addWidget(spacer);
+
+    toolbars.append(ui->toolBar_1);
+    toolbars.append(ui->toolBar_2);
+    toolbars.append(ui->toolBar_3);
+
+    toolbar_index=TOOLBAR_MAIN;
+    ui->toolBar_1->setVisible(toolbar_index==TOOLBAR_MAIN);
+    ui->toolBar_2->setVisible(toolbar_index==TOOLBAR_MAINTENANCE);
+    ui->toolBar_3->setVisible(toolbar_index==TOOLBAR_MAINTENANCE);
+    ui->groupBox->setVisible(toolbar_index==TOOLBAR_MAIN);
     ui->advToolBar->setVisible(true);
-    ui->toolBar->setVisible(false);
 
     _ipaddress=QHostAddress();
 
@@ -287,6 +322,18 @@ void MainWindow::closeEvent(QCloseEvent *event)
     disconnect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
     event->accept();
 }
+
+QString MainWindow::menutext(int index)
+{
+    static const char* menutext_strings[] = {
+        QT_TR_NOOP("Main Menu"),
+        //QT_TR_NOOP("Archival"),
+        QT_TR_NOOP("Maintenance")
+    };
+    index %= NUM_TOOLBARS; //Keep it in range
+    return tr(menutext_strings[index]);
+}
+
 
 /* Discover which images we have, and fill in the list */
 void MainWindow::populate()
@@ -750,6 +797,8 @@ void MainWindow::on_list_currentRowChanged()
     ui->actionEdit_config->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
     ui->actionPassword->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
 
+        if (_menuLabel)
+            _menuLabel->setText(menutext(toolbar_index));
     QVariantMap m = item->data(Qt::UserRole).toMap();
 #ifdef KHDBG
     qDebug() << "RowChanged: " << m;
@@ -924,7 +973,13 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         {
             on_list_doubleClicked(ui->list->currentIndex());
         }
-        else if (_kc.at(_kcpos) == keyEvent->key())
+
+        // catch toolbar changes (PageDown is same as M)
+        if (keyEvent->key() == Qt::Key_PageDown)
+        {
+            on_actionAdvanced_triggered();
+        }
+        if (_kc.at(_kcpos) == keyEvent->key())
         {
             _kcpos++;
             if (_kcpos == _kc.size())
@@ -950,16 +1005,16 @@ void MainWindow::inputSequence()
 
 void MainWindow::on_actionAdvanced_triggered()
 {
-    if (ui->actionAdvanced->isChecked())
-    {
-        ui->toolBar->setVisible(true);
-        ui->mainToolBar->setVisible(false);
-    }
-    else
-    {
-        ui->toolBar->setVisible(false);
-        ui->mainToolBar->setVisible(true);
-    }
+    toolbars.value(toolbar_index)->setVisible(false);
+    toolbar_index = (toolbar_index+1)%NUM_TOOLBARS;
+    toolbars.value(toolbar_index)->setVisible(true);
+
+    ui->groupBox->setVisible(toolbar_index==TOOLBAR_MAIN);
+    //ui->list->setVisible(toolbar_index!=1);
+
+    if (_menuLabel)
+        _menuLabel->setText(menutext(toolbar_index));
+
 }
 
 void MainWindow::on_actionEdit_config_triggered()
@@ -2408,9 +2463,7 @@ void MainWindow::onKeyPress(int cec_code)
     Qt::KeyboardModifiers modifiers = Qt::NoModifier;
     int key=0;
     QPoint p = QCursor::pos();
-    int menu =0;
-    if (ui->actionAdvanced->isChecked())
-        menu=1;
+    int menu =toolbar_index;
 
     switch (cec_code)
     {
@@ -2461,7 +2514,7 @@ void MainWindow::onKeyPress(int cec_code)
         break;
 
     case CEC_User_Control_F2Red:
-        key = Qt::Key_A;
+        key = Qt::Key_M;
         modifiers = Qt::ControlModifier;
         break;
 
@@ -2483,7 +2536,7 @@ void MainWindow::onKeyPress(int cec_code)
         break;
 /* Key 9 is always menu selection toggle */
     case CEC_User_Control_Number9:
-        key = Qt::Key_A;
+        key = Qt::Key_PageDown;
         break;
     default:
         break;

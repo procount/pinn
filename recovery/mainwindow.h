@@ -58,8 +58,13 @@ protected:
     QString _model, _repo, _drive, _bootdrive;
     int _noobsconfig;
     QHostAddress _ipaddress;
+    QLabel *_menuLabel;
 
     QMap<QString,QVariantMap> listImages(const QString &folder = "/mnt/os", bool includeInstalled = true);
+
+    QList<QToolBar*> toolbars;
+    int toolbar_index;
+
     virtual void changeEvent(QEvent * event);
     virtual bool eventFilter(QObject *obj, QEvent *event);
     void inputSequence();
@@ -86,6 +91,7 @@ protected:
     void filterList();
     void copyWpa();
     void on_newVersion();
+    QString menutext(int index);
 
     void downloadRepoList(const QString &urlstring);
     void processRepoListJson(QVariant json);
