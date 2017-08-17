@@ -121,6 +121,7 @@
    <addaction name="actionEdit_config"/>
    <addaction name="actionWifi"/>
    <addaction name="actionBrowser"/>
+   <addaction name="actionInfo"/>
    <addaction name="actionCancel"/>
   </widget>
   <widget class="QToolBar" name="toolBar_2">
@@ -316,6 +317,21 @@
    </property>
    <property name="shortcut">
     <string notr="true">H</string>
+   </property>
+  </action>
+  <action name="actionInfo">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/information.png</normaloff>:/icons/information.png</iconset>
+   </property>
+   <property name="text">
+    <string>Info (i)</string>
+   </property>
+   <property name="toolTip">
+    <string>Information about the seleted OS</string>
+   </property>
+   <property name="shortcut">
+    <string>I</string>
    </property>
   </action>
   <action name="actionWifi">

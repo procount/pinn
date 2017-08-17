@@ -61,5 +61,6 @@
         <file>translation_ae.qm</file>
         <file>translation_no.qm</file>
         <file>icons/bullet_arrow_right.png</file>
+        <file>icons/information.png</file>
     </qresource>
 </RCC>
