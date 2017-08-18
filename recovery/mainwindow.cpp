@@ -196,7 +196,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     _model = getFileContents("/proc/device-tree/model");
     QString cmdline = getFileContents("/proc/cmdline");
 
-    if (QFile::exists("/mnt/os_list_v3.json"))
+   ug->loadMap("/mnt/osGroupMap.json");
+   if (QFile::exists("/mnt/os_list_v3.json"))
     {
         /* We have a local os_list_v3.json for testing purposes */
         _repo = "/mnt/os_list_v3.json";
