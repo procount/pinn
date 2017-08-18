@@ -68,4 +68,6 @@
 /* Maximum number of partitions */
 #define MAXIMUM_PARTITIONS  32
 
+#define DEFGROUP "General"
+
 #endif // CONFIG_H

@@ -118,7 +118,6 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionWrite_image_to_disk"/>
-   <addaction name="actionEdit_config"/>
    <addaction name="actionWifi"/>
    <addaction name="actionBrowser"/>
    <addaction name="actionInfo"/>
@@ -159,6 +158,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionPassword"/>
+   <addaction name="actionEdit_config"/>
    <addaction name="actionBackup"/>
    <addaction name="actionFschk"/>
    <addaction name="actionClone"/>

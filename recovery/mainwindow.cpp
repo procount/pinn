@@ -15,6 +15,7 @@
 #include "piclonethread.h"
 #include "builddata.h"
 #include "ceclistener.h"
+#include "osgroup.h"
 
 #include <QMessageBox>
 #include <QProgressDialog>
@@ -107,8 +108,6 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     update_window_title();
     _kc << 0x01000013 << 0x01000013 << 0x01000015 << 0x01000015 << 0x01000012
         << 0x01000014 << 0x01000012 << 0x01000014 << 0x42 << 0x41;
-    ui->list->setItemDelegate(new TwoIconsDelegate(this));
-    ui->list->installEventFilter(this);
 
     _menuLabel = new QLabel();
     _menuLabel->setText("Main Menu");
@@ -139,6 +138,17 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     ui->toolBar_2->setVisible(toolbar_index==TOOLBAR_MAINTENANCE);
     ui->toolBar_3->setVisible(toolbar_index==TOOLBAR_MAINTENANCE);
     ui->groupBox->setVisible(toolbar_index==TOOLBAR_MAIN);
+
+    ug = new OsGroup(this,ui);
+
+    ug->list->setIconSize(QSize(40,40)); //ALL?? set each list?
+    connect(ug->list, SIGNAL(currentRowChanged(int)), this, SLOT(on_list_currentRowChanged(void)));
+    connect(ug->list, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(on_list_doubleClicked(const QModelIndex&)));
+    connect(ug->list, SIGNAL(itemChanged(QListWidgetItem *)), this, SLOT(on_list_itemChanged(QListWidgetItem *)));
+
+    ug->list->setItemDelegate(new TwoIconsDelegate(this));
+    ug->list->installEventFilter(this);
+
     ui->advToolBar->setVisible(true);
 
     _ipaddress=QHostAddress();
@@ -198,7 +208,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     _qpd->show();
     QApplication::processEvents();
 
-    ui->list->clear();
+    ug->list->clear();
     if (QProcess::execute("mount -t ext4 "+settingsPartition+" /settings") != 0)
     {
         _qpd->hide();
@@ -372,25 +382,25 @@ void MainWindow::populate()
     _availableMB = (getFileContents(sysclassblock(_drive)+"/size").trimmed().toUInt()-getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toUInt()-getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toUInt())/2048;
     updateNeeded();
 
-    if (ui->list->count() != 0)
+    if (ug->list->count() != 0)
     {
-        QList<QListWidgetItem *> l = ui->list->findItems(RECOMMENDED_IMAGE, Qt::MatchExactly);
+        QList<QListWidgetItem *> l = ug->list->findItems(RECOMMENDED_IMAGE, Qt::MatchExactly);
 
         if (!l.isEmpty())
         {
-            ui->list->setCurrentItem(l.first());
+            ug->list->setCurrentItem(l.first());
         }
         else
         {
-            ui->list->setCurrentRow(0);
+            ug->list->setCurrentRow(0);
         }
 
-        if (_allowSilent && !_numInstalledOS && ui->list->count() == 1)
+        if (_allowSilent && !_numInstalledOS && ug->list->count() == 1)
         {
             // No OS installed, perform silent installation
             qDebug() << "Performing silent installation";
             _silent = true;
-            ui->list->item(0)->setCheckState(Qt::Checked);
+            ug->list->item(0)->setCheckState(Qt::Checked);
             on_actionWrite_image_to_disk_triggered();
             _numInstalledOS = 1;
         }
@@ -403,7 +413,7 @@ void MainWindow::repopulate()
 {
     QMap<QString,QVariantMap> images = listImages();
     bool haveicons = false;
-    QSize currentsize = ui->list->iconSize();
+    QSize currentsize = ug->list->iconSize();
     QIcon localIcon(":/icons/hdd.png");
     QIcon internetIcon(":/icons/download.png");
     _numInstalledOS = 0;
@@ -456,7 +466,7 @@ void MainWindow::repopulate()
                 {
                     /* Make all icons as large as the largest icon we have */
                     currentsize = QSize(qMax(iconsize.width(), currentsize.width()),qMax(iconsize.height(), currentsize.height()));
-                    ui->list->setIconSize(currentsize);
+                    ug->list->setIconSize(currentsize);
                 }
             }
         }
@@ -485,10 +495,16 @@ void MainWindow::repopulate()
                 item->setData(SecondIconRole, internetIcon);
         }
 
+        if (installed) //@@
+        {
+            QListWidgetItem *clone = item->clone();
+            clone->setCheckState(Qt::Unchecked);
+            ug->listInstalled->addItem(clone);
+        }
         if (recommended)
-            ui->list->insertItem(0, item);
+            ug->list->insertItem(0, item);
         else
-            ui->list->addItem(item);
+            ug->list->addItem(item);
     }
 
     if (haveicons)
@@ -497,11 +513,11 @@ void MainWindow::repopulate()
         QPixmap dummyicon = QPixmap(currentsize.width(), currentsize.height());
         dummyicon.fill();
 
-        for (int i=0; i< ui->list->count(); i++)
+        for (int i=0; i< ug->list->count(); i++)
         {
-            if (ui->list->item(i)->icon().isNull())
+            if (ug->list->item(i)->icon().isNull())
             {
-                ui->list->item(i)->setIcon(dummyicon);
+                ug->list->item(i)->setIcon(dummyicon);
             }
         }
     }
@@ -511,7 +527,7 @@ void MainWindow::repopulate()
         ui->actionCancel->setEnabled(true);
         if (_fixate)
         {
-            ui->list->setEnabled(false);
+            ug->list->setEnabled(false);
         }
     }
 
@@ -793,7 +809,7 @@ void MainWindow::onQuery(const QString &msg, const QString &title, QMessageBox::
 
 void MainWindow::on_list_currentRowChanged()
 {
-    QListWidgetItem *item = ui->list->currentItem();
+    QListWidgetItem *item = ug->list->currentItem();
     ui->actionEdit_config->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
     ui->actionPassword->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
 
@@ -971,7 +987,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         // Catch Return key to trigger OS boot
         if (keyEvent->key() == Qt::Key_Return)
         {
-            on_list_doubleClicked(ui->list->currentIndex());
+            on_list_doubleClicked(ug->list->currentIndex());
         }
 
         // catch toolbar changes (PageDown is same as M)
@@ -1010,16 +1026,16 @@ void MainWindow::on_actionAdvanced_triggered()
     toolbars.value(toolbar_index)->setVisible(true);
 
     ui->groupBox->setVisible(toolbar_index==TOOLBAR_MAIN);
-    //ui->list->setVisible(toolbar_index!=1);
 
     if (_menuLabel)
         _menuLabel->setText(menutext(toolbar_index));
 
+    ug->toggleInstalled(toolbar_index==1 /*TOOLBAR_MAINTENANCE*/ );
 }
 
 void MainWindow::on_actionEdit_config_triggered()
 {
-    QListWidgetItem *item = ui->list->currentItem();
+    QListWidgetItem *item = ug->listInstalled->currentItem();
 
     if (item && item->data(Qt::UserRole).toMap().contains("partitions"))
     {
@@ -1036,9 +1052,9 @@ void MainWindow::on_actionEdit_config_triggered()
 void MainWindow::on_actionBrowser_triggered()
 {
 #if KHDBG
-    for (int i=0; i<ui->list->count(); i++)
+    for (int i=0; i<ug->list->count(); i++)
     {
-        QListWidgetItem *item = ui->list->item(i);
+        QListWidgetItem *item = ug->list->item(i);
         QVariantMap m = item->data(Qt::UserRole).toMap();
         qDebug() << m;
     }
@@ -1075,7 +1091,7 @@ void MainWindow::on_list_doubleClicked(const QModelIndex &index)
 {
     if (index.isValid())
     {
-        QListWidgetItem *item = ui->list->currentItem();
+        QListWidgetItem *item = ug->list->currentItem();
         if (item->checkState() == Qt::Unchecked)
             item->setCheckState(Qt::Checked);
         else
@@ -1495,7 +1511,7 @@ void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QS
             }
             witem->setData(Qt::UserRole, new_details);
             witem->setData(SecondIconRole, internetIcon);
-            ui->list->update();
+            ug->list->update();
         }
 
     }
@@ -1522,9 +1538,9 @@ void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QS
         witem->setData(SecondIconRole, internetIcon);
 
         if (recommended)
-            ui->list->insertItem(0, witem);
+            ug->list->insertItem(0, witem);
         else
-            ui->list->addItem(witem);
+            ug->list->addItem(witem);
     }
 #ifdef KHDBG
         qDebug() << "ProcessJsonOS: " << new_details << "\n";
@@ -1544,9 +1560,9 @@ void MainWindow::downloadIcon(const QString &urlstring, const QString &originalu
 
 QListWidgetItem *MainWindow::findItem(const QVariant &name)
 {
-    for (int i=0; i<ui->list->count(); i++)
+    for (int i=0; i<ug->list->count(); i++)
     {
-        QListWidgetItem *item = ui->list->item(i);
+        QListWidgetItem *item = ug->list->item(i);
         QVariantMap m = item->data(Qt::UserRole).toMap();
         if (m.value("name").toString() == name.toString())
         {
@@ -1574,13 +1590,13 @@ void MainWindow::downloadIconComplete()
         pix.loadFromData(reply->readAll());
         QIcon icon(pix);
 
-        for (int i=0; i<ui->list->count(); i++)
+        for (int i=0; i<ug->list->count(); i++)
         {
-            QVariantMap m = ui->list->item(i)->data(Qt::UserRole).toMap();
-            ui->list->setIconSize(QSize(40,40));
+            QVariantMap m = ug->list->item(i)->data(Qt::UserRole).toMap();
+            ug->list->setIconSize(QSize(40,40));
             if (m.value("icon") == originalurl)
             {
-                ui->list->item(i)->setIcon(icon);
+                ug->list->item(i)->setIcon(icon);
             }
         }
     }
@@ -1598,9 +1614,9 @@ QList<QListWidgetItem *> MainWindow::selectedItems()
 {
     QList<QListWidgetItem *> selected;
 
-    for (int i=0; i < ui->list->count(); i++)
+    for (int i=0; i < ug->list->count(); i++)
     {
-        QListWidgetItem *item = ui->list->item(i);
+        QListWidgetItem *item = ug->list->item(i);
         if (item->checkState())
         {
             selected.append(item);
@@ -1882,7 +1898,7 @@ void MainWindow::hideDialogIfNoNetwork()
             _qpd->deleteLater();
             _qpd = NULL;
 
-            if (ui->list->count() == 0)
+            if (ug->list->count() == 0)
             {
                 /* No local images either */
                 if (_hasWifi)
@@ -2078,7 +2094,7 @@ void MainWindow::addImagesFromUSB(const QString &device)
                 }
                 witem->setData(Qt::UserRole, m);
                 witem->setData(SecondIconRole, usbIcon);
-                ui->list->update();
+                ug->list->update();
             }
         }
         else
@@ -2110,9 +2126,9 @@ void MainWindow::addImagesFromUSB(const QString &device)
                 witem->setIcon(QIcon(iconFilename));
 
             if (recommended)
-                ui->list->insertItem(0, witem);
+                ug->list->insertItem(0, witem);
             else
-                ui->list->addItem(witem);
+                ug->list->addItem(witem);
         }
     }
 
@@ -2123,9 +2139,9 @@ void MainWindow::addImagesFromUSB(const QString &device)
 /* Dynamically hide items from list depending on target drive */
 void MainWindow::filterList()
 {
-    for (int i=0; i < ui->list->count(); i++)
+    for (int i=0; i < ug->list->count(); i++)
     {
-        QListWidgetItem *witem = ui->list->item(i);
+        QListWidgetItem *witem = ug->list->item(i);
 
         if (_drive == "/dev/mmcblk0")
         {
@@ -2251,7 +2267,7 @@ void MainWindow::onCloneError(const QString &msg)
 void MainWindow::on_actionPassword_triggered()
 {
     /* If no installed OS is selected, default to first extended partition */
-    QListWidgetItem *item = ui->list->currentItem();
+    QListWidgetItem *item = ug->listInstalled->currentItem();
     QVariantMap m;
 
     if (item)

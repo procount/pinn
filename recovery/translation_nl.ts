@@ -286,7 +286,7 @@ WAARSCHUWING: Dit verwijdert alle bestaande bestanden op de SD kaart</translatio
         <translation>Beschikbaar:</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="132"/>
+        <location filename="mainwindow.ui" line="131"/>
         <location filename="mainwindow.ui" line="171"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
@@ -428,294 +428,294 @@ WAARSCHUWING: Dit verwijdert alle bestaande bestanden op de SD kaart</translatio
         <translation>W</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="431"/>
-        <location filename="mainwindow.cpp" line="1515"/>
-        <location filename="mainwindow.cpp" line="2101"/>
+        <location filename="mainwindow.cpp" line="441"/>
+        <location filename="mainwindow.cpp" line="1531"/>
+        <location filename="mainwindow.cpp" line="2117"/>
         <source>RECOMMENDED</source>
         <translation>AANBEVOLEN</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="688"/>
-        <location filename="mainwindow.cpp" line="707"/>
+        <location filename="mainwindow.cpp" line="704"/>
+        <location filename="mainwindow.cpp" line="723"/>
         <source>Confirm</source>
         <translation>Bevestigen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="161"/>
+        <location filename="mainwindow.cpp" line="171"/>
         <source>Setting up SD card</source>
         <translation>SD card voorbereiden</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="207"/>
+        <location filename="mainwindow.cpp" line="217"/>
         <source>Error mounting settings partition</source>
         <translation>Fout bij mounten instellingen partitie</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="208"/>
+        <location filename="mainwindow.cpp" line="218"/>
         <source>Persistent settings partition seems corrupt. Reformat?</source>
         <translation>Instellingen partitie corrupt. Opnieuw formatteren?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="215"/>
+        <location filename="mainwindow.cpp" line="225"/>
         <source>Reformat failed</source>
         <translation>Formatteren mislukt</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="215"/>
+        <location filename="mainwindow.cpp" line="225"/>
         <source>SD card might be damaged</source>
         <translation>SD kaart kan beschadigd zijn</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="344"/>
+        <location filename="mainwindow.cpp" line="354"/>
         <source>Please wait while PINN initialises</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="683"/>
+        <location filename="mainwindow.cpp" line="699"/>
         <source>Warning: this will install the selected Operating System(s). All existing data on the SD card will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will install the selected Operating System. All existing data on the SD card will be overwritten.</oldsource>
         <translation>Weet u zeker dat u het besturingssysteem wilt installeren?
 Hierbij worden alle bestaande bestanden verwijderd.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="785"/>
-        <location filename="mainwindow.cpp" line="1292"/>
-        <location filename="mainwindow.cpp" line="1410"/>
-        <location filename="mainwindow.cpp" line="2238"/>
+        <location filename="mainwindow.cpp" line="801"/>
+        <location filename="mainwindow.cpp" line="1308"/>
+        <location filename="mainwindow.cpp" line="1426"/>
+        <location filename="mainwindow.cpp" line="2254"/>
         <source>Error</source>
         <translation>Fout</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="434"/>
+        <location filename="mainwindow.cpp" line="444"/>
         <source>INSTALLED</source>
         <translation>GEINSTALLEERD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="912"/>
+        <location filename="mainwindow.cpp" line="928"/>
         <source>Display Mode Changed</source>
         <translation>Resolutie aangepast</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="842"/>
+        <location filename="mainwindow.cpp" line="858"/>
         <source>HDMI preferred mode</source>
         <translation>HDMI preferred mode</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="182"/>
+        <location filename="mainwindow.cpp" line="192"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation>Wachten op SD kaart (settings partitie)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="195"/>
+        <location filename="mainwindow.cpp" line="205"/>
         <source>Mounting settings partition</source>
         <translation>Mounten van de settings partitie</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="329"/>
+        <location filename="mainwindow.cpp" line="339"/>
         <source>Main Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="331"/>
+        <location filename="mainwindow.cpp" line="341"/>
         <source>Maintenance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="685"/>
+        <location filename="mainwindow.cpp" line="701"/>
         <source>SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="685"/>
+        <location filename="mainwindow.cpp" line="701"/>
         <source>drive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="708"/>
+        <location filename="mainwindow.cpp" line="724"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>incompatibele OS gedetecteerd, the volgende OS&apos;s zijn niet ondersteund in deze versie van Raspberry Pi en kunnen mogelijk niet opstarten of correct functioneren</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="750"/>
+        <location filename="mainwindow.cpp" line="766"/>
         <source>The install process will begin shortly.</source>
         <translation>Even geduld.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="773"/>
+        <location filename="mainwindow.cpp" line="789"/>
         <source>OS(es) installed</source>
         <oldsource>OS installed</oldsource>
         <translation>Besturingssysteem geinstalleerd</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="774"/>
+        <location filename="mainwindow.cpp" line="790"/>
         <source>OS(es) Installed Successfully</source>
         <oldsource>OS Installed Successfully</oldsource>
         <translation>Besturingssysteem successvol geinstalleerd</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="810"/>
+        <location filename="mainwindow.cpp" line="826"/>
         <source>PINN v%1 - Built: %2 (%3)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="846"/>
+        <location filename="mainwindow.cpp" line="862"/>
         <source>HDMI safe mode</source>
         <translation>HDMI safe mode</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="850"/>
+        <location filename="mainwindow.cpp" line="866"/>
         <source>composite PAL mode</source>
         <translation>composite PAL mode</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="854"/>
+        <location filename="mainwindow.cpp" line="870"/>
         <source>composite NTSC mode</source>
         <translation>composite NTSC mode</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="913"/>
+        <location filename="mainwindow.cpp" line="929"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>Resolutie aangepast naar %1
 De instelling opslaan?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1276"/>
-        <location filename="mainwindow.cpp" line="1394"/>
+        <location filename="mainwindow.cpp" line="1292"/>
+        <location filename="mainwindow.cpp" line="1410"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1278"/>
-        <location filename="mainwindow.cpp" line="1396"/>
-        <location filename="mainwindow.cpp" line="1766"/>
-        <location filename="mainwindow.cpp" line="1776"/>
-        <location filename="mainwindow.cpp" line="2333"/>
-        <location filename="mainwindow.cpp" line="2351"/>
+        <location filename="mainwindow.cpp" line="1294"/>
+        <location filename="mainwindow.cpp" line="1412"/>
+        <location filename="mainwindow.cpp" line="1782"/>
+        <location filename="mainwindow.cpp" line="1792"/>
+        <location filename="mainwindow.cpp" line="2349"/>
+        <location filename="mainwindow.cpp" line="2367"/>
         <source>Download error</source>
         <translation>Fout bij downloaden</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1292"/>
+        <location filename="mainwindow.cpp" line="1308"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1892"/>
+        <location filename="mainwindow.cpp" line="1908"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1900"/>
+        <location filename="mainwindow.cpp" line="1916"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2015"/>
+        <location filename="mainwindow.cpp" line="2031"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2192"/>
+        <location filename="mainwindow.cpp" line="2208"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2194"/>
+        <location filename="mainwindow.cpp" line="2210"/>
         <source>Clone SD Card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2196"/>
+        <location filename="mainwindow.cpp" line="2212"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2197"/>
+        <location filename="mainwindow.cpp" line="2213"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2225"/>
+        <location filename="mainwindow.cpp" line="2241"/>
         <source>Clone Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2226"/>
+        <location filename="mainwindow.cpp" line="2242"/>
         <source>Clone Completed Successfully</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2333"/>
+        <location filename="mainwindow.cpp" line="2349"/>
         <source>Error downloading update file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2412"/>
+        <location filename="mainwindow.cpp" line="2428"/>
         <source>PINN UPDATE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2413"/>
+        <location filename="mainwindow.cpp" line="2429"/>
         <source>A new version of PINN is available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2414"/>
+        <location filename="mainwindow.cpp" line="2430"/>
         <source>Do you want to download this version?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2438"/>
+        <location filename="mainwindow.cpp" line="2454"/>
         <source>Downloading Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2438"/>
+        <location filename="mainwindow.cpp" line="2454"/>
         <source>Press ESC to cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1410"/>
+        <location filename="mainwindow.cpp" line="1426"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>Fout bij parsen list.json</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1638"/>
+        <location filename="mainwindow.cpp" line="1654"/>
         <source>Needed</source>
         <translation>Nodig</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1639"/>
+        <location filename="mainwindow.cpp" line="1655"/>
         <source>Available</source>
         <translation>Beschikbaar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1766"/>
+        <location filename="mainwindow.cpp" line="1782"/>
         <source>Error downloading meta file</source>
         <translation>Fout bij downloaden meta bestand</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1776"/>
-        <location filename="mainwindow.cpp" line="2351"/>
+        <location filename="mainwindow.cpp" line="1792"/>
+        <location filename="mainwindow.cpp" line="2367"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>Fout bij wegschrijven gedownload bestand naar SD kaart. SD kaart of bestandssysteem kan beschadigd zijn.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2014"/>
+        <location filename="mainwindow.cpp" line="2030"/>
         <source>Reformat drive?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1054"/>
-        <location filename="mainwindow.cpp" line="1891"/>
-        <location filename="mainwindow.cpp" line="1899"/>
+        <location filename="mainwindow.cpp" line="1070"/>
+        <location filename="mainwindow.cpp" line="1907"/>
+        <location filename="mainwindow.cpp" line="1915"/>
         <source>No network access</source>
         <translation>Geen netwerk verbinding</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1055"/>
+        <location filename="mainwindow.cpp" line="1071"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Een bekabelde netwerk verbinding is vereist voor deze functionaliteit. Controleer of de netwerk kabel aangesloten zit.</translation>
     </message>

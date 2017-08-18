@@ -55,7 +55,8 @@ SOURCES += \
     copythread.cpp \
     builddata.cpp \
     ceclistener.cpp \
-    mydebug.cpp
+    mydebug.cpp \
+    osgroup.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -89,7 +90,8 @@ HEADERS  += \
     copythread.h \
     builddata.h \
     ceclistener.h \
-    mydebug.h
+    mydebug.h \
+    osgroup.h
 
 FORMS    += \
     mainwindow.ui \
