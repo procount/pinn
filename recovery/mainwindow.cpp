@@ -443,6 +443,12 @@ void MainWindow::repopulate()
                 item->setData(SecondIconRole, internetIcon);
         }
 
+        if (installed) //@@
+        {
+            QListWidgetItem *clone = item->clone();
+            clone->setCheckState(Qt::Unchecked);
+            ug->listInstalled->addItem(clone);
+        }
         if (recommended)
             ug->list->insertItem(0, item);
         else
@@ -954,20 +960,24 @@ void MainWindow::inputSequence()
 void MainWindow::on_actionAdvanced_triggered()
 {
     if (ui->actionAdvanced->isChecked())
-    {
+    {   //Maintenance
         ui->toolBar->setVisible(true);
         ui->mainToolBar->setVisible(false);
+        ug->toggleInstalled(true);
     }
     else
-    {
+    {   //Main
         ui->toolBar->setVisible(false);
         ui->mainToolBar->setVisible(true);
+        ug->toggleInstalled(false);
     }
+
+    //@@tbd ug->toggleInstalled(toolbar_index==TOOLBAR_MAINTENANCE);
 }
 
 void MainWindow::on_actionEdit_config_triggered()
 {
-    QListWidgetItem *item = ug->list->currentItem();
+    QListWidgetItem *item = ug->listInstalled->currentItem();
 
     if (item && item->data(Qt::UserRole).toMap().contains("partitions"))
     {
@@ -2199,7 +2209,7 @@ void MainWindow::onCloneError(const QString &msg)
 void MainWindow::on_actionPassword_triggered()
 {
     /* If no installed OS is selected, default to first extended partition */
-    QListWidgetItem *item = ug->list->currentItem();
+    QListWidgetItem *item = ug->listInstalled->currentItem();
     QVariantMap m;
 
     if (item)

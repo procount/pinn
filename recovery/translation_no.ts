@@ -285,7 +285,7 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation>Tilgjengelig:</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="131"/>
+        <location filename="mainwindow.ui" line="130"/>
         <source>toolBar</source>
         <translation>toolBar</translation>
     </message>
@@ -417,14 +417,14 @@ WARNING: This will erase all data on your SD card</oldsource>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="389"/>
-        <location filename="mainwindow.cpp" line="1463"/>
-        <location filename="mainwindow.cpp" line="2049"/>
+        <location filename="mainwindow.cpp" line="1473"/>
+        <location filename="mainwindow.cpp" line="2059"/>
         <source>RECOMMENDED</source>
         <translation>ANBEFALES</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="646"/>
-        <location filename="mainwindow.cpp" line="665"/>
+        <location filename="mainwindow.cpp" line="652"/>
+        <location filename="mainwindow.cpp" line="671"/>
         <source>Confirm</source>
         <translation>Bekreft</translation>
     </message>
@@ -454,15 +454,15 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation>Vennligst vent mens PINN initialiseres</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="641"/>
+        <location filename="mainwindow.cpp" line="647"/>
         <source>Warning: this will install the selected Operating System(s). All existing data on the SD card will be overwritten, including any OSes that are already installed.</source>
         <translation>Advarsel: dette vil installere valgte OS(er). Alle eksisterende data på SD-kortet vil bli overskrevet, også ethvert OS som allerede er installert.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="743"/>
-        <location filename="mainwindow.cpp" line="1240"/>
-        <location filename="mainwindow.cpp" line="1358"/>
-        <location filename="mainwindow.cpp" line="2186"/>
+        <location filename="mainwindow.cpp" line="749"/>
+        <location filename="mainwindow.cpp" line="1250"/>
+        <location filename="mainwindow.cpp" line="1368"/>
+        <location filename="mainwindow.cpp" line="2196"/>
         <source>Error</source>
         <translation>Feil</translation>
     </message>
@@ -472,12 +472,12 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation>INSTALLERT</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="866"/>
+        <location filename="mainwindow.cpp" line="872"/>
         <source>Display Mode Changed</source>
         <translation>Visningsmodus endret</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="798"/>
+        <location filename="mainwindow.cpp" line="804"/>
         <source>HDMI preferred mode</source>
         <translation>HDMI foretrukket modus</translation>
     </message>
@@ -492,198 +492,198 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation>Monterer instillingspartisjon</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="643"/>
+        <location filename="mainwindow.cpp" line="649"/>
         <source>SD card</source>
         <translation>SD-kort</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="643"/>
+        <location filename="mainwindow.cpp" line="649"/>
         <source>drive</source>
         <translation>drive</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="666"/>
+        <location filename="mainwindow.cpp" line="672"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>Advarsel: inkompatible OS8er) oppdaget. Følgende OS(er) er ikke støttet av denne versjon av Raspberry Pi og kan feile ved boot eller ikke funksjonerer riktig:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="708"/>
+        <location filename="mainwindow.cpp" line="714"/>
         <source>The install process will begin shortly.</source>
         <translation>Installasjonsprosessen starter straks.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="731"/>
+        <location filename="mainwindow.cpp" line="737"/>
         <source>OS(es) installed</source>
         <translation>OS8er) installert</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="732"/>
+        <location filename="mainwindow.cpp" line="738"/>
         <source>OS(es) Installed Successfully</source>
         <translation>OS(er) installert med hell</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="766"/>
+        <location filename="mainwindow.cpp" line="772"/>
         <source>PINN v%1 - Built: %2 (%3)</source>
         <translation>PINN v%1 - Bygg: %2 (%3)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="802"/>
+        <location filename="mainwindow.cpp" line="808"/>
         <source>HDMI safe mode</source>
         <translation>HDMI sikkermodus</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="806"/>
+        <location filename="mainwindow.cpp" line="812"/>
         <source>composite PAL mode</source>
         <translation>komposit PAL-modus</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="810"/>
+        <location filename="mainwindow.cpp" line="816"/>
         <source>composite NTSC mode</source>
         <translation>komposit NTSC-modus</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="867"/>
+        <location filename="mainwindow.cpp" line="873"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>Visningsmodus endret til %1 Vil du gjøre denne innstillingen permanent?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1224"/>
-        <location filename="mainwindow.cpp" line="1342"/>
+        <location filename="mainwindow.cpp" line="1234"/>
+        <location filename="mainwindow.cpp" line="1352"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation>Feil ved nedlasting av distribusjonsliste fra internett:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1226"/>
-        <location filename="mainwindow.cpp" line="1344"/>
-        <location filename="mainwindow.cpp" line="1714"/>
+        <location filename="mainwindow.cpp" line="1236"/>
+        <location filename="mainwindow.cpp" line="1354"/>
         <location filename="mainwindow.cpp" line="1724"/>
-        <location filename="mainwindow.cpp" line="2281"/>
-        <location filename="mainwindow.cpp" line="2299"/>
+        <location filename="mainwindow.cpp" line="1734"/>
+        <location filename="mainwindow.cpp" line="2291"/>
+        <location filename="mainwindow.cpp" line="2309"/>
         <source>Download error</source>
         <translation>Nedlastingsfeil</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1240"/>
+        <location filename="mainwindow.cpp" line="1250"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation>Feil ved analysering av repolist.json nedlastet fra server</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1840"/>
+        <location filename="mainwindow.cpp" line="1850"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>Nettverkstilgang er nødvendig for å bruke PINN uten lokal avbildning. Velg ditt WiFi-nettverk i neste bilde.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1848"/>
+        <location filename="mainwindow.cpp" line="1858"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>Kablet nettverkstilgang er nødvendig for å bruke PINN uten lokal avbildning. Monter en nettverkskabel til nettverksporten.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1963"/>
+        <location filename="mainwindow.cpp" line="1973"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>Er du sikker på at du vil formattere drive &apos;%1&apos; for bruk av PINN? Alle eksisterende data på drivet vil slettes!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2140"/>
+        <location filename="mainwindow.cpp" line="2150"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>Dette vil slette alt innhold på enheten &apos;%s&apos;. Er du sikker?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2142"/>
+        <location filename="mainwindow.cpp" line="2152"/>
         <source>Clone SD Card</source>
         <translation>Klone SD-kort</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2144"/>
+        <location filename="mainwindow.cpp" line="2154"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2145"/>
+        <location filename="mainwindow.cpp" line="2155"/>
         <source>No</source>
         <translation>Nei</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2173"/>
+        <location filename="mainwindow.cpp" line="2183"/>
         <source>Clone Completed</source>
         <translation>Kloning ferdig</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2174"/>
+        <location filename="mainwindow.cpp" line="2184"/>
         <source>Clone Completed Successfully</source>
         <translation>Kloning utført med hell</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2281"/>
+        <location filename="mainwindow.cpp" line="2291"/>
         <source>Error downloading update file</source>
         <translation>Feil ved nedlasting av oppdateringsfil</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2360"/>
+        <location filename="mainwindow.cpp" line="2370"/>
         <source>PINN UPDATE</source>
         <translation>PINN OPPDATERING</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2361"/>
+        <location filename="mainwindow.cpp" line="2371"/>
         <source>A new version of PINN is available</source>
         <translation>En ny versjon av PINN er tilgjengelig</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2362"/>
+        <location filename="mainwindow.cpp" line="2372"/>
         <source>Do you want to download this version?</source>
         <translation>Vil du laste ned denne versjonen?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2386"/>
+        <location filename="mainwindow.cpp" line="2396"/>
         <source>Downloading Update</source>
         <translation>Laster ned oppdatering</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2386"/>
+        <location filename="mainwindow.cpp" line="2396"/>
         <source>Press ESC to cancel</source>
         <translation>Trykk ESC for å avbryte</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1358"/>
+        <location filename="mainwindow.cpp" line="1368"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>VEd ved analysering av list.json nedlastet fra server</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1586"/>
+        <location filename="mainwindow.cpp" line="1596"/>
         <source>Needed</source>
         <translation>Nødvendig</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1587"/>
+        <location filename="mainwindow.cpp" line="1597"/>
         <source>Available</source>
         <translation>Tilgjengelig</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1714"/>
+        <location filename="mainwindow.cpp" line="1724"/>
         <source>Error downloading meta file</source>
         <translation>Feil ved nedlasting av meta-fil</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1724"/>
-        <location filename="mainwindow.cpp" line="2299"/>
+        <location filename="mainwindow.cpp" line="1734"/>
+        <location filename="mainwindow.cpp" line="2309"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>Feil ved skriving av nedlastet fil til SD-kort. SD-kort eller filsystem kan være ødelagt.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1962"/>
+        <location filename="mainwindow.cpp" line="1972"/>
         <source>Reformat drive?</source>
         <translation>Reformatter drive?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1002"/>
-        <location filename="mainwindow.cpp" line="1839"/>
-        <location filename="mainwindow.cpp" line="1847"/>
+        <location filename="mainwindow.cpp" line="1012"/>
+        <location filename="mainwindow.cpp" line="1849"/>
+        <location filename="mainwindow.cpp" line="1857"/>
         <source>No network access</source>
         <translation>Ingen nettverkstilgang</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1003"/>
+        <location filename="mainwindow.cpp" line="1013"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Kablet nettverkstilgang er nødvendig for denne funksjonen. Monter en nettverkskabel til nettverksporten.</translation>
     </message>
