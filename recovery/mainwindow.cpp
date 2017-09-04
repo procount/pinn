@@ -746,6 +746,9 @@ void MainWindow::onQuery(const QString &msg, const QString &title, QMessageBox::
 void MainWindow::on_list_currentRowChanged()
 {
     QListWidgetItem *item = ug->listInstalled->currentItem();
+    if (!item)
+        return;
+
     if (ug->listInstalled->count() && !item)
     {
         item = ug->listInstalled->item(0);
@@ -970,7 +973,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         // cursor Left changes tab headings
         if (keyEvent->key() == Qt::Key_Left)
         {
-            if (ug->tabs && toolbar_index !=TOOLBAR_MAINTENANCE) //Don't do if no tabs visisble
+            if (ug->tabs && toolbar_index !=1 /*TOOLBAR_MAINTENANCE*/) //Don't do if no tabs visisble
             {
                 if (ug->tabs->count() > 0)
                 {
@@ -1092,6 +1095,8 @@ void MainWindow::on_list_doubleClicked(const QModelIndex &index)
     if (index.isValid())
     {
         QListWidgetItem *item = ug->list->currentItem();
+        if (!item)
+            return;
         if (item->checkState() == Qt::Unchecked)
             item->setCheckState(Qt::Checked);
         else
@@ -1416,6 +1421,11 @@ void MainWindow::downloadListComplete()
         processJson(Json::parse( reply->readAll() ));
     }
 
+    if (ug->tabs)
+        ug->tabs->currentWidget()->setFocus();
+    else
+        ug->list->setFocus();
+
     reply->deleteLater();
 }
 
@@ -1538,9 +1548,9 @@ void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QS
         witem->setData(SecondIconRole, internetIcon);
 
         if (recommended)
-            ug->list->insertItem(0, witem);
+            ug->insertItem(0, witem);
         else
-            ug->list->addItem(witem);
+            ug->addItem(witem);
     }
 #ifdef KHDBG
         qDebug() << "ProcessJsonOS: " << new_details << "\n";
