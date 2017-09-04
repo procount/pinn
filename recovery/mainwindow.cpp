@@ -149,6 +149,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     ug->list->setItemDelegate(new TwoIconsDelegate(this));
     ug->list->installEventFilter(this);
 
+    ug->list->setFocus();
+
     ui->advToolBar->setVisible(true);
 
     _ipaddress=QHostAddress();
@@ -236,7 +238,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     _model = getFileContents("/proc/device-tree/model");
     QString cmdline = getFileContents("/proc/cmdline");
 
-    if (QFile::exists("/mnt/os_list_v3.json"))
+   ug->loadMap("/mnt/osGroupMap.json");
+   if (QFile::exists("/mnt/os_list_v3.json"))
     {
         /* We have a local os_list_v3.json for testing purposes */
         _repo = "/mnt/os_list_v3.json";
@@ -382,28 +385,16 @@ void MainWindow::populate()
     _availableMB = (getFileContents(sysclassblock(_drive)+"/size").trimmed().toUInt()-getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toUInt()-getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toUInt())/2048;
     updateNeeded();
 
-    if (ug->list->count() != 0)
+    ug->setDefaultItems();
+
+    if (_allowSilent && !_numInstalledOS && ug->list->count() == 1)
     {
-        QList<QListWidgetItem *> l = ug->list->findItems(RECOMMENDED_IMAGE, Qt::MatchExactly);
-
-        if (!l.isEmpty())
-        {
-            ug->list->setCurrentItem(l.first());
-        }
-        else
-        {
-            ug->list->setCurrentRow(0);
-        }
-
-        if (_allowSilent && !_numInstalledOS && ug->list->count() == 1)
-        {
-            // No OS installed, perform silent installation
-            qDebug() << "Performing silent installation";
-            _silent = true;
-            ug->list->item(0)->setCheckState(Qt::Checked);
-            on_actionWrite_image_to_disk_triggered();
-            _numInstalledOS = 1;
-        }
+        // No OS installed, perform silent installation
+        qDebug() << "Performing silent installation";
+        _silent = true;
+        ug->list->item(0)->setCheckState(Qt::Checked);
+        on_actionWrite_image_to_disk_triggered();
+        _numInstalledOS = 1;
     }
 
     ui->actionCancel->setEnabled(_numInstalledOS > 0);
@@ -513,11 +504,14 @@ void MainWindow::repopulate()
         QPixmap dummyicon = QPixmap(currentsize.width(), currentsize.height());
         dummyicon.fill();
 
-        for (int i=0; i< ug->list->count(); i++)
+        QList<QListWidgetItem *> all;
+        all = ug->allItems();
+
+        for (int i=0; i< ug->count(); i++)
         {
-            if (ug->list->item(i)->icon().isNull())
+            if (all.value(i)->icon().isNull())
             {
-                ug->list->item(i)->setIcon(dummyicon);
+                all.value(i)->setIcon(dummyicon);
             }
         }
     }
@@ -809,9 +803,35 @@ void MainWindow::onQuery(const QString &msg, const QString &title, QMessageBox::
 
 void MainWindow::on_list_currentRowChanged()
 {
-    QListWidgetItem *item = ug->list->currentItem();
-    ui->actionEdit_config->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
-    ui->actionPassword->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
+    QListWidgetItem *item = ug->listInstalled->currentItem();
+    if (!item)
+        return;
+
+    if (ug->listInstalled->count() && !item)
+    {
+        item = ug->listInstalled->item(0);
+        ug->listInstalled->setCurrentItem(item);
+    }
+    qDebug() << ug->listInstalled <<item;
+    if (item)
+    {
+        qDebug() << "ListItem: " << item->text();
+        ui->actionEdit_config->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
+        ui->actionPassword->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
+    }
+
+    item = ug->list->currentItem();
+    if (ug->list->count() && !item)
+    {
+        item = ug->list->item(0);
+        ug->list->setCurrentItem(item);
+    }
+    qDebug() << ug->list << item;
+    if (item)
+    {
+        qDebug() << "ListItem: " << item->text();
+        //@@TBD ui->actionInfo->setEnabled(item && item->data(Qt::UserRole).toMap().contains("url"));
+    }
 
         if (_menuLabel)
             _menuLabel->setText(menutext(toolbar_index));
@@ -833,6 +853,8 @@ void MainWindow::changeEvent(QEvent* event)
         ui->retranslateUi(this);
         update_window_title();
         updateNeeded();
+        //@@TBD if (_menuLabel)
+        //@@TBD     _menuLabel->setText(menutext(toolbar_index));
         //repopulate();
     }
 
@@ -995,6 +1017,36 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         {
             on_actionAdvanced_triggered();
         }
+#if 0
+        // cursor Right changes tab headings
+        if (keyEvent->key() == Qt::Key_Right)
+        {
+            if (ug->tabs && toolbar_index !=1 /*TOOLBAR_MAINTENANCE */) //Don't do if no tabs visisble
+            {
+                if (ug->tabs->count() > 0)
+                {
+                    int index = ug->tabs->currentIndex()+1;
+                    if (index >= ug->tabs->count())
+                        index =0;
+                    ug->tabs->setCurrentIndex(index);
+                }
+            }
+        }
+        // cursor Left changes tab headings
+        if (keyEvent->key() == Qt::Key_Left)
+        {
+            if (ug->tabs && toolbar_index !=1 /*TOOLBAR_MAINTENANCE*/) //Don't do if no tabs visisble
+            {
+                if (ug->tabs->count() > 0)
+                {
+                    int index = ug->tabs->currentIndex()-1;
+                    if (index < 0)
+                        index = ug->tabs->count()-1;
+                    ug->tabs->setCurrentIndex(index);
+                }
+            }
+        }
+#endif
         if (_kc.at(_kcpos) == keyEvent->key())
         {
             _kcpos++;
@@ -1030,7 +1082,16 @@ void MainWindow::on_actionAdvanced_triggered()
     if (_menuLabel)
         _menuLabel->setText(menutext(toolbar_index));
 
-    ug->toggleInstalled(toolbar_index==1 /*TOOLBAR_MAINTENANCE*/ );
+    if (ug->tabs)
+    {
+        ug->tabs->currentWidget()->setVisible(toolbar_index != TOOLBAR_MAINTENANCE);
+    }
+    else
+    {
+        ui->list->setVisible(toolbar_index != TOOLBAR_MAINTENANCE);
+    }
+
+    ug->toggleInstalled(toolbar_index== TOOLBAR_MAINTENANCE );
 }
 
 void MainWindow::on_actionEdit_config_triggered()
@@ -1092,6 +1153,8 @@ void MainWindow::on_list_doubleClicked(const QModelIndex &index)
     if (index.isValid())
     {
         QListWidgetItem *item = ug->list->currentItem();
+        if (!item)
+            return;
         if (item->checkState() == Qt::Unchecked)
             item->setCheckState(Qt::Checked);
         else
@@ -1416,6 +1479,11 @@ void MainWindow::downloadListComplete()
         processJson(Json::parse( reply->readAll() ));
     }
 
+    if (ug->tabs)
+        ug->tabs->currentWidget()->setFocus();
+    else
+        ug->list->setFocus();
+
     reply->deleteLater();
 }
 
@@ -1538,9 +1606,9 @@ void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QS
         witem->setData(SecondIconRole, internetIcon);
 
         if (recommended)
-            ug->list->insertItem(0, witem);
+            ug->insertItem(0, witem);
         else
-            ug->list->addItem(witem);
+            ug->addItem(witem);
     }
 #ifdef KHDBG
         qDebug() << "ProcessJsonOS: " << new_details << "\n";
@@ -1560,9 +1628,11 @@ void MainWindow::downloadIcon(const QString &urlstring, const QString &originalu
 
 QListWidgetItem *MainWindow::findItem(const QVariant &name)
 {
-    for (int i=0; i<ug->list->count(); i++)
+    QList<QListWidgetItem *> all;
+    all = ug->allItems();
+
+    foreach (QListWidgetItem *item, all)
     {
-        QListWidgetItem *item = ug->list->item(i);
         QVariantMap m = item->data(Qt::UserRole).toMap();
         if (m.value("name").toString() == name.toString())
         {
@@ -1590,13 +1660,17 @@ void MainWindow::downloadIconComplete()
         pix.loadFromData(reply->readAll());
         QIcon icon(pix);
 
-        for (int i=0; i<ug->list->count(); i++)
+        //Set the icon in the OS list dialog box.
+        QList<QListWidgetItem *> all;
+        all = ug->allItems();
+
+        for (int i=0; i<ug->count(); i++)
         {
-            QVariantMap m = ug->list->item(i)->data(Qt::UserRole).toMap();
-            ug->list->setIconSize(QSize(40,40));
+            QVariantMap m = all.value(i)->data(Qt::UserRole).toMap();
+            ug->list->setIconSize(QSize(40,40)); //ALL??
             if (m.value("icon") == originalurl)
             {
-                ug->list->item(i)->setIcon(icon);
+                all.value(i)->setIcon(icon);
             }
         }
     }
@@ -1612,18 +1686,7 @@ void MainWindow::downloadIconComplete()
 
 QList<QListWidgetItem *> MainWindow::selectedItems()
 {
-    QList<QListWidgetItem *> selected;
-
-    for (int i=0; i < ug->list->count(); i++)
-    {
-        QListWidgetItem *item = ug->list->item(i);
-        if (item->checkState())
-        {
-            selected.append(item);
-        }
-    }
-
-    return selected;
+    return(ug->selectedItems());
 }
 
 void MainWindow::updateNeeded()
@@ -1898,7 +1961,7 @@ void MainWindow::hideDialogIfNoNetwork()
             _qpd->deleteLater();
             _qpd = NULL;
 
-            if (ug->list->count() == 0)
+            if (ug->count() == 0)
             {
                 /* No local images either */
                 if (_hasWifi)
@@ -2126,9 +2189,9 @@ void MainWindow::addImagesFromUSB(const QString &device)
                 witem->setIcon(QIcon(iconFilename));
 
             if (recommended)
-                ug->list->insertItem(0, witem);
+                ug->insertItem(0, witem);
             else
-                ug->list->addItem(witem);
+                ug->addItem(witem);
         }
     }
 
@@ -2139,9 +2202,11 @@ void MainWindow::addImagesFromUSB(const QString &device)
 /* Dynamically hide items from list depending on target drive */
 void MainWindow::filterList()
 {
-    for (int i=0; i < ug->list->count(); i++)
+    QList<QListWidgetItem *> all;
+    all = ug->allItems();
+    for (int i=0; i < ug->count(); i++)
     {
-        QListWidgetItem *witem = ug->list->item(i);
+        QListWidgetItem *witem = all.value(i);
 
         if (_drive == "/dev/mmcblk0")
         {
