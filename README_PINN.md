@@ -11,74 +11,77 @@ The latest version of [PINN-lite](http://downloads.sourceforge.net/projects/pinn
 <sup>*NOTE: The list of OSes in this image is indicative only. It will vary according to your Raspberry Pi model and the availability of OSes on the installation sources.</sup>
 
 ### About
-On first boot PINN will format your SD card and allow you to select which OSes you want to install from a list. This OS list is automatically generated from both locally available OSes (i.e. those contained in the `/os` directory on disk or an attached USB memory stick) or those available from a remote repository (network connection required).
 
-Only the latest version of each OS will ever be displayed meaning that you can be sure that you have installed the most up-to-date release of your selected OS.
+On first boot, PINN will format your SD card and allow you to select which OSes you want to install from a list. This OS list is automatically generated from locally available OSes (i.e. those contained in the `/os` directory on disk or an attached USB memory stick) and those available from a remote repository (network connection required).
 
-On any subsequent boot you can then press the SHIFT key to enter the PINN interface and easily reinstall your choice of OSes.
-In addition to the SHIFT key, it is also possible to press the Left mouse button, any key on a CEC enabled TV remote, or touch the Raspberry logo on the touchscreen to enter the PINN interface.
+Only the latest version of each OS will ever be displayed. So, you can be sure that you have installed the most up-to-date release of your selected OS.
+
+On any subsequent boot, you can then press the SHIFT key to enter the PINN interface and easily reinstall your choice of OSes.
+It is also possible to press the Left mouse button, press any key on a CEC enabled TV remote, or touch the Raspberry logo on the touchscreen to enter the PINN interface.
 
 ### BOOT MODES
+
 From v2.4, PINN supports installing the OS to an external USB storage device.
-If an external USB storage device is plugged in, a 'destination drive' option will appear, permitting the ROOTFS to be installed on that device. The BOOT partition will remain on the SD card.
+If an external USB storage device is plugged in, a "destination drive" option will appear, permitting the ROOTFS to be installed on that device. The BOOT partition will remain on the SD card.
 If you have a RPi with a BCM2837 CPU (RPi3 or RPi2Bv2) with USB boot mode enabled, it is now possible to install PINN to the USB device. Any OSes will then be fully installed to the USB device and the SD card will not be required.
 
 The PINN interface provides the following functionality:
-- <b>Install</b>: Installs the selected OSes onto your SD card. Changing this selection erases all OSes currently installed.
-- <b>Edit Config</b>: Opens a text editor allowing the cmdline and config for the selected installed OS to be edited.
-- <b>Online Help</b>: [Networking Required] Open a browser that displays the Raspberry Pi Help page ( http://www.raspberrypi.org/help/ ), allowing people to quickly access help and troubleshooting.
+- <b>Install</b>: Installs the selected OSes onto your SD card. Changing this selection erases all OSes that are currently installed.
+- <b>Edit Config</b>: Opens a text editor, allowing the `cmdline` and `config` files for the selected installed OS to be edited.
+- <b>Online Help</b>: [Networking Required] Opens a browser that displays the Raspberry Pi Help page (http://www.raspberrypi.org/help/), allowing people to quickly access help and troubleshooting information.
 - <b>Exit</b>: Quits PINN and reboots the Pi into the OS boot menu.
-- <b>Language Selection</b>: Allows you to select the language to be displayed.
+- <b>Language Selection</b>: Allows you to select the language used for text display.
 - <b>Keyboard Layout Selection</b>: Allows you to select the keyboard layout to be used.
-- <b>Display Mode Selection</b>: By default, PINN will output over HDMI at your display's preferred resolution, even if no HDMI display is connected. If you do not see any output on your HDMI display or are using the composite output, press 1, 2, 3 or 4 on your keyboard to select HDMI preferred mode, HDMI safe mode, composite PAL mode or composite NTSC mode respectively.
+- <b>Display Mode Selection</b>: By default, PINN will output over HDMI at your display's preferred resolution, even if no HDMI display is connected. If you do not see any output on your HDMI display or are using the composite output, press 1, 2, 3 or 4 on your keyboard to select HDMI preferred mode (1), HDMI safe mode (2), composite PAL mode (3), or composite NTSC mode (4), respectively.
 
-Note that all user settings (language, keyboard layout, display mode) will persist between reboots and will also be automatically passed to the installed OSes. This means that if you can see the PINN interface on your display device then you should be able to see the OS CLI/GUI when it boots too!
+Note that all user settings (language, keyboard layout, display mode) will persist between reboots and will also be automatically passed to the installed OSes. This means that if you can see the PINN interface on your display device, you should be able to see the OS CLI/GUI when it boots too!
+
 ### Setup
 
 To set up a blank SD card with PINN:
-- Format an SD card that is 8GB or greater in size as FAT32 (see instructions on how to do this below)
-- Download and extract the files from the PINN zip file. (Windows built-in zip features may have trouble with this file. If so, use another program such as 7zip.)
-- Copy the extracted files onto the SD card that you just formatted so that this file is at the root directory of the SD card.
-<b> Please note that in some cases it may extract the files into a folder, if this is the case then please copy across the files from inside the folder rather than the folder itself.</b>
+- Format an SD card (8 GB or greater in size) as FAT32. See below for instructions on how to do this.
+- Download and extract the files from the PINN zip file. (Windows' built-in zip features may have trouble with this file. If so, use another program such as 7zip.)
+- Copy the extracted files onto the SD card that you just formatted, so that this file is at the root directory of the SD card.
+<b> In some cases, the files may be extracted into a folder. If this is the case, please copy the files from inside the folder rather than copying the folder itself.</b>
 
-On first boot the "RECOVERY" FAT partition will be automatically resized to a minimum and a list of OSes that are available to install will be displayed.
+On first boot, the "RECOVERY" FAT partition will be automatically resized to a minimum. A list of OSes that are available to install will then be displayed.
 
 ### Operating System Choice
 
-PINN is only available in 1 format:
+PINN is only available in one format:
 - `PINN-Lite` does not include any Operating Systems at all.
 
 #### Local Images on SD card
 
-PINN can install local images that are found in the /os folder on the SD card. These can include any of the original NOOBS images, or any other OS that is formatted with a .tar.xz file for each partition.
+PINN can install local images that are found in the `/os` folder on the SD card. These can include any of the original NOOBS images or any other OS that is formatted with a `.tar.xz` file for each partition.
 Whilst this can be a convenient way to host the installable images as they can be installed offline, it does take up some valuable SD card space.
 
 #### Local Images on USB stick
 
-PINN can install local images that are found in the /os folder on a USB memory stick. These can include any of the original NOOBS images, or any other OS that is formatted with a .tar.xz file for each partition.
+PINN can install local images that are found in the `/os` folder on a USB memory stick. These can include any of the original NOOBS images, or any other OS that is formatted with a `.tar.xz` file for each partition.
 This is a convenient way to install images whilst offline, yet it doesn't use up any additional space on the SD card.
 
 #### OS Network Download
 
-PINN allows additional Operating Systems to be downloaded from a remote repository. To do this, the Raspberry Pi must be connected to a wired network, or it can connect over Wifi using the [Raspberry Pi USB wifi dongle](https://www.raspberrypi.org/products/usb-wifi-dongle/) or the Raspberry Pi 3 Model B built-in wifi.
+PINN allows additional operating systems to be downloaded from a remote repository. To do this, the Raspberry Pi must be connected to a wired network, or it can connect over Wi-Fi using the [Raspberry Pi USB wifi dongle](https://www.raspberrypi.org/products/usb-wifi-dongle/) or the Raspberry Pi 3 Model B built-in Wi-Fi.
 
-Once connected, the Pi will only show a list of Operating Systems that are appropriate to your Pi Model. If you want to see ALL available OSes, edit the `recovery.cmdline` file in the root PINN directory and append `showall` to the arguments list.
+Once connected, the Pi will only show a list of operating systems that are appropriate to your Pi Model. If you want to see _all_ available OSes, edit the `recovery.cmdline` file in the root PINN directory and append `showall` to the arguments list.
 
 The IP address of the PI is now shown in the window title bar.
 
 #### Wired Networks
 
-If a wired ethernet cable is plugged into the Pi before PINN starts, PINN will connect via DHCP to a remote download repository and present a list of available Operating Systems that are available for installation.
+If a wired ethernet cable is plugged into the Pi before PINN starts, PINN will connect via DHCP to a remote download repository and present a list of available operating systems that are available for installation.
 
 #### Wifi Networks
 
-If you have the official [Rapberry Pi USB wifi Dongle](https://www.raspberrypi.org/products/usb-wifi-dongle/), or are using the Raspberry Pi 3 Model B with built-in wifi, the wifi icon on the PINN toolbar will be available. Click on this to select your Wifi SSID network and enter the wifi password.
+If you have the official [Rapberry Pi USB wifi Dongle](https://www.raspberrypi.org/products/usb-wifi-dongle/), or are using the Raspberry Pi 3 Model B with built-in Wi-Fi, the Wi-Fi icon on the PINN toolbar will be available. Click on this to select your Wi-Fi SSID network and enter the Wi-Fi password.
 
-![alt text](screenshots/wifi_selector.png "Select your wifi network and enter the password")
+![alt text](screenshots/wifi_selector.png "Select your Wi-Fi network and enter the password.")
 
 #### Network Drivers
 
-From v1.9.4, the following network drivers have been added to support a wider range of wifi and network adapters:
+From v1.9.4, the following network drivers have been added to support a wider range of Wi-Fi and network adapters:
 * zd1211rw
 * rtl8192cu - fixed in v1.9.5
 * rt2500usb
@@ -99,11 +102,11 @@ from v2.1
 
 ### How to Format an SD card as FAT
 
-For <b>Windows</b> users, we recommend formatting your SD card using the SD Association's Formatting Tool, which can be downloaded from https://www.sdcard.org/downloads/formatter_4/ You will need to set "FORMAT SIZE ADJUSTMENT" option to "ON" in the "Options" menu to ensure that the entire SD card volume is formatted - not just a single partition. For more detailed and beginner-friendly formatting instructions, please refer to http://www.raspberrypi.org/quick-start-guide
+For <b>Windows</b> users, we recommend formatting your SD card using the SD Association's Formatting Tool, which can be downloaded from https://www.sdcard.org/downloads/formatter_4/. You will need to set the "FORMAT SIZE ADJUSTMENT" option to "ON" in the "Options" menu to ensure that the entire SD card volume is formatted - not just a single partition. For more detailed and beginner-friendly formatting instructions, please refer to http://www.raspberrypi.org/quick-start-guide.
 
-The SD Association's Formatting Tool is also available for <b>Mac</b> users although the default OSX Disk Utility is also capable of formatting the entire disk (select the SD card volume and choose "Erase" with "MS-DOS" format).
+The SD Association's Formatting Tool is also available for <b>Mac</b> users. However, note that the default OSX Disk Utility is also capable of formatting the entire disk (select the SD card volume and choose "Erase" with "MS-DOS" format).
 
-For <b>Linux</b> users we recommend `gparted` (or the command line version `parted`). (Update: Norman Dunbar has written up the following formatting instructions for Linux users: http://qdosmsq.dunbar-it.co.uk/blog/2013/06/NOOBS-for-raspberry-pi/ )
+For <b>Linux</b> users, we recommend `gparted` (or the command line version `parted`). (Update: Norman Dunbar has written up the following formatting instructions for Linux users: http://qdosmsq.dunbar-it.co.uk/blog/2013/06/NOOBS-for-raspberry-pi/)
 
 ===
 
@@ -111,7 +114,7 @@ For <b>Linux</b> users we recommend `gparted` (or the command line version `part
 
 #### OS Installation
 
-Simply select the checkbox next to each OS you want to install using either a mouse or keyboard (arrow keys to traverse the list, enter to toggle the selected OS's checkbox), then click the "Install" icon (or press "i" on your keyboard) to install the selection. The icons shown on the right of the list indicate whether the OS is being installed from the SD card (SD card icon) or from the online OS repository (Ethernet icon).
+Simply select the checkbox next to each OS you want to install, using either a mouse or keyboard (use arrow keys to traverse the list; enter to toggle the selected OS's checkbox), then click the "Install" icon (or press "i" on your keyboard) to install the selection. The icons shown on the right of the list indicate whether the OS is being installed from the SD card (SD card icon) or from the online OS repository (Ethernet icon).
 
 ![alt text](screenshots/os_selected.png "Select your choice of OSes to install")
 
@@ -122,50 +125,50 @@ Simply select the checkbox next to each OS you want to install using either a mo
 
 The built-in Arora web browser allows you to easily get help via the Raspberry Pi Forums (wired network connection required).
 
-![alt text](screenshots/browser.png "Search the Raspberry Pi forums for help via the built-in web browser")
+![alt text](screenshots/browser.png "Search the Raspberry Pi forums for help via the built-in web browser.")
 
 #### Easy Config File Editor
 
-The built-in config file editor allows you to edit the config file of the OS currently highlighted in the OS list. This allows you to easily add license keys to different OS installs through the same interface.
+The built-in config file editor allows you to edit the config file of the OS that is currently highlighted in the OS list. This allows you to easily add license keys to different OS installs through the same interface.
 
-Note that the output mode selected by the user through pressing one of number keys 1 to 4 (for HDMI preferred, HDMI VGA, Composite PAL and Composite NTSC respectively), will be automatically set in the `config.txt` files of your installed OSes. This means that you shouldn't have to worry about manually changing your display settings to get your installed OS to display correctly on your display device.
+Note that the output mode selected by the user through pressing one of number keys 1 to 4 (for HDMI preferred, HDMI VGA, Composite PAL, and Composite NTSC, respectively), will be automatically set in the `config.txt` files of your installed OSes. This means that you shouldn't have to worry about manually changing your display settings to get your installed OS to display correctly on your display device.
 
-![alt text](screenshots/config_editor.png "Easily edit the config files of any installed OS")
+![alt text](screenshots/config_editor.png "Easily edit the config files of any installed OS.")
 
 #### Installer Slideshow
 
 An installer slideshow guides you through your first steps with each OS while it installs.
 
-![alt text](screenshots/installer_slides.png "An installer slideshow guides you through your first steps with each OS")
+![alt text](screenshots/installer_slides.png "An installer slideshow guides you through your first steps with each OS.")
 
 #### OS Boot Selector
 
-If only one OS is installed then the boot selector will not be displayed and the OS will be automatically booted.
+If only one OS is installed, the boot selector will not be displayed and the OS will boot automatically.
 
-After multiple OSes have been installed, you can select which OS to boot through this selection window that is automatically displayed. PINN will remember your choice and boot this OS by default unless a different option has been selected within 10 seconds.
-It is possible to change this menu timeout by adding 'bootmenutimeout=X' in the recovery.cmdline file, where X is the desired timeout in seconds.
+After multiple OSes have been installed, you can select which OS to boot through this selection window that is automatically displayed. PINN will remember your choice and boot this OS by default unless a different option is selected within 10 seconds.
+It is possible to change this menu timeout by adding `bootmenutimeout=X` in the `recovery.cmdline` file, where `X` is the desired timeout in seconds.
 
-Each OS entry now has a checkbox next to it to select it as a sticky default OS. If an OS is checked, then PINN will operate as if that was the only OS installed, so it will boot it automatically without showing the boot selection dialog. To change or remove the sticky checkbox, the boot selection dialog can be shown again by pressing the Shift key on boot up.
+Each OS entry now has a checkbox next to it, allowing users to select it as a sticky default OS. If an OS is checked, PINN will operate as if that were the only OS installed (booting it automatically, without showing the boot selection dialog). To change or remove the sticky checkbox, the boot selection dialog can be shown again by pressing the Shift key on boot up.
 A Boot button has been added for easier selection with limited CEC TV remotes.
 
-![alt text](screenshots/boot_select.png "Easily select which OS you want to boot from a list of those currently installed")
+![alt text](screenshots/boot_select.png "Easily select which OS you want to boot, from a list of those currently installed.")
 
 #### Self Update
 
-If PINN is connected to the internet, it will check for the latest version available for download. If a newer version is available, a dialog box will pop-up showing the latest version number and the recent cahnges made. You then have the option to cancel the update, download it, or ignore this version.
-If you cancel, the dialog box will keep popping up to remind you each time PINN starts.
-If you select ignore, this version will be ignored and no dialogs will popup again until another later version is released.
+If PINN is connected to the Internet, it will check for the latest version available for download. If a newer version is available, a dialog box will pop up, showing the latest version number and the recent changes. You then have the option to cancel the update, download it, or ignore this version.
+If you cancel the update, the dialog box will keep popping up to remind you each time PINN starts.
+If you select "ignore", this version will be ignored and no dialogs will pop up again until another later version is released.
 If you choose to download this update, the zip file will be downloaded and will overwrite your current version of PINN. PINN will then reboot the RPi and restart PINN.
 
 #### CEC Control (v2.1.1 onwards)
 
-PINN can be controlled with a TV remote if the HDMI TV has CEC support.
+PINN can be controlled with a TV remote, if the HDMI TV has CEC support.
 The CEC remote keys are mapped as follows:
 To simulate a mouse the following keys are used:
 - Cursor Up/Down/Left/Right - moves the mouse cursor in each direction
 - Select - mouse click
 
-For quicker selection the following keys may be easier:
+For quicker selection, the following keys may be easier:
 - Channel Up - previous list item
 - Channel Down - next list item
 - PLAY key - Enter Key
@@ -175,9 +178,8 @@ For quicker selection the following keys may be easier:
 
 Any of the above remote keys can be used instead of the keyboard shift key on startup to access the main menu.
 
-NOTE: CEC implementations vary between TV manufacturers. The above key mappings work on Samsung TVs supporting their Anynet+. Other TV brands may not work as well, but the mouse simulation 
-is designed to work on most TVs.
-If your TV does not work as above and are willing to help, please let me know so I can identify the differences and include support for your brand of TV.
+NOTE: CEC implementations vary between TV manufacturers. The above key mappings work on Samsung TVs supporting their Anynet+. Other TV brands may not work as well, but the mouse simulation is designed to work on most TVs.
+If your TV does not work as above and you are willing to help debug the problem, please let me know so I can identify the differences and include support for your brand of TV.
 
 ==
 
@@ -185,24 +187,24 @@ If your TV does not work as above and are willing to help, please let me know so
 
 ### How to install OSes from an alternative source
 
-If your Pi is connected to the internet, PINN will present a list of OSes available from the Raspberry Pi website. An alternative source of OSes to be downloaded from the internet can be specified by adding <b>alt_image_source=http://newurl.com/os_list_v3.json</b> to the argument list in recovery.cmdline, where `newurl.com` is the name of the alternative server and `os_list_v3.json` is the list of information about the alternative OSes. This list of OSes will be added to the default download list. This can be useful for storing the default repository on a local LAN server, or for adding your own list of OSes to those available in PINN.
+If your Pi is connected to the Internet, PINN will present a list of OSes that are available from the Raspberry Pi website. An alternative source of OSes to be downloaded from the Internet can be specified by adding <b>alt_image_source=http://newurl.com/os_list_v3.json</b> to the argument list in `recovery.cmdline`, where `newurl.com` is the name of the alternative server and `os_list_v3.json` is the list of information about the alternative OSes. This list of OSes will be added to the default download list. This can be useful for storing the default repository on a local LAN server, or for adding your own list of OSes to those available in PINN.
 
-To suppress the default URL and only use the alternative image sources for downloading OS images, add <b>no_default_source</b>. Using this option without `alt_image_source` will prevent all internet downloads and just allow local OSes on the SD card or USB memory stick to be listed.
+To suppress the default URL and only use the alternative image sources for downloading OS images, add <b>no_default_source</b>. Using this option without `alt_image_source` will prevent all Internet downloads and just allow local OSes on the SD card or USB memory stick to be listed.
 
-PINN v2.4 now also supports the similar `repo=` option from NOOBS. Using `repo` will replace the default RPF server repository, whereas 'alt_image_source' simply adds a repository.
+PINN v2.4 now also supports the similar `repo=` option from NOOBS. Using `repo` will replace the default RPF server repository, whereas `alt_image_source` simply adds a repository.
 
-To add multiple repositories, add multiple 'alt_image_source' options, or add multiple space-separated urls to the single "quoted" repo option.
+To add multiple repositories, add multiple `alt_image_source` options, or add multiple space-separated urls to the single "quoted" repo option.
 
-PINN v2.4.2 introduces the `repo_list` option. This URL references a json file that includes a list of remote repositories to retrieve OSes from, rather than including each source in recovery.cmdline. This makes it easier to maintain the OS list remotely for a set of users, rather than editing it manually on each Pi. For testing purposes, including a `repo_list.json` file on the PINN recovery partition will override any cmdline option and will be read instead.
+PINN v2.4.2 introduces the `repo_list` option. This URL references a JSON file that includes a list of remote repositories to retrieve OSes from, rather than including each source in `recovery.cmdline`. This makes it easier to maintain the OS list remotely for a set of users, rather than editing it manually on each Pi. For testing purposes, including a `repo_list.json` file on the PINN recovery partition will override any cmdline option and will be read instead.
 
 
 ### How to Automatically Install an OS
 
-Even if you are using your Pi without a display, you can still use PINN to easily install an OS of your choice. To set up PINN to automatically and silently (i.e. without requiring any user input) install a specific OS, follow these steps:
+Even if you are using your Pi without a display, you can still use PINN to easily install an OS of your choice. To set up PINN to  install a specific OS automatically and silently (i.e. without requiring any user input), follow these steps:
 
-1. Copy the OS folder for the OS you want to install into the `/os` dir (or alternatively delete all other OSes contained in the `/os` dir so that only your chosen OS remains.
+1. Copy the OS folder for the OS you want to install into the `/os` dir (alternatively, delete all other OSes contained in the `/os` dir so that only your chosen OS remains).
 
-2. If the OS you want to automatically install has multiple flavours available, edit the `flavours.json` file so that it only contains the flavour entry that you want to install.
+2. If the OS you want to automatically install has multiple flavours available, edit the `flavours.json` file so that it only contains the entry for the flavour that you want to install.
 
 3. Edit the `recovery.cmdline` file in the root PINN directory and append `silentinstall` to the arguments list.
 
@@ -210,7 +212,7 @@ When you now boot your Pi using an SD card containing the modified version of PI
 
 ### How to install an OS from USB
 
-Due to the increasing size of OSes, it is becoming increasingly difficult to store their compressed installation files on the PINN SD card. PINN-lite contains no OS installation files by default, but you can copy selected OSes into the /os folder if you wish.
+Due to the increasing size of OSes, it is becoming increasingly difficult to store their compressed installation files on the PINN SD card. PINN-lite contains no OS installation files by default, but you can copy selected OSes into the `/os` folder if you wish.
 
 To counter this lack of SD card space, PINN supports storing the compressed OSes on a USB stick as well. This has the following advantages:
 
@@ -219,28 +221,28 @@ To counter this lack of SD card space, PINN supports storing the compressed OSes
 
 The OSes should be stored on the USB stick in the same format as they would be on a PINN SD card:
 
- 1. Each OS should be stored in its own folder beneath the /os/ folder.
- 2. They should contain compressed images of their partitions in .tar.xz format
- 3. All supporting json files etc. shall also be included.
+ 1. Each OS should be stored in its own folder beneath the `/os` folder.
+ 2. They should contain compressed images of their partitions in `.tar.xz` format
+ 3. All supporting JSON files (etc.) should also be included.
 
-The USB stick should be inserted into the RPi before PINN is booted. Ideally it should be connected to the RPi and not via a usb hub as this may introduce a delay preventing the USB stick from being recognised.
-If the same OS is available on the SD card, the USB stick and the network, only the most recent version is displayed.
+The USB stick should be inserted into the RPi before PINN is booted. Ideally, it should be connected to the RPi and not via a USB hub, as this may introduce a delay preventing the USB stick from being recognised.
+If the same OS is available on the SD card, the USB stick, and the network, only the most recent version will be displayed.
 
 ### Installation Progress
 
 During the installation of the operating systems, PINN will write the percentage completed to a text
-file called /tmp/progress. The format of this file is an integer (0-100) followed by a space, 
-a '%' symbol and a line feed. It is updated only when the progress changes by at least 1%. 
-Sometimes PINN will not know the maximum size, so in this case it shows the amount data written in MBs.
+file called `/tmp/progress`. The format of this file is an integer (0-100) followed by a space, 
+a '%' symbol, and a line feed. It is only updated when the progress changes by at least 1%. 
+Sometimes PINN will not know the maximum size; in this case, it shows the amount data written in MBs.
 This feature mimics the progress dialog on the display and is useful in headless installations.
 
 ### Background shell script
 
-To make use of the installation progress feature a background shell script can be used. If a /background.sh script exists, it will be executed in the background whilst PINN runs. This can be used to read the /tmp/progress file and display the progress on the serial port, or a GPIO display etc.
+To make use of the installation progress feature, a background shell script can be used. If a `/background.sh` script exists, it will be executed in the background whilst PINN runs. This can be used to read the `/tmp/progress` file and display the progress on the serial port, a GPIO-based display, etc.
 
 ### Preconfiguring a WiFi network
 
-If you already know your WiFi details, you can preconfigure PINN to use it straight away. Put a copy of your `wpa_supplicant.conf` file on the PINN root partition and PINN will read it and store it in its settings for all future uses. The file will be renamed to `wpa_supplicant.conf.bak` to provent it overwriting any subsequent changes you make to the wifi networks using the GUI. 
+If you already know your WiFi details, you can preconfigure PINN to use it straight away. Put a copy of your `wpa_supplicant.conf` file on the PINN root partition and PINN will read it and store it in its settings for all future uses. The file will be renamed to `wpa_supplicant.conf.bak` to prevent it from overwriting any subsequent changes you make to the Wi-Fi networks using the GUI. 
 
 ### How to create a custom OS version
 
@@ -248,52 +250,52 @@ There are two main use cases for which you may want to create a custom version o
 - If you are a teacher wanting to easily deploy a custom OS release containing pre-defined set of packages and files onto a number of SD cards (e.g. to provision a class set of Raspberry Pi's or quickly restore a Raspberry Pi back to custom "factory" settings).
 - If you want to be able to back up your existing installed packages and files so that any future OS re-install does not force you back to a clean install.
 
-The following steps allow you to create a modified copy of one of the standard OS releases that contains your custom files, packages and settings.
+The following steps allow you to create a modified copy of one of the standard OS releases that contains your custom files, packages, and settings.
 
-1. Download a base version of PINN-lite from http://downloads.sourceforge.net/projects/pinn/pinn-lite.zip
+1. Download a base version of PINN-lite from http://downloads.sourceforge.net/projects/pinn/pinn-lite.zip.
 
-2. Extract the PINN-lite zipfile
+2. Extract the PINN-lite zipfile.
 
-3. Navigate to the `os` directory
+3. Navigate to the `os` directory.
 
 4. Create a copy of the folder containing the OS release that you want to modify and rename it with a custom name.
 
-5. Edit the following fields in the `os.json` file contained in the folder that you just created
+5. Edit the following fields in the `os.json` file contained in the folder that you just created:
   1. "name" - replace the name of the base OS with the name of your custom OS version
   2. "description" - replace the description of the standard OS install with one for your custom OS version
 
-6. [Optional] Rename or replace the existing `<OS>.png` icon file with one matching the name of your custom OS version
+6. [Optional] Rename or replace the existing `<OS>.png` icon file with one matching the name of your custom OS version.
 
-7. [Optional] Replace the PNG image files in the `slides` and `slides_vga` directory with your own custom installer slides
+7. [Optional] Replace the PNG image files in the `slides` and `slides_vga` directory with your own custom installer slides.
 
-8. Edit the following fields in the `partitions.json` file contained in the folder that you just created
+8. Edit the following fields in the `partitions.json` file contained in the folder that you just created:
   1. "partition_size_nominal" - replace the numerical value with the size of the paritions in your custom OS version
   2. "uncompressed_tarball_size" - replace the numerical value with the size of your filesystem tarballs when uncompressed
 
 9. Replace the `.tar.xz` root and boot filesystem tarballs with copies created from your custom OS version (these instructions assume you're only using a single OS at a time with PINN - they won't work if you're running multiple OSes from a single SD card). The name of these tarballs needs to match the labels given in `partitions.json`.
-  1. To create the root tarball you will need to run `tar -cvpf <label>.tar /* --exclude=proc/* --exclude=sys/* --exclude=dev/pts/*` from within the root filesystem of your custom OS version. You should then compress the resulting tarball with `xz -9 -e <label>.tar`.
-  2. To create the boot tarball you will need to run `tar -cvpf <label>.tar .` at the root directory of the boot partition of your custom OS version. You should then compress the resulting tarball with `xz -9 -e <label>.tar`.
+  1. To create the root tarball, you will need to run `tar -cvpf <label>.tar /* --exclude=proc/* --exclude=sys/* --exclude=dev/pts/*` from within the root filesystem of your custom OS version. You should then compress the resulting tarball with `xz -9 -e <label>.tar`.
+  2. To create the boot tarball, you will need to run `tar -cvpf <label>.tar .` at the root directory of the boot partition of your custom OS version. You should then compress the resulting tarball with `xz -9 -e <label>.tar`.
 
 ### How to customise an OS install (noobsconfig)
 
-PINN can be used as a recovery program, so if your OS gets corrupted, messed up or otherwise goes wrong, you can reinstall a clean version of the OS and start again. On the other hand, starting again from scratch can be painful, especially if you can't remember how you set up your perfect OS environment.
+PINN can be used as a recovery program, so if your OS gets corrupted, messed up, or otherwise goes wrong, you can reinstall a clean version of the OS and start again. On the other hand, starting again from scratch can be painful, especially if you can't remember how you set up your perfect OS environment.
 
 Creating a custom OS version (see above) for your preferred setup is one option, but it can look daunting to do, and would need to be repeated if you want to update it to include the latest build of the OS.
 
-[Noobsconfig](http://github.com/procount/noobsconfig) is an alternative option that creates a customised OS by installing a standard OS, but then copies your own files over the top to add your own customisations according to your selected "flavour". These additional files are specified in a simple text file that controls their installation. For example, these can be simple configuration files, workshop exercises, tutorials or wifi setup files. Or they could be scripts that are configured to run on first boot to further configure your OS by automatically installing your favourite packages.
+[Noobsconfig](http://github.com/procount/noobsconfig) is an alternative option that creates a customised OS by installing a standard OS, but then copies your own files over the top to add your own customisations according to your selected "flavour". These additional files are specified in a simple text file that controls their installation. For example, these can be simple configuration files, workshop exercises, tutorials, or Wi-Fi setup files. Alternatively, they could be scripts that are configured to run on first boot to further configure your OS by automatically installing your favourite packages.
 
 By keeping the customisations separate from the OS distro means:
 
- 1. A custom installation can be created out of a standard OS installation plus some additional files, without having to create a full customised OS
+ 1. A custom installation can be created out of a standard OS installation plus some additional files, without having to create a full customised OS.
  2. The same customisations can be applied to a newer version of the standard OS installation without having to rebuild a custom OS installation.
- 3. By using simple configuration files, it is easy to add files to configure your OS
+ 3. By using simple configuration files, it is easy to add files to configure your OS.
  4. Different customisation "flavours" of an OS can be created as a master installation card, and the required ones can be selected and installed as required. This can save a lot of SD card space compared to storing a different full customised OS for each flavour.
 
-PINN now includes direct support for `noobsconfig` so it is no longer necessary to add the noobsconfig files to your PINN installation. Just add your configuration and customisations files and install your "flavoured" OS. Please see (https://github.com/procount/noobsconfig) for full documentation on how to use this feature.
+PINN now includes direct support for `noobsconfig`, so it is no longer necessary to add the `noobsconfig` files to your PINN installation. Just add your configuration and customisations files and install your "flavoured" OS. Please see (https://github.com/procount/noobsconfig) for full documentation on how to use this feature.
 
 The [PiKitchen](http://www.pihardware.com/guides/pi-kitchen) is an example of how comprehensive these configurations can be if you want them to be.
 
-### How to change the default Language, Keyboard layout, Display mode or Boot Partition etc.
+### How to change the default Language, Keyboard layout, Display mode, or Boot Partition etc.
 
 Edit the `recovery.cmdline` file in the root PINN directory and append the following arguments where relevant:
 - `lang=<two-letter language code>` (e.g. `lang=de` or `lang=en`)
@@ -317,9 +319,9 @@ This will also prevent the splashscreen from being displayed at boot. The partit
 ### How to use with the Raspberry Pi Touch Display
 
 If PINN detects you are using the [Raspberry Pi Touch Display](https://www.raspberrypi.org/products/raspberry-pi-touch-display/), it will enable the following functionality:
-- A tap on the touchscreen on the Raspberry logo can activate PINN as well as holding the shift key down.
-- A tap on the touchscreen will simulate a mouse click
-- A longpress on the touchscreen will simulate a mouse double-click.
+- A tap on the touchscreen on the Raspberry logo (or holding down the shift key) can activate PINN.
+- A tap on the touchscreen will simulate a mouse click.
+- A long press on the touchscreen will simulate a mouse double-click.
 
 ### How to use with Gert's VGA666 DPI display screen
 
@@ -333,23 +335,23 @@ display_default_lcd=1
 dpi_group=<group> (e.g. dpi_group=1, or dpi_group=2)
 dpi_mode=<mode> (e.g. dpi_mode=28 - see tvservice for a list of possible modes)
 ```
-In addition, the recovery.cmdline should have `disablesafemode` added as a parameter since without it, the VGA666 will force PINN into safe mode due to its connections to the GPIO header.
+In addition, the `recovery.cmdline` file should have `disablesafemode` added as a parameter. Without it, the VGA666 will force PINN into safe mode, due to its connections to the GPIO header.
 
 ### How to auto-switch HDMI/DSI screen configurations
 
-If an HDMI and a DSI screeen (such as the Raspberry Pi Touch Screen) are both connected to the Raspberry Pi, the selection of which screen is to be used as the default needs to be selected in the config.txt file, which means constantly having to change config.txt to match whichever screen is required. This is because the DSI screen can only be selected at boot time, although without *any* configuration the GPU will select the DSI screen in preference to the HDMI. PINN provides some limited ability to reverse this prioriy. 
+If an HDMI and a DSI screen (such as the Raspberry Pi Touch Screen) are both connected to the Raspberry Pi, the selection of which screen is to be used as the default needs to be selected in the `config.txt` file, which means constantly having to change `config.txt` to match whichever screen is required. This is because the DSI screen can only be selected at boot time, although without *any* configuration the GPU will select the DSI screen in preference to the HDMI. PINN provides some limited ability to reverse this priority. 
 
 This use case assumes that the DSI screen is always connected, and is normally used. But if an HDMI screen is connected, then the display will automatically switch to it. 
 
 1. Create a `config.txt` file in the PINN root partition. Ensure it has the line `ignore_lcd=1` to disable the DSI screen and select the HDMI screen.
 * Edit `recovery.cmdline` and add the `dsi` keyword.
-* In the boot partition of any installed OS, create a `config.dsi` file to configure the DSI screen, and a `config.hdmi` file to configure the hdmi screen. (This can mostly be setup using a custom flavour with the noobsconfig feature so it can be installed automatically.)
+* In the boot partition of any installed OS, create a `config.dsi` file to configure the DSI screen, and a `config.hdmi` file to configure the hdmi screen. (This can mostly be setup using a custom flavour with the `noobsconfig` feature so it can be installed automatically.)
 
 When PINN boots, the HDMI screen will be selected, so to use any PINN feature, an HDMI screen must be connected. 
 
-PINN will automatically boot the last selected OS after it times out. If a HDMI screen is attached, PINN will copy the config.hdmi file to config.txt on the selected OS and reboot into it.
+PINN will automatically boot the last selected OS after it times out. If a HDMI screen is attached, PINN will copy the `config.hdmi` file to `config.txt` on the selected OS and reboot into it.
 
-If an HDMI screen was not detected, PINN will copy the config.dsi file to config.txt on the selected OS and reboot into it.
+If an HDMI screen was not detected, PINN will copy the `config.dsi` file to config.txt on the selected OS and reboot into it.
 
 ### How to Recover from a lost password
 
@@ -366,16 +368,16 @@ If you have changed your login password for an OS and forget what it is, PINN wi
 
 ### How to Clone an SD Card
 
-Raspbian has recently added an SD Card Copier tool called piclone, which is great. For anyone concerned about it cloning a live system, 
+Raspbian has recently added an SD Card Copier tool called `piclone`, which is great. For anyone concerned about it cloning a live system, 
 it has now been ported into PINN so that it can clone the SD card offline, whilst the OS is not running. 
 1. On the PINN screen, select the new `Advanced` menu.
-* Insert a second SD card into the Pi using a USB card reader
-* Select the Clone SD card button
-* Select your internal SD card as the source (/dev/mmcblk0) and the SD card in the USB reader as the desination (usually /dev/sda)
+* Insert a second SD card into the Pi using a USB card reader.
+* Select the Clone SD card button.
+* Select your internal SD card as the source (/dev/mmcblk0) and the SD card in the USB reader as the destination (usually `/dev/sda`).
 * Selct OK to clone your SD card.
 
-All partitions will be copied onto the second card whilst the last partition will be sized fit the remainder of the SD card. 
-In this way your existing data can be migrated to a smaller or larger SD card.
+All partitions will be copied onto the second card whilst the last partition will be sized to fit the remainder of the SD card. 
+In this way, your existing data can be migrated to a smaller or larger SD card.
 
 Note that if you have installed multiple OSes using PINN, only the last partition on the SD card will be resized. 
 
@@ -385,7 +387,7 @@ Note that if you have installed multiple OSes using PINN, only the last partitio
 
 #### What to do if your SHIFT keypress isn't detected
 
-Try pressing shift only when the grey splashscreen is displayed rather than holding it from boot up.
+Try pressing shift only when the grey splash screen is displayed, rather than holding it from boot up.
 
 #### How to boot into "Safe Mode"
 
@@ -393,13 +395,13 @@ To boot into a basic busybox shell rather than launching the PINN GUI, you can *
 
 1. Append `rescueshell` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory. Exiting from this shell will now enter the PINN recovery program.
 
-2. Insert a physical jumper between pins 5 & 6 of GPIO header P1. If you have external hardware or an addon board connected to the GPIO header, you may find that pin 5 is being pulled low and accidentally triggering "Safe Mode". To prevent this you can append `disablesafemode` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory.
+2. Insert a physical jumper between pins 5 & 6 of GPIO header P1. If you have external hardware or an addon board connected to the GPIO header, you may find that pin 5 is being pulled low and accidentally triggering "Safe Mode". To prevent this, you can append `disablesafemode` to the argument list in the `recovery.cmdline` file (which is found in the root PINN directory).
 
 #### How to access the shell or SSH into PINN
 
-1. Even if the PINN GUI is launched, the busybox shell can still be accessed by pressing CTRL-ALT-F2. Use CTL-ALT-F1 to get back to the gui.
+1. Even if the PINN GUI is launched, the busybox shell can still be accessed by pressing CTRL-ALT-F2. Use CTL-ALT-F1 to get back to the GUI.
 
-2. You can now also SSH into the PINN basic busybox shell. To enable this feature, add `ssh` to the argument list in the recovery.cmdline. SSH is also accessible from the rescueshell, but allow 5 seconds after boot to allow the network to establish. PINN SSH does not store any keys so it takes a while to connect at first after each boot as it generates new keys for that session.
+2. You can now also SSH into the PINN basic busybox shell. To enable this feature, add `ssh` to the argument list in the `recovery.cmdline` file. SSH is also accessible from the rescueshell, but allow 5 seconds after boot to allow the network to establish. PINN SSH does not store any keys, so it takes a while to connect at first after each boot as it generates new keys for that session.
 
 The IP address of the PI is now shown in the window title bar for ease of connection.
 
@@ -411,9 +413,9 @@ It is possible to access PINN without a keyboard and mouse using VNC over a netw
 
 Append `vncinstall` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory. Using `forcetrigger` in addition can be useful as it is not always easy to connect quickly enough to see the splash screen and hold the shift key remotely. This will force you to use VNC to continue the boot process into your installed OS on each boot, so it is best to remove `forcetrigger` once the required OS's have been installed. Alternatively you could use `gpiotriggerenable` (see below).
 
-To connect over VNC you need to know the IP address of the Pi. The IP address of the PI is now shown in the window title bar for ease of connection. Connect to port 5900 of this IP address. Using tightvnc, you need to specify this as <ip address>:5900 e.g. 192.168.1.0:5900.
+To connect over VNC, you need to know the IP address of the Pi. The IP address of the PI is now shown in the window title bar for ease of connection. Connect to port 5900 of this IP address. Using tightvnc, you need to specify this as <ip address>:5900 e.g. 192.168.1.0:5900.
 
-When VNC is selected there will be no GUI present on any attached display as all output is redirected over the VNC network connection.
+When VNC is selected, there will be no GUI present on any attached display, as all output is redirected over the VNC network connection.
 
 Appending `vncshare` to the argument list instead of `vncinstall` will share the screen between the locally attached display and redirect it over the VNC network connection simultaneously.
 
@@ -422,7 +424,7 @@ Appending `vncshare` to the argument list instead of `vncinstall` will share the
 To force Recovery Mode to be entered on boot and to show the PINN interface, you normally press the `SHIFT` key during bootup. If you don't have a keyboard or the `SHIFT` keypress isn't being detected, you should complete the following steps to force the PINN interface to be displayed on boot:
 
 1. Append `gpiotriggerenable` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory.
-2. Reboot
+2. Reboot.
 
 To force Recovery Mode being entered on boot, connect GPIO pin 3 on header P1 to GND (pin 25). If GPIO pin 3 remains unconnected then it will boot through to the installed OS as normal.
 
@@ -431,7 +433,7 @@ To force Recovery Mode being entered on boot, connect GPIO pin 3 on header P1 to
 Alternatively, if you are unable to use either the GPIO or keyboard to trigger entering Recovery Mode, you can:
 
 1. Append `forcetrigger` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory.
-2. Reboot
+2. Reboot.
 
 Note that with this option enabled, the Recovery Mode will be displayed <b>every</b> time you boot from your PINN card (until you edit `recovery.cmdline` again).
 
@@ -442,11 +444,11 @@ In some rare cases, you may find that PINN incorrectly detects a `SHIFT` keypres
 To prevent a `SHIFT` keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot), you can:
 
 1. Append `keyboardtriggerdisable` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory.
-2. Reboot
+2. Reboot.
 
 #### How to change display output modes
 
-By default, PINN will output over HDMI at your display’s preferred resolution, even if no HDMI display is connected. If you do not see any output on your HDMI display or are using the composite output, press 1, 2, 3 or 4 on your keyboard to select HDMI preferred mode, HDMI safe mode, composite PAL mode or composite NTSC mode respectively.
+By default, PINN will output over HDMI at your display’s preferred resolution, even if no HDMI display is connected. If you do not see any output on your HDMI display or are using the composite output, press 1, 2, 3 or 4 on your keyboard to select HDMI preferred mode (1), HDMI safe mode (2), composite PAL mode (3), or composite NTSC mode (4), respectively.
 
 If you don't have a keyboard, you can still change the display mode used by PINN through editing the `recovery.cmdline` file in the root PINN directory prior to first boot and appending the following argument:
 - `display=<display mode number>` (e.g. `display=1` or `display=3`)
@@ -455,7 +457,7 @@ If you don't have a keyboard, you can still change the display mode used by PINN
 
 ## How to Rebuild PINN
 
-Note that this will require a minimum of 6GB free disk space.
+Note that this will require a minimum of 6 GB free disk space.
 
 #### Get Build Dependencies
 
@@ -469,7 +471,7 @@ On Ubuntu:
 
 Buildroot will then build the software and all dependencies, putting the result in the `output` directory.
 
-Buildroot by default compiles multiple files in parallel, depending on the number of CPU cores you have.
+By default, buildroot compiles multiple files in parallel, depending on the number of CPU cores you have.
 
 If your build machine does have a quad core CPU, but relatively little RAM, you may want
 to lower the number to prevent swapping:
@@ -480,20 +482,20 @@ If your build machine also has some QT5 components, it is useful to `export QT_S
 
 ## How to run your Build
 
-In order to setup an SD card with a newly built version of PINN, you will need to:
-- Format an SD card that is 8GB or greater in size as FAT32
-- Replace the `/os` directory in `/output` with the copy contained in the release version of PINN (see above for download links)
-- Copy the files in the `/output` directory onto the SD card
+In order to set up an SD card with a newly built version of PINN, you will need to:
+- Format an SD card that is 8GB or greater in size as FAT32.
+- Replace the `/os` directory in `/output` with the copy contained in the release version of PINN (see above for download links).
+- Copy the files in the `/output` directory onto the SD card.
 
 ## About the Buildroot infrastructure
 
-To add extra packages: `cd buildroot ; make menuconfig`
+To add extra packages: `cd buildroot; make menuconfig`
 
 Recovery software packaging is in: `buildroot/package/recovery`
 
 Kernel configuration used: `buildroot/kernelconfig-recovery.armv6` and `kernelconfig-recovery.armv7`
 
-Main differences with bcmrpi_defconfig:
+Main differences with `bcmrpi_defconfig`:
 - `CONFIG_BLK_DEV_INITRD=y` - initramfs support
 - `CONFIG_INPUT_EVDEV=y` - evdev support built-in
 - `CONFIG_USB_HID=y` - usb HID driver built-in
@@ -503,10 +505,10 @@ Main differences with bcmrpi_defconfig:
 ## Modifying Qt source
 
 Source is in the `recovery` folder.
-Be aware that user interface screens will appear larger in Qt Creator then when deployed on the Pi, can
-raise font sizes 2 points to compensate.
+Be aware that user interface screens will appear larger in Qt Creator than when deployed on the Pi. You can
+raise the font sizes 2 points to compensate for this.
 
-Several constants can be changed in `config.h`
+Several constants can be changed in `config.h`.
 
 Wrap code that calls Qt Embedded specific classes (such as QWSServer) between
 ```C
