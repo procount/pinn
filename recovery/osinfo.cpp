@@ -15,6 +15,7 @@ OsInfo::OsInfo(const QString &folder, const QString &flavour, QObject *parent) :
     _supportedModels = m.value("supported_models").toStringList();
     _username = m.value("username").toString();
     _password = m.value("password").toString();
+    _url = m.value("url").toString();
 
     QVariantList parts = Json::loadFromFile(folder+"/partitions.json").toMap().value("partitions").toList();
     foreach (QVariant pv, parts)

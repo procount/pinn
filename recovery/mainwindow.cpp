@@ -2639,7 +2639,13 @@ void MainWindow::on_actionInfo_triggered()
     if (!requireNetwork())
         return;
 
-    QListWidgetItem * item = ui->list->currentItem();
+    QListWidgetItem * item = NULL;
+    item = ug->list->currentItem();
+    if (!item)
+    {
+        qDebug()<<"No List Item";
+        return;
+    }
     QVariantMap m = item->data(Qt::UserRole).toMap();
     if (m.contains("url"))
     {
@@ -2649,5 +2655,32 @@ void MainWindow::on_actionInfo_triggered()
             lang = "en";
         proc->start("arora -lang "+lang+" "+m.value("url").toString());
     }
+    else
+        qDebug() << m;
+
 }
 
+void MainWindow::on_actionInfoInstalled_triggered()
+{
+    if (!requireNetwork())
+        return;
+
+    QListWidgetItem * item = NULL;
+    item = ug->listInstalled->currentItem();
+    if (!item)
+    {
+        qDebug()<<"No List Item";
+        return;
+    }
+    QVariantMap m = item->data(Qt::UserRole).toMap();
+    if (m.contains("url"))
+    {
+        QProcess *proc = new QProcess(this);
+        QString lang = LanguageDialog::instance("en", "gb")->currentLanguage();
+        if (lang == "gb" || lang == "us" || lang == "ko" || lang == "")
+            lang = "en";
+        proc->start("arora -lang "+lang+" "+m.value("url").toString());
+    }
+    else
+        qDebug() << m;
+}
