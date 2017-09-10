@@ -135,6 +135,7 @@ private slots:
     void on_targetCombo_currentIndexChanged(int index);
     void on_actionClone_triggered();
     void on_actionInfo_triggered();
+    void on_actionInfoInstalled_triggered();
 
 signals:
     void networkUp();

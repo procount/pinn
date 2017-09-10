@@ -289,13 +289,13 @@
      <normaloff>:/icons/information.png</normaloff>:/icons/information.png</iconset>
    </property>
    <property name="text">
-    <string>Info (i)</string>
+    <string>Info (n)</string>
    </property>
    <property name="toolTip">
     <string>Information about the seleted OS</string>
    </property>
    <property name="shortcut">
-    <string>I</string>
+    <string>N</string>
    </property>
   </action>
   <action name="actionWifi">
