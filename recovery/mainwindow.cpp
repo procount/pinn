@@ -1369,7 +1369,7 @@ void MainWindow::processRepoListJson(QVariant json)
 
     QVariantList list = json.toMap().value("repo_list").toList();
 
-    qDebug() << "processRepoListJson: " << list;
+    //qDebug() << "processRepoListJson: " << list;
 
     foreach (QVariant osv, list)
     {
@@ -2347,7 +2347,8 @@ void MainWindow::checkForUpdates()
 {
     _numBuildsToDownload=0;
     downloadUpdate(BUILD_URL,  "BUILD|" BUILD_NEW);
-    downloadUpdate(README_URL,  "README|" README_NEW);
+    downloadUpdate(README_URL, "README|" README_NEW);
+    downloadUpdate(GROUP_URL,  "GROUP|" GROUP_NEW);
 }
 
 void MainWindow::downloadUpdate(const QString &urlstring, const QString &saveAs)
@@ -2441,26 +2442,7 @@ void MainWindow::downloadUpdateComplete()
 
     setEnabled(true);
 
-    if ((type!="UPDATE") && (_numBuildsToDownload==0))
-    {
-        BuildData currentver, newver;
-
-        qDebug()<<"BUILD_IGNORE...";
-        currentver.read(BUILD_IGNORE);
-        if (currentver.isEmpty())
-        {
-            qDebug()<<"BUILD_CURRENT...";
-            currentver.read(BUILD_CURRENT);
-        }
-        qDebug()<<"BUILD_NEW...";
-        newver.read(BUILD_NEW);
-
-        if (newver > currentver)
-        {
-            on_newVersion();
-        }
-    }
-    else if (type=="UPDATE") //upgrade
+    if (type=="UPDATE") //upgrade
     {
         qDebug() << "Time to update PINN!";
         QProcess::execute("mount -o remount,rw /mnt");
@@ -2479,6 +2461,34 @@ void MainWindow::downloadUpdateComplete()
         ::sync();
         // Reboot
         ::reboot(RB_AUTOBOOT);
+    }
+    else if (type=="GROUP") //update categories
+    {
+        qDebug() << "Updating osGroupMap.json";
+        QProcess::execute("mount -o remount,rw /mnt");
+        QProcess::execute("cp " GROUP_NEW " /mnt");
+        QProcess::execute("mount -o remount,ro /mnt");
+        QProcess::execute("sync");
+    }
+
+    if (_numBuildsToDownload==0)
+    {
+        BuildData currentver, newver;
+
+        qDebug()<<"BUILD_IGNORE...";
+        currentver.read(BUILD_IGNORE);
+        if (currentver.isEmpty())
+        {
+            qDebug()<<"BUILD_CURRENT...";
+            currentver.read(BUILD_CURRENT);
+        }
+        qDebug()<<"BUILD_NEW...";
+        newver.read(BUILD_NEW);
+
+        if (newver > currentver)
+        {
+            on_newVersion();
+        }
     }
 }
 

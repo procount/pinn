@@ -30,11 +30,14 @@
 #define BUILD_URL       "http://downloads.sourceforge.net/project/pinn/BUILD-DATA"
 #define UPDATE_URL      "http://downloads.sourceforge.net/project/pinn/pinn-lite.zip"
 #define README_URL      "http://downloads.sourceforge.net/project/pinn/README.md"
+#define GROUP_URL       "http://downloads.sourceforge.net/project/pinn/osGroupMap.json"
 #define BUILD_CURRENT   "/mnt/BUILD-DATA"
 #define BUILD_NEW       "/tmp/BUILD-DATA"
 #define BUILD_IGNORE    "/settings/BUILD-DATA"
 #define UPDATE_NEW      "/tmp/pinn-lite.zip"
 #define README_NEW      "/tmp/README.md"
+#define GROUP_NEW       "/tmp/osGroupMap.json"
+
 
 /* Size of recovery FAT partition in MB when using reformat drive initialization method. */
 #define RESCUE_PARTITION_SIZE  63
