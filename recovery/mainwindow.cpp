@@ -830,7 +830,7 @@ void MainWindow::on_list_currentRowChanged()
     if (item)
     {
         qDebug() << "ListItem: " << item->text();
-        //@@TBD ui->actionInfo->setEnabled(item && item->data(Qt::UserRole).toMap().contains("url"));
+        ui->actionInfo->setEnabled(item && item->data(Qt::UserRole).toMap().contains("url"));
     }
 
         if (_menuLabel)
@@ -1017,7 +1017,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         {
             on_actionAdvanced_triggered();
         }
-#if 0
+
         // cursor Right changes tab headings
         if (keyEvent->key() == Qt::Key_Right)
         {
@@ -1046,7 +1046,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
                 }
             }
         }
-#endif
+
         if (_kc.at(_kcpos) == keyEvent->key())
         {
             _kcpos++;
