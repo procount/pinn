@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
+    <width>575</width>
     <height>450</height>
    </rect>
   </property>
@@ -127,6 +127,12 @@
    <property name="enabled">
     <bool>true</bool>
    </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
@@ -157,11 +163,9 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionPassword"/>
-   <addaction name="actionEdit_config"/>
    <addaction name="actionBackup"/>
-   <addaction name="actionFschk"/>
    <addaction name="actionClone"/>
+   <addaction name="actionInfo"/>
   </widget>
   <widget class="QToolBar" name="toolBar_3">
    <property name="enabled">
@@ -197,7 +201,10 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionEdit_config"/>
    <addaction name="actionPassword"/>
+   <addaction name="actionFschk"/>
+   <addaction name="actionInfoInstalled"/>
   </widget>
   <widget class="QToolBar" name="advToolBar">
    <property name="enabled">
@@ -328,7 +335,7 @@
     <string>Info (n)</string>
    </property>
    <property name="toolTip">
-    <string>Information about the seleted OS</string>
+    <string>Information about the selected OS</string>
    </property>
    <property name="shortcut">
     <string>N</string>
@@ -416,6 +423,21 @@
    </property>
    <property name="shortcut">
     <string>C</string>
+   </property>
+  </action>
+  <action name="actionInfoInstalled">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/information.png</normaloff>:/icons/information.png</iconset>
+   </property>
+   <property name="text">
+    <string>Info (n)</string>
+   </property>
+   <property name="toolTip">
+    <string>Information about the installed OS</string>
+   </property>
+   <property name="shortcut">
+    <string>N</string>
    </property>
   </action>
  </widget>

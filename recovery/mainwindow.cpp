@@ -87,7 +87,7 @@ extern QString repoList;
 #define TOOLBAR_MAIN 0
 #define TOOLBAR_ARCHIVAL 1
 #define TOOLBAR_MAINTENANCE 2
-#define NUM_TOOLBARS 2
+#define NUM_TOOLBARS 3
 
 /* Flag to keep track wheter or not we already repartitioned. */
 bool MainWindow::_partInited = false;
@@ -135,7 +135,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
 
     toolbar_index=TOOLBAR_MAIN;
     ui->toolBar_1->setVisible(toolbar_index==TOOLBAR_MAIN);
-    ui->toolBar_2->setVisible(toolbar_index==TOOLBAR_MAINTENANCE);
+    ui->toolBar_2->setVisible(toolbar_index==TOOLBAR_ARCHIVAL);
     ui->toolBar_3->setVisible(toolbar_index==TOOLBAR_MAINTENANCE);
     ui->groupBox->setVisible(toolbar_index==TOOLBAR_MAIN);
 
@@ -340,7 +340,7 @@ QString MainWindow::menutext(int index)
 {
     static const char* menutext_strings[] = {
         QT_TR_NOOP("Main Menu"),
-        //QT_TR_NOOP("Archival"),
+        QT_TR_NOOP("Archival"),
         QT_TR_NOOP("Maintenance")
     };
     index %= NUM_TOOLBARS; //Keep it in range
@@ -803,40 +803,35 @@ void MainWindow::onQuery(const QString &msg, const QString &title, QMessageBox::
 
 void MainWindow::on_list_currentRowChanged()
 {
+    //For the INSTALLED list...
     QListWidgetItem *item = ug->listInstalled->currentItem();
-    if (!item)
-        return;
-
     if (ug->listInstalled->count() && !item)
     {
         item = ug->listInstalled->item(0);
         ug->listInstalled->setCurrentItem(item);
     }
-    qDebug() << ug->listInstalled <<item;
-    if (item)
-    {
-        qDebug() << "ListItem: " << item->text();
-        ui->actionEdit_config->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
-        ui->actionPassword->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
-    }
+    //item may still be NULL
+    //Only need to make sure item is not null, since any item here is already installed    ?
+    ui->actionEdit_config->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
+    ui->actionPassword->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
+    //
+    ui->actionInfoInstalled->setEnabled(item && item->data(Qt::UserRole).toMap().contains("url"));
+    //fschk
 
+    //For the normal list...
     item = ug->list->currentItem();
     if (ug->list->count() && !item)
     {
         item = ug->list->item(0);
         ug->list->setCurrentItem(item);
     }
-    qDebug() << ug->list << item;
-    if (item)
-    {
-        qDebug() << "ListItem: " << item->text();
-        ui->actionInfo->setEnabled(item && item->data(Qt::UserRole).toMap().contains("url"));
-    }
+    ui->actionInfo->setEnabled(item && item->data(Qt::UserRole).toMap().contains("url"));
+    //others...
 
-        if (_menuLabel)
-            _menuLabel->setText(menutext(toolbar_index));
-    QVariantMap m = item->data(Qt::UserRole).toMap();
+    if (_menuLabel)
+        _menuLabel->setText(menutext(toolbar_index));
 #ifdef KHDBG
+    QVariantMap m = item->data(Qt::UserRole).toMap();
     qDebug() << "RowChanged: " << m;
 #endif
 }
@@ -853,9 +848,9 @@ void MainWindow::changeEvent(QEvent* event)
         ui->retranslateUi(this);
         update_window_title();
         updateNeeded();
-        //@@TBD if (_menuLabel)
-        //@@TBD     _menuLabel->setText(menutext(toolbar_index));
-        //repopulate();
+        if (_menuLabel)
+            _menuLabel->setText(menutext(toolbar_index));
+        //@@TBD repopulate();
     }
 
     QMainWindow::changeEvent(event);
@@ -1021,7 +1016,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         // cursor Right changes tab headings
         if (keyEvent->key() == Qt::Key_Right)
         {
-            if (ug->tabs && toolbar_index !=1 /*TOOLBAR_MAINTENANCE */) //Don't do if no tabs visisble
+            if (ug->tabs && toolbar_index !=TOOLBAR_MAINTENANCE) //Don't do if no tabs visisble
             {
                 if (ug->tabs->count() > 0)
                 {
@@ -1035,7 +1030,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         // cursor Left changes tab headings
         if (keyEvent->key() == Qt::Key_Left)
         {
-            if (ug->tabs && toolbar_index !=1 /*TOOLBAR_MAINTENANCE*/) //Don't do if no tabs visisble
+            if (ug->tabs && toolbar_index !=TOOLBAR_MAINTENANCE) //Don't do if no tabs visisble
             {
                 if (ug->tabs->count() > 0)
                 {
