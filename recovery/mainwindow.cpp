@@ -493,9 +493,9 @@ void MainWindow::repopulate()
             ug->listInstalled->addItem(clone);
         }
         if (recommended)
-            ug->list->insertItem(0, item);
+            ug->insertItem(0, item);
         else
-            ug->list->addItem(item);
+            ug->addItem(item);
     }
 
     if (haveicons)
