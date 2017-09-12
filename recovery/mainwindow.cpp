@@ -149,6 +149,13 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     QString cmdline = getFileContents("/proc/cmdline");
     ug = new OsGroup(this, ui, !cmdline.contains("no_group"));
 
+    if (cmdline.contains("no_cursor"))
+    {
+        QApplication::setOverrideCursor(Qt::BlankCursor);
+#ifdef Q_WS_QWS
+        QWSServer::setCursorVisible( false );
+#endif
+    }
     ug->list->setIconSize(QSize(40,40)); //ALL?? set each list?
     connect(ug->list, SIGNAL(currentRowChanged(int)), this, SLOT(on_list_currentRowChanged(void)));
     connect(ug->list, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(on_list_doubleClicked(const QModelIndex&)));
