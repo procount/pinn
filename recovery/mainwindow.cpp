@@ -89,6 +89,13 @@ extern QString repoList;
 #define TOOLBAR_MAINTENANCE 2
 #define NUM_TOOLBARS 3
 
+#if 0
+QT_TR_NOOP("Main Menu")
+QT_TR_NOOP("Archival")
+QT_TR_NOOP("Maintenance")
+#endif
+
+
 /* Flag to keep track wheter or not we already repartitioned. */
 bool MainWindow::_partInited = false;
 
@@ -238,8 +245,12 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     _model = getFileContents("/proc/device-tree/model");
     QString cmdline = getFileContents("/proc/cmdline");
 
-   ug->loadMap("/mnt/osGroupMap.json");
-   if (QFile::exists("/mnt/os_list_v3.json"))
+    if (!cmdline.contains("no_group"))
+    {
+        ug->loadMap("/mnt/osGroupMap.json");
+    }
+
+    if (QFile::exists("/mnt/os_list_v3.json"))
     {
         /* We have a local os_list_v3.json for testing purposes */
         _repo = "/mnt/os_list_v3.json";
@@ -846,11 +857,12 @@ void MainWindow::changeEvent(QEvent* event)
     if (event && event->type() == QEvent::LanguageChange)
     {
         ui->retranslateUi(this);
+        ug->retranslateUI();
         update_window_title();
         updateNeeded();
         if (_menuLabel)
             _menuLabel->setText(menutext(toolbar_index));
-        //@@TBD repopulate();
+        //repopulate(); #@@ Needs all lists to be cleared & network downloads re-done. Better when osSource implemented.
     }
 
     QMainWindow::changeEvent(event);
@@ -2635,7 +2647,7 @@ void MainWindow::onKeyPress(int cec_code)
         QWSServer::sendKeyEvent(0, key, modifiers, false, false);
     }
 #else
-    qDebug() << "onKeyPress" << key;
+    qDebug() << "onKeyPress" << cec_code;
 #endif
 }
 

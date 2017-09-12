@@ -41,6 +41,7 @@ public:
     QList<QListWidgetItem *> allItems();
     QList<QListWidgetItem *> findItems ( const QString & text, Qt::MatchFlags flags ) const;
     void setDefaultItems(void);
+    void retranslateUI();
 
 #if 0
     //Functions that operate on the whole list of OSes

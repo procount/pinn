@@ -7,6 +7,16 @@
 #include <QFile>
 #include <QTabWidget>
 
+/* Extra strings for lupdate to detect and hand over to translator to translate */
+#if 0
+QT_TRANSLATE_NOOP("OsGroup","General")
+QT_TRANSLATE_NOOP("OsGroup","Media")
+QT_TRANSLATE_NOOP("OsGroup","Games")
+QT_TRANSLATE_NOOP("OsGroup","Minimal")
+QT_TRANSLATE_NOOP("OsGroup","Education")
+QT_TRANSLATE_NOOP("OsGroup","Installed")
+#endif
+
 OsGroup::OsGroup(QMainWindow *mw, Ui::MainWindow *ui, QObject *parent) :
     QObject(parent),
     _mw(mw),
@@ -98,7 +108,7 @@ void OsGroup::newTab(const QString &tabName)
             //We already have some OSes in list, so put them in a General tab
             title=DEFGROUP;
         }
-        tabs->addTab(_ui->list,title);
+        tabs->addTab(_ui->list, qApp->translate("OsGroup", qPrintable(title)));
         tabMap[title] = _ui->list;
         _ui->gridLayout_2->addWidget(tabs,0,0,1,1);
         connect (tabs, SIGNAL(currentChanged(int)), this, SLOT(tabs_currentChanged(int)));
@@ -124,6 +134,22 @@ void OsGroup::newTab(const QString &tabName)
         //Add the new tab to TW
         tabs->addTab(list,tabName);
         tabMap[tabName] = list;
+    }
+}
+
+void OsGroup::retranslateUI()
+{
+    if (tabs)
+    {
+        QMap<QString, QListWidget*>::iterator i;
+        for (i = tabMap.begin(); i != tabMap.end(); ++i)
+        {
+            //Set the text of each tab to the translated value of the tab group
+            QString groupName = i.key();
+            QListWidget * page = i.value();
+            int pos = tabs->indexOf(page);
+            tabs->setTabText(pos, qApp->translate("OsGroup", qPrintable(groupName)));
+        }
     }
 }
 
