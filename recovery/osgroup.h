@@ -19,7 +19,7 @@ class OsGroup : public QObject
 {
     Q_OBJECT
 public:
-    explicit OsGroup(QMainWindow *mw, Ui::MainWindow *ui, QObject *parent = 0);
+    explicit OsGroup(QMainWindow *mw, Ui::MainWindow *ui, bool doGrouping, QObject *parent = 0);
 
     QMainWindow * _mw;
     Ui::MainWindow *_ui;
@@ -27,12 +27,13 @@ public:
     QListWidget * listInstalled;
     QTabWidget * tabs;
     QVariantMap  osGroupMap;
+    bool _bGroup;
 
     void newTab(const QString &tabName);
     QListWidget * findTab(const QString &tabName);
     void addItem(QListWidgetItem * item);
     void insertItem(int row, QListWidgetItem * item);
-    QString getGroup(const QString& name);
+    QString getGroup(const QVariantMap& entry);
     void loadMap(const QString &filename);
     void toggleInstalled(bool newState);
 

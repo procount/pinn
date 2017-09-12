@@ -146,7 +146,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     ui->toolBar_3->setVisible(toolbar_index==TOOLBAR_MAINTENANCE);
     ui->groupBox->setVisible(toolbar_index==TOOLBAR_MAIN);
 
-    ug = new OsGroup(this,ui);
+    QString cmdline = getFileContents("/proc/cmdline");
+    ug = new OsGroup(this, ui, !cmdline.contains("no_group"));
 
     ug->list->setIconSize(QSize(40,40)); //ALL?? set each list?
     connect(ug->list, SIGNAL(currentRowChanged(int)), this, SLOT(on_list_currentRowChanged(void)));
@@ -243,12 +244,9 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     QProcess::execute("mount -o ro -t vfat "+partdev(_bootdrive, 1)+" /mnt");
 
     _model = getFileContents("/proc/device-tree/model");
-    QString cmdline = getFileContents("/proc/cmdline");
 
-    if (!cmdline.contains("no_group"))
-    {
-        ug->loadMap("/mnt/osGroupMap.json");
-    }
+    ug->loadMap("/mnt/osGroupMap.json");
+
 
     if (QFile::exists("/mnt/os_list_v3.json"))
     {

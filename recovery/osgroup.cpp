@@ -17,10 +17,11 @@ QT_TRANSLATE_NOOP("OsGroup","Education")
 QT_TRANSLATE_NOOP("OsGroup","Installed")
 #endif
 
-OsGroup::OsGroup(QMainWindow *mw, Ui::MainWindow *ui, QObject *parent) :
+OsGroup::OsGroup(QMainWindow *mw, Ui::MainWindow *ui, bool doGrouping, QObject *parent) :
     QObject(parent),
     _mw(mw),
-    _ui(ui)
+    _ui(ui),
+    _bGroup(doGrouping)
 {
     tabs=NULL;
     list=_ui->list;
@@ -55,8 +56,7 @@ void OsGroup::loadMap(const QString &filename)
 void OsGroup::addItem(QListWidgetItem * item)
 {
     QVariantMap entry = item->data(Qt::UserRole).toMap();
-    QString name = entry.value("name").toString();
-    QString group = getGroup(name);
+    QString group = getGroup(entry);
 
     if (tabs || group != DEFGROUP)
     {
@@ -72,8 +72,7 @@ void OsGroup::addItem(QListWidgetItem * item)
 void OsGroup::insertItem(int row, QListWidgetItem * item)
 {
     QVariantMap entry = item->data(Qt::UserRole).toMap();
-    QString name = entry.value("name").toString();
-    QString group = getGroup(name);
+    QString group = getGroup(entry);
 
     if (tabs || group != DEFGROUP)
     {
@@ -86,9 +85,18 @@ void OsGroup::insertItem(int row, QListWidgetItem * item)
     list->insertItem(row, item);
 }
 
-QString OsGroup::getGroup(const QString& name)
+QString OsGroup::getGroup(const QVariantMap& entry)
 {
-    return (osGroupMap.value(name,QString(DEFGROUP)).toString());
+    QString group(DEFGROUP);
+
+    if (!_bGroup)
+        return(group);
+
+    if (entry.contains("group"))
+        group = entry.value("group").toString();
+    else
+        group = osGroupMap.value(entry.value("name").toString(), QString(DEFGROUP)).toString();
+    return (group);
 }
 
 void OsGroup::newTab(const QString &tabName)
