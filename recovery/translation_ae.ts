@@ -275,459 +275,459 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation>محرك الوجهة:</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="82"/>
+        <location filename="mainwindow.ui" line="104"/>
         <source>Needed:</source>
         <translation>بحاجة:</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="89"/>
+        <location filename="mainwindow.ui" line="97"/>
         <source>Available:</source>
         <translation>متاح:</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="137"/>
-        <location filename="mainwindow.ui" line="175"/>
+        <location filename="mainwindow.ui" line="152"/>
+        <location filename="mainwindow.ui" line="190"/>
         <source>toolBar</source>
         <translation>شريط الأدوات</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="254"/>
+        <location filename="mainwindow.ui" line="269"/>
         <source>Install (i)</source>
         <translation>تثبيت (i)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="257"/>
+        <location filename="mainwindow.ui" line="272"/>
         <source>Installs the selected operating system image onto this SD card.</source>
         <translation>هذه SD لتثبيت صورة نظام التشغيل المحدد على بطاقة.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="260"/>
+        <location filename="mainwindow.ui" line="275"/>
         <source>I</source>
         <translation>I</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="269"/>
+        <location filename="mainwindow.ui" line="284"/>
         <source>Exit (Esc)</source>
         <translation>خروج (هروب)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="272"/>
+        <location filename="mainwindow.ui" line="287"/>
         <source>Exits and boots the installed operating system.</source>
         <translation>خروج وتشغيل نظام التشغيل المثبت.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="287"/>
+        <location filename="mainwindow.ui" line="302"/>
         <source>More (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="290"/>
+        <location filename="mainwindow.ui" line="305"/>
         <source>More menus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="293"/>
+        <location filename="mainwindow.ui" line="308"/>
         <source>M</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="437"/>
+        <location filename="mainwindow.ui" line="452"/>
         <source>Information about the installed OS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="353"/>
+        <location filename="mainwindow.ui" line="368"/>
         <source>Wifi (w)</source>
         <translation>Wifi (w)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="371"/>
+        <location filename="mainwindow.ui" line="386"/>
         <source>Password (p)</source>
         <translation>كلمة السر(p)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="374"/>
+        <location filename="mainwindow.ui" line="389"/>
         <source>Change password</source>
         <translation>تغيير كلمة السر</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="377"/>
+        <location filename="mainwindow.ui" line="392"/>
         <source>P</source>
         <translation>P</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="389"/>
+        <location filename="mainwindow.ui" line="404"/>
         <source>Backup (b)</source>
         <translation>نسخ احتياطي (b)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="392"/>
+        <location filename="mainwindow.ui" line="407"/>
         <source>B</source>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="407"/>
+        <location filename="mainwindow.ui" line="422"/>
         <source>fschk (f)</source>
         <translation>fschk (f)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="410"/>
+        <location filename="mainwindow.ui" line="425"/>
         <source>F</source>
         <translation>F</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="422"/>
+        <location filename="mainwindow.ui" line="437"/>
         <source>Clone (c)</source>
         <translation>استنساخ (c)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="425"/>
+        <location filename="mainwindow.ui" line="440"/>
         <source>C</source>
         <translation>C</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="214"/>
+        <location filename="mainwindow.ui" line="229"/>
         <source>Advanced</source>
         <translation>متقدم</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="305"/>
+        <location filename="mainwindow.ui" line="320"/>
         <source>Edit config (e)</source>
         <translation>تحرير التكوين (e)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="308"/>
+        <location filename="mainwindow.ui" line="323"/>
         <source>Opens the config.txt and cmdline.txt for the installed OS in a text editor.</source>
         <translation>لنظام التشغيل المثبت في محرر نص URconfig.txt و URcmdline.txt فتح ال.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="320"/>
+        <location filename="mainwindow.ui" line="335"/>
         <source>Online help (h)</source>
         <translation>التعليمات الفورية (h)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="323"/>
+        <location filename="mainwindow.ui" line="338"/>
         <source>Opens a web browser displaying the Raspberry Pi Forum.</source>
         <translation>يفتح متصفح الويب الذي يعرض منتدى التوت العليق.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="335"/>
-        <location filename="mainwindow.ui" line="434"/>
+        <location filename="mainwindow.ui" line="350"/>
+        <location filename="mainwindow.ui" line="449"/>
         <source>Info (n)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="338"/>
+        <location filename="mainwindow.ui" line="353"/>
         <source>Information about the selected OS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="341"/>
-        <location filename="mainwindow.ui" line="440"/>
+        <location filename="mainwindow.ui" line="356"/>
+        <location filename="mainwindow.ui" line="455"/>
         <source>N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="356"/>
+        <location filename="mainwindow.ui" line="371"/>
         <source>Select a wifi network to connect to</source>
         <translation>للاتصال ب wifi حدد شبكه</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="359"/>
+        <location filename="mainwindow.ui" line="374"/>
         <source>W</source>
         <translation>W</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="173"/>
+        <location filename="mainwindow.cpp" line="181"/>
         <source>Setting up SD card</source>
         <translation>SD اعداد بطاقة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="432"/>
-        <location filename="mainwindow.cpp" line="1594"/>
-        <location filename="mainwindow.cpp" line="2175"/>
+        <location filename="mainwindow.cpp" line="441"/>
+        <location filename="mainwindow.cpp" line="1604"/>
+        <location filename="mainwindow.cpp" line="2185"/>
         <source>RECOMMENDED</source>
         <translation>اوصي</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="698"/>
-        <location filename="mainwindow.cpp" line="717"/>
+        <location filename="mainwindow.cpp" line="707"/>
+        <location filename="mainwindow.cpp" line="726"/>
         <source>Confirm</source>
         <translation>تاكيد</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="219"/>
+        <location filename="mainwindow.cpp" line="227"/>
         <source>Error mounting settings partition</source>
         <translation>خطا في تركيب قسم إعدادات</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="220"/>
+        <location filename="mainwindow.cpp" line="228"/>
         <source>Persistent settings partition seems corrupt. Reformat?</source>
         <translation>تقسيم الأعدادات الدائم يبدو فاسد. إعادة صيغة؟</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="227"/>
+        <location filename="mainwindow.cpp" line="235"/>
         <source>Reformat failed</source>
         <translation>إعادة الصيغة فشلت</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="227"/>
+        <location filename="mainwindow.cpp" line="235"/>
         <source>SD card might be damaged</source>
         <translation>معطوبة SD قد تكون بطاقة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="357"/>
+        <location filename="mainwindow.cpp" line="366"/>
         <source>Please wait while PINN initialises</source>
         <translation>يشغل PINN الرجاء الإنتظار بينما</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="693"/>
+        <location filename="mainwindow.cpp" line="702"/>
         <source>Warning: this will install the selected Operating System(s). All existing data on the SD card will be overwritten, including any OSes that are already installed.</source>
         <translation>بما في ذلك اي أنظمه تثبيت مثبته بالفعل.SD تحذير: سيؤدي ذلك إلى تثبيت نظام (أنظمه) التشغيل المحددة. ستتم الكتابة فوق كافة البيانات الموجودة علي بطاقة.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="795"/>
-        <location filename="mainwindow.cpp" line="1366"/>
-        <location filename="mainwindow.cpp" line="1489"/>
-        <location filename="mainwindow.cpp" line="2314"/>
+        <location filename="mainwindow.cpp" line="804"/>
+        <location filename="mainwindow.cpp" line="1376"/>
+        <location filename="mainwindow.cpp" line="1499"/>
+        <location filename="mainwindow.cpp" line="2324"/>
         <source>Error</source>
         <translation>خطا</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="435"/>
+        <location filename="mainwindow.cpp" line="444"/>
         <source>INSTALLED</source>
         <translation>مثبت</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="945"/>
+        <location filename="mainwindow.cpp" line="955"/>
         <source>Display Mode Changed</source>
         <translation>نمط العرض تغير</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="875"/>
+        <location filename="mainwindow.cpp" line="885"/>
         <source>HDMI preferred mode</source>
         <translation>المفضل HDMI نمط</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="194"/>
+        <location filename="mainwindow.cpp" line="202"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation>(اعدادات التقسيم) SD إنتظار بطاقة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="207"/>
+        <location filename="mainwindow.cpp" line="215"/>
         <source>Mounting settings partition</source>
         <translation>إعدادات التقسيم المتزايد</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="342"/>
+        <location filename="mainwindow.cpp" line="351"/>
         <source>Main Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="343"/>
+        <location filename="mainwindow.cpp" line="352"/>
         <source>Archival</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="344"/>
+        <location filename="mainwindow.cpp" line="353"/>
         <source>Maintenance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="695"/>
+        <location filename="mainwindow.cpp" line="704"/>
         <source>SD card</source>
         <translation>بطاقة SD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="695"/>
+        <location filename="mainwindow.cpp" line="704"/>
         <source>drive</source>
         <translation>محرك</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="718"/>
+        <location filename="mainwindow.cpp" line="727"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>التالي لم يدعم على هذا تنقيح النسبة الثابتة توت عليق وقد يخفق في الاقلاع أو إشتغال بشكل صحيح OSes تحذير: أنظمة التشغيل الغير متوافقة إكتشفت:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="760"/>
+        <location filename="mainwindow.cpp" line="769"/>
         <source>The install process will begin shortly.</source>
         <translation>ستبدا عمليه التثبيت قريبا.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="783"/>
+        <location filename="mainwindow.cpp" line="792"/>
         <source>OS(es) installed</source>
         <translation>OS (es) مثبت</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="784"/>
+        <location filename="mainwindow.cpp" line="793"/>
         <source>OS(es) Installed Successfully</source>
         <translation>OS (es) ثبت بنجاح</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="841"/>
+        <location filename="mainwindow.cpp" line="850"/>
         <source>PINN v%1 - Built: %2 (%3)</source>
         <translation>PINN v%1 - Built: %2 (%3)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="879"/>
+        <location filename="mainwindow.cpp" line="889"/>
         <source>HDMI safe mode</source>
         <translation>HDMI  الوضع الأمن</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="883"/>
+        <location filename="mainwindow.cpp" line="893"/>
         <source>composite PAL mode</source>
         <translation>وضع PAL المركب</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="887"/>
+        <location filename="mainwindow.cpp" line="897"/>
         <source>composite NTSC mode</source>
         <translation>وضع NTSC  المركب</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="946"/>
+        <location filename="mainwindow.cpp" line="956"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>تم تغيير وضع العرض إلى %1 
 هل ترغب في جعل هذا الاعداد دائما ؟</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1350"/>
-        <location filename="mainwindow.cpp" line="1468"/>
+        <location filename="mainwindow.cpp" line="1360"/>
+        <location filename="mainwindow.cpp" line="1478"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation>خطا في تحميل قائمه التوزيع من الإنترنت:
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1352"/>
-        <location filename="mainwindow.cpp" line="1470"/>
-        <location filename="mainwindow.cpp" line="1840"/>
+        <location filename="mainwindow.cpp" line="1362"/>
+        <location filename="mainwindow.cpp" line="1480"/>
         <location filename="mainwindow.cpp" line="1850"/>
-        <location filename="mainwindow.cpp" line="2409"/>
-        <location filename="mainwindow.cpp" line="2427"/>
+        <location filename="mainwindow.cpp" line="1860"/>
+        <location filename="mainwindow.cpp" line="2420"/>
+        <location filename="mainwindow.cpp" line="2438"/>
         <source>Download error</source>
         <translation>خطا في التحميل</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1366"/>
+        <location filename="mainwindow.cpp" line="1376"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation>خطا في تحليل أعاده التشغيل. json التحميل من الخادم</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1966"/>
+        <location filename="mainwindow.cpp" line="1976"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>مطلوب الوصول إلى الشبكة لاستخدام المكونات البينية بدون الصور المحلية. الرجاء تحديد شبكه wifi الخاصة بك في الشاشة التالية.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1974"/>
+        <location filename="mainwindow.cpp" line="1984"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>مطلوب الوصول إلى الشبكة السلكية لاستخدام pinoy بدون الصور المحلية. الرجاء إدخال كبل شبكه اتصال في منفذ الشبكة.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2089"/>
+        <location filename="mainwindow.cpp" line="2099"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>هل تريد بالتاكيد أعاده تهيئه محرك الاقراص &apos;%1&apos; لاستخدامه مع الشبكة PINN ؟ سيتم حذف كافة البيانات الموجودة علي محرك!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2268"/>
+        <location filename="mainwindow.cpp" line="2278"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>سيؤدي ذلك إلى مسح كافة المحتويات الموجودة علي الجهاز &apos;%s&apos;. هل أنت متأكد؟</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2270"/>
+        <location filename="mainwindow.cpp" line="2280"/>
         <source>Clone SD Card</source>
         <translation>إستنسخ بطاقة SD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2272"/>
+        <location filename="mainwindow.cpp" line="2282"/>
         <source>Yes</source>
         <translation>نعم</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2273"/>
+        <location filename="mainwindow.cpp" line="2283"/>
         <source>No</source>
         <translation>لا</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2301"/>
+        <location filename="mainwindow.cpp" line="2311"/>
         <source>Clone Completed</source>
         <translation>اكتمل الاستنساخ</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2302"/>
+        <location filename="mainwindow.cpp" line="2312"/>
         <source>Clone Completed Successfully</source>
         <translation>تم إكمال النسخ بنجاح</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2409"/>
+        <location filename="mainwindow.cpp" line="2420"/>
         <source>Error downloading update file</source>
         <translation>حدث خطا اثناء تنزيل ملف التحديث</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2488"/>
+        <location filename="mainwindow.cpp" line="2508"/>
         <source>PINN UPDATE</source>
         <translation>PINN تحديث</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2489"/>
+        <location filename="mainwindow.cpp" line="2509"/>
         <source>A new version of PINN is available</source>
         <translation>يتوفر إصدار جديد من الشبكة PINN</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2490"/>
+        <location filename="mainwindow.cpp" line="2510"/>
         <source>Do you want to download this version?</source>
         <translation>هل تريد تحميل هذا الإصدار ؟</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2514"/>
+        <location filename="mainwindow.cpp" line="2534"/>
         <source>Downloading Update</source>
         <translation>تنزيل التحديث</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2514"/>
+        <location filename="mainwindow.cpp" line="2534"/>
         <source>Press ESC to cancel</source>
         <translation>اضغط هروب لالغاء الامر</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1489"/>
+        <location filename="mainwindow.cpp" line="1499"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>خطا في توزيع القائمة. json تحميلها من الخادم</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1712"/>
+        <location filename="mainwindow.cpp" line="1722"/>
         <source>Needed</source>
         <translation>بحاجة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1713"/>
+        <location filename="mainwindow.cpp" line="1723"/>
         <source>Available</source>
         <translation>متاح</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1840"/>
+        <location filename="mainwindow.cpp" line="1850"/>
         <source>Error downloading meta file</source>
         <translation>حدث خطأ أثناء تنزيل ملف ميتا</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1850"/>
-        <location filename="mainwindow.cpp" line="2427"/>
+        <location filename="mainwindow.cpp" line="1860"/>
+        <location filename="mainwindow.cpp" line="2438"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>حدث خطأ أثناء كتابة الملف الذي تم تنزيله إلى بطاقة SD . قد تتلف بطاقة SD  أو نظام الملفات.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2088"/>
+        <location filename="mainwindow.cpp" line="2098"/>
         <source>Reformat drive?</source>
         <translation>أعاده تهيئه محرك الاقراص ؟</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1126"/>
-        <location filename="mainwindow.cpp" line="1965"/>
-        <location filename="mainwindow.cpp" line="1973"/>
+        <location filename="mainwindow.cpp" line="1136"/>
+        <location filename="mainwindow.cpp" line="1975"/>
+        <location filename="mainwindow.cpp" line="1983"/>
         <source>No network access</source>
         <translation>لا يوجد وصول إلى الشبكة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1127"/>
+        <location filename="mainwindow.cpp" line="1137"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>مطلوب الوصول إلى الشبكة السلكية لهذه الميزة. الرجاء إدخال كبل شبكه اتصال في منفذ الشبكة.</translation>
     </message>
@@ -735,180 +735,213 @@ Would you like to make this setting permanent?</source>
 <context>
     <name>MultiImageWriteThread</name>
     <message>
-        <location filename="multiimagewritethread.cpp" line="55"/>
+        <location filename="multiimagewritethread.cpp" line="56"/>
         <source>partitions.json invalid</source>
         <translation>partitions.json غير صالحة</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="79"/>
+        <location filename="multiimagewritethread.cpp" line="80"/>
         <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
         <translation>لا يمكن تثبيت RISCOS  حجم قسم الاسترداد كبير جدا.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="111"/>
+        <location filename="multiimagewritethread.cpp" line="112"/>
         <source>Operating system cannot require a system partition (1,5)</source>
         <translation>نظام التشغيل لا يمكن أن يتطلب قسم النظام (1،5)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="116"/>
+        <location filename="multiimagewritethread.cpp" line="117"/>
         <source>Operating system cannot claim both primary partitions 2 and 4</source>
         <translation>يتعذر على نظام التشغيل المطالبة بكل من القسمين الأساسيين 2 و 4</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="144"/>
+        <location filename="multiimagewritethread.cpp" line="145"/>
         <source>Not enough disk space. Need %1 MB, got %2 MB</source>
         <translation>ليس بما فيه الكفاية سعة قرص. بحاجة %1 م ب، أصبح %2 م ب</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="311"/>
+        <location filename="multiimagewritethread.cpp" line="312"/>
         <source>Finish writing (sync)</source>
         <translation>إنهاء الكتابة (مزامنة)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="448"/>
+        <location filename="multiimagewritethread.cpp" line="449"/>
         <source>File &apos;%1&apos; does not exist</source>
         <translation>الملف &apos;%1 &apos; غير موجود</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="481"/>
-        <location filename="multiimagewritethread.cpp" line="487"/>
+        <location filename="multiimagewritethread.cpp" line="482"/>
+        <location filename="multiimagewritethread.cpp" line="488"/>
         <source>%1: Writing OS image</source>
         <translation>%1: كتابه صوره نظام التشغيل</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="501"/>
+        <location filename="multiimagewritethread.cpp" line="502"/>
         <source>%1: Mounting file system</source>
         <translation>%1: نظام الملفات المتصاعد</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="509"/>
-        <location filename="multiimagewritethread.cpp" line="533"/>
-        <location filename="multiimagewritethread.cpp" line="701"/>
+        <location filename="multiimagewritethread.cpp" line="510"/>
+        <location filename="multiimagewritethread.cpp" line="534"/>
+        <location filename="multiimagewritethread.cpp" line="703"/>
         <source>%1: Error mounting file system</source>
         <translation>%1: خطا في تركيب نظام الملفات</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="494"/>
+        <location filename="multiimagewritethread.cpp" line="495"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation>%1: إنشاء ملفات الخادم (%2)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="68"/>
+        <location filename="multiimagewritethread.cpp" line="69"/>
         <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
         <translation>لا يمكن تثبيت RISCOS . RISCOS  تعويض عدم تطابق القيمة.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="74"/>
+        <location filename="multiimagewritethread.cpp" line="75"/>
         <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
         <translation>لا يمكن تثبيت RISCOS . قيمه أزاحه RISCOS  مفقوده.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="106"/>
+        <location filename="multiimagewritethread.cpp" line="107"/>
         <source>More than one operating system requires partition number %1</source>
         <translation>يتطلب أكثر من نظام تشغيل رقم القسم %1</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="214"/>
+        <location filename="multiimagewritethread.cpp" line="215"/>
         <source>Fixed partition offset too low</source>
         <translation>أزاحه القسم الثابت منخفضه جدا</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="274"/>
+        <location filename="multiimagewritethread.cpp" line="275"/>
         <source>Writing partition table</source>
         <translation>كتابه جدول الأقسام</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="281"/>
+        <location filename="multiimagewritethread.cpp" line="282"/>
         <source>Writing boot partition table</source>
         <translation>كتابه جدول قسم الاقلاع</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="297"/>
+        <location filename="multiimagewritethread.cpp" line="298"/>
         <source>Zero&apos;ing start of each partition</source>
         <translation>بدء تشغيل كل قسم</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="331"/>
+        <location filename="multiimagewritethread.cpp" line="332"/>
         <source>Error reading existing partition table</source>
         <translation>خطا في قراءه جدول الأقسام الموجود</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="416"/>
+        <location filename="multiimagewritethread.cpp" line="417"/>
         <source>Error creating partition table</source>
         <translation>خطا في إنشاء جدول الأقسام</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="514"/>
+        <location filename="multiimagewritethread.cpp" line="515"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation>%1: تحميل الملفات واستخراجها</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="516"/>
+        <location filename="multiimagewritethread.cpp" line="517"/>
         <source>%1: Extracting filesystem</source>
         <translation>%1: استخراج الملفات</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="530"/>
+        <location filename="multiimagewritethread.cpp" line="531"/>
         <source>%1: Mounting FAT partition</source>
         <translation>%1: تركيب قسم FAT</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="542"/>
+        <location filename="multiimagewritethread.cpp" line="543"/>
         <source>%1: Creating os_config.json</source>
         <translation>%1: انشاء os_config.json</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="567"/>
+        <location filename="multiimagewritethread.cpp" line="568"/>
         <source>%1: Saving display mode to config.txt</source>
         <translation>%1: حفظ وضع العرض إلى config.txt</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="578"/>
+        <location filename="multiimagewritethread.cpp" line="579"/>
         <source>%1: Running partition setup script</source>
         <translation>%1:تشغيل البرنامج النصي لإعداد القسم</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="627"/>
+        <location filename="multiimagewritethread.cpp" line="628"/>
         <source>%1: Error executing partition setup script</source>
         <translation>%1:حدث خطأ أثناء تنفيذ البرنامج النصي لإعداد القسم</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="636"/>
+        <location filename="multiimagewritethread.cpp" line="637"/>
         <source>%1: Configuring flavour</source>
         <translation>%1: تكوين نكهة</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="650"/>
+        <location filename="multiimagewritethread.cpp" line="651"/>
         <source>%1: Unmounting FAT partition</source>
         <translation>%1: إلغاء تحميل القسم FAT</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="653"/>
+        <location filename="multiimagewritethread.cpp" line="654"/>
         <source>%1: Error unmounting</source>
         <translation>%1:خطا في إلغاء التركيب</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="918"/>
+        <location filename="multiimagewritethread.cpp" line="920"/>
         <source>Error creating file system</source>
         <translation>خطا في إنشاء نظام الملفات</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="960"/>
-        <location filename="multiimagewritethread.cpp" line="1031"/>
-        <location filename="multiimagewritethread.cpp" line="1090"/>
+        <location filename="multiimagewritethread.cpp" line="965"/>
+        <location filename="multiimagewritethread.cpp" line="1036"/>
+        <location filename="multiimagewritethread.cpp" line="1095"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
         <translation>ملحق ملف تنسيق الضغط غير معروف. تتوقع  .lzo, .gz, .xz, .bz2 or .zip</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="993"/>
+        <location filename="multiimagewritethread.cpp" line="998"/>
         <source>Error downloading or extracting tarball</source>
         <translation>خطا في تنزيل الكره أو استخراجها</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1052"/>
-        <location filename="multiimagewritethread.cpp" line="1111"/>
+        <location filename="multiimagewritethread.cpp" line="1057"/>
+        <location filename="multiimagewritethread.cpp" line="1116"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>خطأ في تحميل أو كتابة نظام التشغيل إلى بطاقة SD </translation>
+    </message>
+</context>
+<context>
+    <name>OsGroup</name>
+    <message>
+        <location filename="osgroup.cpp" line="12"/>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="13"/>
+        <source>Media</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="14"/>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="15"/>
+        <source>Minimal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="16"/>
+        <source>Education</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="17"/>
+        <source>Installed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
