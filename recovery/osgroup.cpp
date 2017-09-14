@@ -44,15 +44,6 @@ OsGroup::OsGroup(QMainWindow *mw, Ui::MainWindow *ui, bool doGrouping, QObject *
     connect(listInstalled, SIGNAL(itemChanged(QListWidgetItem *)), _mw, SLOT(on_list_itemChanged(QListWidgetItem *)));
 }
 
-void OsGroup::loadMap(const QString &filename)
-{
-    if (QFile::exists(filename))
-    {
-        osGroupMap = Json::loadFromFile(filename).toMap();
-    }
-}
-
-
 void OsGroup::addItem(QListWidgetItem * item)
 {
     QVariantMap entry = item->data(Qt::UserRole).toMap();
@@ -89,13 +80,11 @@ QString OsGroup::getGroup(const QVariantMap& entry)
 {
     QString group(DEFGROUP);
 
-    if (!_bGroup)
-        return(group);
-
-    if (entry.contains("group"))
-        group = entry.value("group").toString();
-    else
-        group = osGroupMap.value(entry.value("name").toString(), QString(DEFGROUP)).toString();
+    if (_bGroup)
+    {
+        if (entry.contains("group"))
+            group = entry.value("group").toString();
+    }
     return (group);
 }
 

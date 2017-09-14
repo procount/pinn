@@ -252,8 +252,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
 
     _model = getFileContents("/proc/device-tree/model");
 
-    ug->loadMap("/mnt/osGroupMap.json");
-
+    loadOverrides("/mnt/overrides.json");
 
     if (QFile::exists("/mnt/os_list_v3.json"))
     {
@@ -428,6 +427,7 @@ void MainWindow::repopulate()
     foreach (QVariant v, images.values())
     {
         QVariantMap m = v.toMap();
+        OverrideJson(m);
         QString flavour = m.value("name").toString();
         QString description = m.value("description").toString();
         QString folder  = m.value("folder").toString();
@@ -1575,6 +1575,7 @@ void MainWindow::processJson(QVariant json)
 void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QSet<QString> &iconurls)
 {
     QIcon internetIcon(":/icons/download.png");
+    OverrideJson(new_details);
 
     QListWidgetItem *witem = findItem(name);
     if (witem)
@@ -2151,6 +2152,7 @@ void MainWindow::addImagesFromUSB(const QString &device)
     foreach (QVariant v, images.values())
     {
         QVariantMap m = v.toMap();
+        OverrideJson(m);
         QString name = m.value("name").toString();
         QString folder  = m.value("folder").toString();
 
@@ -2481,11 +2483,15 @@ void MainWindow::downloadUpdateComplete()
     }
     else if (type=="GROUP") //update categories
     {
-        qDebug() << "Updating osGroupMap.json";
-        QProcess::execute("mount -o remount,rw /mnt");
-        QProcess::execute("cp " GROUP_NEW " /mnt");
-        QProcess::execute("mount -o remount,ro /mnt");
-        QProcess::execute("sync");
+        QString cmd("/usr/bin/diff " GROUP_NEW " " GROUP_CURRENT);
+        if (QProcess::execute(cmd))
+        {
+            qDebug() << "Updating overrides.json";
+            QProcess::execute("mount -o remount,rw /mnt");
+            QProcess::execute("cp " GROUP_NEW " " GROUP_CURRENT);
+            QProcess::execute("mount -o remount,ro /mnt");
+            QProcess::execute("sync");
+        }
     }
 
     if (_numBuildsToDownload==0)
@@ -2705,4 +2711,31 @@ void MainWindow::on_actionInfoInstalled_triggered()
     }
     else
         qDebug() << m;
+}
+
+void MainWindow::loadOverrides(const QString &filename)
+{
+    if (QFile::exists(filename))
+    {
+        _overrides = Json::loadFromFile(filename).toMap();
+    }
+}
+
+
+void MainWindow::OverrideJson(QVariantMap& m)
+{
+    QString name;
+    if (m.contains("name"))
+        name = m.value("name").toString();
+    else if (m.contains("os_name"))
+        name = m.value("os_name").toString();
+    else
+        return;
+    if (!_overrides.contains(name))
+        return;
+
+    QVariantMap osMap = _overrides.value(name).toMap();
+    for(QVariantMap::const_iterator iter = osMap.begin(); iter != osMap.end(); ++iter) {
+        m[iter.key()] = iter.value();
+    }
 }

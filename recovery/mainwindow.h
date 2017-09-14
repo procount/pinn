@@ -68,6 +68,8 @@ protected:
     QList<QToolBar*> toolbars;
     int toolbar_index;
 
+    QVariantMap _overrides;
+
     virtual void changeEvent(QEvent * event);
     virtual bool eventFilter(QObject *obj, QEvent *event);
     void inputSequence();
@@ -98,6 +100,8 @@ protected:
 
     void downloadRepoList(const QString &urlstring);
     void processRepoListJson(QVariant json);
+    void loadOverrides(const QString &filename);
+    void OverrideJson(QVariantMap& m);
 
 protected slots:
     void populate();
