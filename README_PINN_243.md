@@ -12,9 +12,9 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 - An operating system selector
 - A boot manager
 - An OS maintenance utility:
- - A recovery shell 
- - SD card clone utility
- - Password restorer
+  - A recovery shell 
+  - SD card clone utility
+  - Password restorer
 
 ![alt text](screenshots/os_installed.png "PINN Interface")
 
@@ -97,19 +97,19 @@ The PINN user interface is kept fairly simple, comprising a switchable toolbar o
 There are three toolbars:
 
 - **Main Menu**
- - **Install**: Installs the selected OSes onto your SD card. Changing this selection erases all OSes that are currently installed.
- - **Wifi**: configures the wifi.
- - **Help**: [Networking Required] Opens a browser that displays the Raspberry Pi Help page (http://www.raspberrypi.org/help/), allowing people to quickly access help and troubleshooting information.
- - **Info**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
- - **Exit**: Quits PINN and reboots the Pi into the OS boot menu.
+  - **Install**: Installs the selected OSes onto your SD card. Changing this selection erases all OSes that are currently installed.
+  - **Wifi**: configures the wifi.
+  - **Help**: [Networking Required] Opens a browser that displays the Raspberry Pi Help page (http://www.raspberrypi.org/help/), allowing people to quickly access help and troubleshooting information.
+  - **Info**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
+  - **Exit**: Quits PINN and reboots the Pi into the OS boot menu.
 - **Archival**
- - **Download**: Downloads an OS for offline installation.
- - **Clone SD**: Clones the SD to another card.
- - **Info**: Opens a webpage for the selected OS.
+  - **Download**: Downloads an OS for offline installation.
+  - **Clone SD**: Clones the SD to another card.
+  - **Info**: Opens a webpage for the selected OS.
 - **Maintenance**
- - **Edit Config**: Opens a text editor, allowing the `cmdline` and `config` files for the selected installed OS to be edited.
- - **Password**: Allows the password of an OS to be restored or replaced.
- - **Info**: Opens a webpage for the selected OS.
+  - **Edit Config**: Opens a text editor, allowing the `cmdline` and `config` files for the selected installed OS to be edited.
+  - **Password**: Allows the password of an OS to be restored or replaced.
+  - **Info**: Opens a webpage for the selected OS.
 
 The `more` button can be used to cycle through the 3 toolbars.
 
