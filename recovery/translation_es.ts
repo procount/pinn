@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="es_ES" sourcelanguage="en">
+<TS version="2.0" language="es_ES" sourcelanguage="en">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -11,7 +11,7 @@
     <message>
         <location filename="bootselectiondialog.cpp" line="59"/>
         <source>Error mounting settings partition</source>
-        <translatorcomment>La partición Settings es la partición con la configuración de NOOBS</translatorcomment>
+        <translatorcomment>La partición Settings es la partición con la configuración de PINN</translatorcomment>
         <translation>Error al montar la partición Settings</translation>
     </message>
     <message>
@@ -43,7 +43,7 @@
     <message>
         <location filename="bootselectiondialog.ui" line="45"/>
         <source>Sticky default</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Marcar SO como predeterminado</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="52"/>
@@ -80,13 +80,13 @@
     <message>
         <location filename="initdrivethread.cpp" line="63"/>
         <source>Formatting settings partition</source>
-        <translatorcomment>La partición Settings es la partición con la configuración de NOOBS</translatorcomment>
+        <translatorcomment>La partición Settings es la partición con la configuración de PINN</translatorcomment>
         <translation>Formateando la partición Settings</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="66"/>
         <source>Error formatting settings partition</source>
-        <translatorcomment>La partición Settings es la partición con la configuración de NOOBS</translatorcomment>
+        <translatorcomment>La partición Settings es la partición con la configuración de PINN</translatorcomment>
         <translation>Error al formatear la partición Settings</translation>
     </message>
     <message>
@@ -332,7 +332,7 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
     <message>
         <location filename="mainwindow.ui" line="315"/>
         <source>Change password</source>
-        <translation type="unfinished">Cambiar contraseña</translation>
+        <translation type="unfinished">Cambiar o restablecer contraseña SO</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="318"/>
@@ -374,7 +374,7 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
         <location filename="mainwindow.ui" line="170"/>
         <location filename="mainwindow.ui" line="246"/>
         <source>Advanced</source>
-        <translation>Avanzado</translation>
+        <translation type="unfinished">Herramientas avanzadas</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="243"/>
@@ -399,7 +399,7 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
     <message>
         <location filename="mainwindow.ui" line="276"/>
         <source>Online help (h)</source>
-        <translation type="unfinished">Ayuda online (h)</translation>
+        <translation>Ayuda online (h)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="279"/>
@@ -409,7 +409,7 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
     <message>
         <location filename="mainwindow.ui" line="297"/>
         <source>Select a wifi network to connect to</source>
-        <translation>Seleccione una red wifi a la que conectarse</translation>
+        <translation>Selecciona una red wifi a la que conectarse</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="300"/>
@@ -419,13 +419,13 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
     <message>
         <location filename="mainwindow.cpp" line="168"/>
         <source>Error mounting settings partition</source>
-        <translatorcomment>La partición Settings es la partición con la configuración de NOOBS</translatorcomment>
+        <translatorcomment>La partición Settings es la partición con la configuración de PINN</translatorcomment>
         <translation>Error al montar la partición Settings</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="169"/>
         <source>Persistent settings partition seems corrupt. Reformat?</source>
-        <translatorcomment>La partición Settings es la partición con la configuración de NOOBS</translatorcomment>
+        <translatorcomment>La partición Settings es la partición con la configuración de PINN</translatorcomment>
         <translation>La partición Settings parece estar corrupta. ¿Volver a formatearla?</translation>
     </message>
     <message>
@@ -441,13 +441,13 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
     <message>
         <location filename="mainwindow.cpp" line="143"/>
         <source>Waiting for SD card (settings partition)</source>
-        <translatorcomment>La partición Settings es la partición con la configuración de NOOBS</translatorcomment>
+        <translatorcomment>La partición Settings es la partición con la configuración de PINN</translatorcomment>
         <translation>Esperando a la tarjeta SD (partición Settings)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="156"/>
         <source>Mounting settings partition</source>
-        <translatorcomment>La partición Settings es la partición con la configuración de NOOBS</translatorcomment>
+        <translatorcomment>La partición Settings es la partición con la configuración de PINN</translatorcomment>
         <translation>Montando partición Settings (de configuración)</translation>
     </message>
     <message>
@@ -460,11 +460,13 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
         <location filename="mainwindow.cpp" line="1454"/>
         <location filename="mainwindow.cpp" line="2040"/>
         <source>RECOMMENDED</source>
+        <translatorcomment>etiqueta para marcar el sistema recomendado en la lista de SOs</translatorcomment>
         <translation>RECOMENDADO</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="383"/>
         <source>INSTALLED</source>
+        <translatorcomment>etiqueta para marcar el/los sistema/s instalado/s en la lista de SOs</translatorcomment>
         <translation>INSTALADO</translation>
     </message>
     <message>
@@ -481,7 +483,7 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
     <message>
         <location filename="mainwindow.cpp" line="293"/>
         <source>Please wait while PINN initialises</source>
-        <translation>Espere mientras PINN se inicia</translation>
+        <translation>Espere mientras se inicia PINN</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="634"/>
@@ -595,7 +597,7 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
     <message>
         <location filename="mainwindow.cpp" line="2353"/>
         <source>Do you want to download this version?</source>
-        <translation type="unfinished">¿Quieres descargar esta versión?</translation>
+        <translation type="unfinished">¿Quiere descargar esta versión?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2377"/>
@@ -605,7 +607,7 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
     <message>
         <location filename="mainwindow.cpp" line="2377"/>
         <source>Press ESC to cancel</source>
-        <translation>Pulsar ESC para cancelar</translation>
+        <translation>Pulsar Esc para cancelar</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="789"/>
@@ -706,23 +708,23 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="55"/>
         <source>partitions.json invalid</source>
-        <translation>partitions.json inválido</translation>
+        <translation type="unfinished">partitions.json erroneo</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="68"/>
         <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
-        <translation>RISCOS no puede ser instalado. Discordancia en el valor de offset de RISCOS.</translation>
+        <translation>RISCOS no puede ser instalado. Discordancia en el valor de desplazamiento (offset) de RISCOS.</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="74"/>
         <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
-        <translation>RISCOS no puede ser instalado. Falta valor de offset de RISCOS.</translation>
+        <translation>RISCOS no puede ser instalado. Falta valor de desplazamiento (offset) de RISCOS.</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="79"/>
         <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
-        <translatorcomment>La partición recovery es la partición de recuperación de NOOBS</translatorcomment>
-        <translation>RISCOS no puede ser instalado. El tamaño de la partición recovery (de recuperación) es demasiado grande.</translation>
+        <translatorcomment>La partición recovery es la partición de recuperación de PINN</translatorcomment>
+        <translation>RISCOS no puede ser instalado. El tamaño de la partición recovery (recuperación) es demasiado grande.</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="106"/>
@@ -742,7 +744,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="214"/>
         <source>Fixed partition offset too low</source>
-        <translation>Corregido offset de partición demasiado bajo</translation>
+        <translation type="unfinished">Corregido partición desplazamiento (offset) demasiado bajo</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="111"/>
@@ -835,17 +837,19 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="578"/>
         <source>%1: Running partition setup script</source>
-        <translation>%1: Ejecutando script de pos-instalación (partition_setup.sh)</translation>
+        <translatorcomment>script de configuración de particiones: partition_setup.sh</translatorcomment>
+        <translation>%1: Ejecutando script de configuración de particiones</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="627"/>
         <source>%1: Error executing partition setup script</source>
-        <translation>%1: Error al ejecutar el script de pos-instalación (partition_setup.sh)</translation>
+        <translatorcomment>script de configuración de particiones: partition_setup.sh</translatorcomment>
+        <translation>%1: Error al ejecutar script de configuración de particiones</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="636"/>
         <source>%1: Configuring flavour</source>
-        <translation type="unfinished">%1: Configurando sabor</translation>
+        <translation type="unfinished">%1: Configurando sabor (flavour)</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="650"/>
@@ -917,8 +921,8 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="passwd.ui" line="171"/>
         <source>Use Default</source>
-        <translatorcomment>El botón &apos;Valores predeter.&apos; introducirá el nombre de usuario y la contraseña predeterminados para el sistema operativo seleccionado.</translatorcomment>
-        <translation>Valores predeter.</translation>
+        <translatorcomment>Este botón introducirá el nombre de usuario y la contraseña predeterminados para el SO seleccionado.</translatorcomment>
+        <translation>Usar predeter.</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="226"/>
@@ -943,7 +947,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="passwd.cpp" line="230"/>
         <source>Very Strong</source>
-        <translation>Muy Fuerte</translation>
+        <translation>Muy fuerte</translation>
     </message>
 </context>
 <context>
@@ -951,12 +955,12 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="progressslideshowdialog.cpp" line="172"/>
         <source>%1 MB of %2 MB written (%3 MB/sec)</source>
-        <translation>escritos %1 MB de %2 MB (%3 MB/seg)</translation>
+        <translation type="unfinished">Escribiendo %1 MB de %2 MB (%3 MB/seg)</translation>
     </message>
     <message>
         <location filename="progressslideshowdialog.cpp" line="190"/>
         <source>%1 MB written (%2 MB/sec)</source>
-        <translation>escritos %1 MB (%2 MB/seg)</translation>
+        <translation type="unfinished">Escribiendo %1 MB (%2 MB/seg)</translation>
     </message>
 </context>
 <context>
@@ -964,12 +968,12 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="languagedialog.cpp" line="27"/>
         <source>OK</source>
-        <translation type="unfinished">Aceptar</translation>
+        <translation>Aceptar</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="28"/>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;Aceptar</translation>
+        <translation>&amp;Aceptar</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="29"/>
@@ -1148,12 +1152,12 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="piclonedialog.ui" line="42"/>
         <source>Copy From Device:</source>
-        <translation type="unfinished">Copiar desde dispositivo:</translation>
+        <translation type="unfinished">Dispositivo origen:</translation>
     </message>
     <message>
         <location filename="piclonedialog.ui" line="75"/>
         <source>Copy To Device:</source>
-        <translation type="unfinished">Copiar a dispositivo:</translation>
+        <translation type="unfinished">Dispositivo destino:</translation>
     </message>
 </context>
 </TS>
