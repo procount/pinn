@@ -40,12 +40,12 @@
         <translation>PINN - 選取要啟動的作業系統</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="45"/>
+        <location filename="bootselectiondialog.ui" line="38"/>
         <source>Sticky default</source>
         <translation>預設值</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="52"/>
+        <location filename="bootselectiondialog.ui" line="45"/>
         <source>BOOT</source>
         <translation>開機</translation>
     </message>
