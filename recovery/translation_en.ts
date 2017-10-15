@@ -10,12 +10,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="45"/>
+        <location filename="bootselectiondialog.ui" line="38"/>
         <source>Sticky default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="52"/>
+        <location filename="bootselectiondialog.ui" line="45"/>
         <source>BOOT</source>
         <translation type="unfinished"></translation>
     </message>

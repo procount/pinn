@@ -45,6 +45,49 @@ CecListener *enableCEC(QObject *parent=0);
 QStringList downloadRepoUrls;
 QString repoList;
 
+
+// by phmio.
+void runCustomScript(const QString &driveDev, int partNr, const QString &cmd, bool inBackground=false )
+{
+    bool mntStillMounted = true ; // suppose yes.
+
+    // check if /mnt is still mounted to the recovery partition.
+    if (QFile::exists("/mnt/recovery.rfs"))
+    {
+        mntStillMounted = true ;
+    }
+    else
+    {   // mount it.
+        if (QProcess::execute("mount -t vfat -o ro "+partdev(driveDev, partNr)+" /mnt") == 0)
+        {
+            mntStillMounted = false ;
+        }
+    }
+
+    // execute the cmd script.
+    if (inBackground)
+    {
+        if (QProcess::startDetached("/mnt/"+cmd) != 0)
+        {
+            // not fatal if does not work
+        }
+    }
+    else
+    {
+        if (QProcess::execute("/mnt/"+cmd) != 0)
+        {
+            // not fatal if does not work
+        }
+    }
+
+    // clean exit.
+    if (! mntStillMounted)
+    {
+        QProcess::execute("umount /mnt");
+    }
+}
+
+
 void showBootMenu(const QString &drive, const QString &defaultPartition, bool setDisplayMode)
 {
 #ifdef Q_WS_QWS
@@ -56,6 +99,11 @@ void showBootMenu(const QString &drive, const QString &defaultPartition, bool se
     if (setDisplayMode)
         bsd.setDisplayMode();
     bsd.exec();
+
+    // by phmio
+    // do some stuff before soft reboot
+    runCustomScript(drive, 1, "before-reboot.sh", false);
+    // end phmio
 
     // Shut down networking
     QProcess::execute("ifdown -a");
@@ -297,6 +345,11 @@ int main(int argc, char *argv[])
         return 1;
     }
     qDebug() << "PINN drive:" << drive;
+
+    // by phmio
+    // do some stuff at start in background.
+    runCustomScript(drive, 1,"background.sh", true);
+    // end phmio
 
     // If -runinstaller is not specified, only continue if SHIFT is pressed, GPIO is triggered,
     // or no OS is installed (/settings/installed_os.json does not exist)

@@ -40,12 +40,12 @@
         <translation>PINN - Seleziona il SO di avvio</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="45"/>
+        <location filename="bootselectiondialog.ui" line="38"/>
         <source>Sticky default</source>
         <translation>Etichetta predefinita</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="52"/>
+        <location filename="bootselectiondialog.ui" line="45"/>
         <source>BOOT</source>
         <translation>BOOT</translation>
     </message>

@@ -40,12 +40,12 @@
         <translation>PINN - Hautatu SEa abiarazteko</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="45"/>
+        <location filename="bootselectiondialog.ui" line="38"/>
         <source>Sticky default</source>
         <translation>Lehenespen itsaskorra</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="52"/>
+        <location filename="bootselectiondialog.ui" line="45"/>
         <source>BOOT</source>
         <translation>ABIOA</translation>
     </message>
