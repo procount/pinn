@@ -23,4 +23,6 @@ bool canBootOs(const QString& name, const QVariantMap& values);
 bool setRebootPartition(QByteArray partition);
 QByteArray partdev(const QString &drivedev, int nr);
 QByteArray sysclassblock(const QString &drivedev, int partnr = -1);
+bool isURL(const QString &s);
+
 #endif // UTIL_H

@@ -79,8 +79,18 @@ public:
         return _password;
     }
 
+    inline QString url()
+    {
+        return _url;
+    }
+
+    inline QString group()
+    {
+        return _group;
+    }
+
 protected:
-    QString _folder, _flavour, _name, _description, _version, _releaseDate, _username, _password;
+    QString _folder, _flavour, _name, _description, _version, _releaseDate, _username, _password, _url, _group;
     bool _bootable;
     QList<PartitionInfo *> _partitions;
     QStringList _supportedModels;

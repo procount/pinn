@@ -19,7 +19,7 @@ public:
 
 protected:
     virtual void run();
-    void clearEBR();
+    QString findTarballExt(QString base, QString exts);
     bool processImage(OsInfo *image);
     void postInstallConfig(const QString &folder, const QString &part, const QString &customName);
     void postInstallProcessConfigFile(const QString &sourcefolder, const QString &tarfile);
@@ -35,7 +35,7 @@ protected:
     void patchConfigTxt();
     QString getDescription(const QString &folder, const QString &flavour);
     bool writePartitionTable(const QString &drive, const QMap<int, PartitionInfo *> &partitionMap);
-    bool isURL(const QString &s);
+    //bool isURL(const QString &s);
     QByteArray getDiskId(const QString &device);
     QByteArray getPartUUID(const QString &devpart);
 

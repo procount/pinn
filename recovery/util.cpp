@@ -183,3 +183,9 @@ QByteArray sysclassblock(const QString &drivedev, int partnr)
 
     return "/sys/class/block/"+ b;
 }
+
+bool isURL(const QString &s)
+{
+    return s.startsWith("http:") || s.startsWith("https:");
+}
+

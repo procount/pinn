@@ -11,6 +11,8 @@
  */
 
 #include "languagedialog.h"
+#include "osgroup.h"
+
 #include <QMainWindow>
 #include <QModelIndex>
 #include <QSplashScreen>
@@ -18,6 +20,7 @@
 #include <QTimer>
 #include <QTime>
 #include <QHostAddress>
+#include <QProcess>
 
 namespace Ui {
 class MainWindow;
@@ -38,6 +41,7 @@ public:
 
 protected:
     Ui::MainWindow *ui;
+    OsGroup * ug;
     QDialog *_qpd;
     QList <int> _kc;
     int _kcpos;
@@ -50,16 +54,31 @@ protected:
     bool _hasWifi;
     int _numInstalledOS, _devlistcount;
     QNetworkAccessManager *_netaccess;
-    uint _neededMB, _availableMB;
+    uint _neededMB, _availableMB, _availableDownloadMB;
     int _numMetaFilesToDownload, _numIconsToDownload, _numBuildsToDownload;
     QMessageBox *_displayModeBox;
     QTimer _networkStatusPollTimer, _piDrivePollTimer;
     QTime _time;
-    QString _model, _repo, _drive, _bootdrive;
+    QString _model, _repo, _drive, _bootdrive, _osdrive;
     int _noobsconfig;
     QHostAddress _ipaddress;
+    QLabel *_menuLabel;
+    QLabel *_checkLabel;
+    QProcess * _pbackground;
+    int _numFilesToCheck;
 
     QMap<QString,QVariantMap> listImages(const QString &folder = "/mnt/os", bool includeInstalled = true);
+
+    bool _bDownload;
+    QString _local;
+    uint _neededDownloadMB;
+    int _listno;
+
+    QList<QToolBar*> toolbars;
+    int toolbar_index;
+
+    QVariantMap _overrides;
+
     virtual void changeEvent(QEvent * event);
     virtual bool eventFilter(QObject *obj, QEvent *event);
     void inputSequence();
@@ -86,11 +105,25 @@ protected:
     void filterList();
     void copyWpa();
     void on_newVersion();
+    QString menutext(int index);
+    void fullFAT();
+
+    void startImageDownload();//@@download
+    bool LooksLikePiDrive(QString devname);//@@download
+    bool LooksLikeOSDrive(QString devname);//@@download
+    void recalcAvailableMB();//@@download
+    void checkFileSize(const QString &url, const QString &saveAs);//@@download
+    void getDownloadSize(QVariantMap &new_details);//@@download
 
     void downloadRepoList(const QString &urlstring);
     void processRepoListJson(QVariant json);
+    void loadOverrides(const QString &filename);
+    void OverrideJson(QVariantMap& m);
+    void createPinnEntry();
 
 protected slots:
+    void checkFileSizeRedirectCheck();//@@download
+    void checkFileSizeComplete();//@@download
     void populate();
     void startBrowser();
     void startNetworking();
@@ -133,7 +166,14 @@ private slots:
     void on_actionWifi_triggered();
     void on_actionPassword_triggered();
     void on_targetCombo_currentIndexChanged(int index);
+    void on_targetComboUsb_currentIndexChanged(int index);
     void on_actionClone_triggered();
+    void on_actionInfo_triggered();
+    void on_actionInfoInstalled_triggered();
+    void on_actionDownload_triggered();//@@download
+    void on_actionWipe_triggered();
+    //@@download void on_targetComboUsb_currentIndexChanged(int index);
+    void on_actionFschk_triggered();
 
 signals:
     void networkUp();

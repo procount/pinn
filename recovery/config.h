@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 /* Version number displayed in the title bar */
-#define VERSION_NUMBER "2.4.2h"
+#define VERSION_NUMBER "2.4.3"
 
 /* Color of the background */
 // #define BACKGROUND_COLOR  Qt::white
@@ -30,11 +30,15 @@
 #define BUILD_URL       "http://downloads.sourceforge.net/project/pinn/BUILD-DATA"
 #define UPDATE_URL      "http://downloads.sourceforge.net/project/pinn/pinn-lite.zip"
 #define README_URL      "http://downloads.sourceforge.net/project/pinn/README.md"
+#define GROUP_URL       "http://raw.githubusercontent.com/procount/pinn-os/master/os/overrides.json"
 #define BUILD_CURRENT   "/mnt/BUILD-DATA"
 #define BUILD_NEW       "/tmp/BUILD-DATA"
 #define BUILD_IGNORE    "/settings/BUILD-DATA"
 #define UPDATE_NEW      "/tmp/pinn-lite.zip"
 #define README_NEW      "/tmp/README.md"
+#define GROUP_NEW       "/tmp/overrides.json"
+#define GROUP_CURRENT   "/mnt/overrides.json"
+#define INFO_URL        "https://github.com/procount/pinn"
 
 /* Size of recovery FAT partition in MB when using reformat drive initialization method. */
 #define RESCUE_PARTITION_SIZE  63
@@ -67,5 +71,7 @@
 
 /* Maximum number of partitions */
 #define MAXIMUM_PARTITIONS  32
+
+#define DEFGROUP "General"
 
 #endif // CONFIG_H

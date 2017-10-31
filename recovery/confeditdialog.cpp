@@ -64,35 +64,51 @@ protected:
 /* --- */
 
 
-ConfEditDialog::ConfEditDialog(const QString &partition, QWidget *parent) :
+ConfEditDialog::ConfEditDialog(const QVariantMap &map, const QString &partition, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::ConfEditDialog)
+    ui(new Ui::ConfEditDialog),
+    _map(map),
+    _partition(partition)
 {
-    QDir dir;
-    if (!dir.exists("/boot"))
-        dir.mkdir("/boot");
-
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
     ui->setupUi(this);
     ui->tabWidget->clear();
 
-    if (QProcess::execute("mount -t vfat "+partition+" /boot") != 0)
-    {
-        QMessageBox::critical(this,
-                              tr("Error"),
-                              tr("Error mounting boot partition"),
-                              QMessageBox::Close);
-        return;
-    }
 
-    _tabs.append(new ConfEditDialogTab("config.txt", "/boot/config.txt", false, ui->tabWidget));
-    _tabs.append(new ConfEditDialogTab("cmdline.txt", "/boot/cmdline.txt", false, ui->tabWidget));
+    if (_map.value("name") =="PINN")
+    {  //This is the PINN reference
+        QProcess::execute("mount -o remount,rw /mnt");
+        _tabs.append(new ConfEditDialogTab("config.txt", "/mnt/config.txt", false, ui->tabWidget));
+        _tabs.append(new ConfEditDialogTab("recovery.cmdline", "/mnt/recovery.cmdline", false, ui->tabWidget));
+    }
+    else
+    {
+        QDir dir;
+        if (!dir.exists("/boot"))
+            dir.mkdir("/boot");
+
+        if (QProcess::execute("mount -t vfat "+partition+" /boot") != 0)
+        {
+            QMessageBox::critical(this,
+                                  tr("Error"),
+                                  tr("Error mounting boot partition"),
+                                  QMessageBox::Close);
+            return;
+        }
+        _tabs.append(new ConfEditDialogTab("config.txt", "/boot/config.txt", false, ui->tabWidget));
+        _tabs.append(new ConfEditDialogTab("cmdline.txt", "/boot/cmdline.txt", false, ui->tabWidget));
+    }
 }
 
 ConfEditDialog::~ConfEditDialog()
 {
     delete ui;
-    QProcess::execute("umount /boot");
+    if (_map.value("name") =="PINN")
+    {  //This is the PINN reference
+        QProcess::execute("mount -o remount,ro /mnt");
+    }
+    else
+        QProcess::execute("umount /boot");
 }
 
 void ConfEditDialog::accept()

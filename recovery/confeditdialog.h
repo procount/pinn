@@ -12,6 +12,7 @@
 
 #include <QDialog>
 #include <QList>
+#include <QVariantMap>
 
 namespace Ui {
 class ConfEditDialog;
@@ -24,7 +25,7 @@ class ConfEditDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ConfEditDialog(const QString &partition, QWidget *parent = 0);
+    explicit ConfEditDialog(const QVariantMap &m, const QString &partition, QWidget *parent = 0);
     ~ConfEditDialog();
 
 public slots:
@@ -33,6 +34,8 @@ public slots:
 private:
     Ui::ConfEditDialog *ui;
     QList<ConfEditDialogTab *> _tabs;
+    QVariantMap _map;
+    QString _partition;
 };
 
 #endif // CONFEDITDIALOG_H

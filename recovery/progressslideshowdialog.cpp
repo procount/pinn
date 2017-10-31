@@ -71,12 +71,12 @@ ProgressSlideshowDialog::ProgressSlideshowDialog(const QStringList &slidesDirect
             maxwidth = qMax(maxwidth, pix.width());
             maxheight = qMax(maxheight, pix.height());
         }
+        maxheight += ui->frame->height(); //89 for lower progress bar
         //Ensure it is smaller than physical screen
         maxwidth = qMin(maxwidth, s.width()-10);
         maxheight = qMin(maxheight, s.height()-100);
-        //Resize slide placeholder and dialog box
-        ui->imagespace->setMinimumSize(maxwidth, maxheight);
-        resize(maxwidth, maxheight+50);
+        //Resize dialog box. imagesize will exapnd to fit
+        resize(maxwidth, maxheight);
 
         QPixmap pixmap(_slides.first());
 
@@ -169,8 +169,22 @@ void ProgressSlideshowDialog::updateIOstats()
     {
         sectors = qMin(_maxSectors, sectors);
         ui->progressBar->setValue(sectors);
-        setMBWrittenText(tr("%1 MB of %2 MB written (%3 MB/sec)")
-            .arg(QString::number(sectors/2048), QString::number(_maxSectors/2048), QString::number(sectorsPerSec/2048.0, 'f', 1)));
+
+        double secondsleft = ((double)_maxSectors - (double)sectors)/sectorsPerSec;
+        uint remaining = (uint) secondsleft;
+        uint secs = remaining %60;
+        remaining /=60; //mins
+        uint mins = remaining %60;
+        remaining /=60; //hours
+        uint hrs = remaining ;
+
+        setMBWrittenText(tr("%1 MB of %2 MB written (%3 MB/sec) Remaining: %4:%5:%6")
+            .arg(QString::number(sectors/2048))
+            .arg(QString::number(_maxSectors/2048))
+            .arg(QString::number(sectorsPerSec/2048.0, 'f', 1))
+            .arg(hrs,2,10,QLatin1Char( '0' ))
+            .arg(mins,2,10,QLatin1Char( '0' ))
+            .arg(secs,2,10,QLatin1Char( '0' )));
 
         int percent = (100*sectors)/_maxSectors;
         if (last_percent != percent)

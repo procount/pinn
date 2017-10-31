@@ -22,7 +22,9 @@
    <property name="focusPolicy">
     <enum>Qt::NoFocus</enum>
    </property>
+
    <layout class="QGridLayout" name="gridLayout_2">
+
     <item row="0" column="0">
      <widget class="QListWidget" name="list">
       <property name="font">
@@ -35,16 +37,29 @@
       </property>
      </widget>
     </item>
+
     <item row="1" column="0">
      <widget class="QGroupBox" name="groupBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>65</height>
+        <height>90</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>90</height>
        </size>
       </property>
       <property name="title">
-       <string>Disk space</string>
+       <string>Install space</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
@@ -62,10 +77,16 @@
        </item>
        <item row="0" column="1">
         <widget class="QComboBox" name="targetCombo">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>0</height>
+           <height>18</height>
           </size>
          </property>
          <property name="maximumSize">
@@ -93,9 +114,86 @@
       </layout>
      </widget>
     </item>
+
+    <item row="2" column="0">
+     <widget class="QGroupBox" name="groupBoxUsb">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>90</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>90</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(225, 255, 255);</string>
+      </property>
+      <property name="title">
+       <string>Download space</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="targetLabelUsb">
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Destination drive:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="targetComboUsb">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>18</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="QLabel" name="neededLabelUsb">
+         <property name="text">
+          <string>Needed:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="3">
+        <widget class="QLabel" name="availableLabelUsb">
+         <property name="text">
+          <string>Available:</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+
+
    </layout>
+
   </widget>
-  <widget class="QToolBar" name="mainToolBar">
+  <widget class="QToolBar" name="toolBar_1">
    <property name="focusPolicy">
     <enum>Qt::NoFocus</enum>
    </property>
@@ -118,12 +216,57 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionWrite_image_to_disk"/>
-   <addaction name="actionEdit_config"/>
    <addaction name="actionWifi"/>
    <addaction name="actionBrowser"/>
+   <addaction name="actionInfo"/>
    <addaction name="actionCancel"/>
   </widget>
-  <widget class="QToolBar" name="toolBar">
+  <widget class="QToolBar" name="toolBar_2">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="accessibleDescription">
+    <string/>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>40</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionBackup"/>
+   <addaction name="actionDownload"/>
+   <addaction name="actionClone"/>
+   <addaction name="actionInfo"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar_3">
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -157,10 +300,11 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionEdit_config"/>
    <addaction name="actionPassword"/>
-   <addaction name="actionBackup"/>
    <addaction name="actionFschk"/>
-   <addaction name="actionClone"/>
+   <addaction name="actionWipe"/>
+   <addaction name="actionInfoInstalled"/>
   </widget>
   <widget class="QToolBar" name="advToolBar">
    <property name="enabled">
@@ -233,20 +377,20 @@
   </action>
   <action name="actionAdvanced">
    <property name="checkable">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="icon">
     <iconset resource="icons.qrc">
-     <normaloff>:/icons/setting_tools.png</normaloff>:/icons/setting_tools.png</iconset>
+     <normaloff>:/icons/bullet_arrow_right.png</normaloff>:/icons/bullet_arrow_right.png</iconset>
    </property>
    <property name="text">
-    <string>Advanced (a)</string>
+    <string>More (m)</string>
    </property>
    <property name="toolTip">
-    <string>Advanced</string>
+    <string>More menus</string>
    </property>
    <property name="shortcut">
-    <string>A</string>
+    <string>M</string>
    </property>
   </action>
   <action name="actionEdit_config">
@@ -280,6 +424,21 @@
    </property>
    <property name="shortcut">
     <string notr="true">H</string>
+   </property>
+  </action>
+  <action name="actionInfo">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/information.png</normaloff>:/icons/information.png</iconset>
+   </property>
+   <property name="text">
+    <string>Info (n)</string>
+   </property>
+   <property name="toolTip">
+    <string>Information about the selected OS</string>
+   </property>
+   <property name="shortcut">
+    <string>N</string>
    </property>
   </action>
   <action name="actionWifi">
@@ -318,6 +477,21 @@
     <string>P</string>
    </property>
   </action>
+  <action name="actionDownload">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/download_cloud.png</normaloff>:/icons/download_cloud.png</iconset>
+   </property>
+   <property name="text">
+    <string>Download (d)</string>
+   </property>
+   <property name="toolTip">
+    <string>Downloads the selected operating system image to USB for local installation</string>
+   </property>
+   <property name="shortcut">
+    <string>D</string>
+   </property>
+  </action>
   <action name="actionBackup">
    <property name="enabled">
     <bool>false</bool>
@@ -338,20 +512,32 @@
   </action>
   <action name="actionFschk">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/backup_wizard.png</normaloff>:/icons/backup_wizard.png</iconset>
    </property>
    <property name="text">
-    <string>fschk (f)</string>
+    <string>fsck (f)</string>
    </property>
    <property name="shortcut">
     <string>F</string>
    </property>
    <property name="visible">
-    <bool>false</bool>
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionWipe">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/reject.png</normaloff>:/icons/reject.png</iconset>
+   </property>
+   <property name="text">
+    <string>Wipe (w)</string>
+   </property>
+   <property name="shortcut">
+    <string>W</string>
    </property>
   </action>
   <action name="actionClone">
@@ -364,6 +550,21 @@
    </property>
    <property name="shortcut">
     <string>C</string>
+   </property>
+  </action>
+  <action name="actionInfoInstalled">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/information.png</normaloff>:/icons/information.png</iconset>
+   </property>
+   <property name="text">
+    <string>Info (n)</string>
+   </property>
+   <property name="toolTip">
+    <string>Information about the installed OS</string>
+   </property>
+   <property name="shortcut">
+    <string>N</string>
    </property>
   </action>
  </widget>

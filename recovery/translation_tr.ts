@@ -40,12 +40,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="45"/>
+        <location filename="bootselectiondialog.ui" line="38"/>
         <source>Sticky default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="52"/>
+        <location filename="bootselectiondialog.ui" line="57"/>
         <source>BOOT</source>
         <translation type="unfinished"></translation>
     </message>
@@ -58,14 +58,58 @@
         <translation>Ayar düzenleyici</translation>
     </message>
     <message>
-        <location filename="confeditdialog.cpp" line="82"/>
+        <location filename="confeditdialog.cpp" line="93"/>
         <source>Error</source>
         <translation>Hata</translation>
     </message>
     <message>
-        <location filename="confeditdialog.cpp" line="83"/>
+        <location filename="confeditdialog.cpp" line="94"/>
         <source>Error mounting boot partition</source>
         <translation>Başlangıç bölümünü bağlamada hata</translation>
+    </message>
+</context>
+<context>
+    <name>FullFatThread</name>
+    <message>
+        <location filename="fullfatthread.cpp" line="39"/>
+        <location filename="fullfatthread.cpp" line="47"/>
+        <source>Mounting FAT partition</source>
+        <translation type="unfinished">FAT bölümünü bağla</translation>
+    </message>
+    <message>
+        <location filename="fullfatthread.cpp" line="50"/>
+        <source>Error mounting system partition.</source>
+        <translation type="unfinished">Sistem bölümü bağlanırken hata</translation>
+    </message>
+    <message>
+        <location filename="fullfatthread.cpp" line="62"/>
+        <source>Error opening %1</source>
+        <translation type="unfinished">%1 açılırken hata</translation>
+    </message>
+    <message>
+        <location filename="fullfatthread.cpp" line="72"/>
+        <source>Finish writing to disk (sync)</source>
+        <translation type="unfinished">Diske yazmayı tamamla (sync)</translation>
+    </message>
+    <message>
+        <location filename="fullfatthread.cpp" line="85"/>
+        <source>Error unmounting system partition.</source>
+        <translation type="unfinished">Sistem bölümünü çıkartmada hata.</translation>
+    </message>
+    <message>
+        <location filename="fullfatthread.cpp" line="89"/>
+        <source>Removing partitions 2,3,4</source>
+        <translation type="unfinished">2,3,4 nolu bölümler siliniyor</translation>
+    </message>
+    <message>
+        <location filename="fullfatthread.cpp" line="103"/>
+        <source>Resizing FAT partition</source>
+        <translation type="unfinished">FAT bölümü yeniden boyutlandırılıyor</translation>
+    </message>
+    <message>
+        <location filename="fullfatthread.cpp" line="127"/>
+        <source>Error resizing existing FAT partition</source>
+        <translation type="unfinished">Var olan FAT bölümünü yeniden boyutlandırmada hata</translation>
     </message>
 </context>
 <context>
@@ -266,429 +310,584 @@ UYARI: Bu işlem SD kartınızdaki tüm verileri silecektir</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.ui" line="47"/>
-        <source>Disk space</source>
-        <translation>Disk alanı</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="59"/>
+        <location filename="mainwindow.ui" line="74"/>
+        <location filename="mainwindow.ui" line="154"/>
         <source>Destination drive:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="82"/>
+        <location filename="mainwindow.ui" line="103"/>
+        <location filename="mainwindow.ui" line="177"/>
         <source>Needed:</source>
         <translation>Gerekli:</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="89"/>
+        <location filename="mainwindow.ui" line="110"/>
+        <location filename="mainwindow.ui" line="184"/>
         <source>Available:</source>
         <translation>Mevcut:</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="131"/>
+        <location filename="mainwindow.ui" line="142"/>
+        <source>Download space</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="235"/>
+        <location filename="mainwindow.ui" line="274"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="210"/>
+        <location filename="mainwindow.ui" line="354"/>
         <source>Install (i)</source>
         <translation>Yükle (i)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="213"/>
+        <location filename="mainwindow.ui" line="357"/>
         <source>Installs the selected operating system image onto this SD card.</source>
         <translation>Seçili işletim sistemi imajını bu SD karta yükler.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="216"/>
+        <location filename="mainwindow.ui" line="360"/>
         <source>I</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="225"/>
+        <location filename="mainwindow.ui" line="369"/>
         <source>Exit (Esc)</source>
         <translation>Çık (Esc)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="228"/>
+        <location filename="mainwindow.ui" line="372"/>
         <source>Exits and boots the installed operating system.</source>
         <translation>Çıkış yapar ve seçili işletim sistemini açar.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="294"/>
+        <location filename="mainwindow.ui" line="387"/>
+        <source>More (m)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="390"/>
+        <source>More menus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="393"/>
+        <source>M</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="486"/>
+        <source>Download (d)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="489"/>
+        <source>Downloads the selected operating system image to USB for local installation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="492"/>
+        <source>D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="537"/>
+        <source>Wipe (w)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="564"/>
+        <source>Information about the installed OS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="453"/>
         <source>Wifi (w)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="312"/>
+        <location filename="mainwindow.ui" line="62"/>
+        <source>Install space</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="471"/>
         <source>Password (p)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="315"/>
+        <location filename="mainwindow.ui" line="474"/>
         <source>Change password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="318"/>
+        <location filename="mainwindow.ui" line="477"/>
         <source>P</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="330"/>
+        <location filename="mainwindow.ui" line="504"/>
         <source>Backup (b)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="333"/>
+        <location filename="mainwindow.ui" line="507"/>
         <source>B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="348"/>
-        <source>fschk (f)</source>
+        <location filename="mainwindow.ui" line="522"/>
+        <source>fsck (f)</source>
+        <oldsource>fschk (f)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="351"/>
+        <location filename="mainwindow.ui" line="525"/>
         <source>F</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="363"/>
+        <location filename="mainwindow.ui" line="549"/>
         <source>Clone (c)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="366"/>
+        <location filename="mainwindow.ui" line="552"/>
         <source>C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="170"/>
-        <location filename="mainwindow.ui" line="246"/>
+        <location filename="mainwindow.ui" line="314"/>
         <source>Advanced</source>
         <translation>Gelişmiş</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="243"/>
-        <source>Advanced (a)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="249"/>
-        <source>A</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="261"/>
+        <location filename="mainwindow.ui" line="405"/>
         <source>Edit config (e)</source>
         <translation>Ayarları düzenle (e)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="264"/>
+        <location filename="mainwindow.ui" line="408"/>
         <source>Opens the config.txt and cmdline.txt for the installed OS in a text editor.</source>
         <translation>Kurulu OS için config.txt ve cmdline.txt dosyasını metin editöründe açar.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="276"/>
+        <location filename="mainwindow.ui" line="420"/>
         <source>Online help (h)</source>
         <translation>Çevrimiçi yardım (h)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="279"/>
+        <location filename="mainwindow.ui" line="423"/>
         <source>Opens a web browser displaying the Raspberry Pi Forum.</source>
         <translation>Raspberry Pi Forumlarını bir web tarayıcıda görüntüler.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="297"/>
+        <location filename="mainwindow.ui" line="435"/>
+        <location filename="mainwindow.ui" line="561"/>
+        <source>Info (n)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="438"/>
+        <source>Information about the selected OS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="441"/>
+        <location filename="mainwindow.ui" line="567"/>
+        <source>N</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="456"/>
         <source>Select a wifi network to connect to</source>
         <translation>Bağlanmak için wifi ağı seçin</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="300"/>
+        <location filename="mainwindow.ui" line="459"/>
+        <location filename="mainwindow.ui" line="540"/>
         <source>W</source>
         <translation>W</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="380"/>
-        <location filename="mainwindow.cpp" line="1454"/>
-        <location filename="mainwindow.cpp" line="2040"/>
+        <location filename="mainwindow.cpp" line="459"/>
+        <location filename="mainwindow.cpp" line="1805"/>
+        <location filename="mainwindow.cpp" line="2755"/>
         <source>RECOMMENDED</source>
         <translation>TAVSİYEDİR</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="637"/>
-        <location filename="mainwindow.cpp" line="656"/>
+        <location filename="mainwindow.cpp" line="728"/>
+        <location filename="mainwindow.cpp" line="747"/>
+        <location filename="mainwindow.cpp" line="812"/>
+        <location filename="mainwindow.cpp" line="822"/>
+        <location filename="mainwindow.cpp" line="1306"/>
         <source>Confirm</source>
         <translation>Onayla</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="122"/>
+        <location filename="mainwindow.cpp" line="194"/>
         <source>Setting up SD card</source>
         <translation>SD kart ayarlanıyor</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="168"/>
+        <location filename="mainwindow.cpp" line="240"/>
         <source>Error mounting settings partition</source>
         <translation>Ayar bölümünü bağlamada hata</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="169"/>
+        <location filename="mainwindow.cpp" line="241"/>
         <source>Persistent settings partition seems corrupt. Reformat?</source>
         <translation>Kalıcı ayarlar bölümü bozulmuş görünüyor. Biçimlendir?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="176"/>
+        <location filename="mainwindow.cpp" line="248"/>
         <source>Reformat failed</source>
         <translation>Biçimlendirme hatası</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="176"/>
+        <location filename="mainwindow.cpp" line="248"/>
         <source>SD card might be damaged</source>
         <translation>SD kart hasarlı olabilir</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="293"/>
+        <location filename="mainwindow.cpp" line="382"/>
         <source>Please wait while PINN initialises</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="632"/>
+        <location filename="mainwindow.cpp" line="723"/>
         <source>Warning: this will install the selected Operating System(s). All existing data on the SD card will be overwritten, including any OSes that are already installed.</source>
         <translation>Uyarı: bu işlem seçilen İşletim Sistemlerini kuracak. Kurulmuş olan işletim sistemleri de dahil SD karttaki tüm bilgiler silinecek.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="734"/>
-        <location filename="mainwindow.cpp" line="1231"/>
-        <location filename="mainwindow.cpp" line="1349"/>
-        <location filename="mainwindow.cpp" line="2177"/>
+        <location filename="mainwindow.cpp" line="952"/>
+        <location filename="mainwindow.cpp" line="1568"/>
+        <location filename="mainwindow.cpp" line="1699"/>
+        <location filename="mainwindow.cpp" line="2895"/>
         <source>Error</source>
         <translation>Hata</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="383"/>
+        <location filename="mainwindow.cpp" line="462"/>
         <source>INSTALLED</source>
         <translation>KURULDU</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="857"/>
+        <location filename="mainwindow.cpp" line="1101"/>
         <source>Display Mode Changed</source>
         <translation>Ekran Modu Değiştirildi</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="789"/>
+        <location filename="mainwindow.cpp" line="1031"/>
         <source>HDMI preferred mode</source>
         <translation>HDMI tercihli mod</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="143"/>
+        <location filename="mainwindow.cpp" line="215"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation>SD kart bekleniyor (ayar bölümü)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="156"/>
+        <location filename="mainwindow.cpp" line="228"/>
         <source>Mounting settings partition</source>
         <translation>Ayar bölümü bağlanıyor</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="634"/>
+        <location filename="mainwindow.cpp" line="367"/>
+        <source>Main Menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="368"/>
+        <source>Archival</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="369"/>
+        <source>Maintenance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="725"/>
         <source>SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="634"/>
+        <location filename="mainwindow.cpp" line="725"/>
         <source>drive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="657"/>
+        <location filename="mainwindow.cpp" line="748"/>
+        <location filename="mainwindow.cpp" line="823"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>Uyarı: uyumsuz İşletim Sistemleri tespit edildi. Bu işletim sistemi mevcut Raspberry Pi revizyonunda desteklenemez ve açılışta ya da çalışırken hatalar oluşabilir</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="699"/>
+        <location filename="mainwindow.cpp" line="789"/>
         <source>The install process will begin shortly.</source>
         <translation>Kurulum işlemi en kısa sürede başlayacak.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="722"/>
+        <location filename="mainwindow.cpp" line="813"/>
+        <source>Warning: this will download the selected Operating System(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="879"/>
+        <source>The download process will begin shortly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="912"/>
+        <source>OS(es) downloaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="913"/>
+        <source>OS(es) Downloaded Successfully.
+Reboot PINN to take account of these OSes?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="918"/>
         <source>OS(es) installed</source>
         <oldsource>OS installed</oldsource>
         <translation>OS(ler) kuruldu</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="723"/>
+        <location filename="mainwindow.cpp" line="919"/>
         <source>OS(es) Installed Successfully</source>
         <oldsource>OS Installed Successfully</oldsource>
         <translation>OS(ler) Başarıyla Kuruldu</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="757"/>
+        <location filename="mainwindow.cpp" line="996"/>
         <source>PINN v%1 - Built: %2 (%3)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="793"/>
+        <location filename="mainwindow.cpp" line="1035"/>
         <source>HDMI safe mode</source>
         <translation>HDMI güvenli mod</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="797"/>
+        <location filename="mainwindow.cpp" line="1039"/>
         <source>composite PAL mode</source>
         <translation>Kompozit PAL modu</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="801"/>
+        <location filename="mainwindow.cpp" line="1043"/>
         <source>composite NTSC mode</source>
         <translation>Kompozit NTSC modu</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1215"/>
-        <location filename="mainwindow.cpp" line="1333"/>
+        <location filename="mainwindow.cpp" line="1282"/>
+        <source>Wiping SD card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1307"/>
+        <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
+        <oldsource>Warning: this will restore your SD card to its initial state. All existing data on the SD card except PINN will be overwritten, including any OSes that are already installed.</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1312"/>
+        <source>Drive Wiped!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1550"/>
+        <location filename="mainwindow.cpp" line="1681"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1217"/>
-        <location filename="mainwindow.cpp" line="1335"/>
-        <location filename="mainwindow.cpp" line="1705"/>
-        <location filename="mainwindow.cpp" line="1715"/>
-        <location filename="mainwindow.cpp" line="2272"/>
-        <location filename="mainwindow.cpp" line="2290"/>
+        <location filename="mainwindow.cpp" line="1552"/>
+        <location filename="mainwindow.cpp" line="1683"/>
+        <location filename="mainwindow.cpp" line="2170"/>
+        <location filename="mainwindow.cpp" line="2181"/>
+        <location filename="mainwindow.cpp" line="2991"/>
+        <location filename="mainwindow.cpp" line="3009"/>
         <source>Download error</source>
         <translation>İndirme hatası</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1231"/>
+        <location filename="mainwindow.cpp" line="1568"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1831"/>
+        <location filename="mainwindow.cpp" line="2156"/>
+        <source>Error downloading meta file: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="2471"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1839"/>
+        <location filename="mainwindow.cpp" line="2479"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1954"/>
+        <location filename="mainwindow.cpp" line="2655"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2131"/>
+        <location filename="mainwindow.cpp" line="2849"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2133"/>
+        <location filename="mainwindow.cpp" line="2851"/>
         <source>Clone SD Card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2135"/>
+        <location filename="mainwindow.cpp" line="2853"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2136"/>
+        <location filename="mainwindow.cpp" line="2854"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2164"/>
+        <location filename="mainwindow.cpp" line="2882"/>
         <source>Clone Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2165"/>
+        <location filename="mainwindow.cpp" line="2883"/>
         <source>Clone Completed Successfully</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2272"/>
+        <location filename="mainwindow.cpp" line="2991"/>
         <source>Error downloading update file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2351"/>
+        <location filename="mainwindow.cpp" line="3087"/>
         <source>PINN UPDATE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2352"/>
+        <location filename="mainwindow.cpp" line="3088"/>
         <source>A new version of PINN is available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2353"/>
+        <location filename="mainwindow.cpp" line="3089"/>
         <source>Do you want to download this version?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2377"/>
+        <location filename="mainwindow.cpp" line="3113"/>
         <source>Downloading Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2377"/>
+        <location filename="mainwindow.cpp" line="3113"/>
         <source>Press ESC to cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1349"/>
+        <location filename="mainwindow.cpp" line="1699"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>Sunucudan indirilen list.json çözümlenirken hata</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1577"/>
+        <location filename="mainwindow.cpp" line="1313"/>
+        <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
+Install and download will no longer work until this drive is re-booted.
+Booting this drive again will re-instate PINN&apos;s partition structure.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1975"/>
+        <location filename="mainwindow.cpp" line="1978"/>
         <source>Needed</source>
         <translation>Gerekli</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1578"/>
+        <location filename="mainwindow.cpp" line="1976"/>
+        <location filename="mainwindow.cpp" line="1979"/>
         <source>Available</source>
         <translation>Mevcut</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1705"/>
+        <location filename="mainwindow.cpp" line="2170"/>
         <source>Error downloading meta file</source>
         <translation>Meta dosyası indirilirken hata</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1715"/>
-        <location filename="mainwindow.cpp" line="2290"/>
+        <location filename="mainwindow.cpp" line="2181"/>
+        <location filename="mainwindow.cpp" line="3009"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>İndirilen dosya SD karta yazılırken hata. SD kart ya da dosya sistemi hasarlı olabilir.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1953"/>
+        <location filename="mainwindow.cpp" line="2249"/>
+        <source>filesize error checking </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="2654"/>
         <source>Reformat drive?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="993"/>
-        <location filename="mainwindow.cpp" line="1830"/>
-        <location filename="mainwindow.cpp" line="1838"/>
+        <location filename="mainwindow.cpp" line="1325"/>
+        <location filename="mainwindow.cpp" line="2470"/>
+        <location filename="mainwindow.cpp" line="2478"/>
         <source>No network access</source>
         <translation>Ağ erişimi yok</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="858"/>
+        <location filename="mainwindow.cpp" line="1102"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="994"/>
+        <location filename="mainwindow.cpp" line="1326"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Bu özellik için yerel ağa erişimi olması gereklidir. Lütfen ağ kablosunu ağ portuna takın.</translation>
+    </message>
+</context>
+<context>
+    <name>MultiImageDownloadThread</name>
+    <message>
+        <location filename="multiimagedownloadthread.cpp" line="49"/>
+        <source>Finish writing (sync)</source>
+        <translation type="unfinished">Yazmayı bitir (sync)</translation>
+    </message>
+    <message>
+        <location filename="multiimagedownloadthread.cpp" line="79"/>
+        <source>File &apos;%1&apos; does not need downloading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="multiimagedownloadthread.cpp" line="113"/>
+        <source>Error downloading or extracting tarball</source>
+        <translation type="unfinished">tarball indirilir ya da çıkartılırken hata oluştu</translation>
+    </message>
+    <message>
+        <location filename="multiimagedownloadthread.cpp" line="146"/>
+        <source>Finished downloading %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -719,38 +918,38 @@ Would you like to make this setting permanent?</source>
         <translation>Yeterli disk alanı yok. %1 MB gerekli, %2 MB var</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="311"/>
+        <location filename="multiimagewritethread.cpp" line="321"/>
         <source>Finish writing (sync)</source>
         <translation>Yazmayı bitir (sync)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="448"/>
+        <location filename="multiimagewritethread.cpp" line="474"/>
         <source>File &apos;%1&apos; does not exist</source>
         <translation>&apos;%1&apos; adlı dosya yok</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="481"/>
-        <location filename="multiimagewritethread.cpp" line="487"/>
+        <location filename="multiimagewritethread.cpp" line="507"/>
+        <location filename="multiimagewritethread.cpp" line="513"/>
         <source>%1: Writing OS image</source>
         <oldsource>Writing image</oldsource>
         <translation>%1: OS imajı yazılıyor</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="501"/>
+        <location filename="multiimagewritethread.cpp" line="527"/>
         <source>%1: Mounting file system</source>
         <oldsource>Mounting file system</oldsource>
         <translation>%1: Dosya sistemi bağlanıyor</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="509"/>
-        <location filename="multiimagewritethread.cpp" line="533"/>
-        <location filename="multiimagewritethread.cpp" line="701"/>
+        <location filename="multiimagewritethread.cpp" line="535"/>
+        <location filename="multiimagewritethread.cpp" line="559"/>
+        <location filename="multiimagewritethread.cpp" line="729"/>
         <source>%1: Error mounting file system</source>
         <oldsource>Error mounting file system</oldsource>
         <translation>%1: Dosya sistemi bağlanırken hata</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="494"/>
+        <location filename="multiimagewritethread.cpp" line="520"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation>%1: Dosya sistemi oluşturuluyor (%2)</translation>
     </message>
@@ -770,115 +969,154 @@ Would you like to make this setting permanent?</source>
         <translation>Birden fazla işletim sistemi %1 numaralı bölüme ihtiyaç duyuyor</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="214"/>
+        <location filename="multiimagewritethread.cpp" line="173"/>
+        <location filename="multiimagewritethread.cpp" line="195"/>
+        <source>Cannot boot partitions &gt; #62. Reduce the number of OSes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="multiimagewritethread.cpp" line="224"/>
         <source>Fixed partition offset too low</source>
         <translation>Sabit bölüm ofseti çok düşük</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="274"/>
+        <location filename="multiimagewritethread.cpp" line="284"/>
         <source>Writing partition table</source>
         <translation>Bölüm tablosu yazılıyor</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="281"/>
+        <location filename="multiimagewritethread.cpp" line="291"/>
         <source>Writing boot partition table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="297"/>
+        <location filename="multiimagewritethread.cpp" line="307"/>
         <source>Zero&apos;ing start of each partition</source>
         <translation>Her bölümün başlangıcı sıfırlanıyor</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="331"/>
+        <location filename="multiimagewritethread.cpp" line="341"/>
         <source>Error reading existing partition table</source>
         <translation>Mevcut bölüm tablosunu okumada hata</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="416"/>
+        <location filename="multiimagewritethread.cpp" line="426"/>
         <source>Error creating partition table</source>
         <translation>Bölüm tablosu oluşturulurken hata</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="514"/>
+        <location filename="multiimagewritethread.cpp" line="540"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation>%1: Dosya sistemi indirilip çıkartılıyor</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="516"/>
+        <location filename="multiimagewritethread.cpp" line="542"/>
         <source>%1: Extracting filesystem</source>
         <oldsource>%1 Extracting filesystem</oldsource>
         <translation>%1: Dosya sistemi çıkartılıyor</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="530"/>
+        <location filename="multiimagewritethread.cpp" line="556"/>
         <source>%1: Mounting FAT partition</source>
         <oldsource>Mounting FAT partition</oldsource>
         <translation>%1: FAT bölümü bağlanıyor</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="542"/>
+        <location filename="multiimagewritethread.cpp" line="568"/>
         <source>%1: Creating os_config.json</source>
         <oldsource>Creating os_config.json</oldsource>
         <translation>%1: os_config.json oluşturuluyor</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="567"/>
+        <location filename="multiimagewritethread.cpp" line="593"/>
         <source>%1: Saving display mode to config.txt</source>
         <oldsource>Saving display mode to config.txt</oldsource>
         <translation>%1: Ekran modu config.txt&apos;e kaydediliyor</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="578"/>
+        <location filename="multiimagewritethread.cpp" line="604"/>
         <source>%1: Running partition setup script</source>
         <oldsource>Running partition setup script</oldsource>
         <translation>%1: Bölüm kurulum betiği çalıştırılıyor</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="627"/>
+        <location filename="multiimagewritethread.cpp" line="653"/>
         <source>%1: Error executing partition setup script</source>
         <oldsource>Error executing partition setup script</oldsource>
         <translation>%1: Bölüm kurulum betiği çalışırken hata</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="636"/>
+        <location filename="multiimagewritethread.cpp" line="662"/>
         <source>%1: Configuring flavour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="650"/>
+        <location filename="multiimagewritethread.cpp" line="676"/>
         <source>%1: Unmounting FAT partition</source>
         <oldsource>%1: Patching BCD file</oldsource>
         <translation type="unfinished">%1: BCD dosyası patchleniyor</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="653"/>
+        <location filename="multiimagewritethread.cpp" line="679"/>
         <source>%1: Error unmounting</source>
         <oldsource>Error unmounting</oldsource>
         <translation>%1: Çıkartılırken hata</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="918"/>
+        <location filename="multiimagewritethread.cpp" line="946"/>
         <source>Error creating file system</source>
         <translation>Dosya sistemi oluşturulurken hata</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="960"/>
-        <location filename="multiimagewritethread.cpp" line="1031"/>
-        <location filename="multiimagewritethread.cpp" line="1090"/>
+        <location filename="multiimagewritethread.cpp" line="991"/>
+        <location filename="multiimagewritethread.cpp" line="1062"/>
+        <location filename="multiimagewritethread.cpp" line="1121"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
         <translation>Geçersiz sıkıştırma formatı dosya uzantısı. Beklenen .lzo, .gz, .xz, .bz2 or .zip</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="993"/>
+        <location filename="multiimagewritethread.cpp" line="1024"/>
         <source>Error downloading or extracting tarball</source>
         <translation>tarball indirilir ya da çıkartılırken hata oluştu</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1052"/>
-        <location filename="multiimagewritethread.cpp" line="1111"/>
+        <location filename="multiimagewritethread.cpp" line="1083"/>
+        <location filename="multiimagewritethread.cpp" line="1142"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>OS&apos;u SD karta indirirken ya da yazarken hata</translation>
+    </message>
+</context>
+<context>
+    <name>OsGroup</name>
+    <message>
+        <location filename="osgroup.cpp" line="11"/>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="12"/>
+        <source>Media</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="13"/>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="14"/>
+        <source>Minimal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="15"/>
+        <source>Education</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="16"/>
+        <source>Installed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -947,12 +1185,12 @@ Would you like to make this setting permanent?</source>
 <context>
     <name>ProgressSlideshowDialog</name>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="172"/>
-        <source>%1 MB of %2 MB written (%3 MB/sec)</source>
-        <translation>%2 MB&apos;nin %1 MB&apos;i yazıldı (%3 MB/sn)</translation>
+        <location filename="progressslideshowdialog.cpp" line="181"/>
+        <source>%1 MB of %2 MB written (%3 MB/sec) Remaining: %4:%5:%6</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="190"/>
+        <location filename="progressslideshowdialog.cpp" line="204"/>
         <source>%1 MB written (%2 MB/sec)</source>
         <translation>%1 MB yazıldı (%2 MB/sn)</translation>
     </message>
@@ -1100,6 +1338,14 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="wifisettingsdialog.ui" line="124"/>
         <source>Show Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>fscheck</name>
+    <message>
+        <location filename="fscheck.ui" line="14"/>
+        <source>File System Check</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

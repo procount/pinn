@@ -40,12 +40,12 @@
         <translation>PINN - Velg OS som skal boote</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="45"/>
+        <location filename="bootselectiondialog.ui" line="38"/>
         <source>Sticky default</source>
         <translation>Låst standard</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="52"/>
+        <location filename="bootselectiondialog.ui" line="57"/>
         <source>BOOT</source>
         <translation>BOOT</translation>
     </message>
@@ -58,14 +58,58 @@
         <translation>Redigering av konfigurering</translation>
     </message>
     <message>
-        <location filename="confeditdialog.cpp" line="82"/>
+        <location filename="confeditdialog.cpp" line="93"/>
         <source>Error</source>
         <translation>Fei</translation>
     </message>
     <message>
-        <location filename="confeditdialog.cpp" line="83"/>
+        <location filename="confeditdialog.cpp" line="94"/>
         <source>Error mounting boot partition</source>
         <translation>Feil ved montering av boot-partisjon</translation>
+    </message>
+</context>
+<context>
+    <name>FullFatThread</name>
+    <message>
+        <location filename="fullfatthread.cpp" line="39"/>
+        <location filename="fullfatthread.cpp" line="47"/>
+        <source>Mounting FAT partition</source>
+        <translation type="unfinished">Monterer FAT-partisjon</translation>
+    </message>
+    <message>
+        <location filename="fullfatthread.cpp" line="50"/>
+        <source>Error mounting system partition.</source>
+        <translation type="unfinished">&gt;&gt;&gt;feil ved montering av systempartisjon.</translation>
+    </message>
+    <message>
+        <location filename="fullfatthread.cpp" line="62"/>
+        <source>Error opening %1</source>
+        <translation type="unfinished">Feil ved åpning av %1</translation>
+    </message>
+    <message>
+        <location filename="fullfatthread.cpp" line="72"/>
+        <source>Finish writing to disk (sync)</source>
+        <translation type="unfinished">Avslutter skriving til disk (synk)</translation>
+    </message>
+    <message>
+        <location filename="fullfatthread.cpp" line="85"/>
+        <source>Error unmounting system partition.</source>
+        <translation type="unfinished">Feil ved avmontering av systempartisjon.</translation>
+    </message>
+    <message>
+        <location filename="fullfatthread.cpp" line="89"/>
+        <source>Removing partitions 2,3,4</source>
+        <translation type="unfinished">Fjerner partisjoner 2,3,4</translation>
+    </message>
+    <message>
+        <location filename="fullfatthread.cpp" line="103"/>
+        <source>Resizing FAT partition</source>
+        <translation type="unfinished">Endrer FAT-partisjon størrelse</translation>
+    </message>
+    <message>
+        <location filename="fullfatthread.cpp" line="127"/>
+        <source>Error resizing existing FAT partition</source>
+        <translation type="unfinished">Feil ved størrelsesendring av eksisterende FAT-partisjon</translation>
     </message>
 </context>
 <context>
@@ -265,427 +309,582 @@ WARNING: This will erase all data on your SD card</oldsource>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.ui" line="47"/>
-        <source>Disk space</source>
-        <translation>Diskstørrelse</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="59"/>
+        <location filename="mainwindow.ui" line="74"/>
+        <location filename="mainwindow.ui" line="154"/>
         <source>Destination drive:</source>
         <translation>Mål-drive:</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="82"/>
+        <location filename="mainwindow.ui" line="103"/>
+        <location filename="mainwindow.ui" line="177"/>
         <source>Needed:</source>
         <translation>Nødvendig:</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="89"/>
+        <location filename="mainwindow.ui" line="110"/>
+        <location filename="mainwindow.ui" line="184"/>
         <source>Available:</source>
         <translation>Tilgjengelig:</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="131"/>
+        <location filename="mainwindow.ui" line="142"/>
+        <source>Download space</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="235"/>
+        <location filename="mainwindow.ui" line="274"/>
         <source>toolBar</source>
         <translation>toolBar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="210"/>
+        <location filename="mainwindow.ui" line="354"/>
         <source>Install (i)</source>
         <translation>Installer (i)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="213"/>
+        <location filename="mainwindow.ui" line="357"/>
         <source>Installs the selected operating system image onto this SD card.</source>
         <translation>Installerer valgt OS-avbildning til SD-kort.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="216"/>
+        <location filename="mainwindow.ui" line="360"/>
         <source>I</source>
         <translation>I</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="225"/>
+        <location filename="mainwindow.ui" line="369"/>
         <source>Exit (Esc)</source>
         <translation>Avslutt (Esc)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="228"/>
+        <location filename="mainwindow.ui" line="372"/>
         <source>Exits and boots the installed operating system.</source>
         <translation>Avslutter og booter installert operativsystem.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="294"/>
+        <location filename="mainwindow.ui" line="387"/>
+        <source>More (m)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="390"/>
+        <source>More menus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="393"/>
+        <source>M</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="486"/>
+        <source>Download (d)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="489"/>
+        <source>Downloads the selected operating system image to USB for local installation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="492"/>
+        <source>D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="537"/>
+        <source>Wipe (w)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="564"/>
+        <source>Information about the installed OS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="453"/>
         <source>Wifi (w)</source>
         <translation>Wifi (w)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="312"/>
+        <location filename="mainwindow.ui" line="62"/>
+        <source>Install space</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="471"/>
         <source>Password (p)</source>
         <translation>Passord (p)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="315"/>
+        <location filename="mainwindow.ui" line="474"/>
         <source>Change password</source>
         <translation>Endre passord</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="318"/>
+        <location filename="mainwindow.ui" line="477"/>
         <source>P</source>
         <translation>P</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="330"/>
+        <location filename="mainwindow.ui" line="504"/>
         <source>Backup (b)</source>
         <translation>Sikkerhetskopi (b)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="333"/>
+        <location filename="mainwindow.ui" line="507"/>
         <source>B</source>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="348"/>
-        <source>fschk (f)</source>
-        <translation>fschk (f)</translation>
+        <location filename="mainwindow.ui" line="522"/>
+        <source>fsck (f)</source>
+        <oldsource>fschk (f)</oldsource>
+        <translation type="unfinished">fschk (f)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="351"/>
+        <location filename="mainwindow.ui" line="525"/>
         <source>F</source>
         <translation>F</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="363"/>
+        <location filename="mainwindow.ui" line="549"/>
         <source>Clone (c)</source>
         <translation>Klon (c)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="366"/>
+        <location filename="mainwindow.ui" line="552"/>
         <source>C</source>
         <translation>C</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="170"/>
-        <location filename="mainwindow.ui" line="246"/>
+        <location filename="mainwindow.ui" line="314"/>
         <source>Advanced</source>
         <translation>Avansert</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="243"/>
-        <source>Advanced (a)</source>
-        <translation>Avansert (a)</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="249"/>
-        <source>A</source>
-        <translation>A</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="261"/>
+        <location filename="mainwindow.ui" line="405"/>
         <source>Edit config (e)</source>
         <translation>Rediger konfigurasjon (e)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="264"/>
+        <location filename="mainwindow.ui" line="408"/>
         <source>Opens the config.txt and cmdline.txt for the installed OS in a text editor.</source>
         <translation>Åpner config.txt og cmdline.txt for det installerte OS i en teksteditor.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="276"/>
+        <location filename="mainwindow.ui" line="420"/>
         <source>Online help (h)</source>
         <translation>Online hjelp (h)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="279"/>
+        <location filename="mainwindow.ui" line="423"/>
         <source>Opens a web browser displaying the Raspberry Pi Forum.</source>
         <translation>Åpner en nettleser for visning av Raspberry Pi Forum.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="297"/>
+        <location filename="mainwindow.ui" line="435"/>
+        <location filename="mainwindow.ui" line="561"/>
+        <source>Info (n)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="438"/>
+        <source>Information about the selected OS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="441"/>
+        <location filename="mainwindow.ui" line="567"/>
+        <source>N</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="456"/>
         <source>Select a wifi network to connect to</source>
         <translation>Velg et wifi-nettverk for tilkobling</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="300"/>
+        <location filename="mainwindow.ui" line="459"/>
+        <location filename="mainwindow.ui" line="540"/>
         <source>W</source>
         <translation>W</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="122"/>
+        <location filename="mainwindow.cpp" line="194"/>
         <source>Setting up SD card</source>
         <translation>Klargjør SD-kort</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="380"/>
-        <location filename="mainwindow.cpp" line="1454"/>
-        <location filename="mainwindow.cpp" line="2040"/>
+        <location filename="mainwindow.cpp" line="459"/>
+        <location filename="mainwindow.cpp" line="1805"/>
+        <location filename="mainwindow.cpp" line="2755"/>
         <source>RECOMMENDED</source>
         <translation>ANBEFALES</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="637"/>
-        <location filename="mainwindow.cpp" line="656"/>
+        <location filename="mainwindow.cpp" line="728"/>
+        <location filename="mainwindow.cpp" line="747"/>
+        <location filename="mainwindow.cpp" line="812"/>
+        <location filename="mainwindow.cpp" line="822"/>
+        <location filename="mainwindow.cpp" line="1306"/>
         <source>Confirm</source>
         <translation>Bekreft</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="168"/>
+        <location filename="mainwindow.cpp" line="240"/>
         <source>Error mounting settings partition</source>
         <translation>Feil ved montering av innstillingspartisjon</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="169"/>
+        <location filename="mainwindow.cpp" line="241"/>
         <source>Persistent settings partition seems corrupt. Reformat?</source>
         <translation>Varig innstillingspartisjon ser ut til å være korrupt. Reformatter?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="176"/>
+        <location filename="mainwindow.cpp" line="248"/>
         <source>Reformat failed</source>
         <translation>Reformattering feilet</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="176"/>
+        <location filename="mainwindow.cpp" line="248"/>
         <source>SD card might be damaged</source>
         <translation>SD-kort kan være ødelagt</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="293"/>
+        <location filename="mainwindow.cpp" line="382"/>
         <source>Please wait while PINN initialises</source>
         <translation>Vennligst vent mens PINN initialiseres</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="632"/>
+        <location filename="mainwindow.cpp" line="723"/>
         <source>Warning: this will install the selected Operating System(s). All existing data on the SD card will be overwritten, including any OSes that are already installed.</source>
         <translation>Advarsel: dette vil installere valgte OS(er). Alle eksisterende data på SD-kortet vil bli overskrevet, også ethvert OS som allerede er installert.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="734"/>
-        <location filename="mainwindow.cpp" line="1231"/>
-        <location filename="mainwindow.cpp" line="1349"/>
-        <location filename="mainwindow.cpp" line="2177"/>
+        <location filename="mainwindow.cpp" line="952"/>
+        <location filename="mainwindow.cpp" line="1568"/>
+        <location filename="mainwindow.cpp" line="1699"/>
+        <location filename="mainwindow.cpp" line="2895"/>
         <source>Error</source>
         <translation>Feil</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="383"/>
+        <location filename="mainwindow.cpp" line="462"/>
         <source>INSTALLED</source>
         <translation>INSTALLERT</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="857"/>
+        <location filename="mainwindow.cpp" line="1101"/>
         <source>Display Mode Changed</source>
         <translation>Visningsmodus endret</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="789"/>
+        <location filename="mainwindow.cpp" line="1031"/>
         <source>HDMI preferred mode</source>
         <translation>HDMI foretrukket modus</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="143"/>
+        <location filename="mainwindow.cpp" line="215"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation>Venter på SD-kort (innstillingspartisjon)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="156"/>
+        <location filename="mainwindow.cpp" line="228"/>
         <source>Mounting settings partition</source>
         <translation>Monterer instillingspartisjon</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="634"/>
+        <location filename="mainwindow.cpp" line="367"/>
+        <source>Main Menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="368"/>
+        <source>Archival</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="369"/>
+        <source>Maintenance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="725"/>
         <source>SD card</source>
         <translation>SD-kort</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="634"/>
+        <location filename="mainwindow.cpp" line="725"/>
         <source>drive</source>
         <translation>drive</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="657"/>
+        <location filename="mainwindow.cpp" line="748"/>
+        <location filename="mainwindow.cpp" line="823"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>Advarsel: inkompatible OS8er) oppdaget. Følgende OS(er) er ikke støttet av denne versjon av Raspberry Pi og kan feile ved boot eller ikke funksjonerer riktig:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="699"/>
+        <location filename="mainwindow.cpp" line="789"/>
         <source>The install process will begin shortly.</source>
         <translation>Installasjonsprosessen starter straks.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="722"/>
+        <location filename="mainwindow.cpp" line="813"/>
+        <source>Warning: this will download the selected Operating System(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="879"/>
+        <source>The download process will begin shortly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="912"/>
+        <source>OS(es) downloaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="913"/>
+        <source>OS(es) Downloaded Successfully.
+Reboot PINN to take account of these OSes?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="918"/>
         <source>OS(es) installed</source>
         <translation>OS8er) installert</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="723"/>
+        <location filename="mainwindow.cpp" line="919"/>
         <source>OS(es) Installed Successfully</source>
         <translation>OS(er) installert med hell</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="757"/>
+        <location filename="mainwindow.cpp" line="996"/>
         <source>PINN v%1 - Built: %2 (%3)</source>
         <translation>PINN v%1 - Bygg: %2 (%3)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="793"/>
+        <location filename="mainwindow.cpp" line="1035"/>
         <source>HDMI safe mode</source>
         <translation>HDMI sikkermodus</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="797"/>
+        <location filename="mainwindow.cpp" line="1039"/>
         <source>composite PAL mode</source>
         <translation>komposit PAL-modus</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="801"/>
+        <location filename="mainwindow.cpp" line="1043"/>
         <source>composite NTSC mode</source>
         <translation>komposit NTSC-modus</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="858"/>
+        <location filename="mainwindow.cpp" line="1102"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>Visningsmodus endret til %1 Vil du gjøre denne innstillingen permanent?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1215"/>
-        <location filename="mainwindow.cpp" line="1333"/>
+        <location filename="mainwindow.cpp" line="1282"/>
+        <source>Wiping SD card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1307"/>
+        <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
+        <oldsource>Warning: this will restore your SD card to its initial state. All existing data on the SD card except PINN will be overwritten, including any OSes that are already installed.</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1312"/>
+        <source>Drive Wiped!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1550"/>
+        <location filename="mainwindow.cpp" line="1681"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation>Feil ved nedlasting av distribusjonsliste fra internett:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1217"/>
-        <location filename="mainwindow.cpp" line="1335"/>
-        <location filename="mainwindow.cpp" line="1705"/>
-        <location filename="mainwindow.cpp" line="1715"/>
-        <location filename="mainwindow.cpp" line="2272"/>
-        <location filename="mainwindow.cpp" line="2290"/>
+        <location filename="mainwindow.cpp" line="1552"/>
+        <location filename="mainwindow.cpp" line="1683"/>
+        <location filename="mainwindow.cpp" line="2170"/>
+        <location filename="mainwindow.cpp" line="2181"/>
+        <location filename="mainwindow.cpp" line="2991"/>
+        <location filename="mainwindow.cpp" line="3009"/>
         <source>Download error</source>
         <translation>Nedlastingsfeil</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1231"/>
+        <location filename="mainwindow.cpp" line="1568"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation>Feil ved analysering av repolist.json nedlastet fra server</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1831"/>
+        <location filename="mainwindow.cpp" line="2156"/>
+        <source>Error downloading meta file: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="2471"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>Nettverkstilgang er nødvendig for å bruke PINN uten lokal avbildning. Velg ditt WiFi-nettverk i neste bilde.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1839"/>
+        <location filename="mainwindow.cpp" line="2479"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>Kablet nettverkstilgang er nødvendig for å bruke PINN uten lokal avbildning. Monter en nettverkskabel til nettverksporten.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1954"/>
+        <location filename="mainwindow.cpp" line="2655"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>Er du sikker på at du vil formattere drive &apos;%1&apos; for bruk av PINN? Alle eksisterende data på drivet vil slettes!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2131"/>
+        <location filename="mainwindow.cpp" line="2849"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>Dette vil slette alt innhold på enheten &apos;%s&apos;. Er du sikker?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2133"/>
+        <location filename="mainwindow.cpp" line="2851"/>
         <source>Clone SD Card</source>
         <translation>Klone SD-kort</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2135"/>
+        <location filename="mainwindow.cpp" line="2853"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2136"/>
+        <location filename="mainwindow.cpp" line="2854"/>
         <source>No</source>
         <translation>Nei</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2164"/>
+        <location filename="mainwindow.cpp" line="2882"/>
         <source>Clone Completed</source>
         <translation>Kloning ferdig</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2165"/>
+        <location filename="mainwindow.cpp" line="2883"/>
         <source>Clone Completed Successfully</source>
         <translation>Kloning utført med hell</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2272"/>
+        <location filename="mainwindow.cpp" line="2991"/>
         <source>Error downloading update file</source>
         <translation>Feil ved nedlasting av oppdateringsfil</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2351"/>
+        <location filename="mainwindow.cpp" line="3087"/>
         <source>PINN UPDATE</source>
         <translation>PINN OPPDATERING</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2352"/>
+        <location filename="mainwindow.cpp" line="3088"/>
         <source>A new version of PINN is available</source>
         <translation>En ny versjon av PINN er tilgjengelig</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2353"/>
+        <location filename="mainwindow.cpp" line="3089"/>
         <source>Do you want to download this version?</source>
         <translation>Vil du laste ned denne versjonen?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2377"/>
+        <location filename="mainwindow.cpp" line="3113"/>
         <source>Downloading Update</source>
         <translation>Laster ned oppdatering</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2377"/>
+        <location filename="mainwindow.cpp" line="3113"/>
         <source>Press ESC to cancel</source>
         <translation>Trykk ESC for å avbryte</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1349"/>
+        <location filename="mainwindow.cpp" line="1699"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>VEd ved analysering av list.json nedlastet fra server</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1577"/>
+        <location filename="mainwindow.cpp" line="1313"/>
+        <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
+Install and download will no longer work until this drive is re-booted.
+Booting this drive again will re-instate PINN&apos;s partition structure.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1975"/>
+        <location filename="mainwindow.cpp" line="1978"/>
         <source>Needed</source>
         <translation>Nødvendig</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1578"/>
+        <location filename="mainwindow.cpp" line="1976"/>
+        <location filename="mainwindow.cpp" line="1979"/>
         <source>Available</source>
         <translation>Tilgjengelig</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1705"/>
+        <location filename="mainwindow.cpp" line="2170"/>
         <source>Error downloading meta file</source>
         <translation>Feil ved nedlasting av meta-fil</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1715"/>
-        <location filename="mainwindow.cpp" line="2290"/>
+        <location filename="mainwindow.cpp" line="2181"/>
+        <location filename="mainwindow.cpp" line="3009"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>Feil ved skriving av nedlastet fil til SD-kort. SD-kort eller filsystem kan være ødelagt.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1953"/>
+        <location filename="mainwindow.cpp" line="2249"/>
+        <source>filesize error checking </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="2654"/>
         <source>Reformat drive?</source>
         <translation>Reformatter drive?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="993"/>
-        <location filename="mainwindow.cpp" line="1830"/>
-        <location filename="mainwindow.cpp" line="1838"/>
+        <location filename="mainwindow.cpp" line="1325"/>
+        <location filename="mainwindow.cpp" line="2470"/>
+        <location filename="mainwindow.cpp" line="2478"/>
         <source>No network access</source>
         <translation>Ingen nettverkstilgang</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="994"/>
+        <location filename="mainwindow.cpp" line="1326"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Kablet nettverkstilgang er nødvendig for denne funksjonen. Monter en nettverkskabel til nettverksporten.</translation>
+    </message>
+</context>
+<context>
+    <name>MultiImageDownloadThread</name>
+    <message>
+        <location filename="multiimagedownloadthread.cpp" line="49"/>
+        <source>Finish writing (sync)</source>
+        <translation type="unfinished">Avslutter skriving (sync)</translation>
+    </message>
+    <message>
+        <location filename="multiimagedownloadthread.cpp" line="79"/>
+        <source>File &apos;%1&apos; does not need downloading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="multiimagedownloadthread.cpp" line="113"/>
+        <source>Error downloading or extracting tarball</source>
+        <translation type="unfinished">Feil ved nedlasting eller utpakking av tabell</translation>
+    </message>
+    <message>
+        <location filename="multiimagedownloadthread.cpp" line="146"/>
+        <source>Finished downloading %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -716,35 +915,35 @@ Would you like to make this setting permanent?</source>
         <translation>Ikke nok diskplass. Trenger %1 MB, har %2 MB</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="311"/>
+        <location filename="multiimagewritethread.cpp" line="321"/>
         <source>Finish writing (sync)</source>
         <translation>Avslutter skriving (sync)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="448"/>
+        <location filename="multiimagewritethread.cpp" line="474"/>
         <source>File &apos;%1&apos; does not exist</source>
         <translation>Fil &apos;%1&apos; eksisterer ikke</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="481"/>
-        <location filename="multiimagewritethread.cpp" line="487"/>
+        <location filename="multiimagewritethread.cpp" line="507"/>
+        <location filename="multiimagewritethread.cpp" line="513"/>
         <source>%1: Writing OS image</source>
         <translation>%1: Skriver OS-avbildning</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="501"/>
+        <location filename="multiimagewritethread.cpp" line="527"/>
         <source>%1: Mounting file system</source>
         <translation>%1: Monterer filsystem</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="509"/>
-        <location filename="multiimagewritethread.cpp" line="533"/>
-        <location filename="multiimagewritethread.cpp" line="701"/>
+        <location filename="multiimagewritethread.cpp" line="535"/>
+        <location filename="multiimagewritethread.cpp" line="559"/>
+        <location filename="multiimagewritethread.cpp" line="729"/>
         <source>%1: Error mounting file system</source>
         <translation>%1: Feil ved montering av filsystem</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="494"/>
+        <location filename="multiimagewritethread.cpp" line="520"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation>%1: Oppretter filsystem (%2)</translation>
     </message>
@@ -764,107 +963,146 @@ Would you like to make this setting permanent?</source>
         <translation>Mer enn et OS trenger partisjon nummer %1</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="214"/>
+        <location filename="multiimagewritethread.cpp" line="173"/>
+        <location filename="multiimagewritethread.cpp" line="195"/>
+        <source>Cannot boot partitions &gt; #62. Reduce the number of OSes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="multiimagewritethread.cpp" line="224"/>
         <source>Fixed partition offset too low</source>
         <translation>Fast partisjonsoffset for lav</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="274"/>
+        <location filename="multiimagewritethread.cpp" line="284"/>
         <source>Writing partition table</source>
         <translation>Skriver partisjonstabell</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="281"/>
+        <location filename="multiimagewritethread.cpp" line="291"/>
         <source>Writing boot partition table</source>
         <translation>Skriver partisjonstabell for boot</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="297"/>
+        <location filename="multiimagewritethread.cpp" line="307"/>
         <source>Zero&apos;ing start of each partition</source>
         <translation>Nullstiller start for hver partisjon</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="331"/>
+        <location filename="multiimagewritethread.cpp" line="341"/>
         <source>Error reading existing partition table</source>
         <translation>Feil ved lesing av eksisterende partisjonstabell</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="416"/>
+        <location filename="multiimagewritethread.cpp" line="426"/>
         <source>Error creating partition table</source>
         <translation>Feil ved opprettelse av partisjonstabell</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="514"/>
+        <location filename="multiimagewritethread.cpp" line="540"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation>%1: Laster ned og pakker ut filsystem</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="516"/>
+        <location filename="multiimagewritethread.cpp" line="542"/>
         <source>%1: Extracting filesystem</source>
         <translation>%1: Pakker ut filsystem</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="530"/>
+        <location filename="multiimagewritethread.cpp" line="556"/>
         <source>%1: Mounting FAT partition</source>
         <translation>%1: Monterer FAT-partisjon</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="542"/>
+        <location filename="multiimagewritethread.cpp" line="568"/>
         <source>%1: Creating os_config.json</source>
         <translation>%1: Oppretter os_config.json</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="567"/>
+        <location filename="multiimagewritethread.cpp" line="593"/>
         <source>%1: Saving display mode to config.txt</source>
         <translation>%1: Lagrer visningsmodus til config.txt</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="578"/>
+        <location filename="multiimagewritethread.cpp" line="604"/>
         <source>%1: Running partition setup script</source>
         <translation>%1: Kjører script for partisjonsoppsett</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="627"/>
+        <location filename="multiimagewritethread.cpp" line="653"/>
         <source>%1: Error executing partition setup script</source>
         <translation>%1: Feil ved utførelse av script for oppsett</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="636"/>
+        <location filename="multiimagewritethread.cpp" line="662"/>
         <source>%1: Configuring flavour</source>
         <translation>%1: Konfigureringsvalg</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="650"/>
+        <location filename="multiimagewritethread.cpp" line="676"/>
         <source>%1: Unmounting FAT partition</source>
         <translation>%1: Avmonterer FAT-partisjon</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="653"/>
+        <location filename="multiimagewritethread.cpp" line="679"/>
         <source>%1: Error unmounting</source>
         <translation>%1: Feil ved avkobling</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="918"/>
+        <location filename="multiimagewritethread.cpp" line="946"/>
         <source>Error creating file system</source>
         <translation>Feil ved opprettelse av filsystem</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="960"/>
-        <location filename="multiimagewritethread.cpp" line="1031"/>
-        <location filename="multiimagewritethread.cpp" line="1090"/>
+        <location filename="multiimagewritethread.cpp" line="991"/>
+        <location filename="multiimagewritethread.cpp" line="1062"/>
+        <location filename="multiimagewritethread.cpp" line="1121"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
         <translation>Ukjent filetternavn for komprimert fil.  Forventer .lzo, .gz, .xz, .bz2 eller .zip</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="993"/>
+        <location filename="multiimagewritethread.cpp" line="1024"/>
         <source>Error downloading or extracting tarball</source>
         <translation>Feil ved nedlasting eller utpakking av tabell</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1052"/>
-        <location filename="multiimagewritethread.cpp" line="1111"/>
+        <location filename="multiimagewritethread.cpp" line="1083"/>
+        <location filename="multiimagewritethread.cpp" line="1142"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>Feil ved nedlasting eller skriving av OS til SD-kort</translation>
+    </message>
+</context>
+<context>
+    <name>OsGroup</name>
+    <message>
+        <location filename="osgroup.cpp" line="11"/>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="12"/>
+        <source>Media</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="13"/>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="14"/>
+        <source>Minimal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="15"/>
+        <source>Education</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="16"/>
+        <source>Installed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -933,12 +1171,12 @@ Would you like to make this setting permanent?</source>
 <context>
     <name>ProgressSlideshowDialog</name>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="172"/>
-        <source>%1 MB of %2 MB written (%3 MB/sec)</source>
-        <translation>%1 MB av %2 MB er skrevet %3 MB/sek)</translation>
+        <location filename="progressslideshowdialog.cpp" line="181"/>
+        <source>%1 MB of %2 MB written (%3 MB/sec) Remaining: %4:%5:%6</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="190"/>
+        <location filename="progressslideshowdialog.cpp" line="204"/>
         <source>%1 MB written (%2 MB/sec)</source>
         <translation>%1 MB skrevet (%2 MB/sek)</translation>
     </message>
@@ -1087,6 +1325,14 @@ Would you like to make this setting permanent?</source>
         <location filename="wifisettingsdialog.ui" line="124"/>
         <source>Show Password</source>
         <translation>Vis passord</translation>
+    </message>
+</context>
+<context>
+    <name>fscheck</name>
+    <message>
+        <location filename="fscheck.ui" line="14"/>
+        <source>File System Check</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -54,7 +54,12 @@ SOURCES += \
     piclonethread.cpp \
     copythread.cpp \
     builddata.cpp \
-    ceclistener.cpp
+    ceclistener.cpp \
+    mydebug.cpp \
+    osgroup.cpp \
+    multiimagedownloadthread.cpp \
+    fscheck.cpp \
+    fullfatthread.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -87,7 +92,12 @@ HEADERS  += \
     piclonethread.h \
     copythread.h \
     builddata.h \
-    ceclistener.h
+    ceclistener.h \
+    mydebug.h \
+    osgroup.h \
+    multiimagedownloadthread.h \
+    fscheck.h \
+    fullfatthread.h
 
 FORMS    += \
     mainwindow.ui \
@@ -97,7 +107,8 @@ FORMS    += \
     bootselectiondialog.ui \
     wifisettingsdialog.ui \
     passwd.ui \
-    piclonedialog.ui
+    piclonedialog.ui \
+    fscheck.ui
 
 RESOURCES += \
     icons.qrc

@@ -12,6 +12,7 @@
 #include <QProcessEnvironment>
 #include <QSettings>
 #include <QTime>
+#include <QUrl>
 #include <unistd.h>
 #include <linux/fs.h>
 #include <linux/magic.h>
@@ -43,7 +44,6 @@ void MultiImageWriteThread::run()
                     + getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toUInt();
     uint totalSectors = getFileContents(sysclassblock(_drive)+"/size").trimmed().toUInt();
     uint availableMB = (totalSectors-startSector)/2048;
-
     /* key: partition number, value: partition information */
     QMap<int, PartitionInfo *> partitionMap, bootPartitionMap;
 
@@ -168,6 +168,11 @@ void MultiImageWriteThread::run()
             {
                 if (_multiDrives && partition->bootable() && !partition->wantMaximised() )
                 {
+                    if (bootpnr >=63 )
+                    {
+                        emit error(tr("Cannot boot partitions > #62. Reduce the number of OSes"));
+                        return;
+                    }
                     bootPartitionMap.insert(bootpnr, partition);
                     partition->setPartitionDevice(partdev(_bootdrive, bootpnr));
                     bootpnr++;
@@ -185,6 +190,11 @@ void MultiImageWriteThread::run()
                 }
                 else
                 {
+                    if (partition->bootable() && pnr >=63 )
+                    {
+                        emit error(tr("Cannot boot partitions > #62. Reduce the number of OSes"));
+                        return;
+                    }
                     partitionMap.insert(pnr, partition);
                     partition->setPartitionDevice(partdev(_drive, pnr));
                     pnr++;
@@ -420,6 +430,22 @@ bool MultiImageWriteThread::writePartitionTable(const QString &drive, const QMap
     return true;
 }
 
+QString MultiImageWriteThread::findTarballExt(QString base, QString exts)
+{
+    QString tarball;
+    QStringList extList = exts.split(",");
+    foreach (QString ext, extList)
+    {
+        tarball = base + ext;
+        if (QFile::exists(tarball))
+        {
+            break;
+        }
+    }
+    //This doesn't necessarily indicate it is found!
+    return (tarball);
+}
+
 bool MultiImageWriteThread::processImage(OsInfo *image)
 {
     QString os_name = image->name();
@@ -439,9 +465,9 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
         {
             /* If no tarball URL is specified, we expect the tarball to reside in the folder and be named <label.tar.xz> */
             if (fstype == "raw" || fstype.startsWith("partclone"))
-                tarball = image->folder()+"/"+label+".xz";
+                tarball = findTarballExt(image->folder()+"/"+label,".img.lzo,.img.gz,.img.bz2,.img.zip,.img.xz,.lzo,.gz,.bz2,.zip,.xz");
             else
-                tarball = image->folder()+"/"+label+".tar.xz";
+                tarball = findTarballExt(image->folder()+"/"+label,".tar.lzo,.tar.gz,.tar.bz2,.tar.zip,.tar.xz");
 
             if (!QFile::exists(tarball))
             {
@@ -665,6 +691,8 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
         ventry["supported_models"] = image->supportedModels();
     ventry["username"]    = image->username();
     ventry["password"]    = image->password();
+    ventry["url"]         = image->url();
+    ventry["group"]       = image->group();
     QString iconfilename  = image->folder()+"/"+image->flavour()+".png";
     iconfilename.replace(" ", "_");
     if (QFile::exists(iconfilename))
@@ -931,26 +959,29 @@ bool MultiImageWriteThread::untar(const QString &tarball)
 {
     QString cmd = "sh -o pipefail -c \"";
 
-    if (isURL(tarball))
+    QString tarballPath = QString(tarball);
+    if (isURL(tarball)){
+        tarballPath = QUrl::fromUserInput(tarball).toString(QUrl::RemoveQuery);
         cmd += "wget --no-verbose --tries=inf -O- "+tarball+" | ";
+    }
 
-    if (tarball.endsWith(".gz"))
+    if (tarballPath.endsWith(".gz"))
     {
         cmd += "gzip -dc";
     }
-    else if (tarball.endsWith(".xz"))
+    else if (tarballPath.endsWith(".xz"))
     {
         cmd += "xz -dc";
     }
-    else if (tarball.endsWith(".bz2"))
+    else if (tarballPath.endsWith(".bz2"))
     {
         cmd += "bzip2 -dc";
     }
-    else if (tarball.endsWith(".lzo"))
+    else if (tarballPath.endsWith(".lzo"))
     {
         cmd += "lzop -dc";
     }
-    else if (tarball.endsWith(".zip"))
+    else if (tarballPath.endsWith(".zip"))
     {
         /* Note: the image must be the only file inside the .zip */
         cmd += "unzip -p";
@@ -1197,11 +1228,6 @@ QString MultiImageWriteThread::getDescription(const QString &folder, const QStri
     }
 
     return "";
-}
-
-bool MultiImageWriteThread::isURL(const QString &s)
-{
-    return s.startsWith("http:") || s.startsWith("https:");
 }
 
 QByteArray MultiImageWriteThread::getDiskId(const QString &device)

@@ -37,12 +37,12 @@ echo 2 >/sys/module/vt/parameters/cur_default
 
 if grep -q vncinstall /proc/cmdline; then
     # VNC server mode. Mainly useful for making screenshots
-    export QWS_DISPLAY="VNC:size=800x600:depth=32:0"
+    export QWS_DISPLAY="VNC:size=800x480:depth=32:0"
 fi
 
 if grep -q vncshare /proc/cmdline; then
     #VNC server AND framebuffer for screen sharing
-    export QWS_DISPLAY="VNC:LinuxFB:size=800x600:depth=32:0"
+    export QWS_DISPLAY="VNC:LinuxFB:size=800x480:depth=32:0"
 fi
 
 if grep -q ssh /proc/cmdline; then
@@ -124,8 +124,6 @@ fi
             REPO_LIST="-repo_list ${p#*=}"
         fi
     done
-
-    if [ -e /mnt/background.sh ]; then /mnt/background.sh & fi;
 
     /usr/bin/recovery $RUN_INSTALLER $GPIO_TRIGGER $KEYBOARD_NO_TRIGGER $FORCE_TRIGGER $DEFAULT_KBD $DEFAULT_LANG $DEFAULT_DISPLAY $DEFAULT_PARTITION $DEFAULT_NOCONFIG $DEFAULT_DSI $DEFAULT_REPOS $EXTRA_REPOS $REPO_LIST -qws 2>/tmp/debug
 

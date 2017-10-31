@@ -251,6 +251,7 @@ void Passwd::on_checkBox_toggled(bool checked)
 
 void Passwd::on_passwordEdit_2_textChanged(const QString &arg1)
 {
+    Q_UNUSED(arg1);
     CheckPasswdsEqual();
 }
 

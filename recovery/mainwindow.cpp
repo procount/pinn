@@ -1,7 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "multiimagewritethread.h"
+#include "multiimagedownloadthread.h"
 #include "initdrivethread.h"
+#include "fullfatthread.h"
 #include "confeditdialog.h"
 #include "progressslideshowdialog.h"
 #include "config.h"
@@ -15,7 +17,10 @@
 #include "piclonethread.h"
 #include "builddata.h"
 #include "ceclistener.h"
+#include "osgroup.h"
+#include "fscheck.h"
 
+#include <QByteArray>
 #include <QMessageBox>
 #include <QProgressDialog>
 #include <QMap>
@@ -82,6 +87,15 @@ extern QString repoList;
 #define SOURCE_NETWORK "network"
 #define SOURCE_INSTALLED_OS "installed_os"
 
+//TODO Change to enums
+#define TOOLBAR_MAIN 0
+#define TOOLBAR_ARCHIVAL 1
+#define TOOLBAR_MAINTENANCE 2
+#define NUM_TOOLBARS 3
+
+/* time in ms to poll for new disks */
+#define POLLTIME 1000
+
 /* Flag to keep track wheter or not we already repartitioned. */
 bool MainWindow::_partInited = false;
 
@@ -93,7 +107,9 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     ui(new Ui::MainWindow),
     _qpd(NULL), _kcpos(0), _defaultDisplay(defaultDisplay),
     _silent(false), _allowSilent(false), _showAll(false), _fixate(false), _splash(splash), _settings(NULL),
-    _hasWifi(false), _numInstalledOS(0), _devlistcount(0), _netaccess(NULL), _displayModeBox(NULL), _drive(drive), _bootdrive(drive), _noobsconfig(noobsconfig)
+    _hasWifi(false), _numInstalledOS(0), _devlistcount(0), _netaccess(NULL), _displayModeBox(NULL), _drive(drive),
+    _bootdrive(drive), _noobsconfig(noobsconfig), _numFilesToCheck(0), _bDownload(false)
+
 {
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
@@ -101,16 +117,72 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     update_window_title();
     _kc << 0x01000013 << 0x01000013 << 0x01000015 << 0x01000015 << 0x01000012
         << 0x01000014 << 0x01000012 << 0x01000014 << 0x42 << 0x41;
-    ui->list->setItemDelegate(new TwoIconsDelegate(this));
-    ui->list->installEventFilter(this);
+
+    _menuLabel = new QLabel();
+    _menuLabel->setText(menutext(TOOLBAR_MAIN));
+    ui->advToolBar->addWidget(_menuLabel);
+
+    QPalette p = _menuLabel->palette();
+    if (p.color(QPalette::WindowText) != Qt::darkBlue)
+    {
+        p.setColor(QPalette::WindowText, Qt::darkBlue);
+        _menuLabel->setPalette(p);
+    }
+    QFont font;
+    font.setItalic(true);
+    font.setBold(true);
+    _menuLabel->setFont(font);
+
+    QWidget* spacer = new QWidget();
+    spacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
+    ui->advToolBar->addWidget(spacer);
+
+    _checkLabel = new QLabel();
+    _checkLabel->setText("");
+    ui->toolBar_2->addWidget(_checkLabel);
+
+    toolbars.append(ui->toolBar_1);
+    toolbars.append(ui->toolBar_2);
+    toolbars.append(ui->toolBar_3);
+
+    toolbar_index=TOOLBAR_MAIN;
+    ui->toolBar_1->setVisible(toolbar_index==TOOLBAR_MAIN);
+    ui->toolBar_2->setVisible(toolbar_index==TOOLBAR_ARCHIVAL);
+    ui->toolBar_3->setVisible(toolbar_index==TOOLBAR_MAINTENANCE);
+    ui->groupBox->setVisible(toolbar_index==TOOLBAR_MAIN);
+    ui->groupBoxUsb->setVisible(toolbar_index==TOOLBAR_ARCHIVAL);
+
+    QString cmdline = getFileContents("/proc/cmdline");
+    ug = new OsGroup(this, ui, !cmdline.contains("no_group"));
+
+    if (cmdline.contains("no_cursor"))
+    {
+        QApplication::setOverrideCursor(Qt::BlankCursor);
+#ifdef Q_WS_QWS
+        QWSServer::setCursorVisible( false );
+#endif
+    }
+    ug->list->setIconSize(QSize(40,40)); //ALL?? set each list?
+    connect(ug->list, SIGNAL(currentRowChanged(int)), this, SLOT(on_list_currentRowChanged(void)));
+    connect(ug->list, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(on_list_doubleClicked(const QModelIndex&)));
+    connect(ug->list, SIGNAL(itemChanged(QListWidgetItem *)), this, SLOT(on_list_itemChanged(QListWidgetItem *)));
+
+    ug->list->setItemDelegate(new TwoIconsDelegate(this));
+    ug->list->installEventFilter(this);
+
+    ug->setFocus();
+
     ui->advToolBar->setVisible(true);
-    ui->toolBar->setVisible(false);
 
     _ipaddress=QHostAddress();
 
     QRect s = QApplication::desktop()->screenGeometry();
-    if (s.height() < 500)
-        resize(s.width()-10, s.height()-100);
+    int w = s.width()-100;
+    int h = s.height() - 100;
+
+    w =qMin(w,700);
+    h =qMin(h,500);
+    resize(w,h);
 
     connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
 
@@ -159,7 +231,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     _qpd->show();
     QApplication::processEvents();
 
-    ui->list->clear();
+    ug->list->clear();
     if (QProcess::execute("mount -t ext4 "+settingsPartition+" /settings") != 0)
     {
         _qpd->hide();
@@ -185,7 +257,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     QProcess::execute("mount -o ro -t vfat "+partdev(_bootdrive, 1)+" /mnt");
 
     _model = getFileContents("/proc/device-tree/model");
-    QString cmdline = getFileContents("/proc/cmdline");
+
+    loadOverrides("/mnt/overrides.json");
 
     if (QFile::exists("/mnt/os_list_v3.json"))
     {
@@ -260,6 +333,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
         startNetworking();
     }
 
+    //Background.sh was here
+
     /* Disable online help buttons until network is functional */
     ui->actionBrowser->setEnabled(false);
     QTimer::singleShot(1, this, SLOT(populate()));
@@ -267,7 +342,9 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     ui->targetLabel->setHidden(true);
     ui->targetCombo->setHidden(true);
     connect(&_piDrivePollTimer, SIGNAL(timeout()), SLOT(pollForNewDisks()));
-    _piDrivePollTimer.start(100);
+    _piDrivePollTimer.start(POLLTIME);
+    ug->setFocus();
+
 }
 
 MainWindow::~MainWindow()
@@ -283,6 +360,18 @@ void MainWindow::closeEvent(QCloseEvent *event)
     disconnect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
     event->accept();
 }
+
+QString MainWindow::menutext(int index)
+{
+    static const char* menutext_strings[] = {
+        QT_TR_NOOP("Main Menu"),
+        QT_TR_NOOP("Archival"),
+        QT_TR_NOOP("Maintenance")
+    };
+    index %= NUM_TOOLBARS; //Keep it in range
+    return tr(menutext_strings[index]);
+}
+
 
 /* Discover which images we have, and fill in the list */
 void MainWindow::populate()
@@ -318,31 +407,19 @@ void MainWindow::populate()
 
     // Fill in list of images
     repopulate();
-    _availableMB = (getFileContents(sysclassblock(_drive)+"/size").trimmed().toUInt()-getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toUInt()-getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toUInt())/2048;
+    recalcAvailableMB();
     updateNeeded();
 
-    if (ui->list->count() != 0)
+    ug->setDefaultItems();
+
+    if (_allowSilent && !_numInstalledOS && ug->count() == 1)
     {
-        QList<QListWidgetItem *> l = ui->list->findItems(RECOMMENDED_IMAGE, Qt::MatchExactly);
-
-        if (!l.isEmpty())
-        {
-            ui->list->setCurrentItem(l.first());
-        }
-        else
-        {
-            ui->list->setCurrentRow(0);
-        }
-
-        if (_allowSilent && !_numInstalledOS && ui->list->count() == 1)
-        {
-            // No OS installed, perform silent installation
-            qDebug() << "Performing silent installation";
-            _silent = true;
-            ui->list->item(0)->setCheckState(Qt::Checked);
-            on_actionWrite_image_to_disk_triggered();
-            _numInstalledOS = 1;
-        }
+        // No OS installed, perform silent installation
+        qDebug() << "Performing silent installation";
+        _silent = true;
+        ug->list->item(0)->setCheckState(Qt::Checked);
+        on_actionWrite_image_to_disk_triggered();
+        _numInstalledOS = 1;
     }
 
     ui->actionCancel->setEnabled(_numInstalledOS > 0);
@@ -352,14 +429,16 @@ void MainWindow::repopulate()
 {
     QMap<QString,QVariantMap> images = listImages();
     bool haveicons = false;
-    QSize currentsize = ui->list->iconSize();
+    QSize currentsize = ug->list->iconSize();
     QIcon localIcon(":/icons/hdd.png");
     QIcon internetIcon(":/icons/download.png");
     _numInstalledOS = 0;
 
+    createPinnEntry();
     foreach (QVariant v, images.values())
     {
         QVariantMap m = v.toMap();
+        OverrideJson(m);
         QString flavour = m.value("name").toString();
         QString description = m.value("description").toString();
         QString folder  = m.value("folder").toString();
@@ -405,7 +484,7 @@ void MainWindow::repopulate()
                 {
                     /* Make all icons as large as the largest icon we have */
                     currentsize = QSize(qMax(iconsize.width(), currentsize.width()),qMax(iconsize.height(), currentsize.height()));
-                    ui->list->setIconSize(currentsize);
+                    ug->list->setIconSize(currentsize);
                 }
             }
         }
@@ -434,10 +513,16 @@ void MainWindow::repopulate()
                 item->setData(SecondIconRole, internetIcon);
         }
 
+        if (installed)
+        {
+            QListWidgetItem *clone = item->clone();
+            clone->setCheckState(Qt::Unchecked);
+            ug->listInstalled->addItem(clone);
+        }
         if (recommended)
-            ui->list->insertItem(0, item);
+            ug->insertItem(0, item);
         else
-            ui->list->addItem(item);
+            ug->addItem(item);
     }
 
     if (haveicons)
@@ -446,11 +531,14 @@ void MainWindow::repopulate()
         QPixmap dummyicon = QPixmap(currentsize.width(), currentsize.height());
         dummyicon.fill();
 
-        for (int i=0; i< ui->list->count(); i++)
+        QList<QListWidgetItem *> all;
+        all = ug->allItems();
+
+        for (int i=0; i< ug->count(); i++)
         {
-            if (ui->list->item(i)->icon().isNull())
+            if (all.value(i)->icon().isNull())
             {
-                ui->list->item(i)->setIcon(dummyicon);
+                all.value(i)->setIcon(dummyicon);
             }
         }
     }
@@ -460,7 +548,7 @@ void MainWindow::repopulate()
         ui->actionCancel->setEnabled(true);
         if (_fixate)
         {
-            ui->list->setEnabled(false);
+            ug->list->setEnabled(false);
         }
     }
 
@@ -532,7 +620,6 @@ bool MainWindow::isSupportedOs(const QString &name, const QVariantMap &values)
 QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder, bool includeInstalled)
 {
     QMap<QString,QVariantMap> images;
-
     /* Local image folders */
     QDir dir(folder, "", QDir::Name, QDir::Dirs | QDir::NoDotAndDotDot);
     QStringList list = dir.entryList();
@@ -564,6 +651,8 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder, bool in
                         fm["folder"] = imagefolder;
                         fm["release_date"] = osv.value("release_date");
                         fm["source"] = osv.value("source");
+                        fm["url"] = osv.value("url");
+                        fm["group"] = osv.value("group");
                         images[name] = fm;
                     }
                 }
@@ -629,6 +718,8 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder, bool in
 
 void MainWindow::on_actionWrite_image_to_disk_triggered()
 {
+    _bDownload = false;
+
     QString warning = tr("Warning: this will install the selected Operating System(s). All existing data on the SD card will be overwritten, including any OSes that are already installed.");
     if (_drive != "mmcblk0")
         warning.replace(tr("SD card"), tr("drive"));
@@ -677,7 +768,6 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
 
                     downloadMetaFile(entry.value("os_info").toString(), folder+"/os.json");
                     downloadMetaFile(entry.value("partitions_info").toString(), folder+"/partitions.json");
-
                     if (entry.contains("marketing_info"))
                         downloadMetaFile(entry.value("marketing_info").toString(), folder+"/marketing.tar");
 
@@ -704,6 +794,97 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
     }
 }
 
+void MainWindow::on_actionDownload_triggered()
+{
+    _bDownload = true;
+
+    //@@ maybe here decide if to download to /mnt or /settings and only mount that one rw
+
+    _local = "/tmp/media/"+partdev(_osdrive,1);
+    if (QProcess::execute("mount -o remount,rw /dev/"+partdev(_osdrive,1)+" "+_local) != 0)
+    {
+        return;
+    }
+    // OR ....
+    // QProcess::execute("mount -o remount,rw /mnt");
+
+    if (_silent || QMessageBox::warning(this,
+                                        tr("Confirm"),
+                                        tr("Warning: this will download the selected Operating System(s)."),
+                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+    {
+        /* See if any of the OSes are unsupported */
+        bool allSupported = true;
+        QString unsupportedOses;
+        QList<QListWidgetItem *> selected = selectedItems();
+        //@@ Check for unsupported (undownloadable) OSes
+        if (_silent || allSupported || QMessageBox::warning(this,
+                                        tr("Confirm"),
+                                        tr("Warning: incompatible Operating System(s) detected. The following OSes aren't supported on this revision of Raspberry Pi and may fail to boot or function correctly:") + unsupportedOses,
+                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+        {
+            setEnabled(false);
+            _numMetaFilesToDownload = 0;
+
+            QList<QListWidgetItem *> selected = selectedItems();
+            foreach (QListWidgetItem *item, selected)
+            {
+                QVariantMap entry = item->data(Qt::UserRole).toMap();
+                //if (!entry.contains("folder")) //If no folder, it must be a downloadable OS
+                if (entry.value("source").toString() == SOURCE_NETWORK) // only network OS are downloadable.
+                {
+                    QDir d;
+                    QString osname = entry.value("name").toString();
+                    QString folder = _local+"/os/"+osname;
+                    folder.replace(' ', '_');
+                    if (!d.exists(folder))
+                        d.mkpath(folder);
+
+                    QString path = folder + QString("/error.log");
+                    QFile f(path);
+                    if (f.exists())
+                    {
+                        f.remove();
+                    }
+
+                    downloadMetaFile(entry.value("os_info").toString(), folder+"/os.json");
+                    downloadMetaFile(entry.value("partitions_info").toString(), folder+"/partitions.json");
+                    QString urlpath = entry.value("os_info").toString().left(entry.value("os_info").toString().lastIndexOf('/'));
+                    downloadMetaFile(urlpath+"/release_notes.txt", "-" + folder+"/release_notes.txt"); //'-' indicates optional
+                    if (entry.contains("marketing_info"))
+                        downloadMetaFile(entry.value("marketing_info").toString(), folder+"/marketing.tar");
+
+                    if (entry.contains("partition_setup"))
+                        downloadMetaFile(entry.value("partition_setup").toString(), folder+"/partition_setup.sh");
+
+                    if (entry.contains("icon"))
+                    {
+                        //Extract icon filename from URL
+                        QStringList splitted = entry.value("icon").toString().split("/");
+                        QString icon_name   = osname + ".png";
+                        icon_name.replace(' ','_');
+                        downloadMetaFile(entry.value("icon").toString(), folder+"/"+icon_name);
+                    }
+                    //@@Create JSON files for the os/flavours
+                }
+            }
+
+            if (_numMetaFilesToDownload == 0)
+            {
+                /* All OSes selected are local */
+                startImageDownload();
+            }
+            else if (!_silent)
+            {
+                _qpd = new QProgressDialog(tr("The download process will begin shortly."), QString(), 0, 0, this);
+                _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+                _qpd->show();
+            }
+        }
+    }
+}
+
+
 void MainWindow::on_actionCancel_triggered()
 {
     close();
@@ -711,18 +892,55 @@ void MainWindow::on_actionCancel_triggered()
 
 void MainWindow::onCompleted()
 {
+    int ret = QMessageBox::Ok;
+
     _qpd->hide();
+    _piDrivePollTimer.start(POLLTIME);
     QSettings settings("/settings/noobs.conf", QSettings::IniFormat, this);
-    settings.setValue("default_partition_to_boot", "800");
-    settings.remove("sticky_boot");
-    settings.sync();
+    if (!_bDownload)
+    {
+        settings.setValue("default_partition_to_boot", "800");
+        settings.remove("sticky_boot");
+        settings.sync();
+    }
 
     if (!_silent)
-        QMessageBox::information(this,
-                                 tr("OS(es) installed"),
-                                 tr("OS(es) Installed Successfully"), QMessageBox::Ok);
+    {
+        if (_bDownload)
+        {
+            ret = QMessageBox::information(this,
+                                     tr("OS(es) downloaded"),
+                                     tr("OS(es) Downloaded Successfully.\nReboot PINN to take account of these OSes?"), QMessageBox::Ok|QMessageBox::Cancel);
+        }
+        else
+        {
+            ret = QMessageBox::information(this,
+                                     tr("OS(es) installed"),
+                                     tr("OS(es) Installed Successfully"), QMessageBox::Ok);
+        }
+    }
     _qpd->deleteLater();
     _qpd = NULL;
+    if (_bDownload)
+    {
+        setEnabled(true);
+
+        if (ret == QMessageBox::Ok)
+        {
+            //@@Temporary solution....
+            // Shut down networking
+            QProcess::execute("ifdown -a");
+            // Unmount file systems
+            QProcess::execute("umount -ar");
+            ::sync();
+            // Reboot
+            ::reboot(RB_AUTOBOOT);
+
+            //@@What we really want to do is just refresh the dialog, but not possible yet.
+            //repopulate();
+        }
+    }
+
     close();
 }
 
@@ -733,6 +951,8 @@ void MainWindow::onError(const QString &msg)
         _qpd->hide();
     QMessageBox::critical(this, tr("Error"), msg, QMessageBox::Close);
     setEnabled(true);
+    _piDrivePollTimer.start(POLLTIME);
+    show();
 }
 
 void MainWindow::onQuery(const QString &msg, const QString &title, QMessageBox::StandardButton* answer)
@@ -742,14 +962,33 @@ void MainWindow::onQuery(const QString &msg, const QString &title, QMessageBox::
 
 void MainWindow::on_list_currentRowChanged()
 {
-    QListWidgetItem *item = ui->list->currentItem();
-    ui->actionEdit_config->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
-    ui->actionPassword->setEnabled(item && item->data(Qt::UserRole).toMap().contains("partitions"));
+    //For the INSTALLED list...
+    QListWidgetItem *item = ug->listInstalled->currentItem();
+    if (ug->listInstalled->count() && !item)
+    {
+        item = ug->listInstalled->item(0);
+        ug->listInstalled->setCurrentItem(item);
+    }
+    //item may still be NULL
+    //Only need to make sure item is not null, since any item here is already installed    ?
+    ui->actionEdit_config->setEnabled(item);
+    ui->actionPassword->setEnabled(item);
 
-    QVariantMap m = item->data(Qt::UserRole).toMap();
-#ifdef KHDBG
-    qDebug() << "RowChanged: " << m;
-#endif
+    ui->actionInfoInstalled->setEnabled(item && item->data(Qt::UserRole).toMap().contains("url"));
+    ui->actionFschk->setEnabled(item);
+
+    //For the normal list...
+    item = ug->list->currentItem();
+    if (ug->list->count() && !item)
+    {
+        item = ug->list->item(0);
+        ug->list->setCurrentItem(item);
+    }
+    ui->actionInfo->setEnabled(item && item->data(Qt::UserRole).toMap().contains("url"));
+    //others...
+
+    if (_menuLabel)
+        _menuLabel->setText(menutext(toolbar_index));
 }
 
 void MainWindow::update_window_title()
@@ -762,9 +1001,12 @@ void MainWindow::changeEvent(QEvent* event)
     if (event && event->type() == QEvent::LanguageChange)
     {
         ui->retranslateUi(this);
+        ug->retranslateUI();
         update_window_title();
         updateNeeded();
-        //repopulate();
+        if (_menuLabel)
+            _menuLabel->setText(menutext(toolbar_index));
+        //repopulate(); #@@ Needs all lists to be cleared & network downloads re-done. Better when osSource implemented.
     }
 
     QMainWindow::changeEvent(event);
@@ -829,10 +1071,12 @@ void MainWindow::displayMode(int modenr, bool silent)
 
     // Resize this window depending on screen resolution
     QRect s = QApplication::desktop()->screenGeometry();
-    if (s.height() < 500)
-        resize(s.width()-10, s.height()-100);
-    else
-        resize(575, 450);
+    int w = s.width()-100;
+    int h = s.height() - 100;
+
+    w =qMin(w,700);
+    h =qMin(h,500);
+    resize(w,h);
 
     // Update UI item locations
     _splash->setPixmap(QPixmap(":/wallpaper.png"));
@@ -916,9 +1160,45 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         // Catch Return key to trigger OS boot
         if (keyEvent->key() == Qt::Key_Return)
         {
-            on_list_doubleClicked(ui->list->currentIndex());
+            on_list_doubleClicked(ug->list->currentIndex());
         }
-        else if (_kc.at(_kcpos) == keyEvent->key())
+
+        // catch toolbar changes (PageDown is same as M)
+        if (keyEvent->key() == Qt::Key_PageDown)
+        {
+            on_actionAdvanced_triggered();
+        }
+
+        // cursor Right changes tab headings
+        if (keyEvent->key() == Qt::Key_Right)
+        {
+            if (ug->tabs && toolbar_index !=TOOLBAR_MAINTENANCE) //Don't do if no tabs visisble
+            {
+                if (ug->tabs->count() > 0)
+                {
+                    int index = ug->tabs->currentIndex()+1;
+                    if (index >= ug->tabs->count())
+                        index =0;
+                    ug->tabs->setCurrentIndex(index);
+                }
+            }
+        }
+        // cursor Left changes tab headings
+        if (keyEvent->key() == Qt::Key_Left)
+        {
+            if (ug->tabs && toolbar_index !=TOOLBAR_MAINTENANCE) //Don't do if no tabs visisble
+            {
+                if (ug->tabs->count() > 0)
+                {
+                    int index = ug->tabs->currentIndex()-1;
+                    if (index < 0)
+                        index = ug->tabs->count()-1;
+                    ug->tabs->setCurrentIndex(index);
+                }
+            }
+        }
+
+        if (_kc.at(_kcpos) == keyEvent->key())
         {
             _kcpos++;
             if (_kcpos == _kc.size())
@@ -944,29 +1224,40 @@ void MainWindow::inputSequence()
 
 void MainWindow::on_actionAdvanced_triggered()
 {
-    if (ui->actionAdvanced->isChecked())
+    toolbars.value(toolbar_index)->setVisible(false);
+    toolbar_index = (toolbar_index+1)%NUM_TOOLBARS;
+    toolbars.value(toolbar_index)->setVisible(true);
+
+    ui->groupBox->setVisible(toolbar_index == TOOLBAR_MAIN);
+    ui->groupBoxUsb->setVisible(toolbar_index == TOOLBAR_ARCHIVAL);
+
+    if (_menuLabel)
+        _menuLabel->setText(menutext(toolbar_index));
+
+    if (ug->tabs)
     {
-        ui->toolBar->setVisible(true);
-        ui->mainToolBar->setVisible(false);
+        ug->tabs->currentWidget()->setVisible(toolbar_index != TOOLBAR_MAINTENANCE);
     }
     else
     {
-        ui->toolBar->setVisible(false);
-        ui->mainToolBar->setVisible(true);
+        ui->list->setVisible(toolbar_index != TOOLBAR_MAINTENANCE);
     }
+
+    ug->toggleInstalled(toolbar_index== TOOLBAR_MAINTENANCE );
 }
 
 void MainWindow::on_actionEdit_config_triggered()
 {
-    QListWidgetItem *item = ui->list->currentItem();
+    QListWidgetItem *item = ug->listInstalled->currentItem();
 
     if (item && item->data(Qt::UserRole).toMap().contains("partitions"))
     {
-        QVariantList l = item->data(Qt::UserRole).toMap().value("partitions").toList();
+        QVariantMap m = item->data(Qt::UserRole).toMap();
+        QVariantList l = m.value("partitions").toList();
         if (!l.isEmpty())
         {
             QString partition = l.first().toString();
-            ConfEditDialog d(partition);
+            ConfEditDialog d(m, partition);
             d.exec();
         }
     }
@@ -975,15 +1266,56 @@ void MainWindow::on_actionEdit_config_triggered()
 void MainWindow::on_actionBrowser_triggered()
 {
 #if KHDBG
-    for (int i=0; i<ui->list->count(); i++)
+    for (int i=0; i<ug->list->count(); i++)
     {
-        QListWidgetItem *item = ui->list->item(i);
+        QListWidgetItem *item = ug->list->item(i);
         QVariantMap m = item->data(Qt::UserRole).toMap();
         qDebug() << m;
     }
 #endif
     startBrowser();
 }
+
+void MainWindow::fullFAT()
+{
+    setEnabled(false);
+    _qpd = new QProgressDialog( tr("Wiping SD card"), QString(), 0, 0, this);
+    _qpd->setWindowModality(Qt::WindowModal);
+    _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+
+    FullFatThread *fft = new FullFatThread(_bootdrive, this);
+    connect(fft, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
+    connect(fft, SIGNAL(completed()), _qpd, SLOT(deleteLater()));
+    connect(fft, SIGNAL(error(QString)), this, SLOT(onError(QString)));
+    connect(fft, SIGNAL(query(QString, QString, QMessageBox::StandardButton*)),
+            this, SLOT(onQuery(QString, QString, QMessageBox::StandardButton*)),
+            Qt::BlockingQueuedConnection);
+
+
+    QProcess::execute("umount /settings");
+
+    fft->start();
+    _qpd->exec();
+    _partInited = false;
+    setEnabled(true);
+}
+
+void MainWindow::on_actionWipe_triggered()
+{
+    if (QMessageBox::warning(this,
+                             tr("Confirm"),
+                             tr("Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed."),
+                             QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+    {
+        fullFAT();
+        QMessageBox::warning(this,
+                        tr("Drive Wiped!"),
+                        tr("Warning: Any installed OSes have been wiped and the drive has been restored to its original size.\nInstall and download will no longer work until this drive is re-booted.\nBooting this drive again will re-instate PINN's partition structure."),
+                        QMessageBox::Ok);
+        updateNeeded();
+    }
+}
+
 
 bool MainWindow::requireNetwork()
 {
@@ -1014,7 +1346,9 @@ void MainWindow::on_list_doubleClicked(const QModelIndex &index)
 {
     if (index.isValid())
     {
-        QListWidgetItem *item = ui->list->currentItem();
+        QListWidgetItem *item = ug->list->currentItem();
+        if (!item)
+            return;
         if (item->checkState() == Qt::Unchecked)
             item->setCheckState(Qt::Checked);
         else
@@ -1136,6 +1470,7 @@ void MainWindow::onOnlineStateChanged(bool online)
             _cache->setMaximumCacheSize(8 * 1024 * 1024);
             _cache->clear();
             _netaccess->setCache(_cache);
+            _listno = 0;
             QNetworkConfigurationManager manager;
             _netaccess->setConfiguration(manager.defaultConfiguration());
 
@@ -1215,6 +1550,8 @@ void MainWindow::downloadRepoListComplete()
         QString errstr = tr("Error downloading distribution list from Internet:\n") + reply->url().toString();
         qDebug() << "Error Downloading "<< reply->url()<<" reply: "<< reply->error() << " httpstatus: "<< httpstatuscode;
         QMessageBox::critical(this, tr("Download error"), errstr, QMessageBox::Close);
+        downloadLists(); //Can't process repo_list, but maybe can get others.
+
     }
     else
     {
@@ -1234,7 +1571,7 @@ void MainWindow::processRepoListJson(QVariant json)
 
     QVariantList list = json.toMap().value("repo_list").toList();
 
-    qDebug() << "processRepoListJson: " << list;
+    //qDebug() << "processRepoListJson: " << list;
 
     foreach (QVariant osv, list)
     {
@@ -1252,19 +1589,30 @@ void MainWindow::processRepoListJson(QVariant json)
 void MainWindow::downloadLists()
 {
     _numIconsToDownload = 0;
+    _numFilesToCheck = 0;
     QStringList urls = _repo.split(' ', QString::SkipEmptyParts);
 
     //Add-in PINN's list of repos
     urls << downloadRepoUrls;
     urls.removeDuplicates();
 
-    foreach (QString url, urls)
+    if (urls.isEmpty())
     {
-        qDebug() << "Downloading list from " << url;
-        if (url.startsWith("/"))
-            processJson( Json::parse(getFileContents(url)) );
-        else
-            downloadList(url);
+        //No network lists to download, so remove the dialog.
+        _qpd->hide();
+        _qpd->deleteLater();
+        _qpd = NULL;
+    }
+    else
+    {
+        foreach (QString url, urls)
+        {
+            qDebug() << "Downloading list from " << url;
+            if (url.startsWith("/"))
+                processJson( Json::parse(getFileContents(url)) );
+            else
+                downloadList(url);
+        }
     }
 }
 
@@ -1338,6 +1686,8 @@ void MainWindow::downloadListComplete()
     {
         processJson(Json::parse( reply->readAll() ));
     }
+
+    ug->setFocus();
 
     reply->deleteLater();
 }
@@ -1418,6 +1768,7 @@ void MainWindow::processJson(QVariant json)
 void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QSet<QString> &iconurls)
 {
     QIcon internetIcon(":/icons/download.png");
+    OverrideJson(new_details);
 
     QListWidgetItem *witem = findItem(name);
     if (witem)
@@ -1434,7 +1785,7 @@ void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QS
             }
             witem->setData(Qt::UserRole, new_details);
             witem->setData(SecondIconRole, internetIcon);
-            ui->list->update();
+            ug->list->update();
         }
 
     }
@@ -1461,15 +1812,48 @@ void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QS
         witem->setData(SecondIconRole, internetIcon);
 
         if (recommended)
-            ui->list->insertItem(0, witem);
+            ug->insertItem(0, witem);
         else
-            ui->list->addItem(witem);
+            ug->addItem(witem);
     }
-#ifdef KHDBG
-        qDebug() << "ProcessJsonOS: " << new_details << "\n";
-#endif
 
+    if (! new_details.contains("download_size"))
+    {
+        getDownloadSize(new_details);
+    }
 }
+
+void MainWindow::getDownloadSize(QVariantMap &new_details)
+{
+    qint64 downloadSize=0;    //Start off with a minimum of 2MB for all metadata files.
+
+    QString name;
+    if (new_details.contains("name"))
+        name = new_details.value("name").toString();
+    else if (new_details.contains("os_name"))
+        name = new_details.value("os_name").toString();
+    else
+        return;
+
+    //Set downloadsize to minimum
+    if (! new_details.contains("download_size"))
+    {
+        new_details.insert("download_size",downloadSize);
+    }
+    else
+    {
+        new_details["download_size"] = downloadSize;
+    }
+    //Kick off a new filesize calc.
+
+    QStringList tarballs = new_details.value("tarballs").toStringList();
+    foreach (QString tarball, tarballs)
+    {
+        if ( !tarball.isEmpty() )
+            checkFileSize(tarball, name);
+    }
+}
+
 
 void MainWindow::downloadIcon(const QString &urlstring, const QString &originalurl)
 {
@@ -1483,9 +1867,11 @@ void MainWindow::downloadIcon(const QString &urlstring, const QString &originalu
 
 QListWidgetItem *MainWindow::findItem(const QVariant &name)
 {
-    for (int i=0; i<ui->list->count(); i++)
+    QList<QListWidgetItem *> all;
+    all = ug->allItems();
+
+    foreach (QListWidgetItem *item, all)
     {
-        QListWidgetItem *item = ui->list->item(i);
         QVariantMap m = item->data(Qt::UserRole).toMap();
         if (m.value("name").toString() == name.toString())
         {
@@ -1513,13 +1899,17 @@ void MainWindow::downloadIconComplete()
         pix.loadFromData(reply->readAll());
         QIcon icon(pix);
 
-        for (int i=0; i<ui->list->count(); i++)
+        //Set the icon in the OS list dialog box.
+        QList<QListWidgetItem *> all;
+        all = ug->allItems();
+
+        for (int i=0; i<ug->count(); i++)
         {
-            QVariantMap m = ui->list->item(i)->data(Qt::UserRole).toMap();
-            ui->list->setIconSize(QSize(40,40));
+            QVariantMap m = all.value(i)->data(Qt::UserRole).toMap();
+            ug->list->setIconSize(QSize(40,40)); //ALL??
             if (m.value("icon") == originalurl)
             {
-                ui->list->item(i)->setIcon(icon);
+                all.value(i)->setIcon(icon);
             }
         }
     }
@@ -1531,29 +1921,31 @@ void MainWindow::downloadIconComplete()
     }
 
     reply->deleteLater();
+    _listno++;
+    //@@? if (_listno ==1)
+    //@@?    downloadList(DEFAULT_REPO_SERVER);
+
 }
 
 QList<QListWidgetItem *> MainWindow::selectedItems()
 {
-    QList<QListWidgetItem *> selected;
-
-    for (int i=0; i < ui->list->count(); i++)
-    {
-        QListWidgetItem *item = ui->list->item(i);
-        if (item->checkState())
-        {
-            selected.append(item);
-        }
-    }
-
-    return selected;
+    return(ug->selectedItems());
 }
 
 void MainWindow::updateNeeded()
 {
-    bool enableOk = false;
+    bool enableWrite = false;
+    bool enableDownload = false;
+    qint64 neededDownload=0;
     QColor colorNeededLabel = Qt::black;
     bool bold = false;
+
+    QString num2chk="";
+    if (_numFilesToCheck)
+    {
+        num2chk = "Files to check: " + QString::number(_numFilesToCheck);
+    }
+    _checkLabel->setText(num2chk);
 
     _neededMB = 0;
     QList<QListWidgetItem *> selected = selectedItems();
@@ -1562,6 +1954,11 @@ void MainWindow::updateNeeded()
     {
         QVariantMap entry = item->data(Qt::UserRole).toMap();
         _neededMB += entry.value("nominal_size").toUInt();
+
+        if (entry.value("source").toString() == SOURCE_NETWORK)
+        {
+            neededDownload += entry.value("download_size").toUInt();
+        }
 
         if (nameMatchesRiscOS(entry.value("name").toString()))
         {
@@ -1573,9 +1970,15 @@ void MainWindow::updateNeeded()
             }
         }
     }
+    _neededDownloadMB = neededDownload / (1024*1024);
 
     ui->neededLabel->setText(QString("%1: %2 MB").arg(tr("Needed"), QString::number(_neededMB)));
     ui->availableLabel->setText(QString("%1: %2 MB").arg(tr("Available"), QString::number(_availableMB)));
+
+    ui->neededLabelUsb->setText(QString("%1: %2 MB").arg(tr("Needed"), QString::number(_neededDownloadMB)));
+    ui->availableLabelUsb->setText(QString("%1: %2 MB").arg(tr("Available"), QString::number(_availableDownloadMB)));
+
+    /************ Write Image Control **********/
 
     if (_neededMB > _availableMB)
     {
@@ -1588,11 +1991,11 @@ void MainWindow::updateNeeded()
         if (_neededMB)
         {
             /* Enable OK button if a selection has been made that fits on the card */
-            enableOk = true;
+            enableWrite = true;
         }
     }
 
-    ui->actionWrite_image_to_disk->setEnabled(enableOk);
+    ui->actionWrite_image_to_disk->setEnabled(enableWrite && _partInited);
     QPalette p = ui->neededLabel->palette();
     if (p.color(QPalette::WindowText) != colorNeededLabel)
     {
@@ -1602,6 +2005,37 @@ void MainWindow::updateNeeded()
     QFont font = ui->neededLabel->font();
     font.setBold(bold);
     ui->neededLabel->setFont(font);
+
+    /************ Download Image Control **********/
+    if (_neededDownloadMB > _availableDownloadMB)
+    {
+        /* Selection exceeds available space, make label red to alert user */
+        colorNeededLabel = Qt::red;
+        bold = true;
+    }
+    else
+    {
+        colorNeededLabel = Qt::black;
+        if (_neededDownloadMB)
+        {
+            /* Enable Download button if a selection has been made that fits on the card */
+            /* AND all download sizes are calculated */
+            enableDownload = (_numFilesToCheck==0);
+        }
+    }
+
+    ui->actionDownload->setEnabled(enableDownload && _partInited);
+
+    p = ui->neededLabelUsb->palette();
+    if (p.color(QPalette::WindowText) != colorNeededLabel)
+    {
+        p.setColor(QPalette::WindowText, colorNeededLabel);
+        ui->neededLabelUsb->setPalette(p);
+    }
+    font = ui->neededLabelUsb->font();
+    font.setBold(bold);
+    ui->neededLabelUsb->setFont(font);
+
 }
 
 void MainWindow::on_list_itemChanged(QListWidgetItem *)
@@ -1649,7 +2083,7 @@ void MainWindow::downloadListRedirectCheck()
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
-        qDebug() << "Redirection - Re-trying download from" << redirectionurl;
+        //qDebug() << "Redirection - Re-trying download from" << redirectionurl;
         downloadList(redirectionurl);
     }
     else
@@ -1665,7 +2099,7 @@ void MainWindow::downloadIconRedirectCheck()
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
-        qDebug() << "Redirection - Re-trying download from" << redirectionurl;
+        //qDebug() << "Redirection - Re-trying download from" << redirectionurl;
         downloadIcon(redirectionurl, originalurl);
     }
     else
@@ -1681,7 +2115,7 @@ void MainWindow::downloadMetaRedirectCheck()
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
-        qDebug() << "Redirection - Re-trying download from" << redirectionurl;
+        //qDebug() << "Redirection - Re-trying download from" << redirectionurl;
         _numMetaFilesToDownload--;
         downloadMetaFile(redirectionurl, saveAs);
     }
@@ -1694,20 +2128,52 @@ void MainWindow::downloadMetaComplete()
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
+    //A filename string starting with '-' is optional, so not an error if not present
+    QString saveAs = reply->request().attribute(QNetworkRequest::User).toString();
+    bool ignoreError=false;
+    if (saveAs.startsWith('-'))
+    {
+        ignoreError=true;
+        saveAs=saveAs.mid(1);
+    }
+
     if (reply->error() != reply->NoError || httpstatuscode < 200 || httpstatuscode > 399)
     {
-        if (_qpd)
+        if (ignoreError)
         {
-            _qpd->hide();
-            _qpd->deleteLater();
-            _qpd = NULL;
+            //qDebug() << tr("Error downloading meta file: ")+reply->url().toString() + tr(". Continuing\n");
+            _numMetaFilesToDownload--;
         }
-        QMessageBox::critical(this, tr("Download error"), tr("Error downloading meta file")+"\n"+reply->url().toString(), QMessageBox::Close);
-        setEnabled(true);
+        else
+        {
+            if (_qpd)
+            {
+                _qpd->hide();
+                _qpd->deleteLater();
+                _qpd = NULL;
+            }
+            QString error;
+            error = tr("Error downloading meta file: ")+reply->url().toString();
+            qDebug() << error;
+
+            if (_bDownload)
+            {   //Create an error file to prevent this download, but keep going for others
+                QFileInfo finfo(saveAs);
+                QString path = finfo.path() + QString("/error.log");
+                QFile f(path);
+                f.open(f.Append);
+                f.write(error.toAscii());
+                f.close();
+            }
+            else
+            {   //When installing, a missing meta file is critical so stop.
+                QMessageBox::critical(this, tr("Download error"), tr("Error downloading meta file")+"\n"+reply->url().toString(), QMessageBox::Close);
+                setEnabled(true);
+            }
+        }
     }
     else
     {
-        QString saveAs = reply->request().attribute(QNetworkRequest::User).toString();
         QFile f(saveAs);
         f.open(f.WriteOnly);
         if (f.write(reply->readAll()) == -1)
@@ -1730,12 +2196,90 @@ void MainWindow::downloadMetaComplete()
             _qpd->deleteLater();
             _qpd = NULL;
         }
-        startImageWrite();
+        if (_bDownload)
+            startImageDownload();
+        else
+            startImageWrite();
     }
+}
+
+void MainWindow::checkFileSize(const QString &urlstring, const QString &osname)
+{
+    qDebug() << "checking size of file: " << urlstring;
+    QUrl url(urlstring);
+    QNetworkRequest request(url);
+    request.setAttribute(QNetworkRequest::User, osname);
+    request.setRawHeader("User-Agent", AGENT);
+    QNetworkReply *reply = _netaccess->head(request);
+    _numFilesToCheck++;
+
+    if (_numFilesToCheck==1)
+        updateNeeded();     //Hide the download button
+
+    connect(reply, SIGNAL(finished()), this, SLOT(checkFileSizeRedirectCheck()));
+}
+
+void MainWindow::checkFileSizeRedirectCheck()
+{
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
+    const QString &osname = reply->request().attribute(QNetworkRequest::User).toString();
+
+    if (httpstatuscode > 300 && httpstatuscode < 400)
+    {
+        //qDebug() << "Redirection - Re-trying filesize from" << redirectionurl;
+        _numFilesToCheck--;
+        checkFileSize(redirectionurl, osname);
+    }
+    else
+        checkFileSizeComplete();
+}
+
+void MainWindow::checkFileSizeComplete()
+{
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    const QString &osname = reply->request().attribute(QNetworkRequest::User).toString();
+
+    quint64 length = reply->header(QNetworkRequest::ContentLengthHeader).toULongLong();
+
+    if (reply->error() != reply->NoError || httpstatuscode < 200 || httpstatuscode > 399)
+    {
+        qDebug() << tr("filesize error checking ")+reply->url().toString();
+    }
+    else
+    {
+        //find QVariantMap of osname
+        QListWidgetItem *witem = findItem(osname);
+        if (witem)
+        {
+            QVariantMap existing_details = witem->data(Qt::UserRole).toMap();
+            //get its download_size
+            quint64 old_size = existing_details.value("download_size").toULongLong();
+            //Increment by length
+            old_size += length;
+            //write back
+            existing_details["download_size"] = old_size;
+
+            if (existing_details["source"]==SOURCE_NETWORK)
+                witem->setData(Qt::UserRole,existing_details); //Only update if it is still a network source!
+        }
+        else
+        {
+            qDebug() << "Cannot find " << osname << " to set download_size";
+        }
+    }
+    //decrement number of filesizes to download
+    _numFilesToCheck--;
+    qDebug() << "Length:" << length << "files left: " <<_numFilesToCheck << " " << osname;
+    if (_numFilesToCheck<2)
+        updateNeeded();
 }
 
 void MainWindow::startImageWrite()
 {
+    _piDrivePollTimer.stop();
     /* All meta files downloaded, extract slides tarball, and launch image writer thread */
     MultiImageWriteThread *imageWriteThread = new MultiImageWriteThread(_bootdrive, _drive, _noobsconfig);
     QString folder, slidesFolder;
@@ -1772,7 +2316,7 @@ void MainWindow::startImageWrite()
             foreach (QString tarball, tarballs)
             {
                 QVariantMap partition = partitions[i].toMap();
-                partition.insert("tarball", tarball);
+                partition.insert("download", tarball); //change to download
                 partitions[i] = partition;
                 i++;
             }
@@ -1799,6 +2343,7 @@ void MainWindow::startImageWrite()
         slidesFolder.append("/mnt/defaults/slides");
 
     _qpd = new ProgressSlideshowDialog(slidesFolders, "", 20, _drive, this);
+    _qpd->setWindowTitle("Installing Images");
     connect(imageWriteThread, SIGNAL(parsedImagesize(qint64)), _qpd, SLOT(setMaximum(qint64)));
     connect(imageWriteThread, SIGNAL(completed()), this, SLOT(onCompleted()));
     connect(imageWriteThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
@@ -1809,6 +2354,101 @@ void MainWindow::startImageWrite()
     hide();
     _qpd->exec();
 }
+
+void MainWindow::startImageDownload()
+{
+    _piDrivePollTimer.stop();
+    // The drive is already mounted R/W from on_actionDownload_triggered
+
+    /* All meta files downloaded, extract slides tarball, and launch image download thread */
+    MultiImageDownloadThread *imageDownloadThread = new MultiImageDownloadThread(0, _local);
+    QString folder, slidesFolder;
+    QStringList slidesFolders;
+
+    QList<QListWidgetItem *> selected = selectedItems();
+    foreach (QListWidgetItem *item, selected)
+    {
+        QVariantMap entry = item->data(Qt::UserRole).toMap();
+
+        if (entry.contains("folder"))
+        {
+            /* Local image */
+            folder = entry.value("folder").toString();
+            /* No need to download these! */
+        }
+        else
+        {
+            folder = _local+"/os/"+entry.value("name").toString();
+            folder.replace(' ', '_');
+
+            QString errorlog = folder+"/error.log";
+            if (QFile::exists(errorlog))
+            {
+                qDebug() << "Skipping due to error.log";
+                continue;
+            }
+
+            QString marketingTar = folder+"/marketing.tar";
+            if (QFile::exists(marketingTar))
+            {
+                /* Extract tarball with slides */
+                QProcess::execute("tar xf "+marketingTar+" -C "+folder);
+                QFile::remove(marketingTar);
+            }
+
+            /* Insert tarball download URL information into partition_info.json to allow download */
+            QVariantMap json = Json::loadFromFile(folder+"/partitions.json").toMap();
+            QVariantList partitions = json["partitions"].toList();
+            int i=0;
+            QStringList tarballs = entry.value("tarballs").toStringList();
+            foreach (QString tarball, tarballs)
+            {
+                QVariantMap partition = partitions[i].toMap();
+                partition.insert("download", tarball);
+                partitions[i] = partition;
+                i++;
+            }
+            json["partitions"] = partitions;
+            Json::saveToFile(folder+"/partitions.json", json);
+
+            slidesFolder.clear();
+            if (QFile::exists(folder+"/slides_vga"))
+            {
+                slidesFolder = folder+"/slides_vga";
+            }
+
+            /* Insert download_size into os.json to allow correct use of download size */
+            json = Json::loadFromFile(folder+"/os.json").toMap();
+            if (! json.contains("download_size"))
+            {
+                quint64 downloadSize= entry.value("download_size").toULongLong();
+                json.insert("download_size",downloadSize);
+                Json::saveToFile(folder+"/os.json", json);
+            }
+
+            imageDownloadThread->addImage(folder, entry.value("name").toString());
+            if (!slidesFolder.isEmpty())
+                slidesFolders.append(slidesFolder);
+        }
+    }
+
+    if (slidesFolders.isEmpty())
+        slidesFolder.append("/mnt/defaults/slides");
+
+    _qpd = new ProgressSlideshowDialog(slidesFolders, "", 20, _osdrive, this);
+    _qpd->setWindowTitle("Downloading Images");
+    connect(imageDownloadThread, SIGNAL(parsedImagesize(qint64)), _qpd, SLOT(setMaximum(qint64)));
+    connect(imageDownloadThread, SIGNAL(completed()), this, SLOT(onCompleted()));
+    connect(imageDownloadThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
+    connect(imageDownloadThread, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
+    imageDownloadThread->start();
+    hide();
+    _qpd->exec();
+    show();
+
+    //QProcess::execute("mount -o remount,ro /mnt");
+}
+
 
 void MainWindow::hideDialogIfNoNetwork()
 {
@@ -1821,7 +2461,7 @@ void MainWindow::hideDialogIfNoNetwork()
             _qpd->deleteLater();
             _qpd = NULL;
 
-            if (ui->list->count() == 0)
+            if (ug->count() == 0)
             {
                 /* No local images either */
                 if (_hasWifi)
@@ -1894,7 +2534,10 @@ void MainWindow::pollForNewDisks()
                 }
 
                 if (_usbimages && !QFile::exists("/tmp/media/"+p1))
-                    addImagesFromUSB(p1);
+                {
+                    _osdrive=devname; //eg 'sda'
+                    addImagesFromUSB(p1); //eg 'sda1'
+                }
             }
 
             /* is the drive writable? */
@@ -1924,7 +2567,19 @@ void MainWindow::pollForNewDisks()
                         && QFile::exists(sysclassblock(devname, 1))
                         && QFile::exists(sysclassblock(devname, 5))
                         && getFileContents(sysclassblock(devname, 5)+"/size").trimmed().toInt() == SETTINGS_PARTITION_SIZE)
+                {
                     ui->targetCombo->setCurrentIndex(ui->targetCombo->count()-1);
+                }
+            }
+
+            if ((ui->targetComboUsb->findData(devname) == -1) && (!devname.startsWith("mmc")))
+            {
+                 /* does the partition structure look like it contains OSes, then select it by default? */
+                if (LooksLikeOSDrive(devname))
+                {
+                    ui->targetComboUsb->addItem(icon, devname+": "+model, devname);
+                    ui->targetComboUsb->setCurrentIndex(ui->targetComboUsb->count()-1);
+                }
             }
         }
 
@@ -1937,6 +2592,52 @@ void MainWindow::pollForNewDisks()
         _devlistcount = list.count();
     }
 }
+
+bool MainWindow::LooksLikePiDrive(QString devname)
+{
+    /* Return TRUE if the drive partition structure looks like it has been PINN formatted */
+    return( QFile::exists(sysclassblock(devname, 1))
+            && QFile::exists(sysclassblock(devname, 5))
+            && getFileContents(sysclassblock(devname, 5)+"/size").trimmed().toInt() == SETTINGS_PARTITION_SIZE );
+}
+
+bool MainWindow::LooksLikeOSDrive(QString devname)
+{
+    //@@ maybe mount and check for /os folder present?
+    if( devname != "mmcblk0" && !LooksLikePiDrive(devname) )
+    {
+        return (QFile::exists("/tmp/media/"+partdev(devname,1)+"/os") );
+    }
+    return (false);
+}
+
+void MainWindow::recalcAvailableMB()
+{
+    _availableMB = (getFileContents(sysclassblock(_drive)+"/size").trimmed().toULongLong()-getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toULongLong()-getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toULongLong())/2048;
+
+
+    QString classdev = sysclassblock(_osdrive, 1);
+    if (QFile::exists(classdev))
+    {
+        QProcess proc;
+        QString cmd = "sh -c \"df -m /dev/" + partdev(_osdrive,1) + " | grep  /dev/" + partdev(_osdrive,1) + " | sed 's| \\+| |g' | cut -d' ' -f 4 \"";
+        //qDebug() << cmd;
+
+        proc.start(cmd);
+        proc.waitForFinished();
+        QString result = proc.readAll();
+        //qDebug()<< result;
+
+        _availableDownloadMB = result.toInt();
+        //qDebug() << classdev << " : " << _availableDownloadMB;
+    }
+    else
+    {
+        _availableDownloadMB = 0;
+        //qDebug() << classdev << " : " << _availableDownloadMB;
+    }
+}
+
 
 void MainWindow::on_targetCombo_currentIndexChanged(int index)
 {
@@ -1968,7 +2669,20 @@ void MainWindow::on_targetCombo_currentIndexChanged(int index)
 
         qDebug() << "New drive selected:" << devname;
         _drive = "/dev/"+devname;
-        _availableMB = (getFileContents(sysclassblock(_drive)+"/size").trimmed().toUInt()-getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toUInt()-getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toUInt())/2048;
+        recalcAvailableMB();
+        filterList();
+        updateNeeded();
+    }
+}
+
+void MainWindow::on_targetComboUsb_currentIndexChanged(int index)
+{
+    if (index != -1)
+    {
+        QString devname = ui->targetComboUsb->itemData(index).toString();
+        _osdrive=devname;
+         qDebug() << "New Download drive selected:" << devname;
+        recalcAvailableMB();
         filterList();
         updateNeeded();
     }
@@ -1980,7 +2694,7 @@ void MainWindow::addImagesFromUSB(const QString &device)
     QString mntpath = "/tmp/media/"+device;
 
     dir.mkpath(mntpath);
-    if (QProcess::execute("mount -o ro -t vfat /dev/"+device+" "+mntpath) != 0)
+    if (QProcess::execute("mount -o ro /dev/"+device+" "+mntpath) != 0)
     {
         dir.rmdir(mntpath);
         return;
@@ -1999,6 +2713,7 @@ void MainWindow::addImagesFromUSB(const QString &device)
     foreach (QVariant v, images.values())
     {
         QVariantMap m = v.toMap();
+        OverrideJson(m);
         QString name = m.value("name").toString();
         QString folder  = m.value("folder").toString();
 
@@ -2017,7 +2732,7 @@ void MainWindow::addImagesFromUSB(const QString &device)
                 }
                 witem->setData(Qt::UserRole, m);
                 witem->setData(SecondIconRole, usbIcon);
-                ui->list->update();
+                ug->list->update();
             }
         }
         else
@@ -2049,22 +2764,25 @@ void MainWindow::addImagesFromUSB(const QString &device)
                 witem->setIcon(QIcon(iconFilename));
 
             if (recommended)
-                ui->list->insertItem(0, witem);
+                ug->insertItem(0, witem);
             else
-                ui->list->addItem(witem);
+                ug->addItem(witem);
         }
     }
 
     filterList();
+    ug->setFocus();
 }
 
 
 /* Dynamically hide items from list depending on target drive */
 void MainWindow::filterList()
 {
-    for (int i=0; i < ui->list->count(); i++)
+    QList<QListWidgetItem *> all;
+    all = ug->allItems();
+    for (int i=0; i < ug->count(); i++)
     {
-        QListWidgetItem *witem = ui->list->item(i);
+        QListWidgetItem *witem = all.value(i);
 
         if (_drive == "/dev/mmcblk0")
         {
@@ -2190,13 +2908,13 @@ void MainWindow::onCloneError(const QString &msg)
 void MainWindow::on_actionPassword_triggered()
 {
     /* If no installed OS is selected, default to first extended partition */
-    QListWidgetItem *item = ui->list->currentItem();
+    QListWidgetItem *item = ug->listInstalled->currentItem();
     QVariantMap m;
 
     if (item)
     {
         m = item->data(Qt::UserRole).toMap();
-        qDebug() << "Passwd triggered: " << m;
+        //qDebug() << "Passwd triggered: " << m;
         if (m.contains("partitions"))
         {
             //QVariantList l = item->data(Qt::UserRole).toMap().value("partitions").toList();
@@ -2210,7 +2928,8 @@ void MainWindow::checkForUpdates()
 {
     _numBuildsToDownload=0;
     downloadUpdate(BUILD_URL,  "BUILD|" BUILD_NEW);
-    downloadUpdate(README_URL,  "README|" README_NEW);
+    downloadUpdate(README_URL, "README|" README_NEW);
+    downloadUpdate(GROUP_URL,  "GROUP|" GROUP_NEW);
 }
 
 void MainWindow::downloadUpdate(const QString &urlstring, const QString &saveAs)
@@ -2237,7 +2956,7 @@ void MainWindow::downloadUpdateRedirectCheck()
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
-        qDebug() << "Redirection - Re-trying download from" << redirectionurl;
+        //qDebug() << "Redirection - Re-trying download from" << redirectionurl;
         _numBuildsToDownload--;
         downloadUpdate(redirectionurl, saveAs);
     }
@@ -2304,26 +3023,7 @@ void MainWindow::downloadUpdateComplete()
 
     setEnabled(true);
 
-    if ((type!="UPDATE") && (_numBuildsToDownload==0))
-    {
-        BuildData currentver, newver;
-
-        qDebug()<<"BUILD_IGNORE...";
-        currentver.read(BUILD_IGNORE);
-        if (currentver.isEmpty())
-        {
-            qDebug()<<"BUILD_CURRENT...";
-            currentver.read(BUILD_CURRENT);
-        }
-        qDebug()<<"BUILD_NEW...";
-        newver.read(BUILD_NEW);
-
-        if (newver > currentver)
-        {
-            on_newVersion();
-        }
-    }
-    else if (type=="UPDATE") //upgrade
+    if (type=="UPDATE") //upgrade
     {
         qDebug() << "Time to update PINN!";
         QProcess::execute("mount -o remount,rw /mnt");
@@ -2342,6 +3042,42 @@ void MainWindow::downloadUpdateComplete()
         ::sync();
         // Reboot
         ::reboot(RB_AUTOBOOT);
+    }
+    else if (type=="GROUP") //update categories
+    {
+        QByteArray r = getFileContents(GROUP_NEW);
+        if (r.length()>1 && r.at(0) == (int)'{')
+        {   //Valid file (minimal test!)
+            QString cmd("/usr/bin/diff " GROUP_NEW " " GROUP_CURRENT);
+            if (QProcess::execute(cmd))
+            {
+                qDebug() << "Updating overrides.json";
+                QProcess::execute("mount -o remount,rw /mnt");
+                QProcess::execute("cp " GROUP_NEW " " GROUP_CURRENT);
+                QProcess::execute("mount -o remount,ro /mnt");
+                QProcess::execute("sync");
+            }
+        }
+    }
+
+    if (_numBuildsToDownload==0)
+    {
+        BuildData currentver, newver;
+
+        qDebug()<<"BUILD_IGNORE...";
+        currentver.read(BUILD_IGNORE);
+        if (currentver.isEmpty())
+        {
+            qDebug()<<"BUILD_CURRENT...";
+            currentver.read(BUILD_CURRENT);
+        }
+        qDebug()<<"BUILD_NEW...";
+        newver.read(BUILD_NEW);
+
+        if (newver > currentver)
+        {
+            on_newVersion();
+        }
     }
 }
 
@@ -2399,12 +3135,17 @@ void MainWindow::onKeyPress(int cec_code)
 {
 #ifdef Q_WS_QWS
 
+    const int key_map[NUM_TOOLBARS][6]={
+        /* KEYS:             1          2          3          4          5               6 */
+        /* Main Menu   */   {Qt::Key_I, Qt::Key_W, Qt::Key_H, Qt::Key_N, Qt::Key_Escape, 0},
+        /* Archival    */   {Qt::Key_D, Qt::Key_C, Qt::Key_N, 0, 0, 0},
+        /* Maintenance */   {Qt::Key_E, Qt::Key_P, Qt::Key_N, 0, 0, 0}
+    };
+
     Qt::KeyboardModifiers modifiers = Qt::NoModifier;
     int key=0;
     QPoint p = QCursor::pos();
-    int menu =0;
-    if (ui->actionAdvanced->isChecked())
-        menu=1;
+    int menu =toolbar_index;
 
     switch (cec_code)
     {
@@ -2455,31 +3196,20 @@ void MainWindow::onKeyPress(int cec_code)
         break;
 
     case CEC_User_Control_F2Red:
-        key = Qt::Key_A;
+        key = Qt::Key_M;
         modifiers = Qt::ControlModifier;
         break;
 
-/* SPECIAL KEYS FOR THIS DIALOG */
-    case CEC_User_Control_Number1:
-        key = (menu==0) ? Qt::Key_I : Qt::Key_P;
-        break;
-    case CEC_User_Control_Number2:
-        key = (menu==0) ? Qt::Key_E : Qt::Key_C;
-        break;
-    case CEC_User_Control_Number3:
-        key = (menu==0) ? Qt::Key_W : 0;
-        break;
-    case CEC_User_Control_Number4:
-        key = (menu==0) ? Qt::Key_H : 0;
-        break;
-    case CEC_User_Control_Number5:
-        key = (menu==0) ? Qt::Key_Escape : 0;
-        break;
 /* Key 9 is always menu selection toggle */
     case CEC_User_Control_Number9:
-        key = Qt::Key_A;
+        key = Qt::Key_PageDown;
         break;
+/* SPECIAL NUMBER KEYS FOR THIS DIALOG */
     default:
+        if (cec_code > CEC_User_Control_Number0 && cec_code < CEC_User_Control_Number7)
+        {   //Keys 1..6
+            key = key_map[menu][cec_code - CEC_User_Control_Number1];
+        }
         break;
     }
     if (key)
@@ -2490,6 +3220,136 @@ void MainWindow::onKeyPress(int cec_code)
         QWSServer::sendKeyEvent(0, key, modifiers, false, false);
     }
 #else
-    qDebug() << "onKeyPress" << key;
+    qDebug() << "onKeyPress" << cec_code;
 #endif
+}
+
+void MainWindow::on_actionInfo_triggered()
+{
+    if (!requireNetwork())
+        return;
+
+    QListWidgetItem * item = NULL;
+    item = ug->list->currentItem();
+    if (!item)
+    {
+        //qDebug()<<"No List Item";
+        return;
+    }
+    QVariantMap m = item->data(Qt::UserRole).toMap();
+    if (m.contains("url"))
+    {
+        QProcess *proc = new QProcess(this);
+        QString lang = LanguageDialog::instance("en", "gb")->currentLanguage();
+        if (lang == "gb" || lang == "us" || lang == "ko" || lang == "")
+            lang = "en";
+        proc->start("arora -lang "+lang+" "+m.value("url").toString());
+    }
+    //else
+        //qDebug() << m;
+
+}
+
+void MainWindow::on_actionInfoInstalled_triggered()
+{
+    if (!requireNetwork())
+        return;
+
+    QListWidgetItem * item = NULL;
+    item = ug->listInstalled->currentItem();
+    if (!item)
+    {
+        //qDebug()<<"No List Item";
+        return;
+    }
+    QVariantMap m = item->data(Qt::UserRole).toMap();
+    if (m.contains("url"))
+    {
+        QProcess *proc = new QProcess(this);
+        QString lang = LanguageDialog::instance("en", "gb")->currentLanguage();
+        if (lang == "gb" || lang == "us" || lang == "ko" || lang == "")
+            lang = "en";
+        proc->start("arora -lang "+lang+" "+m.value("url").toString());
+    }
+    //else
+    //    qDebug() << m;
+}
+
+void MainWindow::loadOverrides(const QString &filename)
+{
+    if (QFile::exists(filename))
+    {
+        _overrides = Json::loadFromFile(filename).toMap();
+    }
+}
+
+
+void MainWindow::OverrideJson(QVariantMap& m)
+{
+    QString name;
+    if (m.contains("name"))
+        name = m.value("name").toString();
+    else if (m.contains("os_name"))
+        name = m.value("os_name").toString();
+    else
+        return;
+    if (!_overrides.contains(name))
+    {
+        return;
+    }
+    QVariantMap osMap = _overrides.value(name).toMap();
+    for(QVariantMap::const_iterator iter = osMap.begin(); iter != osMap.end(); ++iter) {
+        QString key = iter.key();
+        QString action = key.left(1);
+        if (action == "+" || action =="-")
+            key = key.mid(1,-1); //Remove the action character
+        else
+            action = "";    //default action
+
+        if (action=="")
+        {   //Default action is to add or replace new override
+            m[key] = iter.value();
+        }
+        else if (action=="+")
+        {   //Only add if it does not already exist
+            if (!m.contains(key))
+            {
+                m[key] = iter.value();
+            }
+        }
+        else if (action=="-")
+        {   //Remove the key if it exists
+            if (!m.contains(key))
+                m.remove(key);
+        }
+    }
+}
+
+void MainWindow::on_actionFschk_triggered()
+{
+    QListWidgetItem *item = ug->listInstalled->currentItem();
+    if (ug->listInstalled->count() && item)
+    {
+        fscheck dlg(ug->listInstalled);
+        dlg.exec();
+    }
+}
+
+void MainWindow::createPinnEntry()
+{
+    QVariantMap pinnMap;
+    pinnMap["name"]=QString("PINN");
+    pinnMap["description"]="An enhanced OS installer";
+    pinnMap["url"]=INFO_URL;
+    QString friendlyName = pinnMap.value("name").toString() + " [FIXED]\n" + pinnMap.value("description").toString();
+
+    QVariantList list;
+    list.append(partdev(_bootdrive, 1));
+    pinnMap["partitions"]=list;
+
+    QIcon icon(":/icons/hdd.png");
+    QListWidgetItem *item = new QListWidgetItem(icon, friendlyName);
+    item->setData(Qt::UserRole, pinnMap);
+    item->setCheckState(Qt::Unchecked);
+    ug->listInstalled->insertItem(0, item);
 }

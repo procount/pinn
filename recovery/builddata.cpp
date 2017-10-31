@@ -50,6 +50,9 @@ void BuildData::read(const char *filename)
     {
         f.open(QIODevice::ReadOnly);
         contents = f.readAll();
+        //Check file is valid and not a captive portal
+        if (contents.left(10)!="Build-Date")
+            contents="";
         f.close();
     }
     else
