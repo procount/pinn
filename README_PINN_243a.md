@@ -649,7 +649,7 @@ but PINN will remain on the card. This allows you to manually copy additional OS
 
 After wiping a drive, the Install and Download buttons will no longer work since the drive is no longer in the correct format. 
 
-This function also adds the `runinstaller` option to the recovery.cmdline file, so on next boot of this card, the full PINN partition structure will be restored allowing OSes to be isntalled or downloaded again.
+This function also adds the `runinstaller` option to the recovery.cmdline file, so on next boot of this card, the full PINN partition structure will be restored allowing OSes to be installed or downloaded again.
 
 
 ---
