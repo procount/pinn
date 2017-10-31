@@ -131,6 +131,7 @@ There are three toolbars:
   - **Edit Config**: Opens a text editor, allowing the `cmdline` and `config` files for the selected installed OS to be edited.
   - **Password**: Allows the password of an OS to be restored or replaced.
   - **Fsck**: Checks the file systems on the partitions of the selected installed OSes.
+  - **Wipe**: Restores the drive to its original size and deletes all installed OSes.
   - **Info**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
 
 The `more` button can be used to cycle through the 3 toolbars.
@@ -418,13 +419,13 @@ Due to the increasing size of OSes, it is becoming increasingly difficult to sto
 To counter this lack of SD card space, PINN supports storing the compressed OSes on a USB stick as well. This has the following advantages:
 
  1. The OSes are available to install when a network is not available.
- * They do not take up any valuable space on the SD card.
+ 2. They do not take up any valuable space on the SD card.
 
 The OSes should be stored on the USB stick in the same format as they would be on a PINN SD card (please see the [download](#Download) section):
 
  1. Each OS should be stored in its own folder beneath the `/os` folder.
- * They should contain compressed images of their partitions in `.tar.xz` format
- * All supporting JSON files (etc.) should also be included.
+ 2. They should contain compressed images of their partitions in `.tar.xz` format
+ 3. All supporting JSON files (etc.) should also be included.
 
 If the same OS is available on the SD card, the USB stick, and the network, only the most recent version will be displayed.
 
@@ -433,8 +434,8 @@ If the same OS is available on the SD card, the USB stick, and the network, only
 There are three ways for PINN to install an OS, which also depends on the RPi model you have:
 
 1. Install to the SD card
-* Install the boot partition to the SD card and the rootfs to the USB device
-* Install the boot and rootfs partitions to the USB device.
+2. Install the boot partition to the SD card and the rootfs to the USB device
+3. Install the boot and rootfs partitions to the USB device.
 
 _NOTE: PINN can only install the boot partition of an OS to the same drive that PINN is stored on. So for option 3, the USB drive must have PINN installed on it and the Pi must be booted from this drive._
 
@@ -447,10 +448,10 @@ This is the normal way to use PINN. PINN is stored on the SD card, is booted and
 There are several reasons why you may want to install an OS to a USB memory device: more capacity, more resilience, faster read/write operation and so on. PINN allows the rootfs to be installed to a USB memory device. However, the boot partition is kept on the SD card, so this technique is applicable to all RPi models.
 
 1. Follow the basic instructions to format your SD card and install PINN on it.
-* Boot your Pi with the PINN SD card.
-* Insert a USB memory device (USB stick, hard disk etc) into the Pi). Make sure it has nothing of value on it because it will be erased and reformatted.
-* Select the new USB device in the dropdown box in the lower status window as the drive to install to and you will be prompted to format the device. Select Yes to continue.
-* Install the OSes you require as normal.
+2. Boot your Pi with the PINN SD card.
+3. Insert a USB memory device (USB stick, hard disk etc) into the Pi). Make sure it has nothing of value on it because it will be erased and reformatted.
+4. Select the new USB device in the dropdown box in the lower status window as the drive to install to and you will be prompted to format the device. Select Yes to continue.
+5. Install the OSes you require as normal.
 
 Using this technique you will always need to boot from the PINN SD card.
 
@@ -461,16 +462,16 @@ This option is only applicable to RPi models based on the BCM2837 chipset (RPi3B
 Once USB boot mode is enabled, proceed as follows:
 
 1. Format the USB device as FAT 32 and copy the PINN files to it, just as you would for a normal PINN installation on an SD card.
-* Boot PINN on the Pi from the USB device.
-* Install your requried OSes as normal.
+2. Boot PINN on the Pi from the USB device.
+3. Install your requried OSes as normal.
 
 ## How to Automatically Install an OS
 
 Even if you are using your Pi without a display, you can still use PINN to easily install an OS of your choice. To set up PINN to install a specific OS automatically and silently (i.e. without requiring any user input), follow these steps:
 
 1. Copy the OS folder for the OS you want to install into the `/os` dir (alternatively, delete all other OSes contained in the `/os` dir so that only your chosen OS remains).
-* If the OS you want to automatically install has multiple flavours available, edit the `flavours.json` file so that it only contains the entry for the flavour that you want to install.
-* Edit the `recovery.cmdline` file in the root PINN directory and append `silentinstall` to the arguments list.
+2. If the OS you want to automatically install has multiple flavours available, edit the `flavours.json` file so that it only contains the entry for the flavour that you want to install.
+3. Edit the `recovery.cmdline` file in the root PINN directory and append `silentinstall` to the arguments list.
 
 When you now boot your Pi using an SD card containing the modified version of PINN that you just created, it will automatically install the OS you chose and boot into it after the installation has finished.
 
@@ -570,11 +571,11 @@ As documented earlier, PINN can install an OS from a local USB disk instead of d
 ![alt text](screenshots/download.png "Downloading OSes for offline use.")
 
 1. Format a USB drive as FAT32 and create a `/os` folder on it.
-* Insert the USB drive into the Pi.
-* On the Archival Menu, select the USB drive in the status window.
-* Select the list of OSes you want to download
-* Select the Download button and wait for the OSes to download.
-* Once download is complete, you will be prompted to reboot PINN for it to recognise the new OSes on the USB stick.
+2. Insert the USB drive into the Pi.
+3. On the Archival Menu, select the USB drive in the status window.
+4. Select the list of OSes you want to download
+5. Select the Download button and wait for the OSes to download.
+6. Once download is complete, you will be prompted to reboot PINN for it to recognise the new OSes on the USB stick.
 
 The download icon is only available when the download size of all files are known. If the download icon is greyed out, and the toolbar indicates that that there are still more files to check, please wait until all files are checked. 
 
@@ -586,10 +587,10 @@ it has now been ported into PINN so that it can clone the SD card offline, whils
 ![alt text](screenshots/clone.png "Cloning an SD card")
 
 1. On the PINN screen, select the new `Archival` toolbar by pressing the `More` button.
-* Insert a second SD card into the Pi using a USB card reader.
-* Select the Clone SD card button.
-* Select your internal SD card as the source (/dev/mmcblk0) and the SD card in the USB reader as the destination (usually `/dev/sda`).
-* Select OK to clone your SD card.
+2. Insert a second SD card into the Pi using a USB card reader.
+3. Select the Clone SD card button.
+4. Select your internal SD card as the source (/dev/mmcblk0) and the SD card in the USB reader as the destination (usually `/dev/sda`).
+5. Select OK to clone your SD card.
 
 All partitions will be copied onto the second card whilst the last partition will be sized to fit the remainder of the SD card. 
 In this way, your existing data can be migrated to a smaller or larger SD card.
@@ -625,13 +626,13 @@ If you have changed your login password for an OS and forget what it is, PINN wi
 ![alt text](screenshots/password.png "Reset a lost password.")
 
 1. On the PINN screen, select the new `Maintenance toolbar` by pressing the `More` menu.
-* highlight the installed OS that you want to reset the password in.
-* Selecting the Password button will display a dialog box to enter the new password details.
-* Enter the username you want to change the password of.
-* Enter the new password (twice). Both copies must match. The second will be displayed red if it is different.
-* The password strength meter is a useful indication of how good a password you have created.
-* The `Use Default` button will enter the default username and password for the selected OS.
-* Tick the `show password` box to display the passwords on the screen.
+2. highlight the installed OS that you want to reset the password in.
+3. Selecting the Password button will display a dialog box to enter the new password details.
+4. Enter the username you want to change the password of.
+5. Enter the new password (twice). Both copies must match. The second will be displayed red if it is different.
+6. The password strength meter is a useful indication of how good a password you have created.
+7. The `Use Default` button will enter the default username and password for the selected OS.
+8. Tick the `show password` box to display the passwords on the screen.
 
 ## How to Check an OS's File Systems
 
@@ -640,6 +641,16 @@ Most RPi OSes typically delay writing any data back to SD or USB drives for perf
 To recover from a corrupted drive, PINN includes a file system check (fsck) option which will perform an `fsck -y` command on all partitions of the selected installed OSes. The output of the `fsck` command will be shown in a dialog box that can be scrolled to check the result. If it shows that recovery was unsuccessful, you may need to use more advanced disk recovery tools to fix the problem. Since this check option will work on multiple OSes, it is necessary to select the checkbox of each OS you want checked, otherwise no OSes will be checked. If you are paranoid, you may want to make a backup of any affected partitions before trying this fsck option.
 
 ![alt text](screenshots/fsck.png "Checking OS filesystems")
+
+## Wipe the Drive
+
+This option will wipe your drive of all installed OSes by deleting all the OS partitions and restore its capacity to full size by expanding the first partition to the whole disk size, 
+but PINN will remain on the card. This allows you to manually copy additional OS distribution files to the /os folder from a USB stick, for example.
+
+After wiping a drive, the Install and Download buttons will no longer work since the drive is no longer in the correct format. 
+
+This function also adds the `runinstaller` option to the recovery.cmdline file, so on next boot of this card, the full PINN partition structure will be restored allowing OSes to be isntalled or downloaded again.
+
 
 ---
 
@@ -654,18 +665,18 @@ There are two main use cases for which you may want to create a custom version o
 The following steps allow you to create a modified copy of one of the standard OS releases that contains your custom files, packages and settings.
 
 1. Download a base version of PINN from http://downloads.sourceforge.net/projects/pinn/pinn-lite.zip.
-* Extract the PINN-lite zipfile.
-* Navigate to the `os` directory.
-* Create a copy of the folder containing the OS release that you want to modify and rename it with a custom name.
-* Edit the following fields in the `os.json` file contained in the folder that you just created:
+2. Extract the PINN-lite zipfile.
+3. Navigate to the `os` directory.
+4. Create a copy of the folder containing the OS release that you want to modify and rename it with a custom name.
+5. Edit the following fields in the `os.json` file contained in the folder that you just created:
   * "name" - replace the name of the base OS with the name of your custom OS version
   * "description" - replace the description of the standard OS install with one for your custom OS version
-* [Optional] Rename or replace the existing `<OS>.png` icon file with one matching the name of your custom OS version.
-* [Optional] Replace the PNG image files in the `slides` and `slides_vga` directory with your own custom installer slides.
-* Edit the following fields in the `partitions.json` file contained in the folder that you just created:
+6. [Optional] Rename or replace the existing `<OS>.png` icon file with one matching the name of your custom OS version.
+7. [Optional] Replace the PNG image files in the `slides` and `slides_vga` directory with your own custom installer slides.
+8. Edit the following fields in the `partitions.json` file contained in the folder that you just created:
   * "partition_size_nominal" - replace the numerical value with the size of the paritions in your custom OS version
   * "uncompressed_tarball_size" - replace the numerical value with the size of your filesystem tarballs when uncompressed
-* Replace the `.tar.xz` root and boot filesystem tarballs with copies created from your custom OS version (these instructions assume you're only using a single OS at a time with PINN - they won't work if you're running multiple OSes from a single SD card). The name of these tarballs needs to match the labels given in `partitions.json`.
+9. Replace the `.tar.xz` root and boot filesystem tarballs with copies created from your custom OS version (these instructions assume you're only using a single OS at a time with PINN - they won't work if you're running multiple OSes from a single SD card). The name of these tarballs needs to match the labels given in `partitions.json`.
   * To create the root tarball, you will need to run: `sudo bsdtar --numeric-owner --format gnutar --one-file-system -cpf \<label\>_root.tar ` from within the root filesystem of your custom OS version. You should then compress the resulting tarball with `xz -9 -e \<label\>_root.tar`.
   * To create the boot tarball, you will need to run `sudo bsdtar --numeric-owner --format gnutar -cpvf \<label\>_boot.tar .` from the boot partition of your custom OS version. You should then compress the resulting tarball with `xz -9 -e \<label\>_boot.tar`.
 
@@ -681,10 +692,10 @@ Creating a custom OS version (see above) for your preferred setup is one option,
 
 By keeping the customisations separate from the OS distro means:
 
- 1. A custom installation can be created out of a standard OS installation plus some additional files, without having to create a full customised OS.
- * The same customisations can be applied to a newer version of the standard OS installation without having to rebuild a custom OS installation.
- * By using simple configuration files, it is easy to add files to configure your OS.
- * Different customisation "flavours" of an OS can be created as a master installation card, and the required ones can be selected and installed as required. This can save a lot of SD card space compared to storing a different full customised OS for each flavour.
+1. A custom installation can be created out of a standard OS installation plus some additional files, without having to create a full customised OS.
+2. The same customisations can be applied to a newer version of the standard OS installation without having to rebuild a custom OS installation.
+3. By using simple configuration files, it is easy to add files to configure your OS.
+4. Different customisation "flavours" of an OS can be created as a master installation card, and the required ones can be selected and installed as required. This can save a lot of SD card space compared to storing a different full customised OS for each flavour.
 
 PINN now includes direct support for `noobsconfig`, so it is no longer necessary to add the `noobsconfig` files to your PINN installation. Just add your configuration and customisations files and install your "flavoured" OS. Please see (https://github.com/procount/noobsconfig) for full documentation on how to use this feature.
 
@@ -697,8 +708,8 @@ If an HDMI and a DSI screen (such as the Raspberry Pi Touch Screen) are both con
 This use case assumes that the DSI screen is always connected, and is normally used. But if an HDMI screen is connected, then the display will automatically switch to it. 
 
 1. Create a `config.txt` file in the PINN root partition. Ensure it has the line `ignore_lcd=1` to disable the DSI screen and select the HDMI screen.
-* Edit `recovery.cmdline` and add the `dsi` keyword.
-* In the boot partition of any installed OS, create a `config.dsi` file to configure the DSI screen, and a `config.hdmi` file to configure the hdmi screen. (This can mostly be setup using a custom flavour with the `noobsconfig` feature so it can be installed automatically.)
+2. Edit `recovery.cmdline` and add the `dsi` keyword.
+3. In the boot partition of any installed OS, create a `config.dsi` file to configure the DSI screen, and a `config.hdmi` file to configure the hdmi screen. (This can mostly be setup using a custom flavour with the `noobsconfig` feature so it can be installed automatically.)
 
 When PINN boots, the HDMI screen will be selected, so to use any PINN feature, an HDMI screen **must** be connected. 
 
@@ -721,7 +732,7 @@ Try pressing shift only when the grey splash screen is displayed, rather than ho
 Alternatively, if you are unable to use either the GPIO or keyboard to trigger entering Recovery Mode, you can:
 
 1. Append `forcetrigger` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory.
-* Reboot.
+2. Reboot.
 
 Note that with this option enabled, the Recovery Mode will be displayed <b>every</b> time you boot from your PINN card (until you edit `recovery.cmdline` again).
 
@@ -732,14 +743,14 @@ In some rare cases, you may find that PINN incorrectly detects a `SHIFT` keypres
 To prevent a `SHIFT` keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot), you can:
 
 1. Append `keyboardtriggerdisable` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory.
-* Reboot.
+2. Reboot.
 
 ## How to enable using the GPIO to trigger entering Recovery Mode
 
 To force Recovery Mode to be entered on boot and to show the PINN interface, you normally press the `SHIFT` key during bootup. If you don't have a keyboard or the `SHIFT` keypress isn't being detected, you should complete the following steps to force the PINN interface to be displayed on boot:
 
 1. Append `gpiotriggerenable` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory.
-* Reboot.
+2. Reboot.
 
 To force Recovery Mode being entered on boot, connect GPIO pin 3 on header P1 to GND (pin 25). If GPIO pin 3 remains unconnected then it will boot through to the installed OS as normal.
 
@@ -748,7 +759,7 @@ To force Recovery Mode being entered on boot, connect GPIO pin 3 on header P1 to
 To boot into a basic busybox shell rather than launching the PINN GUI, you can *either*:
 
 1. Append `rescueshell` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory. Exiting from this shell will now enter the PINN recovery program.
-* Insert a physical jumper between pins 5 & 6 of GPIO header P1. If you have external hardware or an addon board connected to the GPIO header, you may find that pin 5 is being pulled low and accidentally triggering "Safe Mode". To prevent this, you can append `disablesafemode` to the argument list in the `recovery.cmdline` file (which is found in the root PINN directory).
+2. Insert a physical jumper between pins 5 & 6 of GPIO header P1. If you have external hardware or an addon board connected to the GPIO header, you may find that pin 5 is being pulled low and accidentally triggering "Safe Mode". To prevent this, you can append `disablesafemode` to the argument list in the `recovery.cmdline` file (which is found in the root PINN directory).
 
 ## Debug Information
 
