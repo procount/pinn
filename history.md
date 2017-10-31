@@ -5,6 +5,17 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V2.4.3
+
+A major change to the User Interface in preparation for some new features.
+
+- **3 Toolbars**      - Main Menu, Archival and Maintenance.
+- **OS Groups**       - OS lists are grouped into General, Minimal, Educational, Media and Gaming.
+- **Download OS**     - Download an OS to USB for local installation.
+- **Fsck**            - Check and fix your filesystems in case of error.
+- **Wipe Disk**       - delete all OSes and restore drive to full capacity.
+- **Info button**     - Go directly to the webpage of each OS.
+
 ### V2.4.2h
 
 - **Translations**    - udpate to Portugese + other translations

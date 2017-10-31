@@ -275,3 +275,14 @@ Added many translations from the community.
 - **Password**        - A new password will not expire
 - **Slideshow**       - Slides during installation are now scaled to be the same size.
 - **>1TB MSDs**       - Installing OSes to a USB Mass Storage Device > 1TB would fail. 2TB is the maximum size.
+
+### V2.4.3
+
+A major change to the User Interface in preparation for some new features.
+
+- **3 Toolbars**  - Main Menu, Archival and Maintenance.
+- **OS Groups**   - OS lists are grouped into General, Minimal, Educational, Media and Gaming.
+- **Download OS** - Download an OS to USB for local installation.
+- **Fsck**        - Check and fix your filesystems in case of error.
+- **Wipe Disk**   - delete all OSes and restore drive to full capacity.
+- **Info button** - Go directly to the webpage of each OS.
