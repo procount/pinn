@@ -1995,7 +1995,7 @@ void MainWindow::updateNeeded()
         }
     }
 
-    ui->actionWrite_image_to_disk->setEnabled(enableWrite && _partInited);
+    ui->actionWrite_image_to_disk->setEnabled(enableWrite);
     QPalette p = ui->neededLabel->palette();
     if (p.color(QPalette::WindowText) != colorNeededLabel)
     {
@@ -2024,7 +2024,7 @@ void MainWindow::updateNeeded()
         }
     }
 
-    ui->actionDownload->setEnabled(enableDownload && _partInited);
+    ui->actionDownload->setEnabled(enableDownload);
 
     p = ui->neededLabelUsb->palette();
     if (p.color(QPalette::WindowText) != colorNeededLabel)
@@ -2316,7 +2316,7 @@ void MainWindow::startImageWrite()
             foreach (QString tarball, tarballs)
             {
                 QVariantMap partition = partitions[i].toMap();
-                partition.insert("download", tarball); //change to download
+                partition.insert("tarball", tarball); //change to download
                 partitions[i] = partition;
                 i++;
             }
