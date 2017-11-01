@@ -89,6 +89,13 @@ For **Linux** users, we recommend `gparted` (or the command line version `parted
 - Download **[pinn-lite.zip](http://sourceforge.net/projects/pinn/files/pinn-lite.zip)** from [sourceforge](http://www.sourceforge.net/projects/pinn)
 - Extract the files from pinn-lite.zip file onto the SD card. (Windows built-in zip features may have trouble with this file. If so, use another program such as 7zip.) **In some cases, the files may be extracted into a folder. If this is the case, please copy the files from inside the folder rather than copying the folder itself.**
 
+## Using Etcher
+
+An alternative to unzipping the pinn-lite.zip file to a FAT32 formatted drive is to use the popular Etcher program 
+to burn an image directly to the SD card.
+
+The [pinn-lite.img.zip](http://sourceforge.net/projects/pinn/files/Etcher/pinn-lite.img.zip) image file you need to burn can be found on [sourceforge](http://www.sourceforge.net/projects/pinn) in the Etcher folder.
+
 ## Boot PINN on your PI
 - Put the PINN SD card into your Pi and boot it.
 - On first boot the "RECOVERY" FAT partition will be automatically resized to a minimum, so if you ever put your SD card back into a Windows machine it will look like a very small partition. THIS IS NORMAL.
@@ -768,6 +775,10 @@ PINN produces a debug log which can be helpful if something goes wrong. Please s
 ---
 
 # FAQ
+
+Q1. After using the Wipe Disk command, PINN will halt "Waiting for the settings partition" on next boot.
+
+A1. Sometimes the repartitioning will not satisfy all constraints and fails. In this case, add `runinstaller` to recovery.cmdline and reboot. This will cause PINN to repartition the card again for use by PINN.
 
 ---
 
