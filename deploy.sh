@@ -29,6 +29,7 @@ cp recovery* $dst
 cp riscos-boot.bin $dst
 cp RECOVERY_FILES_DO_NOT_EDIT $dst
 cp osGroupMap.json $dst
+cp ~/pinn-os/os/overrides.json $dst
 
 # Make amendments
 cp ~/pinn-release/recovery.cmdline $dst

@@ -9,18 +9,18 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ## Index
 
-* [Quick Start](#Quick-Start)
-* [PINN User Interface](#PINN-User-Interface)
-* [PINN Configuration](#PINN-Configuration)
-* [Installing OSes](#Installing-OSes)
-* [Booting an OS with PINN](#Booting-an-OS-with-PINN)
-* [Other Features](#Other-Features)
-* [Archival Menu](#Archival-Menu)
-* [Maintenance Menu](#Maintenance-Menu)
-* [Advanced Usage](#Advanced-Usage)
-* [Troubleshooting](#Troubleshooting)
-* [FAQ](#FAQ)
-* [How to Rebuild PINN](#How-to-Rebuild-PINN)
+* [Quick Start](#quick-start)
+* [PINN User Interface](#pinn-user-interface)
+* [PINN Configuration](#pinn-configuration)
+* [Installing OSes](#installing-oses)
+* [Booting an OS with PINN](#booting-an-os-with-pinn)
+* [Other Features](#other-features)
+* [Archival Menu](#archival-menu)
+* [Maintenance Menu](#maintenance-menu)
+* [Advanced Usage](#advanced-usage)
+* [Troubleshooting](#troubleshooting)
+* [FAQ](#faq)
+* [How to Rebuild PINN](#how-to-rebuild-pinn)
 
 # Introduction
 
