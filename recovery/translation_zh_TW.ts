@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -74,42 +74,42 @@
         <location filename="fullfatthread.cpp" line="39"/>
         <location filename="fullfatthread.cpp" line="47"/>
         <source>Mounting FAT partition</source>
-        <translation type="unfinished">正在掛載 FAT 分割區</translation>
+        <translation>正在掛載 FAT 分割區</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="50"/>
         <source>Error mounting system partition.</source>
-        <translation type="unfinished">掛載系統分割區時發生錯誤。</translation>
+        <translation>掛載系統分割區時發生錯誤。</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="62"/>
         <source>Error opening %1</source>
-        <translation type="unfinished">開啟 %1 時發生錯誤</translation>
+        <translation>開啟 %1 時發生錯誤</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="72"/>
         <source>Finish writing to disk (sync)</source>
-        <translation type="unfinished">寫入磁碟完成 (sync)</translation>
+        <translation>寫入磁碟完成 (sync)</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="85"/>
         <source>Error unmounting system partition.</source>
-        <translation type="unfinished">解除掛載系統分割區時發生錯誤。</translation>
+        <translation>解除掛載系統分割區時發生錯誤。</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="89"/>
         <source>Removing partitions 2,3,4</source>
-        <translation type="unfinished">正在移除分割區 2,3,4</translation>
+        <translation>正在移除分割區 2,3,4</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="103"/>
         <source>Resizing FAT partition</source>
-        <translation type="unfinished">正在調整 FAT 分割區的大小</translation>
+        <translation>正在調整 FAT 分割區的大小</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="127"/>
         <source>Error resizing existing FAT partition</source>
-        <translation type="unfinished">調整 FAT 分割區大小時發生錯誤</translation>
+        <translation>調整 FAT 分割區大小時發生錯誤</translation>
     </message>
 </context>
 <context>
@@ -330,7 +330,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="142"/>
         <source>Download space</source>
-        <translation type="unfinished"></translation>
+        <translation>下載空間</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="235"/>
@@ -366,42 +366,42 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="387"/>
         <source>More (m)</source>
-        <translation type="unfinished"></translation>
+        <translation>更多 (m)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="390"/>
         <source>More menus</source>
-        <translation type="unfinished"></translation>
+        <translation>更多選單</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="393"/>
         <source>M</source>
-        <translation type="unfinished"></translation>
+        <translation>M</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="486"/>
         <source>Download (d)</source>
-        <translation type="unfinished"></translation>
+        <translation>下載 (d)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="489"/>
         <source>Downloads the selected operating system image to USB for local installation</source>
-        <translation type="unfinished"></translation>
+        <translation>下載選定的作業系統映像檔到 USB 裝置中供本機安裝使用</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="492"/>
         <source>D</source>
-        <translation type="unfinished"></translation>
+        <translation>D</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="537"/>
         <source>Wipe (w)</source>
-        <translation type="unfinished"></translation>
+        <translation>抹除 (w)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="564"/>
         <source>Information about the installed OS</source>
-        <translation type="unfinished"></translation>
+        <translation>關於已安裝的作業系統的資訊</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="453"/>
@@ -411,7 +411,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="62"/>
         <source>Install space</source>
-        <translation type="unfinished"></translation>
+        <translation>安裝空間</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="471"/>
@@ -442,7 +442,7 @@ WARNING: This will erase all data on your SD card</oldsource>
         <location filename="mainwindow.ui" line="522"/>
         <source>fsck (f)</source>
         <oldsource>fschk (f)</oldsource>
-        <translation type="unfinished">fschk (f)</translation>
+        <translation>fsck (f)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="525"/>
@@ -488,18 +488,18 @@ WARNING: This will erase all data on your SD card</oldsource>
         <location filename="mainwindow.ui" line="435"/>
         <location filename="mainwindow.ui" line="561"/>
         <source>Info (n)</source>
-        <translation type="unfinished"></translation>
+        <translation>資訊 (n)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="438"/>
         <source>Information about the selected OS</source>
-        <translation type="unfinished"></translation>
+        <translation>關於選定作業系統的資訊</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="441"/>
         <location filename="mainwindow.ui" line="567"/>
         <source>N</source>
-        <translation type="unfinished"></translation>
+        <translation>N</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="456"/>
@@ -576,17 +576,17 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="367"/>
         <source>Main Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>主選單</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="368"/>
         <source>Archival</source>
-        <translation type="unfinished"></translation>
+        <translation>封存</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="369"/>
         <source>Maintenance</source>
-        <translation type="unfinished"></translation>
+        <translation>維護</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="382"/>
@@ -617,23 +617,24 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="813"/>
         <source>Warning: this will download the selected Operating System(s).</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：這將會下載選定的作業系統。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="879"/>
         <source>The download process will begin shortly.</source>
-        <translation type="unfinished"></translation>
+        <translation>很快就會開始下載。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="912"/>
         <source>OS(es) downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>作業系統已下載完成</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="913"/>
         <source>OS(es) Downloaded Successfully.
 Reboot PINN to take account of these OSes?</source>
-        <translation type="unfinished"></translation>
+        <translation>下載作業系統成功。
+重新啟動 PINN 以檢視這些作業系統？</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="918"/>
@@ -661,18 +662,18 @@ Reboot PINN to take account of these OSes?</source>
     <message>
         <location filename="mainwindow.cpp" line="1282"/>
         <source>Wiping SD card</source>
-        <translation type="unfinished"></translation>
+        <translation>抹除 SD 記憶卡</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1307"/>
         <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will restore your SD card to its initial state. All existing data on the SD card except PINN will be overwritten, including any OSes that are already installed.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>警告：這將會讓您的 PINN 磁碟復原到初始狀態。所有在磁碟上，除了 PINN 以外既有的資料都將會被覆寫，其中也包含任何您已安裝的作業系統。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1312"/>
         <source>Drive Wiped!</source>
-        <translation type="unfinished"></translation>
+        <translation>磁碟已抹除！</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1568"/>
@@ -682,7 +683,7 @@ Reboot PINN to take account of these OSes?</source>
     <message>
         <location filename="mainwindow.cpp" line="2156"/>
         <source>Error downloading meta file: </source>
-        <translation type="unfinished"></translation>
+        <translation>下載詮釋檔案錯誤： </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2471"/>
@@ -796,7 +797,9 @@ Would you like to make this setting permanent?</source>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：任何已安裝的系統都已經被抹除，磁碟也被還原到原始大小。
+安裝與下載在這個磁碟重新開機前都不會運作。
+再次於這個磁碟上開機將會恢復 PINN 的分割區結構。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1325"/>
@@ -859,7 +862,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="mainwindow.cpp" line="2249"/>
         <source>filesize error checking </source>
-        <translation type="unfinished"></translation>
+        <translation>檢查檔案大小錯誤 </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2654"/>
@@ -872,22 +875,22 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="multiimagedownloadthread.cpp" line="49"/>
         <source>Finish writing (sync)</source>
-        <translation type="unfinished">寫入完成 (sync)</translation>
+        <translation>寫入完成 (sync)</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="79"/>
         <source>File &apos;%1&apos; does not need downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>檔案「%1」不需要下載</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="113"/>
         <source>Error downloading or extracting tarball</source>
-        <translation type="unfinished">下載或解壓縮 tarball 時發生錯誤</translation>
+        <translation>下載或解壓縮 tarball 時發生錯誤</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="146"/>
         <source>Finished downloading %1</source>
-        <translation type="unfinished"></translation>
+        <translation>下載 %1 結束</translation>
     </message>
 </context>
 <context>
@@ -936,7 +939,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <location filename="multiimagewritethread.cpp" line="173"/>
         <location filename="multiimagewritethread.cpp" line="195"/>
         <source>Cannot boot partitions &gt; #62. Reduce the number of OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>無法在分割區上開機 &gt; #62. 減少作業系統的數量</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="224"/>
@@ -1080,32 +1083,32 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="osgroup.cpp" line="11"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>一般</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="12"/>
         <source>Media</source>
-        <translation type="unfinished"></translation>
+        <translation>媒體</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="13"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>遊戲</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="14"/>
         <source>Minimal</source>
-        <translation type="unfinished"></translation>
+        <translation>最小的</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="15"/>
         <source>Education</source>
-        <translation type="unfinished"></translation>
+        <translation>教育</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="16"/>
         <source>Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>已安裝</translation>
     </message>
 </context>
 <context>
@@ -1176,7 +1179,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="progressslideshowdialog.cpp" line="181"/>
         <source>%1 MB of %2 MB written (%3 MB/sec) Remaining: %4:%5:%6</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MB 在 %2 MB 中已寫入（%3 MB/秒）剩餘：%4:%5:%6</translation>
     </message>
     <message>
         <location filename="progressslideshowdialog.cpp" line="204"/>
@@ -1335,7 +1338,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="fscheck.ui" line="14"/>
         <source>File System Check</source>
-        <translation type="unfinished"></translation>
+        <translation>檔案系統檢查</translation>
     </message>
 </context>
 <context>
