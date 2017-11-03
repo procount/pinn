@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it" sourcelanguage="en">
+<TS version="2.1" language="it" sourcelanguage="en">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -74,42 +74,42 @@
         <location filename="fullfatthread.cpp" line="39"/>
         <location filename="fullfatthread.cpp" line="47"/>
         <source>Mounting FAT partition</source>
-        <translation type="unfinished">Montaggio partizione FAT</translation>
+        <translation>Montaggio partizione FAT</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="50"/>
         <source>Error mounting system partition.</source>
-        <translation type="unfinished">Errore montaggio partizione sistema.</translation>
+        <translation>Errore montaggio partizione sistema.</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="62"/>
         <source>Error opening %1</source>
-        <translation type="unfinished">Errore apertura %1</translation>
+        <translation>Errore apertura %1</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="72"/>
         <source>Finish writing to disk (sync)</source>
-        <translation type="unfinished">Completamento scrittura su disco (sincronizzazione)</translation>
+        <translation>Completamento scrittura su disco (sincronizzazione)</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="85"/>
         <source>Error unmounting system partition.</source>
-        <translation type="unfinished">Errore smontaggio partizione sistema.</translation>
+        <translation>Errore smontaggio partizione sistema.</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="89"/>
         <source>Removing partitions 2,3,4</source>
-        <translation type="unfinished">Rimozione partizioni 2,3,4</translation>
+        <translation>Rimozione partizioni 2,3,4</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="103"/>
         <source>Resizing FAT partition</source>
-        <translation type="unfinished">Ridmensionamento partizione FAT</translation>
+        <translation>Ridmensionamento partizione FAT</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="127"/>
         <source>Error resizing existing FAT partition</source>
-        <translation type="unfinished">Errore ridmensionamento partizione FAT</translation>
+        <translation>Errore ridmensionamento partizione FAT</translation>
     </message>
 </context>
 <context>
@@ -154,7 +154,7 @@
 WARNING: This will erase all data on your SD card</source>
         <oldsource>Would you like NOOBS to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
-        <translation type="unfinished">Vuoi che PINN ne crei una per te?
+        <translation>Vuoi che PINN ne crei una per te?
 ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     </message>
     <message>
@@ -176,7 +176,7 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
         <location filename="initdrivethread.cpp" line="190"/>
         <source>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</source>
         <oldsource>SD card has now been formatted ready for NOOBS installation. Please re-copy the NOOBS files onto the card and reboot</oldsource>
-        <translation type="unfinished">La scheda SD è stata formattata ed è pronta per l&apos;installazione di PINN. Ricopia i file PINN nella scheda SD e riavvia</translation>
+        <translation>La scheda SD è stata formattata ed è pronta per l&apos;installazione di PINN. Ricopia i file PINN nella scheda SD e riavvia</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="195"/>
@@ -330,7 +330,7 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.ui" line="142"/>
         <source>Download space</source>
-        <translation type="unfinished"></translation>
+        <translation>Soazio download</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="235"/>
@@ -366,42 +366,42 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.ui" line="387"/>
         <source>More (m)</source>
-        <translation type="unfinished"></translation>
+        <translation>Altro (m)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="390"/>
         <source>More menus</source>
-        <translation type="unfinished"></translation>
+        <translation>Altri menu</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="393"/>
         <source>M</source>
-        <translation type="unfinished"></translation>
+        <translation>M</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="486"/>
         <source>Download (d)</source>
-        <translation type="unfinished"></translation>
+        <translation>Download (D)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="489"/>
         <source>Downloads the selected operating system image to USB for local installation</source>
-        <translation type="unfinished"></translation>
+        <translation>Scarica le immagini dei sistemi operativi selezionati su USB per l&apos;installazione locale</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="492"/>
         <source>D</source>
-        <translation type="unfinished"></translation>
+        <translation>D</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="537"/>
         <source>Wipe (w)</source>
-        <translation type="unfinished"></translation>
+        <translation>Azzera (w)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="564"/>
         <source>Information about the installed OS</source>
-        <translation type="unfinished"></translation>
+        <translation>Informazioni sui SO installati</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="453"/>
@@ -411,7 +411,7 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.ui" line="62"/>
         <source>Install space</source>
-        <translation type="unfinished"></translation>
+        <translation>Spazio installazione</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="471"/>
@@ -442,7 +442,7 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
         <location filename="mainwindow.ui" line="522"/>
         <source>fsck (f)</source>
         <oldsource>fschk (f)</oldsource>
-        <translation type="unfinished">fschk (f)</translation>
+        <translation>fschk (f)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="525"/>
@@ -488,18 +488,18 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
         <location filename="mainwindow.ui" line="435"/>
         <location filename="mainwindow.ui" line="561"/>
         <source>Info (n)</source>
-        <translation type="unfinished"></translation>
+        <translation>Info (n)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="438"/>
         <source>Information about the selected OS</source>
-        <translation type="unfinished"></translation>
+        <translation>Informazioni sui sistemi operativi installati</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="441"/>
         <location filename="mainwindow.ui" line="567"/>
         <source>N</source>
-        <translation type="unfinished"></translation>
+        <translation>N</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="456"/>
@@ -600,17 +600,17 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.cpp" line="367"/>
         <source>Main Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Menu principale</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="368"/>
         <source>Archival</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivio</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="369"/>
         <source>Maintenance</source>
-        <translation type="unfinished"></translation>
+        <translation>Manutenzione</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="725"/>
@@ -636,23 +636,24 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.cpp" line="813"/>
         <source>Warning: this will download the selected Operating System(s).</source>
-        <translation type="unfinished"></translation>
+        <translation>Attenzione: verranno scaricati i sistemi operativi selezionati.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="879"/>
         <source>The download process will begin shortly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il download inizierà a breve.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="912"/>
         <source>OS(es) downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>SO scaricati</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="913"/>
         <source>OS(es) Downloaded Successfully.
 Reboot PINN to take account of these OSes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Download SO completato.
+Vuoi riavviare PINN per abilitare questi SO?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="918"/>
@@ -696,18 +697,18 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="mainwindow.cpp" line="1282"/>
         <source>Wiping SD card</source>
-        <translation type="unfinished"></translation>
+        <translation>Azzeramento scheda SD</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1307"/>
         <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will restore your SD card to its initial state. All existing data on the SD card except PINN will be overwritten, including any OSes that are already installed.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Attenzione: questo ripristinerà l&apos;unità PINN al suo stato iniziale. Tutti i dati esistenti nell&apos;unità, eccetto PINN, verranno sovrascritti incluso qualsiasi sistema operativo installato.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1312"/>
         <source>Drive Wiped!</source>
-        <translation type="unfinished"></translation>
+        <translation>Unità azzerata!</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1550"/>
@@ -734,7 +735,7 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="mainwindow.cpp" line="2156"/>
         <source>Error downloading meta file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Errore download file meta:</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2471"/>
@@ -821,7 +822,9 @@ Vuoi rendere questa impostazione permanente?</translation>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
-        <translation type="unfinished"></translation>
+        <translation>Attenzione: quaslasi sistema operativo verrà rimosso e l&apos;unità verrà ripristinata al suo stato iniziale.
+Installazione e download non saranno più disponibili fino a che l&apos;unità non sarà riavviata.
+Riavviando l&apos;unità verrà re-installata la struttura di PINN.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1975"/>
@@ -849,7 +852,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="mainwindow.cpp" line="2249"/>
         <source>filesize error checking </source>
-        <translation type="unfinished"></translation>
+        <translation>Errore verifica dimensione file</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2654"/>
@@ -874,22 +877,22 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="multiimagedownloadthread.cpp" line="49"/>
         <source>Finish writing (sync)</source>
-        <translation type="unfinished">Completamento scrittura (sync)</translation>
+        <translation>Completamento scrittura (sync)</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="79"/>
         <source>File &apos;%1&apos; does not need downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Il file &apos;%1&apos; non richiede il download</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="113"/>
         <source>Error downloading or extracting tarball</source>
-        <translation type="unfinished">Errore download od estrazione tarball</translation>
+        <translation>Errore download od estrazione tarball</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="146"/>
         <source>Finished downloading %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Download di %1 completato</translation>
     </message>
 </context>
 <context>
@@ -974,7 +977,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <location filename="multiimagewritethread.cpp" line="173"/>
         <location filename="multiimagewritethread.cpp" line="195"/>
         <source>Cannot boot partitions &gt; #62. Reduce the number of OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile avviare partizione &gt;#62. Riduci il numero dei SO</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="224"/>
@@ -1093,32 +1096,32 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="osgroup.cpp" line="11"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Generale</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="12"/>
         <source>Media</source>
-        <translation type="unfinished"></translation>
+        <translation>Media</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="13"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Giochi</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="14"/>
         <source>Minimal</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="15"/>
         <source>Education</source>
-        <translation type="unfinished"></translation>
+        <translation>Educativo</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="16"/>
         <source>Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>Installati</translation>
     </message>
 </context>
 <context>
@@ -1189,7 +1192,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="progressslideshowdialog.cpp" line="181"/>
         <source>%1 MB of %2 MB written (%3 MB/sec) Remaining: %4:%5:%6</source>
-        <translation type="unfinished"></translation>
+        <translation>Scritti %1 MB di %2 MB (%3 MB/sec) - rimangono: %4:%5:%6</translation>
     </message>
     <message>
         <location filename="progressslideshowdialog.cpp" line="204"/>
@@ -1348,7 +1351,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="fscheck.ui" line="14"/>
         <source>File System Check</source>
-        <translation type="unfinished"></translation>
+        <translation>Controllo file system</translation>
     </message>
 </context>
 <context>
