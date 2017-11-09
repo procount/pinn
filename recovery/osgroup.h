@@ -40,6 +40,7 @@ public:
 
     int count();
     QList<QListWidgetItem *> selectedItems();
+    QList<QListWidgetItem *> selectedInstalledItems();
     QList<QListWidgetItem *> allItems();
     QList<QListWidgetItem *> findItems ( const QString & text, Qt::MatchFlags flags ) const;
     void setDefaultItems(void);

@@ -65,6 +65,6 @@
         <file>icons/bullet_arrow_right.png</file>
         <file>icons/information.png</file>
         <file>icons/backup_wizard.png</file>
-        <file>icons/reject.png</file>
+        <file>icons/token_quantifier.png</file>
     </qresource>
 </RCC>

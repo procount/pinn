@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 /* Version number displayed in the title bar */
-#define VERSION_NUMBER "2.4.3a"
+#define VERSION_NUMBER "2.4.4"
 
 /* Color of the background */
 // #define BACKGROUND_COLOR  Qt::white
@@ -70,7 +70,7 @@
 #define RISCOS_BLOB_SECTOR_OFFSET  (1)
 
 /* Maximum number of partitions */
-#define MAXIMUM_PARTITIONS  32
+#define MAXIMUM_PARTITIONS  62
 
 #define DEFGROUP "General"
 

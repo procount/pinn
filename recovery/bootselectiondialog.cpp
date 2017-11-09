@@ -109,6 +109,15 @@ BootSelectionDialog::BootSelectionDialog(const QString &drive, const QString &de
          }
     }
 
+    QString cmdline = getFileContents("/proc/cmdline");
+    if (cmdline.contains("no_cursor"))
+    {
+        QApplication::setOverrideCursor(Qt::BlankCursor);
+#ifdef Q_WS_QWS
+        QWSServer::setCursorVisible( false );
+#endif
+    }
+
     if (ui->list->count() != 0)
     {
         // If default boot partition set then boot to that after 5 seconds
@@ -346,7 +355,7 @@ void BootSelectionDialog::setDisplayMode()
 
 bool BootSelectionDialog::eventFilter(QObject *obj, QEvent *event)
 {
-    qDebug() << event->type();
+    //qDebug() << event->type();
     if (event->type() == QEvent::KeyPress || event->type() == QEvent::MouseButtonPress || event->type() == QEvent::Enter)
     {
         stopCountdown();

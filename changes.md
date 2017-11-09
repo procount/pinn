@@ -286,3 +286,9 @@ A major change to the User Interface in preparation for some new features.
 - **Fsck**        - Check and fix your filesystems in case of error.
 - **Wipe Disk**   - delete all OSes and restore drive to full capacity.
 - **Info button** - Go directly to the webpage of each OS.
+
+### V2.4.3b
+
+- **Refresh**     - Refresh a single OS back to its default without affecting the other partitions
+- **no_update**   - disable PINN self-update (manual refesh of PINN available)
+- **Wipe**        - Moved the Wipe Disk command to the Archival toolbar

@@ -268,6 +268,22 @@ QList<QListWidgetItem *> OsGroup::allItems()
     return all;
 }
 
+QList<QListWidgetItem *> OsGroup::selectedInstalledItems()
+{
+    QList<QListWidgetItem *> selected;
+
+    for (int i=0; i < listInstalled->count(); i++)//ALL
+    {
+        QListWidgetItem *item = listInstalled->item(i); //ALL
+        if (item->checkState())
+        {
+            selected.append(item);
+        }
+    }
+    return selected;
+}
+
+
 QList<QListWidgetItem *> OsGroup::findItems ( const QString & text, Qt::MatchFlags flags ) const
 {
     QList<QListWidgetItem *> selected;

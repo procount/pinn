@@ -5,6 +5,8 @@
 
 The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn-lite.zip) can be downloaded from [sourceforge](http://www.sourceforge.net/projects/pinn).
 
+This README relates to v2.4.4
+
 <sup>(PINN is only available in one format that does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`)</sup>
 
 ## Index
@@ -108,9 +110,14 @@ The [pinn-lite.img.zip](http://sourceforge.net/projects/pinn/files/Etcher/pinn-l
 ## Self Update
 
 If PINN is connected to the Internet, it will check for the latest version available for download. If a newer version is available, a dialog box will pop up, showing the latest version number and the recent changes. You then have the option to cancel the update, download it, or ignore this version.
+
 If you cancel the update, the dialog box will keep popping up to remind you each time PINN starts.
+
 If you select "ignore", this version will be ignored and no dialogs will pop up again until another later version is released.
+
 If you choose to download this update, the zip file will be downloaded and will overwrite your current version of PINN. PINN will then reboot the RPi and restart PINN.
+
+It is possible to disable self-update checks by adding the `no_update` option to `recovery.cmdline`. In this case you will have to delete this option to enable self-updates again. Or you can manually check for updates at any time by choosing to `reinstall` the PINN item in the archival menu, but it must be the only item selected.
 
 ---
 
@@ -124,22 +131,23 @@ The PINN user interface is kept fairly simple, comprising a switchable toolbar o
 
 There are three toolbars:
 
-- **Main Menu**
-  - **Install**: Installs the selected OSes onto your SD card. Changing this selection erases all OSes that are currently installed.
-  - **Wifi**: configures the wifi.
-  - **Help**: [Networking Required] Opens a browser that displays the Raspberry Pi Help page (http://www.raspberrypi.org/help/), allowing people to quickly access help and troubleshooting information.
-  - **Info**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
-  - **Exit**: Quits PINN and reboots the Pi into the OS boot menu.
-- **Archival**
-  - **Download**: Downloads an OS for offline installation.
-  - **Clone SD**: Clones the SD to another card.
-  - **Info**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
-- **Maintenance**
-  - **Edit Config**: Opens a text editor, allowing the `cmdline` and `config` files for the selected installed OS to be edited.
-  - **Password**: Allows the password of an OS to be restored or replaced.
-  - **Fsck**: Checks the file systems on the partitions of the selected installed OSes.
-  - **Wipe**: Restores the drive to its original size and deletes all installed OSes.
-  - **Info**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
+- **[Main Menu](#main-os-list-window)**
+  - **[Install](#installing-oses)**: Installs the selected OSes onto your SD card. Changing this selection erases all OSes that are currently installed.
+  - **[Wifi](#wireless-wifi-networks)**: configures the wifi.
+  - **[Help](#online-help-via-web-browser)**: [Networking Required] Opens a browser that displays the Raspberry Pi Help page (http://www.raspberrypi.org/help/), allowing people to quickly access help and troubleshooting information.
+  - **[Info](#info-on-os)**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
+  - **[Exit](#exit)**: Quits PINN and reboots the Pi into the OS boot menu.
+- **[Archival](#archival-menu)**
+  - **[Download](#download)**: Downloads an OS for offline installation.
+  - **[Clone SD](#how-to-clone-an-sd-card)**: Clones the SD to another card.
+<!--  - **[Wipe](#wipe-the-drive)**: Restores the drive to its original size and deletes all installed OSes. -->
+  - **[Info](#info-on-os)**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
+- **[Maintenance](#maintenance-ment)**
+  - **[Edit Config](#easy-config-file-editor)**: Opens a text editor, allowing the `cmdline` and `config` files for the selected installed OS to be edited.
+  - **[Password](#how-to-recover-from-a-lost-password)**: Allows the password of an OS to be restored or replaced.
+  - **[Fsck](#how-to-check-an-os's-file-systems)**: Checks the file systems on the partitions of the selected installed OSes.
+  - **[Reinstall](#reinstall-individual-oses)**: Allows individual installed OSes to be reinstalled back to their original installation without affecting any of the other installed OSes.
+  - **[Info](#info-on-os)**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
 
 The `more` button can be used to cycle through the 3 toolbars.
 
@@ -267,7 +275,7 @@ PINN will also work in offline mode to install OSes from a USB memory device, or
 
 If a wired ethernet cable is plugged into the Pi before PINN starts, PINN will connect to your DHCP enabled router. This is the easiest way to access the Internet as it requires no configuration. PINN will connect to a remote download repository and present a list of available operating systems that are available for installation.
 
-### Wireless (WiFi) Networks
+### Wireless Wifi Networks
 
 If you have the official [Rapberry Pi USB wifi Dongle](https://www.raspberrypi.org/products/usb-wifi-dongle/), or are using the Raspberry Pi 3 Model B or Pi0W with built-in Wi-Fi, the Wi-Fi icon on the PINN toolbar will be available. Click on this to select your Wi-Fi SSID network and enter the Wi-Fi password. If the password is correct, you will soon be connected to the Internet and PINN will present a list of downloadable operating systems for you to install.
 
@@ -323,6 +331,8 @@ The following is a complete list of all the PINN options that can be added to th
 
 - **runinstaller**: This option is present when PINN is first installed to cause it to reformat the SD card. Once reformatted, PINN will delete this option. Manually adding it back in will cause PINN to reformat the SD card on next boot, losing any and all installed OSes, so be careful!
 
+- **no_update**: Prevents PINN from performing a self-update check on boot up. Use the `reinstall` option to manually check for updates on PINN.
+
 - **vncinstall**: Uses a VNC network connection to control PINN instead of any locally attached keyboard, mouse and display. When this is used, any local display will remain blank.
 
 - **vncshare**: Uses a VNC network connection to control PINN. However, unlike `vncinstall`, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.
@@ -361,7 +371,7 @@ The following is a complete list of all the PINN options that can be added to th
 
 - **no_group**: Prevents the list of OSes from being grouped into categories.
 
-- **no_cursor**: Prevents the cursor from being shown on the screen (requested for touchscreen devices)
+- **no_cursor**: Prevents the cursor from being shown on the boot selection dialog (requested for touchscreen devices)
 
 - **showall**: Shows all available installable OSes, whether they are suitable for the current model of Pi or not. Useful for preparing SD cards to be used in other RPis.
 
@@ -604,6 +614,15 @@ In this way, your existing data can be migrated to a smaller or larger SD card.
 
 _Note: that if you have installed multiple OSes using PINN, only the last partition of the last OS on the SD card will be resized._
 
+<!-- ## Wipe the Drive
+
+This option will wipe your drive of all installed OSes by deleting all the OS partitions and restore its capacity to full size by expanding the first partition to the whole disk size, 
+but PINN will remain on the card. This allows you to manually copy additional OS distribution files to the /os folder from a USB stick, for example.
+
+After wiping a drive, the Install and Download functions should no longer be used until the drive has been properly partitioned again since the drive is no longer in the correct format. 
+
+This function also adds the `runinstaller` option to the recovery.cmdline file, so on next boot of this card, the full PINN partition structure will be restored allowing OSes to be installed or downloaded again.
+-->
 ---
 
 # Maintenance Menu
@@ -649,15 +668,13 @@ To recover from a corrupted drive, PINN includes a file system check (fsck) opti
 
 ![alt text](screenshots/fsck.png "Checking OS filesystems")
 
-## Wipe the Drive
+## Reinstall Individual OSes
 
-This option will wipe your drive of all installed OSes by deleting all the OS partitions and restore its capacity to full size by expanding the first partition to the whole disk size, 
-but PINN will remain on the card. This allows you to manually copy additional OS distribution files to the /os folder from a USB stick, for example.
+The `install` function will install one or more OSes to your drive, allowing a multi-boot configuration. However, all selected OSes must be installed at the same time as it will repartition and format the drive prior to installing the OSes, thus wiping out any previous installations.
 
-After wiping a drive, the Install and Download buttons will no longer work since the drive is no longer in the correct format. 
+The `Reinstall` option gets around this by allowing individual installed OSes to be over-written with the latest version of the corresponding OS, leaving all other OSes intact. As it does not repartition the drive, the new OS must fit within the same partition sizes as the OS occupied the last time it was installed.
 
-This function also adds the `runinstaller` option to the recovery.cmdline file, so on next boot of this card, the full PINN partition structure will be restored allowing OSes to be installed or downloaded again.
-
+PINN itself is included in the list of installed OSes. If it is the ONLY OS to be selected, reinstalling it will perform a manual self-update check which is useful in the case where the `no_update` cmdline option has been used.
 
 ---
 

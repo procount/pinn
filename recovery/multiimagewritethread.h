@@ -14,8 +14,9 @@ class MultiImageWriteThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive,bool noobsconfig=false, QObject *parent = 0);
+    explicit MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive,bool noobsconfig=false, bool partition=true, QObject *parent = 0);
     void addImage(const QString &folder, const QString &flavour);
+    void addInstalledImage(const QString& folder, const QString& flavour, const QVariantMap& sParts);
 
 protected:
     virtual void run();
@@ -25,11 +26,13 @@ protected:
     void postInstallProcessConfigFile(const QString &sourcefolder, const QString &tarfile);
     QStringList parseQuotedString(const QString &tarfile, int args);
     bool addPartitionEntry(int sizeInSectors, int type, int specialOffset = 0);
+    QString shorten(QString example, int maxLabelLen);
+    QByteArray makeLabelUnique(QByteArray label, int maxLabelLen, const QByteArray &device = "");
     bool mkfs(const QByteArray &device, const QByteArray &fstype = "ext4", const QByteArray &label = "", const QByteArray &mkfsopt = "");
     bool dd(const QString &imagePath, const QString &device);
     bool partclone_restore(const QString &imagePath, const QString &device);
     bool untar(const QString &tarball);
-    bool isLabelAvailable(const QByteArray &label);
+    bool isLabelAvailable(const QByteArray &label, const QByteArray &device = "");
     QByteArray getLabel(const QString part);
     QByteArray getUUID(const QString part);
     void patchConfigTxt();
@@ -48,6 +51,7 @@ protected:
     QVariantList installed_os;
     bool _multiDrives;
     bool _noobsconfig;
+    bool _partition;
 
 signals:
     void error(const QString &msg);

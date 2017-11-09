@@ -19,6 +19,7 @@
 #include "ceclistener.h"
 #include "osgroup.h"
 #include "fscheck.h"
+#include "mydebug.h"
 
 #include <QByteArray>
 #include <QMessageBox>
@@ -44,6 +45,7 @@
 #include <QtNetwork/QNetworkInterface>
 #include <QtNetwork/QNetworkConfigurationManager>
 #include <QtDBus/QDBusConnection>
+#include <QVariantMap>
 #include <QHostInfo>
 
 #include <unistd.h>
@@ -108,7 +110,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     _qpd(NULL), _kcpos(0), _defaultDisplay(defaultDisplay),
     _silent(false), _allowSilent(false), _showAll(false), _fixate(false), _splash(splash), _settings(NULL),
     _hasWifi(false), _numInstalledOS(0), _devlistcount(0), _netaccess(NULL), _displayModeBox(NULL), _drive(drive),
-    _bootdrive(drive), _noobsconfig(noobsconfig), _numFilesToCheck(0), _bDownload(false)
+    _bootdrive(drive), _noobsconfig(noobsconfig), _numFilesToCheck(0), _eDownloadMode(MODE_INSTALL)
 
 {
     ui->setupUi(this);
@@ -155,13 +157,6 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     QString cmdline = getFileContents("/proc/cmdline");
     ug = new OsGroup(this, ui, !cmdline.contains("no_group"));
 
-    if (cmdline.contains("no_cursor"))
-    {
-        QApplication::setOverrideCursor(Qt::BlankCursor);
-#ifdef Q_WS_QWS
-        QWSServer::setCursorVisible( false );
-#endif
-    }
     ug->list->setIconSize(QSize(40,40)); //ALL?? set each list?
     connect(ug->list, SIGNAL(currentRowChanged(int)), this, SLOT(on_list_currentRowChanged(void)));
     connect(ug->list, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(on_list_doubleClicked(const QModelIndex&)));
@@ -177,11 +172,11 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     _ipaddress=QHostAddress();
 
     QRect s = QApplication::desktop()->screenGeometry();
-    int w = s.width()-100;
+    int w = s.width()-10;
     int h = s.height() - 100;
 
-    w =qMin(w,700);
-    h =qMin(h,500);
+    w =qMin(w,800);
+    h =qMin(h,600);
     resize(w,h);
 
     connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
@@ -718,9 +713,30 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder, bool in
 
 void MainWindow::on_actionWrite_image_to_disk_triggered()
 {
-    _bDownload = false;
+    _eDownloadMode = MODE_INSTALL;
 
-    QString warning = tr("Warning: this will install the selected Operating System(s). All existing data on the SD card will be overwritten, including any OSes that are already installed.");
+    bool allSupported = true;
+    QString unsupportedOses;
+    QString selectedOSes;
+
+    QList<QListWidgetItem *> selected = selectedItems();
+
+    /* Get list of all seelected OSes and see if any are unsupported */
+    foreach (QListWidgetItem *item, selected)
+    {
+        QVariantMap entry = item->data(Qt::UserRole).toMap();
+        QString name = entry.value("name").toString();
+        selectedOSes += "\n" + name;
+        if (!isSupportedOs(name, entry))
+        {
+            allSupported = false;
+            unsupportedOses += "\n" + name;
+        }
+    }
+
+    QString warning = tr("Warning: this will install the selected Operating System(s) to ")+_drive+tr(":")+
+            selectedOSes+
+            tr("\nAll existing data on the SD card will be overwritten, including any OSes that are already installed. Continue?");
     if (_drive != "mmcblk0")
         warning.replace(tr("SD card"), tr("drive"));
 
@@ -729,20 +745,6 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
                                         warning,
                                         QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
     {
-        /* See if any of the OSes are unsupported */
-        bool allSupported = true;
-        QString unsupportedOses;
-        QList<QListWidgetItem *> selected = selectedItems();
-        foreach (QListWidgetItem *item, selected)
-        {
-            QVariantMap entry = item->data(Qt::UserRole).toMap();
-            QString name = entry.value("name").toString();
-            if (!isSupportedOs(name, entry))
-            {
-                allSupported = false;
-                unsupportedOses += "\n" + name;
-            }
-        }
         if (_silent || allSupported || QMessageBox::warning(this,
                                         tr("Confirm"),
                                         tr("Warning: incompatible Operating System(s) detected. The following OSes aren't supported on this revision of Raspberry Pi and may fail to boot or function correctly:") + unsupportedOses,
@@ -794,9 +796,87 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
     }
 }
 
+void MainWindow::on_actionReinstall_triggered()
+{
+    _eDownloadMode = MODE_REINSTALL;
+    _numMetaFilesToDownload=0;
+
+    QString warning = tr("Warning: this will Reinstall the selected Operating System(s). The existing data will be deleted.");
+
+    if (QMessageBox::warning(this,
+                                        tr("Confirm"),
+                                        warning,
+                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+    {
+        {
+            setEnabled(false);
+            if (_networkStatusPollTimer.isActive())
+                _networkStatusPollTimer.stop();
+
+            QList<QListWidgetItem *> selected = ug->selectedInstalledItems();
+            foreach (QListWidgetItem *item, selected)
+            {
+
+                QVariantMap installedEntry = item->data(Qt::UserRole).toMap();
+                QString name = installedEntry.value("name").toString();
+
+                if (name=="PINN")
+                {
+                    if (selected.count()==1)
+                    {
+                        //Only check upgrades to PINN if it is the ONLY Os to be reinstalled
+                        //Because it causes a reboot
+                        checkForUpdates( true );
+                        return;
+                    }
+                    continue;   //Do not reinstall PINN - it's just a dummy os.
+                }
+
+                QListWidgetItem *witem = findItem(name);
+                if (witem)
+                {
+                    QVariantMap new_details = witem->data(Qt::UserRole).toMap();
+                    if (new_details.value("source").toString() == SOURCE_INSTALLED_OS)
+                    {
+                        onError(name + tr(" is not available.\nPlease provide it locally or connect to the internet."));
+                        return;
+                    }
+                }
+
+                //
+                if (!installedEntry.contains("folder"))
+                {
+                    QDir d;
+                    QString folder = "/settings/os/"+installedEntry.value("name").toString();
+                    folder.replace(' ', '_');
+                    if (!d.exists(folder))
+                        d.mkpath(folder);
+
+                    downloadMetaFile(installedEntry.value("os_info").toString(), folder+"/os.json");
+                    downloadMetaFile(installedEntry.value("partitions_info").toString(), folder+"/partitions.json");
+                    if (installedEntry.contains("marketing_info"))
+                        downloadMetaFile(installedEntry.value("marketing_info").toString(), folder+"/marketing.tar");
+
+                    if (installedEntry.contains("partition_setup"))
+                        downloadMetaFile(installedEntry.value("partition_setup").toString(), folder+"/partition_setup.sh");
+
+                    if (installedEntry.contains("icon"))
+                        downloadMetaFile(installedEntry.value("icon").toString(), folder+"/icon.png");
+                }
+            }
+
+            if (_numMetaFilesToDownload == 0)
+            {
+                /* All OSes selected are local */
+                startImageReinstall();
+            }
+        }
+    }
+}
+
 void MainWindow::on_actionDownload_triggered()
 {
-    _bDownload = true;
+    _eDownloadMode = MODE_DOWNLOAD;
 
     //@@ maybe here decide if to download to /mnt or /settings and only mount that one rw
 
@@ -897,7 +977,7 @@ void MainWindow::onCompleted()
     _qpd->hide();
     _piDrivePollTimer.start(POLLTIME);
     QSettings settings("/settings/noobs.conf", QSettings::IniFormat, this);
-    if (!_bDownload)
+    if (_eDownloadMode == MODE_INSTALL)
     {
         settings.setValue("default_partition_to_boot", "800");
         settings.remove("sticky_boot");
@@ -906,7 +986,7 @@ void MainWindow::onCompleted()
 
     if (!_silent)
     {
-        if (_bDownload)
+        if (_eDownloadMode==MODE_DOWNLOAD)
         {
             ret = QMessageBox::information(this,
                                      tr("OS(es) downloaded"),
@@ -921,9 +1001,10 @@ void MainWindow::onCompleted()
     }
     _qpd->deleteLater();
     _qpd = NULL;
-    if (_bDownload)
+    if (_eDownloadMode==MODE_DOWNLOAD)
     {
         setEnabled(true);
+        show();
 
         if (ret == QMessageBox::Ok)
         {
@@ -941,7 +1022,13 @@ void MainWindow::onCompleted()
         }
     }
 
-    close();
+    if (_eDownloadMode == MODE_REINSTALL)
+    {
+        setEnabled(true);
+        show();
+    }
+    if (_eDownloadMode == MODE_INSTALL)
+        close();
 }
 
 void MainWindow::onError(const QString &msg)
@@ -960,35 +1047,11 @@ void MainWindow::onQuery(const QString &msg, const QString &title, QMessageBox::
     *answer = QMessageBox::question(this, title, msg, QMessageBox::Yes|QMessageBox::No);
 }
 
+
+
 void MainWindow::on_list_currentRowChanged()
 {
-    //For the INSTALLED list...
-    QListWidgetItem *item = ug->listInstalled->currentItem();
-    if (ug->listInstalled->count() && !item)
-    {
-        item = ug->listInstalled->item(0);
-        ug->listInstalled->setCurrentItem(item);
-    }
-    //item may still be NULL
-    //Only need to make sure item is not null, since any item here is already installed    ?
-    ui->actionEdit_config->setEnabled(item);
-    ui->actionPassword->setEnabled(item);
-
-    ui->actionInfoInstalled->setEnabled(item && item->data(Qt::UserRole).toMap().contains("url"));
-    ui->actionFschk->setEnabled(item);
-
-    //For the normal list...
-    item = ug->list->currentItem();
-    if (ug->list->count() && !item)
-    {
-        item = ug->list->item(0);
-        ug->list->setCurrentItem(item);
-    }
-    ui->actionInfo->setEnabled(item && item->data(Qt::UserRole).toMap().contains("url"));
-    //others...
-
-    if (_menuLabel)
-        _menuLabel->setText(menutext(toolbar_index));
+    updateActions();
 }
 
 void MainWindow::update_window_title()
@@ -1474,7 +1537,11 @@ void MainWindow::onOnlineStateChanged(bool online)
             QNetworkConfigurationManager manager;
             _netaccess->setConfiguration(manager.defaultConfiguration());
 
-            checkForUpdates();
+            QString cmdline = getFileContents("/proc/cmdline");
+            if (!cmdline.contains("no_update"))
+                checkForUpdates();
+            else
+                qDebug()<<"Skipping self update check";
 
             downloadRepoList(repoList);
         }
@@ -2038,9 +2105,43 @@ void MainWindow::updateNeeded()
 
 }
 
+void MainWindow::updateActions()
+{
+    //For the INSTALLED list...
+    QListWidgetItem *item = ug->listInstalled->currentItem();
+    if (ug->listInstalled->count() && !item)
+    {
+        item = ug->listInstalled->item(0);
+        ug->listInstalled->setCurrentItem(item);
+    }
+    //item may still be NULL
+    //Only need to make sure item is not null, since any item here is already installed    ?
+    ui->actionEdit_config->setEnabled(item);
+    ui->actionPassword->setEnabled(item);
+    ui->actionInfoInstalled->setEnabled(item && item->data(Qt::UserRole).toMap().contains("url"));
+
+    QList<QListWidgetItem *> select = ug->selectedInstalledItems();
+    ui->actionFschk->setEnabled( select.count() );
+    ui->actionReinstall->setEnabled( select.count() );
+
+    //For the normal list...
+    item = ug->list->currentItem();
+    if (ug->list->count() && !item)
+    {
+        item = ug->list->item(0);
+        ug->list->setCurrentItem(item);
+    }
+    ui->actionInfo->setEnabled(item && item->data(Qt::UserRole).toMap().contains("url"));
+    //others...
+
+    if (_menuLabel)
+        _menuLabel->setText(menutext(toolbar_index));
+}
+
 void MainWindow::on_list_itemChanged(QListWidgetItem *)
 {
     updateNeeded();
+    updateActions();
 }
 
 void MainWindow::downloadMetaFile(const QString &urlstring, const QString &saveAs)
@@ -2078,8 +2179,6 @@ void MainWindow::downloadListRedirectCheck()
 
 	qDebug() << "Time set to: " << parsedDate;
     }
-
-
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
@@ -2125,6 +2224,7 @@ void MainWindow::downloadMetaRedirectCheck()
 
 void MainWindow::downloadMetaComplete()
 {
+
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
@@ -2156,7 +2256,7 @@ void MainWindow::downloadMetaComplete()
             error = tr("Error downloading meta file: ")+reply->url().toString();
             qDebug() << error;
 
-            if (_bDownload)
+            if (_eDownloadMode == MODE_DOWNLOAD)
             {   //Create an error file to prevent this download, but keep going for others
                 QFileInfo finfo(saveAs);
                 QString path = finfo.path() + QString("/error.log");
@@ -2196,8 +2296,10 @@ void MainWindow::downloadMetaComplete()
             _qpd->deleteLater();
             _qpd = NULL;
         }
-        if (_bDownload)
+        if (_eDownloadMode == MODE_DOWNLOAD)
             startImageDownload();
+        else if (_eDownloadMode == MODE_REINSTALL)
+            startImageReinstall();
         else
             startImageWrite();
     }
@@ -2354,6 +2456,90 @@ void MainWindow::startImageWrite()
     hide();
     _qpd->exec();
 }
+
+void MainWindow::startImageReinstall()
+{
+    _piDrivePollTimer.stop();
+    /* All meta files downloaded, extract slides tarball, and launch image writer thread */
+    MultiImageWriteThread *imageWriteThread = new MultiImageWriteThread(_bootdrive, _drive, _noobsconfig, false);
+    QString folder, slidesFolder;
+    QStringList slidesFolders;
+
+    QList<QListWidgetItem *> selected = ug->selectedInstalledItems();
+    foreach (QListWidgetItem * item, selected)
+    {
+        QVariantMap entry = item->data(Qt::UserRole).toMap();
+
+        //qDebug() <<entry;
+
+        if (entry.value("name")=="PINN")
+        {
+            continue;   //Do not reinstall PINN - it's just a dummy os.
+        }
+
+        if (entry.contains("folder"))
+        {
+            /* Local image */
+            folder = entry.value("folder").toString();
+        }
+        else
+        {
+            folder = "/settings/os/"+entry.value("name").toString();
+            folder.replace(' ', '_');
+
+            QString marketingTar = folder+"/marketing.tar";
+            if (QFile::exists(marketingTar))
+            {
+                /* Extract tarball with slides */
+                QProcess::execute("tar xf "+marketingTar+" -C "+folder);
+                QFile::remove(marketingTar);
+            }
+
+            /* Insert tarball download URL information into partition_info.json */
+            QVariantMap json = Json::loadFromFile(folder+"/partitions.json").toMap();
+            QVariantList partitions = json["partitions"].toList();
+            int i=0;
+            QStringList tarballs = entry.value("tarballs").toStringList();
+            foreach (QString tarball, tarballs)
+            {
+                QVariantMap partition = partitions[i].toMap();
+                partition.insert("tarball", tarball); //change to download
+                partitions[i] = partition;
+                i++;
+            }
+            json["partitions"] = partitions;
+            Json::saveToFile(folder+"/partitions.json", json);
+        }
+
+        slidesFolder.clear();
+        if (QFile::exists(folder+"/slides_vga"))
+        {
+            slidesFolder = folder+"/slides_vga";
+        }
+
+        //qDebug() << "@@@@ " << entry;
+        imageWriteThread->addInstalledImage(folder, entry.value("name").toString(), entry); //@@
+
+        if (!slidesFolder.isEmpty())
+            slidesFolders.append(slidesFolder);
+    }
+    if (slidesFolders.isEmpty())
+        slidesFolder.append("/mnt/defaults/slides");
+
+    _qpd = new ProgressSlideshowDialog(slidesFolders, "", 20, _drive, this);
+    _qpd->setWindowTitle("Installing Images");
+    connect(imageWriteThread, SIGNAL(parsedImagesize(qint64)), _qpd, SLOT(setMaximum(qint64)));
+    connect(imageWriteThread, SIGNAL(completed()), this, SLOT(onCompleted()));
+    connect(imageWriteThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
+    connect(imageWriteThread, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
+    connect(imageWriteThread, SIGNAL(runningMKFS()), _qpd, SLOT(pauseIOaccounting()), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(finishedMKFS()), _qpd , SLOT(resumeIOaccounting()), Qt::BlockingQueuedConnection);
+    imageWriteThread->start();
+    hide();
+    _qpd->exec();
+
+}
+
 
 void MainWindow::startImageDownload()
 {
@@ -2924,8 +3110,9 @@ void MainWindow::on_actionPassword_triggered()
     }
 }
 
-void MainWindow::checkForUpdates()
+void MainWindow::checkForUpdates(bool display)
 {
+    _bdisplayUpdate = display;
     _numBuildsToDownload=0;
     downloadUpdate(BUILD_URL,  "BUILD|" BUILD_NEW);
     downloadUpdate(README_URL, "README|" README_NEW);
@@ -2993,6 +3180,10 @@ void MainWindow::downloadUpdateComplete()
         else
         {
             _numBuildsToDownload--;
+            if (_bdisplayUpdate && type =="BUILD")
+            {
+                QMessageBox::information(this, tr("PINN Update Check"), tr("Error contacting update server"), QMessageBox::Close);
+            }
         }
         setEnabled(true);
         return;
@@ -3077,6 +3268,10 @@ void MainWindow::downloadUpdateComplete()
         if (newver > currentver)
         {
             on_newVersion();
+        }
+        else if (_bdisplayUpdate)
+        {
+            QMessageBox::information(this, tr("PINN Update Check"), tr("No updates available"), QMessageBox::Close);
         }
     }
 }

@@ -66,6 +66,13 @@ protected:
     QLabel *_checkLabel;
     QProcess * _pbackground;
     int _numFilesToCheck;
+    bool _bdisplayUpdate;
+
+    enum ModeTag {
+        MODE_INSTALL=0,
+        MODE_DOWNLOAD,
+        MODE_REINSTALL
+    } _eDownloadMode;
 
     QMap<QString,QVariantMap> listImages(const QString &folder = "/mnt/os", bool includeInstalled = true);
 
@@ -92,13 +99,15 @@ protected:
     QListWidgetItem *findItem(const QVariant &name);
     QList<QListWidgetItem *> selectedItems();
     void updateNeeded();
+    void updateActions();
     void downloadMetaFile(const QString &url, const QString &saveAs);
     void downloadIcon(const QString &urlstring, const QString &originalurl);
     void downloadList(const QString &urlstring);
     void downloadLists();
-    void checkForUpdates(void);
+    void checkForUpdates(bool display = false);
     void downloadUpdate(const QString &urlstring, const QString &saveAs);
     void startImageWrite();
+    void startImageReinstall();
     bool canInstallOs(const QString &name, const QVariantMap &values);
     bool isSupportedOs(const QString &name, const QVariantMap &values);
     void addImagesFromUSB(const QString &device);
@@ -156,24 +165,26 @@ protected slots:
 private slots:
     /* UI events */
     void on_actionWrite_image_to_disk_triggered();
+    void on_actionReinstall_triggered();
     void on_actionCancel_triggered();
-    void on_list_currentRowChanged();
     void on_actionAdvanced_triggered();
-    void on_actionEdit_config_triggered();
     void on_actionBrowser_triggered();
-    void on_list_doubleClicked(const QModelIndex &index);
-    void on_list_itemChanged(QListWidgetItem *item);
     void on_actionWifi_triggered();
     void on_actionPassword_triggered();
-    void on_targetCombo_currentIndexChanged(int index);
-    void on_targetComboUsb_currentIndexChanged(int index);
+    void on_actionEdit_config_triggered();
     void on_actionClone_triggered();
     void on_actionInfo_triggered();
     void on_actionInfoInstalled_triggered();
     void on_actionDownload_triggered();//@@download
     void on_actionWipe_triggered();
-    //@@download void on_targetComboUsb_currentIndexChanged(int index);
     void on_actionFschk_triggered();
+
+    void on_list_currentRowChanged();
+    void on_list_doubleClicked(const QModelIndex &index);
+    void on_list_itemChanged(QListWidgetItem *item);
+
+    void on_targetCombo_currentIndexChanged(int index);
+    void on_targetComboUsb_currentIndexChanged(int index);
 
 signals:
     void networkUp();

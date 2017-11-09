@@ -22,9 +22,7 @@
    <property name="focusPolicy">
     <enum>Qt::NoFocus</enum>
    </property>
-
    <layout class="QGridLayout" name="gridLayout_2">
-
     <item row="0" column="0">
      <widget class="QListWidget" name="list">
       <property name="font">
@@ -37,7 +35,6 @@
       </property>
      </widget>
     </item>
-
     <item row="1" column="0">
      <widget class="QGroupBox" name="groupBox">
       <property name="sizePolicy">
@@ -66,7 +63,7 @@
         <widget class="QLabel" name="targetLabel">
          <property name="maximumSize">
           <size>
-           <width>100</width>
+           <width>120</width>
            <height>16777215</height>
           </size>
          </property>
@@ -114,7 +111,6 @@
       </layout>
      </widget>
     </item>
-
     <item row="2" column="0">
      <widget class="QGroupBox" name="groupBoxUsb">
       <property name="sizePolicy">
@@ -146,7 +142,7 @@
         <widget class="QLabel" name="targetLabelUsb">
          <property name="maximumSize">
           <size>
-           <width>100</width>
+           <width>120</width>
            <height>16777215</height>
           </size>
          </property>
@@ -188,10 +184,7 @@
       </layout>
      </widget>
     </item>
-
-
    </layout>
-
   </widget>
   <widget class="QToolBar" name="toolBar_1">
    <property name="focusPolicy">
@@ -303,7 +296,7 @@
    <addaction name="actionEdit_config"/>
    <addaction name="actionPassword"/>
    <addaction name="actionFschk"/>
-   <addaction name="actionWipe"/>
+   <addaction name="actionReinstall"/>
    <addaction name="actionInfoInstalled"/>
   </widget>
   <widget class="QToolBar" name="advToolBar">
@@ -510,6 +503,24 @@
     <bool>false</bool>
    </property>
   </action>
+  <action name="actionReinstall">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/token_quantifier.png</normaloff>:/icons/token_quantifier.png</iconset>
+   </property>
+   <property name="text">
+    <string>Reinstall (r)</string>
+   </property>
+   <property name="shortcut">
+    <string>R</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
   <action name="actionFschk">
    <property name="enabled">
     <bool>true</bool>
@@ -529,6 +540,9 @@
    </property>
   </action>
   <action name="actionWipe">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="icons.qrc">
      <normaloff>:/icons/reject.png</normaloff>:/icons/reject.png</iconset>

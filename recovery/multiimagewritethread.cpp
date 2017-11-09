@@ -8,6 +8,7 @@
 #include <QDir>
 #include <QFile>
 #include <QDebug>
+#include <QMessageBox>
 #include <QProcess>
 #include <QProcessEnvironment>
 #include <QSettings>
@@ -20,8 +21,10 @@
 #include <sys/ioctl.h>
 #include <QtEndian>
 
-MultiImageWriteThread::MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive, bool noobsconfig, QObject *parent) :
-    QThread(parent), _drive(rootdrive), _bootdrive(bootdrive), _extraSpacePerPartition(0), _part(5), _noobsconfig(noobsconfig)
+QString readexec(int log, const QString& cmd, int & errorcode);
+
+MultiImageWriteThread::MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive, bool noobsconfig, bool partition, QObject *parent) :
+    QThread(parent), _drive(rootdrive), _bootdrive(bootdrive), _extraSpacePerPartition(0), _part(5), _noobsconfig(noobsconfig), _partition(partition)
 {
     QDir dir;
     _multiDrives = (bootdrive != rootdrive);
@@ -36,279 +39,319 @@ void MultiImageWriteThread::addImage(const QString &folder, const QString &flavo
     //_images.insert(folder, flavour);
 }
 
+void MultiImageWriteThread::addInstalledImage(const QString &folder, const QString &flavour, const QVariantMap &entry)
+{
+    OsInfo * pInfo = new OsInfo(folder, flavour, this);
+    QList<PartitionInfo *> * tParts = pInfo->partitions();
+
+    QVariantList list = entry.value("partitions").toList(); //of QVariant Strings
+    int i=0;
+    foreach (PartitionInfo *partition, *tParts)
+    {
+        partition->setPartitionDevice( list[i].toByteArray() );
+        i++;
+    }
+    _images.append(pInfo);
+}
+
 void MultiImageWriteThread::run()
 {
-    /* Calculate space requirements, and check special requirements */
-    uint totalnominalsize = 0, totaluncompressedsize = 0, numparts = 0, numexpandparts = 0;
-    uint startSector = getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toUInt()
-                    + getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toUInt();
-    uint totalSectors = getFileContents(sysclassblock(_drive)+"/size").trimmed().toUInt();
-    uint availableMB = (totalSectors-startSector)/2048;
-    /* key: partition number, value: partition information */
-    QMap<int, PartitionInfo *> partitionMap, bootPartitionMap;
-
-    foreach (OsInfo *image, _images)
+    if (_partition)
     {
-        QList<PartitionInfo *> *partitions = image->partitions();
-        if (partitions->isEmpty())
+        /* Calculate space requirements, and check special requirements */
+        uint totalnominalsize = 0, totaluncompressedsize = 0, numparts = 0, numexpandparts = 0;
+        uint startSector = getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toUInt()
+                        + getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toUInt();
+        uint totalSectors = getFileContents(sysclassblock(_drive)+"/size").trimmed().toUInt();
+        uint availableMB = (totalSectors-startSector)/2048;
+        /* key: partition number, value: partition information */
+        QMap<int, PartitionInfo *> partitionMap, bootPartitionMap;
+
+        foreach (OsInfo *image, _images)
         {
-            emit error(tr("partitions.json invalid"));
+            QList<PartitionInfo *> *partitions = image->partitions();
+            if (partitions->isEmpty())
+            {
+                emit error(tr("partitions.json invalid"));
+                return;
+            }
+
+            if (nameMatchesRiscOS( image->folder() ))
+            {
+                /* Check the riscos_offset in os.json matches what we're expecting.
+                   In theory we shouldn't hit either of these errors because the invalid RISC_OS
+                   should have been filtered out already (not added to OS-list) in mainwindow.cpp */
+                if (image->riscosOffset())
+                {
+                    if (image->riscosOffset() != RISCOS_OFFSET)
+                    {
+                        emit error(tr("RISCOS cannot be installed. RISCOS offset value mismatch."));
+                        return;
+                    }
+                }
+                else
+                {
+                    emit error(tr("RISCOS cannot be installed. RISCOS offset value missing."));
+                    return;
+                }
+                if (startSector > RISCOS_SECTOR_OFFSET-2048)
+                {
+                    emit error(tr("RISCOS cannot be installed. Size of recovery partition too large."));
+                    return;
+                }
+
+                totalnominalsize += (RISCOS_SECTOR_OFFSET - startSector)/2048;
+
+                partitions->first()->setRequiresPartitionNumber(6);
+                partitions->first()->setOffset(RISCOS_SECTOR_OFFSET);
+                partitions->last()->setRequiresPartitionNumber(7);
+            }
+
+            foreach (PartitionInfo *partition, *partitions)
+            {
+                numparts++;
+                if ( partition->wantMaximised() )
+                    numexpandparts++;
+                totalnominalsize += partition->partitionSizeNominal();
+                totaluncompressedsize += partition->uncompressedTarballSize();
+                if (partition->fsType() == "ext4")
+                {
+                    totaluncompressedsize += /*0.035*/ 0.01 * totalnominalsize; /* overhead for file system meta data */
+                }
+                int reqPart = partition->requiresPartitionNumber();
+                if (reqPart)
+                {
+                    if (partitionMap.contains(reqPart))
+                    {
+                        emit error(tr("More than one operating system requires partition number %1").arg(reqPart));
+                        return;
+                    }
+                    if (reqPart == 1 || reqPart == 5)
+                    {
+                        emit error(tr("Operating system cannot require a system partition (1,5)"));
+                        return;
+                    }
+                    if ((reqPart == 2 && partitionMap.contains(4)) || (reqPart == 4 && partitionMap.contains(2)))
+                    {
+                        emit error(tr("Operating system cannot claim both primary partitions 2 and 4"));
+                        return;
+                    }
+
+                    partition->setPartitionDevice(partdev(_drive, reqPart));
+                    partitionMap.insert(reqPart, partition);
+                }
+
+                /* Maximum overhead per partition for alignment */
+    #ifdef SHRINK_PARTITIONS_TO_MINIMIZE_GAPS
+                if (partition->wantMaximised() || (partition->partitionSizeNominal()*2048) % PARTITION_ALIGNMENT != 0)
+                    totalnominalsize += PARTITION_ALIGNMENT/2048;
+    #else
+                totalnominalsize += PARTITION_ALIGNMENT/2048;
+    #endif
+            }
+        }
+
+        if (numexpandparts)
+        {
+            /* Extra spare space available for partitions that want to be expanded */
+            _extraSpacePerPartition = (availableMB-totalnominalsize)/numexpandparts;
+        }
+
+        emit parsedImagesize(qint64(totaluncompressedsize)*1024*1024);
+
+        if (totalnominalsize > availableMB)
+        {
+            emit error(tr("Not enough disk space. Need %1 MB, got %2 MB").arg(QString::number(totalnominalsize), QString::number(availableMB)));
             return;
         }
 
-        if (nameMatchesRiscOS( image->folder() ))
+        /* Assign logical partition numbers to partitions that did not reserve a special number */
+        int pnr, bootpnr;
+        uint offset = 0;
+        if (partitionMap.isEmpty())
+            pnr = 6;
+        else
+            pnr = qMax(partitionMap.keys().last(), 5)+1;
+
+        if (_multiDrives)
         {
-            /* Check the riscos_offset in os.json matches what we're expecting.
-               In theory we shouldn't hit either of these errors because the invalid RISC_OS
-               should have been filtered out already (not added to OS-list) in mainwindow.cpp */
-            if (image->riscosOffset())
+            bootpnr = 6;
+            offset = getFileContents(sysclassblock(_bootdrive, 5)+"/start").trimmed().toUInt()
+                   + getFileContents(sysclassblock(_bootdrive, 5)+"/size").trimmed().toUInt();
+        }
+
+        foreach (OsInfo *image, _images)
+        {
+            foreach (PartitionInfo *partition, *(image->partitions()))
             {
-                if (image->riscosOffset() != RISCOS_OFFSET)
+                if (!partition->requiresPartitionNumber())
                 {
-                    emit error(tr("RISCOS cannot be installed. RISCOS offset value mismatch."));
+                    if (_multiDrives && partition->bootable() && !partition->wantMaximised() )
+                    {
+                        if (bootpnr >=63 )
+                        {
+                            emit error(tr("Cannot boot partitions > 62. Reduce the number of OSes"));
+                            return;
+                        }
+                        bootPartitionMap.insert(bootpnr, partition);
+                        partition->setPartitionDevice(partdev(_bootdrive, bootpnr));
+                        bootpnr++;
+                        offset += PARTITION_GAP;
+
+                        /* Align at 4 MiB offset */
+                        if (offset % PARTITION_ALIGNMENT != 0)
+                        {
+                                offset += PARTITION_ALIGNMENT-(offset % PARTITION_ALIGNMENT);
+                        }
+                        partition->setOffset(offset);
+                        uint partsizeSectors = partition->partitionSizeNominal() * 2048;
+                        partition->setPartitionSizeSectors(partsizeSectors);
+                        offset += partsizeSectors;
+                    }
+                    else
+                    {
+                        if (partition->bootable() && pnr >=63 )
+                        {
+                            emit error(tr("Cannot boot partitions > #62. Reduce the number of OSes"));
+                            return;
+                        }
+                        partitionMap.insert(pnr, partition);
+                        partition->setPartitionDevice(partdev(_drive, pnr));
+                        pnr++;
+                    }
+                }
+            }
+        }
+
+        /* Set partition starting sectors and sizes.
+         * First allocate space to all logical partitions, then to primary partitions */
+        QList<PartitionInfo *> log_before_prim = partitionMap.values();
+        if (!log_before_prim.isEmpty() && log_before_prim.first()->requiresPartitionNumber() == 2)
+            log_before_prim.push_back(log_before_prim.takeFirst());
+        if (!log_before_prim.isEmpty() && log_before_prim.first()->requiresPartitionNumber() == 3)
+            log_before_prim.push_back(log_before_prim.takeFirst());
+        if (!log_before_prim.isEmpty() && log_before_prim.first()->requiresPartitionNumber() == 4)
+            log_before_prim.push_back(log_before_prim.takeFirst());
+
+        offset = startSector;
+
+        foreach (PartitionInfo *p, log_before_prim)
+        {
+            if (p->offset()) /* OS wants its partition at a fixed offset */
+            {
+                if (p->offset() <= offset)
+                {
+                    emit error(tr("Fixed partition offset too low"));
                     return;
+                }
+
+                offset = p->offset();
+            }
+            else
+            {
+                offset += PARTITION_GAP;
+                /* Align at 4 MiB offset */
+                if (offset % PARTITION_ALIGNMENT != 0)
+                {
+                        offset += PARTITION_ALIGNMENT-(offset % PARTITION_ALIGNMENT);
+                }
+
+                p->setOffset(offset);
+            }
+
+            uint partsizeMB = p->partitionSizeNominal();
+            if ( p->wantMaximised() )
+                partsizeMB += _extraSpacePerPartition;
+            uint partsizeSectors = partsizeMB * 2048;
+
+            if (p == log_before_prim.last())
+            {
+                /* Let last partition have any remaining space that we couldn't divide evenly */
+                uint spaceleft = totalSectors - offset - partsizeSectors;
+
+                if (spaceleft > 0 && p->wantMaximised())
+                {
+                    partsizeSectors += spaceleft;
                 }
             }
             else
             {
-                emit error(tr("RISCOS cannot be installed. RISCOS offset value missing."));
-                return;
-            }
-            if (startSector > RISCOS_SECTOR_OFFSET-2048)
-            {
-                emit error(tr("RISCOS cannot be installed. Size of recovery partition too large."));
-                return;
-            }
-
-            totalnominalsize += (RISCOS_SECTOR_OFFSET - startSector)/2048;
-
-            partitions->first()->setRequiresPartitionNumber(6);
-            partitions->first()->setOffset(RISCOS_SECTOR_OFFSET);
-            partitions->last()->setRequiresPartitionNumber(7);
-        }
-
-        foreach (PartitionInfo *partition, *partitions)
-        {
-            numparts++;
-            if ( partition->wantMaximised() )
-                numexpandparts++;
-            totalnominalsize += partition->partitionSizeNominal();
-            totaluncompressedsize += partition->uncompressedTarballSize();
-            if (partition->fsType() == "ext4")
-            {
-                totaluncompressedsize += /*0.035*/ 0.01 * totalnominalsize; /* overhead for file system meta data */
-            }
-            int reqPart = partition->requiresPartitionNumber();
-            if (reqPart)
-            {
-                if (partitionMap.contains(reqPart))
+    #ifdef SHRINK_PARTITIONS_TO_MINIMIZE_GAPS
+                if (partsizeSectors % PARTITION_ALIGNMENT == 0 && p->fsType() != "raw")
                 {
-                    emit error(tr("More than one operating system requires partition number %1").arg(reqPart));
-                    return;
+                    /* Partition size is dividable by 4 MiB
+                       Take off a couple sectors of the end of our partition to make room
+                       for the EBR of the next partition, so the next partition can
+                       align nicely without having a 4 MiB gap */
+                    partsizeSectors -= PARTITION_GAP;
                 }
-                if (reqPart == 1 || reqPart == 5)
+    #endif
+                if (p->wantMaximised() && (partsizeSectors+PARTITION_GAP) % PARTITION_ALIGNMENT != 0)
                 {
-                    emit error(tr("Operating system cannot require a system partition (1,5)"));
-                    return;
-                }
-                if ((reqPart == 2 && partitionMap.contains(4)) || (reqPart == 4 && partitionMap.contains(2)))
-                {
-                    emit error(tr("Operating system cannot claim both primary partitions 2 and 4"));
-                    return;
-                }
-
-                partition->setPartitionDevice(partdev(_drive, reqPart));
-                partitionMap.insert(reqPart, partition);
-            }
-
-            /* Maximum overhead per partition for alignment */
-#ifdef SHRINK_PARTITIONS_TO_MINIMIZE_GAPS
-            if (partition->wantMaximised() || (partition->partitionSizeNominal()*2048) % PARTITION_ALIGNMENT != 0)
-                totalnominalsize += PARTITION_ALIGNMENT/2048;
-#else
-            totalnominalsize += PARTITION_ALIGNMENT/2048;
-#endif
-        }
-    }
-
-    if (numexpandparts)
-    {
-        /* Extra spare space available for partitions that want to be expanded */
-        _extraSpacePerPartition = (availableMB-totalnominalsize)/numexpandparts;
-    }
-
-    emit parsedImagesize(qint64(totaluncompressedsize)*1024*1024);
-
-    if (totalnominalsize > availableMB)
-    {
-        emit error(tr("Not enough disk space. Need %1 MB, got %2 MB").arg(QString::number(totalnominalsize), QString::number(availableMB)));
-        return;
-    }
-
-    /* Assign logical partition numbers to partitions that did not reserve a special number */
-    int pnr, bootpnr;
-    uint offset = 0;
-    if (partitionMap.isEmpty())
-        pnr = 6;
-    else
-        pnr = qMax(partitionMap.keys().last(), 5)+1;
-
-    if (_multiDrives)
-    {
-        bootpnr = 6;
-        offset = getFileContents(sysclassblock(_bootdrive, 5)+"/start").trimmed().toUInt()
-               + getFileContents(sysclassblock(_bootdrive, 5)+"/size").trimmed().toUInt();
-    }
-
-    foreach (OsInfo *image, _images)
-    {
-        foreach (PartitionInfo *partition, *(image->partitions()))
-        {
-            if (!partition->requiresPartitionNumber())
-            {
-                if (_multiDrives && partition->bootable() && !partition->wantMaximised() )
-                {
-                    if (bootpnr >=63 )
-                    {
-                        emit error(tr("Cannot boot partitions > #62. Reduce the number of OSes"));
-                        return;
-                    }
-                    bootPartitionMap.insert(bootpnr, partition);
-                    partition->setPartitionDevice(partdev(_bootdrive, bootpnr));
-                    bootpnr++;
-                    offset += PARTITION_GAP;
-
-                    /* Align at 4 MiB offset */
-                    if (offset % PARTITION_ALIGNMENT != 0)
-                    {
-                            offset += PARTITION_ALIGNMENT-(offset % PARTITION_ALIGNMENT);
-                    }
-                    partition->setOffset(offset);
-                    uint partsizeSectors = partition->partitionSizeNominal() * 2048;
-                    partition->setPartitionSizeSectors(partsizeSectors);
-                    offset += partsizeSectors;
-                }
-                else
-                {
-                    if (partition->bootable() && pnr >=63 )
-                    {
-                        emit error(tr("Cannot boot partitions > #62. Reduce the number of OSes"));
-                        return;
-                    }
-                    partitionMap.insert(pnr, partition);
-                    partition->setPartitionDevice(partdev(_drive, pnr));
-                    pnr++;
+                    /* Enlarge partition to close gap to next partition */
+                    partsizeSectors += PARTITION_ALIGNMENT-((partsizeSectors+PARTITION_GAP) % PARTITION_ALIGNMENT);
                 }
             }
+
+            p->setPartitionSizeSectors(partsizeSectors);
+            offset += partsizeSectors;
         }
-    }
+        /* Delete information about previously installed operating systems */
+        QFile f("/settings/installed_os.json");
+        if (f.exists())
+            f.remove();
 
-    /* Set partition starting sectors and sizes.
-     * First allocate space to all logical partitions, then to primary partitions */
-    QList<PartitionInfo *> log_before_prim = partitionMap.values();
-    if (!log_before_prim.isEmpty() && log_before_prim.first()->requiresPartitionNumber() == 2)
-        log_before_prim.push_back(log_before_prim.takeFirst());
-    if (!log_before_prim.isEmpty() && log_before_prim.first()->requiresPartitionNumber() == 3)
-        log_before_prim.push_back(log_before_prim.takeFirst());
-    if (!log_before_prim.isEmpty() && log_before_prim.first()->requiresPartitionNumber() == 4)
-        log_before_prim.push_back(log_before_prim.takeFirst());
-
-    offset = startSector;
-
-    foreach (PartitionInfo *p, log_before_prim)
-    {
-        if (p->offset()) /* OS wants its partition at a fixed offset */
-        {
-            if (p->offset() <= offset)
-            {
-                emit error(tr("Fixed partition offset too low"));
-                return;
-            }
-
-            offset = p->offset();
-        }
-        else
-        {
-            offset += PARTITION_GAP;
-            /* Align at 4 MiB offset */
-            if (offset % PARTITION_ALIGNMENT != 0)
-            {
-                    offset += PARTITION_ALIGNMENT-(offset % PARTITION_ALIGNMENT);
-            }
-
-            p->setOffset(offset);
-        }
-
-        uint partsizeMB = p->partitionSizeNominal();
-        if ( p->wantMaximised() )
-            partsizeMB += _extraSpacePerPartition;
-        uint partsizeSectors = partsizeMB * 2048;
-
-        if (p == log_before_prim.last())
-        {
-            /* Let last partition have any remaining space that we couldn't divide evenly */
-            uint spaceleft = totalSectors - offset - partsizeSectors;
-
-            if (spaceleft > 0 && p->wantMaximised())
-            {
-                partsizeSectors += spaceleft;
-            }
-        }
-        else
-        {
-#ifdef SHRINK_PARTITIONS_TO_MINIMIZE_GAPS
-            if (partsizeSectors % PARTITION_ALIGNMENT == 0 && p->fsType() != "raw")
-            {
-                /* Partition size is dividable by 4 MiB
-                   Take off a couple sectors of the end of our partition to make room
-                   for the EBR of the next partition, so the next partition can
-                   align nicely without having a 4 MiB gap */
-                partsizeSectors -= PARTITION_GAP;
-            }
-#endif
-            if (p->wantMaximised() && (partsizeSectors+PARTITION_GAP) % PARTITION_ALIGNMENT != 0)
-            {
-                /* Enlarge partition to close gap to next partition */
-                partsizeSectors += PARTITION_ALIGNMENT-((partsizeSectors+PARTITION_GAP) % PARTITION_ALIGNMENT);
-            }
-        }
-
-        p->setPartitionSizeSectors(partsizeSectors);
-        offset += partsizeSectors;
-    }
-    /* Delete information about previously installed operating systems */
-    QFile f("/settings/installed_os.json");
-    if (f.exists())
-        f.remove();
-
-    emit statusUpdate(tr("Writing partition table"));
-    if (!writePartitionTable(_drive, partitionMap))
-        return;
-
-    /* Write partition table to boot drive (if using multiple drives) */
-    if (_multiDrives)
-    {
-        emit statusUpdate(tr("Writing boot partition table"));
-
-        if (!writePartitionTable(_bootdrive, bootPartitionMap))
+        emit statusUpdate(tr("Writing partition table"));
+        if (!writePartitionTable(_drive, partitionMap))
             return;
 
-        if (QProcess::execute("mount -t ext4 "+partdev(_bootdrive, SETTINGS_PARTNR)+" /mnt2") == 0)
+        /* Write partition table to boot drive (if using multiple drives) */
+        if (_multiDrives)
         {
-            QFile f("/mnt2/installed_os.json");
-            if (f.exists())
-                f.remove();
+            emit statusUpdate(tr("Writing boot partition table"));
 
-            QProcess::execute("umount /mnt2");
+            if (!writePartitionTable(_bootdrive, bootPartitionMap))
+                return;
+
+            if (QProcess::execute("mount -t ext4 "+partdev(_bootdrive, SETTINGS_PARTNR)+" /mnt2") == 0)
+            {
+                QFile f("/mnt2/installed_os.json");
+                if (f.exists())
+                    f.remove();
+
+                QProcess::execute("umount /mnt2");
+            }
+        }
+
+        /* Zero out first sector of partitions, to make sure to get rid of previous file system (label) */
+        emit statusUpdate(tr("Zero'ing start of each partition"));
+        foreach (PartitionInfo *p, partitionMap.values())
+        {
+            if (p->partitionSizeSectors())
+                QProcess::execute("/bin/dd count=3 bs=512 if=/dev/zero of="+p->partitionDevice());
         }
     }
+    else    // !_partition / reinstall
+    {   //Calculate amount to write to disk
+        uint totaluncompressedsize = 0;
+        foreach (OsInfo *image, _images)
+        {
+            QList<PartitionInfo *> *partitions = image->partitions();
+            foreach (PartitionInfo *partition, *partitions)
+            {
+                uint compressedSize = partition->uncompressedTarballSize(); //in MB
+                totaluncompressedsize += compressedSize;
 
-    /* Zero out first sector of partitions, to make sure to get rid of previous file system (label) */
-    emit statusUpdate(tr("Zero'ing start of each partition"));
-    foreach (PartitionInfo *p, partitionMap.values())
-    {
-        if (p->partitionSizeSectors())
-            QProcess::execute("/bin/dd count=1 bs=512 if=/dev/zero of="+p->partitionDevice());
+                uint partitionSectors = getFileContents(sysclassblock(partition->partitionDevice())+"/size").trimmed().toUInt();
+                if (compressedSize*2048 > partitionSectors)
+                {
+                    qDebug () << "CompressedSize=" <<compressedSize*2048<<". partitionSectors=" <<partitionSectors;
+                    emit error(tr("Cannot Reinstall ")+image->name()+tr(".\nPartition not big enough for new image."));
+                    return;
+                }
+            }
+        }
+        emit parsedImagesize(qint64(totaluncompressedsize)*1024*1024);
     }
 
     /* Install each operating system */
@@ -446,6 +489,89 @@ QString MultiImageWriteThread::findTarballExt(QString base, QString exts)
     return (tarball);
 }
 
+QString MultiImageWriteThread::shorten(QString example, int maxLabelLen)
+{
+    QString test;
+    if (example.size()<=maxLabelLen)
+    {
+        return(example);
+    }
+    example.replace("_","#");
+    example.replace("-","#");
+    example.replace(" ","#");
+
+    QStringList parts = example.split("#", QString::SkipEmptyParts);
+    int numParts = qMin(3, parts.count());
+    int r;
+    int len;
+    int l1,l2;
+    int rem;
+    switch (numParts)
+    {
+        case 3:
+            len=parts.last().size();
+            r=qMin((maxLabelLen-4),len);
+            rem = maxLabelLen -r-2;
+            l1 = rem/2;
+            l2 = rem-l1;
+            test= parts.first().left(l1)+"_"+parts.at(1).right(l2)+"_"+parts.last().left(r);
+            break;
+
+        case 2:
+            len=parts.last().size();
+            r=qMin(maxLabelLen-2, len);
+            test = parts.first().left(maxLabelLen-r-1) + "_" + parts.last().left(r);
+            break;
+
+        default:
+            test = parts.first();
+            test=test.left(maxLabelLen);
+            break;
+    }
+    return(test);
+}
+
+
+QByteArray MultiImageWriteThread::makeLabelUnique(QByteArray label, int maxLabelLen, const QByteArray &device)
+{
+    if (_partition)
+    {
+        if (label.size() > maxLabelLen)
+        {   //restrict to maximum size
+            //label = label.left(maxLabelLen);
+            label = shorten(label, maxLabelLen).toAscii();
+        }
+
+        if (!isLabelAvailable(label, device))
+        {
+            if (label.size() == maxLabelLen)
+            {   //Make room for extra digit
+                label = label.left(maxLabelLen-1);
+            }
+            for (int i=0; i<10; i++)
+            {
+                if (isLabelAvailable(label+QByteArray::number(i), device))
+                {
+                    label = label+QByteArray::number(i);
+                    return(label);
+                }
+            }
+            //Let's add some more, just in case
+            for (char c='A'; c<='Z'; c++)
+            {
+                if (isLabelAvailable(label+c, device))
+                {
+                    label = label+c;
+                    return(label);
+                }
+            }
+            //No hope if we get to here
+            label="";
+        }
+    }
+    return (label);
+}
+
 bool MultiImageWriteThread::processImage(OsInfo *image)
 {
     QString os_name = image->name();
@@ -485,22 +611,16 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
             }
         }
 
-        if (label.size() > 15)
-        {
-            label.clear();
-        }
-        else if (!isLabelAvailable(label))
-        {
-            for (int i=0; i<10; i++)
-            {
-                if (isLabelAvailable(label+QByteArray::number(i)))
-                {
-                    label = label+QByteArray::number(i);
-                    break;
-                }
-            }
-        }
         QByteArray partdevice = p->partitionDevice();
+        if (!_partition)
+        {   //Use the existing partition label
+            int errorcode;
+            QString s= readexec(1, "lsblk -noheadings -o label "+QString(partdevice), errorcode);
+            s.remove('\n');
+            s.remove('\r');
+            s=s.trimmed();
+            label = s.toLocal8Bit();
+        }
 
         if (fstype == "raw")
         {
@@ -679,41 +799,44 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
         emit error(tr("%1: Error unmounting").arg(os_name));
     }
 
-    /* Save information about installed operating systems in installed_os.json */
-    QVariantMap ventry;
-    ventry["name"]        = image->flavour();
-    ventry["description"] = description;
-    ventry["folder"]      = image->folder();
-    ventry["release_date"]= image->releaseDate();
-    ventry["partitions"]  = vpartitions;
-    ventry["bootable"]    = image->bootable();
-    if (!image->supportedModels().isEmpty())
-        ventry["supported_models"] = image->supportedModels();
-    ventry["username"]    = image->username();
-    ventry["password"]    = image->password();
-    ventry["url"]         = image->url();
-    ventry["group"]       = image->group();
-    QString iconfilename  = image->folder()+"/"+image->flavour()+".png";
-    iconfilename.replace(" ", "_");
-    if (QFile::exists(iconfilename))
+    if (_partition)
     {
-        if (iconfilename.startsWith("/tmp/media/"))
+        /* Save information about installed operating systems in installed_os.json */
+        QVariantMap ventry;
+        ventry["name"]        = image->flavour();
+        ventry["description"] = description;
+        ventry["folder"]      = image->folder();
+        ventry["release_date"]= image->releaseDate();
+        ventry["partitions"]  = vpartitions;
+        ventry["bootable"]    = image->bootable();
+        if (!image->supportedModels().isEmpty())
+            ventry["supported_models"] = image->supportedModels();
+        ventry["username"]    = image->username();
+        ventry["password"]    = image->password();
+        ventry["url"]         = image->url();
+        ventry["group"]       = image->group();
+        QString iconfilename  = image->folder()+"/"+image->flavour()+".png";
+        iconfilename.replace(" ", "_");
+        if (QFile::exists(iconfilename))
         {
-            /* Copy icon to settings folder, as USB storage may take longer to get ready on boot */
-            QDir dir;
-            QString dirname = "/settings/os/"+image->flavour().replace(" ", "_");
-            dir.mkpath(dirname);
-            QFile::copy(iconfilename, dirname+"/icon.png");
-            iconfilename = dirname+"/icon.png";
+            if (iconfilename.startsWith("/tmp/media/"))
+            {
+                /* Copy icon to settings folder, as USB storage may take longer to get ready on boot */
+                QDir dir;
+                QString dirname = "/settings/os/"+image->flavour().replace(" ", "_");
+                dir.mkpath(dirname);
+                QFile::copy(iconfilename, dirname+"/icon.png");
+                iconfilename = dirname+"/icon.png";
+            }
+
+            ventry["icon"] = iconfilename;
         }
+        else if (QFile::exists(image->folder()+"/icon.png"))
+            ventry["icon"] = image->folder()+"/icon.png";
+        installed_os.append(ventry);
 
-        ventry["icon"] = iconfilename;
+        Json::saveToFile("/settings/installed_os.json", installed_os);
     }
-    else if (QFile::exists(image->folder()+"/icon.png"))
-        ventry["icon"] = image->folder()+"/icon.png";
-    installed_os.append(ventry);
-
-    Json::saveToFile("/settings/installed_os.json", installed_os);
 
     return true;
 }
@@ -900,6 +1023,7 @@ void MultiImageWriteThread::postInstallProcessConfigFile(const QString &sourcefo
     }
 }
 
+
 bool MultiImageWriteThread::mkfs(const QByteArray &device, const QByteArray &fstype, const QByteArray &label, const QByteArray &mkfsopt)
 {
     QString cmd;
@@ -909,7 +1033,7 @@ bool MultiImageWriteThread::mkfs(const QByteArray &device, const QByteArray &fst
         cmd = "/sbin/mkfs.fat ";
         if (!label.isEmpty())
         {
-            cmd += "-n "+label+" ";
+            cmd += "-n "+makeLabelUnique(label, 11, device)+" ";
         }
     }
     else if (fstype == "ext4")
@@ -917,7 +1041,7 @@ bool MultiImageWriteThread::mkfs(const QByteArray &device, const QByteArray &fst
         cmd = "/usr/sbin/mkfs.ext4 ";
         if (!label.isEmpty())
         {
-            cmd += "-L "+label+" ";
+            cmd += "-L "+makeLabelUnique(label, 16, device)+" ";
         }
     }
     else if (fstype == "ntfs")
@@ -925,7 +1049,7 @@ bool MultiImageWriteThread::mkfs(const QByteArray &device, const QByteArray &fst
         cmd = "/sbin/mkfs.ntfs --fast ";
         if (!label.isEmpty())
         {
-            cmd += "-L "+label+" ";
+            cmd += "-L "+makeLabelUnique(label, 32, device)+" ";
         }
     }
 
@@ -950,10 +1074,24 @@ bool MultiImageWriteThread::mkfs(const QByteArray &device, const QByteArray &fst
     return true;
 }
 
-bool MultiImageWriteThread::isLabelAvailable(const QByteArray &label)
+bool MultiImageWriteThread::isLabelAvailable(const QByteArray &label, const QByteArray &device)
 {
-    return (QProcess::execute("/sbin/findfs LABEL="+label) != 0);
+    int result;
+    QString part = readexec(1, "/sbin/findfs LABEL="+label, result);
+    if (!result)
+    {   // label found - already exists
+        if ( !device.isEmpty() && (part==device))
+        {   //A device is specified and it matches part
+            result=1;   //pretend it wasn't found
+            qDebug() << label << " is available (Matches device)";
+            return ( result != 0);
+        }
+        qDebug() << label << " is NOT available.";
+    }
+    qDebug() << label << " is available.";
+    return ( result != 0);
 }
+
 
 bool MultiImageWriteThread::untar(const QString &tarball)
 {
