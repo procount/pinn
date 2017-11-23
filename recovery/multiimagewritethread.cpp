@@ -305,6 +305,14 @@ void MultiImageWriteThread::run()
         if (!writePartitionTable(_drive, partitionMap))
             return;
 
+        /* Zero out first sector of partitions, to make sure to get rid of previous file system (label) */
+        emit statusUpdate(tr("Zero'ing start of each partition"));
+        foreach (PartitionInfo *p, partitionMap.values())
+        {
+            if (p->partitionSizeSectors())
+                QProcess::execute("/bin/dd count=3 bs=512 if=/dev/zero of="+p->partitionDevice());
+        }
+
         /* Write partition table to boot drive (if using multiple drives) */
         if (_multiDrives)
         {
@@ -312,6 +320,14 @@ void MultiImageWriteThread::run()
 
             if (!writePartitionTable(_bootdrive, bootPartitionMap))
                 return;
+
+            /* Zero out first sector of partitions, to make sure to get rid of previous file system (label) */
+            emit statusUpdate(tr("Zero'ing start of each partition"));
+            foreach (PartitionInfo *p, bootPartitionMap.values())
+            {
+                if (p->partitionSizeSectors())
+                    QProcess::execute("/bin/dd count=3 bs=512 if=/dev/zero of="+p->partitionDevice());
+            }
 
             if (QProcess::execute("mount -t ext4 "+partdev(_bootdrive, SETTINGS_PARTNR)+" /mnt2") == 0)
             {
@@ -323,13 +339,6 @@ void MultiImageWriteThread::run()
             }
         }
 
-        /* Zero out first sector of partitions, to make sure to get rid of previous file system (label) */
-        emit statusUpdate(tr("Zero'ing start of each partition"));
-        foreach (PartitionInfo *p, partitionMap.values())
-        {
-            if (p->partitionSizeSectors())
-                QProcess::execute("/bin/dd count=3 bs=512 if=/dev/zero of="+p->partitionDevice());
-        }
     }
     else    // !_partition / reinstall
     {   //Calculate amount to write to disk
@@ -538,7 +547,6 @@ QByteArray MultiImageWriteThread::makeLabelUnique(QByteArray label, int maxLabel
     {
         if (label.size() > maxLabelLen)
         {   //restrict to maximum size
-            //label = label.left(maxLabelLen);
             label = shorten(label, maxLabelLen).toAscii();
         }
 
@@ -612,6 +620,8 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
         }
 
         QByteArray partdevice = p->partitionDevice();
+        emit newDrive(partdevice);
+
         if (!_partition)
         {   //Use the existing partition label
             int errorcode;
