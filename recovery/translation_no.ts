@@ -530,7 +530,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="454"/>
         <location filename="mainwindow.cpp" line="1872"/>
-        <location filename="mainwindow.cpp" line="2941"/>
+        <location filename="mainwindow.cpp" line="2943"/>
         <source>RECOMMENDED</source>
         <translation>ANBEFALES</translation>
     </message>
@@ -573,7 +573,7 @@ WARNING: This will erase all data on your SD card</oldsource>
         <location filename="mainwindow.cpp" line="1039"/>
         <location filename="mainwindow.cpp" line="1635"/>
         <location filename="mainwindow.cpp" line="1766"/>
-        <location filename="mainwindow.cpp" line="3081"/>
+        <location filename="mainwindow.cpp" line="3083"/>
         <source>Error</source>
         <translation>Feil</translation>
     </message>
@@ -748,8 +748,8 @@ Would you like to make this setting permanent?</source>
         <location filename="mainwindow.cpp" line="1750"/>
         <location filename="mainwindow.cpp" line="2270"/>
         <location filename="mainwindow.cpp" line="2281"/>
-        <location filename="mainwindow.cpp" line="3178"/>
-        <location filename="mainwindow.cpp" line="3200"/>
+        <location filename="mainwindow.cpp" line="3180"/>
+        <location filename="mainwindow.cpp" line="3202"/>
         <source>Download error</source>
         <translation>Nedlastingsfeil</translation>
     </message>
@@ -764,93 +764,93 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2657"/>
+        <location filename="mainwindow.cpp" line="2659"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>Nettverkstilgang er nødvendig for å bruke PINN uten lokal avbildning. Velg ditt WiFi-nettverk i neste bilde.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2665"/>
+        <location filename="mainwindow.cpp" line="2667"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>Kablet nettverkstilgang er nødvendig for å bruke PINN uten lokal avbildning. Monter en nettverkskabel til nettverksporten.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2841"/>
+        <location filename="mainwindow.cpp" line="2843"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>Er du sikker på at du vil formattere drive &apos;%1&apos; for bruk av PINN? Alle eksisterende data på drivet vil slettes!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3035"/>
+        <location filename="mainwindow.cpp" line="3037"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>Dette vil slette alt innhold på enheten &apos;%s&apos;. Er du sikker?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3037"/>
+        <location filename="mainwindow.cpp" line="3039"/>
         <source>Clone SD Card</source>
         <translation>Klone SD-kort</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3039"/>
+        <location filename="mainwindow.cpp" line="3041"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3040"/>
+        <location filename="mainwindow.cpp" line="3042"/>
         <source>No</source>
         <translation>Nei</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3068"/>
+        <location filename="mainwindow.cpp" line="3070"/>
         <source>Clone Completed</source>
         <translation>Kloning ferdig</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3069"/>
+        <location filename="mainwindow.cpp" line="3071"/>
         <source>Clone Completed Successfully</source>
         <translation>Kloning utført med hell</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3178"/>
+        <location filename="mainwindow.cpp" line="3180"/>
         <source>Error downloading update file</source>
         <translation>Feil ved nedlasting av oppdateringsfil</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3185"/>
-        <location filename="mainwindow.cpp" line="3274"/>
+        <location filename="mainwindow.cpp" line="3187"/>
+        <location filename="mainwindow.cpp" line="3276"/>
         <source>PINN Update Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3185"/>
+        <location filename="mainwindow.cpp" line="3187"/>
         <source>Error contacting update server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3274"/>
+        <location filename="mainwindow.cpp" line="3276"/>
         <source>No updates available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3282"/>
+        <location filename="mainwindow.cpp" line="3284"/>
         <source>PINN UPDATE</source>
         <translation>PINN OPPDATERING</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3283"/>
+        <location filename="mainwindow.cpp" line="3285"/>
         <source>A new version of PINN is available</source>
         <translation>En ny versjon av PINN er tilgjengelig</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3284"/>
+        <location filename="mainwindow.cpp" line="3286"/>
         <source>Do you want to download this version?</source>
         <translation>Vil du laste ned denne versjonen?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3308"/>
+        <location filename="mainwindow.cpp" line="3310"/>
         <source>Downloading Update</source>
         <translation>Laster ned oppdatering</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3308"/>
+        <location filename="mainwindow.cpp" line="3310"/>
         <source>Press ESC to cancel</source>
         <translation>Trykk ESC for å avbryte</translation>
     </message>
@@ -891,7 +891,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2281"/>
-        <location filename="mainwindow.cpp" line="3200"/>
+        <location filename="mainwindow.cpp" line="3202"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>Feil ved skriving av nedlastet fil til SD-kort. SD-kort eller filsystem kan være ødelagt.</translation>
     </message>
@@ -901,14 +901,14 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2840"/>
+        <location filename="mainwindow.cpp" line="2842"/>
         <source>Reformat drive?</source>
         <translation>Reformatter drive?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1388"/>
-        <location filename="mainwindow.cpp" line="2656"/>
-        <location filename="mainwindow.cpp" line="2664"/>
+        <location filename="mainwindow.cpp" line="2658"/>
+        <location filename="mainwindow.cpp" line="2666"/>
         <source>No network access</source>
         <translation>Ingen nettverkstilgang</translation>
     </message>
@@ -969,35 +969,35 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <translation>Ikke nok diskplass. Trenger %1 MB, har %2 MB</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="364"/>
+        <location filename="multiimagewritethread.cpp" line="373"/>
         <source>Finish writing (sync)</source>
         <translation>Avslutter skriving (sync)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="600"/>
+        <location filename="multiimagewritethread.cpp" line="608"/>
         <source>File &apos;%1&apos; does not exist</source>
         <translation>Fil &apos;%1&apos; eksisterer ikke</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="627"/>
-        <location filename="multiimagewritethread.cpp" line="633"/>
+        <location filename="multiimagewritethread.cpp" line="637"/>
+        <location filename="multiimagewritethread.cpp" line="643"/>
         <source>%1: Writing OS image</source>
         <translation>%1: Skriver OS-avbildning</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="647"/>
+        <location filename="multiimagewritethread.cpp" line="657"/>
         <source>%1: Mounting file system</source>
         <translation>%1: Monterer filsystem</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="655"/>
-        <location filename="multiimagewritethread.cpp" line="679"/>
-        <location filename="multiimagewritethread.cpp" line="852"/>
+        <location filename="multiimagewritethread.cpp" line="665"/>
+        <location filename="multiimagewritethread.cpp" line="689"/>
+        <location filename="multiimagewritethread.cpp" line="862"/>
         <source>%1: Error mounting file system</source>
         <translation>%1: Feil ved montering av filsystem</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="640"/>
+        <location filename="multiimagewritethread.cpp" line="650"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation>%1: Oppretter filsystem (%2)</translation>
     </message>
@@ -1037,107 +1037,108 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <translation>Skriver partisjonstabell</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="311"/>
+        <location filename="multiimagewritethread.cpp" line="319"/>
         <source>Writing boot partition table</source>
         <translation>Skriver partisjonstabell for boot</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="327"/>
+        <location filename="multiimagewritethread.cpp" line="309"/>
+        <location filename="multiimagewritethread.cpp" line="325"/>
         <source>Zero&apos;ing start of each partition</source>
         <translation>Nullstiller start for hver partisjon</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="349"/>
+        <location filename="multiimagewritethread.cpp" line="358"/>
         <source>Cannot Reinstall </source>
         <oldsource>Cannot Refresh </oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="349"/>
+        <location filename="multiimagewritethread.cpp" line="358"/>
         <source>.
 Partition not big enough for new image.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="384"/>
+        <location filename="multiimagewritethread.cpp" line="393"/>
         <source>Error reading existing partition table</source>
         <translation>Feil ved lesing av eksisterende partisjonstabell</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="469"/>
+        <location filename="multiimagewritethread.cpp" line="478"/>
         <source>Error creating partition table</source>
         <translation>Feil ved opprettelse av partisjonstabell</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="660"/>
+        <location filename="multiimagewritethread.cpp" line="670"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation>%1: Laster ned og pakker ut filsystem</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="662"/>
+        <location filename="multiimagewritethread.cpp" line="672"/>
         <source>%1: Extracting filesystem</source>
         <translation>%1: Pakker ut filsystem</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="676"/>
+        <location filename="multiimagewritethread.cpp" line="686"/>
         <source>%1: Mounting FAT partition</source>
         <translation>%1: Monterer FAT-partisjon</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="688"/>
+        <location filename="multiimagewritethread.cpp" line="698"/>
         <source>%1: Creating os_config.json</source>
         <translation>%1: Oppretter os_config.json</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="713"/>
+        <location filename="multiimagewritethread.cpp" line="723"/>
         <source>%1: Saving display mode to config.txt</source>
         <translation>%1: Lagrer visningsmodus til config.txt</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="724"/>
+        <location filename="multiimagewritethread.cpp" line="734"/>
         <source>%1: Running partition setup script</source>
         <translation>%1: Kjører script for partisjonsoppsett</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="773"/>
+        <location filename="multiimagewritethread.cpp" line="783"/>
         <source>%1: Error executing partition setup script</source>
         <translation>%1: Feil ved utførelse av script for oppsett</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="782"/>
+        <location filename="multiimagewritethread.cpp" line="792"/>
         <source>%1: Configuring flavour</source>
         <translation>%1: Konfigureringsvalg</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="796"/>
+        <location filename="multiimagewritethread.cpp" line="806"/>
         <source>%1: Unmounting FAT partition</source>
         <translation>%1: Avmonterer FAT-partisjon</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="799"/>
+        <location filename="multiimagewritethread.cpp" line="809"/>
         <source>%1: Error unmounting</source>
         <translation>%1: Feil ved avkobling</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1070"/>
+        <location filename="multiimagewritethread.cpp" line="1080"/>
         <source>Error creating file system</source>
         <translation>Feil ved opprettelse av filsystem</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1129"/>
-        <location filename="multiimagewritethread.cpp" line="1200"/>
-        <location filename="multiimagewritethread.cpp" line="1259"/>
+        <location filename="multiimagewritethread.cpp" line="1139"/>
+        <location filename="multiimagewritethread.cpp" line="1210"/>
+        <location filename="multiimagewritethread.cpp" line="1269"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
         <translation>Ukjent filetternavn for komprimert fil.  Forventer .lzo, .gz, .xz, .bz2 eller .zip</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1162"/>
+        <location filename="multiimagewritethread.cpp" line="1172"/>
         <source>Error downloading or extracting tarball</source>
         <translation>Feil ved nedlasting eller utpakking av tabell</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1221"/>
-        <location filename="multiimagewritethread.cpp" line="1280"/>
+        <location filename="multiimagewritethread.cpp" line="1231"/>
+        <location filename="multiimagewritethread.cpp" line="1290"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>Feil ved nedlasting eller skriving av OS til SD-kort</translation>
     </message>
@@ -1241,12 +1242,12 @@ Partition not big enough for new image.</source>
 <context>
     <name>ProgressSlideshowDialog</name>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="181"/>
+        <location filename="progressslideshowdialog.cpp" line="189"/>
         <source>%1 MB of %2 MB written (%3 MB/sec) Remaining: %4:%5:%6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="204"/>
+        <location filename="progressslideshowdialog.cpp" line="212"/>
         <source>%1 MB written (%2 MB/sec)</source>
         <translation>%1 MB skrevet (%2 MB/sek)</translation>
     </message>

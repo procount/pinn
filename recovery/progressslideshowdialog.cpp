@@ -149,6 +149,14 @@ void ProgressSlideshowDialog::resumeIOaccounting()
     _iotimer.start(1000);
 }
 
+void ProgressSlideshowDialog::changeDrive(const QString &drive)
+{
+    pauseIOaccounting();
+    _drive = drive;
+    resumeIOaccounting();
+}
+
+
 void ProgressSlideshowDialog::setMaximum(qint64 bytes)
 {
     /* restrict to size of 1TB since the progressbar expects an int32 */

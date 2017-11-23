@@ -60,6 +60,8 @@ signals:
     void completed();
     void runningMKFS();
     void finishedMKFS();
+    void newDrive(const QString&);
+
 public slots:
 };
 

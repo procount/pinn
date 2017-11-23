@@ -37,6 +37,7 @@ public slots:
     void pauseIOaccounting();
     void resumeIOaccounting();
     void updateProgress(qint64 value);
+    void changeDrive(const QString &drive);
 
 protected:
     QString _drive;
