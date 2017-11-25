@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -397,12 +397,12 @@ WARNING: This will erase all data on your SD card</oldsource>
         <location filename="mainwindow.ui" line="515"/>
         <source>Reinstall (r)</source>
         <oldsource>Refresh (r)</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>重新安裝 (r)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="518"/>
         <source>R</source>
-        <translation type="unfinished"></translation>
+        <translation>R</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="551"/>
@@ -604,12 +604,12 @@ WARNING: This will erase all data on your SD card</oldsource>
         <location filename="mainwindow.cpp" line="737"/>
         <source>Warning: this will install the selected Operating System(s) to </source>
         <oldsource>Warning: this will install the selected Operating System(s):</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>警告：這將會安裝選定的作業系統到 </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="737"/>
         <source>:</source>
-        <translation type="unfinished"></translation>
+        <translation>：</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="739"/>
@@ -617,7 +617,8 @@ WARNING: This will erase all data on your SD card</oldsource>
 All existing data on the SD card will be overwritten, including any OSes that are already installed. Continue?</source>
         <oldsource>
 All existing data on the SD card will be overwritten, including any OSes that are already installed.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>
+所有在 SD 記憶卡上的資料都將會被覆寫，包含任何已安裝的作業系統。要繼續？</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="741"/>
@@ -644,7 +645,7 @@ All existing data on the SD card will be overwritten, including any OSes that ar
         <location filename="mainwindow.cpp" line="804"/>
         <source>Warning: this will Reinstall the selected Operating System(s). The existing data will be deleted.</source>
         <oldsource>Warning: this will Refresh the selected Operating System(s). The existing data will be deleted.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>警告：這將會重新安裝選定的作業系統。已有的資料將會被刪除。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="893"/>
@@ -771,17 +772,17 @@ Reboot PINN to take account of these OSes?</source>
         <location filename="mainwindow.cpp" line="3187"/>
         <location filename="mainwindow.cpp" line="3276"/>
         <source>PINN Update Check</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN 更新檢查</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3187"/>
         <source>Error contacting update server</source>
-        <translation type="unfinished"></translation>
+        <translation>聯絡更新伺服器發生錯誤</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3276"/>
         <source>No updates available</source>
-        <translation type="unfinished"></translation>
+        <translation>無可用更新</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3284"/>
@@ -817,7 +818,8 @@ Reboot PINN to take account of these OSes?</source>
         <location filename="mainwindow.cpp" line="841"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
-        <translation type="unfinished"></translation>
+        <translation> 不可用。
+請在本機提供它，或是連線到網際網路。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1098"/>
@@ -992,7 +994,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="multiimagewritethread.cpp" line="193"/>
         <source>Cannot boot partitions &gt; 62. Reduce the number of OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>無法啟動分割去 &gt; 62. 減少作業系統的數量</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="215"/>
@@ -1024,13 +1026,14 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <location filename="multiimagewritethread.cpp" line="358"/>
         <source>Cannot Reinstall </source>
         <oldsource>Cannot Refresh </oldsource>
-        <translation type="unfinished"></translation>
+        <translation>無法重新安裝</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="358"/>
         <source>.
 Partition not big enough for new image.</source>
-        <translation type="unfinished"></translation>
+        <translation>.
+分割區對新的映像檔來說不夠大。</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="373"/>
