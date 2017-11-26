@@ -287,7 +287,7 @@ A major change to the User Interface in preparation for some new features.
 - **Wipe Disk**   - delete all OSes and restore drive to full capacity.
 - **Info button** - Go directly to the webpage of each OS.
 
-### V2.4.4
+### V2.4.4c
 
 Finally, PINN can now re-install any installed OS WITHOUT affecting the other OSes, eliminating one of my NOOBS bugbears.
 
@@ -298,5 +298,4 @@ Finally, PINN can now re-install any installed OS WITHOUT affecting the other OS
 - **no_cursor**   - The no_cursor option now only affects the bootselection dialog
 - **Wipe**        - The Wipe Disk command has been temporarily removed
 - **Max OSes**    - The number of OSes has been restricted so that boot partitions numbers are <63
-
-
+- **self-update** - Fixed broken self-update
