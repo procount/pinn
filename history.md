@@ -5,7 +5,7 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
-### V2.4.4
+### V2.4.4c
 
 Finally, PINN can now re-install any installed OS WITHOUT affecting the other OSes, eliminating one of my NOOBS bugbears.
 
@@ -16,6 +16,7 @@ Finally, PINN can now re-install any installed OS WITHOUT affecting the other OS
 - **no_cursor**   - The no_cursor option now only affects the bootselection dialog
 - **Wipe**        - The Wipe Disk command has been temporarily removed
 - **Max OSes**    - The number of OSes has been restricted so that boot partitions numbers are <63
+- **self-update** - Fixes broken self-update since v2.4.2h
 
 ### V2.4.3
 
