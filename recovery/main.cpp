@@ -98,8 +98,6 @@ void showBootMenu(const QString &drive, const QString &defaultPartition, bool se
         bsd.setDisplayMode();
     bsd.exec();
 
-    // do some stuff before soft reboot
-    runCustomScript(drive, 1, "before-reboot.sh", false);
 
     // Shut down networking
     QProcess::execute("ifdown -a");
