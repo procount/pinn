@@ -99,7 +99,7 @@
     <message>
         <location filename="fullfatthread.cpp" line="89"/>
         <source>Removing partitions 2,3,4</source>
-        <translation type="unfinished">Supression des partitions 2,3,4</translation>
+        <translation type="unfinished">Suppression des partitions 2,3,4</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="103"/>
@@ -109,7 +109,7 @@
     <message>
         <location filename="fullfatthread.cpp" line="127"/>
         <source>Error resizing existing FAT partition</source>
-        <translation type="unfinished">Erreur durant le redimmensionnement de la partition FAT existante</translation>
+        <translation type="unfinished">Erreur durant le redimensionnement de la partition FAT existante</translation>
     </message>
 </context>
 <context>
@@ -196,7 +196,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="initdrivethread.cpp" line="239"/>
         <source>Error resizing existing FAT partition</source>
-        <translation>Erreur durant le redimmensionnement de la partition FAT existante</translation>
+        <translation>Erreur durant le redimensionnement de la partition FAT existante</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="245"/>
@@ -211,37 +211,37 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="initdrivethread.cpp" line="342"/>
         <source>Saving boot files to memory</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarde des fichiers de démarrage en mémoire</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="345"/>
         <source>Error saving boot files to memory. SD card may be damaged.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur lors de la sauvegarde des fichiers de démarrage en mémoire. La carte mémoire est peut-être endommagée</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="361"/>
         <source>Creating partitions</source>
-        <translation type="unfinished"></translation>
+        <translation>En cours de création des partitions</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="365"/>
         <source>Error partitioning</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur lors du partitionnement</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="369"/>
         <source>Formatting boot partition (fat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Formatage en cours de la partition de démarrage</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="372"/>
         <source>Error formatting boot partition (fat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur lors du formatage de la partition de démarrage</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="376"/>
         <source>Copying boot files to storage</source>
-        <translation type="unfinished"></translation>
+        <translation>En cours de copie des fichiers de démarrage sur le support</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="452"/>
@@ -313,7 +313,7 @@ WARNING: This will erase all data on your SD card</oldsource>
         <location filename="mainwindow.ui" line="71"/>
         <location filename="mainwindow.ui" line="150"/>
         <source>Destination drive:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lecteur de destination:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="100"/>
@@ -330,13 +330,13 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="138"/>
         <source>Download space</source>
-        <translation type="unfinished"></translation>
+        <translation>Volume du téléchargement</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="228"/>
         <location filename="mainwindow.ui" line="267"/>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation>Barre de menu</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="347"/>
@@ -366,12 +366,12 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="380"/>
         <source>More (m)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plus (m)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="383"/>
         <source>More menus</source>
-        <translation type="unfinished"></translation>
+        <translation>Plus de menus</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="386"/>
@@ -381,12 +381,12 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="479"/>
         <source>Download (d)</source>
-        <translation type="unfinished"></translation>
+        <translation>Télécharger (d)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="482"/>
         <source>Downloads the selected operating system image to USB for local installation</source>
-        <translation type="unfinished"></translation>
+        <translation>Télécharge les images d&apos;OS séléctionnés vers l&apos;USB en vue d&apos;une installation locale </translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="485"/>
@@ -412,7 +412,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="578"/>
         <source>Information about the installed OS</source>
-        <translation type="unfinished"></translation>
+        <translation>Informations à propos de l&apos;OS installé</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="446"/>
@@ -422,17 +422,17 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="59"/>
         <source>Install space</source>
-        <translation type="unfinished"></translation>
+        <translation>Volume de l&apos;installation</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="464"/>
         <source>Password (p)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mot de passe (p)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="467"/>
         <source>Change password</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifier le mot de passe</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="470"/>
@@ -442,7 +442,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="497"/>
         <source>Backup (b)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder (b)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="500"/>
@@ -463,7 +463,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="563"/>
         <source>Clone (c)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cloner (c)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="566"/>
@@ -499,12 +499,12 @@ WARNING: This will erase all data on your SD card</oldsource>
         <location filename="mainwindow.ui" line="428"/>
         <location filename="mainwindow.ui" line="575"/>
         <source>Info (n)</source>
-        <translation type="unfinished"></translation>
+        <translation>Informations (n)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="431"/>
         <source>Information about the selected OS</source>
-        <translation type="unfinished"></translation>
+        <translation>Informations à propos de l&apos;OS sélectionné</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="434"/>
@@ -568,7 +568,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="377"/>
         <source>Please wait while PINN initialises</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez patientez pendant que PINN s&apos;initialise</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1039"/>
@@ -606,7 +606,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="362"/>
         <source>Main Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Menu Principal</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="363"/>
@@ -616,7 +616,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="364"/>
         <source>Maintenance</source>
-        <translation type="unfinished"></translation>
+        <translation>Maintenance</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="737"/>
@@ -635,17 +635,17 @@ WARNING: This will erase all data on your SD card</oldsource>
 All existing data on the SD card will be overwritten, including any OSes that are already installed. Continue?</source>
         <oldsource>
 All existing data on the SD card will be overwritten, including any OSes that are already installed.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Toutes les données existantes sur la carte SD seront écrasées, y compris tout OS déjà installé</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="741"/>
         <source>SD card</source>
-        <translation type="unfinished"></translation>
+        <translation>Carte SD</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="741"/>
         <source>drive</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">lecteur</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="750"/>
@@ -667,23 +667,24 @@ All existing data on the SD card will be overwritten, including any OSes that ar
     <message>
         <location filename="mainwindow.cpp" line="893"/>
         <source>Warning: this will download the selected Operating System(s).</source>
-        <translation type="unfinished"></translation>
+        <translation>Attention: l&apos;(es) OS sélectionné(s) sera(ont) téléchargé(s)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="959"/>
         <source>The download process will begin shortly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le téléchargement va rapidement commencer </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="992"/>
         <source>OS(es) downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>OS(es) téléchargés</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="993"/>
         <source>OS(es) Downloaded Successfully.
 Reboot PINN to take account of these OSes?</source>
-        <translation type="unfinished"></translation>
+        <translation>OS(es) téléchargé(s) avec succès.
+Redémmarrez PINN pour prendre en compte ces OSes?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="998"/>
@@ -695,7 +696,7 @@ Reboot PINN to take account of these OSes?</source>
         <location filename="mainwindow.cpp" line="999"/>
         <source>OS(es) Installed Successfully</source>
         <oldsource>OS Installed Successfully</oldsource>
-        <translation>Installé avec succès</translation>
+        <translation>OS installé avec succès</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1059"/>
@@ -745,7 +746,7 @@ Would you like to make this setting permanent?</source>
         <location filename="mainwindow.cpp" line="1748"/>
         <source>Error downloading distribution list from Internet:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur lors du téléchargement des listes de distribution par Internet</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1619"/>
@@ -770,7 +771,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="mainwindow.cpp" line="2659"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
-        <translation type="unfinished"></translation>
+        <translation>Un accès au réseau est nécessaire pour utiliser PINN sans images locales. Merci de sélectionner votre réseau wifi dans le prochain écran</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2667"/>
@@ -785,78 +786,78 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="mainwindow.cpp" line="3037"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tout le contenu du lecteur &apos;%s&apos; seront effacées. Etes-vous sûrs?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3039"/>
         <source>Clone SD Card</source>
-        <translation type="unfinished"></translation>
+        <translation>Cloner la carte SD</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3041"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Oui</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3042"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Non</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3070"/>
         <source>Clone Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Clonage terminé</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3071"/>
         <source>Clone Completed Successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>Clonage terminé avec succès</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3180"/>
         <source>Error downloading update file</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur lors du téléchargement du fichier de mise à jour</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3187"/>
         <location filename="mainwindow.cpp" line="3276"/>
         <source>PINN Update Check</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérification mise à jour de PINN</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3187"/>
         <source>Error contacting update server</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur lors de la connexion au serveur de mise à jour</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3276"/>
         <source>No updates available</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas de mise à jour disponible</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3284"/>
         <source>PINN UPDATE</source>
-        <translation type="unfinished"></translation>
+        <translation>MISE à JOUR DE PINN</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3285"/>
         <source>A new version of PINN is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Une nouvelle version de PINN est disponible</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3286"/>
         <source>Do you want to download this version?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous télécharger cette version?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3310"/>
         <source>Downloading Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Téléchargement de la mise à jour</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3310"/>
         <source>Press ESC to cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Appuyez sur Echap pour annuler</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1766"/>
@@ -942,7 +943,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="multiimagedownloadthread.cpp" line="146"/>
         <source>Finished downloading %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Téléchargement de %1 terminé</translation>
     </message>
 </context>
 <context>
@@ -1046,7 +1047,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="multiimagewritethread.cpp" line="319"/>
         <source>Writing boot partition table</source>
-        <translation type="unfinished"></translation>
+        <translation>écriture de la table de partition de démarrage</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="309"/>
@@ -1058,7 +1059,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <location filename="multiimagewritethread.cpp" line="358"/>
         <source>Cannot Reinstall </source>
         <oldsource>Cannot Refresh </oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de rafraichir</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="358"/>
@@ -1069,7 +1070,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="393"/>
         <source>Error reading existing partition table</source>
-        <translation>Erreur pendant la lécture de la table de partition existante</translation>
+        <translation>Erreur pendant la lecture de la table de partition existante</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="478"/>
@@ -1196,17 +1197,17 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="passwd.ui" line="14"/>
         <source>Reset Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser le mot de passe</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="45"/>
         <source>Username</source>
-        <translation type="unfinished">Pseudo</translation>
+        <translation">Pseudo</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="71"/>
         <source>Password</source>
-        <translation type="unfinished">Mot de passe</translation>
+        <translation>Mot de passe</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="110"/>
@@ -1216,12 +1217,12 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="passwd.ui" line="123"/>
         <source>Strength</source>
-        <translation type="unfinished"></translation>
+        <translation>Force</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="158"/>
         <source>Show Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher le mot de passe</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="171"/>
@@ -1231,27 +1232,27 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="passwd.cpp" line="226"/>
         <source>Very Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>Très faible</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="227"/>
         <source>Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>Faible</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="228"/>
         <source>Good</source>
-        <translation type="unfinished"></translation>
+        <translation>Bon</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="229"/>
         <source>Strong</source>
-        <translation type="unfinished"></translation>
+        <translation>Fort</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="230"/>
         <source>Very Strong</source>
-        <translation type="unfinished"></translation>
+        <translation>Très fort</translation>
     </message>
 </context>
 <context>
@@ -1307,7 +1308,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="languagedialog.cpp" line="35"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorer</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="36"/>
@@ -1459,7 +1460,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="piclonedialog.ui" line="14"/>
         <source>Clone SD Card</source>
-        <translation type="unfinished"></translation>
+        <translation>Cloner carte SD</translation>
     </message>
     <message>
         <location filename="piclonedialog.ui" line="42"/>

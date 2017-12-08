@@ -3,6 +3,8 @@
 
 PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi. See the change history below for the additional features.
 
+### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
+
 Documentation on how to use PINN can be found **[here](README_PINN.md)**, which includes all of the original NOOBS documentation.
 
 If you are already familiar with NOOBS' features, you may prefer to read the reduced documenation that just contains **[PINN's new features](changes.md)** alone.
