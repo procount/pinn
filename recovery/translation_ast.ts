@@ -4,38 +4,38 @@
 <context>
     <name>BootSelectionDialog</name>
     <message>
-        <location filename="bootselectiondialog.cpp" line="59"/>
+        <location filename="bootselectiondialog.cpp" line="79"/>
         <source>Cannot display boot menu</source>
         <translation>Nun pue amosase&apos;l menú d&apos;arranque</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="59"/>
+        <location filename="bootselectiondialog.cpp" line="79"/>
         <source>Error mounting settings partition</source>
         <translation>Fallu montando la partición d&apos;axustes</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="310"/>
+        <location filename="bootselectiondialog.cpp" line="323"/>
         <source>HDMI safe mode</source>
         <translation>Mou seguru HDMI</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="314"/>
+        <location filename="bootselectiondialog.cpp" line="327"/>
         <source>composite PAL mode</source>
         <translation>Mou compuestu PAL</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="318"/>
+        <location filename="bootselectiondialog.cpp" line="331"/>
         <source>composite NTSC mode</source>
         <translation>mou compuestu NTSC</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="375"/>
+        <location filename="bootselectiondialog.cpp" line="388"/>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="25"/>
-        <location filename="bootselectiondialog.cpp" line="370"/>
+        <location filename="bootselectiondialog.cpp" line="383"/>
         <source>PINN - Select OS to boot</source>
         <translation type="unfinished"></translation>
     </message>

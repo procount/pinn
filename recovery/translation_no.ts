@@ -4,38 +4,38 @@
 <context>
     <name>BootSelectionDialog</name>
     <message>
-        <location filename="bootselectiondialog.cpp" line="59"/>
+        <location filename="bootselectiondialog.cpp" line="79"/>
         <source>Cannot display boot menu</source>
         <translation>Kan ikke vise boot-meny</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="59"/>
+        <location filename="bootselectiondialog.cpp" line="79"/>
         <source>Error mounting settings partition</source>
         <translation>Feil ved oppsett av innstillingspartisjon</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="310"/>
+        <location filename="bootselectiondialog.cpp" line="323"/>
         <source>HDMI safe mode</source>
         <translation>HDMI sikker-modus</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="314"/>
+        <location filename="bootselectiondialog.cpp" line="327"/>
         <source>composite PAL mode</source>
         <translation>komposit PAL-modus</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="318"/>
+        <location filename="bootselectiondialog.cpp" line="331"/>
         <source>composite NTSC mode</source>
         <translation>komposit NTSC-modus</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="375"/>
+        <location filename="bootselectiondialog.cpp" line="388"/>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
         <translation>PINN - Tidligere valgt OS vil boote om %1 sekunder</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="25"/>
-        <location filename="bootselectiondialog.cpp" line="370"/>
+        <location filename="bootselectiondialog.cpp" line="383"/>
         <source>PINN - Select OS to boot</source>
         <translation>PINN - Velg OS som skal boote</translation>
     </message>

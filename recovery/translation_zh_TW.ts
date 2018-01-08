@@ -4,38 +4,38 @@
 <context>
     <name>BootSelectionDialog</name>
     <message>
-        <location filename="bootselectiondialog.cpp" line="59"/>
+        <location filename="bootselectiondialog.cpp" line="79"/>
         <source>Cannot display boot menu</source>
         <translation>無法顯示開機選單</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="59"/>
+        <location filename="bootselectiondialog.cpp" line="79"/>
         <source>Error mounting settings partition</source>
         <translation>掛載 settings 分割區時發生錯誤</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="310"/>
+        <location filename="bootselectiondialog.cpp" line="323"/>
         <source>HDMI safe mode</source>
         <translation>HDMI 安全模式</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="314"/>
+        <location filename="bootselectiondialog.cpp" line="327"/>
         <source>composite PAL mode</source>
         <translation>合成 PAL 模式</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="318"/>
+        <location filename="bootselectiondialog.cpp" line="331"/>
         <source>composite NTSC mode</source>
         <translation>合成 NTSC 模式</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="375"/>
+        <location filename="bootselectiondialog.cpp" line="388"/>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
         <translation>PINN - 先前選擇的作業系統將會在 %1 秒內啟動</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="25"/>
-        <location filename="bootselectiondialog.cpp" line="370"/>
+        <location filename="bootselectiondialog.cpp" line="383"/>
         <source>PINN - Select OS to boot</source>
         <translation>PINN - 選取要啟動的作業系統</translation>
     </message>

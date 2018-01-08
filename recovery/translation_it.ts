@@ -4,38 +4,38 @@
 <context>
     <name>BootSelectionDialog</name>
     <message>
-        <location filename="bootselectiondialog.cpp" line="59"/>
+        <location filename="bootselectiondialog.cpp" line="79"/>
         <source>Cannot display boot menu</source>
         <translation>Impossibile visualizzare menu boot</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="59"/>
+        <location filename="bootselectiondialog.cpp" line="79"/>
         <source>Error mounting settings partition</source>
         <translation>Errore montaggio partizione impostazioni</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="310"/>
+        <location filename="bootselectiondialog.cpp" line="323"/>
         <source>HDMI safe mode</source>
         <translation>Modo HDMI sicuro</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="314"/>
+        <location filename="bootselectiondialog.cpp" line="327"/>
         <source>composite PAL mode</source>
         <translation>Modo PAL composito</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="318"/>
+        <location filename="bootselectiondialog.cpp" line="331"/>
         <source>composite NTSC mode</source>
         <translation>Modo NTSC composito</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="375"/>
+        <location filename="bootselectiondialog.cpp" line="388"/>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
         <translation>PINN - Il sistema operativo precedentemente selezionato si avvierà tra %1 secondi</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="25"/>
-        <location filename="bootselectiondialog.cpp" line="370"/>
+        <location filename="bootselectiondialog.cpp" line="383"/>
         <source>PINN - Select OS to boot</source>
         <translation>PINN - Seleziona il SO di avvio</translation>
     </message>

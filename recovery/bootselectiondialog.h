@@ -55,6 +55,7 @@ protected:
 private:
     Ui::BootSelectionDialog *ui;
     bool _inSelection;
+    QByteArray _drive;
 };
 
 #endif // BOOTSELECTIONDIALOG_H

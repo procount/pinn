@@ -13,6 +13,7 @@
 #include "json.h"
 #include "util.h"
 #include "ceclistener.h"
+#include <stdio.h>
 #include <QDebug>
 #include <unistd.h>
 #include <QDir>
@@ -36,15 +37,34 @@ extern "C" {
 }
 #endif
 
-
 extern CecListener * cec;
+
+
+class SleepSimulator{
+     QMutex localMutex;
+     QWaitCondition sleepSimulator;
+public:
+    SleepSimulator()
+    {
+        localMutex.lock();
+    }
+    void sleep(unsigned long sleepMS)
+    {
+        sleepSimulator.wait(&localMutex, sleepMS);
+    }
+    void CancelSleep()
+    {
+        sleepSimulator.wakeAll();
+    }
+};
 
 BootSelectionDialog::BootSelectionDialog(const QString &drive, const QString &defaultPartition, bool stickyBoot, bool dsi, QWidget *parent) :
     QDialog(parent),
     _countdown(11),
     _dsi(dsi),
     ui(new Ui::BootSelectionDialog),
-    _inSelection(false)
+    _inSelection(false),
+    _drive(drive.toAscii())
 {
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
     ui->setupUi(this);
@@ -216,13 +236,6 @@ void BootSelectionDialog::bootPartition()
     QDialog::accept();
 }
 
-int BootSelectionDialog::extractPartition(QVariantMap m)
-{
-    QByteArray partition = m.value("partitions").toList().first().toByteArray();
-    partition.replace("/dev/mmcblk0p", "");
-    return    (partition.toInt());
-}
-
 void BootSelectionDialog::accept()
 {
     QListWidgetItem *item = ui->list->currentItem();
@@ -385,6 +398,7 @@ void BootSelectionDialog::countdown()
 void BootSelectionDialog::updateConfig4dsi(QByteArray partition)
 {
     QProcess *update = new QProcess(this);
+    qDebug() <<"Configuring dsi";
     update->start(QString("sh -c \"tvservice -n\""));
     update->waitForFinished(4000);
     update->setProcessChannelMode(QProcess::MergedChannels);
@@ -403,7 +417,10 @@ void BootSelectionDialog::updateConfig4dsi(QByteArray partition)
 
     qDebug() << "tvservice name: "<< status << " " << bHDMI << " "<< status.length();
 
-    QByteArray partstr = "/dev/mmcblk0p";
+    QByteArray partstr = _drive;
+    QString driveStr(_drive);
+    if (driveStr.right(1).at(0).isDigit())
+        partstr.append("p");
     partstr.append(partition);
     qDebug() << partstr;
     QProcess::execute("mkdir -p /tmp/3");
@@ -421,7 +438,12 @@ void BootSelectionDialog::updateConfig4dsi(QByteArray partition)
         qDebug() << "DSI selected";
         QProcess::execute("sh -c \"cp /tmp/3/config.dsi /tmp/3/config.txt\"");
     }
+    fflush(stderr);
     sync();
+
+    SleepSimulator s;
+    s.sleep(1000);
+
     QProcess::execute("umount "+partstr);
 }
 
