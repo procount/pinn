@@ -137,7 +137,7 @@
       <property name="title">
        <string>Download space</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout">
+      <layout class="QGridLayout" name="downloadLayout">
        <item row="0" column="0">
         <widget class="QLabel" name="targetLabelUsb">
          <property name="maximumSize">
