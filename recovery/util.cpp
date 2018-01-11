@@ -39,6 +39,25 @@ void putFileContents(const QString &filename, const QByteArray &data)
     f.close();
 }
 
+QByteArray getRemoteFile(const QString &url)
+{
+    QProcess p;
+    QString cmd;
+    QByteArray result;
+    cmd = "wget --no-verbose --tries=inf -O- "+url;
+
+    //p.setProcessChannelMode(p.MergedChannels);
+    p.start(cmd);
+    p.closeWriteChannel();
+    p.waitForFinished(-1);
+
+    if (p.exitCode() != 0)
+        result="";
+    else
+        result =p.readAllStandardOutput();
+    return(result);
+}
+
 /* Utility function to query current overscan setting */
 #define VCMSG_GET_OVERSCAN 0x0004000a
 #define VCMSG_SET_OVERSCAN 0x0004800a
