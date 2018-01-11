@@ -23,7 +23,8 @@ protected:
     QString findTarballExt(QString base, QString exts);
     bool processImage(OsInfo *image);
     void postInstallConfig(const QString &folder, const QString &part, const QString &customName);
-    void postInstallProcessConfigFile(const QString &sourcefolder, const QString &tarfile);
+    void testForCustomFile(const QString &baseName, const QString &ext);
+    void processEntry(const QString &srcfolder, const QString & entry);
     QStringList parseQuotedString(const QString &tarfile, int args);
     bool addPartitionEntry(int sizeInSectors, int type, int specialOffset = 0);
     QString shorten(QString example, int maxLabelLen);
@@ -31,7 +32,7 @@ protected:
     bool mkfs(const QByteArray &device, const QByteArray &fstype = "ext4", const QByteArray &label = "", const QByteArray &mkfsopt = "");
     bool dd(const QString &imagePath, const QString &device);
     bool partclone_restore(const QString &imagePath, const QString &device);
-    bool untar(const QString &tarball);
+    bool untar(const QString &tarball, bool bSuppressError=false);
     bool isLabelAvailable(const QByteArray &label, const QByteArray &device = "");
     QByteArray getLabel(const QString part);
     QByteArray getUUID(const QString part);
@@ -52,6 +53,9 @@ protected:
     bool _multiDrives;
     bool _noobsconfig;
     bool _partition;
+    QString _srcFolder; //For noobsconfig
+    QString _dstFolder;
+    QStringList stack;
 
 signals:
     void error(const QString &msg);
