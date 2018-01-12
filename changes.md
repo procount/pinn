@@ -297,5 +297,16 @@ Finally, PINN can now re-install any installed OS WITHOUT affecting the other OS
 - **Edit PINN**   - The recovery.cmdline and config.txt fiels of PINN can now be edited.
 - **no_cursor**   - The no_cursor option now only affects the bootselection dialog
 - **Wipe**        - The Wipe Disk command has been temporarily removed
-- **Max OSes**    - The number of OSes has been restricted so that boot partitions numbers are <63
+- **Max OSes**    - The number of OSes has been restricted so that boot partitions numbers are &lt;63
 - **self-update** - Fixed broken self-update
+
+### V2.4.5
+
+This is a small maintenance release for some cosmetic changes and bugfixes mainly.
+
+- **background**  - Specify the background colour as background=r,g,b
+- **style**       - Change the style with style=motif/windows/platinum
+- **configpath**  - (partially) allow remote flavours to customise an OS
+- **dsi**         - Allows the HDMI/DSI switching option to work with OSes installed to USB
+
+

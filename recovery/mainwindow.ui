@@ -55,6 +55,9 @@
         <height>90</height>
        </size>
       </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="title">
        <string>Install space</string>
       </property>
@@ -334,6 +337,16 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionAdvanced"/>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>575</width>
+     <height>25</height>
+    </rect>
+   </property>
   </widget>
   <action name="actionWrite_image_to_disk">
    <property name="enabled">

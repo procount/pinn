@@ -1142,7 +1142,7 @@ void MainWindow::displayMode(int modenr, bool silent)
     resize(w,h);
 
     // Update UI item locations
-    _splash->setPixmap(QPixmap(":/wallpaper.png"));
+    //@@ _splash->setPixmap(QPixmap(":/wallpaper.png")); //Comment out for now whilst changing pixmap background
     LanguageDialog *ld = LanguageDialog::instance("en", "gb");
     ld->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignHCenter | Qt::AlignBottom, ld->size(), qApp->desktop()->availableGeometry()));
     this->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, this->size(), qApp->desktop()->availableGeometry()));
@@ -2423,6 +2423,13 @@ void MainWindow::startImageWrite()
                 i++;
             }
             json["partitions"] = partitions;
+
+            //Store configpath in /settings/os/<osname>/partitions.json
+            //So that  noobsconfig knows the URL of the flavour customisations.
+            //Assume they are where the os.json file is.
+            QFileInfo fi(entry.value("os_info").toString());
+            json["configpath"] = fi.path();
+
             Json::saveToFile(folder+"/partitions.json", json);
         }
 

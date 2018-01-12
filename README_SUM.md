@@ -3,9 +3,9 @@
 
 PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi. See the change history below for the additional features.
 
-### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
+### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c or later](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-Documentation on how to use PINN can be found **[here](README_PINN.md)**, which includes all of the original NOOBS documentation.
+Documentation on how to use PINN can be found in **[README_PINN.md](README_PINN.md)**, which includes all of the original NOOBS documentation.
 
 If you are already familiar with NOOBS' features, you may prefer to read the reduced documenation that just contains **[PINN's new features](changes.md)** alone.
 
@@ -44,6 +44,15 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V2.4.5
+
+This is a small maintenance release for some cosmetic changes and bugfixes mainly.
+
+- **background**  - Specify the background colour as background=r,g,b
+- **style**       - Change the style with style=motif/windows/platinum
+- **configpath**  - (partially) allow remote flavours to customise an OS
+- **dsi**         - Allows the HDMI/DSI switching option to work with OSes installed to USB
+
 ### V2.4.4
 
 Finally, PINN can now re-install any installed OS WITHOUT affecting the other OSes, eliminating one of my NOOBS bugbears.
@@ -54,7 +63,7 @@ Finally, PINN can now re-install any installed OS WITHOUT affecting the other OS
 - **Edit PINN**   - The recovery.cmdline and config.txt fiels of PINN can now be edited.
 - **no_cursor**   - The no_cursor option now only affects the bootselection dialog
 - **Wipe**        - The Wipe Disk command has been temporarily removed
-- **Max OSes**    - The number of OSes has been restricted so that boot partitions numbers are <63
+- **Max OSes**    - The number of OSes has been restricted so that boot partitions numbers are &lt;63
 
 ### V2.4.3
 

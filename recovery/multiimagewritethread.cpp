@@ -808,7 +808,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
             QString customName = image->flavour() + "_"+label;
 
             //qDebug() << "part" << folder << part << label << customName;
-            postInstallConfig(image->folder(), part, customName);
+            postInstallConfig(image, part, customName);
 
         }
     }
@@ -856,11 +856,13 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     return true;
 }
 
-void MultiImageWriteThread::postInstallConfig(const QString &folder, const QString &part, const QString &customName)
+void MultiImageWriteThread::postInstallConfig(OsInfo *image, const QString &part, const QString &customName)
 {
     MYDEBUG
+    const QString folder = image->folder();
+
     QString cmdline = getFileContents("/proc/cmdline");
-    QByteArray searchFor = "configpath=";
+    QByteArray searchFor = "configpath="; //This will override the default location
     if (cmdline.contains(searchFor))
     {
         int searchForLen = searchFor.length();
@@ -868,17 +870,21 @@ void MultiImageWriteThread::postInstallConfig(const QString &folder, const QStri
         int end = cmdline.indexOf(' ', pos+searchForLen);
         if (end != -1)
             end = end-pos-searchForLen;
-        _srcFolder = cmdline.mid(pos+searchForLen, end);
+        _srcFolder = cmdline.mid(pos+searchForLen, end).trimmed();
     }
     else
-        _srcFolder = folder;
-    qDebug() << "Using _srcFolder: " << _srcFolder;
+    {
+        _srcFolder = image->configPath(); //URL
+        if (_srcFolder.isEmpty())
+            _srcFolder = folder;
+    }
+    //qDebug() << "Using _srcFolder: " << _srcFolder;
     _dstFolder = "/mnt2";
 
     //Mount the newly installed partition
     //QDir dir;
     //dir.mkdir(_dstFolder);
-    qDebug() << "postInstallConfig: "+ customName;
+    //qDebug() << "postInstallConfig: "+ customName;
     if (QProcess::execute("mount "+part+" "+_dstFolder) != 0)
     {
         qDebug() << (tr("%1: Error mounting file system").arg(customName));
@@ -970,7 +976,7 @@ void MultiImageWriteThread::testForCustomFile(const QString &baseName, const QSt
     //Try to process a customName.tar file
     QString testfile = _srcFolder+"/"+baseName+ext;
     QFileInfo fi(testfile);
-    //if (fi.exists())
+    //if (fi.exists()) #We can't test a URL for existence this way
     {
         QString tarfile = "@"+ baseName +ext;
         processEntry(_srcFolder, tarfile);
@@ -1180,12 +1186,12 @@ bool MultiImageWriteThread::isLabelAvailable(const QByteArray &label, const QByt
         if ( !device.isEmpty() && (part==device))
         {   //A device is specified and it matches part
             result=1;   //pretend it wasn't found
-            qDebug() << label << " is available (Matches device)";
+            //qDebug() << label << " is available (Matches device)";
             return ( result != 0);
         }
-        qDebug() << label << " is NOT availabhttps://www.whatismybrowser.com/ le.";
+        //qDebug() << label << " is NOT available.";
     }
-    qDebug() << label << " is available.";
+    //qDebug() << label << " is available.";
     return ( result != 0);
 }
 

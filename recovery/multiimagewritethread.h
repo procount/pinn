@@ -22,7 +22,7 @@ protected:
     virtual void run();
     QString findTarballExt(QString base, QString exts);
     bool processImage(OsInfo *image);
-    void postInstallConfig(const QString &folder, const QString &part, const QString &customName);
+    void postInstallConfig(OsInfo *image, const QString &part, const QString &customName);
     void testForCustomFile(const QString &baseName, const QString &ext);
     void processEntry(const QString &srcfolder, const QString & entry);
     QStringList parseQuotedString(const QString &tarfile, int args);

@@ -89,8 +89,13 @@ public:
         return _group;
     }
 
+    inline QString configPath()
+    {
+        return _configpath;
+    }
+
 protected:
-    QString _folder, _flavour, _name, _description, _version, _releaseDate, _username, _password, _url, _group;
+    QString _folder, _flavour, _name, _description, _version, _releaseDate, _username, _password, _url, _group, _configpath;
     bool _bootable;
     QList<PartitionInfo *> _partitions;
     QStringList _supportedModels;

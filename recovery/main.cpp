@@ -15,6 +15,7 @@
 #include <sys/reboot.h>
 #include <linux/reboot.h>
 #include <QApplication>
+#include <QBitmap>
 #include <QStyle>
 #include <QDesktopWidget>
 #include <QSplashScreen>
@@ -24,7 +25,6 @@
 #include <QDir>
 #include <QDebug>
 #include <QTime>
-
 #ifdef Q_WS_QWS
 #include <QWSServer>
 #endif
@@ -297,10 +297,56 @@ int main(int argc, char *argv[])
     if (QFile::exists(":/icons/raspberry_icon.png"))
         a.setWindowIcon(QIcon(":/icons/raspberry_icon.png"));
 
+    int r,g,b;
+    int newBGnd;
+    QPixmap pixmap(":/wallpaper.png");
+    QColor backgroundColour = BACKGROUND_COLOR;
+    QString cmdline = getFileContents("/proc/cmdline");
+    QStringList args = cmdline.split(QChar(' '),QString::SkipEmptyParts);
+    foreach (QString s, args)
+    {
+        if (s.contains("background"))
+        {
+            QStringList params = s.split(QChar('='));
+            QString arg = params.at(1);
+            QStringList colours = arg.split(QChar(','));
+            r=colours.at(0).toInt();
+            g=colours.at(1).toInt();
+            b=colours.at(2).toInt();
+            backgroundColour = QColor(r,g,b);
+            newBGnd = qRgba(r,g,b,0xff);
+            r=qMin(r+20,255);
+            g=qMin(g+20,255);
+            b=qMin(b+20,255);
+
+            QString style = "* {background: rgb("+QString::number(r)+","+QString::number(g)+","+QString::number(b)+"); }";
+            a.setStyleSheet(style);
+
+            {   //Change background colour of splash wallpaper
+                QImage tmp = pixmap.toImage();
+
+                // Loop all the pixels
+                for(int y = 0; y < tmp.height(); y++)
+                {
+                  for(int x= 0; x < tmp.width(); x++)
+                  {
+                    if (tmp.pixel(x,y) == qRgba(0xde,0xdf,0xde,0xff))
+                    {
+                        // Apply the pixel color
+                        tmp.setPixel(x,y,newBGnd);
+                    }
+                  }
+                }
+                // Get the coloured pixmap
+                pixmap = QPixmap::fromImage(tmp);
+            }
+        }
+    }
 #ifdef Q_WS_QWS
-    QWSServer::setBackground(BACKGROUND_COLOR);
+    QWSServer::setBackground(backgroundColour);
 #endif
-    QSplashScreen *splash = new QSplashScreen(QPixmap(":/wallpaper.png"));
+    QSplashScreen *splash = new QSplashScreen(pixmap);
+
     splash->show();
     QApplication::processEvents();
 

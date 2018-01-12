@@ -7,7 +7,7 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v2.4.4
+This README relates to v2.4.5
 
 <sup>(PINN is only available in one format that does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`)</sup>
 
@@ -175,11 +175,12 @@ On the **Maintenance** menu, this status window will not appear.
 
 ## Display Customisation
 
-
 In addition to the toolbars, the following functionality is provided:
  - <b>Language Selection</b>: Allows you to select the language used for text display.
  - <b>Keyboard Layout Selection</b>: Allows you to select the keyboard layout to be used.
  - <b>Display Mode Selection</b>: By default, PINN will output over HDMI at your display's preferred resolution, even if no HDMI display is connected. If you do not see any output on your HDMI display or are using the composite output, press 1, 2, 3 or 4 on your keyboard to select HDMI preferred mode (1), HDMI safe mode (2), composite PAL mode (3), or composite NTSC mode (4), respectively.
+ - <b>Background colour</b>: To change the background colour for the screen and most windows, add `background=r,g,b` to recovery.cmdline, where 0,0,0 is black and 255,255,255 is white.
+ - <b>style</b>: The style of the windows display can be modified  by adding `style=motif/windows/platinum` to recovery.cmdline
 
 Note that all user settings (language, keyboard layout, display mode) will persist between reboots and will also be automatically passed to the installed OSes. This means that if you can see the PINN interface on your display device, you should be able to see the OS CLI/GUI when it boots too.
 
@@ -380,6 +381,12 @@ The following is a complete list of all the PINN options that can be added to th
 - **bootmenutimeout=\<time in secs\>**: Changes the default timeout allowed before an OS is booted without any selection.
 
 - **noobsconfig**: Prevents any noobsconfig customisations from being applied to an OS on installation
+
+- **configpath=**: Specifies a path or URL where the noobsconfig customisation files can be found (rather than being in /os/\<distro\>/)
+
+- **background=**: To change the background colour for the screen and most windows, add `background=r,g,b`, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.
+
+- **style=**: The style of the windows display can be modified to one of `motif`, `windows` or `platinum`
 
 <!-- fixate not documented -->
 
@@ -598,6 +605,8 @@ As documented earlier, PINN can install an OS from a local USB disk instead of d
 
 The download icon is only available when the download size of all files are known. If the download icon is greyed out, and the toolbar indicates that that there are still more files to check, please wait until all files are checked. 
 
+The download function will not download flavours or custom files from a website. These need to be downloaded manually in order to be used offline.
+
 ## How to Clone an SD Card
 
 Raspbian has added an SD Card Copier tool called `piclone`, which is great. For anyone concerned about it cloning a live system, 
@@ -724,6 +733,8 @@ By keeping the customisations separate from the OS distro means:
 4. Different customisation "flavours" of an OS can be created as a master installation card, and the required ones can be selected and installed as required. This can save a lot of SD card space compared to storing a different full customised OS for each flavour.
 
 PINN now includes direct support for `noobsconfig`, so it is no longer necessary to add the `noobsconfig` files to your PINN installation. Just add your configuration and customisations files and install your "flavoured" OS. Please see (https://github.com/procount/noobsconfig) for full documentation on how to use this feature.
+
+The `configpath` command line option will cause PINN to search for the customised files in another location (folder or URL) rather than the same location as the os_info.json file for the OS, but this will affect ALL OSes.
 
 The [PiKitchen](http://www.pihardware.com/guides/pi-kitchen) is an example of how comprehensive these configurations can be if you want them to be.
 

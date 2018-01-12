@@ -18,7 +18,7 @@
 MultiImageDownloadThread::MultiImageDownloadThread(QObject *parent, QString local) :
     QThread(parent),  _local(local), _extraSpacePerPartition(0), _part(5)
 {
-    /* local is "/tmep/media/sd*" or "/mnt" (in future) */
+    /* local is "/tmp/media/sd*" or "/mnt" (in future) */
 }
 
 void MultiImageDownloadThread::addImage(const QString &folder, const QString &flavour)

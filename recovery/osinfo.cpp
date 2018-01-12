@@ -18,7 +18,9 @@ OsInfo::OsInfo(const QString &folder, const QString &flavour, QObject *parent) :
     _url = m.value("url").toString();
     _group = m.value("group").toString();
 
-    QVariantList parts = Json::loadFromFile(folder+"/partitions.json").toMap().value("partitions").toList();
+    QVariantMap p = Json::loadFromFile(folder+"/partitions.json").toMap();
+    QVariantList parts = p.value("partitions").toList();
+    _configpath = p.value("configpath").toString();
     foreach (QVariant pv, parts)
     {
         _partitions.append(new PartitionInfo(pv.toMap(), this));
