@@ -343,6 +343,11 @@ void OsGroup::setDefaultItems()
                 }
             }
         }
+        QListWidget *lw = findTab(DEFGROUP);
+        if (lw)
+            tabs->setCurrentWidget(lw);
+        else
+            tabs->setCurrentIndex(0);
         tabs->currentWidget()->setFocus();
     }
 }
