@@ -1328,14 +1328,6 @@ void MainWindow::on_actionEdit_config_triggered()
 
 void MainWindow::on_actionBrowser_triggered()
 {
-#if KHDBG
-    for (int i=0; i<ug->list->count(); i++)
-    {
-        QListWidgetItem *item = ug->list->item(i);
-        QVariantMap m = item->data(Qt::UserRole).toMap();
-        qDebug() << m;
-    }
-#endif
     startBrowser();
 }
 
@@ -1638,8 +1630,6 @@ void MainWindow::processRepoListJson(QVariant json)
 
     QVariantList list = json.toMap().value("repo_list").toList();
 
-    //qDebug() << "processRepoListJson: " << list;
-
     foreach (QVariant osv, list)
     {
         QVariantMap  os = osv.toMap();
@@ -1674,7 +1664,6 @@ void MainWindow::downloadLists()
     {
         foreach (QString url, urls)
         {
-            qDebug() << "Downloading list from " << url;
             if (url.startsWith("/"))
                 processJson( Json::parse(getFileContents(url)) );
             else
@@ -2138,7 +2127,7 @@ void MainWindow::updateActions()
         _menuLabel->setText(menutext(toolbar_index));
 }
 
-void MainWindow::on_list_itemChanged(QListWidgetItem *)
+void MainWindow::on_list_itemChanged(QListWidgetItem *item)
 {
     updateNeeded();
     updateActions();
@@ -2182,7 +2171,6 @@ void MainWindow::downloadListRedirectCheck()
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
-        //qDebug() << "Redirection - Re-trying download from" << redirectionurl;
         downloadList(redirectionurl);
     }
     else
@@ -2198,7 +2186,6 @@ void MainWindow::downloadIconRedirectCheck()
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
-        //qDebug() << "Redirection - Re-trying download from" << redirectionurl;
         downloadIcon(redirectionurl, originalurl);
     }
     else
@@ -2214,7 +2201,6 @@ void MainWindow::downloadMetaRedirectCheck()
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
-        //qDebug() << "Redirection - Re-trying download from" << redirectionurl;
         _numMetaFilesToDownload--;
         downloadMetaFile(redirectionurl, saveAs);
     }
@@ -2241,7 +2227,6 @@ void MainWindow::downloadMetaComplete()
     {
         if (ignoreError)
         {
-            //qDebug() << tr("Error downloading meta file: ")+reply->url().toString() + tr(". Continuing\n");
             _numMetaFilesToDownload--;
         }
         else
@@ -2330,7 +2315,6 @@ void MainWindow::checkFileSizeRedirectCheck()
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
-        //qDebug() << "Redirection - Re-trying filesize from" << redirectionurl;
         _numFilesToCheck--;
         checkFileSize(redirectionurl, osname);
     }
@@ -2478,8 +2462,6 @@ void MainWindow::startImageReinstall()
     {
         QVariantMap entry = item->data(Qt::UserRole).toMap();
 
-        //qDebug() <<entry;
-
         if (entry.value("name")=="PINN")
         {
             continue;   //Do not reinstall PINN - it's just a dummy os.
@@ -2525,7 +2507,6 @@ void MainWindow::startImageReinstall()
             slidesFolder = folder+"/slides_vga";
         }
 
-        //qDebug() << "@@@@ " << entry;
         imageWriteThread->addInstalledImage(folder, entry.value("name").toString(), entry); //@@
 
         if (!slidesFolder.isEmpty())
@@ -2816,20 +2797,16 @@ void MainWindow::recalcAvailableMB()
     {
         QProcess proc;
         QString cmd = "sh -c \"df -m /dev/" + partdev(_osdrive,1) + " | grep  /dev/" + partdev(_osdrive,1) + " | sed 's| \\+| |g' | cut -d' ' -f 4 \"";
-        //qDebug() << cmd;
 
         proc.start(cmd);
         proc.waitForFinished();
         QString result = proc.readAll();
-        //qDebug()<< result;
 
         _availableDownloadMB = result.toInt();
-        //qDebug() << classdev << " : " << _availableDownloadMB;
     }
     else
     {
         _availableDownloadMB = 0;
-        //qDebug() << classdev << " : " << _availableDownloadMB;
     }
 }
 
@@ -3109,7 +3086,6 @@ void MainWindow::on_actionPassword_triggered()
     if (item)
     {
         m = item->data(Qt::UserRole).toMap();
-        //qDebug() << "Passwd triggered: " << m;
         if (m.contains("partitions"))
         {
             //QVariantList l = item->data(Qt::UserRole).toMap().value("partitions").toList();
@@ -3148,11 +3124,9 @@ void MainWindow::downloadUpdateRedirectCheck()
     QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
     QString saveAs = reply->request().attribute(QNetworkRequest::User).toString();
     //NOTE: saveAs=type|filename
-    //qDebug() << "Redirect check" << redirectionurl << "to" << saveAs << " Reply="<<httpstatuscode;
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
-        //qDebug() << "Redirection - Re-trying download from" << redirectionurl;
         _numBuildsToDownload--;
         downloadUpdate(redirectionurl, saveAs);
     }
@@ -3430,6 +3404,7 @@ void MainWindow::onKeyPress(int cec_code)
 
 void MainWindow::on_actionInfo_triggered()
 {
+
     if (!requireNetwork())
         return;
 
@@ -3437,7 +3412,6 @@ void MainWindow::on_actionInfo_triggered()
     item = ug->list->currentItem();
     if (!item)
     {
-        //qDebug()<<"No List Item";
         return;
     }
     QVariantMap m = item->data(Qt::UserRole).toMap();
@@ -3463,7 +3437,6 @@ void MainWindow::on_actionInfoInstalled_triggered()
     item = ug->listInstalled->currentItem();
     if (!item)
     {
-        //qDebug()<<"No List Item";
         return;
     }
     QVariantMap m = item->data(Qt::UserRole).toMap();
