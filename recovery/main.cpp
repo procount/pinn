@@ -45,6 +45,9 @@ CecListener *enableCEC(QObject *parent=0);
 QStringList downloadRepoUrls;
 QString repoList;
 
+QString stylesheet = "";
+QColor backgroundColour = BACKGROUND_COLOR;
+
 void runCustomScript(const QString &driveDev, int partNr, const QString &cmd, bool inBackground=false )
 {
     bool mntStillMounted = true ; // suppose yes.
@@ -89,11 +92,12 @@ void runCustomScript(const QString &driveDev, int partNr, const QString &cmd, bo
 void showBootMenu(const QString &drive, const QString &defaultPartition, bool setDisplayMode)
 {
 #ifdef Q_WS_QWS
-    QWSServer::setBackground(Qt::white);
+    QWSServer::setBackground(backgroundColour);
     QWSServer::setCursorVisible(true);
 #endif
     //Just reuse setDisplayMode as indicator for sticky boot direct mode
     BootSelectionDialog bsd(drive, defaultPartition, setDisplayMode, dsi);
+    bsd.setStyleSheet(stylesheet);
     if (setDisplayMode)
         bsd.setDisplayMode();
     bsd.exec();
@@ -300,7 +304,6 @@ int main(int argc, char *argv[])
     int r,g,b;
     int newBGnd;
     QPixmap pixmap(":/wallpaper.png");
-    QColor backgroundColour = BACKGROUND_COLOR;
     QString cmdline = getFileContents("/proc/cmdline");
     QStringList args = cmdline.split(QChar(' '),QString::SkipEmptyParts);
     foreach (QString s, args)
@@ -319,8 +322,8 @@ int main(int argc, char *argv[])
             g=qMin(g+20,255);
             b=qMin(b+20,255);
 
-            QString style = "* {background: rgb("+QString::number(r)+","+QString::number(g)+","+QString::number(b)+"); }";
-            a.setStyleSheet(style);
+            stylesheet = "* {background: rgb("+QString::number(r)+","+QString::number(g)+","+QString::number(b)+"); }";
+            a.setStyleSheet(stylesheet);
 
             {   //Change background colour of splash wallpaper
                 QImage tmp = pixmap.toImage();

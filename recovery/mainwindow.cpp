@@ -259,6 +259,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     {
         /* We have a local os_list_v3.json for testing purposes */
         _repo = "/mnt/os_list_v3.json";
+        qDebug() << "Using local /mnt/os_list_v3.json";
 
         /* We need a somewhat accurate date for https to work. Normally we retrieve that from the repo server,
            but since we are in testing mode, just set date to last modification time of our local file */
