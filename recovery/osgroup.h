@@ -39,6 +39,8 @@ public:
     void setFocus(void);
 
     int count();
+    QListWidgetItem *findItemByDataName(const QString &name);
+    void updateInstalledStatus();
     QList<QListWidgetItem *> selectedItems();
     QList<QListWidgetItem *> selectedInstalledItems();
     QList<QListWidgetItem *> allItems();

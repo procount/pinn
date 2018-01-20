@@ -268,6 +268,70 @@ QList<QListWidgetItem *> OsGroup::allItems()
     return all;
 }
 
+QListWidgetItem *OsGroup::findItemByDataName(const QString &name)
+{
+    QList<QListWidgetItem *> all;
+    all = allItems();
+
+    foreach (QListWidgetItem *item, all)
+    {
+        QVariantMap m = item->data(Qt::UserRole).toMap();
+        if (m.value("name").toString() == name)
+        {
+            return item;
+        }
+    }
+    return NULL;
+}
+
+
+void OsGroup::updateInstalledStatus()
+{
+    for (int i=1; i < listInstalled->count(); i++)//ALL
+    {
+        QListWidgetItem *installedItem = listInstalled->item(i); //ALL
+        QVariantMap installedEntry = installedItem->data(Qt::UserRole).toMap();
+        QString name = installedEntry.value("name").toString();
+        QListWidgetItem * matchItem = findItemByDataName(name);
+        if (matchItem)
+        {
+            matchItem->setData(Qt::BackgroundColorRole, INSTALLED_OS_BACKGROUND_COLOR);
+            matchItem->setCheckState(Qt::Checked);
+
+            QVariantMap matchEntry = matchItem->data(Qt::UserRole).toMap();
+            QString friendlyname = name;
+             bool recommended = (name == RECOMMENDED_IMAGE);
+             if (recommended)
+                 friendlyname += " ["+tr("RECOMMENDED")+"]";
+             QString installedname = friendlyname;
+
+             if (installedEntry["release_date"].toString() < matchEntry["release_date"].toString() )
+             {
+                 friendlyname  += " ["+tr("NEW VERSION")+"]";
+                 installedname += " ["+tr("UPDATE")+"]";
+             }
+             else
+             {
+                friendlyname  += " ["+tr("INSTALLED")+"]";
+                installedname += " ["+tr("INSTALLED")+"]";
+             }
+
+             QString description = matchEntry.value("description").toString();
+             if (!description.isEmpty())
+                 friendlyname += "\n"+description;
+
+             description = installedEntry.value("description").toString();
+             if (!description.isEmpty())
+                 installedname += "\n"+description;
+
+             installedItem->setText(installedname);
+             matchItem->setText(friendlyname);
+             list->update();
+             listInstalled->update();
+        }
+    }
+}
+
 QList<QListWidgetItem *> OsGroup::selectedInstalledItems()
 {
     QList<QListWidgetItem *> selected;

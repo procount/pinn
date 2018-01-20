@@ -542,7 +542,7 @@ void MainWindow::repopulate()
             ug->list->setEnabled(false);
         }
     }
-
+    updateInstalledStatus();
     filterList();
 }
 
@@ -682,6 +682,44 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
     return images;
 }
 
+void MainWindow::updateInstalledStatus()
+{
+    ug->updateInstalledStatus();
+    if (ug->listInstalled->count()>1)
+    {
+        ui->actionCancel->setEnabled(true);
+        if (_fixate)
+        {
+            ug->list->setEnabled(false);
+        }
+    }
+
+    /* Giving items without icon a dummy icon to make them have equal height and text alignment */
+    QPixmap dummyicon = QPixmap(_currentsize.width(), _currentsize.height());
+    dummyicon.fill();
+
+    QList<QListWidgetItem *> all;
+    all = ug->allItems();
+
+    for (int i=0; i< ug->count(); i++)
+    {
+        if (all.value(i)->icon().isNull())
+        {
+            all.value(i)->setIcon(dummyicon);
+        }
+    }
+
+    for (int i=0; i< ug->listInstalled->count(); i++)
+    {
+        if (ug->listInstalled->item(i)->icon().isNull())
+        {
+            ug->listInstalled->item(i)->setIcon(dummyicon);
+        }
+    }
+
+}
+
+
 /* Iterates over the installed images and adds each one to the ug->listinstalled and ug->list lists */
 void MainWindow::addInstalledImages()
 {
@@ -699,8 +737,8 @@ void MainWindow::addInstalledImages()
             m["installed"]=true;
             m["source"] = SOURCE_INSTALLED_OS;
             bool bInstalled=true;
-            //@@QIcon icon;
-            //@@addImage(m, icon, bInstalled);
+            QIcon icon;
+            addImage(m, icon, bInstalled);
         }
     }
 }
@@ -1829,6 +1867,7 @@ void MainWindow::processJson(QVariant json)
             _qpd = NULL;
         }
     }
+    updateInstalledStatus();
 
     filterList();
 }
@@ -2870,6 +2909,129 @@ void MainWindow::on_targetComboUsb_currentIndexChanged(int index)
         recalcAvailableMB();
         filterList();
         updateNeeded();
+    }
+}
+
+/* Add an image as an QListWidgetItem to the list widgets that hold the new installable OSes */
+void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
+{
+    OverrideJson(m);
+    QString name = m.value("name").toString();
+    QString folder  = m.value("folder").toString();
+    QString description = m.value("description").toString();
+    bool recommended = m.value("recommended").toBool();
+
+    QListWidgetItem *witem = NULL;
+    QListWidgetItem *witemNew = NULL;
+
+    witem = findItemByName(name);
+
+    if ((witem) && (!bInstalled))
+    {
+        QVariantMap existing_details = witem->data(Qt::UserRole).toMap();
+
+        if ((existing_details["release_date"].toString() <= m["release_date"].toString()))
+        {
+            /* Existing item in list is same version or older. Prefer image on USB storage. */
+            /* Copy current installed state */
+            m.insert("installed", existing_details.value("installed", false));
+
+            //if (existing_details.contains("partitions"))
+            //{
+            //    m["partitions"] = existing_details["partitions"];
+            //}
+            QString friendlyname = name;
+            if (recommended)
+                friendlyname += " ["+tr("RECOMMENDED")+"]";
+            if (!description.isEmpty())
+                friendlyname += "\n"+description;
+            witem->setText(friendlyname);
+
+            witem->setData(Qt::UserRole, m);
+            witem->setData(SecondIconRole, icon);
+            ug->list->update();
+        }
+        //else
+        //    DBG("Same date");
+    }
+    else //not found or bInstalled
+    {
+        witemNew = witem;
+        //DBG("New OS");
+        /* It's a new OS, so add it to the list */
+        QString iconFilename = m.value("icon").toString();
+
+        // Icon maybe a remote URL
+        if (!iconFilename.isEmpty() && !iconFilename.contains('/'))
+            iconFilename = folder+"/"+iconFilename;
+        if (!QFile::exists(iconFilename))
+        {
+            iconFilename = folder+"/"+name+".png";
+            iconFilename.replace(' ', '_');
+        }
+
+        QString friendlyname = name;
+        if (recommended)
+            friendlyname += " ["+tr("RECOMMENDED")+"]";
+        if (!description.isEmpty())
+            friendlyname += "\n"+description;
+
+        witem = new QListWidgetItem(friendlyname);
+        witem->setCheckState(Qt::Unchecked);
+        witem->setData(Qt::UserRole, m);
+
+        witem->setData(SecondIconRole, icon);
+        QIcon icon;
+        if (QFile::exists(iconFilename))
+        {
+            icon = QIcon(iconFilename);
+            QList<QSize> avs = icon.availableSizes();
+            if (avs.isEmpty())
+            {
+                /* Icon file corrupt */
+                icon = QIcon();
+            }
+            else
+            {
+                QSize iconsize = avs.first();
+
+                if (iconsize.width() > _currentsize.width() || iconsize.height() > _currentsize.height())
+                {
+                    /* Make all icons as large as the largest icon we have */
+                    _currentsize = QSize(qMax(iconsize.width(), _currentsize.width()),qMax(iconsize.height(), _currentsize.height()));
+                    ug->list->setIconSize(_currentsize);
+                    ug->listInstalled->setIconSize(_currentsize);
+                }
+            }
+            witem->setIcon(icon);
+        }
+        if (bInstalled)
+        {
+            if (recommended)
+                ug->listInstalled->insertItem(1, witem); //After PINN entry
+            else
+                ug->listInstalled->addItem(witem);
+            ug->listInstalled->update();
+            if (!witemNew)
+            {
+                //Clone to normal list
+                QListWidgetItem *witemNew = witem->clone();
+                witemNew->setCheckState(Qt::Unchecked);
+                if (recommended)
+                    ug->insertItem(0, witemNew);
+                else
+                    ug->addItem(witemNew);
+                ug->list->update();
+            }
+        }
+        else
+        {
+            if (recommended)
+                ug->insertItem(0, witem);
+            else
+                ug->addItem(witem);
+            ug->list->update();
+        }
     }
 }
 

@@ -111,6 +111,8 @@ protected:
     void startImageReinstall();
     bool canInstallOs(const QString &name, const QVariantMap &values);
     bool isSupportedOs(const QString &name, const QVariantMap &values);
+    void addImage(QVariantMap& m, QIcon &icon, bool &bInstalled);
+    void updateInstalledStatus();
     void addInstalledImages();
     void addImagesFromUSB(const QString &device);
     void filterList();
