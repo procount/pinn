@@ -84,11 +84,6 @@ extern QString repoList;
  *
  */
 
-/* To keep track of where the different OSes get 'installed' from */
-#define SOURCE_SDCARD "sdcard"
-#define SOURCE_NETWORK "network"
-#define SOURCE_INSTALLED_OS "installed_os"
-
 //TODO Change to enums
 #define TOOLBAR_MAIN 0
 #define TOOLBAR_ARCHIVAL 1
@@ -425,7 +420,7 @@ void MainWindow::repopulate()
 {
     QMap<QString,QVariantMap> images = listImages();
     bool haveicons = false;
-    QSize currentsize = ug->list->iconSize();
+    _currentsize = ug->list->iconSize();
     QIcon localIcon(":/icons/hdd.png");
     QIcon internetIcon(":/icons/download.png");
     _numInstalledOS = 0;
@@ -476,11 +471,11 @@ void MainWindow::repopulate()
                 QSize iconsize = avs.first();
                 haveicons = true;
 
-                if (iconsize.width() > currentsize.width() || iconsize.height() > currentsize.height())
+                if (iconsize.width() > _currentsize.width() || iconsize.height() > _currentsize.height())
                 {
                     /* Make all icons as large as the largest icon we have */
-                    currentsize = QSize(qMax(iconsize.width(), currentsize.width()),qMax(iconsize.height(), currentsize.height()));
-                    ug->list->setIconSize(currentsize);
+                    _currentsize = QSize(qMax(iconsize.width(), _currentsize.width()),qMax(iconsize.height(), _currentsize.height()));
+                    ug->list->setIconSize(_currentsize);
                 }
             }
         }
@@ -524,7 +519,7 @@ void MainWindow::repopulate()
     if (haveicons)
     {
         /* Giving items without icon a dummy icon to make them have equal height and text alignment */
-        QPixmap dummyicon = QPixmap(currentsize.width(), currentsize.height());
+        QPixmap dummyicon = QPixmap(_currentsize.width(), _currentsize.height());
         dummyicon.fill();
 
         QList<QListWidgetItem *> all;

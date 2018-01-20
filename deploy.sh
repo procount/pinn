@@ -38,3 +38,5 @@ cp ~/pinn-release/recovery.cmdline.new $dst
 cd $dst
 zip -r ../pinn-lite.zip *
 cp BUILD-DATA ..
+cd ..
+./create_etcher_img

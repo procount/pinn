@@ -74,4 +74,9 @@
 
 #define DEFGROUP "General"
 
+/* To keep track of where the different OSes get 'installed' from */
+#define SOURCE_SDCARD "sdcard"
+#define SOURCE_NETWORK "network"
+#define SOURCE_INSTALLED_OS "installed_os"
+
 #endif // CONFIG_H

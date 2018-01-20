@@ -67,6 +67,7 @@ protected:
     QProcess * _pbackground;
     int _numFilesToCheck;
     bool _bdisplayUpdate;
+    QSize _currentsize;
 
     enum ModeTag {
         MODE_INSTALL=0,
