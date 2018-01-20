@@ -75,7 +75,7 @@ protected:
         MODE_REINSTALL
     } _eDownloadMode;
 
-    QMap<QString,QVariantMap> listImages(const QString &folder = "/mnt/os", bool includeInstalled = true);
+    QMap<QString,QVariantMap> listImages(const QString &folder = "/mnt/os");
 
     bool _bDownload;
     QString _local;
@@ -111,6 +111,7 @@ protected:
     void startImageReinstall();
     bool canInstallOs(const QString &name, const QVariantMap &values);
     bool isSupportedOs(const QString &name, const QVariantMap &values);
+    void addInstalledImages();
     void addImagesFromUSB(const QString &device);
     void filterList();
     void copyWpa();

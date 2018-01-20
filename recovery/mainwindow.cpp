@@ -397,6 +397,7 @@ void MainWindow::populate()
     _settings->sync();
 
     // Fill in list of images
+    addInstalledImages();
     repopulate();
     recalcAvailableMB();
     updateNeeded();
@@ -425,7 +426,6 @@ void MainWindow::repopulate()
     QIcon internetIcon(":/icons/download.png");
     _numInstalledOS = 0;
 
-    createPinnEntry();
     foreach (QVariant v, images.values())
     {
         QVariantMap m = v.toMap();
@@ -608,7 +608,7 @@ bool MainWindow::isSupportedOs(const QString &name, const QVariantMap &values)
     return true;
 }
 
-QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder, bool includeInstalled)
+QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
 {
     QMap<QString,QVariantMap> images;
     /* Local image folders */
@@ -659,31 +659,6 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder, bool in
         }
     }
 
-    /* Also add information about files already installed */
-    if (_settings && includeInstalled)
-    {
-        QVariantList i = Json::loadFromFile("/settings/installed_os.json").toList();
-        foreach (QVariant v, i)
-        {
-            QVariantMap m = v.toMap();
-            QString name = m.value("name").toString();
-            if (images.contains(name))
-            {
-                images[name]["partitions"] = m["partitions"];
-                images[name]["username"] = m["username"];
-                images[name]["password"] = m["password"];
-            }
-            else
-            {
-                images[name] = m;
-                if (name == RECOMMENDED_IMAGE)
-                    images[name]["recommended"] = true;
-                images[name]["source"] = SOURCE_INSTALLED_OS;
-            }
-            images[name]["installed"] = true;
-        }
-    }
-
     for (QMap<QString,QVariantMap>::iterator i = images.begin(); i != images.end(); i++)
     {
         if (!i.value().contains("nominal_size"))
@@ -707,12 +682,36 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder, bool in
     return images;
 }
 
+/* Iterates over the installed images and adds each one to the ug->listinstalled and ug->list lists */
+void MainWindow::addInstalledImages()
+{
+    createPinnEntry();
+
+    if (_settings)
+    {
+        QVariantList i = Json::loadFromFile("/settings/installed_os.json").toList();
+        foreach (QVariant v, i)
+        {
+            QVariantMap m = v.toMap();
+            QString name = m.value("name").toString();
+            if (name == RECOMMENDED_IMAGE)
+                m["recommended"] = true;
+            m["installed"]=true;
+            m["source"] = SOURCE_INSTALLED_OS;
+            bool bInstalled=true;
+            //@@QIcon icon;
+            //@@addImage(m, icon, bInstalled);
+        }
+    }
+}
+
+
 void MainWindow::on_actionWrite_image_to_disk_triggered()
 {
     _eDownloadMode = MODE_INSTALL;
 
     bool allSupported = true;
-    boot gotAllSource = true;
+    bool gotAllSource = true;
     QString unsupportedOses;
     QString missingOses;
     QString selectedOSes;
@@ -742,7 +741,7 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
         if (!_silent)
             QMessageBox::warning(this,
                                  tr("ERROR"),
-                                 tr("Error: Some OSes are not available:\n"+missingOses),
+                                 tr("Error: Some OSes are not available:\n")+missingOses,
                                  QMessageBox::Close);
         return;
     }
@@ -2893,7 +2892,7 @@ void MainWindow::addImagesFromUSB(const QString &device)
     }
 
     QIcon usbIcon(":/icons/hdd_usb_unmount.png");
-    QMap<QString,QVariantMap> images = listImages(mntpath+"/os", false);
+    QMap<QString,QVariantMap> images = listImages(mntpath+"/os");
 
     foreach (QVariant v, images.values())
     {
