@@ -844,7 +844,7 @@ void MainWindow::on_actionReinstall_triggered()
                     continue;   //Do not reinstall PINN - it's just a dummy os.
                 }
 
-                QListWidgetItem *witem = findItem(name);
+                QListWidgetItem *witem = findItemByName(name);
                 if (witem)
                 {
                     QVariantMap new_details = witem->data(Qt::UserRole).toMap();
@@ -1838,7 +1838,7 @@ void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QS
     QIcon internetIcon(":/icons/download.png");
     OverrideJson(new_details);
 
-    QListWidgetItem *witem = findItem(name);
+    QListWidgetItem *witem = findItemByName(name);
     if (witem)
     {
         QVariantMap existing_details = witem->data(Qt::UserRole).toMap();
@@ -1933,7 +1933,7 @@ void MainWindow::downloadIcon(const QString &urlstring, const QString &originalu
     connect(reply, SIGNAL(finished()), this, SLOT(downloadIconRedirectCheck()));
 }
 
-QListWidgetItem *MainWindow::findItem(const QVariant &name)
+QListWidgetItem *MainWindow::findItemByName(const QString &name)
 {
     QList<QListWidgetItem *> all;
     all = ug->allItems();
@@ -1941,7 +1941,7 @@ QListWidgetItem *MainWindow::findItem(const QVariant &name)
     foreach (QListWidgetItem *item, all)
     {
         QVariantMap m = item->data(Qt::UserRole).toMap();
-        if (m.value("name").toString() == name.toString())
+        if (m.value("name").toString() == name)
         {
             return item;
         }
@@ -2141,6 +2141,7 @@ void MainWindow::updateActions()
 
 void MainWindow::on_list_itemChanged(QListWidgetItem *item)
 {
+    Q_UNUSED(item);
     updateNeeded();
     updateActions();
 }
@@ -2349,7 +2350,7 @@ void MainWindow::checkFileSizeComplete()
     else
     {
         //find QVariantMap of osname
-        QListWidgetItem *witem = findItem(osname);
+        QListWidgetItem *witem = findItemByName(osname);
         if (witem)
         {
             QVariantMap existing_details = witem->data(Qt::UserRole).toMap();
@@ -2901,7 +2902,7 @@ void MainWindow::addImagesFromUSB(const QString &device)
         QString name = m.value("name").toString();
         QString folder  = m.value("folder").toString();
 
-        QListWidgetItem *witem = findItem(name);
+        QListWidgetItem *witem = findItemByName(name);
         if (witem)
         {
             QVariantMap existing_details = witem->data(Qt::UserRole).toMap();

@@ -97,7 +97,7 @@ protected:
     bool isOnline();
     QStringList getFlavours(const QString &folder);
     void rebuildInstalledList();
-    QListWidgetItem *findItem(const QVariant &name);
+    QListWidgetItem *findItemByName(const QString &name);
     QList<QListWidgetItem *> selectedItems();
     void updateNeeded();
     void updateActions();
