@@ -712,7 +712,9 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
     _eDownloadMode = MODE_INSTALL;
 
     bool allSupported = true;
+    boot gotAllSource = true;
     QString unsupportedOses;
+    QString missingOses;
     QString selectedOSes;
 
     QList<QListWidgetItem *> selected = selectedItems();
@@ -728,6 +730,21 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
             allSupported = false;
             unsupportedOses += "\n" + name;
         }
+        if (entry.value("source")==SOURCE_INSTALLED_OS)
+        {
+            gotAllSource = false;
+            missingOses += "\n" + name;
+        }
+    }
+
+    if (!gotAllSource)
+    {
+        if (!_silent)
+            QMessageBox::warning(this,
+                                 tr("ERROR"),
+                                 tr("Error: Some OSes are not available:\n"+missingOses),
+                                 QMessageBox::Close);
+        return;
     }
 
     QString warning = tr("Warning: this will install the selected Operating System(s) to ")+_drive+tr(":")+
