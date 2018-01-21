@@ -300,34 +300,37 @@ void OsGroup::updateInstalledStatus()
 
             QVariantMap matchEntry = matchItem->data(Qt::UserRole).toMap();
             QString friendlyname = name;
-             bool recommended = (name == RECOMMENDED_IMAGE);
-             if (recommended)
-                 friendlyname += " ["+tr("RECOMMENDED")+"]";
-             QString installedname = friendlyname;
+            bool recommended = (name == RECOMMENDED_IMAGE);
+            if (recommended)
+                friendlyname += " ["+tr("RECOMMENDED")+"]";
+            QString installedname = friendlyname;
 
-             if (installedEntry["release_date"].toString() < matchEntry["release_date"].toString() )
-             {
-                 friendlyname  += " ["+tr("NEW VERSION")+"]";
-                 installedname += " ["+tr("UPDATE")+"]";
-             }
-             else
-             {
+            if (installedEntry["release_date"].toString() < matchEntry["release_date"].toString() )
+            {
+                friendlyname  += " ["+tr("NEW VERSION")+"]";
+                installedname += " ["+tr("UPDATE")+"]";
+            }
+            else
+            {
                 friendlyname  += " ["+tr("INSTALLED")+"]";
                 installedname += " ["+tr("INSTALLED")+"]";
-             }
+            }
 
-             QString description = matchEntry.value("description").toString();
-             if (!description.isEmpty())
-                 friendlyname += "\n"+description;
+            QString description = matchEntry.value("description").toString();
+            if (!description.isEmpty())
+                friendlyname += "\n"+description;
 
-             description = installedEntry.value("description").toString();
-             if (!description.isEmpty())
-                 installedname += "\n"+description;
+            description = installedEntry.value("description").toString();
+            if (!description.isEmpty())
+                installedname += "\n"+description;
 
-             installedItem->setText(installedname);
-             matchItem->setText(friendlyname);
-             list->update();
-             listInstalled->update();
+            //set installed source icon same as matched entry
+            installedItem->setData(SecondIconRole, matchItem->data(SecondIconRole) );
+
+            installedItem->setText(installedname);
+            matchItem->setText(friendlyname);
+            list->update();
+            listInstalled->update();
         }
     }
 }

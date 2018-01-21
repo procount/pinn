@@ -576,9 +576,9 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.cpp" line="450"/>
         <location filename="mainwindow.cpp" line="1912"/>
-        <location filename="mainwindow.cpp" line="2945"/>
+        <location filename="mainwindow.cpp" line="2947"/>
         <location filename="mainwindow.cpp" line="2975"/>
-        <location filename="mainwindow.cpp" line="3102"/>
+        <location filename="mainwindow.cpp" line="3106"/>
         <source>RECOMMENDED</source>
         <translation>추천 설치</translation>
     </message>
@@ -691,7 +691,7 @@ Reboot PINN to take account of these OSes?</source>
         <location filename="mainwindow.cpp" line="1089"/>
         <location filename="mainwindow.cpp" line="1677"/>
         <location filename="mainwindow.cpp" line="1805"/>
-        <location filename="mainwindow.cpp" line="3242"/>
+        <location filename="mainwindow.cpp" line="3246"/>
         <source>Error</source>
         <translation>오류</translation>
     </message>
@@ -778,8 +778,8 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <location filename="mainwindow.cpp" line="1789"/>
         <location filename="mainwindow.cpp" line="2307"/>
         <location filename="mainwindow.cpp" line="2318"/>
-        <location filename="mainwindow.cpp" line="3336"/>
-        <location filename="mainwindow.cpp" line="3358"/>
+        <location filename="mainwindow.cpp" line="3340"/>
+        <location filename="mainwindow.cpp" line="3362"/>
         <source>Download error</source>
         <translation>다운로드 오류</translation>
     </message>
@@ -817,7 +817,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2318"/>
-        <location filename="mainwindow.cpp" line="3358"/>
+        <location filename="mainwindow.cpp" line="3362"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>다운로드한 파일을 SD 카드에 기록하는 과정에서 오류가 발생하였습니다. SD 카드 또는 파일 시스템이 손상되었는지 확인하여 주십시오.</translation>
     </message>
@@ -848,78 +848,78 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <translation>&apos;%1&apos; 드라이브를 정말 다시 초기화하시겠습니까? 초기화를 완료하면 이 드라이브 안에 있는 모든 데이터는 완전히 삭제됩니다. 초기화 후 PINN이 이 드라이브를 이용합니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3196"/>
+        <location filename="mainwindow.cpp" line="3200"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>장치 &apos;%s&apos;의 모든 내용이 지워집니다. 정말 진행하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3198"/>
+        <location filename="mainwindow.cpp" line="3202"/>
         <source>Clone SD Card</source>
         <translation>SD 카드 복제</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3200"/>
+        <location filename="mainwindow.cpp" line="3204"/>
         <source>Yes</source>
         <translation>예</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3201"/>
+        <location filename="mainwindow.cpp" line="3205"/>
         <source>No</source>
         <translation>아니요</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3229"/>
+        <location filename="mainwindow.cpp" line="3233"/>
         <source>Clone Completed</source>
         <translation>복제 완료</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3230"/>
+        <location filename="mainwindow.cpp" line="3234"/>
         <source>Clone Completed Successfully</source>
         <translation>복제를 완료하였습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3336"/>
+        <location filename="mainwindow.cpp" line="3340"/>
         <source>Error downloading update file</source>
         <translation>업데이트한 파일을 다운로드 하는 과정에 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3343"/>
-        <location filename="mainwindow.cpp" line="3432"/>
+        <location filename="mainwindow.cpp" line="3347"/>
+        <location filename="mainwindow.cpp" line="3436"/>
         <source>PINN Update Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3343"/>
+        <location filename="mainwindow.cpp" line="3347"/>
         <source>Error contacting update server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3432"/>
+        <location filename="mainwindow.cpp" line="3436"/>
         <source>No updates available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3440"/>
+        <location filename="mainwindow.cpp" line="3444"/>
         <source>PINN UPDATE</source>
         <translation>PINN 업데이트</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3441"/>
+        <location filename="mainwindow.cpp" line="3445"/>
         <source>A new version of PINN is available</source>
         <translation>새 버전의 PINN 을 사용할 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3442"/>
+        <location filename="mainwindow.cpp" line="3446"/>
         <source>Do you want to download this version?</source>
         <translation>이 버전을 다운로드 하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3466"/>
+        <location filename="mainwindow.cpp" line="3470"/>
         <source>Downloading Update</source>
         <translation>업데이트 다운로드</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3466"/>
+        <location filename="mainwindow.cpp" line="3470"/>
         <source>Press ESC to cancel</source>
         <translation>취소하려면 ESC 를 누르십시요.</translation>
     </message>

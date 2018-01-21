@@ -526,9 +526,9 @@ AVISO: Isto irá apagar todos os dados do seu cartão SD</translation>
     <message>
         <location filename="mainwindow.cpp" line="450"/>
         <location filename="mainwindow.cpp" line="1912"/>
-        <location filename="mainwindow.cpp" line="2945"/>
+        <location filename="mainwindow.cpp" line="2947"/>
         <location filename="mainwindow.cpp" line="2975"/>
-        <location filename="mainwindow.cpp" line="3102"/>
+        <location filename="mainwindow.cpp" line="3106"/>
         <source>RECOMMENDED</source>
         <translation>RECOMENDADO</translation>
     </message>
@@ -582,7 +582,7 @@ Please provide it locally or connect to the internet.</source>
         <location filename="mainwindow.cpp" line="1089"/>
         <location filename="mainwindow.cpp" line="1677"/>
         <location filename="mainwindow.cpp" line="1805"/>
-        <location filename="mainwindow.cpp" line="3242"/>
+        <location filename="mainwindow.cpp" line="3246"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
@@ -772,8 +772,8 @@ Deseja tornar esta configuração permanente?</translation>
         <location filename="mainwindow.cpp" line="1789"/>
         <location filename="mainwindow.cpp" line="2307"/>
         <location filename="mainwindow.cpp" line="2318"/>
-        <location filename="mainwindow.cpp" line="3336"/>
-        <location filename="mainwindow.cpp" line="3358"/>
+        <location filename="mainwindow.cpp" line="3340"/>
+        <location filename="mainwindow.cpp" line="3362"/>
         <source>Download error</source>
         <translation>Erro no download</translation>
     </message>
@@ -803,78 +803,78 @@ Deseja tornar esta configuração permanente?</translation>
         <translation>Tem certeza de que deseja reformatar a unidade &apos;%1&apos; para uso com o PINN? Todos os dados existentes na unidade serão excluídos!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3196"/>
+        <location filename="mainwindow.cpp" line="3200"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>Isso irá apagar todo o conteúdo no dispositivo &apos;%s&apos;. Você tem certeza?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3198"/>
+        <location filename="mainwindow.cpp" line="3202"/>
         <source>Clone SD Card</source>
         <translation>Clonar Cartão SD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3200"/>
+        <location filename="mainwindow.cpp" line="3204"/>
         <source>Yes</source>
         <translation>Sim</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3201"/>
+        <location filename="mainwindow.cpp" line="3205"/>
         <source>No</source>
         <translation>Não</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3229"/>
+        <location filename="mainwindow.cpp" line="3233"/>
         <source>Clone Completed</source>
         <translation>Clonar Concluído</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3230"/>
+        <location filename="mainwindow.cpp" line="3234"/>
         <source>Clone Completed Successfully</source>
         <translation>Clonar Concluído com Sucesso</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3336"/>
+        <location filename="mainwindow.cpp" line="3340"/>
         <source>Error downloading update file</source>
         <translation>Erro ao baixar arquivo de atualização</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3343"/>
-        <location filename="mainwindow.cpp" line="3432"/>
+        <location filename="mainwindow.cpp" line="3347"/>
+        <location filename="mainwindow.cpp" line="3436"/>
         <source>PINN Update Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3343"/>
+        <location filename="mainwindow.cpp" line="3347"/>
         <source>Error contacting update server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3432"/>
+        <location filename="mainwindow.cpp" line="3436"/>
         <source>No updates available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3440"/>
+        <location filename="mainwindow.cpp" line="3444"/>
         <source>PINN UPDATE</source>
         <translation>ATUALIZAÇÃO DO PINN</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3441"/>
+        <location filename="mainwindow.cpp" line="3445"/>
         <source>A new version of PINN is available</source>
         <translation>Uma nova versão do PINN está disponível</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3442"/>
+        <location filename="mainwindow.cpp" line="3446"/>
         <source>Do you want to download this version?</source>
         <translation>Deseja baixar esta versão?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3466"/>
+        <location filename="mainwindow.cpp" line="3470"/>
         <source>Downloading Update</source>
         <translation>Baixando Atualização</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3466"/>
+        <location filename="mainwindow.cpp" line="3470"/>
         <source>Press ESC to cancel</source>
         <translation>Pressione ESC para cancelar</translation>
     </message>
@@ -909,7 +909,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2318"/>
-        <location filename="mainwindow.cpp" line="3358"/>
+        <location filename="mainwindow.cpp" line="3362"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>Erro ao salvar arquivo baixado para o cartão SD. O cartão ou sistema de arquivos pode estar danificado.</translation>
     </message>

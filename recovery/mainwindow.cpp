@@ -737,8 +737,8 @@ void MainWindow::addInstalledImages()
             m["installed"]=true;
             m["source"] = SOURCE_INSTALLED_OS;
             bool bInstalled=true;
-            QIcon icon;
-            addImage(m, icon, bInstalled);
+            QIcon localIcon;
+            addImage(m, localIcon, bInstalled);
         }
     }
 }
@@ -2930,16 +2930,18 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
     {
         QVariantMap existing_details = witem->data(Qt::UserRole).toMap();
 
-        if ((existing_details["release_date"].toString() <= m["release_date"].toString()))
+        if ( (existing_details["release_date"].toString()  < m["release_date"].toString()) ||
+             ( (existing_details["release_date"].toString() == m["release_date"].toString()) && (m["source"].toString() == SOURCE_SDCARD) )
+           )
         {
             /* Existing item in list is same version or older. Prefer image on USB storage. */
             /* Copy current installed state */
             m.insert("installed", existing_details.value("installed", false));
 
-            //if (existing_details.contains("partitions"))
-            //{
-            //    m["partitions"] = existing_details["partitions"];
-            //}
+            if (existing_details.contains("partitions"))
+            {
+                m["partitions"] = existing_details["partitions"];
+            }
             QString friendlyname = name;
             if (recommended)
                 friendlyname += " ["+tr("RECOMMENDED")+"]";
@@ -2951,8 +2953,6 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
             witem->setData(SecondIconRole, icon);
             ug->list->update();
         }
-        //else
-        //    DBG("Same date");
     }
     else //not found or bInstalled
     {
@@ -2981,15 +2981,15 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
         witem->setData(Qt::UserRole, m);
 
         witem->setData(SecondIconRole, icon);
-        QIcon icon;
         if (QFile::exists(iconFilename))
         {
-            icon = QIcon(iconFilename);
-            QList<QSize> avs = icon.availableSizes();
+            QIcon iconos;
+            iconos = QIcon(iconFilename);
+            QList<QSize> avs = iconos.availableSizes();
             if (avs.isEmpty())
             {
                 /* Icon file corrupt */
-                icon = QIcon();
+                iconos = QIcon();
             }
             else
             {
@@ -3003,15 +3003,18 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
                     ug->listInstalled->setIconSize(_currentsize);
                 }
             }
-            witem->setIcon(icon);
+            witem->setIcon(iconos);
         }
         if (bInstalled)
         {
+            //Add image to installed list
             if (recommended)
                 ug->listInstalled->insertItem(1, witem); //After PINN entry
             else
                 ug->listInstalled->addItem(witem);
             ug->listInstalled->update();
+
+            //Clone image to new list if not already known
             if (!witemNew)
             {
                 //Clone to normal list
@@ -3026,6 +3029,7 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
         }
         else
         {
+            //Add new OS to os list.
             if (recommended)
                 ug->insertItem(0, witem);
             else
