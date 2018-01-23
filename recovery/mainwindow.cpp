@@ -413,7 +413,6 @@ void MainWindow::populate()
         on_actionWrite_image_to_disk_triggered();
         _numInstalledOS = 1;
     }
-
     ui->actionCancel->setEnabled(_numInstalledOS > 0);
 }
 
@@ -424,7 +423,6 @@ void MainWindow::repopulate()
     _currentsize = ug->list->iconSize();
     QIcon localIcon(":/icons/hdd.png");
     QIcon internetIcon(":/icons/download.png");
-    _numInstalledOS = 0;
 
     foreach (QVariant v, images.values())
     {
@@ -727,9 +725,11 @@ void MainWindow::addInstalledImages()
 
     if (_settings)
     {
+        _numInstalledOS=0;
         QVariantList i = Json::loadFromFile("/settings/installed_os.json").toList();
         foreach (QVariant v, i)
         {
+            _numInstalledOS++;
             QVariantMap m = v.toMap();
             QString name = m.value("name").toString();
             if (name == RECOMMENDED_IMAGE)
