@@ -1,6 +1,7 @@
 #include "config.h"
 #include "json.h"
 #include "osgroup.h"
+#include "mydebug.h"
 
 #include <iterator>
 #include <QFile>
@@ -287,6 +288,7 @@ QListWidgetItem *OsGroup::findItemByDataName(const QString &name)
 
 void OsGroup::updateInstalledStatus()
 {
+    MYDEBUG
     for (int i=1; i < listInstalled->count(); i++)//ALL
     {
         QListWidgetItem *installedItem = listInstalled->item(i); //ALL

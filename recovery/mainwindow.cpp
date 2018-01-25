@@ -419,118 +419,19 @@ void MainWindow::populate()
 void MainWindow::repopulate()
 {
     QMap<QString,QVariantMap> images = listImages();
-    bool haveicons = false;
+    //bool haveicons = false;
     _currentsize = ug->list->iconSize();
     QIcon localIcon(":/icons/hdd.png");
-    QIcon internetIcon(":/icons/download.png");
+    //QIcon internetIcon(":/icons/download.png");
 
     foreach (QVariant v, images.values())
     {
         QVariantMap m = v.toMap();
-        OverrideJson(m);
-        QString flavour = m.value("name").toString();
-        QString description = m.value("description").toString();
-        QString folder  = m.value("folder").toString();
-        QString iconFilename = m.value("icon").toString();
-        bool installed = m.value("installed").toBool();
-        bool recommended = m.value("recommended").toBool();
-
-        if (!iconFilename.isEmpty() && !iconFilename.contains('/'))
-            iconFilename = folder+"/"+iconFilename;
-        if (!QFile::exists(iconFilename))
-        {
-            iconFilename = folder+"/"+flavour+".png";
-            iconFilename.replace(' ', '_');
-        }
-
-        QString friendlyname = flavour;
-        if (recommended)
-            friendlyname += " ["+tr("RECOMMENDED")+"]";
-        if (installed)
-        {
-            friendlyname += " ["+tr("INSTALLED")+"]";
-            _numInstalledOS++;
-        }
-        if (!description.isEmpty())
-            friendlyname += "\n"+description;
-
-        QIcon icon;
-        if (QFile::exists(iconFilename))
-        {
-            icon = QIcon(iconFilename);
-            QList<QSize> avs = icon.availableSizes();
-            if (avs.isEmpty())
-            {
-                /* Icon file corrupt */
-                icon = QIcon();
-            }
-            else
-            {
-                QSize iconsize = avs.first();
-                haveicons = true;
-
-                if (iconsize.width() > _currentsize.width() || iconsize.height() > _currentsize.height())
-                {
-                    /* Make all icons as large as the largest icon we have */
-                    _currentsize = QSize(qMax(iconsize.width(), _currentsize.width()),qMax(iconsize.height(), _currentsize.height()));
-                    ug->list->setIconSize(_currentsize);
-                }
-            }
-        }
-        QListWidgetItem *item = new QListWidgetItem(icon, friendlyname);
-        item->setData(Qt::UserRole, m);
-#ifdef KHDBG
-        qDebug() << "Repopulate: " << m << "\n";
-#endif
-        if (installed)
-        {
-            item->setData(Qt::BackgroundColorRole, INSTALLED_OS_BACKGROUND_COLOR);
-            item->setCheckState(Qt::Checked);
-        }
-        else
-            item->setCheckState(Qt::Unchecked);
-
-        if (m["source"] == SOURCE_INSTALLED_OS)
-        {
-            item->setData(SecondIconRole, QIcon());
-        }
-        else
-        {
-            if (folder.startsWith("/mnt"))
-                item->setData(SecondIconRole, localIcon);
-            else
-                item->setData(SecondIconRole, internetIcon);
-        }
-
-        if (installed)
-        {
-            QListWidgetItem *clone = item->clone();
-            clone->setCheckState(Qt::Unchecked);
-            ug->listInstalled->addItem(clone);
-        }
-        if (recommended)
-            ug->insertItem(0, item);
-        else
-            ug->addItem(item);
+        bool bInstalled=false;
+        addImage(m,localIcon,bInstalled);
     }
 
-    if (haveicons)
-    {
-        /* Giving items without icon a dummy icon to make them have equal height and text alignment */
-        QPixmap dummyicon = QPixmap(_currentsize.width(), _currentsize.height());
-        dummyicon.fill();
-
-        QList<QListWidgetItem *> all;
-        all = ug->allItems();
-
-        for (int i=0; i< ug->count(); i++)
-        {
-            if (all.value(i)->icon().isNull())
-            {
-                all.value(i)->setIcon(dummyicon);
-            }
-        }
-    }
+    //@@Add dummy icons?
 
     if (_numInstalledOS)
     {
@@ -682,6 +583,7 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
 
 void MainWindow::updateInstalledStatus()
 {
+    MYDEBUG
     ug->updateInstalledStatus();
     if (ug->listInstalled->count()>1)
     {
@@ -1875,59 +1777,19 @@ void MainWindow::processJson(QVariant json)
 void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QSet<QString> &iconurls)
 {
     QIcon internetIcon(":/icons/download.png");
-    OverrideJson(new_details);
-
+    bool bInstalled = false;
     QListWidgetItem *witem = findItemByName(name);
-    if (witem)
+    if (!witem)
     {
-        QVariantMap existing_details = witem->data(Qt::UserRole).toMap();
-
-        if ((existing_details["release_date"].toString() < new_details["release_date"].toString()) || (existing_details["source"].toString() == SOURCE_INSTALLED_OS))
-        {
-            /* Local version is older (or unavailable). Replace info with newer Internet version */
-            new_details.insert("installed", existing_details.value("installed", false));
-            if (existing_details.contains("partitions"))
-            {
-                new_details["partitions"] = existing_details["partitions"];
-            }
-            witem->setData(Qt::UserRole, new_details);
-            witem->setData(SecondIconRole, internetIcon);
-            ug->list->update();
-        }
-
-    }
-    else if (!_fixate || _numInstalledOS == 0)
-    {
-        /* It's a new OS, so add it to the list */
         QString iconurl = new_details.value("icon").toString();
-        QString description = new_details.value("description").toString();
-
         if (!iconurl.isEmpty())
             iconurls.insert(iconurl);
-
-        bool recommended = (name == RECOMMENDED_IMAGE);
-
-        QString friendlyname = name;
-        if (recommended)
-            friendlyname += " ["+tr("RECOMMENDED")+"]";
-        if (!description.isEmpty())
-            friendlyname += "\n"+description;
-
-        witem = new QListWidgetItem(friendlyname);
-        witem->setCheckState(Qt::Unchecked);
-        witem->setData(Qt::UserRole, new_details);
-        witem->setData(SecondIconRole, internetIcon);
-
-        if (recommended)
-            ug->insertItem(0, witem);
-        else
-            ug->addItem(witem);
     }
-
     if (! new_details.contains("download_size"))
     {
         getDownloadSize(new_details);
     }
+    addImage(new_details,internetIcon,bInstalled);
 }
 
 void MainWindow::getDownloadSize(QVariantMap &new_details)
@@ -2393,15 +2255,17 @@ void MainWindow::checkFileSizeComplete()
         if (witem)
         {
             QVariantMap existing_details = witem->data(Qt::UserRole).toMap();
-            //get its download_size
-            quint64 old_size = existing_details.value("download_size").toULongLong();
-            //Increment by length
-            old_size += length;
-            //write back
-            existing_details["download_size"] = old_size;
-
             if (existing_details["source"]==SOURCE_NETWORK)
-                witem->setData(Qt::UserRole,existing_details); //Only update if it is still a network source!
+            {    //Only update if it is still a network source!
+
+                //get its current download_size
+                quint64 old_size = existing_details.value("download_size").toULongLong();
+                //Increment by length
+                old_size += length;
+                //write back
+                existing_details["download_size"] = old_size;
+                witem->setData(Qt::UserRole,existing_details);
+            }
         }
         else
         {
@@ -2925,15 +2789,40 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
     QListWidgetItem *witemNew = NULL;
 
     witem = findItemByName(name);
-
+    qDebug() <<"Add image: "<<name<<" source: "<<m["source"].toString();
     if ((witem) && (!bInstalled))
     {
+        qDebug()<<"Already exists, !binstalled";
         QVariantMap existing_details = witem->data(Qt::UserRole).toMap();
 
-        if ( (existing_details["release_date"].toString()  < m["release_date"].toString()) ||
-             ( (existing_details["release_date"].toString() == m["release_date"].toString()) && (m["source"].toString() == SOURCE_SDCARD) )
-           )
+        bool bReplace=false;
+        if (existing_details["source"].toString()==SOURCE_INSTALLED_OS)
         {
+            qDebug() <<"  Existing is just installed1, so replace";
+            bReplace=true;
+        }
+        if (existing_details["release_date"].toString()  < m["release_date"].toString())
+        {
+            qDebug() << "  Newer date";
+            bReplace=true;
+        }
+        if (existing_details["release_date"].toString() == m["release_date"].toString())
+        {
+            qDebug() << "  Same date";
+            if (m["source"].toString() == SOURCE_SDCARD)
+            {
+                qDebug() <<"  Source is SD card, so replace";
+                bReplace=true;
+            }
+            if (existing_details["source"].toString()==SOURCE_INSTALLED_OS)
+            {
+                qDebug() <<"  Existing is just installed2, so replace";
+                bReplace=true;
+            }
+        }
+        if (bReplace)
+        {
+            qDebug()<<"  Replacing";
             /* Existing item in list is same version or older. Prefer image on USB storage. */
             /* Copy current installed state */
             m.insert("installed", existing_details.value("installed", false));
@@ -2953,9 +2842,13 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
             witem->setData(SecondIconRole, icon);
             ug->list->update();
         }
+        else
+            qDebug()<<"  NOT Replacing";
+
     }
     else //not found or bInstalled
     {
+        qDebug()<<"NOT found or binstalled";
         witemNew = witem;
         //DBG("New OS");
         /* It's a new OS, so add it to the list */
@@ -3007,15 +2900,19 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
         }
         if (bInstalled)
         {
+            qDebug()<<"  binstalled";
+
             //Add image to installed list
             if (recommended)
                 ug->listInstalled->insertItem(1, witem); //After PINN entry
             else
                 ug->listInstalled->addItem(witem);
-            ug->listInstalled->update();
+            //ug->listInstalled->update();
 
+#if 1
             //Clone image to new list if not already known
             if (!witemNew)
+
             {
                 //Clone to normal list
                 QListWidgetItem *witemNew = witem->clone();
@@ -3024,17 +2921,19 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
                     ug->insertItem(0, witemNew);
                 else
                     ug->addItem(witemNew);
-                ug->list->update();
+                //ug->list->update();
             }
+#endif
         }
         else
         {
+            qDebug()<<"  New OS";
             //Add new OS to os list.
             if (recommended)
                 ug->insertItem(0, witem);
             else
                 ug->addItem(witem);
-            ug->list->update();
+            //ug->list->update();
         }
     }
 }
@@ -3064,63 +2963,10 @@ void MainWindow::addImagesFromUSB(const QString &device)
     foreach (QVariant v, images.values())
     {
         QVariantMap m = v.toMap();
-        OverrideJson(m);
-        QString name = m.value("name").toString();
-        QString folder  = m.value("folder").toString();
-
-        QListWidgetItem *witem = findItemByName(name);
-        if (witem)
-        {
-            QVariantMap existing_details = witem->data(Qt::UserRole).toMap();
-
-            if ((existing_details["release_date"].toString() <= m["release_date"].toString()))
-            {
-                /* Existing item in list is same version or older. Prefer image on USB storage. */
-                m.insert("installed", existing_details.value("installed", false));
-                if (existing_details.contains("partitions"))
-                {
-                    m["partitions"] = existing_details["partitions"];
-                }
-                witem->setData(Qt::UserRole, m);
-                witem->setData(SecondIconRole, usbIcon);
-                ug->list->update();
-            }
-        }
-        else
-        {
-            /* It's a new OS, so add it to the list */
-            QString description = m.value("description").toString();
-            QString iconFilename = m.value("icon").toString();
-            bool recommended = m.value("recommended").toBool();
-
-            if (!iconFilename.isEmpty() && !iconFilename.contains('/'))
-                iconFilename = folder+"/"+iconFilename;
-            if (!QFile::exists(iconFilename))
-            {
-                iconFilename = folder+"/"+name+".png";
-                iconFilename.replace(' ', '_');
-            }
-
-            QString friendlyname = name;
-            if (recommended)
-                friendlyname += " ["+tr("RECOMMENDED")+"]";
-            if (!description.isEmpty())
-                friendlyname += "\n"+description;
-
-            witem = new QListWidgetItem(friendlyname);
-            witem->setCheckState(Qt::Unchecked);
-            witem->setData(Qt::UserRole, m);
-            witem->setData(SecondIconRole, usbIcon);
-            if (QFile::exists(iconFilename))
-                witem->setIcon(QIcon(iconFilename));
-
-            if (recommended)
-                ug->insertItem(0, witem);
-            else
-                ug->addItem(witem);
-        }
+        bool bInstalled=false;
+        addImage(m,usbIcon,bInstalled);
     }
-
+    updateInstalledStatus();
     filterList();
     ug->setFocus();
 }
