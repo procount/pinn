@@ -288,7 +288,6 @@ QListWidgetItem *OsGroup::findItemByDataName(const QString &name)
 
 void OsGroup::updateInstalledStatus()
 {
-    MYDEBUG
     for (int i=1; i < listInstalled->count(); i++)//ALL
     {
         QListWidgetItem *installedItem = listInstalled->item(i); //ALL

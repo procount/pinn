@@ -44,6 +44,8 @@ protected:
     OsGroup * ug;
     QDialog *_qpd;
     QList <int> _kc;
+    QLabel *_info;
+    int _infoDelay;
     int _kcpos;
     const QString _defaultDisplay;
     bool _silent, _allowSilent, _showAll, _fixate, _usbimages;

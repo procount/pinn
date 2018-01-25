@@ -114,7 +114,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     update_window_title();
     _kc << 0x01000013 << 0x01000013 << 0x01000015 << 0x01000015 << 0x01000012
         << 0x01000014 << 0x01000012 << 0x01000014 << 0x42 << 0x41;
-
+    _info=NULL;
+    _infoDelay=0;
     _menuLabel = new QLabel();
     _menuLabel->setText(menutext(TOOLBAR_MAIN));
     ui->advToolBar->addWidget(_menuLabel);
@@ -583,7 +584,6 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
 
 void MainWindow::updateInstalledStatus()
 {
-    MYDEBUG
     ug->updateInstalledStatus();
     if (ug->listInstalled->count()>1)
     {
@@ -1231,10 +1231,11 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
 
 void MainWindow::inputSequence()
 {
-    QLabel* info = new QLabel(this);
-    info->setPixmap(QPixmap("/usr/data"));
-    info->setGeometry(0,0,640,480);
-    info->show();
+    _info = new QLabel(this);
+    _info->setPixmap(QPixmap("/usr/data"));
+    _info->setGeometry(0,0,640,480);
+    _info->show();
+    _infoDelay=10;
 }
 
 void MainWindow::on_actionAdvanced_triggered()
@@ -1785,11 +1786,11 @@ void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QS
         if (!iconurl.isEmpty())
             iconurls.insert(iconurl);
     }
+    addImage(new_details,internetIcon,bInstalled);
     if (! new_details.contains("download_size"))
     {
         getDownloadSize(new_details);
     }
-    addImage(new_details,internetIcon,bInstalled);
 }
 
 void MainWindow::getDownloadSize(QVariantMap &new_details)
@@ -2597,6 +2598,17 @@ void MainWindow::pollForNewDisks()
     QDir dir(dirname);
     QStringList list = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
 
+    if (_infoDelay)
+    {
+        _infoDelay--;
+        if (!_infoDelay && _info)
+        {
+            _info->hide();
+            _info->deleteLater();
+            _info=NULL;
+        }
+    }
+
     if (list.count() != _devlistcount)
     {
         foreach (QString devname, list)
@@ -2789,40 +2801,32 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
     QListWidgetItem *witemNew = NULL;
 
     witem = findItemByName(name);
-    qDebug() <<"Add image: "<<name<<" source: "<<m["source"].toString();
     if ((witem) && (!bInstalled))
     {
-        qDebug()<<"Already exists, !binstalled";
         QVariantMap existing_details = witem->data(Qt::UserRole).toMap();
 
         bool bReplace=false;
         if (existing_details["source"].toString()==SOURCE_INSTALLED_OS)
         {
-            qDebug() <<"  Existing is just installed1, so replace";
             bReplace=true;
         }
         if (existing_details["release_date"].toString()  < m["release_date"].toString())
         {
-            qDebug() << "  Newer date";
             bReplace=true;
         }
         if (existing_details["release_date"].toString() == m["release_date"].toString())
         {
-            qDebug() << "  Same date";
             if (m["source"].toString() == SOURCE_SDCARD)
             {
-                qDebug() <<"  Source is SD card, so replace";
                 bReplace=true;
             }
             if (existing_details["source"].toString()==SOURCE_INSTALLED_OS)
             {
-                qDebug() <<"  Existing is just installed2, so replace";
                 bReplace=true;
             }
         }
         if (bReplace)
         {
-            qDebug()<<"  Replacing";
             /* Existing item in list is same version or older. Prefer image on USB storage. */
             /* Copy current installed state */
             m.insert("installed", existing_details.value("installed", false));
@@ -2842,13 +2846,9 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
             witem->setData(SecondIconRole, icon);
             ug->list->update();
         }
-        else
-            qDebug()<<"  NOT Replacing";
-
     }
     else //not found or bInstalled
     {
-        qDebug()<<"NOT found or binstalled";
         witemNew = witem;
         //DBG("New OS");
         /* It's a new OS, so add it to the list */
@@ -2900,8 +2900,6 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
         }
         if (bInstalled)
         {
-            qDebug()<<"  binstalled";
-
             //Add image to installed list
             if (recommended)
                 ug->listInstalled->insertItem(1, witem); //After PINN entry
@@ -2927,7 +2925,6 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
         }
         else
         {
-            qDebug()<<"  New OS";
             //Add new OS to os list.
             if (recommended)
                 ug->insertItem(0, witem);
@@ -2936,6 +2933,8 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
             //ug->list->update();
         }
     }
+
+    QApplication::processEvents();
 }
 
 void MainWindow::addImagesFromUSB(const QString &device)
