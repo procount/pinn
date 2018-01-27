@@ -559,8 +559,8 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation>SD 記憶卡可能已受損</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2840"/>
-        <location filename="mainwindow.cpp" line="2868"/>
+        <location filename="mainwindow.cpp" line="2847"/>
+        <location filename="mainwindow.cpp" line="2875"/>
         <source>RECOMMENDED</source>
         <translation>建議</translation>
     </message>
@@ -568,9 +568,9 @@ WARNING: This will erase all data on your SD card</oldsource>
         <location filename="mainwindow.cpp" line="696"/>
         <location filename="mainwindow.cpp" line="701"/>
         <location filename="mainwindow.cpp" line="759"/>
-        <location filename="mainwindow.cpp" line="844"/>
-        <location filename="mainwindow.cpp" line="854"/>
-        <location filename="mainwindow.cpp" line="1314"/>
+        <location filename="mainwindow.cpp" line="845"/>
+        <location filename="mainwindow.cpp" line="855"/>
+        <location filename="mainwindow.cpp" line="1315"/>
         <source>Confirm</source>
         <translation>確認</translation>
     </message>
@@ -637,7 +637,7 @@ All existing data on the SD card will be overwritten, including any OSes that ar
     </message>
     <message>
         <location filename="mainwindow.cpp" line="702"/>
-        <location filename="mainwindow.cpp" line="855"/>
+        <location filename="mainwindow.cpp" line="856"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>警告：已偵測到不相容的作業系統。以下的作業系統在此版本的 Raspberry Pi 不被支援，它們可能會啟動失敗，或是有功能執行不正確：</translation>
     </message>
@@ -653,169 +653,169 @@ All existing data on the SD card will be overwritten, including any OSes that ar
         <translation>警告：這將會重新安裝選定的作業系統。已有的資料將會被刪除。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="845"/>
+        <location filename="mainwindow.cpp" line="846"/>
         <source>Warning: this will download the selected Operating System(s).</source>
         <translation>警告：這將會下載選定的作業系統。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="911"/>
+        <location filename="mainwindow.cpp" line="912"/>
         <source>The download process will begin shortly.</source>
         <translation>很快就會開始下載。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="944"/>
+        <location filename="mainwindow.cpp" line="945"/>
         <source>OS(es) downloaded</source>
         <translation>作業系統已下載完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="945"/>
+        <location filename="mainwindow.cpp" line="946"/>
         <source>OS(es) Downloaded Successfully.
 Reboot PINN to take account of these OSes?</source>
         <translation>下載作業系統成功。
 重新啟動 PINN 以檢視這些作業系統？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="950"/>
+        <location filename="mainwindow.cpp" line="951"/>
         <source>OS(es) installed</source>
         <translation>作業系統已安裝</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="951"/>
+        <location filename="mainwindow.cpp" line="952"/>
         <source>OS(es) Installed Successfully</source>
         <translation>作業系統已成功安裝</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="991"/>
-        <location filename="mainwindow.cpp" line="1580"/>
-        <location filename="mainwindow.cpp" line="1708"/>
-        <location filename="mainwindow.cpp" line="3091"/>
+        <location filename="mainwindow.cpp" line="992"/>
+        <location filename="mainwindow.cpp" line="1581"/>
+        <location filename="mainwindow.cpp" line="1709"/>
+        <location filename="mainwindow.cpp" line="3098"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1011"/>
+        <location filename="mainwindow.cpp" line="1012"/>
         <source>PINN v%1 - Built: %2 (%3)</source>
         <translation>PINN v%1 - 建置於：%2 (%3)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1290"/>
+        <location filename="mainwindow.cpp" line="1291"/>
         <source>Wiping SD card</source>
         <translation>抹除 SD 記憶卡</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1315"/>
+        <location filename="mainwindow.cpp" line="1316"/>
         <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will restore your SD card to its initial state. All existing data on the SD card except PINN will be overwritten, including any OSes that are already installed.</oldsource>
         <translation>警告：這將會讓您的 PINN 磁碟復原到初始狀態。所有在磁碟上，除了 PINN 以外既有的資料都將會被覆寫，其中也包含任何您已安裝的作業系統。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1320"/>
+        <location filename="mainwindow.cpp" line="1321"/>
         <source>Drive Wiped!</source>
         <translation>磁碟已抹除！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1580"/>
+        <location filename="mainwindow.cpp" line="1581"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation>解析從伺服器下載的 repolist.json 時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2156"/>
+        <location filename="mainwindow.cpp" line="2157"/>
         <source>Error downloading meta file: </source>
         <translation>下載詮釋檔案錯誤： </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2564"/>
+        <location filename="mainwindow.cpp" line="2571"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>不使用本機映像檔的 PINN 需要網路。請在下一個畫面選擇您的 wifi 連線。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2572"/>
+        <location filename="mainwindow.cpp" line="2579"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>不使用本機映像檔的 PINN 需要有線網路。請將網路線插入網路孔。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2755"/>
+        <location filename="mainwindow.cpp" line="2762"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>您確定您要重新格式化磁碟 &apos;%1&apos; 以供 PINN 使用嗎？所有在該磁碟上的資料都會被刪除！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3045"/>
+        <location filename="mainwindow.cpp" line="3052"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>這將會抹除在裝置 &apos;%s&apos; 上的所有內容。您確定嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3047"/>
+        <location filename="mainwindow.cpp" line="3054"/>
         <source>Clone SD Card</source>
         <translation>再製 SD 記憶卡</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3049"/>
+        <location filename="mainwindow.cpp" line="3056"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3050"/>
+        <location filename="mainwindow.cpp" line="3057"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3078"/>
+        <location filename="mainwindow.cpp" line="3085"/>
         <source>Clone Completed</source>
         <translation>再製完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3079"/>
+        <location filename="mainwindow.cpp" line="3086"/>
         <source>Clone Completed Successfully</source>
         <translation>再製成功完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3185"/>
+        <location filename="mainwindow.cpp" line="3192"/>
         <source>Error downloading update file</source>
         <translation>下載更新檔時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3192"/>
-        <location filename="mainwindow.cpp" line="3281"/>
+        <location filename="mainwindow.cpp" line="3199"/>
+        <location filename="mainwindow.cpp" line="3288"/>
         <source>PINN Update Check</source>
         <translation>PINN 更新檢查</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3192"/>
+        <location filename="mainwindow.cpp" line="3199"/>
         <source>Error contacting update server</source>
         <translation>聯絡更新伺服器發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3281"/>
+        <location filename="mainwindow.cpp" line="3288"/>
         <source>No updates available</source>
         <translation>無可用更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3289"/>
+        <location filename="mainwindow.cpp" line="3296"/>
         <source>PINN UPDATE</source>
         <translation>PINN 更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3290"/>
+        <location filename="mainwindow.cpp" line="3297"/>
         <source>A new version of PINN is available</source>
         <translation>已有新版的 PINN 可用</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3291"/>
+        <location filename="mainwindow.cpp" line="3298"/>
         <source>Do you want to download this version?</source>
         <translation>您想要下載此版本嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3315"/>
+        <location filename="mainwindow.cpp" line="3322"/>
         <source>Downloading Update</source>
         <translation>正在下載更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3315"/>
+        <location filename="mainwindow.cpp" line="3322"/>
         <source>Press ESC to cancel</source>
         <translation>按 ESC 取消</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1046"/>
+        <location filename="mainwindow.cpp" line="1047"/>
         <source>HDMI preferred mode</source>
         <translation>偏好 HDMI 模式</translation>
     </message>
@@ -827,34 +827,34 @@ Please provide it locally or connect to the internet.</source>
 請在本機提供它，或是連線到網際網路。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1050"/>
+        <location filename="mainwindow.cpp" line="1051"/>
         <source>HDMI safe mode</source>
         <translation>HDMI 安全模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1054"/>
+        <location filename="mainwindow.cpp" line="1055"/>
         <source>composite PAL mode</source>
         <translation>合成 PAL 模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1058"/>
+        <location filename="mainwindow.cpp" line="1059"/>
         <source>composite NTSC mode</source>
         <translation>合成 NTSC 模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1116"/>
+        <location filename="mainwindow.cpp" line="1117"/>
         <source>Display Mode Changed</source>
         <translation>顯示模式已變更</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1117"/>
+        <location filename="mainwindow.cpp" line="1118"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>顯示模式已變更為 %1
 您想要讓這個設定永久生效嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1321"/>
+        <location filename="mainwindow.cpp" line="1322"/>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
@@ -863,70 +863,70 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
 再次於這個磁碟上開機將會恢復 PINN 的分割區結構。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1333"/>
-        <location filename="mainwindow.cpp" line="2563"/>
-        <location filename="mainwindow.cpp" line="2571"/>
+        <location filename="mainwindow.cpp" line="1334"/>
+        <location filename="mainwindow.cpp" line="2570"/>
+        <location filename="mainwindow.cpp" line="2578"/>
         <source>No network access</source>
         <translation>無法存取網路</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1334"/>
+        <location filename="mainwindow.cpp" line="1335"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>這個功能要求有線網路連線。請插入一條網路纜線至網路埠中。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1562"/>
-        <location filename="mainwindow.cpp" line="1690"/>
+        <location filename="mainwindow.cpp" line="1563"/>
+        <location filename="mainwindow.cpp" line="1691"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation>從網路上下載散佈版清單時發生錯誤：
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1564"/>
-        <location filename="mainwindow.cpp" line="1692"/>
-        <location filename="mainwindow.cpp" line="2170"/>
-        <location filename="mainwindow.cpp" line="2181"/>
-        <location filename="mainwindow.cpp" line="3185"/>
-        <location filename="mainwindow.cpp" line="3207"/>
+        <location filename="mainwindow.cpp" line="1565"/>
+        <location filename="mainwindow.cpp" line="1693"/>
+        <location filename="mainwindow.cpp" line="2171"/>
+        <location filename="mainwindow.cpp" line="2182"/>
+        <location filename="mainwindow.cpp" line="3192"/>
+        <location filename="mainwindow.cpp" line="3214"/>
         <source>Download error</source>
         <translation>下載錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1708"/>
+        <location filename="mainwindow.cpp" line="1709"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>解析從伺服器上下載的 list.json 時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1945"/>
-        <location filename="mainwindow.cpp" line="1948"/>
+        <location filename="mainwindow.cpp" line="1946"/>
+        <location filename="mainwindow.cpp" line="1949"/>
         <source>Needed</source>
         <translation>需要</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1946"/>
-        <location filename="mainwindow.cpp" line="1949"/>
+        <location filename="mainwindow.cpp" line="1947"/>
+        <location filename="mainwindow.cpp" line="1950"/>
         <source>Available</source>
         <translation>可用</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2170"/>
+        <location filename="mainwindow.cpp" line="2171"/>
         <source>Error downloading meta file</source>
         <translation>下載後設檔案時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2181"/>
-        <location filename="mainwindow.cpp" line="3207"/>
+        <location filename="mainwindow.cpp" line="2182"/>
+        <location filename="mainwindow.cpp" line="3214"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>寫入已下載的檔案至 SD 記憶卡時發生錯誤。SD 記憶卡或檔案系統可能受損。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2250"/>
+        <location filename="mainwindow.cpp" line="2251"/>
         <source>filesize error checking </source>
         <translation>檢查檔案大小錯誤 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2754"/>
+        <location filename="mainwindow.cpp" line="2761"/>
         <source>Reformat drive?</source>
         <translation>重新格式化磁碟？</translation>
     </message>
@@ -1041,118 +1041,118 @@ Partition not big enough for new image.</source>
 分割區對新的映像檔來說不夠大。</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="376"/>
+        <location filename="multiimagewritethread.cpp" line="381"/>
         <source>Finish writing (sync)</source>
         <translation>寫入完成 (sync)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="396"/>
+        <location filename="multiimagewritethread.cpp" line="401"/>
         <source>Error reading existing partition table</source>
         <translation>讀取已有的分割表時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="481"/>
+        <location filename="multiimagewritethread.cpp" line="486"/>
         <source>Error creating partition table</source>
         <translation>建立分割表時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="611"/>
+        <location filename="multiimagewritethread.cpp" line="616"/>
         <source>File &apos;%1&apos; does not exist</source>
         <translation>檔案「%1」不存在</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="640"/>
-        <location filename="multiimagewritethread.cpp" line="646"/>
+        <location filename="multiimagewritethread.cpp" line="645"/>
+        <location filename="multiimagewritethread.cpp" line="651"/>
         <source>%1: Writing OS image</source>
         <translation>%1：正在寫入作業系統映像檔</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="653"/>
+        <location filename="multiimagewritethread.cpp" line="658"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation>%1：正在建立檔案系統 (%2)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="660"/>
+        <location filename="multiimagewritethread.cpp" line="665"/>
         <source>%1: Mounting file system</source>
         <translation>%1：正在掛載檔案系統</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="668"/>
-        <location filename="multiimagewritethread.cpp" line="692"/>
-        <location filename="multiimagewritethread.cpp" line="890"/>
+        <location filename="multiimagewritethread.cpp" line="673"/>
+        <location filename="multiimagewritethread.cpp" line="697"/>
+        <location filename="multiimagewritethread.cpp" line="906"/>
         <source>%1: Error mounting file system</source>
         <translation>%1：掛載檔案系統時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="673"/>
+        <location filename="multiimagewritethread.cpp" line="678"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation>%1：正在下載並解壓縮檔案系統</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="675"/>
+        <location filename="multiimagewritethread.cpp" line="680"/>
         <source>%1: Extracting filesystem</source>
         <translation>%1：正在解壓縮檔案系統</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="689"/>
+        <location filename="multiimagewritethread.cpp" line="694"/>
         <source>%1: Mounting FAT partition</source>
         <translation>%1：正在掛載 FAT 分割區</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="701"/>
+        <location filename="multiimagewritethread.cpp" line="706"/>
         <source>%1: Creating os_config.json</source>
         <translation>%1：正在建立 os_config.json</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="726"/>
+        <location filename="multiimagewritethread.cpp" line="731"/>
         <source>%1: Saving display mode to config.txt</source>
         <translation>%1：已經儲存顯示模式至 config.txt</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="737"/>
+        <location filename="multiimagewritethread.cpp" line="742"/>
         <source>%1: Running partition setup script</source>
         <translation>%1：正在執行分割區設定指令稿</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="786"/>
+        <location filename="multiimagewritethread.cpp" line="791"/>
         <source>%1: Error executing partition setup script</source>
         <translation>%1：執行分割區設定指令稿時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="802"/>
+        <location filename="multiimagewritethread.cpp" line="807"/>
         <source>%1: Configuring flavour</source>
         <translation>%1：正在設定風味</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="792"/>
+        <location filename="multiimagewritethread.cpp" line="797"/>
         <source>%1: Unmounting FAT partition</source>
         <translation>%1：正在解除掛載 FAT 分割區</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="795"/>
+        <location filename="multiimagewritethread.cpp" line="800"/>
         <source>%1: Error unmounting</source>
         <translation>%1：解除掛載錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1173"/>
+        <location filename="multiimagewritethread.cpp" line="1189"/>
         <source>Error creating file system</source>
         <translation>建立檔案系統時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1237"/>
-        <location filename="multiimagewritethread.cpp" line="1309"/>
-        <location filename="multiimagewritethread.cpp" line="1368"/>
+        <location filename="multiimagewritethread.cpp" line="1253"/>
+        <location filename="multiimagewritethread.cpp" line="1325"/>
+        <location filename="multiimagewritethread.cpp" line="1384"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
         <translation>未知的壓縮格式副檔名。預期為：.lzo、.gz、.xz、.bz2 或是 .zip</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1271"/>
+        <location filename="multiimagewritethread.cpp" line="1287"/>
         <source>Error downloading or extracting tarball</source>
         <translation>下載或解壓縮 tarball 時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1330"/>
-        <location filename="multiimagewritethread.cpp" line="1389"/>
+        <location filename="multiimagewritethread.cpp" line="1346"/>
+        <location filename="multiimagewritethread.cpp" line="1405"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>下載或寫入作業系統至 SD 記憶卡時發生錯誤</translation>
     </message>

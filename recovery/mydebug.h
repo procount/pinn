@@ -4,7 +4,7 @@
 #include <QDebug>
 
 //Conditional flags
-#define DO_DBG 1	//global debug enabler
+#define DO_DBG 0	//global debug enabler
 #define DBG_FUNC 1	//Debug entry/exit of functions
 #define DBG_OUT 1	//Debug  output strings
 

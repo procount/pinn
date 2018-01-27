@@ -366,6 +366,11 @@ void MultiImageWriteThread::run()
         emit parsedImagesize(qint64(totaluncompressedsize)*1024*1024);
     }
 
+    if (!_partition)
+    {   //If we are re-installing, then re-read the OSes that are already installed.
+        installed_os = Json::loadFromFile("/settings/installed_os.json").toList();
+    }
+
     /* Install each operating system */
     foreach (OsInfo *image, _images)
     {
@@ -814,44 +819,55 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     }
 
 
+    /* Save information about installed operating systems in installed_os.json */
+    QVariantMap ventry;
+    ventry["name"]        = image->flavour();
+    ventry["description"] = description;
+    ventry["folder"]      = image->folder();
+    ventry["release_date"]= image->releaseDate();
+    ventry["partitions"]  = vpartitions;
+    ventry["bootable"]    = image->bootable();
+    if (!image->supportedModels().isEmpty())
+        ventry["supported_models"] = image->supportedModels();
+    ventry["username"]    = image->username();
+    ventry["password"]    = image->password();
+    ventry["url"]         = image->url();
+    ventry["group"]       = image->group();
+    QString iconfilename  = image->folder()+"/"+image->flavour()+".png";
+    iconfilename.replace(" ", "_");
+    if (QFile::exists(iconfilename))
+    {
+        if (iconfilename.startsWith("/tmp/media/"))
+        {
+            /* Copy icon to settings folder, as USB storage may take longer to get ready on boot */
+            QDir dir;
+            QString dirname = "/settings/os/"+image->flavour().replace(" ", "_");
+            dir.mkpath(dirname);
+            QFile::copy(iconfilename, dirname+"/icon.png");
+            iconfilename = dirname+"/icon.png";
+        }
+
+        ventry["icon"] = iconfilename;
+    }
+    else if (QFile::exists(image->folder()+"/icon.png"))
+        ventry["icon"] = image->folder()+"/icon.png";
+
     if (_partition)
     {
-        /* Save information about installed operating systems in installed_os.json */
-        QVariantMap ventry;
-        ventry["name"]        = image->flavour();
-        ventry["description"] = description;
-        ventry["folder"]      = image->folder();
-        ventry["release_date"]= image->releaseDate();
-        ventry["partitions"]  = vpartitions;
-        ventry["bootable"]    = image->bootable();
-        if (!image->supportedModels().isEmpty())
-            ventry["supported_models"] = image->supportedModels();
-        ventry["username"]    = image->username();
-        ventry["password"]    = image->password();
-        ventry["url"]         = image->url();
-        ventry["group"]       = image->group();
-        QString iconfilename  = image->folder()+"/"+image->flavour()+".png";
-        iconfilename.replace(" ", "_");
-        if (QFile::exists(iconfilename))
-        {
-            if (iconfilename.startsWith("/tmp/media/"))
-            {
-                /* Copy icon to settings folder, as USB storage may take longer to get ready on boot */
-                QDir dir;
-                QString dirname = "/settings/os/"+image->flavour().replace(" ", "_");
-                dir.mkpath(dirname);
-                QFile::copy(iconfilename, dirname+"/icon.png");
-                iconfilename = dirname+"/icon.png";
-            }
-
-            ventry["icon"] = iconfilename;
-        }
-        else if (QFile::exists(image->folder()+"/icon.png"))
-            ventry["icon"] = image->folder()+"/icon.png";
         installed_os.append(ventry);
-
-        Json::saveToFile("/settings/installed_os.json", installed_os);
     }
+    else
+    {
+        int i=0;
+        foreach (QVariant v, installed_os)
+        {
+            QVariantMap m = v.toMap();
+            if (m.value("name").toString() == image->flavour())
+                installed_os.replace(i,ventry);
+            i++;
+        }
+    }
+    Json::saveToFile("/settings/installed_os.json", installed_os);
 
     return true;
 }

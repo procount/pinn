@@ -795,8 +795,9 @@ void MainWindow::on_actionReinstall_triggered()
                     }
                 }
 
-                //
-                if (!installedEntry.contains("folder"))
+                installedEntry = witem->data(Qt::UserRole).toMap();
+
+                if ((!installedEntry.contains("folder")) || (installedEntry.value("folder").toString().startsWith("/settings")))
                 {
                     QDir d;
                     QString folder = "/settings/os/"+installedEntry.value("name").toString();
@@ -2050,7 +2051,7 @@ void MainWindow::on_list_itemChanged(QListWidgetItem *item)
 
 void MainWindow::downloadMetaFile(const QString &urlstring, const QString &saveAs)
 {
-    qDebug() << "Downloading" << urlstring << "to" << saveAs;
+    //qDebug() << "Downloading" << urlstring << "to" << saveAs;
     _numMetaFilesToDownload++;
     QUrl url(urlstring);
     QNetworkRequest request(url);
@@ -2377,12 +2378,18 @@ void MainWindow::startImageReinstall()
     QList<QListWidgetItem *> selected = ug->selectedInstalledItems();
     foreach (QListWidgetItem * item, selected)
     {
-        QVariantMap entry = item->data(Qt::UserRole).toMap();
-
-        if (entry.value("name")=="PINN")
+        QVariantMap installedEntry = item->data(Qt::UserRole).toMap();
+        QString name = installedEntry.value("name").toString();
+        if (name=="PINN")
         {
             continue;   //Do not reinstall PINN - it's just a dummy os.
         }
+
+        QListWidgetItem *witem = findItemByName(name);
+        if (!witem)
+            continue;
+
+        QVariantMap entry = witem->data(Qt::UserRole).toMap();
 
         if (entry.contains("folder"))
         {
@@ -2424,7 +2431,7 @@ void MainWindow::startImageReinstall()
             slidesFolder = folder+"/slides_vga";
         }
 
-        imageWriteThread->addInstalledImage(folder, entry.value("name").toString(), entry); //@@
+        imageWriteThread->addInstalledImage(folder, entry.value("name").toString(), installedEntry); //@@
 
         if (!slidesFolder.isEmpty())
             slidesFolders.append(slidesFolder);
@@ -2907,7 +2914,7 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
                 ug->listInstalled->addItem(witem);
             //ug->listInstalled->update();
 
-#if 1
+#if 0
             //Clone image to new list if not already known
             if (!witemNew)
 
@@ -3447,9 +3454,6 @@ void MainWindow::on_actionInfo_triggered()
             lang = "en";
         proc->start("arora -lang "+lang+" "+m.value("url").toString());
     }
-    //else
-        //qDebug() << m;
-
 }
 
 void MainWindow::on_actionInfoInstalled_triggered()
@@ -3472,8 +3476,6 @@ void MainWindow::on_actionInfoInstalled_triggered()
             lang = "en";
         proc->start("arora -lang "+lang+" "+m.value("url").toString());
     }
-    //else
-    //    qDebug() << m;
 }
 
 void MainWindow::loadOverrides(const QString &filename)
