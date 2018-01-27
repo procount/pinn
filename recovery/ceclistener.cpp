@@ -114,6 +114,7 @@ void CecListener::cec_callback(uint32_t reason, uint32_t param1, uint32_t, uint3
         int cec_buttoncode = CEC_CB_OPERAND1(param1);
         keyPressed=1;
         emit keyPress(cec_buttoncode);
+        qDebug() << "CEC key: " << cec_buttoncode;
     }
 #else
     qDebug() << "CEC:" << reason << param1;

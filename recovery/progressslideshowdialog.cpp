@@ -51,7 +51,7 @@ ProgressSlideshowDialog::ProgressSlideshowDialog(const QStringList &slidesDirect
             }
         }
     }
-    qDebug() << "Available slides" << _slides;
+    //qDebug() << "Available slides" << _slides;
 
     if (_slides.isEmpty())
     {
