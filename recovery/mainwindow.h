@@ -12,6 +12,7 @@
 
 #include "languagedialog.h"
 #include "osgroup.h"
+#include "countdownfilter.h"
 
 #include <QMainWindow>
 #include <QModelIndex>
@@ -70,6 +71,7 @@ protected:
     int _numFilesToCheck;
     bool _bdisplayUpdate;
     QSize _currentsize;
+    CountdownFilter counter;
 
     enum ModeTag {
         MODE_INSTALL=0,
@@ -137,6 +139,10 @@ protected:
     void createPinnEntry();
 
 protected slots:
+
+    void tick(int secs);
+    void expired(void);
+
     void checkFileSizeRedirectCheck();//@@download
     void checkFileSizeComplete();//@@download
     void populate();

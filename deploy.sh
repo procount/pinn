@@ -1,6 +1,9 @@
 #!/bin/sh
 set -x
 # backup the source code to pinn
+cd ~/pinn
+git checkout p2.4.5a
+cd ~/noobs_test
 git push -f pinn pinn2:master
 cd ~/pinn
 git checkout -f master

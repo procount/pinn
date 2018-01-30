@@ -5,6 +5,12 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V2.4.5e
+
+- **remotetimeout**  - Enable network for remote boot alteration.
+
+This new option allows PINN to be used more easily in a remote headless environment.
+
 ### V2.4.5
 
 This is a small maintenance release for some cosmetic changes and bugfixes mainly.

@@ -247,6 +247,10 @@ To connect over VNC, you need to know the IP address of the Pi. If you are using
 
 When VNC is selected, there will be no GUI present on any attached display, as all output is redirected over the VNC network connection. Alternatively, appending `vncshare` to the argument list instead of `vncinstall` will share the screen between the locally attached display and redirect it over the VNC network connection simultaneously.
 
+NOTE 1: These VNC options are meant to be used on a local LAN only. If your Pi is open to the internet, **anyone** can gain access to PINN as there is no security.
+
+Note 2: The `remotetimeout` option is useful to gain remote access within a timeout period, yet, allowing the default boot operation to continue.
+
 ### How to access the shell or SSH into PINN
 
 1. Once the PINN GUI is launched, the busybox shell can be accessed by pressing CTRL-ALT-F2. Use the Username of `root` and password of `raspberry`. Use CTL-ALT-F1 to get back to the GUI. This can be useful for editing recovery.cmdline locally or performing other maintenance tasks on your SD card.
@@ -256,6 +260,8 @@ When VNC is selected, there will be no GUI present on any attached display, as a
 The IP address of the PI is shown in the window title bar for ease of connection.
 
 Use the username of `root` and password `raspberry` to login to the shell via the console or SSH.
+
+NOTE: This SSH option is meant to be used on a local LAN only. If your Pi is open to the internet, **anyone** can gain access to PINN as the only security is a well-known username/password.
 
 ### How to change display output modes
 
@@ -357,6 +363,8 @@ The following is a complete list of all the PINN options that can be added to th
 - **gpiotriggerenable**: Forces Recovery Mode to be entered on boot if GPIO pin 3 on header P1 is connected to GND (pin 25). 
 
 - **keyboardtriggerdisable**: Prevents a `SHIFT` keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)
+
+- **remotetimeout=**: When used in conjunction with `forcetrigger` it sets a maximum timeout period for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot. This permits normal default OS booting, yet also allows for a remote user to interrupt the startup process to change the OS to boot, or perform any remote maintenance. Any screen interaction over VNC will cancel the timeout. This additional timeout will lengthen the boot time into a default OS, so choose a value that is long enough to allow VNC access, yet short enough not to be annoying under normal circumstances.
 
 - **disablesafemode**: If you have external hardware or an addon board connected to the GPIO header, you may find that pin 5 is being pulled low and accidentally triggering "Safe Mode" by entering the rescueshell. To prevent this, you can append `disablesafemode` to the `recovery.cmdline` file.
 

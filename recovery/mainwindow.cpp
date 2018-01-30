@@ -20,6 +20,7 @@
 #include "osgroup.h"
 #include "fscheck.h"
 #include "mydebug.h"
+#include "countdownfilter.h"
 
 #include <QByteArray>
 #include <QMessageBox>
@@ -93,11 +94,48 @@ extern QString repoList;
 /* time in ms to poll for new disks */
 #define POLLTIME 1000
 
+#define MYCOUNT 1
+
 /* Flag to keep track wheter or not we already repartitioned. */
 bool MainWindow::_partInited = false;
 
 /* Flag to keep track of current display mode. */
 int MainWindow::_currentMode = 0;
+
+extern bool timedReboot;
+void MainWindow::tick(int secs)
+{
+    update_window_title();
+}
+
+void MainWindow::expired(void)
+{
+    //Close any open messageboxes
+    int numDialogs=0;
+    QWidgetList topWidgets = QApplication::topLevelWidgets();
+    foreach (QWidget *w, topWidgets)
+    {
+        //if (QMessageBox *mb = qobject_cast<QMessageBox *>(w))
+        if (qobject_cast<QMessageBox *>(w) || qobject_cast<WifiSettingsDialog*>(w))
+        {
+            if (w->isVisible())
+            {
+                numDialogs++;
+                //mb->accept();
+                w->close();
+                QApplication::processEvents();
+            }
+        }
+    }
+    if (numDialogs)
+    {
+        QTimer::singleShot(1000,this,SLOT(expired()));
+        return;
+    }
+
+    timedReboot=true;
+    close();
+}
 
 MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSplashScreen *splash, bool noobsconfig, QWidget *parent) :
     QMainWindow(parent),
@@ -151,6 +189,22 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     ui->groupBoxUsb->setVisible(toolbar_index==TOOLBAR_ARCHIVAL);
 
     QString cmdline = getFileContents("/proc/cmdline");
+
+    QStringList args = cmdline.split(QChar(' '),QString::SkipEmptyParts);
+    foreach (QString s, args)
+    {
+        if (s.contains("remotetimeout"))
+        {
+            QStringList params = s.split(QChar('='));
+
+            connect (&counter, SIGNAL(countdownTick(int)), this, SLOT(tick(int)));
+            connect (&counter, SIGNAL(countdownExpired()), this, SLOT(expired()));
+            //connect (&counter, SIGNAL(countdownStopped()), this, SLOT(countdownStopped()));
+            installEventFilter(&counter);
+            counter.startCountdown( params.at(1).toInt() +1);
+        }
+    }
+
     ug = new OsGroup(this, ui, !cmdline.contains("no_group"));
 
     ug->list->setIconSize(QSize(40,40)); //ALL?? set each list?
@@ -374,6 +428,8 @@ void MainWindow::populate()
         _qpd = new QProgressDialog(tr("Please wait while PINN initialises"), QString(), 0, 0, this);
         _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
         _qpd->show();
+
+        _qpd->installEventFilter(&counter);
 
         int timeout = 5000;
         if (getFileContents("/settings/wpa_supplicant.conf").contains("ssid="))
@@ -1009,7 +1065,13 @@ void MainWindow::on_list_currentRowChanged()
 
 void MainWindow::update_window_title()
 {
-    setWindowTitle(QString(tr("PINN v%1 - Built: %2 (%3)")).arg(VERSION_NUMBER).arg(QString::fromLocal8Bit(__DATE__)).arg(_ipaddress.toString()));
+    QString count;
+    int currentCount = counter.getCountdown();
+    if (currentCount)
+    {
+        count = QString(tr("Reboot in %1 secs")).arg(QString::number(currentCount));
+    }
+    setWindowTitle(QString(tr("PINN v%1 - Built: %2 (%3) %4")).arg(VERSION_NUMBER).arg(QString::fromLocal8Bit(__DATE__)).arg(_ipaddress.toString()).arg(count));
 }
 
 void MainWindow::changeEvent(QEvent* event)
@@ -1149,7 +1211,6 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     if (event->type() == QEvent::KeyPress)
     {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
-
         // Let user find the best display mode for their display
         // experimentally by using keys 1-4. PINN will default to using HDMI preferred mode.
 
@@ -3406,7 +3467,7 @@ void MainWindow::onKeyPress(int cec_code)
 
     case CEC_User_Control_F2Red:
         key = Qt::Key_M;
-        modifiers = Qt::ControlModifier;
+        //modifiers = Qt::ControlModifier;
         break;
 
 /* Key 9 is always menu selection toggle */

@@ -309,4 +309,8 @@ This is a small maintenance release for some cosmetic changes and bugfixes mainl
 - **configpath**  - (partially) allow remote flavours to customise an OS
 - **dsi**         - Allows the HDMI/DSI switching option to work with OSes installed to USB
 
+### V2.4.5e
 
+- **remotetimeout**  - Enable network for remote boot alteration.
+
+This new option allows PINN to be used more easily in a remote headless environment.

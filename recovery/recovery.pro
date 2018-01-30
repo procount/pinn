@@ -59,7 +59,8 @@ SOURCES += \
     osgroup.cpp \
     multiimagedownloadthread.cpp \
     fscheck.cpp \
-    fullfatthread.cpp
+    fullfatthread.cpp \
+    countdownfilter.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -97,7 +98,8 @@ HEADERS  += \
     osgroup.h \
     multiimagedownloadthread.h \
     fscheck.h \
-    fullfatthread.h
+    fullfatthread.h \
+    countdownfilter.h
 
 FORMS    += \
     mainwindow.ui \
