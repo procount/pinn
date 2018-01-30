@@ -13,12 +13,13 @@
 #include "json.h"
 #include "util.h"
 #include "ceclistener.h"
+#include "countdownfilter.h"
+
 #include <stdio.h>
 #include <QDebug>
 #include <unistd.h>
 #include <QDir>
 #include <QMessageBox>
-
 #include <QProcess>
 #include <QListWidgetItem>
 #include <QPushButton>
@@ -165,11 +166,11 @@ BootSelectionDialog::BootSelectionDialog(const QString &drive, const QString &de
 
             // Start timer
             qDebug() << "Starting " << _countdown-1 << " second timer before booting into partition" << partition;
-            _timer.setInterval(1000);
-            connect(&_timer, SIGNAL(timeout()), this, SLOT(countdown()));
-            _timer.start();
-            countdown();
-            ui->list->installEventFilter(this);
+
+            connect(&_counter, SIGNAL(countdownTick(int)), this, SLOT(countdown(int)));
+            connect(&_counter, SIGNAL(countdownExpired()), this, SLOT(countdownExpired()) );
+            ui->list->installEventFilter(&_counter);
+            _counter.startCountdown(_countdown);
 
             // Select OS booted previously
             QString partnrStr = QString::number(partition);
@@ -366,33 +367,21 @@ void BootSelectionDialog::setDisplayMode()
 #endif
 }
 
-bool BootSelectionDialog::eventFilter(QObject *obj, QEvent *event)
-{
-    //qDebug() << event->type();
-    if (event->type() == QEvent::KeyPress || event->type() == QEvent::MouseButtonPress || event->type() == QEvent::Enter)
-    {
-        stopCountdown();
-    }
-
-    return QDialog::eventFilter(obj, event);
-}
-
-void BootSelectionDialog::stopCountdown()
-{
-    _timer.stop();
-    setWindowTitle(tr("PINN - Select OS to boot"));
-}
-
 void BootSelectionDialog::countdown()
 {
-    setWindowTitle(tr("PINN - Previously selected OS will boot in %1 seconds").arg(--_countdown));
+    int count = _counter.getCountdown();
+    if (count)
+        setWindowTitle(QString(tr("PINN - Previously selected OS will boot in %1 seconds")).arg(count));
+    else
+        setWindowTitle(tr("PINN - Select OS to boot"));
+
     if (cec->hasKeyPressed())
-        stopCountdown();
-    if (_countdown == 0)
-    {
-        _timer.stop();
-        bootPartition();
-    }
+        _counter.stopCountdown();
+}
+
+void BootSelectionDialog::countdownExpired()
+{
+    bootPartition();
 }
 
 void BootSelectionDialog::updateConfig4dsi(QByteArray partition)

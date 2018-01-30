@@ -48,6 +48,8 @@ QString repoList;
 QString stylesheet = "";
 QColor backgroundColour = BACKGROUND_COLOR;
 
+bool timedReboot=false;
+
 void runCustomScript(const QString &driveDev, int partNr, const QString &cmd, bool inBackground=false )
 {
     bool mntStillMounted = true ; // suppose yes.
@@ -87,7 +89,6 @@ void runCustomScript(const QString &driveDev, int partNr, const QString &cmd, bo
         QProcess::execute("umount /mnt");
     }
 }
-
 
 void showBootMenu(const QString &drive, const QString &defaultPartition, bool setDisplayMode)
 {
@@ -165,6 +166,7 @@ QString findRecoveryDrive()
 
     return drive;
 }
+
 
 
 int main(int argc, char *argv[])
@@ -451,7 +453,7 @@ int main(int argc, char *argv[])
 #endif
 
     a.exec();
-    showBootMenu(drive, defaultPartition, false);
+    showBootMenu(drive, defaultPartition, timedReboot);
 
     return 0;
 }

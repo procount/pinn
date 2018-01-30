@@ -10,6 +10,8 @@
  *
  */
 
+#include "countdownfilter.h"
+
 #include <QListWidgetItem>
 #include <QModelIndex>
 #include <QDialog>
@@ -18,7 +20,6 @@
 #include <QModelIndex>
 #include <QTimer>
 #include <QListWidgetItem>
-
 namespace Ui {
 class BootSelectionDialog;
 }
@@ -32,12 +33,12 @@ public:
     ~BootSelectionDialog();
     virtual void accept();
     void setDisplayMode();
-    virtual bool eventFilter(QObject *obj, QEvent *event);
 
 protected slots:
     void countdown();
     void bootPartition();
     void onKeyPress(int);
+    void countdownExpired();
 
 private slots:
     void on_list_activated(const QModelIndex &index);
@@ -47,7 +48,6 @@ private slots:
 protected:
     QTimer _timer;
     int _countdown;
-    void stopCountdown();
     void updateConfig4dsi(QByteArray partition);
     bool _dsi;
     int extractPartition(QVariantMap m);
@@ -56,6 +56,7 @@ private:
     Ui::BootSelectionDialog *ui;
     bool _inSelection;
     QByteArray _drive;
+    CountdownFilter _counter;
 };
 
 #endif // BOOTSELECTIONDIALOG_H

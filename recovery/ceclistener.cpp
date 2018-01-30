@@ -106,7 +106,7 @@ void CecListener::run()
     static_cast<CecListener *>(userptr)->cec_callback(reason, param1, param2, param3, param4);
 }
 
-void CecListener::cec_callback(uint32_t reason, uint32_t param1, uint32_t, uint32_t, uint32_t)
+void CecListener::cec_callback(uint32_t reason, uint32_t param1, uint32_t param2, uint32_t param3, uint32_t param4)
 {
 #ifdef RASPBERRY_CEC_SUPPORT
     if (CEC_CB_REASON(reason) == VC_CEC_BUTTON_PRESSED)
@@ -116,6 +116,16 @@ void CecListener::cec_callback(uint32_t reason, uint32_t param1, uint32_t, uint3
         emit keyPress(cec_buttoncode);
         qDebug() << "CEC key: " << cec_buttoncode;
     }
+    else if (CEC_CB_REASON(reason) == VC_CEC_REMOTE_PRESSED)
+    {
+        int cec_buttoncode = CEC_CB_OPERAND1(param1);
+        qDebug() << "Vendor key: " << cec_buttoncode;
+    }
+    else
+    {
+        qDebug() << "CEC reason: " << CEC_CB_REASON(reason) <<", " <<param1 <<", " << param2 <<", " << param3 <<", " <<param4;
+    }
+
 #else
     qDebug() << "CEC:" << reason << param1;
 #endif
