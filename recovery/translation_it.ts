@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it" sourcelanguage="en">
+<TS version="2.1" language="it" sourcelanguage="en">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -615,13 +615,14 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.cpp" line="683"/>
         <source>ERROR</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRORE</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="684"/>
         <source>Error: Some OSes are not available:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Errore. Alcuni SO non sono disponibili:
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="689"/>
@@ -1205,23 +1206,23 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="osgroup.cpp" line="306"/>
         <source>RECOMMENDED</source>
-        <translation type="unfinished">RACCOMANDATO</translation>
+        <translation>RACCOMANDATO</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="311"/>
         <source>NEW VERSION</source>
-        <translation type="unfinished"></translation>
+        <translation>NUOVA VERSIONE</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="312"/>
         <source>UPDATE</source>
-        <translation type="unfinished"></translation>
+        <translation>AGGIORNA</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="316"/>
         <location filename="osgroup.cpp" line="317"/>
         <source>INSTALLED</source>
-        <translation type="unfinished">INSTALLATO</translation>
+        <translation>INSTALLATO</translation>
     </message>
 </context>
 <context>
