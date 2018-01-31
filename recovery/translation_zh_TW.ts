@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -597,13 +597,14 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="683"/>
         <source>ERROR</source>
-        <translation type="unfinished"></translation>
+        <translation>錯誤</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="684"/>
         <source>Error: Some OSes are not available:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>錯誤：部份作業系統不可用：
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="689"/>
@@ -1192,23 +1193,23 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="osgroup.cpp" line="306"/>
         <source>RECOMMENDED</source>
-        <translation type="unfinished">建議</translation>
+        <translation>建議</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="311"/>
         <source>NEW VERSION</source>
-        <translation type="unfinished"></translation>
+        <translation>新版本</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="312"/>
         <source>UPDATE</source>
-        <translation type="unfinished"></translation>
+        <translation>更新</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="316"/>
         <location filename="osgroup.cpp" line="317"/>
         <source>INSTALLED</source>
-        <translation type="unfinished">已安裝</translation>
+        <translation>已安裝</translation>
     </message>
 </context>
 <context>
