@@ -314,3 +314,8 @@ This is a small maintenance release for some cosmetic changes and bugfixes mainl
 - **remotetimeout**  - Enable network for remote boot alteration.
 
 This new option allows PINN to be used more easily in a remote headless environment.
+
+### V2.4.5f
+
+- **rtl8812 wifi**   - added wifi driver for rtl8812 5GHz dongles
+

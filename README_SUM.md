@@ -44,6 +44,19 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V2.4.5f
+
+- **rtl8812 wifi**   - added wifi driver for rtl8812 5GHz dongles
+
+### V2.4.5e
+
+- **remotetimeout**  - Enable network for remote boot alteration.
+
+### V2.4.5b
+
+- **background**  - The background has now been fixed on the bootmenu
+- **reinstall**   - Reinstall should now use data from the NEW version rather than the OLD version
+
 ### V2.4.5
 
 This is a small maintenance release for some cosmetic changes and bugfixes mainly.

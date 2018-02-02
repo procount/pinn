@@ -5,6 +5,10 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V2.4.5f
+
+- **rtl8812 wifi**   - added wifi driver for rtl8812 5GHz dongles
+
 ### V2.4.5e
 
 - **remotetimeout**  - Enable network for remote boot alteration.

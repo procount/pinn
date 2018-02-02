@@ -316,6 +316,8 @@ from v2.0
 * rtl8188eu - for hubpiwi and others
 from v2.1
 * IoTpHAT
+from 2.4.5f
+* rtl8812
 
 ### Enabling SSH for Raspbian
 
