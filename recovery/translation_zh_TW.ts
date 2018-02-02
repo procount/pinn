@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -696,7 +696,7 @@ Reboot PINN to take account of these OSes?</source>
     <message>
         <location filename="mainwindow.cpp" line="1072"/>
         <source>Reboot in %1 secs</source>
-        <translation type="unfinished"></translation>
+        <translation>在 %1 秒內重新啟動</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1352"/>
@@ -830,7 +830,7 @@ Please provide it locally or connect to the internet.</source>
     <message>
         <location filename="mainwindow.cpp" line="1074"/>
         <source>PINN v%1 - Built: %2 (%3) %4</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN v%1 - 建構： %2 (%3) %4</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1113"/>
