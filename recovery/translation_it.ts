@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it" sourcelanguage="en">
+<TS version="2.1" language="it" sourcelanguage="en">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -708,7 +708,7 @@ Vuoi riavviare PINN per abilitare questi SO?</translation>
     <message>
         <location filename="mainwindow.cpp" line="1072"/>
         <source>Reboot in %1 secs</source>
-        <translation type="unfinished"></translation>
+        <translation>Riavvio tra %1 secondi</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1113"/>
@@ -882,7 +882,7 @@ Copialo localmente o collegati ad internet.</translation>
     <message>
         <location filename="mainwindow.cpp" line="1074"/>
         <source>PINN v%1 - Built: %2 (%3) %4</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN v%1 - Build: %2 (%3) %4</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1383"/>
