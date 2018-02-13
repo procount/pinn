@@ -3417,6 +3417,7 @@ void MainWindow::onKeyPress(int cec_code)
     QPoint p = QCursor::pos();
     int menu =toolbar_index;
 
+#ifdef RASPBERRY_CEC_SUPPORT
     switch (cec_code)
     {
 /* MOUSE SIMULATION */
@@ -3482,6 +3483,8 @@ void MainWindow::onKeyPress(int cec_code)
         }
         break;
     }
+#endif
+
     if (key)
     {
         // key press

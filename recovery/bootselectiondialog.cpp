@@ -443,6 +443,7 @@ void BootSelectionDialog::onKeyPress(int cec_code)
     Qt::KeyboardModifiers modifiers = Qt::NoModifier;
     int key=0;
     QPoint p = QCursor::pos();
+#ifdef RASPBERRY_CEC_SUPPORT
     switch (cec_code)
     {
 /* MOUSE SIMULATION */
@@ -491,7 +492,7 @@ void BootSelectionDialog::onKeyPress(int cec_code)
     default:
         break;
     }
-
+#endif
     if (key)
     {
         // key press
