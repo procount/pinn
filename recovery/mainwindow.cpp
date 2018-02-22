@@ -143,8 +143,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     _qpd(NULL), _kcpos(0), _defaultDisplay(defaultDisplay),
     _silent(false), _allowSilent(false), _showAll(false), _fixate(false), _splash(splash), _settings(NULL),
     _hasWifi(false), _numInstalledOS(0), _devlistcount(0), _netaccess(NULL), _displayModeBox(NULL), _drive(drive),
-    _bootdrive(drive), _noobsconfig(noobsconfig), _numFilesToCheck(0), _eDownloadMode(MODE_INSTALL)
-
+    _bootdrive(drive), _noobsconfig(noobsconfig), _numFilesToCheck(0), _eDownloadMode(MODE_INSTALL), _proc(NULL)
 {
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
@@ -157,7 +156,6 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     _menuLabel = new QLabel();
     _menuLabel->setText(menutext(TOOLBAR_MAIN));
     ui->advToolBar->addWidget(_menuLabel);
-
     QPalette p = _menuLabel->palette();
     if (p.color(QPalette::WindowText) != Qt::darkBlue)
     {
@@ -1405,11 +1403,17 @@ void MainWindow::startBrowser()
 {
     if (!requireNetwork())
         return;
-    QProcess *proc = new QProcess(this);
+    if (_proc)
+    {
+        _proc->kill();
+        _proc=NULL;
+    }
+
+    _proc = new QProcess(this);
     QString lang = LanguageDialog::instance("en", "gb")->currentLanguage();
     if (lang == "gb" || lang == "us" || lang == "ko" || lang == "")
         lang = "en";
-    proc->start("arora -lang "+lang+" "+HOMEPAGE);
+    _proc->start("arora -lang "+lang+" "+HOMEPAGE);
 }
 
 void MainWindow::on_list_doubleClicked(const QModelIndex &index)
@@ -3512,11 +3516,16 @@ void MainWindow::on_actionInfo_triggered()
     QVariantMap m = item->data(Qt::UserRole).toMap();
     if (m.contains("url"))
     {
-        QProcess *proc = new QProcess(this);
+        if (_proc)
+        {
+            _proc->kill();
+            _proc=NULL;
+        }
+        _proc = new QProcess(this);
         QString lang = LanguageDialog::instance("en", "gb")->currentLanguage();
         if (lang == "gb" || lang == "us" || lang == "ko" || lang == "")
             lang = "en";
-        proc->start("arora -lang "+lang+" "+m.value("url").toString());
+        _proc->start("arora -lang "+lang+" "+m.value("url").toString());
     }
 }
 
@@ -3534,11 +3543,17 @@ void MainWindow::on_actionInfoInstalled_triggered()
     QVariantMap m = item->data(Qt::UserRole).toMap();
     if (m.contains("url"))
     {
-        QProcess *proc = new QProcess(this);
+        if (_proc)
+        {
+            _proc->kill();
+            _proc=NULL;
+        }
+
+        _proc = new QProcess(this);
         QString lang = LanguageDialog::instance("en", "gb")->currentLanguage();
         if (lang == "gb" || lang == "us" || lang == "ko" || lang == "")
             lang = "en";
-        proc->start("arora -lang "+lang+" "+m.value("url").toString());
+        _proc->start("arora -lang "+lang+" "+m.value("url").toString());
     }
 }
 

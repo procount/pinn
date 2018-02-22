@@ -90,6 +90,7 @@ protected:
     int toolbar_index;
 
     QVariantMap _overrides;
+    QProcess * _proc;
 
     virtual void changeEvent(QEvent * event);
     virtual bool eventFilter(QObject *obj, QEvent *event);

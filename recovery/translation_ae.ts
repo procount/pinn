@@ -528,8 +528,8 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation>SD اعداد بطاقة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2908"/>
-        <location filename="mainwindow.cpp" line="2936"/>
+        <location filename="mainwindow.cpp" line="2916"/>
+        <location filename="mainwindow.cpp" line="2944"/>
         <source>RECOMMENDED</source>
         <translation>اوصي</translation>
     </message>
@@ -570,9 +570,9 @@ WARNING: This will erase all data on your SD card</oldsource>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1048"/>
-        <location filename="mainwindow.cpp" line="1642"/>
-        <location filename="mainwindow.cpp" line="1770"/>
-        <location filename="mainwindow.cpp" line="3159"/>
+        <location filename="mainwindow.cpp" line="1650"/>
+        <location filename="mainwindow.cpp" line="1778"/>
+        <location filename="mainwindow.cpp" line="3167"/>
         <source>Error</source>
         <translation>خطا</translation>
     </message>
@@ -743,126 +743,126 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1624"/>
-        <location filename="mainwindow.cpp" line="1752"/>
+        <location filename="mainwindow.cpp" line="1632"/>
+        <location filename="mainwindow.cpp" line="1760"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation>خطا في تحميل قائمه التوزيع من الإنترنت:
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1626"/>
-        <location filename="mainwindow.cpp" line="1754"/>
-        <location filename="mainwindow.cpp" line="2232"/>
-        <location filename="mainwindow.cpp" line="2243"/>
-        <location filename="mainwindow.cpp" line="3253"/>
-        <location filename="mainwindow.cpp" line="3275"/>
+        <location filename="mainwindow.cpp" line="1634"/>
+        <location filename="mainwindow.cpp" line="1762"/>
+        <location filename="mainwindow.cpp" line="2240"/>
+        <location filename="mainwindow.cpp" line="2251"/>
+        <location filename="mainwindow.cpp" line="3261"/>
+        <location filename="mainwindow.cpp" line="3283"/>
         <source>Download error</source>
         <translation>خطا في التحميل</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1642"/>
+        <location filename="mainwindow.cpp" line="1650"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation>خطا في تحليل أعاده التشغيل. json التحميل من الخادم</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2218"/>
+        <location filename="mainwindow.cpp" line="2226"/>
         <source>Error downloading meta file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2632"/>
+        <location filename="mainwindow.cpp" line="2640"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>مطلوب الوصول إلى الشبكة لاستخدام المكونات البينية بدون الصور المحلية. الرجاء تحديد شبكه wifi الخاصة بك في الشاشة التالية.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2640"/>
+        <location filename="mainwindow.cpp" line="2648"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>مطلوب الوصول إلى الشبكة السلكية لاستخدام pinoy بدون الصور المحلية. الرجاء إدخال كبل شبكه اتصال في منفذ الشبكة.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2823"/>
+        <location filename="mainwindow.cpp" line="2831"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>هل تريد بالتاكيد أعاده تهيئه محرك الاقراص &apos;%1&apos; لاستخدامه مع الشبكة PINN ؟ سيتم حذف كافة البيانات الموجودة علي محرك!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3113"/>
+        <location filename="mainwindow.cpp" line="3121"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>سيؤدي ذلك إلى مسح كافة المحتويات الموجودة علي الجهاز &apos;%s&apos;. هل أنت متأكد؟</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3115"/>
+        <location filename="mainwindow.cpp" line="3123"/>
         <source>Clone SD Card</source>
         <translation>إستنسخ بطاقة SD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3117"/>
+        <location filename="mainwindow.cpp" line="3125"/>
         <source>Yes</source>
         <translation>نعم</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3118"/>
+        <location filename="mainwindow.cpp" line="3126"/>
         <source>No</source>
         <translation>لا</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3146"/>
+        <location filename="mainwindow.cpp" line="3154"/>
         <source>Clone Completed</source>
         <translation>اكتمل الاستنساخ</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3147"/>
+        <location filename="mainwindow.cpp" line="3155"/>
         <source>Clone Completed Successfully</source>
         <translation>تم إكمال النسخ بنجاح</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3253"/>
+        <location filename="mainwindow.cpp" line="3261"/>
         <source>Error downloading update file</source>
         <translation>حدث خطا اثناء تنزيل ملف التحديث</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3260"/>
-        <location filename="mainwindow.cpp" line="3349"/>
+        <location filename="mainwindow.cpp" line="3268"/>
+        <location filename="mainwindow.cpp" line="3357"/>
         <source>PINN Update Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3260"/>
+        <location filename="mainwindow.cpp" line="3268"/>
         <source>Error contacting update server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3349"/>
+        <location filename="mainwindow.cpp" line="3357"/>
         <source>No updates available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3357"/>
+        <location filename="mainwindow.cpp" line="3365"/>
         <source>PINN UPDATE</source>
         <translation>PINN تحديث</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3358"/>
+        <location filename="mainwindow.cpp" line="3366"/>
         <source>A new version of PINN is available</source>
         <translation>يتوفر إصدار جديد من الشبكة PINN</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3359"/>
+        <location filename="mainwindow.cpp" line="3367"/>
         <source>Do you want to download this version?</source>
         <translation>هل تريد تحميل هذا الإصدار ؟</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3383"/>
+        <location filename="mainwindow.cpp" line="3391"/>
         <source>Downloading Update</source>
         <translation>تنزيل التحديث</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3383"/>
+        <location filename="mainwindow.cpp" line="3391"/>
         <source>Press ESC to cancel</source>
         <translation>اضغط هروب لالغاء الامر</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1770"/>
+        <location filename="mainwindow.cpp" line="1778"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>خطا في توزيع القائمة. json تحميلها من الخادم</translation>
     </message>
@@ -885,42 +885,42 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2007"/>
-        <location filename="mainwindow.cpp" line="2010"/>
+        <location filename="mainwindow.cpp" line="2015"/>
+        <location filename="mainwindow.cpp" line="2018"/>
         <source>Needed</source>
         <translation>بحاجة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2008"/>
-        <location filename="mainwindow.cpp" line="2011"/>
+        <location filename="mainwindow.cpp" line="2016"/>
+        <location filename="mainwindow.cpp" line="2019"/>
         <source>Available</source>
         <translation>متاح</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2232"/>
+        <location filename="mainwindow.cpp" line="2240"/>
         <source>Error downloading meta file</source>
         <translation>حدث خطأ أثناء تنزيل ملف ميتا</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2243"/>
-        <location filename="mainwindow.cpp" line="3275"/>
+        <location filename="mainwindow.cpp" line="2251"/>
+        <location filename="mainwindow.cpp" line="3283"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>حدث خطأ أثناء كتابة الملف الذي تم تنزيله إلى بطاقة SD . قد تتلف بطاقة SD  أو نظام الملفات.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2312"/>
+        <location filename="mainwindow.cpp" line="2320"/>
         <source>filesize error checking </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2822"/>
+        <location filename="mainwindow.cpp" line="2830"/>
         <source>Reformat drive?</source>
         <translation>أعاده تهيئه محرك الاقراص ؟</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1395"/>
-        <location filename="mainwindow.cpp" line="2631"/>
         <location filename="mainwindow.cpp" line="2639"/>
+        <location filename="mainwindow.cpp" line="2647"/>
         <source>No network access</source>
         <translation>لا يوجد وصول إلى الشبكة</translation>
     </message>
