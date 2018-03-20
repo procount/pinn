@@ -161,17 +161,8 @@ bool canBootOs(const QString& name, const QVariantMap& values)
 
 bool setRebootPartition(QByteArray partition)
 {
-    if (QFileInfo("/sys/module/bcm2708/parameters/reboot_part").exists())
-    {
-        putFileContents("/sys/module/bcm2708/parameters/reboot_part", partition+"\n");
-        return true;
-    }
-    else if (QFileInfo("/sys/module/bcm2709/parameters/reboot_part").exists())
-    {
-        putFileContents("/sys/module/bcm2709/parameters/reboot_part", partition+"\n");
-        return true;
-    }
-    return false;
+    putFileContents("/run/reboot_part", partition+"\n");
+    return true;
 }
 
 /* Returns device name for drive and partition number

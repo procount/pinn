@@ -12,7 +12,8 @@
 
 #include <stdio.h>
 #include <unistd.h>
-#include <sys/reboot.h>
+//#include <sys/reboot.h>
+#include <sys/syscall.h>
 #include <linux/reboot.h>
 #include <QApplication>
 #include <QBitmap>
@@ -92,6 +93,7 @@ void runCustomScript(const QString &driveDev, int partNr, const QString &cmd, bo
 
 void showBootMenu(const QString &drive, const QString &defaultPartition, bool setDisplayMode)
 {
+    QByteArray reboot_part;
 #ifdef Q_WS_QWS
     QWSServer::setBackground(backgroundColour);
     QWSServer::setCursorVisible(true);
@@ -110,7 +112,8 @@ void showBootMenu(const QString &drive, const QString &defaultPartition, bool se
     QProcess::execute("umount -ar");
     ::sync();
     // Reboot
-    ::reboot(RB_AUTOBOOT);
+    reboot_part = getFileContents("/run/reboot_part").trimmed();
+    ::syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2, LINUX_REBOOT_CMD_RESTART2, reboot_part.constData());
 
 }
 
@@ -465,7 +468,7 @@ CecListener *enableCEC(QObject *parent)
     QByteArray cpuinfo = f.readAll();
     f.close();
 
-    if (cpuinfo.contains("BCM2708") || cpuinfo.contains("BCM2709")) /* Only supported on the Raspberry for now */
+    if (cpuinfo.contains("BCM2708") || cpuinfo.contains("BCM2709") || cpuinfo.contains("BCM2835")) /* Only supported on the Raspberry for now */
     {
         cec = new CecListener(parent);
         cec->start();

@@ -55,7 +55,8 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <inttypes.h>
-#include <sys/reboot.h>
+//#include <sys/reboot.h>
+#include <sys/syscall.h>
 #include <linux/reboot.h>
 #include <sys/time.h>
 
@@ -227,7 +228,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     h =qMin(h,600);
     resize(w,h);
 
-    connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+    if (cec)
+        connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
 
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
     {
@@ -393,7 +395,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
 
 MainWindow::~MainWindow()
 {
-    disconnect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+    if (cec)
+        disconnect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
 
     QProcess::execute("umount /mnt");
     delete ui;
@@ -401,7 +404,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    disconnect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+    if (cec)
+        disconnect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
     event->accept();
 }
 
@@ -979,6 +983,7 @@ void MainWindow::on_actionCancel_triggered()
 
 void MainWindow::onCompleted()
 {
+    QByteArray reboot_part;
     int ret = QMessageBox::Ok;
 
     _qpd->hide();
@@ -1022,7 +1027,8 @@ void MainWindow::onCompleted()
             QProcess::execute("umount -ar");
             ::sync();
             // Reboot
-            ::reboot(RB_AUTOBOOT);
+            reboot_part = getFileContents("/run/reboot_part").trimmed();
+            ::syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2, LINUX_REBOOT_CMD_RESTART2, reboot_part.constData());
 
             //@@What we really want to do is just refresh the dialog, but not possible yet.
             //repopulate();
@@ -3234,6 +3240,7 @@ void MainWindow::downloadUpdateRedirectCheck()
 
 void MainWindow::downloadUpdateComplete()
 {
+    QByteArray reboot_part;
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     QString userInfo = reply->request().attribute(QNetworkRequest::User).toString();
@@ -3311,7 +3318,9 @@ void MainWindow::downloadUpdateComplete()
         setRebootPartition(partition);
         ::sync();
         // Reboot
-        ::reboot(RB_AUTOBOOT);
+        reboot_part = getFileContents("/run/reboot_part").trimmed();
+        ::syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2, LINUX_REBOOT_CMD_RESTART2, reboot_part.constData());
+
     }
     else if (type=="GROUP") //update categories
     {

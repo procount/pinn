@@ -102,12 +102,8 @@ cd buildroot
 BUILD_DIR="output/build"
 IMAGES_DIR="output/images"
 
-# Delete buildroot build directory to force rebuild
-if [ -e "$BUILD_DIR" ]; then
-    rm -rf "$BUILD_DIR/recovery-$(get_package_version recovery)" || true
-fi
-
 SKIP_KERNEL_REBUILD=0
+SKIP_RECOVERY_REBUILD=0
 
 for i in $*; do
     # Update raspberrypi/firmware master HEAD version in package/rpi-firmware/rpi-firmware.mk to latest
@@ -120,9 +116,9 @@ for i in $*; do
         update_github_package_version rpi-userland raspberrypi/userland master
     fi
 
-    # Update raspberrypi/linux rpi-4.4.y HEAD version in buildroot/.config to latest
+    # Update raspberrypi/linux rpi-4.9.y HEAD version in buildroot/.config to latest
     if [ $i = "update-kernel" ]; then
-        update_github_kernel_version raspberrypi/linux rpi-4.4.y
+        update_github_kernel_version raspberrypi/linux rpi-4.9.y
     fi
 
     # Option to build just recovery without completely rebuilding both kernels
@@ -130,11 +126,23 @@ for i in $*; do
         SKIP_KERNEL_REBUILD=1
     fi
 
+    # Option to build just recovery without completely rebuilding both kernels
+    if [ $i = "skip-recovery-rebuild" ]; then
+        SKIP_RECOVERY_REBUILD=1
+    fi
+
     # Early-exit (in case we want to just update config files without doing a build)
     if [ $i = "nobuild" ]; then
         exit
     fi
 done
+
+if [ $SKIP_RECOVERY_REBUILD -ne 1 ]; then
+    # Delete buildroot build directory to force rebuild
+    if [ -e "$BUILD_DIR" ]; then
+        rm -rf "$BUILD_DIR/recovery-$(get_package_version recovery)" || true
+    fi
+fi
 
 # Let buildroot build everything
 make
@@ -171,7 +179,7 @@ cp "$IMAGES_DIR/rootfs.squashfs" "$FINAL_OUTPUT_DIR/recovery.rfs"
 # Ensure that final output dir contains files necessary to boot
 cp "$IMAGES_DIR/rpi-firmware/start.elf" "$FINAL_OUTPUT_DIR/recovery.elf"
 cp "$IMAGES_DIR/rpi-firmware/bootcode.bin" "$FINAL_OUTPUT_DIR"
-cp -a $IMAGES_DIR/rpi-firmware/*.dtb "$IMAGES_DIR/rpi-firmware/overlays" "$FINAL_OUTPUT_DIR"
+cp -a $IMAGES_DIR/*.dtb "$IMAGES_DIR/overlays" "$FINAL_OUTPUT_DIR"
 cp "$IMAGES_DIR/cmdline.txt" "$FINAL_OUTPUT_DIR/recovery.cmdline"
 touch "$FINAL_OUTPUT_DIR/RECOVERY_FILES_DO_NOT_EDIT"
 
@@ -182,7 +190,7 @@ echo "NOOBS Version: $(sed -n 's|.*VERSION_NUMBER.*\"\(.*\)\"|v\1|p' ../recovery
 echo "NOOBS Git HEAD @ $(git rev-parse --verify HEAD)" >> "$BUILD_INFO"
 echo "rpi-userland Git master @ $(get_package_version rpi-userland)" >> "$BUILD_INFO"
 echo "rpi-firmware Git master @ $(get_package_version rpi-firmware)" >> "$BUILD_INFO"
-echo "rpi-linux Git rpi-4.4.y @ $(get_kernel_version)" >> "$BUILD_INFO"
+echo "rpi-linux Git rpi-4.9.y @ $(get_kernel_version)" >> "$BUILD_INFO"
 
 cd ..
 

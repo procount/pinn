@@ -663,12 +663,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
             if (!emptyfs)
             {
                 emit statusUpdate(tr("%1: Mounting file system").arg(os_name));
-                QString mountcmd;
-                if (fstype == "ntfs")
-                    mountcmd = "/sbin/mount.ntfs-3g ";
-                else
-                    mountcmd = "mount ";
-                if (QProcess::execute(mountcmd+partdevice+" /mnt2") != 0)
+                if (QProcess::execute("mount "+partdevice+" /mnt2") != 0)
                 {
                     emit error(tr("%1: Error mounting file system").arg(os_name));
                     return false;
@@ -698,10 +693,6 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
         return false;
     }
 
-    if (QFile::exists("/mnt/firmware.override"))
-    {
-        if (::system("cp /mnt/firmware.override/* /mnt2") != 0) { }
-    }
 
     emit statusUpdate(tr("%1: Creating os_config.json").arg(os_name));
 
@@ -816,6 +807,51 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
             postInstallConfig(image, part, customName);
 
         }
+    }
+
+    emit statusUpdate(tr("%1: Mounting FAT partition").arg(os_name));
+    if (QProcess::execute("mount "+partitions->first()->partitionDevice()+" /mnt2") != 0)
+    {
+        emit error(tr("%1: Error mounting file system").arg(os_name));
+        return false;
+    }
+
+    QString cmdline = getFileContents("/proc/cmdline");
+    if (!cmdline.contains("nofirmware"))
+    {
+        emit statusUpdate(tr("%1: Checking firmware update").arg(os_name));
+        qDebug() <<"Checking for firmware Overrides";
+        QDir dir ("/mnt/firmware.override");
+        if (dir.exists())
+        {
+            dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
+            dir.setSorting(QDir::Size | QDir::Reversed);
+
+            QFileInfoList list = dir.entryInfoList();
+            for (int i = 0; i < list.size(); ++i)
+            {
+                QFileInfo fileInfo = list.at(i);
+                qDebug() << "Examining " << fileInfo.absoluteFilePath() << " " << fileInfo.lastModified();
+                QFileInfo fileInfoOS( "/mnt2/" + fileInfo.fileName() ) ;
+                qDebug() << "against " << fileInfoOS.absoluteFilePath() << " " << fileInfoOS.lastModified();
+                if (fileInfoOS.exists())
+                {
+                    if (fileInfo.lastModified() > fileInfoOS.lastModified())
+                    {
+                        qDebug() << "Copying...";
+                        if (QProcess::execute("cp -p /mnt/firmware.override/"+fileInfo.fileName() + " /mnt2") != 0)
+                            qDebug() <<"ERROR!";
+                    }
+                }
+            }
+        }
+    }
+
+
+    emit statusUpdate(tr("%1: Unmounting FAT partition").arg(os_name));
+    if (QProcess::execute("umount /mnt2") != 0)
+    {
+        emit error(tr("%1: Error unmounting").arg(os_name));
     }
 
 

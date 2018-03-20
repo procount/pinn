@@ -7,7 +7,7 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v2.4.5
+This README relates to v2.5.1
 
 <sup>(PINN is only available in one format that does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`)</sup>
 
@@ -319,6 +319,8 @@ from v2.1
 from 2.4.5f
 * rtl8812
 
+NOTE: Realtek wifi drivers (rtl8188eu, rtl8812au, rtl8192cu) are not present in v2.5.1.
+
 ### Enabling SSH for Raspbian
 
 In recent Raspbian releases, SSH has been disabled by default for security reasons. To override this and enable SSH from first boot, it is necessary to create a file called `ssh` or `ssh.txt` in the Raspbian boot partition. If PINN detects such a file in the PINN recovery partition, it will copy it across to the Raspbian boot partition whenever it is installed, enabling SSH to be enabled immediately, which is very useful especially for headless installs.
@@ -343,6 +345,8 @@ The following is a complete list of all the PINN options that can be added to th
 - **runinstaller**: This option is present when PINN is first installed to cause it to reformat the SD card. Once reformatted, PINN will delete this option. Manually adding it back in will cause PINN to reformat the SD card on next boot, losing any and all installed OSes, so be careful!
 
 - **no_update**: Prevents PINN from performing a self-update check on boot up. Use the `reinstall` option to manually check for updates on PINN.
+
+- **nofirmware**: Prevents PINN from upgrading the firmware of old OSes to be compatible with PINN.
 
 - **vncinstall**: Uses a VNC network connection to control PINN instead of any locally attached keyboard, mouse and display. When this is used, any local display will remain blank.
 
@@ -500,6 +504,16 @@ Once USB boot mode is enabled, proceed as follows:
 1. Format the USB device as FAT 32 and copy the PINN files to it, just as you would for a normal PINN installation on an SD card.
 2. Boot PINN on the Pi from the USB device.
 3. Install your requried OSes as normal.
+
+## Firmware Upgrade
+
+PINN v2.5.1 includes new firmware, kernel and drivers to support the new Pi3B+ model. This later firmware may prevent older OSes from booting from PINN if they have not been upgraded to the latest firmware.
+PINN will therefore automatically upgrade the older firmware of any OS. If this causes a probem, this firmware upgrade feature can be disabled by adding `nofirmware` to recovery.cmdline.
+New firmware is stored in /firmware.override. If it is newer than a version on an installed OS, it is automatically copied on installation.
+
+Many OSes that support the Pi3 will need updating to support the new Pi3B+ model, so the list of available OSes for this Pi3B+ may be limited for a while. Adding the `showall` option may allow them
+to be selected, and PINN's new firmware upgrade feature may allow them to boot, but the kernel and drivers will still need to be updated to allow the new hardware features to be used.
+
 
 ## How to Automatically Install an OS
 

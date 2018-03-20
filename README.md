@@ -32,7 +32,7 @@ Note that all user settings (language, keyboard layout, display mode) will persi
 
 To set up a blank SD card with NOOBS:
 - Format an SD card that is 8GB or greater in size as FAT32 (see instructions on how to do this below)
-- Download and extract the files from the NOOBS zip file. (Windows built-in zip features may have trouble with this file. If so, use another program such as 7zip.)
+- Download and extract the files from the NOOBS zip file. (Windows built-in zip features may have trouble with this file. If so, use another program such as [7zip](http://www.7-zip.org/).)
 - Copy the extracted files onto the SD card that you just formatted so that this file is at the root directory of the SD card.
 <b> Please note that in some cases it may extract the files into a folder, if this is the case then please copy across the files from inside the folder rather than the folder itself.</b>
 
@@ -50,7 +50,7 @@ Both versions of NOOBS allow additional Operating Systems to be downloaded from 
 
 Once connected, the Pi will only show a list of Operating Systems that are appropriate to your Pi Model. If you want to see ALL available OSes, edit the `recovery.cmdline` file in the root NOOBS directory and append `showall` to the arguments list.
 
-####Wired Networks
+#### Wired Networks
 
 If a wired ethernet cable is plugged into the Pi before NOOBS starts, NOOBS will connect via DHCP to our remote download repository and present a list of available Operating Systems that are available for installation.
 
@@ -62,7 +62,7 @@ If you have the official [Raspberry Pi USB wifi Dongle](https://www.raspberrypi.
 
 ### How to Format an SD card as FAT
 
-For <b>Windows</b> users, we recommend formatting your SD card using the SD Association's Formatting Tool, which can be downloaded from https://www.sdcard.org/downloads/formatter_4/ You will need to set "FORMAT SIZE ADJUSTMENT" option to "ON" in the "Options" menu to ensure that the entire SD card volume is formatted - not just a single partition. For more detailed and beginner-friendly formatting instructions, please refer to http://www.raspberrypi.org/quick-start-guide
+For <b>Windows</b> users, we recommend formatting your SD card using the SD Association's Formatting Tool, which can be downloaded from https://www.sdcard.org/downloads/formatter_4/ You will need to set "FORMAT SIZE ADJUSTMENT" option to "ON" in the "Options" menu to ensure that the entire SD card volume is formatted - not just a single partition. With the latest SD Association Formatting Tool (V5.0) that option has been removed and is now the default. For more detailed and beginner-friendly formatting instructions, please refer to http://www.raspberrypi.org/quick-start-guide
 
 The SD Association's Formatting Tool is also available for <b>Mac</b> users although the default OSX Disk Utility is also capable of formatting the entire disk (select the SD card volume and choose "Erase" with "MS-DOS" format).
 
@@ -158,8 +158,8 @@ The following steps allow you to create a modified copy of one of the standard O
   2. "uncompressed_tarball_size" - replace the numerical value with the size of your filesystem tarballs when uncompressed
 
 9. Replace the `.tar.xz` root and boot filesystem tarballs with copies created from your custom OS version (these instructions assume you're only using a single OS at a time with NOOBS - they won't work if you're running multiple OSes from a single SD card). The name of these tarballs needs to match the labels given in `partitions.json`.
-  1. To create the root tarball you will need to run `tar -cvpf <label>.tar /* --exclude=proc/* --exclude=sys/* --exclude=dev/pts/*` from within the root filesystem of your custom OS version. You should then compress the resulting tarball with `xz -9 -e <label>.tar`.
-  2. To create the boot tarball you will need to run `tar -cvpf <label>.tar .` at the root directory of the boot partition of your custom OS version. You should then compress the resulting tarball with `xz -9 -e <label>.tar`.
+  1. To create the root tarball you will need to run `bsdtar --numeric-owner --format gnutar --one-file-system -cpf <label>.tar .` from within the root filesystem of your custom OS version. You should then compress the resulting tarball with `xz -9 -e <label>.tar`.
+  2. To create the boot tarball you will need to run `bsdtar --numeric-owner --format gnutar -cpf <label>.tar .` at the root directory of the boot partition of your custom OS version. You should then compress the resulting tarball with `xz -9 -e <label>.tar`.
 
 ### How to change the default Language, Keyboard layout, Display mode or Boot Partition etc.
 

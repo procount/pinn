@@ -44,6 +44,14 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V2.5.1
+
+- **firmware**      - New firmware for Rpi 3B+
+- **Kernel**        - Update to kernel 4.9.80
+- **OS firmware**   - Latest firmware is slip streamed onto old OSes
+- **wifi drivers**  - Some wifi drivers temporarily removed until they can be upgraded
+- **Arora**         - Prevented multiple instances of Arora browser running
+
 ### V2.4.5f
 
 - **rtl8812 wifi**   - added wifi driver for rtl8812 5GHz dongles
