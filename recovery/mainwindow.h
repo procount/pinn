@@ -92,6 +92,7 @@ protected:
     QVariantMap _overrides;
     QProcess * _proc;
 
+    void untarFirmware();
     virtual void changeEvent(QEvent * event);
     virtual bool eventFilter(QObject *obj, QEvent *event);
     void inputSequence();

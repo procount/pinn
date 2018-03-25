@@ -106,6 +106,7 @@ int MainWindow::_currentMode = 0;
 extern bool timedReboot;
 void MainWindow::tick(int secs)
 {
+    Q_UNUSED(secs);
     update_window_title();
 }
 
@@ -305,6 +306,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
 
     loadOverrides("/mnt/overrides.json");
 
+    untarFirmware();
+
     if (QFile::exists("/mnt/os_list_v3.json"))
     {
         /* We have a local os_list_v3.json for testing purposes */
@@ -407,6 +410,19 @@ void MainWindow::closeEvent(QCloseEvent *event)
     if (cec)
         disconnect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
     event->accept();
+}
+
+void MainWindow::untarFirmware()
+{
+    if (QFile::exists("/mnt/firmware.tar.gz"))
+    {
+        QProcess::execute("mount -o remount,rw /mnt");
+
+        QProcess::execute("bsdtar -xzf /mnt/firmware.tar.gz -C /mnt");
+        QProcess::execute("rm /mnt/firmware.tar.gz");
+
+        QProcess::execute("mount -o remount,ro /mnt");
+    }
 }
 
 QString MainWindow::menutext(int index)
@@ -2876,7 +2892,6 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
     bool recommended = m.value("recommended").toBool();
 
     QListWidgetItem *witem = NULL;
-    QListWidgetItem *witemNew = NULL;
 
     witem = findItemByName(name);
     if ((witem) && (!bInstalled))
@@ -2927,7 +2942,9 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
     }
     else //not found or bInstalled
     {
-        witemNew = witem;
+        //QListWidgetItem *witemNew = NULL;
+        //witemNew = witem;
+
         //DBG("New OS");
         /* It's a new OS, so add it to the list */
         QString iconFilename = m.value("icon").toString();

@@ -32,6 +32,7 @@ cp recovery* $dst
 cp riscos-boot.bin $dst
 cp RECOVERY_FILES_DO_NOT_EDIT $dst
 cp ~/pinn-os/os/overrides.json $dst
+cp -rp firmware.override $dst
 
 # Make amendments
 cp ~/pinn-release/recovery.cmdline $dst
@@ -39,6 +40,10 @@ cp ~/pinn-release/recovery.cmdline.new $dst
 
 # Create the Zip file
 cd $dst
+# preserve the modification filestamps of firmware.override folder
+bsdtar cvzf firmware.tar.gz firmware.override
+rm -rf firmware.override
+
 zip -r ../pinn-lite.zip *
 cp BUILD-DATA ..
 cd ..
