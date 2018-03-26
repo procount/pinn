@@ -5,9 +5,15 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V2.5.2a
+
+Fixes the incorrect recovery.cmdline bug in v2.5.2.
+(There's a reason why I didn't make this v2.7 just yet!)
+
 ### V2.5.2
 
 - **OS Firmware**   - Includes a better method of slipstreaming new Firmware
+- **BUG: Cmdline**  - Note that the recovery.cmdline is incorrect in this version
 
 ### V2.5.1
 
