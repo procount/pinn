@@ -326,3 +326,20 @@ This new option allows PINN to be used more easily in a remote headless environm
 - **OS firmware**   - Latest firmware is slip streamed onto old OSes
 - **wifi drivers**  - Some wifi drivers temporarily removed until they can be upgraded
 - **Arora**         - Prevented multiple instances of Arora browser running
+
+### V2.5.2
+
+- **OS firmware**    - A better method of deploying new firmware is applied
+- **BUG: Cmdline**   - Note that the recovery.cmdline is incorrect in this version
+
+Unfortunately, an incorrect recovery.cmdline slipped into this release and none of the additional PINN OSes are available.
+There is a simple workaround of copying recovery.cmdline.new to recovery.cmdline ont he PINN partition
+
+### V2.5.2a
+
+Fixes the incorrect recovery.cmdline bug in v2.5.2.
+(There's a reason why I didn't make this v2.7 yet!)
+
+
+
+
