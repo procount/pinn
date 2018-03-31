@@ -334,88 +334,98 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="231"/>
-        <location filename="mainwindow.ui" line="270"/>
+        <location filename="mainwindow.ui" line="271"/>
         <source>toolBar</source>
         <translation>barra strumenti</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="360"/>
+        <location filename="mainwindow.ui" line="361"/>
         <source>Install (i)</source>
         <translation>Installa (i)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="363"/>
+        <location filename="mainwindow.ui" line="364"/>
         <source>Installs the selected operating system image onto this SD card.</source>
         <translation>Installa nella scheda SD il sistema operativo selezionato.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="366"/>
+        <location filename="mainwindow.ui" line="367"/>
         <source>I</source>
         <translation>I</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="375"/>
+        <location filename="mainwindow.ui" line="376"/>
         <source>Exit (Esc)</source>
         <translation>Esci (Esc)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="378"/>
+        <location filename="mainwindow.ui" line="379"/>
         <source>Exits and boots the installed operating system.</source>
         <translation>Esce e avvia il sistema operativo installato.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="393"/>
+        <location filename="mainwindow.ui" line="394"/>
         <source>More (m)</source>
         <translation>Altro (m)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="396"/>
+        <location filename="mainwindow.ui" line="397"/>
         <source>More menus</source>
         <translation>Altri menu</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="399"/>
+        <location filename="mainwindow.ui" line="400"/>
         <source>M</source>
         <translation>M</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="492"/>
+        <location filename="mainwindow.ui" line="493"/>
         <source>Download (d)</source>
         <translation>Download (D)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="495"/>
+        <location filename="mainwindow.ui" line="496"/>
         <source>Downloads the selected operating system image to USB for local installation</source>
         <translation>Scarica le immagini dei sistemi operativi selezionati su USB per l&apos;installazione locale</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="498"/>
+        <location filename="mainwindow.ui" line="499"/>
         <source>D</source>
         <translation>D</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="528"/>
+        <location filename="mainwindow.ui" line="529"/>
         <source>Reinstall (r)</source>
         <oldsource>Refresh (r)</oldsource>
         <translation>Reinstalla (r)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="531"/>
+        <location filename="mainwindow.ui" line="532"/>
         <source>R</source>
         <translation>R</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="564"/>
+        <location filename="mainwindow.ui" line="565"/>
         <source>Wipe (w)</source>
         <translation>Azzera (w)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="591"/>
+        <location filename="mainwindow.ui" line="592"/>
         <source>Information about the installed OS</source>
         <translation>Informazioni sui SO installati</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="459"/>
+        <location filename="mainwindow.ui" line="604"/>
+        <source>Firmware (f)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="607"/>
+        <source>Change Firmware</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="460"/>
         <source>Wifi (w)</source>
         <translation>Wi-Fi (w)</translation>
     </message>
@@ -425,101 +435,102 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
         <translation>Spazio installazione</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="477"/>
+        <location filename="mainwindow.ui" line="478"/>
         <source>Password (p)</source>
         <translation>Password (p)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="480"/>
+        <location filename="mainwindow.ui" line="481"/>
         <source>Change password</source>
         <translation>Modifica password</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="483"/>
+        <location filename="mainwindow.ui" line="484"/>
         <source>P</source>
         <translation>P</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="510"/>
+        <location filename="mainwindow.ui" line="511"/>
         <source>Backup (b)</source>
         <translation>Backup (b)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="513"/>
+        <location filename="mainwindow.ui" line="514"/>
         <source>B</source>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="546"/>
+        <location filename="mainwindow.ui" line="547"/>
         <source>fsck (f)</source>
         <oldsource>fschk (f)</oldsource>
         <translation>fschk (f)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="549"/>
+        <location filename="mainwindow.ui" line="550"/>
+        <location filename="mainwindow.ui" line="610"/>
         <source>F</source>
         <translation>F</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="576"/>
+        <location filename="mainwindow.ui" line="577"/>
         <source>Clone (c)</source>
         <translation>Clona (c)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="579"/>
+        <location filename="mainwindow.ui" line="580"/>
         <source>C</source>
         <translation>C</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="310"/>
+        <location filename="mainwindow.ui" line="311"/>
         <source>Advanced</source>
         <translation>Avanzate</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="411"/>
+        <location filename="mainwindow.ui" line="412"/>
         <source>Edit config (e)</source>
         <translation>Modifica configurazione (e)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="414"/>
+        <location filename="mainwindow.ui" line="415"/>
         <source>Opens the config.txt and cmdline.txt for the installed OS in a text editor.</source>
         <translation>Apre in un editor testo i file config.txt e cmdline.txt del sistema operativo installato.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="426"/>
+        <location filename="mainwindow.ui" line="427"/>
         <source>Online help (h)</source>
         <translation>Guida in linea (h)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="429"/>
+        <location filename="mainwindow.ui" line="430"/>
         <source>Opens a web browser displaying the Raspberry Pi Forum.</source>
         <translation>Apre il browser web e visualizza il forum Raspberry PI.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="441"/>
-        <location filename="mainwindow.ui" line="588"/>
+        <location filename="mainwindow.ui" line="442"/>
+        <location filename="mainwindow.ui" line="589"/>
         <source>Info (n)</source>
         <translation>Info (n)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="444"/>
+        <location filename="mainwindow.ui" line="445"/>
         <source>Information about the selected OS</source>
         <translation>Informazioni sui sistemi operativi installati</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="447"/>
-        <location filename="mainwindow.ui" line="594"/>
+        <location filename="mainwindow.ui" line="448"/>
+        <location filename="mainwindow.ui" line="595"/>
         <source>N</source>
         <translation>N</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="462"/>
+        <location filename="mainwindow.ui" line="463"/>
         <source>Select a wifi network to connect to</source>
         <translation>Seleziona la rete Wi-Fi a cui connettersi</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="465"/>
-        <location filename="mainwindow.ui" line="567"/>
+        <location filename="mainwindow.ui" line="466"/>
+        <location filename="mainwindow.ui" line="568"/>
         <source>W</source>
         <translation>W</translation>
     </message>
@@ -529,18 +540,18 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
         <translation>Impostazione scheda SD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2933"/>
-        <location filename="mainwindow.cpp" line="2963"/>
+        <location filename="mainwindow.cpp" line="3031"/>
+        <location filename="mainwindow.cpp" line="3061"/>
         <source>RECOMMENDED</source>
         <translation>RACCOMANDATO</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="770"/>
-        <location filename="mainwindow.cpp" line="775"/>
-        <location filename="mainwindow.cpp" line="833"/>
-        <location filename="mainwindow.cpp" line="919"/>
-        <location filename="mainwindow.cpp" line="929"/>
-        <location filename="mainwindow.cpp" line="1396"/>
+        <location filename="mainwindow.cpp" line="855"/>
+        <location filename="mainwindow.cpp" line="860"/>
+        <location filename="mainwindow.cpp" line="918"/>
+        <location filename="mainwindow.cpp" line="1004"/>
+        <location filename="mainwindow.cpp" line="1014"/>
+        <location filename="mainwindow.cpp" line="1492"/>
         <source>Confirm</source>
         <translation>Conferma</translation>
     </message>
@@ -565,25 +576,26 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
         <translation>La scheda SD potrebbe essere danneggiata</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="446"/>
+        <location filename="mainwindow.cpp" line="531"/>
         <source>Please wait while PINN initialises</source>
         <translation>Attendi l&apos;inizializzazione di PINN</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1068"/>
-        <location filename="mainwindow.cpp" line="1668"/>
-        <location filename="mainwindow.cpp" line="1796"/>
-        <location filename="mainwindow.cpp" line="3186"/>
+        <location filename="mainwindow.cpp" line="1153"/>
+        <location filename="mainwindow.cpp" line="1164"/>
+        <location filename="mainwindow.cpp" line="1764"/>
+        <location filename="mainwindow.cpp" line="1892"/>
+        <location filename="mainwindow.cpp" line="3284"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1199"/>
+        <location filename="mainwindow.cpp" line="1295"/>
         <source>Display Mode Changed</source>
         <translation>Modo visualizzazione modificato</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1129"/>
+        <location filename="mainwindow.cpp" line="1225"/>
         <source>HDMI preferred mode</source>
         <translation>Modo HDMI preferenziale</translation>
     </message>
@@ -598,45 +610,61 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
         <translation>Montaggio partizione impostazioni</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="431"/>
+        <location filename="mainwindow.cpp" line="458"/>
+        <source>Downgrade firmware?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="467"/>
+        <source>Firmware downgraded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="468"/>
+        <source>This PINN will no longer boot on a pi3B+.
+See README_PINN.md for how to reverse this.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="516"/>
         <source>Main Menu</source>
         <translation>Menu principale</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="432"/>
+        <location filename="mainwindow.cpp" line="517"/>
         <source>Archival</source>
         <translation>Archivio</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="433"/>
+        <location filename="mainwindow.cpp" line="518"/>
         <source>Maintenance</source>
         <translation>Manutenzione</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="757"/>
+        <location filename="mainwindow.cpp" line="842"/>
         <source>ERROR</source>
         <translation>ERRORE</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="758"/>
+        <location filename="mainwindow.cpp" line="843"/>
         <source>Error: Some OSes are not available:
 </source>
         <translation>Errore. Alcuni SO non sono disponibili:
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="763"/>
+        <location filename="mainwindow.cpp" line="848"/>
         <source>Warning: this will install the selected Operating System(s) to </source>
         <oldsource>Warning: this will install the selected Operating System(s):</oldsource>
         <translation>Attenzione: questo installerà i sistemi operativi selezionati in </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="763"/>
+        <location filename="mainwindow.cpp" line="848"/>
         <source>:</source>
         <translation>:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="765"/>
+        <location filename="mainwindow.cpp" line="850"/>
         <source>
 All existing data on the SD card will be overwritten, including any OSes that are already installed. Continue?</source>
         <oldsource>
@@ -645,247 +673,254 @@ All existing data on the SD card will be overwritten, including any OSes that ar
 Tutti i dati esistenti nella scheda SD verranno sovrascritti, incluso qualsiasi sistema operativo che è già installato. Vuoi continuare?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="767"/>
+        <location filename="mainwindow.cpp" line="852"/>
         <source>SD card</source>
         <translation>Scheda SD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="767"/>
+        <location filename="mainwindow.cpp" line="852"/>
         <source>drive</source>
         <translation>unità</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="776"/>
-        <location filename="mainwindow.cpp" line="930"/>
+        <location filename="mainwindow.cpp" line="861"/>
+        <location filename="mainwindow.cpp" line="1015"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>Attenzione: rilevati sistema operativi non compatibili. I seguenti SO non sono supportati in questa revisione di Raspberry Pi e potrebbero fallire l&apos;avvio o non funzionare correttamente:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="817"/>
+        <location filename="mainwindow.cpp" line="902"/>
         <source>The install process will begin shortly.</source>
         <translation>Il processo di installazione inizierà a breve.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="830"/>
+        <location filename="mainwindow.cpp" line="915"/>
         <source>Warning: this will Reinstall the selected Operating System(s). The existing data will be deleted.</source>
         <oldsource>Warning: this will Refresh the selected Operating System(s). The existing data will be deleted.</oldsource>
         <translation>Attenzione: questo reinstallerà i sistemi operativi selezionati. I dati esistententi verranno cancellati.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="920"/>
+        <location filename="mainwindow.cpp" line="1005"/>
         <source>Warning: this will download the selected Operating System(s).</source>
         <translation>Attenzione: verranno scaricati i sistemi operativi selezionati.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="986"/>
+        <location filename="mainwindow.cpp" line="1071"/>
         <source>The download process will begin shortly.</source>
         <translation>Il download inizierà a breve.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1020"/>
+        <location filename="mainwindow.cpp" line="1105"/>
         <source>OS(es) downloaded</source>
         <translation>SO scaricati</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1021"/>
+        <location filename="mainwindow.cpp" line="1106"/>
         <source>OS(es) Downloaded Successfully.
 Reboot PINN to take account of these OSes?</source>
         <translation>Download SO completato.
 Vuoi riavviare PINN per abilitare questi SO?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1026"/>
+        <location filename="mainwindow.cpp" line="1111"/>
         <source>OS(es) installed</source>
         <oldsource>OS installed</oldsource>
         <translation>SO installati</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1027"/>
+        <location filename="mainwindow.cpp" line="1112"/>
         <source>OS(es) Installed Successfully</source>
         <oldsource>OS Installed Successfully</oldsource>
         <translation>SO installato correttamente</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1092"/>
+        <location filename="mainwindow.cpp" line="1188"/>
         <source>Reboot in %1 secs</source>
         <translation>Riavvio tra %1 secondi</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1133"/>
+        <location filename="mainwindow.cpp" line="1229"/>
         <source>HDMI safe mode</source>
         <translation>Modo HDMI sicuro</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1137"/>
+        <location filename="mainwindow.cpp" line="1233"/>
         <source>composite PAL mode</source>
         <translation>Modo PAL composito</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1141"/>
+        <location filename="mainwindow.cpp" line="1237"/>
         <source>composite NTSC mode</source>
         <translation>Modo NTSC composito</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1200"/>
+        <location filename="mainwindow.cpp" line="1296"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>Modo visualizzazione modificato in %1.
 Vuoi rendere questa impostazione permanente?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1372"/>
+        <location filename="mainwindow.cpp" line="1468"/>
         <source>Wiping SD card</source>
         <translation>Azzeramento scheda SD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1397"/>
+        <location filename="mainwindow.cpp" line="1493"/>
         <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will restore your SD card to its initial state. All existing data on the SD card except PINN will be overwritten, including any OSes that are already installed.</oldsource>
         <translation>Attenzione: questo ripristinerà l&apos;unità PINN al suo stato iniziale. Tutti i dati esistenti nell&apos;unità, eccetto PINN, verranno sovrascritti incluso qualsiasi sistema operativo installato.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1402"/>
+        <location filename="mainwindow.cpp" line="1498"/>
         <source>Drive Wiped!</source>
         <translation>Unità azzerata!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1650"/>
-        <location filename="mainwindow.cpp" line="1778"/>
+        <location filename="mainwindow.cpp" line="1746"/>
+        <location filename="mainwindow.cpp" line="1874"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation>Errore download lista distribuzione da internet:
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1652"/>
-        <location filename="mainwindow.cpp" line="1780"/>
-        <location filename="mainwindow.cpp" line="2258"/>
-        <location filename="mainwindow.cpp" line="2269"/>
-        <location filename="mainwindow.cpp" line="3281"/>
-        <location filename="mainwindow.cpp" line="3303"/>
+        <location filename="mainwindow.cpp" line="1748"/>
+        <location filename="mainwindow.cpp" line="1876"/>
+        <location filename="mainwindow.cpp" line="2356"/>
+        <location filename="mainwindow.cpp" line="2367"/>
+        <location filename="mainwindow.cpp" line="3379"/>
+        <location filename="mainwindow.cpp" line="3401"/>
         <source>Download error</source>
         <translation>Errore download</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1668"/>
+        <location filename="mainwindow.cpp" line="1764"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation>Errore analisi repolist.json scaricato dal server</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2244"/>
+        <location filename="mainwindow.cpp" line="2342"/>
         <source>Error downloading meta file: </source>
         <translation>Errore download file meta: </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2658"/>
+        <location filename="mainwindow.cpp" line="2756"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>Per usare PINN senza immagini locali è richiesto l&apos;accesso alla rete. Seleziona nella finestra successiva la rete Wi-Fi.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2666"/>
+        <location filename="mainwindow.cpp" line="2764"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>Per usare PINN senza immagini locali è richiesto l&apos;accesso alla rete cablata. Inserisci un cavo di rete nella porta ethernet.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2849"/>
+        <location filename="mainwindow.cpp" line="2947"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>Sei sicuro di voler riformattare l&apos;unità &apos;%1&apos; per l&apos;uso con PINN? Tutti i dati esistenti nell&apos;unità verranno eliminati!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3140"/>
+        <location filename="mainwindow.cpp" line="3238"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>Questo cancellerà tutto il contenuto del dispositivo &apos;%s&apos;. Sei sicuro di voler continuare?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3142"/>
+        <location filename="mainwindow.cpp" line="3240"/>
         <source>Clone SD Card</source>
         <translation>Clona scheda SD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3144"/>
+        <location filename="mainwindow.cpp" line="3242"/>
         <source>Yes</source>
         <translation>Sì</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3145"/>
+        <location filename="mainwindow.cpp" line="3243"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3173"/>
+        <location filename="mainwindow.cpp" line="3271"/>
         <source>Clone Completed</source>
         <translation>Clonazione completata</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3174"/>
+        <location filename="mainwindow.cpp" line="3272"/>
         <source>Clone Completed Successfully</source>
         <translation>Clonazione completata correttamente</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3281"/>
+        <location filename="mainwindow.cpp" line="3379"/>
         <source>Error downloading update file</source>
         <translation>Errore download file aggiornamento</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3288"/>
-        <location filename="mainwindow.cpp" line="3379"/>
+        <location filename="mainwindow.cpp" line="3386"/>
+        <location filename="mainwindow.cpp" line="3477"/>
         <source>PINN Update Check</source>
         <translation>Verifica aggiornamenti PINN</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3288"/>
+        <location filename="mainwindow.cpp" line="3386"/>
         <source>Error contacting update server</source>
         <translation>Errore di connesisone al server aggiornamenti</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3379"/>
+        <location filename="mainwindow.cpp" line="3477"/>
         <source>No updates available</source>
         <translation>Il software PINN è aggiornato</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3387"/>
+        <location filename="mainwindow.cpp" line="3485"/>
         <source>PINN UPDATE</source>
         <translation>AGGIORNAMENTO PINN</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3388"/>
+        <location filename="mainwindow.cpp" line="3486"/>
         <source>A new version of PINN is available</source>
         <translation>È disponibile una nuova versione di PINN</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3389"/>
+        <location filename="mainwindow.cpp" line="3487"/>
         <source>Do you want to download this version?</source>
         <translation>Vuoi scaricare questa versione?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3413"/>
+        <location filename="mainwindow.cpp" line="3511"/>
         <source>Downloading Update</source>
         <translation>Download aggiornamento</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3413"/>
+        <location filename="mainwindow.cpp" line="3511"/>
         <source>Press ESC to cancel</source>
         <translation>Premi ESC per annullare</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1796"/>
+        <location filename="mainwindow.cpp" line="1892"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>Errore analisi file list.json scaricato dal server</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="867"/>
+        <location filename="mainwindow.cpp" line="459"/>
+        <source>PINN uses the latest firmware for the RPi3B+, but this may not be compatible with OSes for this hardware.
+Would you like to downgrade your firmware to work with these OSes?
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="952"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation> non è disponibile.
 Copialo localmente o collegati ad internet.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1094"/>
+        <location filename="mainwindow.cpp" line="1190"/>
         <source>PINN v%1 - Built: %2 (%3) %4</source>
         <translation>PINN v%1 - Build: %2 (%3) %4</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1403"/>
+        <location filename="mainwindow.cpp" line="1499"/>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
@@ -894,47 +929,47 @@ Installazione e download non saranno più disponibili fino a che l&apos;unità n
 Riavviando l&apos;unità verrà re-installata la struttura di PINN.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2033"/>
-        <location filename="mainwindow.cpp" line="2036"/>
+        <location filename="mainwindow.cpp" line="2129"/>
+        <location filename="mainwindow.cpp" line="2132"/>
         <source>Needed</source>
         <translation>Necessario</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2034"/>
-        <location filename="mainwindow.cpp" line="2037"/>
+        <location filename="mainwindow.cpp" line="2130"/>
+        <location filename="mainwindow.cpp" line="2133"/>
         <source>Available</source>
         <translation>Disponibile</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2258"/>
+        <location filename="mainwindow.cpp" line="2356"/>
         <source>Error downloading meta file</source>
         <translation>Errore download file meta</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2269"/>
-        <location filename="mainwindow.cpp" line="3303"/>
+        <location filename="mainwindow.cpp" line="2367"/>
+        <location filename="mainwindow.cpp" line="3401"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>Errore scrittura su SD del file scaricato. La scheda SD o il file system potrebbero essere danneggiati.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2338"/>
+        <location filename="mainwindow.cpp" line="2436"/>
         <source>filesize error checking </source>
         <translation>Errore verifica dimensione file </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2848"/>
+        <location filename="mainwindow.cpp" line="2946"/>
         <source>Reformat drive?</source>
         <translation>Riformattare l&apos;unità?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1415"/>
-        <location filename="mainwindow.cpp" line="2657"/>
-        <location filename="mainwindow.cpp" line="2665"/>
+        <location filename="mainwindow.cpp" line="1511"/>
+        <location filename="mainwindow.cpp" line="2755"/>
+        <location filename="mainwindow.cpp" line="2763"/>
         <source>No network access</source>
         <translation>Nessun accesso alla rete</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1416"/>
+        <location filename="mainwindow.cpp" line="1512"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Per questa funzione è richiesto l&apos;accesso alla rete cablata. Inserisci un cavo di rete nella porta ethernet.</translation>
     </message>
@@ -1016,7 +1051,7 @@ Riavviando l&apos;unità verrà re-installata la struttura di PINN.</translation
         <location filename="multiimagewritethread.cpp" line="668"/>
         <location filename="multiimagewritethread.cpp" line="692"/>
         <location filename="multiimagewritethread.cpp" line="815"/>
-        <location filename="multiimagewritethread.cpp" line="942"/>
+        <location filename="multiimagewritethread.cpp" line="941"/>
         <source>%1: Error mounting file system</source>
         <oldsource>Error mounting file system</oldsource>
         <translation>%1: errore montaggio file system</translation>
@@ -1108,7 +1143,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="689"/>
-        <location filename="multiimagewritethread.cpp" line="812"/>
+        <location filename="multiimagewritethread.cpp" line="811"/>
         <source>%1: Mounting FAT partition</source>
         <oldsource>Mouning FAT partition</oldsource>
         <translation>%1: montaggio partizione FAT</translation>
@@ -1144,14 +1179,14 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="788"/>
-        <location filename="multiimagewritethread.cpp" line="851"/>
+        <location filename="multiimagewritethread.cpp" line="850"/>
         <source>%1: Unmounting FAT partition</source>
         <oldsource>%1: Patching BCD file</oldsource>
         <translation>%1: smontaggio partizione FAT</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="791"/>
-        <location filename="multiimagewritethread.cpp" line="854"/>
+        <location filename="multiimagewritethread.cpp" line="853"/>
         <source>%1: Error unmounting</source>
         <oldsource>Error unmounting</oldsource>
         <translation>%1: errore smontaggio</translation>
@@ -1162,25 +1197,25 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1225"/>
+        <location filename="multiimagewritethread.cpp" line="1224"/>
         <source>Error creating file system</source>
         <translation>Errore creazione file system</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1289"/>
-        <location filename="multiimagewritethread.cpp" line="1361"/>
-        <location filename="multiimagewritethread.cpp" line="1420"/>
+        <location filename="multiimagewritethread.cpp" line="1288"/>
+        <location filename="multiimagewritethread.cpp" line="1360"/>
+        <location filename="multiimagewritethread.cpp" line="1419"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
         <translation>Estensione file tipo compressione sconosciuta. Attesi: .lzo, .gz, .xz, .bz2,o .zip</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1323"/>
+        <location filename="multiimagewritethread.cpp" line="1322"/>
         <source>Error downloading or extracting tarball</source>
         <translation>Errore download od estrazione tarball</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1382"/>
-        <location filename="multiimagewritethread.cpp" line="1441"/>
+        <location filename="multiimagewritethread.cpp" line="1381"/>
+        <location filename="multiimagewritethread.cpp" line="1440"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>Errore download o scrittura su SD del SO</translation>
     </message>

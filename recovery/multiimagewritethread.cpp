@@ -803,21 +803,21 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
             QByteArray label = p->label();
             QString customName = image->flavour() + "_"+label;
 
-            //qDebug() << "part" << folder << part << label << customName;
+            //qDebug() << "part" <<  part << label << customName;
             postInstallConfig(image, part, customName);
-
         }
     }
 
     emit statusUpdate(tr("%1: Mounting FAT partition").arg(os_name));
-    if (QProcess::execute("mount "+partitions->first()->partitionDevice()+" /mnt2") != 0)
+    QString cmd ="mount "+partitions->first()->partitionDevice()+" /mnt2";
+    if (QProcess::execute(cmd) != 0)
     {
         emit error(tr("%1: Error mounting file system").arg(os_name));
         return false;
     }
 
     QString cmdline = getFileContents("/proc/cmdline");
-    if (!cmdline.contains("nofirmware"))
+    if (!g_nofirmware)
     {
         emit statusUpdate(tr("%1: Checking firmware update").arg(os_name));
         qDebug() <<"Checking for firmware Overrides";
@@ -846,7 +846,6 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
             }
         }
     }
-
 
     emit statusUpdate(tr("%1: Unmounting FAT partition").arg(os_name));
     if (QProcess::execute("umount /mnt2") != 0)

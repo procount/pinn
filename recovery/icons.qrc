@@ -66,5 +66,7 @@
         <file>icons/information.png</file>
         <file>icons/backup_wizard.png</file>
         <file>icons/token_quantifier.png</file>
+        <file>icons/arrow_down.png</file>
+        <file>icons/arrow_up.png</file>
     </qresource>
 </RCC>

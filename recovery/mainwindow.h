@@ -44,6 +44,7 @@ protected:
     Ui::MainWindow *ui;
     OsGroup * ug;
     QDialog *_qpd;
+    QDialog *_qpssd;
     QList <int> _kc;
     QLabel *_info;
     int _infoDelay;
@@ -93,6 +94,7 @@ protected:
     QProcess * _proc;
 
     void untarFirmware();
+    void checkPinnFirmware();
     virtual void changeEvent(QEvent * event);
     virtual bool eventFilter(QObject *obj, QEvent *event);
     void inputSequence();
@@ -156,6 +158,7 @@ protected slots:
     void processJson(QVariant json);
     void processJsonOs(const QString &name, QVariantMap &details, QSet<QString> &iconurls);
     /* Events from ImageWriterThread */
+    void onQpdError(const QString &msg);
     void onError(const QString &msg);
     void onCompleted();
     void onCloneError(const QString &msg);
@@ -192,6 +195,8 @@ private slots:
     void on_actionDownload_triggered();//@@download
     void on_actionWipe_triggered();
     void on_actionFschk_triggered();
+    void on_actionFirmware_triggered();
+    void updateFirmware_button();
 
     void on_list_currentRowChanged();
     void on_list_doubleClicked(const QModelIndex &index);

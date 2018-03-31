@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 /* Version number displayed in the title bar */
-#define VERSION_NUMBER "2.5.2a"
+#define VERSION_NUMBER "2.5.3"
 
 /* Color of the background */
 // #define BACKGROUND_COLOR  Qt::white
@@ -78,5 +78,7 @@
 #define SOURCE_SDCARD "sdcard"
 #define SOURCE_NETWORK "network"
 #define SOURCE_INSTALLED_OS "installed_os"
+
+extern bool g_nofirmware;
 
 #endif // CONFIG_H

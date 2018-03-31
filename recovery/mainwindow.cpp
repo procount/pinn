@@ -244,7 +244,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
         InitDriveThread *idt = new InitDriveThread(_bootdrive, this);
         connect(idt, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
         connect(idt, SIGNAL(completed()), _qpd, SLOT(deleteLater()));
-        connect(idt, SIGNAL(error(QString)), this, SLOT(onError(QString)));
+        connect(idt, SIGNAL(error(QString)), this, SLOT((QString)));
         connect(idt, SIGNAL(query(QString, QString, QMessageBox::StandardButton*)),
                 this, SLOT(onQuery(QString, QString, QMessageBox::StandardButton*)),
                 Qt::BlockingQueuedConnection);
@@ -307,6 +307,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     loadOverrides("/mnt/overrides.json");
 
     untarFirmware();
+
+    checkPinnFirmware();
 
     if (QFile::exists("/mnt/os_list_v3.json"))
     {
@@ -424,6 +426,89 @@ void MainWindow::untarFirmware()
         QProcess::execute("mount -o remount,ro /mnt");
     }
 }
+
+void MainWindow::checkPinnFirmware()
+{
+    QString filename = "/mnt/firmware";
+    QString firmwareState;
+
+    if (QFile::exists(filename))
+        firmwareState = getFileContents(filename);
+
+    //already read g_nofirmware setting but not processed
+
+    //If we are not on 3B+,
+    if ( !_model.contains("Raspberry Pi 3 Model B Plus Rev", Qt::CaseInsensitive))
+    {
+        // on legacy h/w
+
+        //if already downgraded
+        if (firmwareState.contains("legacy"))
+        {
+            //Prevent OS firmware from being upgraded - not needed
+            g_nofirmware=true;
+        }
+        else
+        {
+            //if ask to downgrade == yes
+            if (firmwareState.isEmpty())
+            {
+
+                if (QMessageBox::warning(this,
+                                        tr("Downgrade firmware?"),
+                                        tr("PINN uses the latest firmware for the RPi3B+, but this may not be compatible with OSes for this hardware.\n"
+                                           "Would you like to downgrade your firmware to work with these OSes?\n"),
+                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+                {
+                    //copy firmware
+                    QProcess::execute("/mnt/changefirmware down");
+
+                    g_nofirmware = true;
+                    QMessageBox::information(this, tr("Firmware downgraded"),
+                                               tr("This PINN will no longer boot on a pi3B+.\n"
+                                                  "See README_PINN.md for how to reverse this."));
+                }
+                else
+                {
+                    //Don't ask again
+                    QProcess::execute("/mnt/changefirmware up");
+                }
+            }
+        }
+    }
+}
+
+void MainWindow::updateFirmware_button()
+{
+    QString filename = "/mnt/firmware";
+    QString firmwareState;
+
+    if (QFile::exists(filename))
+        firmwareState = getFileContents(filename);
+
+
+    if (firmwareState.contains("legacy"))
+        ui->actionFirmware->setIcon(QIcon(":/icons/arrow_up.png"));
+    else
+        ui->actionFirmware->setIcon(QIcon(":/icons/arrow_down.png"));
+}
+
+void MainWindow::on_actionFirmware_triggered()
+{
+    QString filename = "/mnt/firmware";
+    QString firmwareState;
+
+    if (QFile::exists(filename))
+        firmwareState = getFileContents(filename);
+
+    if (firmwareState.contains("legacy"))
+        QProcess::execute("/mnt/changefirmware up");
+    else
+        QProcess::execute("/mnt/changefirmware down");
+
+    updateFirmware_button();
+}
+
 
 QString MainWindow::menutext(int index)
 {
@@ -1002,7 +1087,7 @@ void MainWindow::onCompleted()
     QByteArray reboot_part;
     int ret = QMessageBox::Ok;
 
-    _qpd->hide();
+    _qpssd->hide();
     _piDrivePollTimer.start(POLLTIME);
     QSettings settings("/settings/noobs.conf", QSettings::IniFormat, this);
     if (_eDownloadMode == MODE_INSTALL)
@@ -1027,8 +1112,8 @@ void MainWindow::onCompleted()
                                      tr("OS(es) Installed Successfully"), QMessageBox::Ok);
         }
     }
-    _qpd->deleteLater();
-    _qpd = NULL;
+    _qpssd->deleteLater();
+    _qpssd = NULL;
     if (_eDownloadMode==MODE_DOWNLOAD)
     {
         setEnabled(true);
@@ -1061,6 +1146,17 @@ void MainWindow::onCompleted()
 }
 
 void MainWindow::onError(const QString &msg)
+{
+    qDebug() << "Error:" << msg;
+    if (_qpssd)
+        _qpssd->hide();
+    QMessageBox::critical(this, tr("Error"), msg, QMessageBox::Close);
+    setEnabled(true);
+    _piDrivePollTimer.start(POLLTIME);
+    show();
+}
+
+void MainWindow::onQpdError(const QString &msg)
 {
     qDebug() << "Error:" << msg;
     if (_qpd)
@@ -1376,7 +1472,7 @@ void MainWindow::fullFAT()
     FullFatThread *fft = new FullFatThread(_bootdrive, this);
     connect(fft, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
     connect(fft, SIGNAL(completed()), _qpd, SLOT(deleteLater()));
-    connect(fft, SIGNAL(error(QString)), this, SLOT(onError(QString)));
+    connect(fft, SIGNAL(error(QString)), this, SLOT(onQpdError(QString)));
     connect(fft, SIGNAL(query(QString, QString, QMessageBox::StandardButton*)),
             this, SLOT(onQuery(QString, QString, QMessageBox::StandardButton*)),
             Qt::BlockingQueuedConnection);
@@ -2098,6 +2194,8 @@ void MainWindow::updateNeeded()
 
 void MainWindow::updateActions()
 {
+    updateFirmware_button();
+
     //For the INSTALLED list...
     QListWidgetItem *item = ug->listInstalled->currentItem();
     if (ug->listInstalled->count() && !item)
@@ -2440,18 +2538,18 @@ void MainWindow::startImageWrite()
     if (slidesFolders.isEmpty())
         slidesFolder.append("/mnt/defaults/slides");
 
-    _qpd = new ProgressSlideshowDialog(slidesFolders, "", 20, _drive, this);
-    _qpd->setWindowTitle("Installing Images");
-    connect(imageWriteThread, SIGNAL(parsedImagesize(qint64)), _qpd, SLOT(setMaximum(qint64)));
+    _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, _drive, this);
+    _qpssd->setWindowTitle("Installing Images");
+    connect(imageWriteThread, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
     connect(imageWriteThread, SIGNAL(completed()), this, SLOT(onCompleted()));
     connect(imageWriteThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
-    connect(imageWriteThread, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
-    connect(imageWriteThread, SIGNAL(runningMKFS()), _qpd, SLOT(pauseIOaccounting()), Qt::BlockingQueuedConnection);
-    connect(imageWriteThread, SIGNAL(finishedMKFS()), _qpd , SLOT(resumeIOaccounting()), Qt::BlockingQueuedConnection);
-    connect(imageWriteThread, SIGNAL(newDrive(const QString&)), _qpd , SLOT(changeDrive(const QString&)), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
+    connect(imageWriteThread, SIGNAL(runningMKFS()), _qpssd, SLOT(pauseIOaccounting()), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(finishedMKFS()), _qpssd , SLOT(resumeIOaccounting()), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(newDrive(const QString&)), _qpssd , SLOT(changeDrive(const QString&)), Qt::BlockingQueuedConnection);
     imageWriteThread->start();
     hide();
-    _qpd->exec();
+    _qpssd->exec();
 }
 
 void MainWindow::startImageReinstall()
@@ -2526,18 +2624,18 @@ void MainWindow::startImageReinstall()
     if (slidesFolders.isEmpty())
         slidesFolder.append("/mnt/defaults/slides");
 
-    _qpd = new ProgressSlideshowDialog(slidesFolders, "", 20, _drive, this);
-    _qpd->setWindowTitle("Installing Images");
-    connect(imageWriteThread, SIGNAL(parsedImagesize(qint64)), _qpd, SLOT(setMaximum(qint64)));
+    _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, _drive, this);
+    _qpssd->setWindowTitle("Installing Images");
+    connect(imageWriteThread, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
     connect(imageWriteThread, SIGNAL(completed()), this, SLOT(onCompleted()));
     connect(imageWriteThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
-    connect(imageWriteThread, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
-    connect(imageWriteThread, SIGNAL(runningMKFS()), _qpd, SLOT(pauseIOaccounting()), Qt::BlockingQueuedConnection);
-    connect(imageWriteThread, SIGNAL(finishedMKFS()), _qpd , SLOT(resumeIOaccounting()), Qt::BlockingQueuedConnection);
-    connect(imageWriteThread, SIGNAL(newDrive(const QString&)), _qpd , SLOT(changeDrive(const QString&)), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
+    connect(imageWriteThread, SIGNAL(runningMKFS()), _qpssd, SLOT(pauseIOaccounting()), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(finishedMKFS()), _qpssd , SLOT(resumeIOaccounting()), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(newDrive(const QString&)), _qpssd , SLOT(changeDrive(const QString&)), Qt::BlockingQueuedConnection);
     imageWriteThread->start();
     hide();
-    _qpd->exec();
+    _qpssd->exec();
 
 }
 
@@ -2622,15 +2720,15 @@ void MainWindow::startImageDownload()
     if (slidesFolders.isEmpty())
         slidesFolder.append("/mnt/defaults/slides");
 
-    _qpd = new ProgressSlideshowDialog(slidesFolders, "", 20, _osdrive, this);
-    _qpd->setWindowTitle("Downloading Images");
-    connect(imageDownloadThread, SIGNAL(parsedImagesize(qint64)), _qpd, SLOT(setMaximum(qint64)));
+    _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, _osdrive, this);
+    _qpssd->setWindowTitle("Downloading Images");
+    connect(imageDownloadThread, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
     connect(imageDownloadThread, SIGNAL(completed()), this, SLOT(onCompleted()));
     connect(imageDownloadThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
-    connect(imageDownloadThread, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
+    connect(imageDownloadThread, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
     imageDownloadThread->start();
     hide();
-    _qpd->exec();
+    _qpssd->exec();
     show();
 
     //QProcess::execute("mount -o remount,ro /mnt");
