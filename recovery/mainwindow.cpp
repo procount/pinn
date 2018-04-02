@@ -308,8 +308,6 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
 
     untarFirmware();
 
-    checkPinnFirmware();
-
     if (QFile::exists("/mnt/os_list_v3.json"))
     {
         /* We have a local os_list_v3.json for testing purposes */
@@ -384,6 +382,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
         startNetworking();
     }
 
+    checkPinnFirmware();
+
     //Background.sh was here
 
     /* Disable online help buttons until network is functional */
@@ -422,7 +422,7 @@ void MainWindow::untarFirmware()
 
         QProcess::execute("bsdtar -xzf /mnt/firmware.tar.gz -C /mnt");
         QProcess::execute("rm /mnt/firmware.tar.gz");
-
+        sync();
         QProcess::execute("mount -o remount,ro /mnt");
     }
 }
@@ -433,7 +433,37 @@ void MainWindow::checkPinnFirmware()
     QString firmwareState;
 
     if (QFile::exists(filename))
+    {
         firmwareState = getFileContents(filename);
+
+        //In case we upgrade but forget to delete firmware file,
+        if (firmwareState.contains("legacy"))
+        {
+            int differ = 0;
+            QDir dir ("/mnt/firmware.legacy");
+            dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
+            dir.setSorting(QDir::Size | QDir::Reversed);
+
+            QFileInfoList list = dir.entryInfoList();
+            for (int i = 0; i < list.size(); ++i)
+            {
+                QFileInfo fileInfo = list.at(i);
+                QFileInfo fileInfoInUse( "/mnt/" + fileInfo.fileName() ) ;
+
+                differ += QProcess::execute("diff "+fileInfo.absoluteFilePath()+" "+fileInfoInUse.absoluteFilePath());
+                //1=differ, 0=same
+            }
+            if (differ)
+            {
+                qDebug() <<"Firmware upgrade detected, removing firmware file.";
+                QProcess::execute("mount -o remount,rw /mnt");
+                QProcess::execute("rm /mnt/firmware");
+                firmwareState="";
+                sync();
+                QProcess::execute("mount -o remount,ro /mnt");
+            }
+        }
+    }
 
     //already read g_nofirmware setting but not processed
 
@@ -454,28 +484,33 @@ void MainWindow::checkPinnFirmware()
             if (firmwareState.isEmpty())
             {
 
-                if (QMessageBox::warning(this,
+                /* Just do it anyway to save problems. User can upgrade if necessary */
+                /* if (QMessageBox::warning(this,
                                         tr("Downgrade firmware?"),
                                         tr("PINN uses the latest firmware for the RPi3B+, but this may not be compatible with OSes for this hardware.\n"
                                            "Would you like to downgrade your firmware to work with these OSes?\n"),
-                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes) */
                 {
                     //copy firmware
                     QProcess::execute("/mnt/changefirmware down");
 
                     g_nofirmware = true;
-                    QMessageBox::information(this, tr("Firmware downgraded"),
-                                               tr("This PINN will no longer boot on a pi3B+.\n"
-                                                  "See README_PINN.md for how to reverse this."));
+                    /* if (!_silent)
+                        QMessageBox::information(this, tr("Firmware downgraded"),
+                                               tr("The firmware of PINN has been downgraded to work with most OSes\n"
+                                                  "and will no longer boot on a RPi3B+.\n"
+                                                  "Please upgrade firmware again before using in a RPi3B+")); */
+                    qDebug()<< "Firmware downgraded";
                 }
-                else
+                /* else
                 {
                     //Don't ask again
                     QProcess::execute("/mnt/changefirmware up");
-                }
+                } */
             }
         }
     }
+    updateFirmware_button();
 }
 
 void MainWindow::updateFirmware_button()

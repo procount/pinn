@@ -5,6 +5,10 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V2.5.3
+
+- **Switch firmware** - Enable switching of firmware for 3B+ and other models.
+
 ### V2.5.2a
 
 Fixes the incorrect recovery.cmdline bug in v2.5.2.

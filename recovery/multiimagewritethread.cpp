@@ -816,7 +816,6 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
         return false;
     }
 
-    QString cmdline = getFileContents("/proc/cmdline");
     if (!g_nofirmware)
     {
         emit statusUpdate(tr("%1: Checking firmware update").arg(os_name));

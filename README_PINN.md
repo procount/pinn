@@ -7,7 +7,7 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v2.5.1
+This README relates to v2.5.3
 
 <sup>(PINN is only available in one format that does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`)</sup>
 
@@ -144,6 +144,7 @@ There are three toolbars:
   - **[Clone SD](#how-to-clone-an-sd-card)**: Clones the SD to another card.
 <!--  - **[Wipe](#wipe-the-drive)**: Restores the drive to its original size and deletes all installed OSes. -->
   - **[Info](#info-on-os)**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
+  - **[Firmware](#pinn's-firmware-upgrade/downgrade)**: Upgrades or downgrades PINN's firmware for use on RPI3B+ or other models.
 - **[Maintenance](#maintenance-ment)**
   - **[Edit Config](#easy-config-file-editor)**: Opens a text editor, allowing the `cmdline` and `config` files for the selected installed OS to be edited.
   - **[Password](#how-to-recover-from-a-lost-password)**: Allows the password of an OS to be restored or replaced.
@@ -505,15 +506,24 @@ Once USB boot mode is enabled, proceed as follows:
 2. Boot PINN on the Pi from the USB device.
 3. Install your requried OSes as normal.
 
-## Firmware Upgrade
+## PINN's Firmware Upgrade/Downgrade
 
-PINN v2.5.1 includes new firmware, kernel and drivers to support the new Pi3B+ model. This later firmware may prevent older OSes from booting from PINN if they have not been upgraded to the latest firmware.
-PINN will therefore automatically upgrade the older firmware of any OS. If this causes a probem, this firmware upgrade feature can be disabled by adding `nofirmware` to recovery.cmdline.
-New firmware is stored in /firmware.override. If it is newer than a version on an installed OS, it is automatically copied on installation.
+PINN v2.5.3+ includes new firmware, kernel and drivers to support the new Pi3B+ model. Whilst this firmware will allow PINN to run on all RPi models, some older OSes may not yet be compatible 
+and will not boot from PINN. So when booting on models older than the 3B+, PINN's firmware can be downgraded so that these older OSes can still boot from PINN. 
+On first startup on an older RPi model, PINN will ask to downgrade the firmware.
+
+Once PINN's firmware has been downgraded, it will no longer run on the RPi3B+. To run it on a RPI3B+ again it is first necessary to upgrade the firmware on an older model.
+There is a menu item on the Archival menu to upgrade or downgrade PINN's firmware accordingly.
+
+## OS firmware upgrade
+
+When PINN is running on upgraded firmware for the RPI3B+, it will try to upgrade the firmware of any OS that is installed, if it is too old to run on the RPi3B+.
+This may allow the OS to boot, but the Ethernet, wifi and USB may not work unless the drivers for these devices are upgraded.
+If this is not required, the `nofirmware` option can be used to prevent the firmware from being upgraded.
+This firmware upgrade feature is disabled when downgraded firmware is in use.
 
 Many OSes that support the Pi3 will need updating to support the new Pi3B+ model, so the list of available OSes for this Pi3B+ may be limited for a while. Adding the `showall` option may allow them
 to be selected, and PINN's new firmware upgrade feature may allow them to boot, but the kernel and drivers will still need to be updated to allow the new hardware features to be used.
-
 
 ## How to Automatically Install an OS
 
