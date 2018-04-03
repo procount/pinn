@@ -34,6 +34,7 @@ cp RECOVERY_FILES_DO_NOT_EDIT $dst
 # preserve the modification filestamps of firmware.override folder
 bsdtar cvzf firmware.tar.gz firmware.*
 cp firmware.tar.gz $dst
+cp changefirmware $dst
 cp ~/pinn-os/os/overrides.json $dst
 
 # Make amendments
