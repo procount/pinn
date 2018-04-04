@@ -35,7 +35,7 @@ public:
     void setDisplayMode();
 
 protected slots:
-    void countdown();
+    void countdown(int);
     void bootPartition();
     void onKeyPress(int);
     void countdownExpired();

@@ -367,9 +367,8 @@ void BootSelectionDialog::setDisplayMode()
 #endif
 }
 
-void BootSelectionDialog::countdown()
+void BootSelectionDialog::countdown(int count)
 {
-    int count = _counter.getCountdown();
     if (count)
         setWindowTitle(QString(tr("PINN - Previously selected OS will boot in %1 seconds")).arg(count));
     else
