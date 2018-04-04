@@ -244,7 +244,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
         InitDriveThread *idt = new InitDriveThread(_bootdrive, this);
         connect(idt, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
         connect(idt, SIGNAL(completed()), _qpd, SLOT(deleteLater()));
-        connect(idt, SIGNAL(error(QString)), this, SLOT((QString)));
+        connect(idt, SIGNAL(error(QString)), this, SLOT(onQpdError(QString)));
         connect(idt, SIGNAL(query(QString, QString, QMessageBox::StandardButton*)),
                 this, SLOT(onQuery(QString, QString, QMessageBox::StandardButton*)),
                 Qt::BlockingQueuedConnection);
@@ -435,37 +435,37 @@ void MainWindow::checkPinnFirmware()
     if (QFile::exists(filename))
     {
         firmwareState = getFileContents(filename);
+    }
 
-        //In case we upgrade but forget to delete firmware file,
-        if (firmwareState.contains("legacy"))
+    //In case we upgrade but forget to delete firmware file,
+    if (firmwareState.contains("legacy"))
+    {
+        int differ = 0;
+        QDir dir ("/mnt/firmware.legacy");
+        dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
+        dir.setSorting(QDir::Size | QDir::Reversed);
+
+        QFileInfoList list = dir.entryInfoList();
+        for (int i = 0; i < list.size(); ++i)
         {
-            int differ = 0;
-            QDir dir ("/mnt/firmware.legacy");
-            dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
-            dir.setSorting(QDir::Size | QDir::Reversed);
+            QFileInfo fileInfo = list.at(i);
+            QFileInfo fileInfoInUse( "/mnt/" + fileInfo.fileName() ) ;
 
-            QFileInfoList list = dir.entryInfoList();
-            for (int i = 0; i < list.size(); ++i)
-            {
-                QFileInfo fileInfo = list.at(i);
-                QFileInfo fileInfoInUse( "/mnt/" + fileInfo.fileName() ) ;
-
-                differ += QProcess::execute("diff "+fileInfo.absoluteFilePath()+" "+fileInfoInUse.absoluteFilePath());
-                //1=differ, 0=same
-            }
-            if (differ)
-            {
-                qDebug() <<"Firmware upgrade detected, removing firmware file.";
-                QProcess::execute("mount -o remount,rw /mnt");
-                QProcess::execute("rm /mnt/firmware");
-                firmwareState="";
-                sync();
-                QProcess::execute("mount -o remount,ro /mnt");
-            }
+            differ += QProcess::execute("diff "+fileInfo.absoluteFilePath()+" "+fileInfoInUse.absoluteFilePath());
+            //1=differ, 0=same
+        }
+        if (differ)
+        {
+            qDebug() <<"Firmware upgrade detected, removing firmware file.";
+            QProcess::execute("mount -o remount,rw /mnt");
+            QProcess::execute("rm /mnt/firmware");
+            firmwareState="";
+            sync();
+            QProcess::execute("mount -o remount,ro /mnt");
         }
     }
 
-    //already read g_nofirmware setting but not processed
+    //precondition: already read g_nofirmware setting but not processed
 
     //If we are not on 3B+,
     if ( !_model.contains("Raspberry Pi 3 Model B Plus Rev", Qt::CaseInsensitive))
@@ -478,36 +478,13 @@ void MainWindow::checkPinnFirmware()
             //Prevent OS firmware from being upgraded - not needed
             g_nofirmware=true;
         }
-        else
+        else if (firmwareState.isEmpty())
         {
-            //if ask to downgrade == yes
-            if (firmwareState.isEmpty())
-            {
-
-                /* Just do it anyway to save problems. User can upgrade if necessary */
-                /* if (QMessageBox::warning(this,
-                                        tr("Downgrade firmware?"),
-                                        tr("PINN uses the latest firmware for the RPi3B+, but this may not be compatible with OSes for this hardware.\n"
-                                           "Would you like to downgrade your firmware to work with these OSes?\n"),
-                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes) */
-                {
-                    //copy firmware
-                    QProcess::execute("/mnt/changefirmware down");
-
-                    g_nofirmware = true;
-                    /* if (!_silent)
-                        QMessageBox::information(this, tr("Firmware downgraded"),
-                                               tr("The firmware of PINN has been downgraded to work with most OSes\n"
-                                                  "and will no longer boot on a RPi3B+.\n"
-                                                  "Please upgrade firmware again before using in a RPi3B+")); */
-                    qDebug()<< "Firmware downgraded";
-                }
-                /* else
-                {
-                    //Don't ask again
-                    QProcess::execute("/mnt/changefirmware up");
-                } */
-            }
+            /* Just installed or upgraded on legacy h/w, so installed firmware=latest */
+            /* => downgrade firmware */
+            QProcess::execute("/mnt/changefirmware down");
+            g_nofirmware = true;
+            qDebug()<< "Firmware downgraded";
         }
     }
     updateFirmware_button();
@@ -569,11 +546,11 @@ void MainWindow::populate()
 
         _qpd->installEventFilter(&counter);
 
-        int timeout = 5000;
+        int timeout = 8000;
         if (getFileContents("/settings/wpa_supplicant.conf").contains("ssid="))
         {
             /* Longer timeout if we have a wifi network configured */
-            timeout = 8000;
+            timeout = 12000;
         }
         QTimer::singleShot(timeout, this, SLOT(hideDialogIfNoNetwork()));
         _time.start();
