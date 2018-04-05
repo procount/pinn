@@ -344,3 +344,7 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 
 - **Switch firmware**  - Enable firmware switching for 3B+ and other models.
 
+### V2.5.4
+
+- **Countdown**       - Re-enabled the boot selection dialog countdown timer.
+

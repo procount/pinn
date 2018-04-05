@@ -417,12 +417,12 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.ui" line="604"/>
         <source>Firmware (f)</source>
-        <translation type="unfinished"></translation>
+        <translation>Firmware (f)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="607"/>
         <source>Change Firmware</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambia  firmware</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="460"/>
@@ -1171,7 +1171,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="multiimagewritethread.cpp" line="821"/>
         <source>%1: Checking firmware update</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: controllo aggiornamenti firmware</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1223"/>
