@@ -3433,7 +3433,9 @@ void MainWindow::downloadUpdateComplete()
         QProcess::execute("mount -o remount,rw /mnt");
         QProcess::execute("unzip /tmp/pinn-lite.zip -o -x recovery.cmdline -d /mnt");
         QProcess::execute("mount -o remount,ro /mnt");
+        QProcess::execute(QString("rm ")+BUILD_IGNORE);
         QProcess::execute("sync");
+
         if (_qpd)
         {
             _qpd->hide();
@@ -3468,14 +3470,18 @@ void MainWindow::downloadUpdateComplete()
 
     if (_numBuildsToDownload==0)
     {
-        BuildData currentver, newver;
+        BuildData currentver, newver, ignorever;
 
         qDebug()<<"BUILD_IGNORE...";
-        currentver.read(BUILD_IGNORE);
-        if (currentver.isEmpty())
+        ignorever.read(BUILD_IGNORE);
+        qDebug()<<"BUILD_CURRENT...";
+        currentver.read(BUILD_CURRENT);
+        if (!ignorever.isEmpty())
         {
-            qDebug()<<"BUILD_CURRENT...";
-            currentver.read(BUILD_CURRENT);
+            if (currentver > ignorever)
+                QProcess::execute(QString("rm ")+BUILD_IGNORE);
+            if (currentver < ignorever)
+                currentver = ignorever;
         }
         qDebug()<<"BUILD_NEW...";
         newver.read(BUILD_NEW);

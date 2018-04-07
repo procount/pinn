@@ -834,7 +834,7 @@ Would you like to make this setting permanent?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3398"/>
-        <location filename="mainwindow.cpp" line="3489"/>
+        <location filename="mainwindow.cpp" line="3495"/>
         <source>PINN Update Check</source>
         <translation type="unfinished"></translation>
     </message>
@@ -844,32 +844,32 @@ Would you like to make this setting permanent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3489"/>
+        <location filename="mainwindow.cpp" line="3495"/>
         <source>No updates available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3497"/>
+        <location filename="mainwindow.cpp" line="3503"/>
         <source>PINN UPDATE</source>
         <translation>PINN تحديث</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3498"/>
+        <location filename="mainwindow.cpp" line="3504"/>
         <source>A new version of PINN is available</source>
         <translation>يتوفر إصدار جديد من الشبكة PINN</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3499"/>
+        <location filename="mainwindow.cpp" line="3505"/>
         <source>Do you want to download this version?</source>
         <translation>هل تريد تحميل هذا الإصدار ؟</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3523"/>
+        <location filename="mainwindow.cpp" line="3529"/>
         <source>Downloading Update</source>
         <translation>تنزيل التحديث</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3523"/>
+        <location filename="mainwindow.cpp" line="3529"/>
         <source>Press ESC to cancel</source>
         <translation>اضغط هروب لالغاء الامر</translation>
     </message>
