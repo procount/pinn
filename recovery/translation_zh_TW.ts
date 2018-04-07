@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -417,12 +417,12 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="604"/>
         <source>Firmware (f)</source>
-        <translation type="unfinished"></translation>
+        <translation>韌體 (f)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="607"/>
         <source>Change Firmware</source>
-        <translation type="unfinished"></translation>
+        <translation>變更韌體</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="460"/>
@@ -1158,7 +1158,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="821"/>
         <source>%1: Checking firmware update</source>
-        <translation type="unfinished"></translation>
+        <translation>%1：正在檢查韌體更新</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1223"/>
