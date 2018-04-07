@@ -5,6 +5,10 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V2.5.5
+
+- **Self-Update**     - A small fix to the self-update ignore feature
+
 ### V2.5.4
 
 - **Countdown**       - Re-enabled the boot selection dialog countdown timer.

@@ -837,7 +837,7 @@ Would you like to make this setting permanent?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3398"/>
-        <location filename="mainwindow.cpp" line="3489"/>
+        <location filename="mainwindow.cpp" line="3495"/>
         <source>PINN Update Check</source>
         <translation>Vérification mise à jour de PINN</translation>
     </message>
@@ -847,32 +847,32 @@ Would you like to make this setting permanent?</source>
         <translation>Erreur lors de la connexion au serveur de mise à jour</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3489"/>
+        <location filename="mainwindow.cpp" line="3495"/>
         <source>No updates available</source>
         <translation>Pas de mise à jour disponible</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3497"/>
+        <location filename="mainwindow.cpp" line="3503"/>
         <source>PINN UPDATE</source>
         <translation>MISE à JOUR DE PINN</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3498"/>
+        <location filename="mainwindow.cpp" line="3504"/>
         <source>A new version of PINN is available</source>
         <translation>Une nouvelle version de PINN est disponible</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3499"/>
+        <location filename="mainwindow.cpp" line="3505"/>
         <source>Do you want to download this version?</source>
         <translation>Voulez-vous télécharger cette version?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3523"/>
+        <location filename="mainwindow.cpp" line="3529"/>
         <source>Downloading Update</source>
         <translation>Téléchargement de la mise à jour</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3523"/>
+        <location filename="mainwindow.cpp" line="3529"/>
         <source>Press ESC to cancel</source>
         <translation>Appuyez sur Echap pour annuler</translation>
     </message>

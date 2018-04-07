@@ -348,3 +348,8 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 
 - **Countdown**       - Re-enabled the boot selection dialog countdown timer.
 
+### V2.5.5
+
+- **Self-Update**     - A small fix to the self-update ignore feature
+
+
