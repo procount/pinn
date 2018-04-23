@@ -183,6 +183,12 @@ cp -a $IMAGES_DIR/*.dtb "$IMAGES_DIR/overlays" "$FINAL_OUTPUT_DIR"
 cp "$IMAGES_DIR/cmdline.txt" "$FINAL_OUTPUT_DIR/recovery.cmdline"
 touch "$FINAL_OUTPUT_DIR/RECOVERY_FILES_DO_NOT_EDIT"
 
+#Use the latest PINN firmware
+cd "$FINAL_OUTPUT_DIR"
+bsdtar xvfz firmware.tar.gz
+cp bootcode.bin recovery.elf firmware.latest
+bsdtar cvfz firmware.tar.gz firmware.*
+
 # Create build-date timestamp file containing Git HEAD info for build
 BUILD_INFO="$FINAL_OUTPUT_DIR/BUILD-DATA"
 echo "Build-date: $(date +"%Y-%m-%d")" > "$BUILD_INFO"
