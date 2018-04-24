@@ -12,7 +12,7 @@ git checkout -f master
 cp ../noobs_test/README_SUM.md README.md
 git add README.md
 git add README_PINN.md
-git commit --amend 
+git commit --amend
 
 # Copy the distributable files
 cp history.md ../pinn-release/README.md
@@ -36,6 +36,7 @@ bsdtar cvzf firmware.tar.gz firmware.*
 cp firmware.tar.gz $dst
 cp changefirmware $dst
 cp ~/pinn-os/os/overrides.json $dst
+cp config.txt $dst
 
 # Make amendments
 cp ~/pinn-release/recovery.cmdline $dst

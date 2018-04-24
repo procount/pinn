@@ -5,6 +5,11 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V2.6
+
+- **Firmware**        - Update firmware
+- **Kernel**          - Update kernel to 4.14
+
 ### V2.5.5
 
 - **Self-Update**     - A small fix to the self-update ignore feature
