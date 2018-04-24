@@ -352,4 +352,7 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 
 - **Self-Update**     - A small fix to the self-update ignore feature
 
+### V2.6
 
+- **Firmware**        - Update firmware
+- **Kernel**          - bump kernel to 4.14

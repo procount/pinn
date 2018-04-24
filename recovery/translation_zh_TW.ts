@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_TW">
+<TS version="2.0" language="zh_TW">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -788,7 +788,7 @@ Reboot PINN to take account of these OSes?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3398"/>
-        <location filename="mainwindow.cpp" line="3489"/>
+        <location filename="mainwindow.cpp" line="3495"/>
         <source>PINN Update Check</source>
         <translation>PINN 更新檢查</translation>
     </message>
@@ -798,32 +798,32 @@ Reboot PINN to take account of these OSes?</source>
         <translation>聯絡更新伺服器發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3489"/>
+        <location filename="mainwindow.cpp" line="3495"/>
         <source>No updates available</source>
         <translation>無可用更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3497"/>
+        <location filename="mainwindow.cpp" line="3503"/>
         <source>PINN UPDATE</source>
         <translation>PINN 更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3498"/>
+        <location filename="mainwindow.cpp" line="3504"/>
         <source>A new version of PINN is available</source>
         <translation>已有新版的 PINN 可用</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3499"/>
+        <location filename="mainwindow.cpp" line="3505"/>
         <source>Do you want to download this version?</source>
         <translation>您想要下載此版本嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3523"/>
+        <location filename="mainwindow.cpp" line="3529"/>
         <source>Downloading Update</source>
         <translation>正在下載更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3523"/>
+        <location filename="mainwindow.cpp" line="3529"/>
         <source>Press ESC to cancel</source>
         <translation>按 ESC 取消</translation>
     </message>
