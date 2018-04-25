@@ -7,7 +7,7 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v2.5.3
+This README relates to v2.6.1
 
 <sup>(PINN is only available in one format that does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`)</sup>
 
@@ -550,6 +550,11 @@ This feature mimics the progress dialog on the display and is useful in headless
 
 To make use of the installation progress feature, a background shell script can be used. If a `/background.sh` script exists, it will be executed in the background whilst PINN runs. This can be used to read the `/tmp/progress` file and display the progress on the serial port, a GPIO-based display, etc. amongst other things.
 
+## Initialisation shell script
+
+If a script called /pinn_init.sh exists in PINN's recovery partition, it will be executed before PINN is started. 
+This script will be mounted as /tmp/media/pinn_init.sh and must complete before PINN starts. 
+It can be useful to initialise third party display drivers before the main PINN splash screen is shown.
 
 ---
 

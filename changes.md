@@ -356,3 +356,9 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 
 - **Firmware**        - Update firmware
 - **Kernel**          - bump kernel to 4.14
+
+### V2.6.1
+
+- **Kernel**          - Bump kernel to suppress missing mailbox commands in old firmware
+- **pinn_init.sh**    - Add initialisation script to run before PINN
+

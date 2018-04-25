@@ -5,6 +5,11 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V2.6.1
+
+- **Kernel**          - Bump kernel to suppress missing mailbox commands in old firmware
+- **pinn_init.sh**    - Add initialisation script to run before PINN
+
 ### V2.6
 
 - **Firmware**        - Update firmware
