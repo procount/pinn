@@ -61,6 +61,23 @@ if [ -e /sys/devices/platform/rpi_ft5406 ]; then
     export QWS_MOUSE_PROTO="linuxinput:/dev/input/event0:grab=1 intellimouse:/dev/input/mice"
 fi
 
+#Check for user init script
+mkdir -p /tmp/mnt
+cd /sys/class/block
+for d in *1/; do
+  mount /dev/$d /tmp/mnt 2>/dev/null
+  if [ $? -eq 0 ]; then
+    if [ -f "/tmp/mnt/recovery.rfs" ]; then
+      if [ -f "/tmp/mnt/pinn_init.sh" ]; then
+        sh -c "/tmp/mnt/pinn_init.sh"
+      fi
+    fi
+    umount /dev/$d >/dev/null
+  fi
+done
+rmdir /tmp/mnt
+
+
 SAFE_MODE=`vcgencmd get_config safe_mode_gpio`
 
 if ( [ ${SAFE_MODE#*=} -eq 1 ] && ! grep -q disablesafemode /proc/cmdline ) || grep -q rescueshell /proc/cmdline; then
