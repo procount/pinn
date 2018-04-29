@@ -62,17 +62,31 @@ if [ -e /sys/devices/platform/rpi_ft5406 ]; then
 fi
 
 #Check for user init script
+
 mkdir -p /tmp/mnt
 cd /sys/class/block
-for d in *1/; do
-  mount /dev/$d /tmp/mnt 2>/dev/null
-  if [ $? -eq 0 ]; then
-    if [ -f "/tmp/mnt/recovery.rfs" ]; then
-      if [ -f "/tmp/mnt/pinn_init.sh" ]; then
-        sh -c "/tmp/mnt/pinn_init.sh"
-      fi
-    fi
-    umount /dev/$d >/dev/null
+for d in *1/;
+do
+  # remove trailing slash
+  d=${d%?}
+  if [ -h $d ]; then
+    cd $d
+    realpath=`pwd -P`
+    case $realpath in
+      *"devices/virtual"*)
+        ;;
+      *)
+        mount /dev/$d /tmp/mnt 2>/dev/null
+        if [ $? -eq 0 ]; then
+          if [ -f "/tmp/mnt/recovery.rfs" ]; then
+            if [ -f "/tmp/mnt/pinn_init.sh" ]; then
+              sh -c "/tmp/mnt/pinn_init.sh"
+            fi
+          fi
+          umount /dev/$d >/dev/null
+        fi
+    esac
+    cd ..
   fi
 done
 rmdir /tmp/mnt

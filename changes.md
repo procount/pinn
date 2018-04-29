@@ -362,3 +362,8 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Kernel**          - Bump kernel to suppress missing mailbox commands in old firmware
 - **pinn_init.sh**    - Add initialisation script to run before PINN
 
+### V2.6.2
+
+- **pinn_init.sh**    - Improve calling of script to run before PINN
+- **config.txt**      - deleted
+
