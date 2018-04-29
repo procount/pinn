@@ -1,4 +1,0 @@
-[pi3+]
-arm_freq=1200
-sdram_freq=450
-[all]
