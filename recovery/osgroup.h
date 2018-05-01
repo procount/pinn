@@ -37,6 +37,7 @@ public:
     void loadMap(const QString &filename);
     void toggleInstalled(bool newState);
     void setFocus(void);
+    void showTab(const QString &tabName);
 
     int count();
     QListWidgetItem *findItemByDataName(const QString &name);

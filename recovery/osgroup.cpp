@@ -189,6 +189,27 @@ QListWidget * OsGroup::findTab(const QString &tabName)
 
 }
 
+void OsGroup::showTab(const QString &tabName)
+{
+    if (tabs)
+    {
+        QListWidget *lw = findTab(tabName);
+
+        if (lw)
+        {
+            list=lw;
+            tabs->setCurrentWidget(list);
+        }
+        else
+        {
+            tabs->setCurrentIndex(1);
+            list=(QListWidget*)tabs->currentWidget();
+        }
+        tabs->currentWidget()->setFocus();
+    }
+}
+
+
 void OsGroup::tabs_currentChanged(int index)
 {
     Q_UNUSED(index);
@@ -411,13 +432,8 @@ void OsGroup::setDefaultItems()
                 }
             }
         }
-        QListWidget *lw = findTab(DEFGROUP);
-        if (lw)
-            tabs->setCurrentWidget(lw);
-        else
-            tabs->setCurrentIndex(0);
-        tabs->currentWidget()->setFocus();
     }
+    showTab(DEFGROUP);
 }
 
 

@@ -615,6 +615,8 @@ void MainWindow::repopulate()
     }
     updateInstalledStatus();
     filterList();
+    ug->showTab(DEFGROUP);
+    ug->setDefaultItems();
 }
 
 /* Whether this OS should be displayed in the list of installable OSes */
@@ -3138,7 +3140,7 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
             //ug->list->update();
         }
     }
-
+    ug->showTab(DEFGROUP);
     QApplication::processEvents();
 }
 
@@ -3172,6 +3174,8 @@ void MainWindow::addImagesFromUSB(const QString &device)
     }
     updateInstalledStatus();
     filterList();
+    ug->showTab(DEFGROUP);
+    ug->setDefaultItems();
     ug->setFocus();
 }
 
