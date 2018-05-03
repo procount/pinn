@@ -60,7 +60,8 @@ SOURCES += \
     multiimagedownloadthread.cpp \
     fscheck.cpp \
     fullfatthread.cpp \
-    countdownfilter.cpp
+    countdownfilter.cpp \
+    repair.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -99,7 +100,8 @@ HEADERS  += \
     multiimagedownloadthread.h \
     fscheck.h \
     fullfatthread.h \
-    countdownfilter.h
+    countdownfilter.h \
+    repair.h
 
 FORMS    += \
     mainwindow.ui \
@@ -110,7 +112,8 @@ FORMS    += \
     wifisettingsdialog.ui \
     passwd.ui \
     piclonedialog.ui \
-    fscheck.ui
+    fscheck.ui \
+    repair.ui
 
 RESOURCES += \
     icons.qrc

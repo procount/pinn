@@ -13,6 +13,7 @@
 #include "languagedialog.h"
 #include "osgroup.h"
 #include "countdownfilter.h"
+#include "repair.h"
 
 #include <QMainWindow>
 #include <QModelIndex>
@@ -195,6 +196,7 @@ private slots:
     void on_actionDownload_triggered();//@@download
     void on_actionWipe_triggered();
     void on_actionFschk_triggered();
+    void on_actionRepair_triggered();
     void on_actionFirmware_triggered();
     void updateFirmware_button();
 

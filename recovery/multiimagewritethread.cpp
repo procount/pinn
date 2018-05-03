@@ -1476,31 +1476,6 @@ void MultiImageWriteThread::patchConfigTxt()
 
 }
 
-QByteArray MultiImageWriteThread::getLabel(const QString part)
-{
-    QByteArray result;
-    QProcess p;
-    p.start("/sbin/blkid -s LABEL -o value "+part);
-    p.waitForFinished();
-
-    if (p.exitCode() == 0)
-        result = p.readAll().trimmed();
-
-    return result;
-}
-
-QByteArray MultiImageWriteThread::getUUID(const QString part)
-{
-    QByteArray result;
-    QProcess p;
-    p.start("/sbin/blkid -s UUID -o value "+part);
-    p.waitForFinished();
-
-    if (p.exitCode() == 0)
-        result = p.readAll().trimmed();
-
-    return result;
-}
 
 QString MultiImageWriteThread::getDescription(const QString &folder, const QString &flavour)
 {
@@ -1527,35 +1502,3 @@ QString MultiImageWriteThread::getDescription(const QString &folder, const QStri
     return "";
 }
 
-QByteArray MultiImageWriteThread::getDiskId(const QString &device)
-{
-    mbr_table mbr;
-
-    QFile f(device);
-    f.open(f.ReadOnly);
-    f.read((char *) &mbr, sizeof(mbr));
-    f.close();
-
-    quint32 diskid = qFromLittleEndian<quint32>(mbr.diskid);
-    return QByteArray::number(diskid, 16).rightJustified(8, '0');;
-}
-
-QByteArray MultiImageWriteThread::getPartUUID(const QString &devpart)
-{
-    QByteArray r;
-
-    QRegExp partnrRx("([0-9]+)$");
-    if (partnrRx.indexIn(devpart) != -1)
-    {
-        QString drive = devpart.left(partnrRx.pos());
-        if (drive.endsWith("p"))
-            drive.chop(1);
-
-        r = "PARTUUID="+getDiskId(drive);
-        int partnr = partnrRx.cap(1).toInt();
-        QByteArray partnrstr = QByteArray::number(partnr, 16).rightJustified(2, '0');
-        r += '-'+partnrstr;
-    }
-
-    return r;
-}

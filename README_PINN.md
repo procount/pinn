@@ -449,7 +449,7 @@ PINN can install local images that are found in the `/os` folder on the SD card.
 
 Whilst this can be a convenient way to host the installable images as they can be installed offline, it does take up some valuable SD card space, so installing from USB is often better.
 
-The easiest way to put OS installation images on the SD card is to first [download](#Download) them to a USB stick and then copy the appropriate folder from the USB drive to the SD card.
+The easiest way to put OS installation images on the SD card is to first [download](#download) them to a USB stick and then copy the appropriate folder from the USB drive to the SD card.
 
 Make sure to add any OSes to the `/os/` folder before you boot PINN in a RPi for the first time. Otherwise you will find the partition has been shrunk to its minimum size and there will be no room to add any more OSes to the card later.
 
@@ -462,7 +462,7 @@ To counter this lack of SD card space, PINN supports storing the compressed OSes
  1. The OSes are available to install when a network is not available.
  2. They do not take up any valuable space on the SD card.
 
-The OSes should be stored on the USB stick in the same format as they would be on a PINN SD card (please see the [download](#Download) section):
+The OSes should be stored on the USB stick in the same format as they would be on a PINN SD card (please see the [download](#download) section):
 
  1. Each OS should be stored in its own folder beneath the `/os` folder.
  2. They should contain compressed images of their partitions in `.tar.xz` format

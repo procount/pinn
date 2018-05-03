@@ -19,6 +19,7 @@
 #include "ceclistener.h"
 #include "osgroup.h"
 #include "fscheck.h"
+#include "repair.h"
 #include "mydebug.h"
 #include "countdownfilter.h"
 
@@ -2224,7 +2225,8 @@ void MainWindow::updateActions()
     ui->actionInfoInstalled->setEnabled(item && item->data(Qt::UserRole).toMap().contains("url"));
 
     QList<QListWidgetItem *> select = ug->selectedInstalledItems();
-    ui->actionFschk->setEnabled( select.count() );
+    //ui->actionFschk->setEnabled( select.count() );
+    ui->actionRepair->setEnabled( select.count() );
     ui->actionReinstall->setEnabled( select.count() );
 
     //For the normal list...
@@ -3759,6 +3761,16 @@ void MainWindow::on_actionFschk_triggered()
     if (ug->listInstalled->count() && item)
     {
         fscheck dlg(ug->listInstalled);
+        dlg.exec();
+    }
+}
+
+void MainWindow::on_actionRepair_triggered()
+{
+    QListWidgetItem *item = ug->listInstalled->currentItem();
+    if (ug->listInstalled->count() && item)
+    {
+        repair dlg(ug->listInstalled, _drive);
         dlg.exec();
     }
 }

@@ -26,4 +26,9 @@ QByteArray partdev(const QString &drivedev, int nr);
 QByteArray sysclassblock(const QString &drivedev, int partnr = -1);
 bool isURL(const QString &s);
 
+QByteArray getLabel(const QString part);
+QByteArray getUUID(const QString part);
+QByteArray getDiskId(const QString &device);
+QByteArray getPartUUID(const QString &devpart);
+
 #endif // UTIL_H
