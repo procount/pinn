@@ -61,7 +61,8 @@ SOURCES += \
     fscheck.cpp \
     fullfatthread.cpp \
     countdownfilter.cpp \
-    repair.cpp
+    repair.cpp \
+    rerunsetup.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -101,7 +102,8 @@ HEADERS  += \
     fscheck.h \
     fullfatthread.h \
     countdownfilter.h \
-    repair.h
+    repair.h \
+    rerunsetup.h
 
 FORMS    += \
     mainwindow.ui \
@@ -113,7 +115,8 @@ FORMS    += \
     passwd.ui \
     piclonedialog.ui \
     fscheck.ui \
-    repair.ui
+    repair.ui \
+    rerunsetup.ui
 
 RESOURCES += \
     icons.qrc

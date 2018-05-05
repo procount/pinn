@@ -565,7 +565,7 @@
     <string>Fix (f)</string>
    </property>
    <property name="shortcut">
-    <string>R</string>
+    <string>F</string>
    </property>
    <property name="visible">
     <bool>true</bool>

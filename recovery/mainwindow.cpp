@@ -885,14 +885,14 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
             foreach (QListWidgetItem *item, selected)
             {
                 QVariantMap entry = item->data(Qt::UserRole).toMap();
+                QDir d;
+                QString folder = "/settings/os/"+entry.value("name").toString();
+                folder.replace(' ', '_');
+                if (!d.exists(folder))
+                    d.mkpath(folder);
 
                 if (!entry.contains("folder"))
-                {
-                    QDir d;
-                    QString folder = "/settings/os/"+entry.value("name").toString();
-                    folder.replace(' ', '_');
-                    if (!d.exists(folder))
-                        d.mkpath(folder);
+                {   //Download meta files from the internet to /settings folder
 
                     downloadMetaFile(entry.value("os_info").toString(), folder+"/os.json");
                     downloadMetaFile(entry.value("partitions_info").toString(), folder+"/partitions.json");
@@ -904,6 +904,18 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
 
                     if (entry.contains("icon"))
                         downloadMetaFile(entry.value("icon").toString(), folder+"/icon.png");
+                }
+                else
+                { //Copy files from local storage to /settings folder
+                    QString local = entry.value("folder").toString();
+
+                    QString cmd;
+                    cmd = "cp " + local+"/os.json "+folder;
+                    QProcess::execute(cmd);
+                    cmd = "cp "+ local+"/partitions.json "+folder;
+                    QProcess::execute(cmd);
+                    cmd = "cp "+ local+"/partition_setup.sh "+folder;
+                    QProcess::execute(cmd);
                 }
             }
 

@@ -25,9 +25,9 @@ signals:
     void statusUpdate(const QString &msg);
 
 private:
-    Ui::repair *ui;
     QListWidget * _listinstalled;
     QString _drive;
+    Ui::repair *ui;
 };
 
 #endif // REPAIR_H

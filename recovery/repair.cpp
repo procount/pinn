@@ -3,6 +3,7 @@
 #include "passwd.h"
 #include "fscheck.h"
 #include "util.h"
+#include "rerunsetup.h"
 
 #include <QDebug>
 #include <QFile>
@@ -71,7 +72,9 @@ void repair::on_buttonBox_accepted()
                 }
                 if (m["action"] == "setup")
                 {
-                    rerunPostInstallScript(_listinstalled);
+                   rerunsetup dlg(_listinstalled,_drive);
+                   dlg.exec();
+                   // rerunPostInstallScript(_listinstalled);
                 }
                 if (m["action"] == "upgrade")
                 {
@@ -86,6 +89,8 @@ void repair::on_buttonBox_accepted()
 
 int repair::rerunPostInstallScript(QListWidget * list)
 {
+    Q_UNUSED(list);
+#if 0
     int os_err;
     QListWidgetItem * item;
 
@@ -150,5 +155,6 @@ int repair::rerunPostInstallScript(QListWidget * list)
             }
         }
     }
+#endif
     return(false);
 }
