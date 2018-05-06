@@ -55,14 +55,12 @@ fscheck::fscheck(QListWidget * list, QWidget *parent) :
         {
             os_err=0;
             QVariantMap entry = item->data(Qt::UserRole).toMap();
-            qDebug()<<entry;
             QString name = entry.value("name").toString();
             ui->plainTextEdit->appendPlainText("Checking "+name);
             QVariantList partitions = entry.value("partitions").toList();
             foreach (QVariant pv, partitions)
             {
                 QString part = pv.toString();
-                qDebug() <<part;
                 ui->plainTextEdit->appendPlainText(part+":");
 
                 QString sedparam;

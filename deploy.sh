@@ -48,3 +48,4 @@ zip -r ../pinn-lite.zip *
 cp BUILD-DATA ..
 cd ..
 ./create_etcher_img
+./create_full

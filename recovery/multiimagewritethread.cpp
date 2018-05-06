@@ -700,7 +700,12 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     QVariantList vpartitions;
     foreach (PartitionInfo *p, *partitions)
     {
-        vpartitions.append(p->partitionDevice());
+        QString part = p->partitionDevice();
+        if ((part.left(8) != "PARTUUID") && (part.left(13) != "/dev/mmcblk0p"))
+        {
+            part = getPartUUID(part);
+        }
+        vpartitions.append(part);
     }
     QSettings settings("/settings/noobs.conf", QSettings::IniFormat);
     int videomode = settings.value("display_mode", 0).toInt();
