@@ -7,7 +7,7 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v2.6.1
+This README relates to v2.8
 
 <sup>(PINN is only available in one format that does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`)</sup>
 
@@ -148,7 +148,7 @@ There are three toolbars:
 - **[Maintenance](#maintenance-ment)**
   - **[Edit Config](#easy-config-file-editor)**: Opens a text editor, allowing the `cmdline` and `config` files for the selected installed OS to be edited.
   - **[Password](#how-to-recover-from-a-lost-password)**: Allows the password of an OS to be restored or replaced.
-  - **[Fsck](#how-to-check-an-os's-file-systems)**: Checks the file systems on the partitions of the selected installed OSes.
+  - **[Fix](#how-to-fix-an-os)**: Performs repairs on file systems of the selected installed OSes.
   - **[Reinstall](#reinstall-individual-oses)**: Allows individual installed OSes to be reinstalled back to their original installation without affecting any of the other installed OSes.
   - **[Info](#info-on-os)**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
 
@@ -710,13 +710,21 @@ If you have changed your login password for an OS and forget what it is, PINN wi
 7. The `Use Default` button will enter the default username and password for the selected OS.
 8. Tick the `show password` box to display the passwords on the screen.
 
-## How to Check an OS's File Systems
+## How to Fix an OS
+
+If your installed OS will not boot, the Fix option in the maintenance menu may help. It provides a list of operatiosn that you may perform to fix the OS. Check all operations that you want to be performed on your selected OSes.
+
+### File System Check
 
 Most RPi OSes typically delay writing any data back to SD or USB drives for performance reasons. Normally, this does not cause a problem provided the Pi is shutdown properly before removing the power, but this is not always possible. You may experience a power loss, or a program crash where pulling the power is your only recourse to recovering control. In these circumstances there is a risk that the SD card or USB drive may become corrupted if some data failed to get written to the drive before the power was lost. 
 
-To recover from a corrupted drive, PINN includes a file system check (fsck) option which will perform an `fsck -y` command on all partitions of the selected installed OSes. The output of the `fsck` command will be shown in a dialog box that can be scrolled to check the result. If it shows that recovery was unsuccessful, you may need to use more advanced disk recovery tools to fix the problem. Since this check option will work on multiple OSes, it is necessary to select the checkbox of each OS you want checked, otherwise no OSes will be checked. If you are paranoid, you may want to make a backup of any affected partitions before trying this fsck option.
+To recover from a corrupted drive, PINN includes a file system check option which will perform an `fsck -y` command on all partitions of the selected installed OSes. The output of the `fsck` command will be shown in a dialog box that can be scrolled to check the result. If it shows that recovery was unsuccessful, you may need to use more advanced disk recovery tools to fix the problem. Since this check option will work on multiple OSes, it is necessary to select the checkbox of each OS you want checked, otherwise no OSes will be checked. If you are paranoid, you may want to make a backup of any affected partitions before trying this fsck option.
 
 ![alt text](screenshots/fsck.png "Checking OS filesystems")
+
+### Re-run partition_setup.sh
+
+Installed OSes may be upgraded using their standard upgrade procedure (e.g. sudo update;sudo upgrade etc.). However, some OS upgrade procedures may not be aware that they are running in a multi-boot environment and may break the changes PINN made to allow them to work. In this situation, re-running the OSes partition_setup.sh script should fix-up these changes to allow the OS to boot properly.
 
 ## Reinstall Individual OSes
 

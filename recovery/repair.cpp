@@ -74,7 +74,6 @@ void repair::on_buttonBox_accepted()
                 {
                    rerunsetup dlg(_listinstalled,_drive);
                    dlg.exec();
-                   // rerunPostInstallScript(_listinstalled);
                 }
                 if (m["action"] == "upgrade")
                 {
@@ -87,74 +86,3 @@ void repair::on_buttonBox_accepted()
 }
 
 
-int repair::rerunPostInstallScript(QListWidget * list)
-{
-    Q_UNUSED(list);
-#if 0
-    int os_err;
-    QListWidgetItem * item;
-
-    for(int row = 0; row < list->count(); row++)
-    {
-        item = list->item(row);
-        if (item->checkState() == Qt::Checked)
-        {
-            os_err=0;
-            QVariantMap image = item->data(Qt::UserRole).toMap();
-            qDebug()<<image;
-            QString os_name = image.value("name").toString();
-
-            QString postInstallScript = image.value("folder").toString() + "/partition_setup.sh";
-            if (QFile::exists(postInstallScript))
-            {
-                QProcess proc;
-                QProcessEnvironment env;
-                QStringList args(postInstallScript);
-                env.insert("PATH", "/bin:/usr/bin:/sbin:/usr/sbin");
-
-                QVariantList partitions = image.value("partitions").toList();
-                int pnr = 1;
-                foreach (QVariant pv, partitions)
-                {
-                    QString part = pv.toString();
-                    QString nr    = QString::number(pnr);
-                    QString uuid  = getUUID(part);
-                    QString label = getLabel(part);
-                    QString partuuid = getPartUUID(part);
-                    QString id;
-                    if (!label.isEmpty())
-                        id = "LABEL="+label;
-                    else
-                        id = "UUID="+uuid;
-                    if (_drive != "/dev/mmcblk0")
-                        part = partuuid;
-
-                    qDebug() << "part" << part << uuid << label;
-
-                    args << "part"+nr+"="+part << "id"+nr+"="+id;
-
-                    env.insert("part"+nr, part);
-                    env.insert("id"+nr, id);
-                    env.insert("partuuid"+nr, partuuid);
-                    pnr++;
-                }
-                qDebug() << "Executing: sh" << args;
-                qDebug() << "Env:" << env.toStringList();
-                proc.setProcessChannelMode(proc.MergedChannels);
-                proc.setProcessEnvironment(env);
-                proc.setWorkingDirectory("/mnt2");
-                proc.start("/bin/sh", args);
-                proc.waitForFinished(-1);
-                qDebug() << proc.exitStatus();
-
-                if (proc.exitCode() != 0)
-                {
-                    emit error(tr("%1: Error executing partition setup script").arg(os_name)+"\n"+proc.readAll());
-                    return false;
-                }
-            }
-        }
-    }
-#endif
-    return(false);
-}

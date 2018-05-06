@@ -15,7 +15,6 @@ class repair : public QDialog
 public:
     explicit repair(QListWidget * list,  const QString &rootdrive, QWidget *parent = 0);
     ~repair();
-    int rerunPostInstallScript(QListWidget * list);
 
 private slots:
     void on_buttonBox_accepted();

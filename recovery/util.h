@@ -30,5 +30,6 @@ QByteArray getLabel(const QString part);
 QByteArray getUUID(const QString part);
 QByteArray getDiskId(const QString &device);
 QByteArray getPartUUID(const QString &devpart);
+QByteArray getDevice(const QString & partuuid);
 
 #endif // UTIL_H

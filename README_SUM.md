@@ -45,6 +45,49 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V2.8
+
+- **Fix menu**        - Replaced Fsck with Fix menu option to include a wider range of tools
+- **Store meta**      - Additional meta files stored on installation for fix up tools
+- **Partuuid**        - Store partuuid references for better USB support
+- **Tab fix**         - Fixed synchronisation of OS tab display
+
+### V2.6.2
+
+- **pinn_init.sh**    - Improve calling of script to run before PINN
+- **config.txt**      - deleted
+
+### V2.6.1
+
+- **Kernel**          - Bump kernel to suppress missing mailbox commands in old firmware
+- **pinn_init.sh**    - Add initialisation script to run before PINN
+
+### V2.6
+
+- **Firmware**        - Update firmware
+- **Kernel**          - Update kernel to 4.14
+
+### V2.5.5
+
+- **Self-Update**     - A small fix to the self-update ignore feature
+
+### V2.5.4
+
+- **Countdown**       - Re-enabled the boot selection dialog countdown timer.
+
+### V2.5.3
+
+- **Switch firmware** - Enable switching of firmware for 3B+ and other models.
+
+### V2.5.2a
+
+Fixes the incorrect recovery.cmdline bug in v2.5.2.
+(There's a reason why I didn't make this v2.7 just yet!)
+
+### V2.5.2
+
+- **OS Firmware**   - Includes a better method of slipstreaming new Firmware
+- **BUG: Cmdline**  - Note that the recovery.cmdline is incorrect in this version
 ### V2.5.1
 
 - **firmware**      - New firmware for Rpi 3B+

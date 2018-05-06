@@ -877,6 +877,10 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
                                         QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
         {
             setEnabled(false);
+
+            //Remove any old OS meta files from previous installs.
+            QProcess::execute("rm -rf /settings/os");
+
             _numMetaFilesToDownload = 0;
             if (_networkStatusPollTimer.isActive())
                 _networkStatusPollTimer.stop();

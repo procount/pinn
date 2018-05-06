@@ -367,3 +367,9 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **pinn_init.sh**    - Improve calling of script to run before PINN
 - **config.txt**      - deleted
 
+### V2.8
+
+- **Fix menu**        - Replaced Fsck with Fix menu option to include a wider range of tools
+- **Store meta**      - Additional meta files stored on installation for fix up tools
+- **Partuuid**        - Store partuuid references for better USB support
+- **Tab fix**         - Fixed synchronisation of OS tab display

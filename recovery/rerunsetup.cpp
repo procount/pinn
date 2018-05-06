@@ -40,79 +40,87 @@ rerunsetup::rerunsetup(QListWidget * list, const QString &rootdrive, QWidget *pa
         {
             os_err=0;
             QVariantMap image = item->data(Qt::UserRole).toMap();
-            qDebug()<<image;
             QString os_name = image.value("name").toString();
-
-            QString folder = "/settings/os/"+os_name;
-
-            QString postInstallScript = folder + "/partition_setup.sh";
-            postInstallScript.replace(' ','_');
-            if (!QFile::exists(postInstallScript))
+            if (os_name != "PINN")
             {
-                QString postInstallScript = image.value("folder").toString() + "/partition_setup.sh";
+                QString folder = "/settings/os/"+os_name;
+
+                QString postInstallScript = folder + "/partition_setup.sh";
                 postInstallScript.replace(' ','_');
-            }
-            if (!QFile::exists(postInstallScript))
-            {
-                ui->plainTextEdit->appendPlainText(tr("Cannot find setup script for ")+os_name);
-                ui->plainTextEdit->appendPlainText(tr("Maybe insert source USB stick"));
-                os_err =1;
-            }
-            else
-            {
-                QProcess proc;
-                QProcessEnvironment env;
-                QStringList args(postInstallScript);
-                env.insert("PATH", "/bin:/usr/bin:/sbin:/usr/sbin");
-
-                QVariantList partitions = image.value("partitions").toList();
-                int pnr = 1;
-                foreach (QVariant pv, partitions)
+                if (!QFile::exists(postInstallScript))
                 {
-                    QString part = pv.toString();
-                    QString nr    = QString::number(pnr);
-                    QString uuid  = getUUID(part);
-                    QString label = getLabel(part);
-                    QString partuuid = getPartUUID(part);
-                    QString id;
-                    if (!label.isEmpty())
-                        id = "LABEL="+label;
-                    else
-                        id = "UUID="+uuid;
-                    if (_drive != "/dev/mmcblk0")
-                        part = partuuid;
-
-                    qDebug() << "part" << part << uuid << label;
-
-                    args << "part"+nr+"="+part << "id"+nr+"="+id;
-
-                    env.insert("part"+nr, part);
-                    env.insert("id"+nr, id);
-                    env.insert("partuuid"+nr, partuuid);
-                    pnr++;
+                    postInstallScript = image.value("folder").toString() + "/partition_setup.sh";
+                    postInstallScript.replace(' ','_');
                 }
-                ui->plainTextEdit->appendPlainText("Executing "+args.join(" "));
-                qDebug() << "Executing: sh" << args;
-                qDebug() << "Env:" << env.toStringList();
-                proc.setProcessChannelMode(proc.MergedChannels);
-                proc.setProcessEnvironment(env);
-                proc.setWorkingDirectory("/mnt2");
-                proc.start("/bin/sh", args);
-                proc.waitForFinished(-1);
-                qDebug() << proc.exitStatus();
-
-                if (proc.exitCode() != 0)
+                if (!QFile::exists(postInstallScript))
                 {
-                    ui->plainTextEdit->appendPlainText(tr("%1: Error executing partition setup script").arg(os_name)+"\n"+proc.readAll());
+                    ui->plainTextEdit->appendPlainText(tr("Cannot find setup script for ")+os_name);
+                    ui->plainTextEdit->appendPlainText(tr("Maybe insert source USB stick"));
                     os_err =1;
-                    //return false;
                 }
+                else
+                {
+                    QProcess proc;
+                    QProcessEnvironment env;
+                    QStringList args(postInstallScript);
+                    env.insert("PATH", "/bin:/usr/bin:/sbin:/usr/sbin");
+
+                    QVariantList partitions = image.value("partitions").toList();
+                    int pnr = 1;
+                    foreach (QVariant pv, partitions)
+                    {
+                        QString partuuid;
+                        QString id;
+                        QString nr = QString::number(pnr);
+                        QString uuid;
+                        QString label;
+                        QString part = pv.toString();
+                        if (part.left(8)=="PARTUUID")
+                        { //for PARTUUID=xxxx-yy format
+                            partuuid = part;
+                            part = getDevice(partuuid);
+                        }
+                        else
+                        { // for /dev/sdX format
+                            partuuid = getPartUUID(part);
+                        }
+                        uuid  = getUUID(part);
+                        label = getLabel(part);
+                        if (!label.isEmpty())
+                            id = "LABEL="+label;
+                        else
+                            id = "UUID="+uuid;
+                        if (_drive != "/dev/mmcblk0")
+                            part = partuuid;
+
+                        args << "part"+nr+"="+part << "id"+nr+"="+id;
+
+                        env.insert("part"+nr, part);
+                        env.insert("id"+nr, id);
+                        env.insert("partuuid"+nr, partuuid);
+                        pnr++;
+                    }
+                    ui->plainTextEdit->appendPlainText("Executing "+args.join(" "));
+                    qDebug() << "Executing: sh" << args;
+                    qDebug() << "Env:" << env.toStringList();
+                    proc.setProcessChannelMode(proc.MergedChannels);
+                    proc.setProcessEnvironment(env);
+                    proc.setWorkingDirectory("/mnt2");
+                    proc.start("/bin/sh", args);
+                    proc.waitForFinished(-1);
+
+                    if (proc.exitCode() != 0)
+                    {
+                        ui->plainTextEdit->appendPlainText(tr("%1: Error executing partition setup script").arg(os_name)+"\n"+proc.readAll());
+                        os_err =1;
+                    }
+                }
+                if (os_err)
+                    ui->plainTextEdit->appendPlainText(os_name + tr(" partions_setup.sh script error\n"));
+                else
+                    ui->plainTextEdit->appendPlainText(os_name + tr(" partition_setup.sh script OK\n"));
+                overall_err |= os_err;
             }
-            if (os_err)
-                ui->plainTextEdit->appendPlainText(os_name + tr(" partions_setup.sh script error\n"));
-            else
-                ui->plainTextEdit->appendPlainText(os_name + tr(" partition_setup.sh script OK\n"));
-            overall_err |= os_err;
         }
     }
 
