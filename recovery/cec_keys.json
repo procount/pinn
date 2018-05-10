@@ -1,0 +1,53 @@
+{
+    "mainwindow": {
+        "Main Menu": {
+            "Key_I":        "CEC_User_Control_Number1",
+            "Key_W":        "CEC_User_Control_Number2",
+            "Key_H":        "CEC_User_Control_Number3",
+            "Key_N":        "CEC_User_Control_Number4",
+            "Key_Escape":   "CEC_User_Control_Number5"
+        },
+        "Archival": {
+            "Key_D":        "CEC_User_Control_Number1",
+            "Key_C":        "CEC_User_Control_Number2",
+            "Key_N":        "CEC_User_Control_Number3",
+            "Key_F":        "CEC_User_Control_Number4"
+        },
+        "Maintenance": {
+            "Key_E":        "CEC_User_Control_Number1",
+            "Key_P":        "CEC_User_Control_Number2",
+            "Key_F":        "CEC_User_Control_Number3",
+            "Key_R":        "CEC_User_Control_Number4",
+            "Key_N":        "CEC_User_Control_Number5"
+        },
+        "any": {
+            "Key_Space":    "CEC_User_Control_Play",
+            "Key_Escape":   "CEC_User_Control_Exit",
+            "Key_M":        "CEC_User_Control_F2Red",
+            "Key_Enter":    "CEC_User_Control_Play",
+            "Key_PageDown": "CEC_User_Control_Number9",
+            "Key_Down":     "CEC_User_Control_ChannelDown",
+            "Key_Up":       "CEC_User_Control_ChannelUp" 
+        }
+    },
+
+    "bootSelection": {
+        "any": {
+            "Key_Enter":    "CEC_User_Control_Play",
+            "Key_Escape":   "CEC_User_Control_Exit",
+            "Key_Up":       "CEC_User_Control_ChannelUp",
+            "Key_Down":     "CEC_User_Control_ChannelDown"
+        }
+    },
+
+    "any": {
+        "any": {
+            "mouse_left":   "CEC_User_Control_Left",
+            "mouse_right":  "CEC_User_Control_Right",
+            "mouse_up":     "CEC_User_Control_Up",
+            "mouse_down":   "CEC_User_Control_Down",
+            "mouse_lclick": "CEC_User_Control_Select"
+        }
+    }
+}
+

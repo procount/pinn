@@ -177,7 +177,6 @@ protected slots:
     void onQuery(const QString &msg, const QString &title, QMessageBox::StandardButton* answer);
     void hideDialogIfNoNetwork();
     void pollForNewDisks();
-    void onKeyPress(int key);
     void closeEvent(QCloseEvent *event);
 
 private slots:
