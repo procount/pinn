@@ -373,3 +373,9 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Store meta**      - Additional meta files stored on installation for fix up tools
 - **Partuuid**        - Store partuuid references for better USB support
 - **Tab fix**         - Fixed synchronisation of OS tab display
+
+### V2.8.1
+
+- **Programmable CEC** - Program your TV remote for use with PINN
+
+

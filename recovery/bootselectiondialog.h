@@ -37,7 +37,6 @@ public:
 protected slots:
     void countdown(int);
     void bootPartition();
-    void onKeyPress(int);
     void countdownExpired();
 
 private slots:
