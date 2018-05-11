@@ -475,7 +475,7 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.ui" line="565"/>
         <source>Fix (f)</source>
-        <translation type="unfinished"></translation>
+        <translation>Correggi (f)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="595"/>
@@ -1543,7 +1543,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="repair.ui" line="14"/>
         <source>Repair OS</source>
-        <translation type="unfinished"></translation>
+        <translation>Ripara SO</translation>
     </message>
 </context>
 <context>
@@ -1551,54 +1551,56 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="rerunsetup.cpp" line="27"/>
         <source>No OSes to check</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessun SO da verificare</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="31"/>
         <source>Checking for partition_setup.sh scripts...</source>
-        <translation type="unfinished"></translation>
+        <translation>Controllo script partition_setup.sh...</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="57"/>
         <source>Cannot find setup script for </source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile trovare script installazione per </translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="58"/>
         <source>Maybe insert source USB stick</source>
-        <translation type="unfinished"></translation>
+        <translation>Potresti inserire la stick USB sorgente</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="114"/>
         <source>%1: Error executing partition setup script</source>
-        <translation type="unfinished">%1: errore esecuzione script installazione partizione</translation>
+        <translation>%1: errore esecuzione script installazione partizione</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="119"/>
         <source> partions_setup.sh script error
 </source>
-        <translation type="unfinished"></translation>
+        <translation> errore  partions_setup.sh
+</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="121"/>
         <source> partition_setup.sh script OK
 </source>
-        <translation type="unfinished"></translation>
+        <translation> script  partions_setup.sh OK
+</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="128"/>
         <source>DONE - some setup script errors detected</source>
-        <translation type="unfinished"></translation>
+        <translation>FATTO - rilevati alcuni errori script installazione</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="130"/>
         <source>DONE - SUCCESSFUL setup scripts exeuted</source>
-        <translation type="unfinished"></translation>
+        <translation>FATTO - COMPLETATA esecuzione script installazione</translation>
     </message>
     <message>
         <location filename="rerunsetup.ui" line="14"/>
         <source>re-run partition_setup</source>
-        <translation type="unfinished"></translation>
+        <translation>ri-esegui partition_setup</translation>
     </message>
 </context>
 </TS>
