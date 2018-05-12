@@ -45,6 +45,14 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V2.8.2a
+
+- **Reinstall**        - bugfix to Reinstall option following partuuid change on USBs
+
+### V2.8.1
+
+- **Programmable CEC** - Program your TV remote for use with PINN
+
 ### V2.8
 
 - **Fix menu**        - Replaced Fsck with Fix menu option to include a wider range of tools

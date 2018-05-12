@@ -7,7 +7,7 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v2.8
+This README relates to v2.8.2a
 
 <sup>(PINN is only available in one format that does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`)</sup>
 
@@ -868,6 +868,18 @@ Note that this will require a minimum of 6 GB free disk space.
 On Ubuntu:
 
 `sudo apt-get install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-linguist-tools`
+
+Also needed is bsdtar v3.3.1 which can be built as follows:
+```
+wget https://www.libarchive.org/downloads/libarchive-3.3.1.tar.gz
+tar xzf libarchive-3.3.1.tar.gz
+cd libarchive-3.3.1
+./configure
+make
+make install
+
+if make install doesn't work (Raspbian), just copy bsdtar to /usr/bin.
+```
 
 ## Run Build Script
 

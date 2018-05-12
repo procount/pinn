@@ -1052,140 +1052,140 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <translation>正在將每一個分割區的開頭歸零</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="361"/>
+        <location filename="multiimagewritethread.cpp" line="367"/>
         <source>Cannot Reinstall </source>
         <oldsource>Cannot Refresh </oldsource>
         <translation>無法重新安裝</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="361"/>
+        <location filename="multiimagewritethread.cpp" line="367"/>
         <source>.
 Partition not big enough for new image.</source>
         <translation>.
 分割區對新的映像檔來說不夠大。</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="381"/>
+        <location filename="multiimagewritethread.cpp" line="387"/>
         <source>Finish writing (sync)</source>
         <translation>寫入完成 (sync)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="401"/>
+        <location filename="multiimagewritethread.cpp" line="407"/>
         <source>Error reading existing partition table</source>
         <translation>讀取已有的分割表時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="486"/>
+        <location filename="multiimagewritethread.cpp" line="492"/>
         <source>Error creating partition table</source>
         <translation>建立分割表時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="616"/>
+        <location filename="multiimagewritethread.cpp" line="622"/>
         <source>File &apos;%1&apos; does not exist</source>
         <translation>檔案「%1」不存在</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="645"/>
         <location filename="multiimagewritethread.cpp" line="651"/>
+        <location filename="multiimagewritethread.cpp" line="657"/>
         <source>%1: Writing OS image</source>
         <translation>%1：正在寫入作業系統映像檔</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="658"/>
+        <location filename="multiimagewritethread.cpp" line="664"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation>%1：正在建立檔案系統 (%2)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="665"/>
+        <location filename="multiimagewritethread.cpp" line="671"/>
         <source>%1: Mounting file system</source>
         <translation>%1：正在掛載檔案系統</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="668"/>
-        <location filename="multiimagewritethread.cpp" line="692"/>
-        <location filename="multiimagewritethread.cpp" line="820"/>
-        <location filename="multiimagewritethread.cpp" line="945"/>
+        <location filename="multiimagewritethread.cpp" line="674"/>
+        <location filename="multiimagewritethread.cpp" line="698"/>
+        <location filename="multiimagewritethread.cpp" line="826"/>
+        <location filename="multiimagewritethread.cpp" line="951"/>
         <source>%1: Error mounting file system</source>
         <translation>%1：掛載檔案系統時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="673"/>
+        <location filename="multiimagewritethread.cpp" line="679"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation>%1：正在下載並解壓縮檔案系統</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="675"/>
+        <location filename="multiimagewritethread.cpp" line="681"/>
         <source>%1: Extracting filesystem</source>
         <translation>%1：正在解壓縮檔案系統</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="689"/>
-        <location filename="multiimagewritethread.cpp" line="816"/>
+        <location filename="multiimagewritethread.cpp" line="695"/>
+        <location filename="multiimagewritethread.cpp" line="822"/>
         <source>%1: Mounting FAT partition</source>
         <translation>%1：正在掛載 FAT 分割區</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="697"/>
+        <location filename="multiimagewritethread.cpp" line="703"/>
         <source>%1: Creating os_config.json</source>
         <translation>%1：正在建立 os_config.json</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="727"/>
+        <location filename="multiimagewritethread.cpp" line="733"/>
         <source>%1: Saving display mode to config.txt</source>
         <translation>%1：已經儲存顯示模式至 config.txt</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="738"/>
+        <location filename="multiimagewritethread.cpp" line="744"/>
         <source>%1: Running partition setup script</source>
         <translation>%1：正在執行分割區設定指令稿</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="787"/>
+        <location filename="multiimagewritethread.cpp" line="793"/>
         <source>%1: Error executing partition setup script</source>
         <translation>%1：執行分割區設定指令稿時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="803"/>
+        <location filename="multiimagewritethread.cpp" line="809"/>
         <source>%1: Configuring flavour</source>
         <translation>%1：正在設定風味</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="793"/>
-        <location filename="multiimagewritethread.cpp" line="854"/>
+        <location filename="multiimagewritethread.cpp" line="799"/>
+        <location filename="multiimagewritethread.cpp" line="860"/>
         <source>%1: Unmounting FAT partition</source>
         <translation>%1：正在解除掛載 FAT 分割區</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="796"/>
-        <location filename="multiimagewritethread.cpp" line="857"/>
+        <location filename="multiimagewritethread.cpp" line="802"/>
+        <location filename="multiimagewritethread.cpp" line="863"/>
         <source>%1: Error unmounting</source>
         <translation>%1：解除掛載錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="826"/>
+        <location filename="multiimagewritethread.cpp" line="832"/>
         <source>%1: Checking firmware update</source>
         <translation>%1：正在檢查韌體更新</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1228"/>
+        <location filename="multiimagewritethread.cpp" line="1234"/>
         <source>Error creating file system</source>
         <translation>建立檔案系統時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1292"/>
-        <location filename="multiimagewritethread.cpp" line="1364"/>
-        <location filename="multiimagewritethread.cpp" line="1423"/>
+        <location filename="multiimagewritethread.cpp" line="1298"/>
+        <location filename="multiimagewritethread.cpp" line="1370"/>
+        <location filename="multiimagewritethread.cpp" line="1429"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
         <translation>未知的壓縮格式副檔名。預期為：.lzo、.gz、.xz、.bz2 或是 .zip</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1326"/>
+        <location filename="multiimagewritethread.cpp" line="1332"/>
         <source>Error downloading or extracting tarball</source>
         <translation>下載或解壓縮 tarball 時發生錯誤</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1385"/>
-        <location filename="multiimagewritethread.cpp" line="1444"/>
+        <location filename="multiimagewritethread.cpp" line="1391"/>
+        <location filename="multiimagewritethread.cpp" line="1450"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>下載或寫入作業系統至 SD 記憶卡時發生錯誤</translation>
     </message>

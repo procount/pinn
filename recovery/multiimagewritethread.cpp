@@ -354,6 +354,12 @@ void MultiImageWriteThread::run()
                 uint compressedSize = partition->uncompressedTarballSize(); //in MB
                 totaluncompressedsize += compressedSize;
 
+                if (partition->partitionDevice().contains("PARTUUID"))
+                {
+                    QByteArray pdev = getDevice(partition->partitionDevice());
+                    partition->setPartitionDevice(pdev);
+                }
+
                 uint partitionSectors = getFileContents(sysclassblock(partition->partitionDevice())+"/size").trimmed().toUInt();
                 if (compressedSize*2048 > partitionSectors)
                 {
