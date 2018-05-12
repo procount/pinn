@@ -475,7 +475,7 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.ui" line="565"/>
         <source>Fix (f)</source>
-        <translation type="unfinished"></translation>
+        <translation>Correggi (f)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="595"/>
@@ -1008,39 +1008,39 @@ Riavviando l&apos;unità verrà re-installata la struttura di PINN.</translation
         <translation>Spazio disco insufficiente. Necessari %1 MB, disponibili %2 MB</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="381"/>
+        <location filename="multiimagewritethread.cpp" line="387"/>
         <source>Finish writing (sync)</source>
         <translation>Completamento scrittura (sync)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="616"/>
+        <location filename="multiimagewritethread.cpp" line="622"/>
         <source>File &apos;%1&apos; does not exist</source>
         <translation>Il file &apos;%1&apos; non esiste</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="645"/>
         <location filename="multiimagewritethread.cpp" line="651"/>
+        <location filename="multiimagewritethread.cpp" line="657"/>
         <source>%1: Writing OS image</source>
         <oldsource>Writing image</oldsource>
         <translation>%1: scrittura immagine SO</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="665"/>
+        <location filename="multiimagewritethread.cpp" line="671"/>
         <source>%1: Mounting file system</source>
         <oldsource>Mounting file system</oldsource>
         <translation>%1: montaggio file system</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="668"/>
-        <location filename="multiimagewritethread.cpp" line="692"/>
-        <location filename="multiimagewritethread.cpp" line="820"/>
-        <location filename="multiimagewritethread.cpp" line="945"/>
+        <location filename="multiimagewritethread.cpp" line="674"/>
+        <location filename="multiimagewritethread.cpp" line="698"/>
+        <location filename="multiimagewritethread.cpp" line="826"/>
+        <location filename="multiimagewritethread.cpp" line="951"/>
         <source>%1: Error mounting file system</source>
         <oldsource>Error mounting file system</oldsource>
         <translation>%1: errore montaggio file system</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="658"/>
+        <location filename="multiimagewritethread.cpp" line="664"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation>%1: creazione file system (%2)</translation>
     </message>
@@ -1091,114 +1091,114 @@ Riavviando l&apos;unità verrà re-installata la struttura di PINN.</translation
         <translation>Inizializzazione di ogni partizione</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="361"/>
+        <location filename="multiimagewritethread.cpp" line="367"/>
         <source>Cannot Reinstall </source>
         <oldsource>Cannot Refresh </oldsource>
         <translation>Impossibile reinstallare </translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="361"/>
+        <location filename="multiimagewritethread.cpp" line="367"/>
         <source>.
 Partition not big enough for new image.</source>
         <translation>.
 Partizione non abbastanza grande per la nuova immagine.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="401"/>
+        <location filename="multiimagewritethread.cpp" line="407"/>
         <source>Error reading existing partition table</source>
         <translation>Errore durante lettura tabella partizione esistente</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="486"/>
+        <location filename="multiimagewritethread.cpp" line="492"/>
         <source>Error creating partition table</source>
         <translation>Errore durante creazione tabella partizioni</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="673"/>
+        <location filename="multiimagewritethread.cpp" line="679"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation>%1: download ed estrazione file system</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="675"/>
+        <location filename="multiimagewritethread.cpp" line="681"/>
         <source>%1: Extracting filesystem</source>
         <oldsource>%1 Extracting filesystem</oldsource>
         <translation>%1: estrazione file system</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="689"/>
-        <location filename="multiimagewritethread.cpp" line="816"/>
+        <location filename="multiimagewritethread.cpp" line="695"/>
+        <location filename="multiimagewritethread.cpp" line="822"/>
         <source>%1: Mounting FAT partition</source>
         <oldsource>Mouning FAT partition</oldsource>
         <translation>%1: montaggio partizione FAT</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="697"/>
+        <location filename="multiimagewritethread.cpp" line="703"/>
         <source>%1: Creating os_config.json</source>
         <oldsource>Creating os_config.json</oldsource>
         <translation>%1: creazione file os_config.json</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="727"/>
+        <location filename="multiimagewritethread.cpp" line="733"/>
         <source>%1: Saving display mode to config.txt</source>
         <oldsource>Saving display mode to config.txt</oldsource>
         <translation>%1: salvataggio modo visualizzazione in file config.txt</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="738"/>
+        <location filename="multiimagewritethread.cpp" line="744"/>
         <source>%1: Running partition setup script</source>
         <oldsource>Running partition setup script</oldsource>
         <translation>%1: esecuzione script impostazione partizione</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="787"/>
+        <location filename="multiimagewritethread.cpp" line="793"/>
         <source>%1: Error executing partition setup script</source>
         <oldsource>Error executing partition setup script</oldsource>
         <translation>%1: errore esecuzione script installazione partizione</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="803"/>
+        <location filename="multiimagewritethread.cpp" line="809"/>
         <source>%1: Configuring flavour</source>
         <translation>%1: configurazione impostazioni</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="793"/>
-        <location filename="multiimagewritethread.cpp" line="854"/>
+        <location filename="multiimagewritethread.cpp" line="799"/>
+        <location filename="multiimagewritethread.cpp" line="860"/>
         <source>%1: Unmounting FAT partition</source>
         <oldsource>%1: Patching BCD file</oldsource>
         <translation>%1: smontaggio partizione FAT</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="796"/>
-        <location filename="multiimagewritethread.cpp" line="857"/>
+        <location filename="multiimagewritethread.cpp" line="802"/>
+        <location filename="multiimagewritethread.cpp" line="863"/>
         <source>%1: Error unmounting</source>
         <oldsource>Error unmounting</oldsource>
         <translation>%1: errore smontaggio</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="826"/>
+        <location filename="multiimagewritethread.cpp" line="832"/>
         <source>%1: Checking firmware update</source>
         <translation>%1: controllo aggiornamenti firmware</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1228"/>
+        <location filename="multiimagewritethread.cpp" line="1234"/>
         <source>Error creating file system</source>
         <translation>Errore creazione file system</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1292"/>
-        <location filename="multiimagewritethread.cpp" line="1364"/>
-        <location filename="multiimagewritethread.cpp" line="1423"/>
+        <location filename="multiimagewritethread.cpp" line="1298"/>
+        <location filename="multiimagewritethread.cpp" line="1370"/>
+        <location filename="multiimagewritethread.cpp" line="1429"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
         <translation>Estensione file tipo compressione sconosciuta. Attesi: .lzo, .gz, .xz, .bz2,o .zip</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1326"/>
+        <location filename="multiimagewritethread.cpp" line="1332"/>
         <source>Error downloading or extracting tarball</source>
         <translation>Errore download od estrazione tarball</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1385"/>
-        <location filename="multiimagewritethread.cpp" line="1444"/>
+        <location filename="multiimagewritethread.cpp" line="1391"/>
+        <location filename="multiimagewritethread.cpp" line="1450"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>Errore download o scrittura su SD del SO</translation>
     </message>
@@ -1543,7 +1543,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="repair.ui" line="14"/>
         <source>Repair OS</source>
-        <translation type="unfinished"></translation>
+        <translation>Ripara SO</translation>
     </message>
 </context>
 <context>
@@ -1551,54 +1551,56 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="rerunsetup.cpp" line="27"/>
         <source>No OSes to check</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessun SO da verificare</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="31"/>
         <source>Checking for partition_setup.sh scripts...</source>
-        <translation type="unfinished"></translation>
+        <translation>Controllo script partition_setup.sh...</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="57"/>
         <source>Cannot find setup script for </source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile trovare script installazione per </translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="58"/>
         <source>Maybe insert source USB stick</source>
-        <translation type="unfinished"></translation>
+        <translation>Potresti inserire la stick USB sorgente</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="114"/>
         <source>%1: Error executing partition setup script</source>
-        <translation type="unfinished">%1: errore esecuzione script installazione partizione</translation>
+        <translation>%1: errore esecuzione script installazione partizione</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="119"/>
         <source> partions_setup.sh script error
 </source>
-        <translation type="unfinished"></translation>
+        <translation> errore  partions_setup.sh
+</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="121"/>
         <source> partition_setup.sh script OK
 </source>
-        <translation type="unfinished"></translation>
+        <translation> script  partions_setup.sh OK
+</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="128"/>
         <source>DONE - some setup script errors detected</source>
-        <translation type="unfinished"></translation>
+        <translation>FATTO - rilevati alcuni errori script installazione</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="130"/>
         <source>DONE - SUCCESSFUL setup scripts exeuted</source>
-        <translation type="unfinished"></translation>
+        <translation>FATTO - COMPLETATA esecuzione script installazione</translation>
     </message>
     <message>
         <location filename="rerunsetup.ui" line="14"/>
         <source>re-run partition_setup</source>
-        <translation type="unfinished"></translation>
+        <translation>ri-esegui partition_setup</translation>
     </message>
 </context>
 </TS>

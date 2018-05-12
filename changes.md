@@ -378,4 +378,7 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 
 - **Programmable CEC** - Program your TV remote for use with PINN
 
+### V2.8.2
+
+- **Reinstall**        - bugfix to Reinstall option following partuuid change on USBs
 
