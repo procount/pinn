@@ -74,6 +74,7 @@ protected:
     bool _bdisplayUpdate;
     QSize _currentsize;
     CountdownFilter counter;
+    int _networkTimeout;
 
     enum ModeTag {
         MODE_INSTALL=0,
