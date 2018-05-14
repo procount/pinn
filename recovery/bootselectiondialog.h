@@ -41,7 +41,6 @@ protected slots:
     void countdownExpired();
 
 private slots:
-    void on_list_activated(const QModelIndex &index);
     void on_list_itemChanged(QListWidgetItem *item);
     void on_pushButton_clicked();
 

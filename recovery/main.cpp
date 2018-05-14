@@ -399,6 +399,10 @@ int main(int argc, char *argv[])
     }
     qDebug() << "PINN drive:" << drive;
 
+    QProcess::execute("mount -o ro -t vfat "+partdev(drive, 1)+" /mnt");
+    cec->loadCECmap("/mnt/cec_keys.json");
+    QProcess::execute("umount /mnt");
+
     // do some stuff at start in background.
     runCustomScript(drive, 1,"background.sh", true);
 
@@ -437,10 +441,11 @@ int main(int argc, char *argv[])
         }
     }
 
+    cec->clearKeyPressed();
+
     if (bailout)
     {
         splash->hide();
-        cec->clearKeyPressed();
         showBootMenu(drive, defaultPartition, true);
     }
 

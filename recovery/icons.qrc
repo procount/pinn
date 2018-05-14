@@ -68,5 +68,6 @@
         <file>icons/token_quantifier.png</file>
         <file>icons/arrow_down.png</file>
         <file>icons/arrow_up.png</file>
+        <file>cec_keys.json</file>
     </qresource>
 </RCC>

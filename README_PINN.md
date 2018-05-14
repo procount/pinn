@@ -7,7 +7,7 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v2.8.2a
+This README relates to v2.8.2
 
 <sup>(PINN is only available in one format that does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`)</sup>
 
@@ -191,10 +191,10 @@ Note that all user settings (language, keyboard layout, display mode) will persi
 
 If you are using the RPi locally, the majority of the program can be used with a mouse alone, although a keyboard can make it easier. A keyboard is required to enter the wifi credentials if you want to connect to a network that way. However, the wifi can be preconfigured to avoid even this use.
 
-### CEC Control (v2.1.1 onwards)
+### CEC Control
 
 PINN can be controlled with a TV remote, if the HDMI TV has CEC support.
-The CEC remote keys are mapped as follows:
+The default CEC remote keys are mapped as follows:
 
 To simulate a mouse the following keys are used:
 - Cursor Up/Down/Left/Right - moves the mouse cursor in each direction
@@ -212,8 +212,12 @@ Any of the above remote keys can be used instead of the keyboard shift key on st
 
 There is no onscreen keyboard in PINN, so a local keyboard will be needed to enter wifi credentials, unless the wifi is preconfigured.
 
-**NOTE: CEC implementations vary between TV manufacturers. The above key mappings work on Samsung TVs supporting their Anynet+. Other TV brands may not work as well, but the mouse simulation is designed to work on most TVs.
-If your TV does not work as above and you are willing to help debug the problem, please let me know so I can identify the differences and include support for your brand of TV.**
+**NOTE: CEC implementations vary between TV manufacturers. The above key mappings work on Samsung TVs supporting their Anynet+. Other TV brands may not work as well, but the mouse simulation is designed to work on most TVs.**
+
+It is now possible to program your own set of key mappings for your particular remote. 
+To do this you should create a `cec_keys.json` file. 
+See the [cec_keys.md](cec_keys.md) document on how to do this.
+The default mappings are listed in the [wiki](https://github.com/procount/pinn/wiki/Default-CEC-Key-mappings-for-cec_keys.json).
 
 ### How to use with the Raspberry Pi Touch Display
 
@@ -287,7 +291,7 @@ If a wired ethernet cable is plugged into the Pi before PINN starts, PINN will c
 
 ### Wireless Wifi Networks
 
-If you have the official [Rapberry Pi USB wifi Dongle](https://www.raspberrypi.org/products/usb-wifi-dongle/), or are using the Raspberry Pi 3 Model B or Pi0W with built-in Wi-Fi, the Wi-Fi icon on the PINN toolbar will be available. Click on this to select your Wi-Fi SSID network and enter the Wi-Fi password. If the password is correct, you will soon be connected to the Internet and PINN will present a list of downloadable operating systems for you to install.
+If you have the official [Rapberry Pi USB wifi Dongle](https://www.raspberrypi.org/products/usb-wifi-dongle/), or are using the Raspberry Pi 3 Model B/B+ or Pi0W with built-in Wi-Fi, the Wi-Fi icon on the PINN toolbar will be available. Click on this to select your Wi-Fi SSID network and enter the Wi-Fi password. If the password is correct, you will soon be connected to the Internet and PINN will present a list of downloadable operating systems for you to install.
 
 ![alt text](screenshots/wifi_selector.png "Select your Wi-Fi network and enter the password.")
 

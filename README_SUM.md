@@ -45,7 +45,7 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
-### V2.8.2a
+### V2.8.2
 
 - **Reinstall**        - bugfix to Reinstall option following partuuid change on USBs
 

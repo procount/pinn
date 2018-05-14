@@ -81,6 +81,8 @@ BootSelectionDialog::BootSelectionDialog(const QString &drive, const QString &de
         return;
     }
 
+    cec->setWindow("bootSelection");
+    cec->setMenu("any");
     connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
 
     /* Also mount recovery partition as it may contain icons we need */
@@ -303,11 +305,6 @@ void BootSelectionDialog::accept()
     bootPartition();
 }
 
-void BootSelectionDialog::on_list_activated(const QModelIndex &)
-{
-    accept();
-}
-
 void BootSelectionDialog::setDisplayMode()
 {
 #ifdef Q_WS_QWS
@@ -438,70 +435,7 @@ void BootSelectionDialog::updateConfig4dsi(QByteArray partition)
 /* Key on TV remote pressed */
 void BootSelectionDialog::onKeyPress(int cec_code)
 {
-#ifdef Q_WS_QWS
-    Qt::KeyboardModifiers modifiers = Qt::NoModifier;
-    int key=0;
-    QPoint p = QCursor::pos();
-#ifdef RASPBERRY_CEC_SUPPORT
-    switch (cec_code)
-    {
-/* MOUSE SIMULATION */
-    case CEC_User_Control_Select:
-    {
-        QWidget* widget = dynamic_cast<QWidget*>(QApplication::widgetAt(QCursor::pos()));
-        if (widget)
-        {
-            QPoint pos = QCursor::pos();
-            QMouseEvent *event = new QMouseEvent(QEvent::MouseButtonPress,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
-            QCoreApplication::sendEvent(widget,event);
-            QMouseEvent *event1 = new QMouseEvent(QEvent::MouseButtonRelease,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
-            QCoreApplication::sendEvent(widget,event1);
-            qApp->processEvents();
-        }
-    }
-    case CEC_User_Control_Left:
-        p.rx()-=10;
-        QCursor::setPos(p);
-        break;
-    case CEC_User_Control_Right:
-        p.rx()+=10;
-        QCursor::setPos(p);
-        break;
-    case CEC_User_Control_Up:
-        p.ry()-=10;
-        QCursor::setPos(p);
-        break;
-    case CEC_User_Control_Down:
-        p.ry()+=10;
-        QCursor::setPos(p);
-        break;
-/* ARROW KEY SIMULATION */
-    case CEC_User_Control_Play:
-        key = Qt::Key_Enter;
-        break;
-    case CEC_User_Control_Exit:
-        key = Qt::Key_Escape;
-        break;
-    case CEC_User_Control_ChannelUp:
-        key = Qt::Key_Up;
-        break;
-    case CEC_User_Control_ChannelDown:
-        key = Qt::Key_Down;
-        break;
-    default:
-        break;
-    }
-#endif
-    if (key)
-    {
-        // key press
-        QWSServer::sendKeyEvent(0, key, modifiers, true, false);
-        // key release
-        QWSServer::sendKeyEvent(0, key, modifiers, false, false);
-    }
-#else
-    qDebug() << "onKeyPress" << key;
-#endif
+    cec->process_cec(cec_code);
 }
 
 void BootSelectionDialog::on_list_itemChanged(QListWidgetItem *item)
@@ -524,5 +458,6 @@ void BootSelectionDialog::on_list_itemChanged(QListWidgetItem *item)
 
 void BootSelectionDialog::on_pushButton_clicked()
 {
+    qDebug()<<"Click!";
     accept();
 }

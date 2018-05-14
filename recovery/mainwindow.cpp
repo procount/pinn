@@ -231,7 +231,11 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     resize(w,h);
 
     if (cec)
+    {
+        cec->setWindow("mainwindow");
+        cec->setMenu("Main Menu");
         connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+    }
 
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
     {
@@ -1458,6 +1462,7 @@ void MainWindow::on_actionAdvanced_triggered()
 
     if (_menuLabel)
         _menuLabel->setText(menutext(toolbar_index));
+    cec->setMenu( menutext(toolbar_index) );
 
     if (ug->tabs)
     {
@@ -3571,98 +3576,7 @@ void MainWindow::on_newVersion()
 /* Key on TV remote pressed */
 void MainWindow::onKeyPress(int cec_code)
 {
-#ifdef Q_WS_QWS
-
-    const int key_map[NUM_TOOLBARS][6]={
-        /* KEYS:             1          2          3          4          5               6 */
-        /* Main Menu   */   {Qt::Key_I, Qt::Key_W, Qt::Key_H, Qt::Key_N, Qt::Key_Escape, 0},
-        /* Archival    */   {Qt::Key_D, Qt::Key_C, Qt::Key_N, 0, 0, 0},
-        /* Maintenance */   {Qt::Key_E, Qt::Key_P, Qt::Key_N, 0, 0, 0}
-    };
-
-    Qt::KeyboardModifiers modifiers = Qt::NoModifier;
-    int key=0;
-    QPoint p = QCursor::pos();
-    int menu =toolbar_index;
-
-#ifdef RASPBERRY_CEC_SUPPORT
-    switch (cec_code)
-    {
-/* MOUSE SIMULATION */
-    case CEC_User_Control_Left:
-        p.rx()-=10;
-        QCursor::setPos(p);
-        break;
-    case CEC_User_Control_Right:
-        p.rx()+=10;
-        QCursor::setPos(p);
-        break;
-    case CEC_User_Control_Up:
-        p.ry()-=10;
-        QCursor::setPos(p);
-        break;
-    case CEC_User_Control_Down:
-        p.ry()+=10;
-        QCursor::setPos(p);
-        break;
-    case CEC_User_Control_Select:
-        { //CLick!
-            QWidget* widget = dynamic_cast<QWidget*>(QApplication::widgetAt(QCursor::pos()));
-            if (widget)
-            {
-                QPoint pos = QCursor::pos();
-                QMouseEvent *event = new QMouseEvent(QEvent::MouseButtonPress,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
-                QCoreApplication::sendEvent(widget,event);
-                QMouseEvent *event1 = new QMouseEvent(QEvent::MouseButtonRelease,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
-                QCoreApplication::sendEvent(widget,event1);
-                qApp->processEvents();
-            }
-        }
-        break;
-
-/* ARROW KEY SIMULATION */
-    case CEC_User_Control_Play:
-        key = Qt::Key_Space;
-        break;
-    case CEC_User_Control_Exit:
-        key = Qt::Key_Escape;
-        break;
-    case CEC_User_Control_ChannelUp:
-        key = Qt::Key_Up;
-        break;
-    case CEC_User_Control_ChannelDown:
-        key = Qt::Key_Down;
-        break;
-
-    case CEC_User_Control_F2Red:
-        key = Qt::Key_M;
-        //modifiers = Qt::ControlModifier;
-        break;
-
-/* Key 9 is always menu selection toggle */
-    case CEC_User_Control_Number9:
-        key = Qt::Key_PageDown;
-        break;
-/* SPECIAL NUMBER KEYS FOR THIS DIALOG */
-    default:
-        if (cec_code > CEC_User_Control_Number0 && cec_code < CEC_User_Control_Number7)
-        {   //Keys 1..6
-            key = key_map[menu][cec_code - CEC_User_Control_Number1];
-        }
-        break;
-    }
-#endif
-
-    if (key)
-    {
-        // key press
-        QWSServer::sendKeyEvent(0, key, modifiers, true, false);
-        // key release
-        QWSServer::sendKeyEvent(0, key, modifiers, false, false);
-    }
-#else
-    qDebug() << "onKeyPress" << cec_code;
-#endif
+    cec->process_cec(cec_code);
 }
 
 void MainWindow::on_actionInfo_triggered()

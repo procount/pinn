@@ -82,6 +82,10 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>list</tabstop>
+  <tabstop>pushButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
