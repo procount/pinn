@@ -191,6 +191,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
 
     QString cmdline = getFileContents("/proc/cmdline");
 
+    _networkTimeout=8000;
     QStringList args = cmdline.split(QChar(' '),QString::SkipEmptyParts);
     foreach (QString s, args)
     {
@@ -203,6 +204,11 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
             //connect (&counter, SIGNAL(countdownStopped()), this, SLOT(countdownStopped()));
             installEventFilter(&counter);
             counter.startCountdown( params.at(1).toInt() +1);
+        }
+        if (s.contains("networktimeout"))
+        {
+            QStringList params = s.split(QChar('='));
+            _networkTimeout = 1000 * params.at(1).toInt();
         }
     }
 
@@ -551,11 +557,11 @@ void MainWindow::populate()
 
         _qpd->installEventFilter(&counter);
 
-        int timeout = 8000;
+        int timeout = _networkTimeout;
         if (getFileContents("/settings/wpa_supplicant.conf").contains("ssid="))
         {
             /* Longer timeout if we have a wifi network configured */
-            timeout = 12000;
+            timeout += 4000;
         }
         QTimer::singleShot(timeout, this, SLOT(hideDialogIfNoNetwork()));
         _time.start();

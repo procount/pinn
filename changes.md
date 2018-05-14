@@ -382,3 +382,8 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 
 - **Reinstall**        - bugfix to Reinstall option following partuuid change on USBs
 
+### V2.8.3
+
+- **Programmable CEC**        - Fixed bugs
+- **networktimeout**          - Added timeout to detect network presence
+

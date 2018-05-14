@@ -5,6 +5,11 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V2.8.3
+
+- **Programmable CEC**        - Fixed bugs
+- **networktimeout**          - Added timeout to detect network presence
+
 ### V2.8.2
 
 - **Reinstall**        - bugfix to Reinstall option following partuuid change on USBs
