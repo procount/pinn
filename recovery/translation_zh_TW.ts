@@ -824,12 +824,12 @@ Reboot PINN to take account of these OSes?</source>
         <translation>您想要下載此版本嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3562"/>
+        <location filename="mainwindow.cpp" line="3563"/>
         <source>Downloading Update</source>
         <translation>正在下載更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3562"/>
+        <location filename="mainwindow.cpp" line="3563"/>
         <source>Press ESC to cancel</source>
         <translation>按 ESC 取消</translation>
     </message>

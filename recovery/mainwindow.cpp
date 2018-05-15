@@ -3553,6 +3553,7 @@ void MainWindow::on_newVersion()
         }
     }
 
+    msgBox.installEventFilter(&counter);
     int ret = msgBox.exec();
     switch (ret)
     {

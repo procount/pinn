@@ -870,12 +870,12 @@ Would you like to make this setting permanent?</source>
         <translation>هل تريد تحميل هذا الإصدار ؟</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3562"/>
+        <location filename="mainwindow.cpp" line="3563"/>
         <source>Downloading Update</source>
         <translation>تنزيل التحديث</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3562"/>
+        <location filename="mainwindow.cpp" line="3563"/>
         <source>Press ESC to cancel</source>
         <translation>اضغط هروب لالغاء الامر</translation>
     </message>
