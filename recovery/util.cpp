@@ -168,6 +168,15 @@ bool setRebootPartition(QByteArray partition)
     return true;
 }
 
+void reboot()
+{
+    QByteArray reboot_part = getFileContents("/run/reboot_part").trimmed();
+
+    ::sync();
+    // Reboot
+    ::syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2, LINUX_REBOOT_CMD_RESTART2, reboot_part.constData());
+}
+
 /* Returns device name for drive and partition number
  *
  * partdev("mmcblk0",1) -> mmcblk0p1

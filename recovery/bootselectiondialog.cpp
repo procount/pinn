@@ -14,6 +14,7 @@
 #include "util.h"
 #include "ceclistener.h"
 #include "countdownfilter.h"
+#include "sleepsimulator.h"
 
 #include <stdio.h>
 #include <QDebug>
@@ -39,25 +40,6 @@ extern "C" {
 #endif
 
 extern CecListener * cec;
-
-
-class SleepSimulator{
-     QMutex localMutex;
-     QWaitCondition sleepSimulator;
-public:
-    SleepSimulator()
-    {
-        localMutex.lock();
-    }
-    void sleep(unsigned long sleepMS)
-    {
-        sleepSimulator.wait(&localMutex, sleepMS);
-    }
-    void CancelSleep()
-    {
-        sleepSimulator.wakeAll();
-    }
-};
 
 BootSelectionDialog::BootSelectionDialog(const QString &drive, const QString &defaultPartition, bool stickyBoot, bool dsi, QWidget *parent) :
     QDialog(parent),

@@ -301,6 +301,7 @@
    <addaction name="actionPassword"/>
    <addaction name="actionRepair"/>
    <addaction name="actionReinstall"/>
+   <addaction name="actionReplace"/>
    <addaction name="actionInfoInstalled"/>
   </widget>
   <widget class="QToolBar" name="advToolBar">
@@ -530,6 +531,24 @@
    </property>
    <property name="shortcut">
     <string>R</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionReplace">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/arrow_refresh.png</normaloff>:/icons/arrow_refresh.png</iconset>
+   </property>
+   <property name="text">
+    <string>Replace (p)</string>
+   </property>
+   <property name="shortcut">
+    <string>P</string>
    </property>
    <property name="visible">
     <bool>true</bool>

@@ -69,5 +69,6 @@
         <file>icons/arrow_down.png</file>
         <file>icons/arrow_up.png</file>
         <file>cec_keys.json</file>
+        <file>icons/arrow_refresh.png</file>
     </qresource>
 </RCC>

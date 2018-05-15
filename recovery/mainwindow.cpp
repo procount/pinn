@@ -22,6 +22,7 @@
 #include "repair.h"
 #include "mydebug.h"
 #include "countdownfilter.h"
+#include "replace.h"
 
 #include <QByteArray>
 #include <QMessageBox>
@@ -56,9 +57,6 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <inttypes.h>
-//#include <sys/reboot.h>
-#include <sys/syscall.h>
-#include <linux/reboot.h>
 #include <sys/time.h>
 
 #ifdef RASPBERRY_CEC_SUPPORT
@@ -70,8 +68,6 @@ extern "C" {
 #ifdef Q_WS_QWS
 #include <QWSServer>
 #endif
-
-void reboot_to_extended(const QString &defaultPartition, bool setDisplayMode);
 
 extern CecListener * cec;
 
@@ -895,7 +891,6 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
             if (_networkStatusPollTimer.isActive())
                 _networkStatusPollTimer.stop();
 
-            QList<QListWidgetItem *> selected = selectedItems();
             foreach (QListWidgetItem *item, selected)
             {
                 QVariantMap entry = item->data(Qt::UserRole).toMap();
@@ -928,8 +923,11 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
                     QProcess::execute(cmd);
                     cmd = "cp "+ local+"/partitions.json "+folder;
                     QProcess::execute(cmd);
+                    //(@@Do we need to copy the slides to the settings partition, for backup maybe?)
                     cmd = "cp "+ local+"/partition_setup.sh "+folder;
                     QProcess::execute(cmd);
+
+                    //Icon gets copied at end of processing if installed from network or USB.
                 }
             }
 
@@ -951,78 +949,98 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
 void MainWindow::on_actionReinstall_triggered()
 {
     _eDownloadMode = MODE_REINSTALL;
+    _newList.clear();
+    QList<QListWidgetItem *> installedList;
+
+    installedList   = ug->selectedInstalledItems();
+
+    //Check if user wants to manually update PINN
+    QListWidgetItem *item = installedList.at(0);
+    QVariantMap installedMap = item->data(Qt::UserRole).toMap();
+    if (installedMap.value("name").toString() =="PINN")
+    {
+        if (installedList.count()==1)
+        {
+            //Only check upgrades to PINN if it is the ONLY Os to be reinstalled
+            //Because it causes a reboot
+            checkForUpdates( true );
+            return;
+        }
+        //Otherwise ignore PINN if there are more selected
+        installedList.removeFirst();
+    }
+
+    foreach (QListWidgetItem *item, installedList)
+    {
+        QVariantMap installedEntry = item->data(Qt::UserRole).toMap();
+        QString name = installedEntry.value("name").toString();
+
+        //Look for the new version
+        QListWidgetItem *witem = findItemByName(name);
+        if (witem)
+        {
+            QVariantMap new_details = witem->data(Qt::UserRole).toMap();
+            if (new_details.value("source").toString() == SOURCE_INSTALLED_OS)
+            {
+                onError(name + tr(" is not available.\nPlease provide it locally or connect to the internet."));
+                return;
+            }
+            new_details["existingOS"] = installedEntry;
+            _newList.append(new_details);
+        }
+    }
+
+    prepareMetaFiles();
+}
+
+void MainWindow::prepareMetaFiles()
+{
     _numMetaFilesToDownload=0;
 
-    QString warning = tr("Warning: this will Reinstall the selected Operating System(s). The existing data will be deleted.");
+    QString warning = tr("Warning: this will Reinstall/Replace the selected Operating System(s). The existing data will be deleted.");
 
     if (QMessageBox::warning(this,
-                                        tr("Confirm"),
-                                        warning,
-                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+                            tr("Confirm"),
+                            warning,
+                            QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
     {
+        setEnabled(false);
+        if (_networkStatusPollTimer.isActive())
+            _networkStatusPollTimer.stop();
+
+        foreach (QVariantMap newOS, _newList)
         {
-            setEnabled(false);
-            if (_networkStatusPollTimer.isActive())
-                _networkStatusPollTimer.stop();
-
-            QList<QListWidgetItem *> selected = ug->selectedInstalledItems();
-            foreach (QListWidgetItem *item, selected)
+            if ((!newOS.contains("folder")) || (newOS.value("folder").toString().startsWith("/settings")))
             {
+                QDir d;
+                QString folder = "/settings/os/"+newOS.value("name").toString();
+                folder.replace(' ', '_');
+                if (!d.exists(folder))
+                    d.mkpath(folder);
 
-                QVariantMap installedEntry = item->data(Qt::UserRole).toMap();
-                QString name = installedEntry.value("name").toString();
+                downloadMetaFile(newOS.value("os_info").toString(), folder+"/os.json");
+                downloadMetaFile(newOS.value("partitions_info").toString(), folder+"/partitions.json");
+                if (newOS.contains("marketing_info"))
+                    downloadMetaFile(newOS.value("marketing_info").toString(), folder+"/marketing.tar");
 
-                if (name=="PINN")
-                {
-                    if (selected.count()==1)
-                    {
-                        //Only check upgrades to PINN if it is the ONLY Os to be reinstalled
-                        //Because it causes a reboot
-                        checkForUpdates( true );
-                        return;
-                    }
-                    continue;   //Do not reinstall PINN - it's just a dummy os.
-                }
+                if (newOS.contains("partition_setup"))
+                    downloadMetaFile(newOS.value("partition_setup").toString(), folder+"/partition_setup.sh");
 
-                QListWidgetItem *witem = findItemByName(name);
-                if (witem)
-                {
-                    QVariantMap new_details = witem->data(Qt::UserRole).toMap();
-                    if (new_details.value("source").toString() == SOURCE_INSTALLED_OS)
-                    {
-                        onError(name + tr(" is not available.\nPlease provide it locally or connect to the internet."));
-                        return;
-                    }
-                }
-
-                installedEntry = witem->data(Qt::UserRole).toMap();
-
-                if ((!installedEntry.contains("folder")) || (installedEntry.value("folder").toString().startsWith("/settings")))
-                {
-                    QDir d;
-                    QString folder = "/settings/os/"+installedEntry.value("name").toString();
-                    folder.replace(' ', '_');
-                    if (!d.exists(folder))
-                        d.mkpath(folder);
-
-                    downloadMetaFile(installedEntry.value("os_info").toString(), folder+"/os.json");
-                    downloadMetaFile(installedEntry.value("partitions_info").toString(), folder+"/partitions.json");
-                    if (installedEntry.contains("marketing_info"))
-                        downloadMetaFile(installedEntry.value("marketing_info").toString(), folder+"/marketing.tar");
-
-                    if (installedEntry.contains("partition_setup"))
-                        downloadMetaFile(installedEntry.value("partition_setup").toString(), folder+"/partition_setup.sh");
-
-                    if (installedEntry.contains("icon"))
-                        downloadMetaFile(installedEntry.value("icon").toString(), folder+"/icon.png");
-                }
+                if (newOS.contains("icon"))
+                    downloadMetaFile(newOS.value("icon").toString(), folder+"/icon.png");
             }
+        }
 
-            if (_numMetaFilesToDownload == 0)
-            {
-                /* All OSes selected are local */
-                startImageReinstall();
-            }
+        if (_numMetaFilesToDownload == 0)
+        {
+            /* All OSes selected are local */
+            startImageReinstall();
+        }
+        else if (!_silent)
+        {
+            _qpd = new QProgressDialog(tr("The Reinstall process will begin shortly."), QString(), 0, 0, this);
+            _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+            _qpd->show();
         }
     }
 }
@@ -1093,7 +1111,6 @@ void MainWindow::on_actionDownload_triggered()
                     if (entry.contains("icon"))
                     {
                         //Extract icon filename from URL
-                        QStringList splitted = entry.value("icon").toString().split("/");
                         QString icon_name   = osname + ".png";
                         icon_name.replace(' ','_');
                         downloadMetaFile(entry.value("icon").toString(), folder+"/"+icon_name);
@@ -1125,7 +1142,6 @@ void MainWindow::on_actionCancel_triggered()
 
 void MainWindow::onCompleted()
 {
-    QByteArray reboot_part;
     int ret = QMessageBox::Ok;
 
     _qpssd->hide();
@@ -1167,10 +1183,13 @@ void MainWindow::onCompleted()
             QProcess::execute("ifdown -a");
             // Unmount file systems
             QProcess::execute("umount -ar");
-            ::sync();
+
+            //Reboot back into PINN
+            QByteArray partition("1");
+            setRebootPartition(partition);
+
             // Reboot
-            reboot_part = getFileContents("/run/reboot_part").trimmed();
-            ::syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2, LINUX_REBOOT_CMD_RESTART2, reboot_part.constData());
+            reboot();
 
             //@@What we really want to do is just refresh the dialog, but not possible yet.
             //repopulate();
@@ -1179,8 +1198,13 @@ void MainWindow::onCompleted()
 
     if (_eDownloadMode == MODE_REINSTALL)
     {
+        // Update list of installed OSes.
         setEnabled(true);
         show();
+        ug->listInstalled->clear();
+        _numInstalledOS=0;
+        addInstalledImages();
+
     }
     if (_eDownloadMode == MODE_INSTALL)
         close();
@@ -2603,22 +2627,8 @@ void MainWindow::startImageReinstall()
     QString folder, slidesFolder;
     QStringList slidesFolders;
 
-    QList<QListWidgetItem *> selected = ug->selectedInstalledItems();
-    foreach (QListWidgetItem * item, selected)
+    foreach (QVariantMap entry, _newList)
     {
-        QVariantMap installedEntry = item->data(Qt::UserRole).toMap();
-        QString name = installedEntry.value("name").toString();
-        if (name=="PINN")
-        {
-            continue;   //Do not reinstall PINN - it's just a dummy os.
-        }
-
-        QListWidgetItem *witem = findItemByName(name);
-        if (!witem)
-            continue;
-
-        QVariantMap entry = witem->data(Qt::UserRole).toMap();
-
         if (entry.contains("folder"))
         {
             /* Local image */
@@ -2658,6 +2668,7 @@ void MainWindow::startImageReinstall()
         {
             slidesFolder = folder+"/slides_vga";
         }
+        QVariantMap installedEntry = entry.value("existingOS").toMap();
 
         imageWriteThread->addInstalledImage(folder, entry.value("name").toString(), installedEntry); //@@
 
@@ -3400,7 +3411,6 @@ void MainWindow::downloadUpdateRedirectCheck()
 
 void MainWindow::downloadUpdateComplete()
 {
-    QByteArray reboot_part;
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     QString userInfo = reply->request().attribute(QNetworkRequest::User).toString();
@@ -3475,14 +3485,12 @@ void MainWindow::downloadUpdateComplete()
             _qpd->deleteLater();
             _qpd = NULL;
         }
-
+        //Reboot back into PINN
         QByteArray partition("1");
         setRebootPartition(partition);
-        ::sync();
-        // Reboot
-        reboot_part = getFileContents("/run/reboot_part").trimmed();
-        ::syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2, LINUX_REBOOT_CMD_RESTART2, reboot_part.constData());
 
+        // Reboot
+        reboot();
     }
     else if (type=="GROUP") //update categories
     {
@@ -3588,7 +3596,6 @@ void MainWindow::onKeyPress(int cec_code)
 
 void MainWindow::on_actionInfo_triggered()
 {
-
     if (!requireNetwork())
         return;
 
@@ -3616,6 +3623,7 @@ void MainWindow::on_actionInfo_triggered()
 
 void MainWindow::on_actionInfoInstalled_triggered()
 {
+
     if (!requireNetwork())
         return;
 
@@ -3640,6 +3648,41 @@ void MainWindow::on_actionInfoInstalled_triggered()
             lang = "en";
         _proc->start("arora -lang "+lang+" "+m.value("url").toString());
     }
+}
+
+void MainWindow::on_actionReplace_triggered()
+{
+    _eDownloadMode = MODE_REINSTALL;    //or MODE_REPLACE?
+
+    QList<QListWidgetItem *> replacementList;
+    QList<QListWidgetItem *> installedList;
+
+    replacementList = ug->selectedItems();
+    installedList   = ug->selectedInstalledItems();
+
+    //Ignore PINN if it is selected
+    QListWidgetItem *item = installedList.at(0);
+    QVariantMap installedMap = item->data(Qt::UserRole).toMap();
+    if (installedMap.value("name").toString() =="PINN")
+        installedList.removeFirst();
+
+    replace dlg(replacementList,installedList,this);
+    if (dlg.exec() != QDialog::Accepted)
+        return;
+
+    _newList.clear();
+    _newList = dlg.getMappedList();
+
+    foreach (QVariantMap os, _newList)
+    {
+        if (os.value("source").toString() == SOURCE_INSTALLED_OS)
+        {
+            onError(os.value("name").toString() + tr(" is not available.\nPlease provide it locally or connect to the internet."));
+            return;
+        }
+    }
+    prepareMetaFiles();
+    //@@Go to next stage
 }
 
 void MainWindow::loadOverrides(const QString &filename)

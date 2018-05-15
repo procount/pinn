@@ -4,6 +4,8 @@
 #include <QString>
 #include <QByteArray>
 #include <QVariant>
+#include <sys/syscall.h>
+#include <linux/reboot.h>
 
 /*
  * Convenience functions
@@ -22,6 +24,7 @@ bool nameMatchesRiscOS(const QString &name);
 uint readBoardRevision();
 bool canBootOs(const QString& name, const QVariantMap& values);
 bool setRebootPartition(QByteArray partition);
+void reboot();
 QByteArray partdev(const QString &drivedev, int nr);
 QByteArray sysclassblock(const QString &drivedev, int partnr = -1);
 bool isURL(const QString &s);

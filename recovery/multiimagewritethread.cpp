@@ -39,21 +39,31 @@ MultiImageWriteThread::MultiImageWriteThread(const QString &bootdrive, const QSt
 void MultiImageWriteThread::addImage(const QString &folder, const QString &flavour)
 {
     _images.append(new OsInfo(folder, flavour, this));
-    //_images.insert(folder, flavour);
 }
 
-void MultiImageWriteThread::addInstalledImage(const QString &folder, const QString &flavour, const QVariantMap &entry)
-{
-    OsInfo * pInfo = new OsInfo(folder, flavour, this);
-    QList<PartitionInfo *> * tParts = pInfo->partitions();
+void MultiImageWriteThread::addInstalledImage(const QString &folder, const QString &flavour, const QVariantMap &entry,
+                                              const QString &replacedName)
+{   /* Copy the previously installed partitions to the new OS and add the OS to the list of OSes to be installed */
 
+    OsInfo * pInfo = new OsInfo(folder, flavour, this);
+
+    //Get the list of partitions where this OS is already isntalled
     QVariantList list = entry.value("partitions").toList(); //of QVariant Strings
+    //Get ptr to partitions for new OS
+    QList<PartitionInfo *> * tParts = pInfo->partitions();
     int i=0;
     foreach (PartitionInfo *partition, *tParts)
     {
+        //Set partition of NEW os to be the same as the previously INSTALLED OS
         partition->setPartitionDevice( list[i].toByteArray() );
         i++;
     }
+
+    if (! replacedName.isEmpty())
+        pInfo->setReplacedName(replacedName);
+    else
+        pInfo->setReplacedName(entry.value("name").toString()); //@@ or flavour?
+
     _images.append(pInfo);
 }
 
@@ -904,10 +914,15 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     else
     {
         int i=0;
+
+        //If we are not replacing a dfferent OS, search for the same name to replace
+        if (image->replacedName().isEmpty())
+            image->setReplacedName(image->flavour());
+
         foreach (QVariant v, installed_os)
         {
             QVariantMap m = v.toMap();
-            if (m.value("name").toString() == image->flavour())
+            if (m.value("name").toString() == image->replacedName())
                 installed_os.replace(i,ventry);
             i++;
         }

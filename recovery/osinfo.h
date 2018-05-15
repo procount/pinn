@@ -94,8 +94,20 @@ public:
         return _configpath;
     }
 
+    inline QString replacedName()
+    {
+        return _replacedName;
+    }
+
+    inline void setReplacedName(QString old_name)
+    {
+        _replacedName = old_name;
+    }
+
+
 protected:
-    QString _folder, _flavour, _name, _description, _version, _releaseDate, _username, _password, _url, _group, _configpath;
+    QString _folder, _flavour, _name, _description, _version, _releaseDate;
+    QString _username, _password, _url, _group, _configpath, _replacedName;
     bool _bootable;
     QList<PartitionInfo *> _partitions;
     QStringList _supportedModels;

@@ -1,7 +1,7 @@
 #ifndef COUNTDOWNFILTER_H
 #define COUNTDOWNFILTER_H
 
-/* Stops reboot countdown on an eent
+/* Stops reboot countdown on an event
  *
  *
  * See LICENSE.txt for license details

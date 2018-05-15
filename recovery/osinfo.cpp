@@ -17,6 +17,7 @@ OsInfo::OsInfo(const QString &folder, const QString &flavour, QObject *parent) :
     _password = m.value("password").toString();
     _url = m.value("url").toString();
     _group = m.value("group").toString();
+    _replacedName = "";
 
     QVariantMap p = Json::loadFromFile(folder+"/partitions.json").toMap();
     QVariantList parts = p.value("partitions").toList();

@@ -19,10 +19,6 @@ public:
 private slots:
     void on_buttonBox_accepted();
 
-signals:
-    void error(const QString &msg);
-    void statusUpdate(const QString &msg);
-
 private:
     QListWidget * _listinstalled;
     QString _drive;

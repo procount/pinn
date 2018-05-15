@@ -75,6 +75,7 @@ protected:
     QSize _currentsize;
     CountdownFilter counter;
     int _networkTimeout;
+    QList<QVariantMap> _newList;
 
     enum ModeTag {
         MODE_INSTALL=0,
@@ -130,7 +131,7 @@ protected:
     void on_newVersion();
     QString menutext(int index);
     void fullFAT();
-
+    void prepareMetaFiles();
     void startImageDownload();//@@download
     bool LooksLikePiDrive(QString devname);//@@download
     bool LooksLikeOSDrive(QString devname);//@@download
@@ -198,6 +199,7 @@ private slots:
     void on_actionWipe_triggered();
     void on_actionFschk_triggered();
     void on_actionRepair_triggered();
+    void on_actionReplace_triggered();
     void on_actionFirmware_triggered();
     void updateFirmware_button();
 

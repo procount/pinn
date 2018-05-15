@@ -16,7 +16,7 @@ class MultiImageWriteThread : public QThread
 public:
     explicit MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive,bool noobsconfig=false, bool partition=true, QObject *parent = 0);
     void addImage(const QString &folder, const QString &flavour);
-    void addInstalledImage(const QString& folder, const QString& flavour, const QVariantMap& sParts);
+    void addInstalledImage(const QString& folder, const QString& flavour, const QVariantMap& sParts, const QString& replacedName="");
 
 protected:
     virtual void run();

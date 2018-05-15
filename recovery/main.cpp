@@ -12,9 +12,6 @@
 
 #include <stdio.h>
 #include <unistd.h>
-//#include <sys/reboot.h>
-#include <sys/syscall.h>
-#include <linux/reboot.h>
 #include <QApplication>
 #include <QBitmap>
 #include <QStyle>
@@ -94,7 +91,6 @@ void runCustomScript(const QString &driveDev, int partNr, const QString &cmd, bo
 
 void showBootMenu(const QString &drive, const QString &defaultPartition, bool setDisplayMode)
 {
-    QByteArray reboot_part;
 #ifdef Q_WS_QWS
     QWSServer::setBackground(backgroundColour);
     QWSServer::setCursorVisible(true);
@@ -111,11 +107,8 @@ void showBootMenu(const QString &drive, const QString &defaultPartition, bool se
     QProcess::execute("ifdown -a");
     // Unmount file systems
     QProcess::execute("umount -ar");
-    ::sync();
     // Reboot
-    reboot_part = getFileContents("/run/reboot_part").trimmed();
-    ::syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2, LINUX_REBOOT_CMD_RESTART2, reboot_part.constData());
-
+    reboot();
 }
 
 bool hasInstalledOS(const QString &drive)

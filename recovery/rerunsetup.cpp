@@ -14,8 +14,8 @@ rerunsetup::rerunsetup(QListWidget * list, const QString &rootdrive, QWidget *pa
     _drive(rootdrive),
     ui(new Ui::rerunsetup)
 {
-    int dummy;
-    int part_err=0;
+    //int dummy;
+    //int part_err=0;
     int os_err=0;
     int overall_err=0;
     QListWidgetItem * item;
