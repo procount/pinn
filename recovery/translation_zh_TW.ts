@@ -475,7 +475,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="565"/>
         <source>Fix (f)</source>
-        <translation type="unfinished"></translation>
+        <translation>修復 (f)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="595"/>
@@ -1530,7 +1530,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="repair.ui" line="14"/>
         <source>Repair OS</source>
-        <translation type="unfinished"></translation>
+        <translation>修復作業系統</translation>
     </message>
 </context>
 <context>
@@ -1538,54 +1538,56 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="rerunsetup.cpp" line="27"/>
         <source>No OSes to check</source>
-        <translation type="unfinished"></translation>
+        <translation>沒有作業系統可以檢查</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="31"/>
         <source>Checking for partition_setup.sh scripts...</source>
-        <translation type="unfinished"></translation>
+        <translation>正在檢查 partition_setup.sh 指令稿……</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="57"/>
         <source>Cannot find setup script for </source>
-        <translation type="unfinished"></translation>
+        <translation>找不到設定指令稿 </translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="58"/>
         <source>Maybe insert source USB stick</source>
-        <translation type="unfinished"></translation>
+        <translation>也許插入來源 USB 隨身碟</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="114"/>
         <source>%1: Error executing partition setup script</source>
-        <translation type="unfinished">%1：執行分割區設定指令稿時發生錯誤</translation>
+        <translation>%1：執行分割區設定指令稿時發生錯誤</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="119"/>
         <source> partions_setup.sh script error
 </source>
-        <translation type="unfinished"></translation>
+        <translation> partions_setup.sh 指令稿錯誤
+</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="121"/>
         <source> partition_setup.sh script OK
 </source>
-        <translation type="unfinished"></translation>
+        <translation> partions_setup.sh 指令稿 OK
+</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="128"/>
         <source>DONE - some setup script errors detected</source>
-        <translation type="unfinished"></translation>
+        <translation>完成 - 偵測到某些設定指令稿錯誤</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="130"/>
         <source>DONE - SUCCESSFUL setup scripts exeuted</source>
-        <translation type="unfinished"></translation>
+        <translation>完成 - 設定指令稿執行成功</translation>
     </message>
     <message>
         <location filename="rerunsetup.ui" line="14"/>
         <source>re-run partition_setup</source>
-        <translation type="unfinished"></translation>
+        <translation>重新執行 partition_setup</translation>
     </message>
 </context>
 </TS>
