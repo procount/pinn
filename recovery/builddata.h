@@ -10,8 +10,6 @@ public:
     BuildData();
     void read(const char * filename);
     bool isEmpty(void);
-    void getVersionParts(void);
-    void splitVersion(void);
     void setVersion(const char * v);
 
     friend bool operator<(const BuildData& l, const BuildData& r);

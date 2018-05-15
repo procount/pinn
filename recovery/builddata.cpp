@@ -8,8 +8,10 @@ BuildData::BuildData()
 {
 }
 
-void BuildData::splitVersion(void)
+void BuildData::setVersion(const char * v)
 {
+    _version =v;
+
     QString::iterator it = _version.begin();
     while (it != _version.end())
     {
@@ -23,14 +25,7 @@ void BuildData::splitVersion(void)
             while (it != _version.end() && !(*it).isDigit())
                 part += *it++;
         _partslist <<part;
-        digitmode = !digitmode;
     }
-}
-
-void BuildData::setVersion(const char * v)
-{
-    _version =v;
-    splitVersion();
 }
 
 bool BuildData::isEmpty(void)
