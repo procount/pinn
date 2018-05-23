@@ -736,6 +736,7 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
                         fm["source"] = osv.value("source");
                         fm["url"] = osv.value("url");
                         fm["group"] = osv.value("group");
+                        fm["bootable"] = osv.value("bootable");
                         images[name] = fm;
                     }
                 }
@@ -2008,7 +2009,8 @@ void MainWindow::processJson(QVariant json)
                     item.insert("icon", iconurl);
                     item.insert("feature_level", flavour.value("feature_level"));
                     item.insert("source", SOURCE_NETWORK);
-
+                    item.insert("bootable", flavour.value("bootable"));
+                    item.insert("group", flavour.value("group"));
                     processJsonOs(name, item, iconurls);
                 }
             }
@@ -2615,11 +2617,6 @@ void MainWindow::startImageWrite()
         }
 
         slidesFolder.clear();
-        //QRect s = QApplication::desktop()->screenGeometry();
-        //if (s.width() > 640 && QFile::exists(folder+"/slides"))
-        //{
-        //    slidesFolder = folder+"/slides";
-        //}
         if (QFile::exists(folder+"/slides_vga"))
         {
             slidesFolder = folder+"/slides_vga";

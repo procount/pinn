@@ -104,7 +104,6 @@ public:
         _replacedName = old_name;
     }
 
-
 protected:
     QString _folder, _flavour, _name, _description, _version, _releaseDate;
     QString _username, _password, _url, _group, _configpath, _replacedName;
@@ -114,5 +113,4 @@ protected:
     int _riscosOffset;
 
 };
-
 #endif // OSINFO_H

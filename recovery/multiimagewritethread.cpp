@@ -737,6 +737,9 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     qm.insert("partitions", vpartitions);
     qm.insert("language", language);
     qm.insert("keyboard", keyboard);
+    qm.insert("bootable", image->bootable());
+    qm.insert("group", image->group());
+
 
     Json::saveToFile("/mnt2/os_config.json", qm);
 
