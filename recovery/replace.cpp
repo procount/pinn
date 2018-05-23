@@ -1,9 +1,11 @@
+#include "json.h"
 #include "replace.h"
 #include "ui_replace.h"
 
 #include <QDebug>
 #include <QListWidget>
 #include <QListWidgetItem>
+#include <QMessageBox>
 
 replace::replace(QList<QListWidgetItem *> replacementList, QList<QListWidgetItem *> installedList, QWidget *parent) :
     QDialog(parent),
@@ -68,20 +70,7 @@ replace::~replace()
 
 void replace::on_buttonBox1_accepted()
 {
-    qDebug() << "on_buttonBox_accepted";
-    int numRows = ui->tableWidget->rowCount();
-    for (int i=0; i<numRows; i++)
-    {
-        QTableWidgetItem * installedItem = ui->tableWidget->item(i,0);
-        QComboBox * combo = (QComboBox *) ui->tableWidget->cellWidget(i,1);
-
-        qDebug()<< installedItem->text() << " < " << combo->currentText();
-        QVariantMap iMap = installedItem->data(Qt::UserRole).toMap();
-        QVariantMap rMap = combo->itemData(combo->currentIndex(),Qt::UserRole).toMap();
-
-        qDebug()<< iMap;
-        qDebug() << rMap;
-    }
+    //qDebug() << "on_buttonBox_accepted";
 }
 
 QList<QVariantMap> replace::getMappedList()

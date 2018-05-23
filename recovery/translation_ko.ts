@@ -602,8 +602,13 @@ WARNING: This will erase all data on your SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3085"/>
-        <location filename="mainwindow.cpp" line="3115"/>
+        <location filename="mainwindow.cpp" line="2685"/>
+        <source> has an incompatible number of partitions with </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="3098"/>
+        <location filename="mainwindow.cpp" line="3128"/>
         <source>RECOMMENDED</source>
         <translation>추천 설치</translation>
     </message>
@@ -667,7 +672,7 @@ All existing data on the SD card will be overwritten, including any OSes that ar
     </message>
     <message>
         <location filename="mainwindow.cpp" line="985"/>
-        <location filename="mainwindow.cpp" line="3680"/>
+        <location filename="mainwindow.cpp" line="3693"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation type="unfinished"></translation>
@@ -718,7 +723,7 @@ Reboot PINN to take account of these OSes?</source>
         <location filename="mainwindow.cpp" line="1229"/>
         <location filename="mainwindow.cpp" line="1830"/>
         <location filename="mainwindow.cpp" line="1958"/>
-        <location filename="mainwindow.cpp" line="3340"/>
+        <location filename="mainwindow.cpp" line="3353"/>
         <source>Error</source>
         <translation>오류</translation>
     </message>
@@ -783,8 +788,8 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1577"/>
-        <location filename="mainwindow.cpp" line="2809"/>
-        <location filename="mainwindow.cpp" line="2817"/>
+        <location filename="mainwindow.cpp" line="2822"/>
+        <location filename="mainwindow.cpp" line="2830"/>
         <source>No network access</source>
         <translation>네트워크에 접속할 수 없음</translation>
     </message>
@@ -805,8 +810,8 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <location filename="mainwindow.cpp" line="1942"/>
         <location filename="mainwindow.cpp" line="2423"/>
         <location filename="mainwindow.cpp" line="2434"/>
-        <location filename="mainwindow.cpp" line="3434"/>
-        <location filename="mainwindow.cpp" line="3456"/>
+        <location filename="mainwindow.cpp" line="3447"/>
+        <location filename="mainwindow.cpp" line="3469"/>
         <source>Download error</source>
         <translation>다운로드 오류</translation>
     </message>
@@ -844,7 +849,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2434"/>
-        <location filename="mainwindow.cpp" line="3456"/>
+        <location filename="mainwindow.cpp" line="3469"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>다운로드한 파일을 SD 카드에 기록하는 과정에서 오류가 발생하였습니다. SD 카드 또는 파일 시스템이 손상되었는지 확인하여 주십시오.</translation>
     </message>
@@ -854,99 +859,104 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2810"/>
+        <location filename="mainwindow.cpp" line="2684"/>
+        <source>Replace OSes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="2823"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translatorcomment>로컬 이미지가 없는 PINN은 네트워크 접속이 필요합니다. 다음 화면에서 Wi-Fi 네트워크를 선택해 주십시오.</translatorcomment>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2818"/>
+        <location filename="mainwindow.cpp" line="2831"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>로컬에 운영체제 이미지가 없는 PINN을 사용하려면 유선 네트워크 연결이 필요합니다. 네트워크 포트에 네트워크 케이블을 삽입하여 주십시요.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3000"/>
+        <location filename="mainwindow.cpp" line="3013"/>
         <source>Reformat drive?</source>
         <translation>드라이브 초기화 확인</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3001"/>
+        <location filename="mainwindow.cpp" line="3014"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>&apos;%1&apos; 드라이브를 정말 다시 초기화하시겠습니까? 초기화를 완료하면 이 드라이브 안에 있는 모든 데이터는 완전히 삭제됩니다. 초기화 후 PINN이 이 드라이브를 이용합니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3294"/>
+        <location filename="mainwindow.cpp" line="3307"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>장치 &apos;%s&apos;의 모든 내용이 지워집니다. 정말 진행하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3296"/>
+        <location filename="mainwindow.cpp" line="3309"/>
         <source>Clone SD Card</source>
         <translation>SD 카드 복제</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3298"/>
+        <location filename="mainwindow.cpp" line="3311"/>
         <source>Yes</source>
         <translation>예</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3299"/>
+        <location filename="mainwindow.cpp" line="3312"/>
         <source>No</source>
         <translation>아니요</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3327"/>
+        <location filename="mainwindow.cpp" line="3340"/>
         <source>Clone Completed</source>
         <translation>복제 완료</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3328"/>
+        <location filename="mainwindow.cpp" line="3341"/>
         <source>Clone Completed Successfully</source>
         <translation>복제를 완료하였습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3434"/>
+        <location filename="mainwindow.cpp" line="3447"/>
         <source>Error downloading update file</source>
         <translation>업데이트한 파일을 다운로드 하는 과정에 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3441"/>
-        <location filename="mainwindow.cpp" line="3536"/>
+        <location filename="mainwindow.cpp" line="3454"/>
+        <location filename="mainwindow.cpp" line="3549"/>
         <source>PINN Update Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3441"/>
+        <location filename="mainwindow.cpp" line="3454"/>
         <source>Error contacting update server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3536"/>
+        <location filename="mainwindow.cpp" line="3549"/>
         <source>No updates available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3544"/>
+        <location filename="mainwindow.cpp" line="3557"/>
         <source>PINN UPDATE</source>
         <translation>PINN 업데이트</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3545"/>
+        <location filename="mainwindow.cpp" line="3558"/>
         <source>A new version of PINN is available</source>
         <translation>새 버전의 PINN 을 사용할 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3546"/>
+        <location filename="mainwindow.cpp" line="3559"/>
         <source>Do you want to download this version?</source>
         <translation>이 버전을 다운로드 하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3571"/>
+        <location filename="mainwindow.cpp" line="3584"/>
         <source>Downloading Update</source>
         <translation>업데이트 다운로드</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3571"/>
+        <location filename="mainwindow.cpp" line="3584"/>
         <source>Press ESC to cancel</source>
         <translation>취소하려면 ESC 를 누르십시요.</translation>
     </message>

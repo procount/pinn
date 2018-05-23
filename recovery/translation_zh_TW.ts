@@ -582,8 +582,8 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation>SD 記憶卡可能已受損</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3085"/>
-        <location filename="mainwindow.cpp" line="3115"/>
+        <location filename="mainwindow.cpp" line="3098"/>
+        <location filename="mainwindow.cpp" line="3128"/>
         <source>RECOMMENDED</source>
         <translation>建議</translation>
     </message>
@@ -707,7 +707,7 @@ Reboot PINN to take account of these OSes?</source>
         <location filename="mainwindow.cpp" line="1229"/>
         <location filename="mainwindow.cpp" line="1830"/>
         <location filename="mainwindow.cpp" line="1958"/>
-        <location filename="mainwindow.cpp" line="3340"/>
+        <location filename="mainwindow.cpp" line="3353"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
@@ -743,93 +743,98 @@ Reboot PINN to take account of these OSes?</source>
         <translation>下載詮釋檔案錯誤： </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2810"/>
+        <location filename="mainwindow.cpp" line="2684"/>
+        <source>Replace OSes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="2823"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>不使用本機映像檔的 PINN 需要網路。請在下一個畫面選擇您的 wifi 連線。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2818"/>
+        <location filename="mainwindow.cpp" line="2831"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>不使用本機映像檔的 PINN 需要有線網路。請將網路線插入網路孔。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3001"/>
+        <location filename="mainwindow.cpp" line="3014"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>您確定您要重新格式化磁碟 &apos;%1&apos; 以供 PINN 使用嗎？所有在該磁碟上的資料都會被刪除！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3294"/>
+        <location filename="mainwindow.cpp" line="3307"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>這將會抹除在裝置 &apos;%s&apos; 上的所有內容。您確定嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3296"/>
+        <location filename="mainwindow.cpp" line="3309"/>
         <source>Clone SD Card</source>
         <translation>再製 SD 記憶卡</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3298"/>
+        <location filename="mainwindow.cpp" line="3311"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3299"/>
+        <location filename="mainwindow.cpp" line="3312"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3327"/>
+        <location filename="mainwindow.cpp" line="3340"/>
         <source>Clone Completed</source>
         <translation>再製完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3328"/>
+        <location filename="mainwindow.cpp" line="3341"/>
         <source>Clone Completed Successfully</source>
         <translation>再製成功完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3434"/>
+        <location filename="mainwindow.cpp" line="3447"/>
         <source>Error downloading update file</source>
         <translation>下載更新檔時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3441"/>
-        <location filename="mainwindow.cpp" line="3536"/>
+        <location filename="mainwindow.cpp" line="3454"/>
+        <location filename="mainwindow.cpp" line="3549"/>
         <source>PINN Update Check</source>
         <translation>PINN 更新檢查</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3441"/>
+        <location filename="mainwindow.cpp" line="3454"/>
         <source>Error contacting update server</source>
         <translation>聯絡更新伺服器發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3536"/>
+        <location filename="mainwindow.cpp" line="3549"/>
         <source>No updates available</source>
         <translation>無可用更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3544"/>
+        <location filename="mainwindow.cpp" line="3557"/>
         <source>PINN UPDATE</source>
         <translation>PINN 更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3545"/>
+        <location filename="mainwindow.cpp" line="3558"/>
         <source>A new version of PINN is available</source>
         <translation>已有新版的 PINN 可用</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3546"/>
+        <location filename="mainwindow.cpp" line="3559"/>
         <source>Do you want to download this version?</source>
         <translation>您想要下載此版本嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3571"/>
+        <location filename="mainwindow.cpp" line="3584"/>
         <source>Downloading Update</source>
         <translation>正在下載更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3571"/>
+        <location filename="mainwindow.cpp" line="3584"/>
         <source>Press ESC to cancel</source>
         <translation>按 ESC 取消</translation>
     </message>
@@ -840,7 +845,7 @@ Reboot PINN to take account of these OSes?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="985"/>
-        <location filename="mainwindow.cpp" line="3680"/>
+        <location filename="mainwindow.cpp" line="3693"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation> 不可用。
@@ -899,8 +904,8 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1577"/>
-        <location filename="mainwindow.cpp" line="2809"/>
-        <location filename="mainwindow.cpp" line="2817"/>
+        <location filename="mainwindow.cpp" line="2822"/>
+        <location filename="mainwindow.cpp" line="2830"/>
         <source>No network access</source>
         <translation>無法存取網路</translation>
     </message>
@@ -922,8 +927,8 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <location filename="mainwindow.cpp" line="1942"/>
         <location filename="mainwindow.cpp" line="2423"/>
         <location filename="mainwindow.cpp" line="2434"/>
-        <location filename="mainwindow.cpp" line="3434"/>
-        <location filename="mainwindow.cpp" line="3456"/>
+        <location filename="mainwindow.cpp" line="3447"/>
+        <location filename="mainwindow.cpp" line="3469"/>
         <source>Download error</source>
         <translation>下載錯誤</translation>
     </message>
@@ -951,7 +956,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2434"/>
-        <location filename="mainwindow.cpp" line="3456"/>
+        <location filename="mainwindow.cpp" line="3469"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>寫入已下載的檔案至 SD 記憶卡時發生錯誤。SD 記憶卡或檔案系統可能受損。</translation>
     </message>
@@ -961,7 +966,12 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <translation>檢查檔案大小錯誤 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3000"/>
+        <location filename="mainwindow.cpp" line="2685"/>
+        <source> has an incompatible number of partitions with </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="3013"/>
         <source>Reformat drive?</source>
         <translation>重新格式化磁碟？</translation>
     </message>

@@ -2629,6 +2629,7 @@ void MainWindow::startImageReinstall()
 
     foreach (QVariantMap entry, _newList)
     {
+        int i;
         if (entry.contains("folder"))
         {
             /* Local image */
@@ -2650,7 +2651,8 @@ void MainWindow::startImageReinstall()
             /* Insert tarball download URL information into partition_info.json */
             QVariantMap json = Json::loadFromFile(folder+"/partitions.json").toMap();
             QVariantList partitions = json["partitions"].toList();
-            int i=0;
+
+            i=0;
             QStringList tarballs = entry.value("tarballs").toStringList();
             foreach (QString tarball, tarballs)
             {
@@ -2670,7 +2672,18 @@ void MainWindow::startImageReinstall()
         }
         QVariantMap installedEntry = entry.value("existingOS").toMap();
 
-        imageWriteThread->addInstalledImage(folder, entry.value("name").toString(), installedEntry); //@@
+        QVariantList iPartitions = installedEntry.value("partitions").toList();
+        int nInstalledParts = iPartitions.count();
+
+        if (i == nInstalledParts)
+        {
+            imageWriteThread->addInstalledImage(folder, entry.value("name").toString(), installedEntry); //@@
+        }
+        else
+        {
+            QMessageBox::warning(this,tr("Replace OSes"),
+                                 entry.value("name").toString() + tr(" has an incompatible number of partitions with ") + installedEntry.value("name").toString(),QMessageBox::Close);
+        }
 
         if (!slidesFolder.isEmpty())
             slidesFolders.append(slidesFolder);
