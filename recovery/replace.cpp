@@ -86,9 +86,11 @@ QList<QVariantMap> replace::getMappedList()
         qDebug()<< installedItem->text() << " < " << combo->currentText();
         QVariantMap iMap = installedItem->data(Qt::UserRole).toMap();
         QVariantMap rMap = combo->itemData(combo->currentIndex(),Qt::UserRole).toMap();
-
-        rMap["existingOS"] = iMap;
-        newMap.append(rMap);
+        if (combo->currentText() != "<no change>")
+        {
+            rMap["existingOS"] = iMap;
+            newMap.append(rMap);
+        }
     }
     return(newMap);
 }

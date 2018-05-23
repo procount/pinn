@@ -989,8 +989,18 @@ void MainWindow::on_actionReinstall_triggered()
             _newList.append(new_details);
         }
     }
+    if (_newList.count())
+    {
+        prepareMetaFiles();
+    }
+    else
+    {
+        QMessageBox::warning(this,
+                             tr("ReInstall OSes"),
+                             tr("Warning: No OSes selected or available\n"),
+                             QMessageBox::Close);
 
-    prepareMetaFiles();
+    }
 }
 
 void MainWindow::prepareMetaFiles()
@@ -2276,9 +2286,14 @@ void MainWindow::updateActions()
     ui->actionInfoInstalled->setEnabled(item && item->data(Qt::UserRole).toMap().contains("url"));
 
     QList<QListWidgetItem *> select = ug->selectedInstalledItems();
-    //ui->actionFschk->setEnabled( select.count() );
-    ui->actionRepair->setEnabled( select.count() );
-    ui->actionReinstall->setEnabled( select.count() );
+    int count = select.count();
+    ui->actionRepair->setEnabled( count );
+    ui->actionReinstall->setEnabled( count );
+
+    item = ug->listInstalled->item(0); //First item in list is always PINN
+    if (item->checkState()) //Cannot replace PINN with something else!
+        count--;
+    ui->actionReplace->setEnabled( count );
 
     //For the normal list...
     item = ug->list->currentItem();
@@ -3686,16 +3701,26 @@ void MainWindow::on_actionReplace_triggered()
     _newList.clear();
     _newList = dlg.getMappedList();
 
-    foreach (QVariantMap os, _newList)
+    if (_newList.count())
     {
-        if (os.value("source").toString() == SOURCE_INSTALLED_OS)
+        foreach (QVariantMap os, _newList)
         {
-            onError(os.value("name").toString() + tr(" is not available.\nPlease provide it locally or connect to the internet."));
-            return;
+            if (os.value("source").toString() == SOURCE_INSTALLED_OS)
+            {
+                onError(os.value("name").toString() + tr(" is not available.\nPlease provide it locally or connect to the internet."));
+                return;
+            }
         }
+        prepareMetaFiles();
     }
-    prepareMetaFiles();
-    //@@Go to next stage
+    else
+    {
+        QMessageBox::warning(this,
+                             tr("Replace OSes"),
+                             tr("Warning: No OSes selected\n"),
+                             QMessageBox::Close);
+
+    }
 }
 
 void MainWindow::loadOverrides(const QString &filename)
