@@ -21,9 +21,18 @@
 #include <sys/ioctl.h>
 #include <QtEndian>
 
-InitDriveThread::InitDriveThread(const QString &drive, QObject *parent) :
+InitDriveThread::InitDriveThread(const QString &drive, QObject *parent, const QString& P1size ) :
     QThread(parent), _drive(drive)
 {
+    //P1size = "+nnn", means additional space
+    //P1size = "nnn", means total space
+    QString value=P1size;
+    _action = value.left(1);
+    if (_action == "+")
+        value = value.mid(1,-1); //Remove the action character
+    else
+        _action = "";    //default action
+    _size = value.toUInt(); //in MB
 }
 
 void InitDriveThread::run()
@@ -141,8 +150,21 @@ void InitDriveThread::run()
 
 bool InitDriveThread::method_resizePartitions()
 {
-    uint newStartOfRescuePartition = getFileContents(sysclassblock(_drive, 1)+"/start").trimmed().toUInt();
-    uint newSizeOfRescuePartition  = sizeofBootFilesInKB()*1.024/1000 + 100;
+    uint newStartOfRescuePartition = getFileContents(sysclassblock(_drive, 1)+"/start").trimmed().toUInt(); //Sectors
+    uint newSizeOfRescuePartition  = sizeofBootFilesInKB()*1.024/1000 + 100; //MB
+
+    if (_size)
+    {
+        if (_action=="+")
+        {
+            newSizeOfRescuePartition += _size; //MB
+        }
+        else
+        {
+            newSizeOfRescuePartition = qMax(_size, (uint)newSizeOfRescuePartition); //MB
+        }
+    }
+
 
     if (!umountSystemPartition())
     {
@@ -409,6 +431,17 @@ bool InitDriveThread::partitionDrive()
      */
     QByteArray partitionTable;
     uint sizeOfOurPartition = RESCUE_PARTITION_SIZE*1024*2;
+    if (_size)
+    {
+        if (_action=="+")
+        {
+            sizeOfOurPartition += _size * 1024 * 2; //MB->KB->sectors
+        }
+        else
+        {
+            sizeOfOurPartition = qMax(_size, (uint)RESCUE_PARTITION_SIZE)*1024*2;
+        }
+    }
     uint startOfOurPartition = PARTITION_ALIGNMENT;
     uint startOfExtended = startOfOurPartition+sizeOfOurPartition;
 

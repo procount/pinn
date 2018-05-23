@@ -248,7 +248,19 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
         _qpd->setWindowModality(Qt::WindowModal);
         _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 
-        InitDriveThread *idt = new InitDriveThread(_bootdrive, this);
+        QString reserve ="+0";
+        QString cmdline = getFileContents("/proc/cmdline");
+        QStringList args = cmdline.split(QChar(' '),QString::SkipEmptyParts);
+        foreach (QString s, args)
+        {
+            if (s.contains("reserve"))
+            {
+                QStringList params = s.split(QChar('='));
+                reserve = params.at(1);
+            }
+        }
+
+        InitDriveThread *idt = new InitDriveThread(_bootdrive, this, reserve);
         connect(idt, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
         connect(idt, SIGNAL(completed()), _qpd, SLOT(deleteLater()));
         connect(idt, SIGNAL(error(QString)), this, SLOT(onQpdError(QString)));
@@ -2644,11 +2656,15 @@ void MainWindow::startImageReinstall()
 
     foreach (QVariantMap entry, _newList)
     {
-        int i;
+        int i=0;
         if (entry.contains("folder"))
         {
             /* Local image */
             folder = entry.value("folder").toString();
+
+            QVariantMap json = Json::loadFromFile(folder+"/partitions.json").toMap();
+            QVariantList partitions = json["partitions"].toList();
+            i = partitions.count();
         }
         else
         {
@@ -2667,7 +2683,6 @@ void MainWindow::startImageReinstall()
             QVariantMap json = Json::loadFromFile(folder+"/partitions.json").toMap();
             QVariantList partitions = json["partitions"].toList();
 
-            i=0;
             QStringList tarballs = entry.value("tarballs").toStringList();
             foreach (QString tarball, tarballs)
             {
