@@ -925,7 +925,8 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
         foreach (QVariant v, installed_os)
         {
             QVariantMap m = v.toMap();
-            if (m.value("name").toString() == image->replacedName())
+            if ( (m.value("name").toString() == image->replacedName()) &&
+                 (m.value("partitions").toList().at(0).toString()  == image->partitions()->at(0)->partitionDevice()) )
                 installed_os.replace(i,ventry);
             i++;
         }
