@@ -15,7 +15,7 @@ QT_TRANSLATE_NOOP("OsGroup","Games")
 QT_TRANSLATE_NOOP("OsGroup","Minimal")
 QT_TRANSLATE_NOOP("OsGroup","Education")
 QT_TRANSLATE_NOOP("OsGroup","Installed")
-QT_TRANSLATE_NOOP("OsGroup","Projects")
+QT_TRANSLATE_NOOP("OsGroup","Utility")
 #endif
 
 OsGroup::OsGroup(QMainWindow *mw, Ui::MainWindow *ui, bool doGrouping, QObject *parent) :

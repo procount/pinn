@@ -7,7 +7,7 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v2.8.3
+This README relates to v2.8.4
 
 <sup>(PINN is only available in one format that does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`)</sup>
 
@@ -150,6 +150,7 @@ There are three toolbars:
   - **[Password](#how-to-recover-from-a-lost-password)**: Allows the password of an OS to be restored or replaced.
   - **[Fix](#how-to-fix-an-os)**: Performs repairs on file systems of the selected installed OSes.
   - **[Reinstall](#reinstall-individual-oses)**: Allows individual installed OSes to be reinstalled back to their original installation without affecting any of the other installed OSes.
+  - **[Replace](#replace-individual-oses)**: Allows individual installed OSes to be replaced by other/different OSes without affecting any of the other installed OSes.
   - **[Info](#info-on-os)**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
 
 The `more` button can be used to cycle through the 3 toolbars.
@@ -349,6 +350,8 @@ The following is a complete list of all the PINN options that can be added to th
 
 - **runinstaller**: This option is present when PINN is first installed to cause it to reformat the SD card. Once reformatted, PINN will delete this option. Manually adding it back in will cause PINN to reformat the SD card on next boot, losing any and all installed OSes, so be careful!
 
+- **reserve=(+)NNN**: This option will reserve a set amount of space for PINN's partition (typically /dev/mmcblk0p1) when the `runinstaller` option first formats the SD card. This space may be useful for adding OS install files later, or for using the first partition as a transfer area for data between the RPi and a Windows PC that can only read the SD card's first partition. NNN specifies the total size of this partition in MB. The default value is around 64MB. If the size is prefixed with a '+' sign, the value indicates an amount of disk space to be reserved [i]in addition[/i] to the size of PINN's files. So, `reserve=200` will make P1 200MB in size and `reserve=+200` will make it about 263MB in size.
+
 - **no_update**: Prevents PINN from performing a self-update check on boot up. Use the `reinstall` option to manually check for updates on PINN.
 
 - **nofirmware**: Prevents PINN from upgrading the firmware of old OSes to be compatible with PINN.
@@ -511,6 +514,20 @@ Once USB boot mode is enabled, proceed as follows:
 1. Format the USB device as FAT 32 and copy the PINN files to it, just as you would for a normal PINN installation on an SD card.
 2. Boot PINN on the Pi from the USB device.
 3. Install your requried OSes as normal.
+
+## Project Spaces
+
+Project Spaces are empty OSes that just consist of an empty 100MB FAT32 partition and an empty 500MB nominal ext4 partition. Up to 8 Project Spaces can be installed onto an SD card along with any other OSes. Any remaining space left on the SD card will be divided up between all of these Project Spaces, so their ext4 partitions will expand to fill the remaining space and they will all be the same size.
+
+![alt text](screenshots/projectspaces.png "Project Spaces")
+
+
+Project Spaces are useful when used with the [Replace](#replace-individual-os) OS function, as they reserve OS space that can be used later. The 3 main benefits are:
+1. They reserve OS space, so the choice of which OS to install or add can be made later on.
+2. They allow multiple instances of the same OS to be installed.
+3. They allow the same amount of space to be used for each OS.
+
+When replacing a project space with another OS, remember that the new OS must have the same number of partitions as the project space and each partition must fit within the existing partition sizes. So creating 8 project spaces on a 16GB card may not be very useful as there will be <2GB left on each of the ext4 partitions. That maybe ok for some of the minimal OSes, but no good for a full Raspbian installation, for example.
 
 ## PINN's Firmware Upgrade/Downgrade
 
@@ -720,6 +737,8 @@ If you have changed your login password for an OS and forget what it is, PINN wi
 
 If your installed OS will not boot, the Fix option in the maintenance menu may help. It provides a list of operatiosn that you may perform to fix the OS. Check all operations that you want to be performed on your selected OSes.
 
+![alt text](screenshots/fix.png "Fix an OS options.")
+
 ### File System Check
 
 Most RPi OSes typically delay writing any data back to SD or USB drives for performance reasons. Normally, this does not cause a problem provided the Pi is shutdown properly before removing the power, but this is not always possible. You may experience a power loss, or a program crash where pulling the power is your only recourse to recovering control. In these circumstances there is a risk that the SD card or USB drive may become corrupted if some data failed to get written to the drive before the power was lost. 
@@ -739,6 +758,16 @@ The `install` function will install one or more OSes to your drive, allowing a m
 The `Reinstall` option gets around this by allowing individual installed OSes to be over-written with the latest version of the corresponding OS, leaving all other OSes intact. As it does not repartition the drive, the new OS must fit within the same partition sizes as the OS occupied the last time it was installed.
 
 PINN itself is included in the list of installed OSes. If it is the ONLY OS to be selected, reinstalling it will perform a manual self-update check which is useful in the case where the `no_update` cmdline option has been used.
+
+## Replace Individual OSes
+
+The `replace` function will allow the replacement of an installed OS with another different OS, provided the number of partitions in the two OSes is the same and the new OS will fit within the existing partition sizes. So it will work with most OSes, but not for those that use a non-standard partition layout, like Windows IoT or some Android versions. Any other installed OSes will remain unaltered.
+
+This is particularly useful with the [Project Spaces](#project-spaces) feature, which will allow OS space to be reserved for installing an OS at a later date.
+
+To replace one or more OSes, first select the new OSes you want to install on the `Main Menu`. Then move to the `Maintenance Menu` and select the OSes (or project Spaces) that you want to be replaced and click the `Replace` button. A dialog box will pop up lsiting all the OSes to be replaced. Alongside each one is a drop down box, where you can select which new OS shall replace each installed OS. The Click OK to replace the old OSes with the new OSes.
+
+![alt text](screenshots/replace.png "Replace OSes.")
 
 ---
 
