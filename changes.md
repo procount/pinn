@@ -387,3 +387,11 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Programmable CEC**        - Fixed bugs
 - **networktimeout**          - Added timeout to detect network presence
 
+### V2.8.4
+
+- **Replace OSes**            - Allows the replacement of one OS with another
+- **Project Spaces**          - Added Project Spaces
+- **Reserve disk space**      - Reserve some space on PINN's partition before formatting
+- **mkimage**                 - Added mkimage from uboot
+- **xz**                      - Allow XZ Compression
+- **Update Dialog**           - This now cancels any timeout setting

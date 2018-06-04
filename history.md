@@ -5,6 +5,15 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V2.8.4
+
+- **Replace OSes**            - Allows the replacement of one OS with another
+- **Project Spaces**          - Added Project Spaces
+- **Reserve disk space**      - Reserve some space on PINN's partition before formatting
+- **mkimage**                 - Added mkimage from uboot
+- **xz**                      - Allow XZ Compression
+- **Update Dialog**           - This now cancels any timeout setting
+
 ### V2.8.3
 
 - **Programmable CEC**        - Fixed bugs

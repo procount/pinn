@@ -1276,7 +1276,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="18"/>
-        <source>Projects</source>
+        <source>Utility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
