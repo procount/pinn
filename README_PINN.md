@@ -62,7 +62,7 @@ On any subsequent boot, you can press the SHIFT key to enter the PINN interface 
 
 If no input is provided, PINN will proceed to the boot selection dialog. If only one OS installed it will booted immediately, otherwise a menu of installed OSes will be presented for one to be selected. If no choice is detected within a timeout period, the last booted OS, or a default OS will be chosen. 
 
-It is also possible for PINN to be bypassed altogether and one of the OSes booted directly from startup. In this way it is not even noticeable that PINN is there, but it canbe reinstated simply by deleting a single file on the PINN partition.
+It is also possible for PINN to be bypassed altogether and one of the OSes booted directly from startup. In this way it is not even noticeable that PINN is there, but it can be reinstated simply by deleting a single file on the PINN partition.
 
 ## Requirements
 
@@ -142,7 +142,6 @@ There are three toolbars:
 - **[Archival](#archival-menu)**
   - **[Download](#download)**: Downloads an OS for offline installation.
   - **[Clone SD](#how-to-clone-an-sd-card)**: Clones the SD to another card.
-<!--  - **[Wipe](#wipe-the-drive)**: Restores the drive to its original size and deletes all installed OSes. -->
   - **[Info](#info-on-os)**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
   - **[Firmware](#pinn's-firmware-upgrade/downgrade)**: Upgrades or downgrades PINN's firmware for use on RPI3B+ or other models.
 - **[Maintenance](#maintenance-ment)**
