@@ -188,6 +188,10 @@ void LanguageDialog::changeLanguage(const QString &langcode)
     {
         defaultKeyboardLayout = "jp";
     }
+    else if (langcode == "sv")
+    {
+        defaultKeyboardLayout = "se";
+    }
     else
     {
         defaultKeyboardLayout = langcode.left(2); /* Use only 2 letter keyboard code as best guess */
