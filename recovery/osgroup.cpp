@@ -308,12 +308,17 @@ QListWidgetItem *OsGroup::findItemByDataName(const QString &name)
 }
 
 
-void OsGroup::updateInstalledStatus()
+int OsGroup::updateInstalledStatus()
 {
+    int nBootable = 0;
     for (int i=1; i < listInstalled->count(); i++)//ALL
     {
         QListWidgetItem *installedItem = listInstalled->item(i); //ALL
         QVariantMap installedEntry = installedItem->data(Qt::UserRole).toMap();
+
+        if (installedEntry.value("bootable").toBool() ==true)
+            nBootable++;
+
         QString name = installedEntry.value("name").toString();
         QListWidgetItem * matchItem = findItemByDataName(name);
         if (matchItem)
@@ -356,6 +361,7 @@ void OsGroup::updateInstalledStatus()
             listInstalled->update();
         }
     }
+    return(nBootable);
 }
 
 QList<QListWidgetItem *> OsGroup::selectedInstalledItems()

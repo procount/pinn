@@ -12,6 +12,7 @@
 
 #include "countdownfilter.h"
 
+#include <QAbstractButton>
 #include <QListWidgetItem>
 #include <QModelIndex>
 #include <QDialog>
@@ -20,6 +21,8 @@
 #include <QModelIndex>
 #include <QTimer>
 #include <QListWidgetItem>
+
+
 namespace Ui {
 class BootSelectionDialog;
 }
@@ -43,6 +46,8 @@ protected slots:
 private slots:
     void on_list_itemChanged(QListWidgetItem *item);
     void on_pushButton_clicked();
+
+    void on_buttonBox_clicked(QAbstractButton *button);
 
 protected:
     QTimer _timer;

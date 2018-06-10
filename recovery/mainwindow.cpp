@@ -141,7 +141,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     ui(new Ui::MainWindow),
     _qpd(NULL), _kcpos(0), _defaultDisplay(defaultDisplay),
     _silent(false), _allowSilent(false), _showAll(false), _fixate(false), _splash(splash), _settings(NULL),
-    _hasWifi(false), _numInstalledOS(0), _devlistcount(0), _netaccess(NULL), _displayModeBox(NULL), _drive(drive),
+    _hasWifi(false), _numInstalledOS(0), _numBootableOS(0), _devlistcount(0), _netaccess(NULL), _displayModeBox(NULL), _drive(drive),
     _bootdrive(drive), _noobsconfig(noobsconfig), _numFilesToCheck(0), _eDownloadMode(MODE_INSTALL), _proc(NULL)
 {
     ui->setupUi(this);
@@ -603,8 +603,9 @@ void MainWindow::populate()
         ug->list->item(0)->setCheckState(Qt::Checked);
         on_actionWrite_image_to_disk_triggered();
         _numInstalledOS = 1;
+        _numBootableOS = 1; //@@Assume user has installed a bootable OS.
     }
-    ui->actionCancel->setEnabled(_numInstalledOS > 0);
+    ui->actionCancel->setEnabled(_numBootableOS > 0);
 }
 
 void MainWindow::repopulate()
@@ -624,7 +625,8 @@ void MainWindow::repopulate()
 
     //@@Add dummy icons?
 
-    if (_numInstalledOS)
+    //@@change to _numBootableOS
+    if (_numBootableOS)
     {
         ui->actionCancel->setEnabled(true);
         if (_fixate)
@@ -777,8 +779,12 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
 
 void MainWindow::updateInstalledStatus()
 {
-    ug->updateInstalledStatus();
-    if (ug->listInstalled->count()>1)
+    MYDEBUG
+    _numBootableOS = ug->updateInstalledStatus();
+    qDebug() << "updateInstalledStatus: _numBootableOS = " << _numBootableOS;
+    //@@ Maybe add: _numInstalledOS = ug->listInstalled->count();
+    //@@if (ug->listInstalled->count()>1)
+    if (_numBootableOS)
     {
         ui->actionCancel->setEnabled(true);
         if (_fixate)
@@ -816,11 +822,15 @@ void MainWindow::updateInstalledStatus()
 /* Iterates over the installed images and adds each one to the ug->listinstalled and ug->list lists */
 void MainWindow::addInstalledImages()
 {
+    if (ug->listInstalled->count())
+        ug->listInstalled->clear();
+
     createPinnEntry();
 
     if (_settings)
     {
         _numInstalledOS=0;
+        _numBootableOS=0;
         QVariantList i = Json::loadFromFile("/settings/installed_os.json").toList();
         foreach (QVariant v, i)
         {
@@ -829,6 +839,8 @@ void MainWindow::addInstalledImages()
             QString name = m.value("name").toString();
             if (name == RECOMMENDED_IMAGE)
                 m["recommended"] = true;
+            if (m.value("bootable").toBool() == true)
+                _numBootableOS++;
             m["installed"]=true;
             m["source"] = SOURCE_INSTALLED_OS;
             bool bInstalled=true;
@@ -1160,11 +1172,13 @@ void MainWindow::on_actionDownload_triggered()
 
 void MainWindow::on_actionCancel_triggered()
 {
+    MYDEBUG
     close();
 }
 
 void MainWindow::onCompleted()
 {
+    MYDEBUG
     int ret = QMessageBox::Ok;
 
     _qpssd->hide();
@@ -1194,10 +1208,12 @@ void MainWindow::onCompleted()
     }
     _qpssd->deleteLater();
     _qpssd = NULL;
+
+
     if (_eDownloadMode==MODE_DOWNLOAD)
     {
-        setEnabled(true);
-        show();
+        //setEnabled(true);
+        //show();
 
         if (ret == QMessageBox::Ok)
         {
@@ -1219,18 +1235,28 @@ void MainWindow::onCompleted()
         }
     }
 
-    if (_eDownloadMode == MODE_REINSTALL)
-    {
-        // Update list of installed OSes.
-        setEnabled(true);
-        show();
-        ug->listInstalled->clear();
-        _numInstalledOS=0;
-        addInstalledImages();
+    // Return back to main menu
+    setEnabled(true);
+    show();
 
-    }
+    // Update list of installed OSes.
+    ug->listInstalled->clear();
+    addInstalledImages();
+    updateInstalledStatus();
+    //_numInstalledOS=ug->listInstalled->count();
+    qDebug() << "Installed="<< _numInstalledOS << " Bootable="<<_numBootableOS;
+
     if (_eDownloadMode == MODE_INSTALL)
-        close();
+    {
+        DBG("INSTALL")
+        //Only close if there are bootable OSes
+        if (_numBootableOS)
+        {
+            DBG("Closing....")
+            close();
+            return;
+        }
+    }
 }
 
 void MainWindow::onError(const QString &msg)

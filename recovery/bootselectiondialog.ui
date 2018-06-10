@@ -40,6 +40,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QDialogButtonBox" name="buttonBox">
+         <property name="standardButtons">
+          <set>QDialogButtonBox::Cancel</set>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="pushButton">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -83,8 +90,9 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>list</tabstop>
   <tabstop>pushButton</tabstop>
+  <tabstop>buttonBox</tabstop>
+  <tabstop>list</tabstop>
  </tabstops>
  <resources/>
  <connections/>

@@ -458,7 +458,8 @@ int main(int argc, char *argv[])
     ld->show();
 #endif
 
-    a.exec();
+    int result = a.exec();
+    qDebug() << "Application Exit " << result;
     showBootMenu(drive, defaultPartition, timedReboot);
 
     return 0;

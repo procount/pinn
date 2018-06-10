@@ -545,10 +545,10 @@
      <normaloff>:/icons/arrow_refresh.png</normaloff>:/icons/arrow_refresh.png</iconset>
    </property>
    <property name="text">
-    <string>Replace (p)</string>
+    <string>Replace (l)</string>
    </property>
    <property name="shortcut">
-    <string>P</string>
+    <string>L</string>
    </property>
    <property name="visible">
     <bool>true</bool>

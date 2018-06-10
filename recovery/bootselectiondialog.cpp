@@ -17,6 +17,7 @@
 #include "sleepsimulator.h"
 
 #include <stdio.h>
+#include <QAbstractButton>
 #include <QDebug>
 #include <unistd.h>
 #include <QDir>
@@ -442,4 +443,9 @@ void BootSelectionDialog::on_pushButton_clicked()
 {
     qDebug()<<"Click!";
     accept();
+}
+
+void BootSelectionDialog::on_buttonBox_clicked(QAbstractButton *button)
+{
+    reject();
 }

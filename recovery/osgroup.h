@@ -41,7 +41,7 @@ public:
 
     int count();
     QListWidgetItem *findItemByDataName(const QString &name);
-    void updateInstalledStatus();
+    int updateInstalledStatus();
     QList<QListWidgetItem *> selectedItems();
     QList<QListWidgetItem *> selectedInstalledItems();
     QList<QListWidgetItem *> allItems();
