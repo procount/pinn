@@ -779,7 +779,6 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
 
 void MainWindow::updateInstalledStatus()
 {
-    MYDEBUG
     _numBootableOS = ug->updateInstalledStatus();
     qDebug() << "updateInstalledStatus: _numBootableOS = " << _numBootableOS;
     //@@ Maybe add: _numInstalledOS = ug->listInstalled->count();
@@ -1172,13 +1171,11 @@ void MainWindow::on_actionDownload_triggered()
 
 void MainWindow::on_actionCancel_triggered()
 {
-    MYDEBUG
     close();
 }
 
 void MainWindow::onCompleted()
 {
-    MYDEBUG
     int ret = QMessageBox::Ok;
 
     _qpssd->hide();
@@ -1212,9 +1209,6 @@ void MainWindow::onCompleted()
 
     if (_eDownloadMode==MODE_DOWNLOAD)
     {
-        //setEnabled(true);
-        //show();
-
         if (ret == QMessageBox::Ok)
         {
             //@@Temporary solution....
@@ -1243,16 +1237,12 @@ void MainWindow::onCompleted()
     ug->listInstalled->clear();
     addInstalledImages();
     updateInstalledStatus();
-    //_numInstalledOS=ug->listInstalled->count();
-    qDebug() << "Installed="<< _numInstalledOS << " Bootable="<<_numBootableOS;
 
     if (_eDownloadMode == MODE_INSTALL)
     {
-        DBG("INSTALL")
         //Only close if there are bootable OSes
         if (_numBootableOS)
         {
-            DBG("Closing....")
             close();
             return;
         }
