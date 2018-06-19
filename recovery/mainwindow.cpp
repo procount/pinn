@@ -322,7 +322,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     QProcess::execute("mount -o ro -t vfat "+partdev(_bootdrive, 1)+" /mnt");
 
     _model = getFileContents("/proc/device-tree/model");
-
+    ui->modelname->setText(_model);
     loadOverrides("/mnt/overrides.json");
 
     untarFirmware();
