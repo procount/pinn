@@ -610,11 +610,12 @@ void MainWindow::populate()
 
 void MainWindow::repopulate()
 {
-    QMap<QString,QVariantMap> images = listImages();
-    //bool haveicons = false;
+    QMap<QString,QVariantMap> images;
     _currentsize = ug->list->iconSize();
     QIcon localIcon(":/icons/hdd.png");
-    //QIcon internetIcon(":/icons/download.png");
+
+    if ( _sdimages )
+        images= listImages();
 
     foreach (QVariant v, images.values())
     {
@@ -780,7 +781,6 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
 void MainWindow::updateInstalledStatus()
 {
     _numBootableOS = ug->updateInstalledStatus();
-    qDebug() << "updateInstalledStatus: _numBootableOS = " << _numBootableOS;
     //@@ Maybe add: _numInstalledOS = ug->listInstalled->count();
     //@@if (ug->listInstalled->count()>1)
     if (_numBootableOS)
@@ -2016,26 +2016,23 @@ void MainWindow::processJson(QVariant json)
                 {
                     QVariantMap flavour = flv.toMap();
                     QVariantMap item = os;
+                    item.remove("flavours");
                     QString name        = flavour.value("name").toString();
                     QString description = flavour.value("description").toString();
                     QString iconurl     = flavour.value("icon").toString();
 
-                    item.insert("name", name);
-                    item.insert("description", description);
-                    item.insert("icon", iconurl);
-                    item.insert("feature_level", flavour.value("feature_level"));
-                    item.insert("source", SOURCE_NETWORK);
-                    item.insert("bootable", flavour.value("bootable"));
-                    item.insert("group", flavour.value("group"));
+                    item["name"]= name;
+                    item["description"]=description;
+                    item["icon"]=iconurl;
+                    item["source"]=SOURCE_NETWORK;
                     processJsonOs(name, item, iconurls);
                 }
             }
-            if (os.contains("description"))
+            else if (os.contains("description"))
             {
-                QString name = basename;
-                os["name"] = name;
+                os["name"] = basename;
                 os["source"] = SOURCE_NETWORK;
-                processJsonOs(name, os, iconurls);
+                processJsonOs(basename, os, iconurls);
             }
         }
     }
@@ -2702,8 +2699,8 @@ void MainWindow::startImageReinstall()
                 QVariantMap partition = partitions[i].toMap();
                 partition.insert("tarball", tarball); //change to download
                 partitions[i] = partition;
-                i++;
             }
+            i=partitions.count();
             json["partitions"] = partitions;
             Json::saveToFile(folder+"/partitions.json", json);
         }
@@ -3209,7 +3206,6 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
             else
                 ug->listInstalled->addItem(witem);
             //ug->listInstalled->update();
-
 #if 0
             //Clone image to new list if not already known
             if (!witemNew)

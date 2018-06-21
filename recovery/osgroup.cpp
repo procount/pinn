@@ -49,7 +49,6 @@ void OsGroup::addItem(QListWidgetItem * item)
 {
     QVariantMap entry = item->data(Qt::UserRole).toMap();
     QString group = getGroup(entry);
-
     if (tabs || group != DEFGROUP)
     {
         list = findTab(group);
