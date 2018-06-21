@@ -16,6 +16,21 @@
  * See LICENSE.txt for license details
  */
 
+typedef enum eNAMEPARTS_T
+{   // Name = eBASE - eFLAVOUR#eDATE@ePART
+    eBASE=1,
+    eFLAVOUR=2,
+    eDATE=4,
+    ePART=8,
+    eSPLIT=16,  //Do not return prefix
+
+    //Useful combinations
+    eCORE=eBASE|eFLAVOUR,           //Normally used name
+    eBACKUP=eBASE|eFLAVOUR|eDATE,   //Normal name + backup date
+    eUNIQUE=eBASE|eFLAVOUR|ePART,   //Name name + partition info
+    eFULL=eBASE|eFLAVOUR|eDATE|ePART//Everything
+} eNAMEPARTS;
+
 QByteArray getFileContents(const QString &filename);
 void putFileContents(const QString &filename, const QByteArray &data);
 QByteArray getRemoteFile(const QString &url);
@@ -34,5 +49,7 @@ QByteArray getUUID(const QString part);
 QByteArray getDiskId(const QString &device);
 QByteArray getPartUUID(const QString &devpart);
 QByteArray getDevice(const QString & partuuid);
+
+QString getNameParts(const QString& input, eNAMEPARTS flags);
 
 #endif // UTIL_H

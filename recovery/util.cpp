@@ -13,6 +13,7 @@
 #include <QDebug>
 #include <QList>
 #include <QtEndian>
+#include <QStringRef>
 
 /*
  * Convenience functions
@@ -286,4 +287,62 @@ QByteArray getDevice(const QString & partuuid)
         device = device.left(colonpos);
     }
     return device;
+}
+
+
+QString getNameParts(const QString& input, eNAMEPARTS flags)
+{
+    int i,j;
+    int index;
+    struct partid_t
+    {
+        QString value;
+        int start;
+        int length;
+        const char * delim;
+    };
+
+    struct partid_t parts[4]=
+    {
+        {"", -1,  -1,  ""},    //Base
+        {"", -1,  -1,  " - "}, //Flavour
+        {"", -1,  -1,  "#"},   //Date
+        {"", -1,  -1,  "@"}    //Partition
+    };
+    QString output;
+
+    if (!input.isEmpty())
+    {
+        //Identify which parts are present
+        parts[0].start = 0;
+        for (i=1; i<4; i++)
+        {
+            index = input.indexOf(parts[i].delim);
+            if (index != -1)
+            {
+                parts[i].start = index;
+                for (j=i-1; j>=0; j--)
+                {
+                    if (parts[j].length == -1)
+                        parts[j].length = index - parts[j].start;
+                }
+            }
+        }
+        if (parts[3].start != -1)
+            parts[3].length = input.length()-parts[3].start;
+
+        for (i=0; i<4; i++)
+        {
+            int offset = (flags & eSPLIT) ? strlen(parts[i].delim) : 0;
+            if (parts[i].start != -1 && parts[i].length != -1)
+            {
+                QString value = QStringRef(&input,parts[i].start+offset, (int)parts[i].length-offset).toString();
+                if (flags & (1<<i))
+                {
+                    output += value;
+                }
+            }
+        }
+    }
+    return(output);
 }
