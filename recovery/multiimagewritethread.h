@@ -17,6 +17,7 @@ public:
     explicit MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive,bool noobsconfig=false, bool partition=true, QObject *parent = 0);
     void addImage(const QString &folder, const QString &flavour);
     void addInstalledImage(const QString& folder, const QString& flavour, const QVariantMap& sParts, const QString& replacedName="");
+    bool untar(const QString &tarball, bool bSuppressError=false);
 
 protected:
     virtual void run();
@@ -32,7 +33,6 @@ protected:
     bool mkfs(const QByteArray &device, const QByteArray &fstype = "ext4", const QByteArray &label = "", const QByteArray &mkfsopt = "");
     bool dd(const QString &imagePath, const QString &device);
     bool partclone_restore(const QString &imagePath, const QString &device);
-    bool untar(const QString &tarball, bool bSuppressError=false);
     bool isLabelAvailable(const QByteArray &label, const QByteArray &device = "");
 //    QByteArray getLabel(const QString part);
 //    QByteArray getUUID(const QString part);

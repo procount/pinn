@@ -7,9 +7,9 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v2.8.4
+This README relates to v2.8.5
 
-<sup>(PINN is only available in one format that does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`)</sup>
+<sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
 ## Index
 
@@ -101,6 +101,7 @@ to burn an image directly to the SD card.
 The [pinn-lite.img.zip](http://sourceforge.net/projects/pinn/files/Etcher/pinn-lite.img.zip) image file you need to burn can be found on [sourceforge](http://www.sourceforge.net/projects/pinn) in the Etcher folder.
 
 ## Boot PINN on your PI
+
 - Put the PINN SD card into your Pi and boot it.
 - On first boot the "RECOVERY" FAT partition will be automatically resized to a minimum, so if you ever put your SD card back into a Windows machine it will look like a very small partition. THIS IS NORMAL.
 - PINN does not come supplied with any OSes. You must download them from the internet or provide them on a USB stick. So,....
@@ -125,7 +126,7 @@ It is possible to disable self-update checks by adding the `no_update` option to
 
 # PINN User Interface
 
-The PINN user interface is kept fairly simple, comprising a switchable toolbar of command buttons, a list of installable operating systems and a status window indicating the capacity of appropriate attached memory devices. At the bottom of the screen is a small display customisation dialog that permits changing the language and keyboard layout of the user interface.
+The PINN user interface is kept fairly simple, comprising a switchable toolbar of command buttons, a list of installable operating systems and a status window indicating the capacity of appropriate attached memory devices. At the bottom of the screen is a small display customisation dialog that permits changing the language and keyboard layout of the user interface. The model of RPi you are using is also displayed just above this,
 
 ![alt text](screenshots/interface.png "PINN User Interface")
 
@@ -158,9 +159,9 @@ The `more` button can be used to cycle through the 3 toolbars.
 
 Beneath the toolbar is the main list of Operating Systems which displays the name and a short description of each OS. At the right hand side is an icon indicating the source where the latest version will be installed from (Internet, SD card or USB drive).
 
-OSes are grouped onto tabs which categorise the type of OS they are. This grouping includes the following categories: General, Media, Gaming, Education & Minimal. To avoid this grouping, specify **`no_group`** on recovery.cmdline and the OSes will all appear in one list.
+OSes are grouped onto tabs which categorise the type of OS they are. This grouping includes the following categories: General, Media, Gaming, Education, Minimal & Utility. To avoid this grouping, specify **`no_group`** on recovery.cmdline and the OSes will all appear in one list.
 
-Each OS has a checkbox at the left hand side to select whether it will be installed or not. When PINN is booted with OSes already installed, these OSes will have their checkbox automatically ticked and their background will also be light green in colour, along with the word **[installed]** next to their name. Note that installed OSes may be selected in multiple tabs.
+Each OS has a checkbox at the left hand side to select whether it will be installed or not. When PINN is booted with OSes already installed, these OSes will normally have their checkbox automatically ticked (but see the `select` option) and their background will also be light green in colour, along with the word **[installed]** next to their name. Note that installed OSes may be selected in multiple tabs.
 
 When the **Maintenance** toolbar is selected, this list will change to only show the list of OSes that are already installed, since the toolbar buttons are only relevent to installed OSes.
 
@@ -168,7 +169,7 @@ When the **Maintenance** toolbar is selected, this list will change to only show
 
 Below the main OS List Window is a status window indicating the capacity of appropriate attached memory devices.
 
-On the **Main Menu**, this status window will show the space on the SD card that is available to install OSes, along with the amount of required space for the selected OSes. If a USB drive is inserted, a drop down selection box will appear to change the install device from the SD card to the USB device. You will be prompted to format the USB drive if it is not already formatted in the correct way for a PINN installation.
+On the **Main Menu**, this status window will show the space on the SD card that is available to install OSes, along with the amount of required space for the selected OSes. If a USB drive is inserted, a drop down selection box will appear to change the install device from the SD card to the USB device. You will be prompted to format the USB drive if it is not already formatted in the correct way for a PINN installation. The model of RPi you are using is shown in the bottom right corener of this status window.
 
 On the **Archival** menu, this status window will change to show the amount of available and required space on the USB drive for downloading OSes to. Such a USB drive will only be selectable if it has an /os folder on its first partition to store OSes on.
 
@@ -200,7 +201,7 @@ To simulate a mouse the following keys are used:
 - Cursor Up/Down/Left/Right - moves the mouse cursor in each direction
 - Select - mouse click
 
-For quicker selection, the following keys may be easier:
+For quicker selection, the following keys may be easier if supported by your model of TV:
 - Channel Up - previous list item
 - Channel Down - next list item
 - PLAY key - Enter Key
@@ -214,7 +215,7 @@ There is no onscreen keyboard in PINN, so a local keyboard will be needed to ent
 
 **NOTE: CEC implementations vary between TV manufacturers. The above key mappings work on Samsung TVs supporting their Anynet+. Other TV brands may not work as well, but the mouse simulation is designed to work on most TVs.**
 
-It is now possible to program your own set of key mappings for your particular remote. 
+It is possible to program your own set of key mappings for your particular remote. 
 To do this you should create a `cec_keys.json` file. 
 See the [cec_keys.md](cec_keys.md) document on how to do this.
 The default mappings are listed in the [wiki](https://github.com/procount/pinn/wiki/Default-CEC-Key-mappings-for-cec_keys.json).
@@ -363,7 +364,7 @@ The following is a complete list of all the PINN options that can be added to th
 
 - **rescueshell**: This option causes a local command shell to be opened when PINN is booted. When the shell is exited, PINN will then be booted as normal. Alternatively, inserting a physical jumper between pins 5 & 6 of GPIO header P1 will cause the rescueshell to be entered as well. 
 
-- **lang=\<country code\>**: Sets the langauge to be used by PINN
+- **lang=\<country code\>**: Sets the language to be used by PINN
 
 - **keyboard=\<country code\>**: Sets the keyboard code to be used by PINN
 
@@ -377,23 +378,37 @@ The following is a complete list of all the PINN options that can be added to th
 
 - **keyboardtriggerdisable**: Prevents a `SHIFT` keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)
 
-- **remotetimeout=**: When used in conjunction with `forcetrigger` it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot. This permits normal default OS booting, yet also allows for a remote user to interrupt the startup process to change the OS to boot, or perform any remote maintenance. Any screen interaction over VNC will cancel the timeout. This additional timeout will lengthen the boot time into a default OS, so choose a value that is long enough to allow VNC access, yet short enough not to be annoying under normal circumstances.
+- **remotetimeout=\<time in secs\>**: When used in conjunction with `forcetrigger` it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot. This permits normal default OS booting, yet also allows for a remote user to interrupt the startup process to change the OS to boot, or perform any remote maintenance. Any screen interaction over VNC will cancel the timeout. This additional timeout will lengthen the boot time into a default OS, so choose a value that is long enough to allow VNC access, yet short enough not to be annoying under normal circumstances.
 
-- **networktimeout=**: PINN will wait for a default timeout of 8 seconds to detect whether a network is connected or not. (This is extended by an additional 4 seconds if wifi is configured). This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.
+- **networktimeout=\<time in secs\>**: PINN will wait for a default timeout of 8 seconds to detect whether a network is connected or not. (This is extended by an additional 4 seconds if wifi is configured). This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.
 
 - **disablesafemode**: If you have external hardware or an addon board connected to the GPIO header, you may find that pin 5 is being pulled low and accidentally triggering "Safe Mode" by entering the rescueshell. To prevent this, you can append `disablesafemode` to the `recovery.cmdline` file.
 
-- **silentinstall**: Allows a single OS to be installed automatically, useful during headless installs.
+- **silentinstall**: Allows a single or multiple OSes to be installed automatically, useful during headless installs. See [How to Automatically Install OSes](#how-to-automatically-install-oses)
+
+- **select=\<oslist\>**: Auto-selects a number of OSes or OS sources to be installed. When used in conjunction with `silentinstall`, the OSes are automatically installed without any user intervention. See [How to Automatically Install OSes](#how-to-automatically-install-oses).  
+In addition to specifying a list of OS names, some reserved words are also available to specify different sources of OSes instead, or to control when they are installed. 
+  - `allinstalled` - Normally, all installed OSes are automatically selected, but they are not selected when the "select" option is present. Adding 'allinstalled' will ensure they are selected again.  
+  - `allsd` - Selects all OSes where the most recent one is on the SD card
+  - `allusb` - Selects all OSes where the most recent one is on a local USB drive
+  - `allnetwork` - Selects all OSes where the most recent one is on remote repositories.
+  - `waitnetwork` - Waits for all OS lists to be downloaded from the internet before checking the list of OSes
+  - `waitusb` - Waits for all OSes on local USBs to be listed
+  - `waitsd` - Waits for all OSes on the SD card to be listed
+  - `waitall` - Waits for OSes from all sources to be listed
+
 
 - **alt_image_source=\<url\>**: Provides the URL of an additional os_list_v3.json file indicating the location of other OSes that can be downloaded from the Internet. Multiple instances of this option can be used.
 
 - **repo_list=\<url\>**: Provides the URL of a repo_list.json file that contains a list of URLs to other os-list_v3.json files. This allows easy remote management of Internet respositories.
 
-- **repo=\<url\>**: Matches the NOOBS method of specifying a list of additional respositories.
+- **repo=\<url\>**: Similar to `alt_image_source` but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.
 
 - **no_default_source**: Prevents the default RaspberryPi Foundation repository from being used.
 
 - **disableusbimages**: Prevents OSes stored on local USB memory devices from being used.
+
+- **disablesdimages**: Prevent OSes stored on the SD card from being used.
 
 - **no_group**: Prevents the list of OSes from being grouped into categories.
 
@@ -407,7 +422,7 @@ The following is a complete list of all the PINN options that can be added to th
 
 - **configpath=**: Specifies a path or URL where the noobsconfig customisation files can be found (rather than being in /os/\<distro\>/)
 
-- **background=**: To change the background colour for the screen and most windows, add `background=r,g,b`, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.
+- **background=\<r,g,b\>**: To change the background colour for the screen and most windows, add `background=r,g,b`, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.
 
 - **style=**: The style of the windows display can be modified to one of `motif`, `windows` or `platinum`
 
@@ -459,7 +474,7 @@ Whilst this can be a convenient way to host the installable images as they can b
 
 The easiest way to put OS installation images on the SD card is to first [download](#download) them to a USB stick and then copy the appropriate folder from the USB drive to the SD card.
 
-Make sure to add any OSes to the `/os/` folder before you boot PINN in a RPi for the first time. Otherwise you will find the partition has been shrunk to its minimum size and there will be no room to add any more OSes to the card later.
+Make sure to add any OSes to the `/os/` folder before you boot PINN in a RPi for the first time. Otherwise you will find the partition has been shrunk to its minimum size and there will be no room to add any more OSes to the card later. However, by adding the `reserve=` option, it is now possible to reserve some free space on PINN's 1st FAT partition for storing OS images on later, or for general transfer of data to/from a Windows PC.
 
 ## Local Images on USB stick
 
@@ -547,7 +562,9 @@ This firmware upgrade feature is disabled when downgraded firmware is in use.
 Many OSes that support the Pi3 will need updating to support the new Pi3B+ model, so the list of available OSes for this Pi3B+ may be limited for a while. Adding the `showall` option may allow them
 to be selected, and PINN's new firmware upgrade feature may allow them to boot, but the kernel and drivers will still need to be updated to allow the new hardware features to be used.
 
-## How to Automatically Install an OS
+## How to Automatically Install OSes
+
+### Auto-Installing one OS
 
 Even if you are using your Pi without a display, you can still use PINN to easily install an OS of your choice. To set up PINN to install a specific OS automatically and silently (i.e. without requiring any user input), follow these steps:
 
@@ -555,7 +572,38 @@ Even if you are using your Pi without a display, you can still use PINN to easil
 2. If the OS you want to automatically install has multiple flavours available, edit the `flavours.json` file so that it only contains the entry for the flavour that you want to install.
 3. Edit the `recovery.cmdline` file in the root PINN directory and append `silentinstall` to the arguments list.
 
-When you now boot your Pi using an SD card containing the modified version of PINN that you just created, it will automatically install the OS you chose and boot into it after the installation has finished.
+When you now boot your Pi using an SD card containing the modified version of PINN that you just created, it will automatically install the OS you chose and boot into it after the installation has finished. 
+NOTE: `Silentinstall` only works if there are no OSes installed already to prevent accidental OS deletion.
+
+From v2.8.5 onwards, the network is always enabled, even when `silentinstall` is specified. So it may be necessary to temporarily disable any network sources whilst the `silentinstall` option is being used to prevent remote OSes from being listed, which would cause `silentinstall` to fail. YMMV.
+
+### Auto-Installing several Named OSes
+
+The `select=` option can be used to provide a comma separated list of one or more OS names that should be selected automatically. Ensure the whole argument to Select is enclosed in quotation marks.
+Normally, any installed OS is automatically checked, but this will not happen if the `select=` option is present. To restore this behaviour with the `select=` option, add `allinstalled` as a special flag.
+
+e.g. `select="Raspbian,LibreELEC_Rpi2,allinstalled"
+Will install the Raspbian and LibreELEC OSes, plus any OSes that are already installed.
+
+If a particular OS you want to install is on a particular source, you can force PINN to wait until that source has been listed by adding additional flags:
+`waitsd` will wait for all OSes on the SD card to be listed.
+`waitusb` will wait for all OSes on a USB drive to be listed.
+`waitnetwork` will wait for all OSes on remote OSes to be listed.
+`waitall` is a shorthand way of including all OSes and is equivalent to `waitsd,waitusb,waitnetwork`
+
+PINN only carries out the OS selection once all sources are present. So if you wait for a source that is not present, PINN will wait indefinitely until it appears.
+
+The `select=` option will not install the listed OSes by itself, but by adding the `silentinstall` option as well, then all selected OSes will be silently installed without user intervention. However, `silentinstall` only works if there are no OSes installed already to prevent accidental OS deletion.
+
+### Auto-Installing OSes based on their source
+
+If you want to select all OSes present on the SD card, USB stick, or on a remote repository, then the following flags can be used for the `select=` option respectively:
+`allsd`, `allusb` or `allnetwork`. Each option also implies the corresponding `waitsd`, `waitusb` or `waitnetwork`.
+
+Note that when OSes exist on multiple sources, PINN selects the most recent one (or the local one if they are equal).
+So, for example, if 'allnetwork' is specified and you expect a remote Raspbian OS to be installed, it will not be if a more recent version exists locally, because the remote OS will be overridden by the newer local version. If you want a particular source of an OS to be installed, it may be necessary to hide the other sources using disableusbimages, disablesdimages, or disabling the remote repositories respectively.
+
+The `select=` option will not install the listed OSes by itself, but by adding the `silentinstall` option as well, then all selected OSes will be silently installed without user intervention. However, `silentinstall` only works if there are no OSes installed already to prevent accidental OS deletion.
 
 ## Installer Slideshow
 
@@ -597,6 +645,7 @@ If only one OS is installed, the boot selector will not be displayed and the OS 
 After multiple OSes have been installed, a boot selection dialog is presented to list all the installed OSes for the user to choose one to boot. PINN will remember this OS choice and boot this OS by default each time unless a different option is selected within a timeout of 10 seconds. It is possible to change this menu timeout by adding `bootmenutimeout=X` in the `recovery.cmdline` file, where `X` is the desired timeout in seconds.
 
 A Boot button has been added for easier selection with limited CEC TV remotes, mice or touchscreens.
+Also a Cancel button (Shortcut=Esc) is provided to boot back into PINN again.
 
 ![alt text](screenshots/boot_select.png "Easily select which OS you want to boot, from a list of those currently installed.")
 
@@ -604,7 +653,7 @@ A Boot button has been added for easier selection with limited CEC TV remotes, m
 
 Each OS entry in the boot selection dialog has a checkbox next to it, allowing users to select it as a sticky default OS. If an OS is checked, PINN will operate as if that were the only OS installed (booting it automatically, without showing the boot selection dialog). This permits a slightly faster boot up time when one OS is used regularly. 
 
-To change or remove the sticky checkbox, or just to temporarily boot into another IS, the boot selection dialog can be shown again by pressing the Shift key on boot up and entering the recovery mode.
+To change or remove the sticky checkbox, or just to temporarily boot into another OS, the boot selection dialog can be shown again by pressing the Shift key on boot up and entering the recovery mode.
 
 ### Reboot shell script
 
@@ -621,9 +670,9 @@ After you have installed your chosen OSes, add the following file to the root di
 1. Add a text file named `autoboot.txt` to the root directory of PINN.
 2. Add `boot_partition=<partition number>` to the file and save it to disk.
 
-The <partition_number> is the partition number of the boot partition of the OS you want to boot at each power on. The partition number can be found by running `sudo fdisk -l` the partition will be one of the FAT32 partitions `/dev/mmcblk0p6` would be partition 6. It can also be found by looking at the installed_os.json file ont he settings partition (partition 5) of the device that PINN is installed on. This will also prevent the splashscreen from being displayed at boot. 
+The <partition_number> is the partition number of the boot partition of the OS you want to boot at each power on. The partition number can be found by running `sudo fdisk -l`. The partition will be one of the FAT32 partitions e.g. `/dev/mmcblk0p6` would be partition 6. It can also be found by looking at the installed_os.json file on the settings partition (partition 5) of the device that PINN is installed on. This will also prevent the splashscreen from being displayed at boot. 
 
-NOTE: that once an `autoboot.txt` file is present, there's then no way to force the PINN GUI to display, until you delete (or rename) the `autoboot.txt` file. The SD card behaves as is PINN were not there at all.
+NOTE: that once an `autoboot.txt` file is present, there's then no way to force the PINN GUI to display, until you delete (or rename) the `autoboot.txt` file. The SD card behaves as if PINN were not there at all.
 
 ---
 
@@ -643,7 +692,7 @@ The Info button will take you to the web page specific to the currently highligh
 
 ## Exit
 
-The Exit button (Esc) will exit recovery mode and go to the boot selection dialog, or directly boot the OS if only one is installed.
+The Exit button (Esc) will exit recovery mode and go to the boot selection dialog, or directly boot the OS if only one is installed. The Exit button is ony enabled if bootable OSes have been installed. If only data partitions or ProjectSpaces have been installed, for example, then it will be greyed out.
 
 ---
 
@@ -666,7 +715,7 @@ As documented earlier, PINN can install an OS from a local USB disk instead of d
 
 The download icon is only available when the download size of all files are known. If the download icon is greyed out, and the toolbar indicates that that there are still more files to check, please wait until all files are checked. 
 
-The download function will not download flavours or custom files from a website. These need to be downloaded manually in order to be used offline.
+The download function will also download OS flavours and their customisation files from a remote repository. When downloading flavours, it is only necessary to download 1 of the flavours and all associated flavours will be downloaded. (OSes that have flavours should include all their additional flavour customisations in a single flavours.tar.xz file to allow for thier download).
 
 ## How to Clone an SD Card
 
@@ -684,7 +733,8 @@ it has now been ported into PINN so that it can clone the SD card offline, whils
 All partitions will be copied onto the second card whilst the last partition will be sized to fit the remainder of the SD card. 
 In this way, your existing data can be migrated to a smaller or larger SD card.
 
-_Note: that if you have installed multiple OSes using PINN, only the last partition of the last OS on the SD card will be resized._
+_Note1: that if you have installed multiple OSes using PINN, only the last partition of the last OS on the SD card will be resized._
+_Note2: The clone function can also be used to copy any USB drive to any other USB drive - it doesn't have to incldue the SD card at all._
 
 <!-- ## Wipe the Drive
 

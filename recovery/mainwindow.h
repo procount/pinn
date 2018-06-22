@@ -51,7 +51,7 @@ protected:
     int _infoDelay;
     int _kcpos;
     const QString _defaultDisplay;
-    bool _silent, _allowSilent, _showAll, _fixate, _usbimages;
+    bool _silent, _allowSilent, _showAll, _fixate, _usbimages, _sdimages;
     static bool _partInited;
     static int _currentMode;
     QSplashScreen *_splash;
@@ -61,6 +61,7 @@ protected:
     QNetworkAccessManager *_netaccess;
     uint _neededMB, _availableMB, _availableDownloadMB;
     int _numMetaFilesToDownload, _numIconsToDownload, _numBuildsToDownload;
+    int _numListsToDownload;
     QMessageBox *_displayModeBox;
     QTimer _networkStatusPollTimer, _piDrivePollTimer;
     QTime _time;
@@ -76,6 +77,10 @@ protected:
     CountdownFilter counter;
     int _networkTimeout;
     QList<QVariantMap> _newList;
+    unsigned _availableImages;
+    unsigned _selectImages;
+    unsigned _waitforImages;
+    QStringList _selectOsList;
 
     enum ModeTag {
         MODE_INSTALL=0,

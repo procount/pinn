@@ -165,6 +165,10 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     font.setItalic(true);
     font.setBold(true);
     _menuLabel->setFont(font);
+    _availableImages = 0;
+    _selectImages = 0;
+    _waitforImages = 0;
+    _numListsToDownload=0;
 
     QWidget* spacer = new QWidget();
     spacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
@@ -379,14 +383,78 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     }
 
     _usbimages = !cmdline.contains("disableusbimages");
+    _sdimages  = !cmdline.contains("disablesdimages");
+    _showAll   = cmdline.contains("showall");
+    _fixate    = cmdline.contains("fixate");
 
-    if (cmdline.contains("showall"))
+    if (cmdline.contains("select="))
     {
-        _showAll = true;
-    }
-    if (cmdline.contains("fixate"))
-    {
-        _fixate = true;
+        QByteArray searchFor = "select=";
+        int searchForLen = searchFor.length();
+        int pos = cmdline.indexOf(searchFor);
+        int end;
+
+        if (cmdline.length() > pos+searchForLen && cmdline.at(pos+searchForLen) == '"')
+        {
+            /* Value between quotes */
+            searchForLen++;
+            end = cmdline.indexOf('"', pos+searchForLen);
+        }
+        else
+        {
+            end = cmdline.indexOf(' ', pos+searchForLen);
+        }
+        if (end != -1)
+            end = end-pos-searchForLen;
+        QString selection  = cmdline.mid(pos+searchForLen, end);
+
+        qDebug()<<"Processing Selection: " <<selection;
+
+        QStringList args = selection.split(",", QString::SkipEmptyParts);
+        foreach (QString arg, args)
+        {
+            if (arg=="allsd")
+            {
+                _selectImages |= ALLSD;
+                _waitforImages  |= ALLSD;
+            }
+            else if (arg=="waitsd")
+            {
+                _waitforImages |=ALLSD;
+            }
+
+            else if (arg=="allusb")
+            {
+                _selectImages |= ALLUSB;
+                _waitforImages  |= ALLUSB;
+            }
+            else if (arg=="waitusb")
+            {
+                _waitforImages |= ALLUSB;
+            }
+
+            else if (arg=="allnetwork")
+            {
+                _selectImages |= ALLNETWORK;
+                _waitforImages  |= ALLNETWORK;
+            }
+            else if (arg=="waitnetwork")
+            {
+                _waitforImages |= ALLNETWORK;
+            }
+            else if (arg=="waitall")
+            {
+                _waitforImages |= ALLNETWORK | ALLUSB | ALLSD;
+            }
+            else if (arg=="allinstalled")
+            {
+                _waitforImages |= ALLINSTALLED;
+            }
+            else
+            {
+                _selectOsList << arg;
+            }
+        }
     }
 
     copyWpa();
@@ -396,10 +464,9 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
         /* If silentinstall is specified, auto-install single image in /os */
         _allowSilent = true;
     }
-    else
-    {
-        startNetworking();
-    }
+
+    //ALWAYS start networking (for silentinstall of remote images)
+    startNetworking();
 
     checkPinnFirmware();
 
@@ -543,7 +610,7 @@ void MainWindow::on_actionFirmware_triggered()
 
 QString MainWindow::menutext(int index)
 {
-    static const char* menutext_strings[] = {
+    static const char* menutext_strings[]= {
         QT_TR_NOOP("Main Menu"),
         QT_TR_NOOP("Archival"),
         QT_TR_NOOP("Maintenance")
@@ -595,12 +662,13 @@ void MainWindow::populate()
 
     ug->setDefaultItems();
 
-    if (_allowSilent && !_numInstalledOS && ug->count() == 1)
+    if (_allowSilent && !_selectImages && !_numInstalledOS && ug->count() == 1)
     {
         // No OS installed, perform silent installation
         qDebug() << "Performing silent installation";
         _silent = true;
         ug->list->item(0)->setCheckState(Qt::Checked);
+        _eDownloadMode = MODE_INSTALL; //Just to be sure!
         on_actionWrite_image_to_disk_triggered();
         _numInstalledOS = 1;
         _numBootableOS = 1; //@@Assume user has installed a bootable OS.
@@ -615,7 +683,10 @@ void MainWindow::repopulate()
     QIcon localIcon(":/icons/hdd.png");
 
     if ( _sdimages )
+    {
         images= listImages();
+        _availableImages |= ALLSD;
+    }
 
     foreach (QVariant v, images.values())
     {
@@ -716,7 +787,11 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
         if (!QFile::exists(imagefolder+"/os.json"))
             continue;
         QVariantMap osv = Json::loadFromFile(imagefolder+"/os.json").toMap();
-        osv["source"] = SOURCE_SDCARD;
+
+        if (folder == "/mnt/os")
+            osv["source"] = SOURCE_SDCARD;
+        else
+            osv["source"] = SOURCE_USB;
 
         QString basename = osv.value("name").toString();
         if (canInstallOs(basename, osv))
@@ -1120,7 +1195,12 @@ void MainWindow::on_actionDownload_triggered()
                 {
                     QDir d;
                     QString osname = entry.value("name").toString();
-                    QString folder = _local+"/os/"+osname;
+
+                    QFileInfo fi = entry.value("os_info").toString();   //full URL to os.json
+                    QFileInfo fipath = fi.path();                       //URL path
+                    QString foldername = fipath.fileName();
+
+                    QString folder = _local+"/os/"+foldername;
                     folder.replace(' ', '_');
                     if (!d.exists(folder))
                         d.mkpath(folder);
@@ -1131,6 +1211,10 @@ void MainWindow::on_actionDownload_triggered()
                     {
                         f.remove();
                     }
+
+                    //Try and download flavours, but not an error if they don't exist
+                    downloadMetaFile( fi.path() +"/flavours.json",  "-"+folder+"/flavours.json");
+                    downloadMetaFile( fi.path() +"/flavours.tar.xz", "-"+folder+"/flavours.tar.xz");
 
                     downloadMetaFile(entry.value("os_info").toString(), folder+"/os.json");
                     downloadMetaFile(entry.value("partitions_info").toString(), folder+"/partitions.json");
@@ -1916,6 +2000,7 @@ void MainWindow::downloadLists()
 
 void MainWindow::downloadList(const QString &urlstring)
 {
+    _numListsToDownload++;
     QUrl url(urlstring);
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent", AGENT);
@@ -1972,6 +2057,7 @@ void MainWindow::downloadListComplete()
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
+    _numListsToDownload--;
     if (reply->error() != reply->NoError || httpstatuscode < 200 || httpstatuscode > 399)
     {
         if (_qpd)
@@ -1988,6 +2074,8 @@ void MainWindow::downloadListComplete()
     ug->setFocus();
 
     reply->deleteLater();
+    if (_numListsToDownload==0)
+        _availableImages |= ALLNETWORK;
 }
 
 void MainWindow::processJson(QVariant json)
@@ -2148,7 +2236,7 @@ void MainWindow::downloadIconComplete()
     if (reply->error() != reply->NoError || httpstatuscode < 200 || httpstatuscode > 399)
     {
         //QMessageBox::critical(this, tr("Download error"), tr("Error downloading icon '%1'").arg(reply->url().toString()), QMessageBox::Close);
-        qDebug() << "Error downloading icon" << url;
+        qDebug() << "Error "<< httpstatuscode << " downloading icon " << url;
     }
     else
     {
@@ -2376,7 +2464,7 @@ void MainWindow::downloadListRedirectCheck()
         tv.tv_usec = 0;
         settimeofday(&tv, NULL);
 
-	qDebug() << "Time set to: " << parsedDate;
+    qDebug() << "Time set to: " << parsedDate;
     }
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
@@ -2481,8 +2569,43 @@ void MainWindow::downloadMetaComplete()
             _numMetaFilesToDownload--;
         }
         f.close();
-    }
 
+        //Check for flavours.tar.xz and untar it.
+        QFileInfo fi (saveAs);
+        if (fi.fileName() == "flavours.tar.xz")
+        {
+            qDebug() << "extracting "<<saveAs;
+            QFileInfo fi(saveAs);
+            QString path = fi.path();
+            QString filename = fi.fileName();
+            QString cmd = "sh -o pipefail -c \"";
+
+            cmd += "cd "+path+"; ";
+
+            cmd += "xz -dc";
+            cmd += " "+filename;
+
+            cmd += " | bsdtar -xf - ";
+            //    cmd += " --no-same-owner ";
+            cmd += "\"";
+
+            qDebug() << "Executing:" << cmd;
+
+            QProcess p;
+            p.setProcessChannelMode(p.MergedChannels);
+            p.start(cmd);
+            p.closeWriteChannel();
+            p.waitForFinished(-1);
+
+            if (p.exitCode() != 0)
+            {
+                QByteArray msg = p.readAll();
+                qDebug() << msg;
+            }
+            else
+                QFile::remove(saveAs);
+        }
+    }
     if (_numMetaFilesToDownload == 0)
     {
         if (_qpd)
@@ -2568,7 +2691,7 @@ void MainWindow::checkFileSizeComplete()
             qDebug() << "Cannot find " << osname << " to set download_size";
         }
     }
-    //decrement number of filesizes to download
+    //decrement number of filesizes to check
     _numFilesToCheck--;
     qDebug() << "Length:" << length << "files left: " <<_numFilesToCheck << " " << osname;
     if (_numFilesToCheck<2)
@@ -2770,7 +2893,11 @@ void MainWindow::startImageDownload()
         }
         else
         {
-            folder = _local+"/os/"+entry.value("name").toString();
+            QFileInfo fi = entry.value("os_info").toString();   //full URL to os.json
+            QFileInfo fipath = fi.path();                       //URL path
+            QString foldername = fipath.fileName();
+
+            folder = _local+"/os/"+foldername;
             folder.replace(' ', '_');
 
             QString errorlog = folder+"/error.log";
@@ -2905,6 +3032,49 @@ void MainWindow::pollForNewDisks()
             _info->hide();
             _info->deleteLater();
             _info=NULL;
+        }
+    }
+
+    if (_selectImages || _selectOsList.count())
+    {   //We asked for some autoselection when there is no OS installed, and at least one available
+        if ((_waitforImages & _availableImages) == _waitforImages)
+        {   //All required sources are listed
+            QList<QListWidgetItem *> all = ug->allItems();
+            foreach (QListWidgetItem * witem, all)
+            {
+                QVariantMap existing_details = witem->data(Qt::UserRole).toMap();
+
+                witem->setCheckState(Qt::Unchecked);
+
+                if ((existing_details["source"].toString()==SOURCE_SDCARD) && (_selectImages & ALLSD))
+                    witem->setCheckState(Qt::Checked); //No option for SOURCE_USB, so we'll assume it's the same as SOURCE_SD
+
+                if ((existing_details["source"].toString()==SOURCE_USB) && (_selectImages & ALLUSB))
+                    witem->setCheckState(Qt::Checked);
+
+                if ((existing_details["source"].toString()==SOURCE_NETWORK) && (_selectImages & ALLNETWORK))
+                    witem->setCheckState(Qt::Checked);
+
+                if ((existing_details["installed"].toBool()==true) && (_selectImages & ALLINSTALLED))
+                    witem->setCheckState(Qt::Checked);
+
+                foreach (QString osname, _selectOsList)
+                {
+                    if (existing_details["name"].toString()== osname)
+                        witem->setCheckState(Qt::Checked);
+                }
+
+            }
+            _selectImages=0; //Prevent re-entry
+            _selectOsList.clear();
+            if ((_allowSilent) && !_numInstalledOS &&  ug->count() >= 1)
+            {   //silentInstall was selected, so let's auto-install them
+                _silent=true;
+                _eDownloadMode = MODE_INSTALL; //Just to be sure!
+                on_actionWrite_image_to_disk_triggered();
+                addInstalledImages();   //Update the installed lists
+                updateInstalledStatus();
+            }
         }
     }
 
@@ -3113,9 +3283,13 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
             bReplace=true;
         }
         if (existing_details["release_date"].toString() == m["release_date"].toString())
-        {
+        {   //Same date
             if (m["source"].toString() == SOURCE_SDCARD)
-            {
+            {   //Prefer to use local rather than remote image
+                bReplace=true;
+            }
+            if (m["source"].toString() == SOURCE_USB)
+            {   //Prefer to use local rather than remote image
                 bReplace=true;
             }
             if (existing_details["source"].toString()==SOURCE_INSTALLED_OS)
@@ -3269,6 +3443,8 @@ void MainWindow::addImagesFromUSB(const QString &device)
     ug->showTab(DEFGROUP);
     ug->setDefaultItems();
     ug->setFocus();
+    _availableImages |= ALLUSB;
+
 }
 
 

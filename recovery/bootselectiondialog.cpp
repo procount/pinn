@@ -447,5 +447,6 @@ void BootSelectionDialog::on_pushButton_clicked()
 
 void BootSelectionDialog::on_buttonBox_clicked(QAbstractButton *button)
 {
+    Q_UNUSED(button);
     reject();
 }

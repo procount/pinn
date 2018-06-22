@@ -553,438 +553,438 @@ WARNING: This will erase all data on your SD card</source>
         <translation>C</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="247"/>
+        <location filename="mainwindow.cpp" line="251"/>
         <source>Setting up SD card</source>
         <translation>SD 카드 설정</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="280"/>
+        <location filename="mainwindow.cpp" line="284"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation>SD 카드를 준비하고 있습니다 (설정 파티션)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="293"/>
+        <location filename="mainwindow.cpp" line="297"/>
         <source>Mounting settings partition</source>
         <translation>설정 파티션을 마운트하고 있습니다</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="305"/>
+        <location filename="mainwindow.cpp" line="309"/>
         <source>Error mounting settings partition</source>
         <translation>설정 파티션을 마운트하는 과정에서 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="306"/>
+        <location filename="mainwindow.cpp" line="310"/>
         <source>Persistent settings partition seems corrupt. Reformat?</source>
         <translation>고정된 설정 파티션이 손상된 것으로 보입니다. 다시 초기화하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="313"/>
+        <location filename="mainwindow.cpp" line="317"/>
         <source>Reformat failed</source>
         <translation>다시 초기화할 수 없음</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="313"/>
+        <location filename="mainwindow.cpp" line="317"/>
         <source>SD card might be damaged</source>
         <translation>SD 카드가 손상된 것으로 보입니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="547"/>
+        <location filename="mainwindow.cpp" line="614"/>
         <source>Main Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="548"/>
+        <location filename="mainwindow.cpp" line="615"/>
         <source>Archival</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="549"/>
+        <location filename="mainwindow.cpp" line="616"/>
         <source>Maintenance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="562"/>
+        <location filename="mainwindow.cpp" line="629"/>
         <source>Please wait while PINN initialises</source>
         <translation>PINN을 초기화하고 있습니다. 잠시만 기다려 주십시요.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1294"/>
+        <location filename="mainwindow.cpp" line="1378"/>
         <source>PINN v%1 - Built: %2 (%3) %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2728"/>
+        <location filename="mainwindow.cpp" line="2860"/>
         <source> has an incompatible number of partitions with </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3141"/>
-        <location filename="mainwindow.cpp" line="3171"/>
+        <location filename="mainwindow.cpp" line="3325"/>
+        <location filename="mainwindow.cpp" line="3355"/>
         <source>RECOMMENDED</source>
         <translation>추천 설치</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="887"/>
+        <location filename="mainwindow.cpp" line="962"/>
         <source>ERROR</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="888"/>
+        <location filename="mainwindow.cpp" line="963"/>
         <source>Error: Some OSes are not available:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="893"/>
+        <location filename="mainwindow.cpp" line="968"/>
         <source>Warning: this will install the selected Operating System(s) to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="893"/>
+        <location filename="mainwindow.cpp" line="968"/>
         <source>:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="895"/>
+        <location filename="mainwindow.cpp" line="970"/>
         <source>
 All existing data on the SD card will be overwritten, including any OSes that are already installed. Continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="897"/>
+        <location filename="mainwindow.cpp" line="972"/>
         <source>SD card</source>
         <translation>SD 카드</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="897"/>
+        <location filename="mainwindow.cpp" line="972"/>
         <source>drive</source>
         <translation>드라이브</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="900"/>
-        <location filename="mainwindow.cpp" line="905"/>
-        <location filename="mainwindow.cpp" line="1037"/>
-        <location filename="mainwindow.cpp" line="1097"/>
-        <location filename="mainwindow.cpp" line="1107"/>
-        <location filename="mainwindow.cpp" line="1597"/>
+        <location filename="mainwindow.cpp" line="975"/>
+        <location filename="mainwindow.cpp" line="980"/>
+        <location filename="mainwindow.cpp" line="1112"/>
+        <location filename="mainwindow.cpp" line="1172"/>
+        <location filename="mainwindow.cpp" line="1182"/>
+        <location filename="mainwindow.cpp" line="1681"/>
         <source>Confirm</source>
         <translation>확인</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="906"/>
-        <location filename="mainwindow.cpp" line="1108"/>
+        <location filename="mainwindow.cpp" line="981"/>
+        <location filename="mainwindow.cpp" line="1183"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>경고: 호환되지 않는 운영체제를 발견하였습니다. 이 운영체제는 Raspberry Pi 의 현재 리비전을 지원하지 않으므로 부팅에 실패하거나 기능이 제대로 동작하지 않을 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="965"/>
+        <location filename="mainwindow.cpp" line="1040"/>
         <source>The install process will begin shortly.</source>
         <translation>곧 설치 과정을 시작합니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1009"/>
-        <location filename="mainwindow.cpp" line="3738"/>
+        <location filename="mainwindow.cpp" line="1084"/>
+        <location filename="mainwindow.cpp" line="3923"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1023"/>
+        <location filename="mainwindow.cpp" line="1098"/>
         <source>ReInstall OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1024"/>
+        <location filename="mainwindow.cpp" line="1099"/>
         <source>Warning: No OSes selected or available
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1034"/>
+        <location filename="mainwindow.cpp" line="1109"/>
         <source>Warning: this will Reinstall/Replace the selected Operating System(s). The existing data will be deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1075"/>
+        <location filename="mainwindow.cpp" line="1150"/>
         <source>The Reinstall process will begin shortly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1098"/>
+        <location filename="mainwindow.cpp" line="1173"/>
         <source>Warning: this will download the selected Operating System(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1163"/>
+        <location filename="mainwindow.cpp" line="1247"/>
         <source>The download process will begin shortly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1196"/>
+        <location filename="mainwindow.cpp" line="1280"/>
         <source>OS(es) downloaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1197"/>
+        <location filename="mainwindow.cpp" line="1281"/>
         <source>OS(es) Downloaded Successfully.
 Reboot PINN to take account of these OSes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1202"/>
+        <location filename="mainwindow.cpp" line="1286"/>
         <source>OS(es) installed</source>
         <translation>운영체제 설치 완료</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1203"/>
+        <location filename="mainwindow.cpp" line="1287"/>
         <source>OS(es) Installed Successfully</source>
         <translation>운영체제를 설치하였습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1257"/>
-        <location filename="mainwindow.cpp" line="1268"/>
-        <location filename="mainwindow.cpp" line="1869"/>
-        <location filename="mainwindow.cpp" line="1997"/>
-        <location filename="mainwindow.cpp" line="3396"/>
+        <location filename="mainwindow.cpp" line="1341"/>
+        <location filename="mainwindow.cpp" line="1352"/>
+        <location filename="mainwindow.cpp" line="1953"/>
+        <location filename="mainwindow.cpp" line="2085"/>
+        <location filename="mainwindow.cpp" line="3581"/>
         <source>Error</source>
         <translation>오류</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1292"/>
+        <location filename="mainwindow.cpp" line="1376"/>
         <source>Reboot in %1 secs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1329"/>
+        <location filename="mainwindow.cpp" line="1413"/>
         <source>HDMI preferred mode</source>
         <translation>HDMI 선호 모드</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1333"/>
+        <location filename="mainwindow.cpp" line="1417"/>
         <source>HDMI safe mode</source>
         <translation>HDMI 안전 모드</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1337"/>
+        <location filename="mainwindow.cpp" line="1421"/>
         <source>composite PAL mode</source>
         <translation>PAL 영상 출력 모드</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1341"/>
+        <location filename="mainwindow.cpp" line="1425"/>
         <source>composite NTSC mode</source>
         <translation>NTSC 영상 출력 모드</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1399"/>
+        <location filename="mainwindow.cpp" line="1483"/>
         <source>Display Mode Changed</source>
         <translation>디스플레이 모드가 변경되었습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1400"/>
+        <location filename="mainwindow.cpp" line="1484"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>디스플레이 모드가 %1 로 변경되었습니다.
 이 설정을 계속 유지하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1573"/>
+        <location filename="mainwindow.cpp" line="1657"/>
         <source>Wiping SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1598"/>
+        <location filename="mainwindow.cpp" line="1682"/>
         <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1603"/>
+        <location filename="mainwindow.cpp" line="1687"/>
         <source>Drive Wiped!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1604"/>
+        <location filename="mainwindow.cpp" line="1688"/>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1616"/>
-        <location filename="mainwindow.cpp" line="2865"/>
-        <location filename="mainwindow.cpp" line="2873"/>
+        <location filename="mainwindow.cpp" line="1700"/>
+        <location filename="mainwindow.cpp" line="3001"/>
+        <location filename="mainwindow.cpp" line="3009"/>
         <source>No network access</source>
         <translation>네트워크에 접속할 수 없음</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1617"/>
+        <location filename="mainwindow.cpp" line="1701"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>이 기능은 유선 네트워크 연결이 필요합니다. 네트워크 포트에 네트워크 케이블을 삽입하여 주십시요.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1851"/>
-        <location filename="mainwindow.cpp" line="1979"/>
+        <location filename="mainwindow.cpp" line="1935"/>
+        <location filename="mainwindow.cpp" line="2065"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation>인터넷에서 배포판 목록을 가져오는 과정에서 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1853"/>
-        <location filename="mainwindow.cpp" line="1981"/>
-        <location filename="mainwindow.cpp" line="2468"/>
-        <location filename="mainwindow.cpp" line="2479"/>
-        <location filename="mainwindow.cpp" line="3490"/>
-        <location filename="mainwindow.cpp" line="3512"/>
+        <location filename="mainwindow.cpp" line="1937"/>
+        <location filename="mainwindow.cpp" line="2067"/>
+        <location filename="mainwindow.cpp" line="2565"/>
+        <location filename="mainwindow.cpp" line="2576"/>
+        <location filename="mainwindow.cpp" line="3675"/>
+        <location filename="mainwindow.cpp" line="3697"/>
         <source>Download error</source>
         <translation>다운로드 오류</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1869"/>
+        <location filename="mainwindow.cpp" line="1953"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation>서버에서 가져온 repolist.json의 내용을 분석하는 과정에서 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1997"/>
+        <location filename="mainwindow.cpp" line="2085"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>서버에서 가져온 list.json의 내용을 분석하는 과정에서 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2235"/>
-        <location filename="mainwindow.cpp" line="2238"/>
+        <location filename="mainwindow.cpp" line="2322"/>
+        <location filename="mainwindow.cpp" line="2325"/>
         <source>Needed</source>
         <translation>필요함</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2236"/>
-        <location filename="mainwindow.cpp" line="2239"/>
+        <location filename="mainwindow.cpp" line="2323"/>
+        <location filename="mainwindow.cpp" line="2326"/>
         <source>Available</source>
         <translation>가능함</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2454"/>
+        <location filename="mainwindow.cpp" line="2551"/>
         <source>Error downloading meta file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2468"/>
+        <location filename="mainwindow.cpp" line="2565"/>
         <source>Error downloading meta file</source>
         <translation>메타파일을 가져오는 과정에서 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2479"/>
-        <location filename="mainwindow.cpp" line="3512"/>
+        <location filename="mainwindow.cpp" line="2576"/>
+        <location filename="mainwindow.cpp" line="3697"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>다운로드한 파일을 SD 카드에 기록하는 과정에서 오류가 발생하였습니다. SD 카드 또는 파일 시스템이 손상되었는지 확인하여 주십시오.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2548"/>
+        <location filename="mainwindow.cpp" line="2680"/>
         <source>filesize error checking </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2727"/>
-        <location filename="mainwindow.cpp" line="3747"/>
+        <location filename="mainwindow.cpp" line="2859"/>
+        <location filename="mainwindow.cpp" line="3932"/>
         <source>Replace OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2866"/>
+        <location filename="mainwindow.cpp" line="3002"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translatorcomment>로컬 이미지가 없는 PINN은 네트워크 접속이 필요합니다. 다음 화면에서 Wi-Fi 네트워크를 선택해 주십시오.</translatorcomment>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2874"/>
+        <location filename="mainwindow.cpp" line="3010"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>로컬에 운영체제 이미지가 없는 PINN을 사용하려면 유선 네트워크 연결이 필요합니다. 네트워크 포트에 네트워크 케이블을 삽입하여 주십시요.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3056"/>
+        <location filename="mainwindow.cpp" line="3236"/>
         <source>Reformat drive?</source>
         <translation>드라이브 초기화 확인</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3057"/>
+        <location filename="mainwindow.cpp" line="3237"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>&apos;%1&apos; 드라이브를 정말 다시 초기화하시겠습니까? 초기화를 완료하면 이 드라이브 안에 있는 모든 데이터는 완전히 삭제됩니다. 초기화 후 PINN이 이 드라이브를 이용합니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3350"/>
+        <location filename="mainwindow.cpp" line="3535"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>장치 &apos;%s&apos;의 모든 내용이 지워집니다. 정말 진행하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3352"/>
+        <location filename="mainwindow.cpp" line="3537"/>
         <source>Clone SD Card</source>
         <translation>SD 카드 복제</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3354"/>
+        <location filename="mainwindow.cpp" line="3539"/>
         <source>Yes</source>
         <translation>예</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3355"/>
+        <location filename="mainwindow.cpp" line="3540"/>
         <source>No</source>
         <translation>아니요</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3383"/>
+        <location filename="mainwindow.cpp" line="3568"/>
         <source>Clone Completed</source>
         <translation>복제 완료</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3384"/>
+        <location filename="mainwindow.cpp" line="3569"/>
         <source>Clone Completed Successfully</source>
         <translation>복제를 완료하였습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3490"/>
+        <location filename="mainwindow.cpp" line="3675"/>
         <source>Error downloading update file</source>
         <translation>업데이트한 파일을 다운로드 하는 과정에 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3497"/>
-        <location filename="mainwindow.cpp" line="3592"/>
+        <location filename="mainwindow.cpp" line="3682"/>
+        <location filename="mainwindow.cpp" line="3777"/>
         <source>PINN Update Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3497"/>
+        <location filename="mainwindow.cpp" line="3682"/>
         <source>Error contacting update server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3592"/>
+        <location filename="mainwindow.cpp" line="3777"/>
         <source>No updates available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3600"/>
+        <location filename="mainwindow.cpp" line="3785"/>
         <source>PINN UPDATE</source>
         <translation>PINN 업데이트</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3601"/>
+        <location filename="mainwindow.cpp" line="3786"/>
         <source>A new version of PINN is available</source>
         <translation>새 버전의 PINN 을 사용할 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3602"/>
+        <location filename="mainwindow.cpp" line="3787"/>
         <source>Do you want to download this version?</source>
         <translation>이 버전을 다운로드 하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3627"/>
+        <location filename="mainwindow.cpp" line="3812"/>
         <source>Downloading Update</source>
         <translation>업데이트 다운로드</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3627"/>
+        <location filename="mainwindow.cpp" line="3812"/>
         <source>Press ESC to cancel</source>
         <translation>취소하려면 ESC 를 누르십시요.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3748"/>
+        <location filename="mainwindow.cpp" line="3933"/>
         <source>Warning: No OSes selected
 </source>
         <translation type="unfinished"></translation>
@@ -1262,23 +1262,23 @@ Partition not big enough for new image.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="osgroup.cpp" line="333"/>
+        <location filename="osgroup.cpp" line="332"/>
         <source>RECOMMENDED</source>
         <translation type="unfinished">추천 설치</translation>
     </message>
     <message>
-        <location filename="osgroup.cpp" line="338"/>
+        <location filename="osgroup.cpp" line="337"/>
         <source>NEW VERSION</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="osgroup.cpp" line="339"/>
+        <location filename="osgroup.cpp" line="338"/>
         <source>UPDATE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="osgroup.cpp" line="342"/>
         <location filename="osgroup.cpp" line="343"/>
-        <location filename="osgroup.cpp" line="344"/>
         <source>INSTALLED</source>
         <translation type="unfinished">설치됨</translation>
     </message>

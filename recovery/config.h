@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 /* Version number displayed in the title bar */
-#define VERSION_NUMBER "2.8.4a"
+#define VERSION_NUMBER "2.8.4c"
 
 /* Color of the background */
 // #define BACKGROUND_COLOR  Qt::white
@@ -76,8 +76,15 @@
 
 /* To keep track of where the different OSes get 'installed' from */
 #define SOURCE_SDCARD "sdcard"
+#define SOURCE_USB    "usb"
 #define SOURCE_NETWORK "network"
 #define SOURCE_INSTALLED_OS "installed_os"
+
+/* Constants for some cmdline options */
+#define ALLSD           1
+#define ALLUSB          2
+#define ALLNETWORK      4
+#define ALLINSTALLED    8
 
 extern bool g_nofirmware;
 

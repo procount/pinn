@@ -337,9 +337,11 @@ QString getNameParts(const QString& input, eNAMEPARTS flags)
             if (parts[i].start != -1 && parts[i].length != -1)
             {
                 QString value = QStringRef(&input,parts[i].start+offset, (int)parts[i].length-offset).toString();
+                qDebug() << i << " " << value;
                 if (flags & (1<<i))
                 {
                     output += value;
+                    qDebug() << "output := " << output;
                 }
             }
         }
