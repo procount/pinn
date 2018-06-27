@@ -3506,6 +3506,7 @@ void MainWindow::on_actionClone_triggered()
     QString src_dev;
     QString dst_dev;
     piclonedialog pDlg;
+    bool resize;
     int result = pDlg.exec();
 
     if (result==QDialog::Rejected)
@@ -3515,7 +3516,7 @@ void MainWindow::on_actionClone_triggered()
     dst=pDlg.get_dst();
     src_dev=pDlg.get_src_dev();
     dst_dev=pDlg.get_dst_dev();
-
+    resize = pDlg.get_resize();
     if (src_dev == dst_dev)
         return;
 
@@ -3528,7 +3529,7 @@ void MainWindow::on_actionClone_triggered()
     if (msgBox.exec() == QMessageBox::AcceptRole)
     {
         msgBox.close();
-        piCloneThread *cloneThread = new piCloneThread(src_dev, dst_dev);
+        piCloneThread *cloneThread = new piCloneThread(src_dev, dst_dev, resize);
         QStringList DirList;
         setEnabled(false);
         //Reuse the existing Progress Slide Dialog

@@ -28,8 +28,8 @@ partition_t parts[MAXPART];
 char src_mnt[32], dst_mnt[32];
 
 
-piCloneThread::piCloneThread(QString src_dev, QString dst_dev, QObject *parent) :
-    QThread(parent), _src(src_dev), _dst(dst_dev)
+piCloneThread::piCloneThread(QString src_dev, QString dst_dev, bool resize, QObject *parent) :
+    QThread(parent), _src(src_dev), _dst(dst_dev), _resize(resize)
 {
 }
 
@@ -181,7 +181,7 @@ void piCloneThread::run()
         }
         else
         {
-            if (p == (n - 1))
+            if ((p == (n - 1)) && (_resize))
             {
                 qDebug() << "Creating last partition" << p;
                 display.append(&parts[p].ptype[0]+QString(" ")+&parts[p].ftype[0]);

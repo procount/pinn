@@ -9,7 +9,7 @@ class piCloneThread : public QThread
     Q_OBJECT
 public:
 
-    explicit piCloneThread(QString src_dev, QString dst_dev, QObject *parent = 0);
+    explicit piCloneThread(QString src_dev, QString dst_dev, bool resizem, QObject *parent = 0);
     virtual void run();
 
 protected slots:
@@ -28,6 +28,7 @@ signals:
 private:
     QString _src;
     QString _dst;
+    bool _resize;
 };
 
 

@@ -18,6 +18,7 @@ public:
     inline QString get_dst() {return _dst;}
     inline QString get_src_dev() {return src_dev;}
     inline QString get_dst_dev() {return dst_dev;}
+    inline bool get_resize() {return _resize;}
 
 protected:
     int get_dev_name(const char *dev, char *name);
@@ -35,6 +36,7 @@ private:
     Ui::piclonedialog *ui;
     int src_count;
     int dst_count;
+    bool _resize;
     QString src_dev;
     QString dst_dev;
     QString _src;

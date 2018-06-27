@@ -17,6 +17,8 @@ piclonedialog::piclonedialog(QWidget *parent) :
     ui->setupUi(this);
     src_count=0;
     dst_count=0;
+    ui->resize_cb->setChecked(true);
+
     on_drives_changed();
     timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(checkDrives()));
@@ -198,5 +200,7 @@ void piclonedialog::on_buttonBox_accepted()
     end   = _dst.lastIndexOf(')');
     dst_dev = _dst.mid(start+1,end-start-1);
     qDebug() << "Dst: " << dst_dev;
+
+    _resize = ui->resize_cb;
     stopMonitoringDrives();
 }
