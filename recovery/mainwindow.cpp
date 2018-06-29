@@ -806,16 +806,17 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
                     QVariantMap fm  = f.toMap();
                     if (fm.contains("name"))
                     {
-                        QString name = fm.value("name").toString();
+                        QVariantMap item = osv;
+                        QString name        = fm.value("name").toString();
                         if (name == RECOMMENDED_IMAGE)
-                            fm["recommended"] = true;
-                        fm["folder"] = imagefolder;
-                        fm["release_date"] = osv.value("release_date");
-                        fm["source"] = osv.value("source");
-                        fm["url"] = osv.value("url");
-                        fm["group"] = osv.value("group");
-                        fm["bootable"] = osv.value("bootable");
-                        images[name] = fm;
+                            item["recommended"] = true;
+                        item["name"]        = name;
+                        item["description"] = fm.value("description").toString();
+
+                        if (fm.contains("icon"))
+                            item["icon"]=fm.value("icon").toString();
+                        item["folder"] = imagefolder;
+                        images[name] = item;
                     }
                 }
             }
@@ -2103,16 +2104,16 @@ void MainWindow::processJson(QVariant json)
                 foreach (QVariant flv, flavours)
                 {
                     QVariantMap flavour = flv.toMap();
+                    QString name        = flavour.value("name").toString();
+
                     QVariantMap item = os;
                     item.remove("flavours");
-                    QString name        = flavour.value("name").toString();
-                    QString description = flavour.value("description").toString();
-                    QString iconurl     = flavour.value("icon").toString();
-
                     item["name"]= name;
-                    item["description"]=description;
-                    item["icon"]=iconurl;
+                    item["description"]=flavour.value("description").toString();
+                    if (flavour.contains("icon"))
+                        item["icon"]=flavour.value("icon").toString();
                     item["source"]=SOURCE_NETWORK;
+
                     processJsonOs(name, item, iconurls);
                 }
             }
@@ -2586,7 +2587,7 @@ void MainWindow::downloadMetaComplete()
             cmd += " "+filename;
 
             cmd += " | bsdtar -xf - ";
-            //    cmd += " --no-same-owner ";
+            cmd += " --no-same-owner ";
             cmd += "\"";
 
             qDebug() << "Executing:" << cmd;
