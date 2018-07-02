@@ -12,7 +12,7 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 - **Bootable selection**      - The bootselection dialog is only available if a bootable OS is installed.
 - **Select Option**           - Auto select/check OSes to be installed. "allsd,allusb,allnetwork,waitsd,waitusb,waitnetwork,waitall,allinstalled,<osname>"
 - **SilentInstall**           - with Select will auto-install selected OSes
-- **Added Disablesdimages**   - Disablesdimages in recovery.cmdline will present OSes on SD card from being shown
+- **Added Disablesdimages**   - Disablesdimages in recovery.cmdline will prevent OSes on SD card from being shown
 - **Network start**           - The network is always started, even with silentinstall.
 - **Flavour download**        - Flavours can now be downloaded from remote repos. Only need to download 1
 - **Added flavours.tar.xz**   - Remote flavours need to include flavours.tar.xz
