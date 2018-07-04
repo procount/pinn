@@ -325,7 +325,7 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
         <location filename="mainwindow.ui" line="122"/>
         <source>Model</source>
         <oldsource>model</oldsource>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Modello</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="132"/>
@@ -414,7 +414,7 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
         <location filename="mainwindow.ui" line="570"/>
         <source>Replace (l)</source>
         <oldsource>Replace (p)</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Sostitusici (l)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="573"/>
@@ -703,13 +703,14 @@ Tutti i dati esistenti nella scheda SD verranno sovrascritti, incluso qualsiasi 
     <message>
         <location filename="mainwindow.cpp" line="1099"/>
         <source>ReInstall OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>Reinstalla SO</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1100"/>
         <source>Warning: No OSes selected or available
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Attenzione: nessun S.O. selezionato o disponibile
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1174"/>
@@ -820,7 +821,7 @@ Vuoi rendere questa impostazione permanente?</translation>
         <location filename="mainwindow.cpp" line="2848"/>
         <location filename="mainwindow.cpp" line="3921"/>
         <source>Replace OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>Sostiuisci SO</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2991"/>
@@ -917,7 +918,8 @@ Vuoi rendere questa impostazione permanente?</translation>
         <location filename="mainwindow.cpp" line="3922"/>
         <source>Warning: No OSes selected
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Attenzione: nessun S.O. selezionato
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2086"/>
@@ -935,12 +937,12 @@ Copialo localmente o collegati ad internet.</translation>
     <message>
         <location filename="mainwindow.cpp" line="1110"/>
         <source>Warning: this will Reinstall/Replace the selected Operating System(s). The existing data will be deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Attenzione: verranno reinstallati/sostituiti i sistemi operativi selezionati. I dati esistenti verranno eliminati.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1151"/>
         <source>The Reinstall process will begin shortly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il processo di reinstallazione inzierà a breve.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1379"/>
@@ -987,7 +989,7 @@ Riavviando l&apos;unità verrà re-installata la struttura di PINN.</translation
     <message>
         <location filename="mainwindow.cpp" line="2849"/>
         <source> has an incompatible number of partitions with </source>
-        <translation type="unfinished"></translation>
+        <translation> ha un numero incompatibile di partizioni con </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3224"/>
@@ -1288,7 +1290,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="osgroup.cpp" line="18"/>
         <source>Utility</source>
-        <translation type="unfinished"></translation>
+        <translation>Utility</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="332"/>
@@ -1595,7 +1597,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="piclonedialog.ui" line="88"/>
         <source>Resize Last Partition</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ridimensiona ultima partizione</translation>
     </message>
 </context>
 <context>
@@ -1611,7 +1613,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="replace.ui" line="14"/>
         <source>Replace Installed OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>Sostituisci S.O. installati</translation>
     </message>
 </context>
 <context>
