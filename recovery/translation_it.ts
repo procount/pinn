@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it" sourcelanguage="en">
+<TS version="2.1" language="it" sourcelanguage="en">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -407,7 +407,7 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.ui" line="548"/>
         <source>Replace (p)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sostitusici (p)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="602"/>
@@ -692,13 +692,14 @@ Tutti i dati esistenti nella scheda SD verranno sovrascritti, incluso qualsiasi 
     <message>
         <location filename="mainwindow.cpp" line="1012"/>
         <source>ReInstall OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>Reinstalla SO</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1013"/>
         <source>Warning: No OSes selected or available
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Attenzione: nessun S.O. selezionato o disponibile
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1087"/>
@@ -809,7 +810,7 @@ Vuoi rendere questa impostazione permanente?</translation>
         <location filename="mainwindow.cpp" line="2711"/>
         <location filename="mainwindow.cpp" line="3731"/>
         <source>Replace OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>Sostiuisci SO</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2850"/>
@@ -906,7 +907,8 @@ Vuoi rendere questa impostazione permanente?</translation>
         <location filename="mainwindow.cpp" line="3732"/>
         <source>Warning: No OSes selected
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Attenzione: nessun S.O. selezionato
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1981"/>
@@ -924,12 +926,12 @@ Copialo localmente o collegati ad internet.</translation>
     <message>
         <location filename="mainwindow.cpp" line="1023"/>
         <source>Warning: this will Reinstall/Replace the selected Operating System(s). The existing data will be deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Attenzione: verranno reinstallati/sostituiti i sistemi operativi selezionati. I dati esistenti verranno eliminati.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1064"/>
         <source>The Reinstall process will begin shortly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il processo di reinstallazione inzierà a breve.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1278"/>
@@ -976,7 +978,7 @@ Riavviando l&apos;unità verrà re-installata la struttura di PINN.</translation
     <message>
         <location filename="mainwindow.cpp" line="2712"/>
         <source> has an incompatible number of partitions with </source>
-        <translation type="unfinished"></translation>
+        <translation> ha un numero incompatibile di partizioni con </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3040"/>
@@ -1277,7 +1279,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="osgroup.cpp" line="18"/>
         <source>Utility</source>
-        <translation type="unfinished"></translation>
+        <translation>Utility</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="328"/>
@@ -1595,7 +1597,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="replace.ui" line="14"/>
         <source>Replace Installed OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>Sostituisci S.O. installati</translation>
     </message>
 </context>
 <context>
