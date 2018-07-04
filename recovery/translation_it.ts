@@ -325,7 +325,7 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
         <location filename="mainwindow.ui" line="122"/>
         <source>Model</source>
         <oldsource>model</oldsource>
-        <translation type="unfinished">Modello</translation>
+        <translation>Modello</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="132"/>
@@ -419,7 +419,7 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.ui" line="573"/>
         <source>L</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="624"/>
@@ -1597,7 +1597,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="piclonedialog.ui" line="88"/>
         <source>Resize Last Partition</source>
-        <translation type="unfinished">Ridimensiona ultima partizione</translation>
+        <translation>Ridimensiona ultima partizione</translation>
     </message>
 </context>
 <context>
