@@ -409,4 +409,8 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Added flavours.tar.xz**   - Remote flavours need to include flavours.tar.xz
 - **RPi Model Name**          - Added name of RPi model to MainMenu screen
 
+## V2.8.5.1
 
+- **Reinstall**               - BUGFIX for Re-install.
+- **translations**            - Updated it and zh_TW translations.
+- **silentreinstallnewer**    - **USE WITH CAUTION**. With `select=` it will silently re-install any selected OSes that are newer than the installed version.
