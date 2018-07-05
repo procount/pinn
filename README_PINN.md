@@ -7,7 +7,7 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v2.8.5
+This README relates to v2.8.5.1
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -153,7 +153,7 @@ There are three toolbars:
   - **[Replace](#replace-individual-oses)**: Allows individual installed OSes to be replaced by other/different OSes without affecting any of the other installed OSes.
   - **[Info](#info-on-os)**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
 
-The `more` button can be used to cycle through the 3 toolbars.
+The `more` button can be used to cycle through the 3 toolbars. (shortcuts = M or PageDown)
 
 ## Main OS List Window
 
@@ -397,6 +397,7 @@ In addition to specifying a list of OS names, some reserved words are also avail
   - `waitsd` - Waits for all OSes on the SD card to be listed
   - `waitall` - Waits for OSes from all sources to be listed
 
+- **silentreinstallnewer**: This is an advanced option and potentially _**Destructive to your data!**_. Do not use unless you are fully aware of its consequences. See [Auto-Reinstalling OSes](#auto-reinstalling-oses)
 
 - **alt_image_source=\<url\>**: Provides the URL of an additional os_list_v3.json file indicating the location of other OSes that can be downloaded from the Internet. Multiple instances of this option can be used.
 
@@ -591,9 +592,17 @@ If a particular OS you want to install is on a particular source, you can force 
 `waitnetwork` will wait for all OSes on remote OSes to be listed.
 `waitall` is a shorthand way of including all OSes and is equivalent to `waitsd,waitusb,waitnetwork`
 
-PINN only carries out the OS selection once all sources are present. So if you wait for a source that is not present, PINN will wait indefinitely until it appears.
+PINN only carries out the OS selection once all sources are present. So if you wait for a source that is not present, PINN may wait indefinitely until it appears.
+(This is modified in v2.8.5.1 to try and avoid indefinite waits).
 
-The `select=` option will not install the listed OSes by itself, but by adding the `silentinstall` option as well, then all selected OSes will be silently installed without user intervention. However, `silentinstall` only works if there are no OSes installed already to prevent accidental OS deletion.
+The `select=` option only determines which OSes are selected in the recovery menu at startup; it will not do anything with the listed OSes by itself.
+By adding the `silentinstall` option as well, then all selected OSes will be silently installed without user intervention. However, `silentinstall` only works 
+if there are no OSes installed already to prevent accidental OS deletion.
+It is also used with the `silentreinstallnewer` option, but this has fewer safeguards. Please read the warnings below.
+
+Unlike using `silentinstall` on its own to install a single local OS, when using it with the `select=` option, PINN must read in all installation sources, 
+so the recovery menu MUST be entered for this to occur. You can do this by using one of the many trigger options at startup, e.g. pressing the shift-key. 
+For remote operation, consider using the `forcetrigger` option, maybe in combination with `remotetimeout` if necessary.
 
 ### Auto-Installing OSes based on their source
 
@@ -610,6 +619,21 @@ The `select=` option will not install the listed OSes by itself, but by adding t
 An installer slideshow guides you through your first steps with each OS while it installs.
 
 ![alt text](screenshots/installer_slides.png "An installer slideshow guides you through your first steps with each OS.")
+
+### Auto-Reinstalling OSes
+
+The `silentreinstallnewer` option is added by particular request for a specific purpose, so be sure you understand how it works before using, otherwise you are at risk of 
+losing your data.
+
+It is used in conjunction with the `select=` option to automatically reinstall any installed OS selected by that option if a newer version is found to exist
+on any installation source that is newer than the currently installed version. THERE ARE NO OTHER CHECKS except the name of the OS and its release date, so this option may 
+unexpectedly wipe out any existing OS and restore it to a factory default state if you make a mistake - YOU HAVE BEEN WARNED! 
+For this reason, it may be beneficial to install a Data Partition on your installation drive, on which all user data is stored, rather than storing it on the OS partition. 
+In this way, the user data can be preserved when the OS is re-installed.
+
+It is advisable to only use named OSes in the `select=` option. Using any of the general options like `allinstalled` & `allnetwork` etc. May result in unexpected consequences!
+Likewise, you may wish to resict your installation sources to a single location with judiciious use of the `disableusbimages`, `disablesdimages` and the network source options
+to avoid a newer OS being installed from an unintended source.
 
 ## Installation Progress
 

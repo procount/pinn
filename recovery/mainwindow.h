@@ -80,6 +80,7 @@ protected:
     unsigned _availableImages;
     unsigned _selectImages;
     unsigned _waitforImages;
+    unsigned _processedImages;
     QStringList _selectOsList;
 
     enum ModeTag {

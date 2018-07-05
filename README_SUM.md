@@ -45,6 +45,12 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+## V2.8.5.1
+
+- **Reinstall**               - BUGFIX for Re-install.
+- **translations**            - Updated it and zh_TW translations.
+- **silentreinstallnewer**    - **USE WITH CAUTION**. With `select=` it will silently re-install any selected OSes that are newer than the installed version.
+
 ### V2.8.5
 
 - **Boot Cancel**             - Added a new cancel button to the bootselection dialog which will reboot back into PINN
