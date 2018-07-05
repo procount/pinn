@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -325,7 +325,7 @@ WARNING: This will erase all data on your SD card</oldsource>
         <location filename="mainwindow.ui" line="122"/>
         <source>Model</source>
         <oldsource>model</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>型號</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="132"/>
@@ -414,12 +414,12 @@ WARNING: This will erase all data on your SD card</oldsource>
         <location filename="mainwindow.ui" line="570"/>
         <source>Replace (l)</source>
         <oldsource>Replace (p)</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>取代 (l)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="573"/>
         <source>L</source>
-        <translation type="unfinished"></translation>
+        <translation>L</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="624"/>
@@ -684,13 +684,14 @@ All existing data on the SD card will be overwritten, including any OSes that ar
     <message>
         <location filename="mainwindow.cpp" line="1099"/>
         <source>ReInstall OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>重新安裝作業系統</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1100"/>
         <source>Warning: No OSes selected or available
 </source>
-        <translation type="unfinished"></translation>
+        <translation>警告：未選擇作業系統或未提供
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1174"/>
@@ -768,7 +769,7 @@ Reboot PINN to take account of these OSes?</source>
         <location filename="mainwindow.cpp" line="2848"/>
         <location filename="mainwindow.cpp" line="3921"/>
         <source>Replace OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>取代作業系統</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2991"/>
@@ -865,7 +866,8 @@ Reboot PINN to take account of these OSes?</source>
         <location filename="mainwindow.cpp" line="3922"/>
         <source>Warning: No OSes selected
 </source>
-        <translation type="unfinished"></translation>
+        <translation>警告：沒有選擇作業系統
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1414"/>
@@ -883,12 +885,12 @@ Please provide it locally or connect to the internet.</source>
     <message>
         <location filename="mainwindow.cpp" line="1110"/>
         <source>Warning: this will Reinstall/Replace the selected Operating System(s). The existing data will be deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：這將會重新安裝／取代選定的作業系統。既有的資料將會被刪除。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1151"/>
         <source>The Reinstall process will begin shortly.</source>
-        <translation type="unfinished"></translation>
+        <translation>重新安裝的過程將會很快地開始。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1379"/>
@@ -997,7 +999,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="mainwindow.cpp" line="2849"/>
         <source> has an incompatible number of partitions with </source>
-        <translation type="unfinished"></translation>
+        <translation> 有不相容數量的分割區 </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3224"/>
@@ -1275,7 +1277,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="osgroup.cpp" line="18"/>
         <source>Utility</source>
-        <translation type="unfinished"></translation>
+        <translation>工具程式</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="332"/>
@@ -1582,7 +1584,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="piclonedialog.ui" line="88"/>
         <source>Resize Last Partition</source>
-        <translation type="unfinished"></translation>
+        <translation>調整最後一個分割區的大小</translation>
     </message>
 </context>
 <context>
@@ -1598,7 +1600,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="replace.ui" line="14"/>
         <source>Replace Installed OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>取代已安裝的作業系統</translation>
     </message>
 </context>
 <context>
