@@ -679,7 +679,7 @@ All existing data on the SD card will be overwritten, including any OSes that ar
     <message>
         <location filename="mainwindow.cpp" line="1041"/>
         <source>The install process will begin shortly.</source>
-        <translation>安裝過程將很快開始</translation>
+        <translation>安裝過程將很快開始。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1099"/>
@@ -1107,7 +1107,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <location filename="multiimagewritethread.cpp" line="377"/>
         <source>Cannot Reinstall </source>
         <oldsource>Cannot Refresh </oldsource>
-        <translation>無法重新安裝</translation>
+        <translation>無法重新安裝 </translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="377"/>
@@ -1551,7 +1551,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="piclonethread.cpp" line="169"/>
         <source>Creating partition %1 of %2 </source>
-        <translation>正在建立分割區 %2 中的 %1</translation>
+        <translation>正在建立分割區 %2 中的 %1 </translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="275"/>
