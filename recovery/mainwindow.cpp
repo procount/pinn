@@ -1641,7 +1641,7 @@ void MainWindow::on_actionAdvanced_triggered()
     toolbars.value(toolbar_index)->setVisible(true);
 
     ui->groupBox->setVisible(toolbar_index == TOOLBAR_MAIN);
-    ui->groupBoxUsb->setVisible(toolbar_index == TOOLBAR_ARCHIVAL);
+    ui->groupBoxUsb->setVisible( (toolbar_index == TOOLBAR_ARCHIVAL) || (toolbar_index == TOOLBAR_MAINTENANCE));
 
     if (_menuLabel)
         _menuLabel->setText(menutext(toolbar_index));
@@ -2442,6 +2442,7 @@ void MainWindow::updateActions()
     if (item->checkState()) //Cannot replace PINN with something else!
         count--;
     ui->actionReplace->setEnabled( count );
+    ui->actionBackup->setEnabled(count && !_osdrive.isEmpty() );
 
     //For the normal list...
     item = ug->list->currentItem();
@@ -4148,6 +4149,16 @@ void MainWindow::on_actionRepair_triggered()
         repair dlg(ug->listInstalled, _drive);
         dlg.exec();
     }
+}
+
+void MainWindow::on_actionBackup_triggered()
+{
+    _local = "/tmp/media/"+partdev(_osdrive,1);
+    if (QProcess::execute("mount -o remount,rw /dev/"+partdev(_osdrive,1)+" "+_local) != 0)
+    {
+        return;
+    }
+
 }
 
 void MainWindow::createPinnEntry()

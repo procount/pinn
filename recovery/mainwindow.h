@@ -207,6 +207,7 @@ private slots:
     void on_actionFschk_triggered();
     void on_actionRepair_triggered();
     void on_actionReplace_triggered();
+    void on_actionBackup_triggered();
     void on_actionFirmware_triggered();
     void updateFirmware_button();
 

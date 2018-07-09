@@ -280,7 +280,6 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionBackup"/>
    <addaction name="actionDownload"/>
    <addaction name="actionClone"/>
    <addaction name="actionInfo"/>
@@ -322,6 +321,7 @@
    </attribute>
    <addaction name="actionEdit_config"/>
    <addaction name="actionPassword"/>
+   <addaction name="actionBackup"/>
    <addaction name="actionRepair"/>
    <addaction name="actionReinstall"/>
    <addaction name="actionReplace"/>
@@ -524,11 +524,14 @@
    </property>
   </action>
   <action name="actionBackup">
-   <property name="enabled">
+   <property name="checkable">
     <bool>false</bool>
    </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/backup_manager.png</normaloff>:/icons/backup_manager.png</iconset>
    </property>
    <property name="text">
@@ -538,7 +541,7 @@
     <string>B</string>
    </property>
    <property name="visible">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionReinstall">

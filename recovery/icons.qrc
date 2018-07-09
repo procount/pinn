@@ -71,5 +71,6 @@
         <file>cec_keys.json</file>
         <file>icons/arrow_refresh.png</file>
         <file>icons/clear.png</file>
+        <file>icons/backup_manager.png</file>
     </qresource>
 </RCC>
