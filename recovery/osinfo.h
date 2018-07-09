@@ -104,10 +104,16 @@ public:
         _replacedName = old_name;
     }
 
+    inline QString supportsBackup()
+    {
+        return _supports_backup;
+    }
+
 protected:
     QString _folder, _flavour, _name, _description, _version, _releaseDate;
     QString _username, _password, _url, _group, _configpath, _replacedName;
     bool _bootable;
+    QString _supports_backup;
     QList<PartitionInfo *> _partitions;
     QStringList _supportedModels;
     int _riscosOffset;

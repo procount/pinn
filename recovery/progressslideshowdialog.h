@@ -23,7 +23,7 @@ class ProgressSlideshowDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ProgressSlideshowDialog(const QStringList &slidesDirectories, const QString &statusMsg = "", int changeInterval = 20, const QString &drive = "/dev/mmcblk0", QWidget *parent = 0);
+    explicit ProgressSlideshowDialog(const QStringList &slidesDirectories, const QString &statusMsg = "", int changeInterval = 20, const QString &drive = "/dev/mmcblk0", QWidget *parent = 0, bool readmode=false);
     ~ProgressSlideshowDialog();
     void enableIOaccounting();
     void disableIOaccounting();
@@ -46,8 +46,9 @@ protected:
     uint _sectorsStart, _maxSectors, _pausedAt;
     QTimer _timer, _iotimer;
     QTime _t1;
+    bool _readmode;
 
-    uint sectorsWritten();
+    uint sectorsAccessed();
 
 
 private:

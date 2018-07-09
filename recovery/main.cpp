@@ -343,10 +343,6 @@ int main(int argc, char *argv[])
     if (hasTouchScreen)
         a.installEventFilter(&lph);
 
-#ifdef Q_WS_QWS
-    QWSServer::setCursorVisible(false);
-#endif
-
     QDir settingsdir;
     settingsdir.mkdir("/settings");
 
@@ -360,7 +356,24 @@ int main(int argc, char *argv[])
     QPixmap pixmap;
     if (QFile::exists("/mnt/wallpaper.png"))
     {
-        pixmap.load("/mnt/wallpaper.png");
+        QPixmap temp;
+        temp.load("/mnt/wallpaper.png");
+        QRect screen= a.desktop()->availableGeometry();
+        QRect area = temp.rect();
+        if (!wallpaper_resize)
+        {   //Crop the centre of the image out to fit the screen else showMessage is off screen
+            if (area.width()>screen.width())
+            {
+                area.setLeft( (area.width() - screen.width())/2 );
+                area.setWidth( screen.width() );
+            }
+            if (area.height()>screen.height())
+            {
+                area.setTop( (area.height() - screen.height())/2 );
+                area.setHeight( screen.height() );
+            }
+        }
+        pixmap=temp.copy(area);
     }
     else
     {
@@ -415,12 +428,17 @@ int main(int argc, char *argv[])
 #ifdef Q_WS_QWS
     QWSServer::setBackground(backgroundColour);
 #endif
+
     KSplash *splash = new KSplash(pixmap,0,wallpaper_resize);
 
     splash->show();
     splash->resize();
-    splash->showMessage("For recovery mode, hold SHIFT...");
+    splash->showMessage("For recovery mode, hold SHIFT...",Qt::black);
     QApplication::processEvents();
+
+#ifdef Q_WS_QWS
+    QWSServer::setCursorVisible(false);
+#endif
 
     //------------------------------------------------
 
@@ -434,9 +452,9 @@ int main(int argc, char *argv[])
     if (bailout && keyboard_trigger)
     {
         t.start();
-
-        while (t.elapsed() < 2000)
+        while (t.elapsed() < 3000)
         {
+            splash->showMessage("For recovery mode, hold SHIFT...", Qt::AlignLeft, (t.elapsed()%1000 < 500)?Qt::black : Qt::white);
             QApplication::processEvents(QEventLoop::WaitForMoreEvents, 10);
             if (QApplication::queryKeyboardModifiers().testFlag(Qt::ShiftModifier))
             {

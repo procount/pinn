@@ -394,7 +394,7 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Reserve disk space**      - Reserve some space on PINN's partition before formatting
 - **mkimage**                 - Added mkimage from uboot
 - **xz**                      - Allow XZ Compression
-- **Update Dialog**           - This now cancels any timeout setting
+5885253- **Update Dialog**           - This now cancels any timeout setting
 
 ## V2.8.5
 
@@ -444,4 +444,18 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Replace**                 - Removed RiscOS & Windows_10 from OS replacement
 - **SilentInstall**           - Fixed waiting for USB images
 - **networktimeout**          - 0 means wait indefinitely for network before silentinstall
+
+## V2.8.5.8
+
+- **RPi 3A+**                 - Supports RPi 3A+
+
+## V3.0
+
+- **Backup**            - Backup an OS in PINN format
+- **Time**            	- Added button to set date & time	
+- **Download**          - Fixed foldername of some OSes when downloaded
+- **Iconcache**         - Cache icons when connected to internet to speed up startup
+
+
+
 

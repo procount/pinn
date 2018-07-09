@@ -17,13 +17,14 @@
  *
  */
 
-ProgressSlideshowDialog::ProgressSlideshowDialog(const QStringList &slidesDirectories, const QString &statusMsg, int changeInterval, const QString &drive, QWidget *parent) :
+ProgressSlideshowDialog::ProgressSlideshowDialog(const QStringList &slidesDirectories, const QString &statusMsg, int changeInterval, const QString &drive, QWidget *parent, bool readmode) :
     QDialog(parent),
     _drive(drive),
     _pos(0),
     _changeInterval(changeInterval),
     _maxSectors(0),
     _pausedAt(0),
+    _readmode(readmode),
     ui(new Ui::ProgressSlideshowDialog)
 {
     ui->setupUi(this);
@@ -125,7 +126,7 @@ void ProgressSlideshowDialog::nextSlide()
 
 void ProgressSlideshowDialog::enableIOaccounting()
 {
-    _sectorsStart = sectorsWritten();
+    _sectorsStart = sectorsAccessed();
     _t1.start();
     _iotimer.start(1000);
     QProcess::execute("rm /tmp/progress");
@@ -140,12 +141,12 @@ void ProgressSlideshowDialog::disableIOaccounting()
 void ProgressSlideshowDialog::pauseIOaccounting()
 {
     _iotimer.stop();
-    _pausedAt = sectorsWritten();
+    _pausedAt = sectorsAccessed();
 }
 
 void ProgressSlideshowDialog::resumeIOaccounting()
 {
-    _sectorsStart += sectorsWritten()-_pausedAt;
+    _sectorsStart += sectorsAccessed()-_pausedAt;
     _iotimer.start(1000);
 }
 
@@ -170,7 +171,7 @@ void ProgressSlideshowDialog::setMaximum(qint64 bytes)
 void ProgressSlideshowDialog::updateIOstats()
 {
     static int last_percent=-1;
-    uint sectors = sectorsWritten()-_sectorsStart;
+    uint sectors = sectorsAccessed()-_sectorsStart;
 
     double sectorsPerSec = sectors * 1000.0 / _t1.elapsed();
     if (_maxSectors)
@@ -186,7 +187,13 @@ void ProgressSlideshowDialog::updateIOstats()
         remaining /=60; //hours
         uint hrs = remaining ;
 
-        setMBWrittenText(tr("%1 MB of %2 MB written (%3 MB/sec) Remaining: %4:%5:%6")
+        QString mode;
+        if (_readmode)
+            mode=tr("%1 MB of %2 MB read (%3 MB/sec) Remaining: %4:%5:%6");
+        else
+            mode=tr("%1 MB of %2 MB written (%3 MB/sec) Remaining: %4:%5:%6");
+
+        setMBWrittenText(mode
             .arg(QString::number(sectors/2048))
             .arg(QString::number(_maxSectors/2048))
             .arg(QString::number(sectorsPerSec/2048.0, 'f', 1))
@@ -209,7 +216,13 @@ void ProgressSlideshowDialog::updateIOstats()
     }
     else
     {
-        setMBWrittenText(tr("%1 MB written (%2 MB/sec)")
+        QString mode;
+        if (_readmode)
+            mode=tr("%1 MB read (%2 MB/sec)");
+        else
+            mode=tr("%1 MB written (%2 MB/sec)");
+
+        setMBWrittenText(mode
             .arg(QString::number(sectors/2048), QString::number(sectorsPerSec/2048.0, 'f', 1)));
 
         int percent = sectors/2048;
@@ -233,7 +246,7 @@ void ProgressSlideshowDialog::updateProgress(qint64 value)
     //qDebug() << "updateProgress " << fraction;
 }
 
-uint ProgressSlideshowDialog::sectorsWritten()
+uint ProgressSlideshowDialog::sectorsAccessed()
 {
     /* Poll kernel counters to get number of bytes written
      *
@@ -255,6 +268,10 @@ uint ProgressSlideshowDialog::sectorsWritten()
      * time_in_queue   milliseconds  total wait time for all requests
      */
 
+    int field=6;
+    if (_readmode)
+        field=2;
+
     uint numsectors=0;
 
     QFile f(sysclassblock(_drive)+"/stat");
@@ -264,8 +281,8 @@ uint ProgressSlideshowDialog::sectorsWritten()
 
     QList<QByteArray> stats = ioline.split(' ');
 
-    if (stats.count() >= 6)
-        numsectors = stats.at(6).toUInt(); /* write sectors */
+    if (stats.count() >= field)
+        numsectors = stats.at(field).toUInt(); /* Read or write sectors */
 
     if (numsectors > 2147483647)        //Maybe use MAX_INT from limits.h?
        numsectors = 2147483647;

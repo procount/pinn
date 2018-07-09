@@ -1,6 +1,7 @@
 #include "fscheck.h"
 #include "ui_fscheck.h"
 #include "passwd.h"
+#include "util.h"
 
 #include <QDebug>
 #include <QProcess>
@@ -8,22 +9,6 @@
 #include <QString>
 #include <QVariantMap>
 
-QString readexec(int log, const QString &cmd, int &errorcode)
-{
-    QProcess proc;
-    QString output;
-    //int errorcode=0;
-
-    proc.start(cmd);
-    proc.waitForFinished(-1);
-    errorcode = proc.exitCode();
-    proc.setProcessChannelMode(proc.MergedChannels);
-    output = proc.readAll();
-
-    if (log)
-        qDebug() << cmd << "\n" << output << "\n";
-    return (output);
-}
 
 
 fscheck::fscheck(QListWidget * list, QWidget *parent) :

@@ -5,6 +5,17 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+## V3.0
+
+- **Backup**                  - Backup an OS in PINN format
+- **Time**                    - Added button to set date & time	
+- **Download**                - Fixed foldername of some OSes when downloaded
+- **Iconcache**               - Cache icons when connected to internet to speedup startup
+
+## V2.8.5.8
+
+- **RPi 3A+**                 - Supports RPi 3A+
+
 ## V2.8.5.7
 
 - **Firmware**                - Disabled firmware downgrade on 3B+

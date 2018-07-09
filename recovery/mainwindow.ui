@@ -280,11 +280,11 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionBackup"/>
    <addaction name="actionDownload"/>
    <addaction name="actionClone"/>
    <addaction name="actionInfo"/>
    <addaction name="actionFirmware"/>
+   <addaction name="actionTime"/>
   </widget>
   <widget class="QToolBar" name="toolBar_3">
    <property name="enabled">
@@ -322,6 +322,7 @@
    </attribute>
    <addaction name="actionEdit_config"/>
    <addaction name="actionPassword"/>
+   <addaction name="actionBackup"/>
    <addaction name="actionRepair"/>
    <addaction name="actionReinstall"/>
    <addaction name="actionReplace"/>
@@ -524,11 +525,14 @@
    </property>
   </action>
   <action name="actionBackup">
-   <property name="enabled">
+   <property name="checkable">
     <bool>false</bool>
    </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/backup_manager.png</normaloff>:/icons/backup_manager.png</iconset>
    </property>
    <property name="text">
@@ -538,7 +542,7 @@
     <string>B</string>
    </property>
    <property name="visible">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionReinstall">
@@ -683,6 +687,21 @@
    </property>
    <property name="shortcut">
     <string>C</string>
+   </property>
+  </action>
+  <action name="actionTime">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/date.png</normaloff>:/icons/date.png</iconset>
+   </property>
+   <property name="text">
+    <string>Time (t)</string>
+   </property>
+   <property name="toolTip">
+    <string>Set Data &amp; Time</string>
+   </property>
+   <property name="shortcut">
+    <string>T</string>
    </property>
   </action>
  </widget>

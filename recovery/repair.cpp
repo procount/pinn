@@ -4,6 +4,7 @@
 #include "fscheck.h"
 #include "util.h"
 #include "rerunsetup.h"
+#include "mainwindow.h"
 
 #include <QDebug>
 #include <QFile>
@@ -12,14 +13,15 @@
 #include <QString>
 #include <QVariantMap>
 
-repair::repair(QListWidget * list, const QString &rootdrive, QWidget *parent) :
+repair::repair(QListWidget * listinstalled, MainWindow * mw, const QString &rootdrive, QWidget *parent) :
     QDialog(parent),
     _drive(rootdrive),
     ui(new Ui::repair)
 {
     QListWidgetItem * item;
 
-    _listinstalled=list;
+    _listinstalled = listinstalled;
+    _mw = mw;
     ui->setupUi(this);
     show();
 
@@ -72,7 +74,7 @@ void repair::on_buttonBox_accepted()
                 }
                 if (m["action"] == "setup")
                 {
-                   rerunsetup dlg(_listinstalled,_drive);
+                   rerunsetup dlg(_listinstalled,_mw,_drive);
                    dlg.exec();
                 }
                 if (m["action"] == "upgrade")

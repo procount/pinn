@@ -120,8 +120,6 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
             QFile g(filename);
             if (g.exists())
                 g.remove();
-
-            // return false; //@@Let's see what happens if we try to continue (maybe need to emit error with parameter to enable or not)
         }
         qDebug() << "finished downloading filesystem in" << (t1.elapsed()/1000.0) << "seconds";
         _part++;
@@ -175,27 +173,3 @@ QByteArray MultiImageDownloadThread::getUUID(const QString part)
     return result;
 }
 
-QString MultiImageDownloadThread::getDescription(const QString &folder, const QString &flavour)
-{
-    if (QFile::exists(folder+"/flavours.json"))
-    {
-        QVariantMap v = Json::loadFromFile(folder+"/flavours.json").toMap();
-        QVariantList fl = v.value("flavours").toList();
-
-        foreach (QVariant f, fl)
-        {
-            QVariantMap fm  = f.toMap();
-            if (fm.value("name").toString() == flavour)
-            {
-                return fm.value("description").toString();
-            }
-        }
-    }
-    else if (QFile::exists(folder+"/os.json"))
-    {
-        QVariantMap v = Json::loadFromFile(folder+"/os.json").toMap();
-        return v.value("description").toString();
-    }
-
-    return "";
-}

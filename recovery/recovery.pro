@@ -6,8 +6,6 @@
 
 QT       += core gui network dbus
 
-QMAKE_CXXFLAGS += -fpermissive
-
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 RPI_USERLAND_DIR=../../staging/usr
@@ -66,7 +64,11 @@ SOURCES += \
     repair.cpp \
     rerunsetup.cpp \
     replace.cpp \
-    splash.cpp
+    splash.cpp \
+    backupthread.cpp \
+    datetimedialog.cpp \
+    backupdialog.cpp \
+    iconcache.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -110,7 +112,11 @@ HEADERS  += \
     rerunsetup.h \
     sleepsimulator.h \
     replace.h \
-    splash.h
+    splash.h \
+    backupthread.h \
+    datetimedialog.h \
+    backupdialog.h \
+    iconcache.h
 
 FORMS    += \
     mainwindow.ui \
@@ -124,7 +130,9 @@ FORMS    += \
     fscheck.ui \
     repair.ui \
     rerunsetup.ui \
-    replace.ui
+    replace.ui \
+    datetimedialog.ui \
+    backupdialog.ui
 
 RESOURCES += \
     icons.qrc
@@ -155,4 +163,5 @@ TRANSLATIONS += \
 OTHER_FILES += \
     README.txt \
     wpa_supplicant/wpa_supplicant.xml \
-    ../buildroot/package/recovery/init
+    ../buildroot/package/recovery/init \
+    recalbox_os_list.json
