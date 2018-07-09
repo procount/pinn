@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "backupdialog.h"
+#include "backupthread.h"
 #include "multiimagewritethread.h"
 #include "multiimagedownloadthread.h"
 #include "initdrivethread.h"
@@ -25,8 +27,11 @@
 #include "replace.h"
 #include "mydebug.h"
 #include "splash.h"
+#include "datetimedialog.h"
+#include "iconcache.h"
 
 #include <QByteArray>
+#include <QDateTime>
 #include <QMessageBox>
 #include <QProgressDialog>
 #include <QMap>
@@ -727,7 +732,6 @@ void MainWindow::repopulate()
 
     //@@Add dummy icons?
 
-    //@@change to _numBootableOS
     if (_numBootableOS)
     {
         ui->actionCancel->setEnabled(true);
@@ -780,7 +784,6 @@ bool MainWindow::isSupportedOs(const QString &name, const QVariantMap &values)
 {
     TRACE
     /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
-
     /* If it's not bootable, it isn't really an OS, so is always supported */
     if (!canBootOs(name, values))
     {
@@ -800,7 +803,6 @@ bool MainWindow::isSupportedOs(const QString &name, const QVariantMap &values)
                 return true;
             }
         }
-
         return false;
     }
 
@@ -842,7 +844,7 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
                     {
                         QVariantMap item = osv;
                         QString name        = fm.value("name").toString();
-                        if (name == RECOMMENDED_IMAGE)
+                        if (CORE(name) == RECOMMENDED_IMAGE)
                             item["recommended"] = true;
                         item["name"]        = name;
                         item["description"] = fm.value("description").toString();
@@ -857,7 +859,7 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
             else
             {
                 QString name = basename;
-                if (name == RECOMMENDED_IMAGE)
+                if (CORE(name) == RECOMMENDED_IMAGE)
                     osv["recommended"] = true;
                 osv["folder"] = imagefolder;
                 images[name] = osv;
@@ -948,12 +950,23 @@ void MainWindow::addInstalledImages()
             _numInstalledOS++;
             QVariantMap m = v.toMap();
             QString name = m.value("name").toString();
-            if (name == RECOMMENDED_IMAGE)
+            if (CORE(name) == RECOMMENDED_IMAGE)
                 m["recommended"] = true;
             if (m.value("bootable").toBool() == true)
                 _numBootableOS++;
             m["installed"]=true;
             m["source"] = SOURCE_INSTALLED_OS;
+
+            if (m.contains("supports_backup"))
+            {
+                if (m.value("supports_backup","false").toString()=="update")
+                    m["supports_backup"]="update";
+                else if (m.value("supports_backup").toBool()==true)
+                    m["supports_backup"]=true;
+                else
+                    m["supports_backup"]=false;
+            }
+
             bool bInstalled=true;
             QIcon localIcon;
             addImage(m, localIcon, bInstalled);
@@ -1039,7 +1052,7 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
             {
                 QVariantMap entry = item->data(Qt::UserRole).toMap();
                 QDir d;
-                QString folder = "/settings/os/"+entry.value("name").toString();
+                QString folder = "/settings/os/"+CORE(entry.value("name").toString()); //@@ Get eCORE only!
                 folder.replace(' ', '_');
                 if (!d.exists(folder))
                     d.mkpath(folder);
@@ -1075,9 +1088,7 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
                     QProcess::execute(cmd);
                     cmd = "cp "+ local+"/partition_setup.sh "+folder;
                     QProcess::execute(cmd);
-                    //(@@Do we need to copy the slides to the settings partition, for backup maybe?)
-                    //@@YES!
-                    cmd = "cp -r "+ local+"/slides_vga "+folder;
+                    cmd = "cp -r "+ local+"/slides_vga/ "+folder;
                     QProcess::execute(cmd);
 
                     //Icon gets copied at end of processing if installed from network or USB.
@@ -1256,10 +1267,8 @@ void MainWindow::on_actionDownload_triggered()
                     QString osname = entry.value("name").toString();
 
                     QFileInfo fi = entry.value("os_info").toString();   //full URL to os.json
-                    QFileInfo fipath = fi.path();                       //URL path
-                    QString foldername = fipath.fileName();
 
-                    QString folder = _local+"/os/"+foldername;
+                    QString folder = _local+"/os/"+osname;
                     folder.replace(' ', '_');
                     if (!d.exists(folder))
                         d.mkpath(folder);
@@ -1317,7 +1326,7 @@ void MainWindow::on_actionCancel_triggered()
     close();
 }
 
-void MainWindow::onCompleted()
+void MainWindow::onCompleted(int arg)
 {
     TRACE
     int ret = QMessageBox::Ok;
@@ -1340,6 +1349,18 @@ void MainWindow::onCompleted()
                                      tr("OS(es) downloaded"),
                                      tr("OS(es) Downloaded Successfully.\nReboot PINN to take account of these OSes?"), QMessageBox::Ok|QMessageBox::Cancel);
         }
+        else if (_eDownloadMode==MODE_BACKUP)
+        {
+            QString info;
+            if (arg)
+                info = tr("OS(es) Backed up with errors.\nSee debug log for details");
+            else
+                info = tr("OS(es) Backed up Successfully.");
+            ret = QMessageBox::information(this,
+                                     tr("Backup OSes"),
+                                     info, QMessageBox::Ok);
+            //addImagesFromUSB(partdev(_osdrive,1));
+        }
         else
         {
             ret = QMessageBox::information(this,
@@ -1355,6 +1376,9 @@ void MainWindow::onCompleted()
     {
         if (ret == QMessageBox::Ok)
         {
+#if 0
+            addImagesFromUSB(partdev(_osdrive,1));
+#else
             //@@Temporary solution....
             // Shut down networking
             QProcess::execute("ifdown -a");
@@ -1370,6 +1394,7 @@ void MainWindow::onCompleted()
 
             //@@What we really want to do is just refresh the dialog, but not possible yet.
             //repopulate();
+#endif
         }
     }
 
@@ -1688,7 +1713,7 @@ void MainWindow::on_actionAdvanced_triggered()
     toolbars.value(toolbar_index)->setVisible(true);
 
     ui->groupBox->setVisible(toolbar_index == TOOLBAR_MAIN);
-    ui->groupBoxUsb->setVisible(toolbar_index == TOOLBAR_ARCHIVAL);
+    ui->groupBoxUsb->setVisible( (toolbar_index == TOOLBAR_ARCHIVAL) || (toolbar_index == TOOLBAR_MAINTENANCE));
 
     if (_menuLabel)
         _menuLabel->setText(menutext(toolbar_index));
@@ -2263,6 +2288,8 @@ void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QS
         if (!iconurl.isEmpty())
             iconurls.insert(iconurl);
     }
+    if (CORE(name)==RECOMMENDED_IMAGE)
+        new_details["recommended"]=true;
     addImage(new_details,internetIcon,bInstalled);
     if (! new_details.contains("download_size"))
     {
@@ -2306,12 +2333,28 @@ void MainWindow::getDownloadSize(QVariantMap &new_details)
 void MainWindow::downloadIcon(const QString &urlstring, const QString &originalurl)
 {
     TRACE
-    QUrl url(urlstring);
-    QNetworkRequest request(url);
-    request.setAttribute(QNetworkRequest::User, originalurl);
-    request.setRawHeader("User-Agent", AGENT);
-    QNetworkReply *reply = _netaccess->get(request);
-    connect(reply, SIGNAL(finished()), this, SLOT(downloadIconRedirectCheck()));
+    iconcache cache;
+    QPixmap pix;
+    if (cache.readPixmapFromCache(urlstring, pix))
+    {
+        assignPixmap(urlstring, pix);
+
+        if (--_numIconsToDownload == 0 && _qpd)
+        {
+            _qpd->hide();
+            _qpd->deleteLater();
+            _qpd = NULL;
+        }
+    }
+    else
+    {
+        QUrl url(urlstring);
+        QNetworkRequest request(url);
+        request.setAttribute(QNetworkRequest::User, originalurl);
+        request.setRawHeader("User-Agent", AGENT);
+        QNetworkReply *reply = _netaccess->get(request);
+        connect(reply, SIGNAL(finished()), this, SLOT(downloadIconRedirectCheck()));
+    }
 }
 
 QListWidgetItem *MainWindow::findItemByName(const QString &name)
@@ -2348,21 +2391,8 @@ void MainWindow::downloadIconComplete()
     {
         QPixmap pix;
         pix.loadFromData(reply->readAll());
-        QIcon icon(pix);
 
-        //Set the icon in the OS list dialog box.
-        QList<QListWidgetItem *> all;
-        all = ug->allItems();
-
-        for (int i=0; i<ug->count(); i++)
-        {
-            QVariantMap m = all.value(i)->data(Qt::UserRole).toMap();
-            ug->list->setIconSize(QSize(40,40)); //ALL??
-            if (m.value("icon") == originalurl)
-            {
-                all.value(i)->setIcon(icon);
-            }
-        }
+        assignPixmap(originalurl, pix);
     }
     if (--_numIconsToDownload == 0 && _qpd)
     {
@@ -2373,9 +2403,27 @@ void MainWindow::downloadIconComplete()
 
     reply->deleteLater();
     _listno++;
-    //@@? if (_listno ==1)
-    //@@?    downloadList(DEFAULT_REPO_SERVER);
+}
 
+void MainWindow::assignPixmap(QString originalurl, QPixmap &pix)
+{
+    iconcache cache;
+    cache.storePixmapInCache(originalurl, pix);
+    QIcon icon(pix);
+
+    //Set the icon in the OS list dialog box.
+    QList<QListWidgetItem *> all;
+    all = ug->allItems();
+
+    for (int i=0; i<ug->count(); i++)
+    {
+        QVariantMap m = all.value(i)->data(Qt::UserRole).toMap();
+        ug->list->setIconSize(QSize(40,40)); //ALL??
+        if (m.value("icon") == originalurl)
+        {
+            all.value(i)->setIcon(icon);
+        }
+    }
 }
 
 QList<QListWidgetItem *> MainWindow::selectedItems()
@@ -2518,6 +2566,7 @@ void MainWindow::updateActions()
     if (item->checkState()) //Cannot replace PINN with something else!
         count--;
     ui->actionReplace->setEnabled( count );
+    ui->actionBackup->setEnabled(count && !_osdrive.isEmpty() );
 
     //For the normal list...
     item = ug->list->currentItem();
@@ -2837,7 +2886,7 @@ void MainWindow::startImageWrite()
         }
         else
         {
-            folder = "/settings/os/"+entry.value("name").toString();
+            folder = "/settings/os/"+CORE(entry.value("name").toString());
             folder.replace(' ', '_');
 
             QString marketingTar = folder+"/marketing.tar";
@@ -2921,7 +2970,7 @@ void MainWindow::startImageReinstall()
         }
         else
         {
-            folder = "/settings/os/"+entry.value("name").toString();
+            folder = "/settings/os/"+CORE(entry.value("name").toString());
             folder.replace(' ', '_');
 
             QString marketingTar = folder+"/marketing.tar";
@@ -2961,7 +3010,7 @@ void MainWindow::startImageReinstall()
 
         if (i == nInstalledParts)
         {
-            imageWriteThread->addInstalledImage(folder, entry.value("name").toString(), installedEntry); //@@
+            imageWriteThread->addInstalledImage(folder, entry.value("name").toString(), installedEntry);
         }
         else
         {
@@ -2976,7 +3025,7 @@ void MainWindow::startImageReinstall()
         slidesFolder.append("/mnt/defaults/slides");
 
     _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, _drive, this);
-    _qpssd->setWindowTitle("Installing Images");
+    _qpssd->setWindowTitle("Re-Installing Images");
     connect(imageWriteThread, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
     connect(imageWriteThread, SIGNAL(completed()), this, SLOT(onCompleted()));
     connect(imageWriteThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
@@ -3015,11 +3064,7 @@ void MainWindow::startImageDownload()
         }
         else
         {
-            QFileInfo fi = entry.value("os_info").toString();   //full URL to os.json
-            QFileInfo fipath = fi.path();                       //URL path
-            QString foldername = fipath.fileName();
-
-            folder = _local+"/os/"+foldername;
+            folder = _local+"/os/"+entry.value("name").toString();
             folder.replace(' ', '_');
 
             QString errorlog = folder+"/error.log";
@@ -3090,6 +3135,130 @@ void MainWindow::startImageDownload()
     //QProcess::execute("mount -o remount,ro /mnt");
 }
 
+void MainWindow::startImageBackup()
+{
+    _piDrivePollTimer.stop();
+    // The drive is already mounted R/W from on_actionBackup_triggered
+
+    /* All meta files downloaded, extract slides tarball, and launch image download thread */
+    BackupThread *bt = new BackupThread(0, _local);
+    QString folder, slidesFolder;
+    QStringList slidesFolders;
+
+    QString cmd;
+    int i=1;
+
+    QList<QListWidgetItem *> selected = ug->selectedInstalledItems();
+    foreach (QListWidgetItem *item, selected)
+    {
+        //Mount every partition of each selected OS
+        QVariantMap entry = item->data(Qt::UserRole).toMap();
+        {
+            QVariantList PartitionList = entry.value("partitions").toList();
+            foreach (QVariant pv, PartitionList)
+            {
+                QString part = pv.toString();
+                QString mntpoint = "/tmp/media/p"+QString::number(i);
+
+                cmd = "mkdir -p "+mntpoint;
+                QProcess::execute(cmd);
+
+                cmd = "mount "+part +" "+mntpoint;
+                QProcess::execute(cmd);
+                i++;
+            }
+        }
+    }
+    // Capture the partition sizes of all selected mounted OSes
+    cmd = "sh -c \"df >/tmp/df.txt\"";
+    QProcess::execute(cmd);
+
+    //Process the sizes of each partition
+    i=1;
+    qulonglong backupSpaceMB = 0;
+    foreach (QListWidgetItem *item, selected)
+    {
+        QVariantMap entry = item->data(Qt::UserRole).toMap();
+        {
+            qulonglong overall = 0;
+            QVariantList partSizes;
+            QVariantList PartitionList = entry.value("partitions").toList();
+            foreach (QVariant pv, PartitionList)
+            {
+                QString part = pv.toString();
+                QString mntpoint = "/tmp/media/p"+QString::number(i);
+
+                QString fname = "/tmp/size"+QString::number(i)+".txt";
+
+                cmd = "sh -c \"grep "+part+" /tmp/df.txt >/tmp/sizes.txt\""; QProcess::execute(cmd);
+                cmd = "sh -c \"sed -i 's/ \\+/ /g' /tmp/sizes.txt\""; QProcess::execute(cmd);
+                //get USED space in 1K blocks
+                cmd = "sh -c \"cat /tmp/sizes.txt | cut -d ' ' -f 3 >"+fname+"\""; QProcess::execute(cmd);
+
+                QByteArray size = getFileContents(fname).trimmed(); //in KB
+                qulonglong lsize = size.toULongLong();
+                overall += lsize;
+                lsize /= 1024;
+                lsize++; //MBs
+                QVariant qv = lsize;
+                partSizes.append(qv);
+
+                //Accumulate total backup space required
+                backupSpaceMB += lsize;
+
+                //Unmount the partitions
+                cmd = "umount "+mntpoint;
+                QProcess::execute(cmd);
+
+                cmd = "rmdir "+mntpoint;
+                QProcess::execute(cmd);
+                i++;
+            }
+            entry["partsizes"] = partSizes;
+            entry["backupsize"] = overall*1024; //Convert from kB to bytes -> Used to show read progress
+            item->setData(Qt::UserRole,entry);
+
+
+            bt->addImage(entry);
+            if (!slidesFolder.isEmpty())
+                slidesFolders.append(slidesFolder);
+        }
+    }
+
+    backupSpaceMB /= 3; //conservative estimate gzip compression
+    if (backupSpaceMB > _availableDownloadMB)
+    {
+        QString message = tr("This backup may require ")
+                +QString::number(backupSpaceMB)
+                +tr(" MB of backup space, but only ")
+                +QString::number(_availableDownloadMB)
+                +tr(" MB is available. This is only an estimate. If you continue, the backup may not complete successfully.\n\nDo you want to continue?");
+        if (QMessageBox::warning(this, tr("WARNING: Backup Space"),message,QMessageBox::Yes, QMessageBox::No) == QMessageBox::No)
+        {
+            setEnabled(false);
+            return;
+        }
+    }
+
+    QMessageBox::information(this, tr("Backup Info"), tr("Always test your backups before relying on them"), QMessageBox::Ok);
+
+    if (slidesFolders.isEmpty())
+        slidesFolder.append("/mnt/defaults/slides");
+
+    _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, _osdrive, this, true);
+    _qpssd->setWindowTitle("Backing Up Images");
+    connect(bt, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
+    connect(bt, SIGNAL(completed(int)), this, SLOT(onCompleted(int)));
+    connect(bt, SIGNAL(error(QString)), this, SLOT(onError(QString)));
+    connect(bt, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
+    connect(bt, SIGNAL(newDrive(const QString&)), _qpssd , SLOT(changeDrive(const QString&)), Qt::BlockingQueuedConnection);
+    bt->start();
+    hide();
+    _qpssd->exec();
+    show();
+
+    //QProcess::execute("mount -o remount,ro /mnt");
+}
 
 void MainWindow::hideDialogIfNoNetwork()
 {
@@ -3147,7 +3316,6 @@ void MainWindow::on_actionWifi_triggered()
 
 void MainWindow::pollForNewDisks()
 {
-    TRACE
     QString dirname = "/sys/class/block";
     QDir dir(dirname);
     QStringList list = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
@@ -3491,6 +3659,10 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
 
     QListWidgetItem *witem = NULL;
 
+    //If it is already installed, we don't care that it WAS installed from a backup, so remove date.
+    if (bInstalled)
+        name = getNameParts(name, eCORE);
+
     witem = findItemByName(name);
     if ((witem) && (!bInstalled))
     {
@@ -3547,7 +3719,7 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
         //QListWidgetItem *witemNew = NULL;
         //witemNew = witem;
 
-        //DBG("New OS");
+        DBG("New OS");
         /* It's a new OS, so add it to the list */
         QString iconFilename = m.value("icon").toString();
 
@@ -3556,10 +3728,9 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
             iconFilename = folder+"/"+iconFilename;
         if (!QFile::exists(iconFilename))
         {
-            iconFilename = folder+"/"+name+".png";
+            iconFilename = folder+"/"+CORE(name)+".png";
             iconFilename.replace(' ', '_');
         }
-
         QString friendlyname = name;
         if (recommended)
             friendlyname += " ["+tr("RECOMMENDED")+"]";
@@ -3571,6 +3742,7 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
         witem->setData(Qt::UserRole, m);
 
         witem->setData(SecondIconRole, icon);
+
         if (QFile::exists(iconFilename))
         {
             QIcon iconos;
@@ -3640,6 +3812,7 @@ void MainWindow::addImagesFromUSB(const QString &device)
     QString mntpath = "/tmp/media/"+device;
 
     dir.mkpath(mntpath);
+    QProcess::execute("umount /dev/"+device);
     if (QProcess::execute("mount -o ro /dev/"+device+" "+mntpath) != 0)
     {
         dir.rmdir(mntpath);
@@ -4213,15 +4386,15 @@ void MainWindow::OverrideJson(QVariantMap& m)
     TRACE
     QString name;
     if (m.contains("name"))
-        name = m.value("name").toString();
+        name = CORE(m.value("name").toString());
     else if (m.contains("os_name"))
-        name = m.value("os_name").toString();
+        name = CORE(m.value("os_name").toString());
     else
         return;
+
     if (!_overrides.contains(name))
-    {
         return;
-    }
+
     QVariantMap osMap = _overrides.value(name).toMap();
     for(QVariantMap::const_iterator iter = osMap.begin(); iter != osMap.end(); ++iter) {
         QString key = iter.key();
@@ -4267,8 +4440,175 @@ void MainWindow::on_actionRepair_triggered()
     QListWidgetItem *item = ug->listInstalled->currentItem();
     if (ug->listInstalled->count() && item)
     {
-        repair dlg(ug->listInstalled, _drive);
+        repair dlg(ug->listInstalled, this, _drive);
         dlg.exec();
+    }
+}
+
+void MainWindow::on_actionBackup_triggered()
+{
+
+    _eDownloadMode = MODE_BACKUP;
+
+    _local = "/tmp/media/"+partdev(_osdrive,1);
+    if (QProcess::execute("mount -o remount,rw /dev/"+partdev(_osdrive,1)+" "+_local) != 0)
+    {
+        return;
+    }
+
+    if (_silent || QMessageBox::warning(this,
+                                        tr("Confirm"),
+                                        tr("Warning: this will backup the selected Operating System(s)."),
+                                        QMessageBox::Ok, QMessageBox::Cancel) == QMessageBox::Ok)
+    {
+        /* See if any of the OSes are unsupported */
+        bool allSupported = true;
+        QString unsupportedOses;
+        QList<QListWidgetItem *> selected = ug->selectedInstalledItems();
+
+        // Check for OSes we can't back up
+        foreach (QListWidgetItem *item, selected)
+        {
+            QVariantMap entry = item->data(Qt::UserRole).toMap();
+            QString name = entry.value("name").toString();
+            if (nameMatchesRiscOS(name) || nameMatchesWindows(name) || name.contains("XBian", Qt::CaseInsensitive))
+            {
+                allSupported = false;
+                unsupportedOses += "\n" + name;
+                item->setCheckState(Qt::Unchecked); //Deselect the unsupported OSes
+            }
+            if (entry.value("supports_backup","false").toString()=="update")
+            {
+                QString name = CORE(entry.value("name").toString());
+                QListWidgetItem *witem = findItemByName(name);
+
+                if (!updatePartitionScript(entry,witem))
+                {
+                    allSupported = false;
+                    unsupportedOses += "\n" + name + " (UPDATE Reqd)";
+                    item->setCheckState(Qt::Unchecked); //Deselect the unsupported OSes
+                }
+            }
+
+            if (entry.value("supports_backup","false").toBool()==false)
+            {
+                allSupported = false;
+                unsupportedOses += "\n" + name;
+                item->setCheckState(Qt::Unchecked); //Deselect the unsupported OSes
+            }
+        }
+
+        selected = ug->selectedInstalledItems();    //Select again without the unsupported OSes.
+
+        if (_silent || allSupported || QMessageBox::warning(this,
+                                        tr("Confirm"),
+                                        tr("Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:") + unsupportedOses,
+                                        QMessageBox::Ok) == QMessageBox::Yes) //Can never be yes
+        {
+            setEnabled(false);
+            _numMetaFilesToDownload = 0;
+            foreach (QListWidgetItem *item, selected)
+            {
+                QVariantMap entry = item->data(Qt::UserRole).toMap();
+                if (entry.value("source").toString() == SOURCE_INSTALLED_OS) // only installed OSes Can be backed up.
+                {
+                    //Get date/time
+                    QDateTime tnow = QDateTime::currentDateTime();
+                    QString now = "#" + tnow.toString("yyyyMMdd")+"-"+tnow.toString("hhmmss");;
+                    while (now.left(5)=="#1970")
+                    {
+                        qDebug() << "Current time is not known";
+                        //Open dialog to request current date.
+                        DateTimeDialog dlg;
+                        if (dlg.exec() == QDialog::Accepted)
+                        {   //currentDateTime has been updated
+                            tnow = QDateTime::currentDateTime();
+                            now = "#" + tnow.toString("yyyyMMdd")+"-"+tnow.toString("hhmmss");
+                        }
+                        else
+                        {
+                            QProcess::execute("mount -o remount,ro /dev/"+partdev(_osdrive,1)+" "+_local);
+                            setEnabled(true);
+                            return;
+                        }
+                    }
+
+                    //Get partition number
+                    QString partnr;
+                    {
+                        //@@ partnr = entry.value["partitions"].blahblah;
+                    }
+
+                    QString currentname = entry.value("name").toString();
+
+                    //Create the new osname and the folder the backup will be stored in
+                    QString backupName = getNameParts(currentname, eCORE|eNICKNAME) + now + partnr;
+                    entry["backupName"]   = backupName;
+
+                    //Dialog to update backupname, name & description
+                    backupdialog dlg (entry, NULL);
+                    if (QDialog::Rejected == dlg.exec())
+                    {
+                        setEnabled(true);
+                        return;
+                    }
+
+                    backupName = entry.value("backupName").toString();
+                    backupName.replace(' ', '_');
+                    QString backupFolder = _local+"/os/" + getNameParts(backupName, eBASE|eDATE) + partnr;
+                    backupFolder.replace(' ', '_'); //Reqd??
+
+                    entry["backupFolder"] = backupFolder;
+                    item->setData(Qt::UserRole, entry);
+
+                    //Don't need flavours because they would already have been applied
+                    QString settingsFolder = "/settings/os/"+entry.value("name").toString().replace(' ', '_');
+                    //Copy:
+                    QString cmd;
+
+                    int errors =0;
+                    cmd = "mkdir "+ backupFolder;
+                    errors += QProcess::execute(cmd);
+
+                    //- /slides_vga
+                    cmd = "cp -r "+ settingsFolder+"/slides_vga/ "+backupFolder;
+                    errors += QProcess::execute(cmd);
+
+                    //- os.json (with new description
+                    cmd = "cp "+ settingsFolder+"/os.json "+backupFolder;
+                    errors += QProcess::execute(cmd);
+                    //- partitions.json
+                    cmd = "cp "+ settingsFolder+"/partitions.json "+backupFolder;
+                    errors += QProcess::execute(cmd);
+                    //- partition_setup.sh
+                    cmd = "cp "+ settingsFolder+"/partition_setup.sh "+backupFolder;
+                    errors += QProcess::execute(cmd);
+
+                    //- icon.png
+                    QString iconfilename;
+                    if (entry.contains("icon"))
+                        iconfilename = entry.value("icon").toString();
+                    else
+                        iconfilename = settingsFolder+"/icon.png";
+                    cmd = "cp "+ iconfilename+" "+backupFolder+"/"+CORE(backupName)+".png";
+                    errors += QProcess::execute(cmd);
+
+                    //- [Copy release_notes.txt?]
+                    cmd = "cp "+ settingsFolder+"/release_notes.txt "+backupFolder;
+                    QProcess::execute(cmd); //Not critical
+
+                    if (errors)
+                    {
+                        QMessageBox::critical(this,tr("Backup OSes"),"An error occurred backing up. Perhaps there is no disk space?", QMessageBox::Cancel);
+                        setEnabled(true);
+                        return;
+                    }
+                }
+            }
+
+            /* All OSes selected are local */
+            startImageBackup();
+        }
     }
 }
 
@@ -4308,4 +4648,10 @@ void MainWindow::on_actionClear_c_triggered()
     {
         item->setCheckState(Qt::Unchecked);
     }
+}
+
+void MainWindow::on_actionTime_triggered()
+{
+    DateTimeDialog dlg;
+    dlg.exec();
 }

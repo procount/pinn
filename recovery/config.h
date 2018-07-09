@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 /* Version number displayed in the title bar */
-#define VERSION_NUMBER "2.8.5.8"
+#define VERSION_NUMBER "3.0"
 
 /* Color of the background */
 // #define BACKGROUND_COLOR  Qt::white
@@ -59,7 +59,7 @@
 #define SETTINGS_PARTITION_SIZE  (32 * 2048 - PARTITION_GAP)
 
 /* If the image name matches this exactly, mark it as recommended */
-#define RECOMMENDED_IMAGE "Raspbian"
+#define RECOMMENDED_IMAGE "Raspbian Full"
 
 /* RiscOS magic */
 #define RISCOS_OFFSET_KEY "riscos_offset"

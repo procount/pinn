@@ -8,12 +8,14 @@ namespace Ui {
 class rerunsetup;
 }
 
+class MainWindow;
+
 class rerunsetup : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit rerunsetup(QListWidget * list, const QString &rootdrive, QWidget *parent = 0);
+    explicit rerunsetup(QListWidget * listinstalled, MainWindow * mw, const QString &rootdrive, QWidget *parent = 0);
     ~rerunsetup();
 
 private:

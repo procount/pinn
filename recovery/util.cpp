@@ -1,5 +1,7 @@
 #include "util.h"
 #include "mbr.h"
+#include "json.h"
+#include "mydebug.h"
 
 #include <sys/ioctl.h>
 #include <stdint.h>
@@ -15,7 +17,6 @@
 #include <QtEndian>
 #include <QStringRef>
 #include <QMessageBox>
-
 /*
  * Convenience functions
  *
@@ -70,6 +71,25 @@ QByteArray getRemoteFile(const QString &url)
         result =p.readAllStandardOutput();
     return(result);
 }
+
+QString readexec(int log, const QString &cmd, int &errorcode)
+{
+    //NOTE: Often need to use "sh -c \"...\""
+
+    QProcess proc;
+    QString output;
+
+    proc.setProcessChannelMode(proc.MergedChannels);
+    proc.start(cmd);
+    proc.waitForFinished(-1);
+    errorcode = proc.exitCode();
+    output = proc.readAll();
+
+    if (log)
+        qDebug() << cmd << "\n" << output << "\n";
+    return (output);
+}
+
 
 /* Utility function to query current overscan setting */
 #define VCMSG_GET_OVERSCAN 0x0004000a
@@ -161,7 +181,6 @@ uint readBoardRevision()
 bool canBootOs(const QString& name, const QVariantMap& values)
 {
     /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
-
     /* Check if it's explicitly not bootable */
     bool bootable = values.value("bootable", true).toBool();
     if (!bootable)
@@ -515,4 +534,91 @@ int extractPartitionNumber(QByteArray& partition)
         }
     }
     return partitionNr;
+}
+
+QString getDescription(const QString &folder, const QString &flavour)
+{
+    if (QFile::exists(folder+"/flavours.json"))
+    {
+        QVariantMap v = Json::loadFromFile(folder+"/flavours.json").toMap();
+        QVariantList fl = v.value("flavours").toList();
+
+        foreach (QVariant f, fl)
+        {
+            QVariantMap fm  = f.toMap();
+            if (fm.value("name").toString() == flavour)
+            {
+                return fm.value("description").toString();
+            }
+        }
+    }
+    else if (QFile::exists(folder+"/os.json"))
+    {
+        QVariantMap v = Json::loadFromFile(folder+"/os.json").toMap();
+        return v.value("description").toString();
+    }
+
+    return "";
+}
+
+bool updatePartitionScript(QVariantMap & entry, QListWidgetItem * witem)
+{   //Entry.value("supports_backup").toString() == "update"
+    MYDEBUG
+    /*
+     * Read local partition_setup.sh in /settings/os/os_name
+     * If 2nd line contains "backup supported"
+     *    Return true
+     * endif
+     * find latest entry of corresponding os_name in os_list
+     * get "partition_setup" url
+     * Read remote partition_setup.sh script
+     * if 2nd line contains "backup supported"
+     *    save new partition_setup.sh to /settings/os/os_name
+     *    set "supports_backup": true in installed_os.json
+     *    return true
+     * endif
+     *
+     */
+
+    //Check if the partition_setup.sh script has already been updated.
+    QString localScriptFilename = "/settings/os/"+entry.value("name").toString()+"/partition_setup.sh";
+    QByteArray localContents = getFileContents(localScriptFilename);
+    if (localContents.contains("supports_backup"))
+    {
+        qDebug() << localScriptFilename << " Supports backups";
+        //qDebug() << localContents;
+        return (true);
+    }
+
+    if (witem)
+    {   //An installable version of this OS is accessible
+        QByteArray scriptContents;
+        QString fileLocation;
+        QVariantMap newEntry = witem->data(Qt::UserRole).toMap();
+
+        DBG("Checking new OS");
+        //Check if OS is local or remote
+        if (!newEntry.contains("folder"))
+        {   //Installable OS is remote
+            DBG("remote");
+            fileLocation = newEntry.value("partition_setup").toString();
+            scriptContents = getRemoteFile(fileLocation);
+        }
+        else
+        {   //Copy files from local storage to /settings folder
+            DBG("Local");
+            fileLocation = newEntry.value("folder").toString()+"/partition_setup.sh";;
+            scriptContents = getFileContents(fileLocation);
+        }
+        if (scriptContents.contains("supports_backup"))
+        {
+            qDebug() << "Copying new partition_setup.sh from " << fileLocation;
+            putFileContents(localScriptFilename,scriptContents);
+            return (true);
+        }
+        qDebug() << "No new partition_setup.sh script found";
+        return(false);
+    }
+    qDebug() << "No OS installation found";
+    return false;
 }

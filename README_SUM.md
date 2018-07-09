@@ -45,6 +45,17 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+## V3.0
+
+- **Backup**                  - Backup an OS in PINN format
+- **Time**            	      - Added button to set date & time	
+- **Download**                - Fix Foldername of some OSes when downloaded
+- **Iconcache**               - Cache icons when connected to internet to speedup startup
+
+## V2.8.5.8
+
+- **RPi 3A+**                 - Supports RPi 3A+
+
 ## V2.8.5.7
 
 - **Firmware**                - Disabled firmware downgrade on 3B+
@@ -332,5 +343,3 @@ A major change to the User Interface in preparation for some new features.
 - **NOOBSCONFIG support** - Allow customisation of an OS installation as it installs
 - **SSH support**     - SSH remotely into you PINN installation.
 - **Progress**        - View your installation progress via alternative means
-
-

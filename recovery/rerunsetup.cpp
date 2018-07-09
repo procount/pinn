@@ -2,14 +2,14 @@
 #include "ui_rerunsetup.h"
 #include "passwd.h"
 #include "util.h"
-
+#include "mainwindow.h"
 #include <QDebug>
 #include <QProcess>
 #include <QRegExp>
 #include <QString>
 #include <QVariantMap>
 
-rerunsetup::rerunsetup(QListWidget * list, const QString &rootdrive, QWidget *parent) :
+rerunsetup::rerunsetup(QListWidget * listinstalled, MainWindow * mw, const QString &rootdrive, QWidget *parent) :
     QDialog(parent),
     _drive(rootdrive),
     ui(new Ui::rerunsetup)
@@ -22,7 +22,7 @@ rerunsetup::rerunsetup(QListWidget * list, const QString &rootdrive, QWidget *pa
 
     ui->setupUi(this);
 
-    if (list->count() ==0)
+    if (listinstalled->count() ==0)
     {
         ui->plainTextEdit->appendPlainText(tr("No OSes to check"));
         return;
@@ -33,14 +33,14 @@ rerunsetup::rerunsetup(QListWidget * list, const QString &rootdrive, QWidget *pa
     QApplication::processEvents();
 
 
-    for(int row = 0; row < list->count(); row++)
+    for(int row = 0; row < listinstalled->count(); row++)
     {
-        item = list->item(row);
+        item = listinstalled->item(row);
         if (item->checkState() == Qt::Checked)
         {
             os_err=0;
             QVariantMap image = item->data(Qt::UserRole).toMap();
-            QString os_name = image.value("name").toString();
+            QString os_name = CORE(image.value("name").toString());
             if (os_name != "PINN")
             {
                 QString folder = "/settings/os/"+os_name;
@@ -58,7 +58,22 @@ rerunsetup::rerunsetup(QListWidget * list, const QString &rootdrive, QWidget *pa
                     ui->plainTextEdit->appendPlainText(tr("Maybe insert source USB stick"));
                     os_err =1;
                 }
-                else
+                if (image.value("supports_backup", "false").toBool() == false)
+                {
+                    ui->plainTextEdit->appendPlainText(os_name+tr("does not support re-running the setup script."));
+                    os_err =1;
+                }
+                if (image.value("supports_backup", "false").toString() == "update")
+                {
+                    QListWidgetItem *witem = mw->findItemByName(os_name);
+
+                    if (!updatePartitionScript(image, witem))
+                    {
+                        ui->plainTextEdit->appendPlainText(os_name+tr(" setup script needs to be updated."));
+                        os_err =1;
+                    }
+                }
+                if (!os_err)
                 {
                     QProcess proc;
                     QProcessEnvironment env;
@@ -100,6 +115,9 @@ rerunsetup::rerunsetup(QListWidget * list, const QString &rootdrive, QWidget *pa
                         env.insert("partuuid"+nr, partuuid);
                         pnr++;
                     }
+
+                    env.insert("restore", "true");
+
                     ui->plainTextEdit->appendPlainText("Executing "+args.join(" "));
                     qDebug() << "Executing: sh" << args;
                     qDebug() << "Env:" << env.toStringList();

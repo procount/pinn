@@ -19,6 +19,20 @@ OsInfo::OsInfo(const QString &folder, const QString &flavour, QObject *parent) :
     _group = m.value("group").toString();
     _replacedName = "";
 
+    if (m.contains("supports_backup"))
+    {
+        if (m.value("supports_backup","false").toString()=="update")
+            _supports_backup = QString ("update");
+        else if (m.value("supports_backup","false").toBool() == true)
+            _supports_backup = QString("true");
+        else if (m.value("supports_backup","false").toBool() == false)
+            _supports_backup = QString("false");
+        else
+            _supports_backup = QString("");
+    }
+    else
+        _supports_backup="";
+
     QVariantMap p = Json::loadFromFile(folder+"/partitions.json").toMap();
     QVariantList parts = p.value("partitions").toList();
     _configpath = p.value("configpath").toString();
@@ -27,3 +41,4 @@ OsInfo::OsInfo(const QString &folder, const QString &flavour, QObject *parent) :
         _partitions.append(new PartitionInfo(pv.toMap(), this));
     }
 }
+

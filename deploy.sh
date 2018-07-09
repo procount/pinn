@@ -1,6 +1,8 @@
 #!/bin/sh
 set -x
+
 # backup the source code to pinn
+#===============================
 cd ~/pinn
 git checkout p2.4.5a
 cd ~/noobs_test
@@ -15,11 +17,15 @@ git add README_PINN.md
 git commit --amend
 
 # Copy the distributable files
+#=============================
+
 cp history.md ../pinn-release/README.md
 
-cd ~/noobs_test/output
+# remove anything existing
 dst=~/pinn-release/dist/
+rm -rf $dst/*
 
+cd ~/noobs_test/output
 cp *.dtb $dst
 cp bootcode.bin $dst
 cp BUILD-DATA $dst
@@ -27,6 +33,8 @@ cp INSTRUC* $dst
 cp -r defaults $dst
 cp -r os $dst
 cp -r overlays $dst
+cp -r wallpapers $dst
+cp wallpapers/wallpaper1.png $dst/wallpaper.png
 cp *.img $dst
 cp recovery* $dst
 cp riscos-boot.bin $dst
@@ -39,13 +47,18 @@ cp ~/pinn-os/os/overrides.json $dst
 cp config.txt $dst
 
 # Make amendments
+#================
 cp ~/pinn-release/recovery.cmdline $dst
 cp ~/pinn-release/recovery.cmdline.new $dst
 
 # Create the Zip file
+#====================
 cd $dst
 zip -r ../pinn-lite.zip *
 cp BUILD-DATA ..
 cd ..
+
+# Create other formats
+#=====================
 ./create_etcher_img
 ./create_full

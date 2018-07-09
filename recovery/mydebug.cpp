@@ -15,7 +15,6 @@ MyDebug::MyDebug(const char * func) :
         output += " ";
     output += ">";
     output += name;
-    output += "   "+readexec(0,"sh -c \"mount | grep settings | cut -d ' ' -f 6\"", errorcode).trimmed();
     qDebug() << output;
 #endif
     level++;

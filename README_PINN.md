@@ -7,7 +7,7 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v2.8.5.7
+This README relates to v3.0
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -33,6 +33,7 @@ This README relates to v2.8.5.7
 - An operating system selector
 - A boot manager
 - An OS maintenance utility:
+  - Backup and Restore OSes
   - A recovery shell 
   - SD card clone utility
   - Password restorer
@@ -146,9 +147,11 @@ There are three toolbars:
   - **[Clone SD](#how-to-clone-an-sd-card)**: Clones the SD to another card.
   - **[Info](#info-on-os)**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
   - **[Firmware](#pinns-firmware-upgradedowngrade)**: Upgrades or downgrades PINN's firmware for use on RPI3B+ or other models.
-- **[Maintenance](#maintenance-ment)**
+  - **[Time](#set-time)**: Sets the current time.
+- **[Maintenance](#maintenance-menu)**
   - **[Edit Config](#easy-config-file-editor)**: Opens a text editor, allowing the `cmdline` and `config` files for the selected installed OS to be edited.
   - **[Password](#how-to-recover-from-a-lost-password)**: Allows the password of an OS to be restored or replaced.
+  - **[Backup](#backup)**: Backup Operating Systems.
   - **[Fix](#how-to-fix-an-os)**: Performs repairs on file systems of the selected installed OSes.
   - **[Reinstall](#reinstall-individual-oses)**: Allows individual installed OSes to be reinstalled back to their original installation without affecting any of the other installed OSes.
   - **[Replace](#replace-individual-oses)**: Allows individual installed OSes to be replaced by other/different OSes without affecting any of the other installed OSes.
@@ -546,7 +549,7 @@ Project Spaces are useful when used with the [Replace](#replace-individual-os) O
 2. They allow multiple instances of the same OS to be installed.
 3. They allow the same amount of space to be used for each OS.
 
-When replacing a project space with another OS, remember that the new OS must have the same number of partitions as the project space and each partition must fit within the existing partition sizes. So creating 8 project spaces on a 16GB card may not be very useful as there will be <2GB left on each of the ext4 partitions. That maybe ok for some of the minimal OSes, but no good for a full Raspbian installation, for example.
+When replacing a project space with another OS, remember that the new OS must have the same number of partitions as the project space and each partition must fit within the existing partition sizes. So creating 8 project spaces on a 16GB card may not be very useful as there will be &lt;2GB left on each of the ext4 partitions. That maybe ok for some of the minimal OSes, but no good for a full Raspbian installation, for example.
 
 ## PINN's Firmware Upgrade/Downgrade
 
@@ -775,6 +778,12 @@ In this way, your existing data can be migrated to a smaller or larger SD card.
 _Note1: that if you have installed multiple OSes using PINN, only the last partition of the last OS on the SD card will be resized._
 _Note2: The clone function can also be used to copy any USB drive to any other USB drive - it doesn't have to incldue the SD card at all._
 
+## Set Time
+
+The Raspberry Pi has no real time clock, but it needs to know the correct time for https transfers and to timestamp any backups.
+The Pi's clock can be set automatically once it is connected to the internet, but this function can be used to set the clock manually if no internet connection is available.
+If a backup is attempted with no internet connection, this function will be called first to ensure the current time is set.
+
 <!-- ## Wipe the Drive
 
 This option will wipe your drive of all installed OSes by deleting all the OS partitions and restore its capacity to full size by expanding the first partition to the whole disk size, 
@@ -821,9 +830,33 @@ If you have changed your login password for an OS and forget what it is, PINN wi
 7. The `Use Default` button will enter the default username and password for the selected OS.
 8. Tick the `show password` box to display the passwords on the screen.
 
+## Backup
+
+The backup function allows an installed OS to be backed up to a USB drive. The USB drive must first be formatted as FAT32, ext4 or ntfs and have a /os folder on it to store the backups in, otherwise it will not be recognised.
+
+Select all OSes to backup and then click the backup button. After a confirmation dialog, OSes that are not suitable for backing up will be indicated in a dialog box and deselected. These currently include Risc OS, XBian and Win10 IoT. Some other OSes have required modified setup scripts in order to restore them properly after backing up. If you are trying to backup an OS that was installed prior to this modification, PINN will try to install these modified files from an installable source. So to backup such an OS it may be necessary to connect the RPi to the internet or plug in a USB stick with the OS installation files on it.
+
+When an OS is backed up, it is given a name that includes the current time as a suffix in the format #YYYYMMDD-HHMMSS so that backups can be readily identified. If the RPi does not know the current time because it is not connected to the internet, you will be prompted to enter the current time. PINN gives you the opportunity to change this suffix and alter the OS description in the next dialog.
+
+OSes are backed up in NOOBS/PINN format as .tar.gz files. These do not compress as well as .tar.xz files, but require less memory and can be created faster on the RPi.
+Nevertheless, compressing tar files is still a processor intensive task, so backing up an OS will take a lot longer than installing an OS, especially on some of the less powerful RPis.
+Due to the compression, it is not known precisely how much disk space is required to store the backup, so PINN makes a conservative guess of 33% of the original size. It may require more or less that this amount, but if less disk space is available, a warning message is displayed, but the backup may continue if you wish. If there is insufficient disk space to complete the backup, this should be indicated. (You can also check the log in /tmp/debug for any errors.)
+
+**Backups should be thoroughly tested that they are valid and restorable before relying upon them. This is a new PINN feature and every effort has been made to ensure it works as expected, but the author accepts no liability or responsibility for loss of data.**
+
+After backing up an OS, it may not show up in the list of installable OSes until PINN is rebooted. After that it will appear is a separate "Backups" tab with all the other backup versions.
+
+## Restoring Backups
+
+There is no specific "Restore" button to restore a Backed up OS. As the backup is aready in NOOBS format, the backed up OS can be installed as any other OS to a fresh (PINN format) SD Card or USB drive, or they can be used to replace an existing OS or ProjectSpace (if it is in a compatible partition layout).
+
+When a backed up OS is restored, PINN will fix up partition references by running the partitions_setup.sh script. However, certain tasks in that script that are only needed on an initial install will be skipped, as it is assumed they have were already done and are not needed on restoration. This also includes the copying of ssh and wpa_supplicant.conf files from the PINN partition. Flavour customisation scripts are also not executed.
+
+Backed up OSes may be installed by NOOBS, but some OSes may not restore properly due to the need for modified setup scripts (see above) that NOOBS is not aware of.
+
 ## How to Fix an OS
 
-If your installed OS will not boot, the Fix option in the maintenance menu may help. It provides a list of operatiosn that you may perform to fix the OS. Check all operations that you want to be performed on your selected OSes.
+If your installed OS will not boot, the Fix option in the maintenance menu may help. It provides a list of operations that you may perform to fix the OS. Check all operations that you want to be performed on your selected OSes.
 
 ![alt text](screenshots/fix.png "Fix an OS options.")
 
@@ -837,7 +870,7 @@ To recover from a corrupted drive, PINN includes a file system check option whic
 
 ### Re-run partition_setup.sh
 
-Installed OSes may be upgraded using their standard upgrade procedure (e.g. sudo update;sudo upgrade etc.). However, some OS upgrade procedures may not be aware that they are running in a multi-boot environment and may break the changes PINN made to allow them to work. In this situation, re-running the OSes partition_setup.sh script should fix-up these changes to allow the OS to boot properly.
+Installed OSes may be upgraded using their standard upgrade procedure (e.g. sudo update;sudo upgrade etc.). However, some OS upgrade procedures may not be aware that they are running in a multi-boot environment and may break the changes PINN made to allow them to work. In this situation, re-running the OSes partition_setup.sh script should fix-up these changes to allow the OS to boot properly. From v3.0, PINN will now skip initial installation tasks in this script and it is restricted to fixing up partition references.
 
 ## Reinstall Individual OSes
 

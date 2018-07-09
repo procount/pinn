@@ -38,14 +38,14 @@ MultiImageWriteThread::MultiImageWriteThread(const QString &bootdrive, const QSt
 
 void MultiImageWriteThread::addImage(const QString &folder, const QString &flavour)
 {
-    _images.append(new OsInfo(folder, flavour, this));
+    _images.append(new OsInfo(folder, CORE(flavour), this));
 }
 
 void MultiImageWriteThread::addInstalledImage(const QString &folder, const QString &flavour, const QVariantMap &entry,
                                               const QString &replacedName)
 {   /* Copy the previously installed partitions to the new OS and add the OS to the list of OSes to be installed */
 
-    OsInfo * pInfo = new OsInfo(folder, flavour, this);
+    OsInfo * pInfo = new OsInfo(folder, CORE(flavour), this);
 
     //Get the list of partitions where this OS is already isntalled
     QVariantList list = entry.value("partitions").toList(); //of QVariant Strings
@@ -62,7 +62,7 @@ void MultiImageWriteThread::addInstalledImage(const QString &folder, const QStri
     if (! replacedName.isEmpty())
         pInfo->setReplacedName(replacedName);
     else
-        pInfo->setReplacedName(entry.value("name").toString()); //@@ or flavour?
+        pInfo->setReplacedName(entry.value("name").toString());
 
     _images.append(pInfo);
 }
@@ -421,18 +421,18 @@ bool MultiImageWriteThread::writePartitionTable(const QString &drive, const QMap
     /* Clone partition map, and add our system partitions to it */
     QMap<int, PartitionInfo *> partitionMap(pmap);
 
-    partitionMap.insert(1, new PartitionInfo(1, startP1, sizeP1, "0E", this)); /* FAT boot partition */
-    partitionMap.insert(5, new PartitionInfo(5, startP5, sizeP5, "L", this)); /* Ext4 settings partition */
+    partitionMap.insert(1, new PartitionInfo(1, startP1, sizeP1, "0E", NULL)); /* FAT boot partition */
+    partitionMap.insert(5, new PartitionInfo(5, startP5, sizeP5, "L", NULL)); /* Ext4 settings partition */
 
     uint sizeExtended = partitionMap.values().last()->endSector() - startExtended;
     if (!partitionMap.contains(2))
     {
-        partitionMap.insert(2, new PartitionInfo(2, startExtended, sizeExtended, "E", this));
+        partitionMap.insert(2, new PartitionInfo(2, startExtended, sizeExtended, "E", NULL));
     }
     else
     {
         /* If an OS already claimed primary partition 2, use out-of-order partitions, and store extended at partition 4 */
-        partitionMap.insert(4, new PartitionInfo(4, startExtended, sizeExtended, "E", this));
+        partitionMap.insert(4, new PartitionInfo(4, startExtended, sizeExtended, "E", NULL));
     }
 
     /* Add partitions */
@@ -501,6 +501,17 @@ bool MultiImageWriteThread::writePartitionTable(const QString &drive, const QMap
     {
         emit error(tr("Error creating partition table")+"\n"+proc.readAll());
         return false;
+    }
+
+    //Forcefully delete the PartitionInfo entries as the parent was set to NULL
+    for (int i=1; i <= partitionMap.keys().last(); i++)
+    {
+        if (partitionMap.contains(i))
+        {
+            PartitionInfo *p = partitionMap.value(i);
+            if (p->parent() == NULL)
+                delete p;
+        }
     }
 
     return true;
@@ -731,7 +742,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     QVariantMap qm;
     qm.insert("flavour", image->flavour());
     qm.insert("release_date", image->releaseDate());
-    qm.insert("imagefolder", image->folder());
+    qm.insert("imagefolder", CORE(image->folder()));
     qm.insert("description", description);
     qm.insert("videomode", videomode);
     qm.insert("partitions", vpartitions);
@@ -792,6 +803,11 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
             pnr++;
         }
 
+        //If this is a backup, there maybe things in the partition_setup we don't want to repeat
+        //So set "reinstall=true"
+        if ( !getNameParts(os_name, eDATE).isEmpty() )
+            env.insert("restore", "true");
+
         qDebug() << "Executing: sh" << args;
         qDebug() << "Env:" << env.toStringList();
         proc.setProcessChannelMode(proc.MergedChannels);
@@ -817,7 +833,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
 
     /* Now see if there are any customisations
      */
-    if (_noobsconfig)
+    if ((_noobsconfig) && (!getNameParts(os_name, eDATE).isEmpty() )) //Only process flavour if it is NOT a backup
     {
         emit statusUpdate(tr("%1: Configuring flavour").arg(os_name));
         qDebug() <<"Checking for partition customisations"    ;
@@ -881,7 +897,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     QVariantMap ventry;
     ventry["name"]        = image->flavour();
     ventry["description"] = description;
-    ventry["folder"]      = image->folder();
+    ventry["folder"]      = CORE(image->folder());
     ventry["release_date"]= image->releaseDate();
     ventry["partitions"]  = vpartitions;
     ventry["bootable"]    = image->bootable();
@@ -891,7 +907,16 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     ventry["password"]    = image->password();
     ventry["url"]         = image->url();
     ventry["group"]       = image->group();
-    QString iconfilename  = image->folder()+"/"+image->flavour()+".png";
+
+    QString backup        = image->supportsBackup();
+    if (backup == "true")
+        ventry["supports_backup"] = true;
+    else if (backup == "false")
+        ventry["supports_backup"] = false;
+    else if (backup == "update")
+        ventry["supports_backup"] = "update";
+
+    QString iconfilename  = image->folder()+"/"+CORE(image->flavour())+".png";
     iconfilename.replace(" ", "_");
     if (QFile::exists(iconfilename))
     {
@@ -899,7 +924,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
         {
             /* Copy icon to settings folder, as USB storage may take longer to get ready on boot */
             QDir dir;
-            QString dirname = "/settings/os/"+image->flavour().replace(" ", "_");
+            QString dirname = "/settings/os/"+CORE(image->flavour()).replace(" ", "_");
             dir.mkpath(dirname);
             QFile::copy(iconfilename, dirname+"/icon.png");
             iconfilename = dirname+"/icon.png";
@@ -938,7 +963,6 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
 
 void MultiImageWriteThread::postInstallConfig(OsInfo *image, const QString &part, const QString &customName)
 {
-    MYDEBUG
     const QString folder = image->folder();
 
     QString cmdline = getFileContents("/proc/cmdline");
@@ -958,13 +982,9 @@ void MultiImageWriteThread::postInstallConfig(OsInfo *image, const QString &part
         if (_srcFolder.isEmpty())
             _srcFolder = folder;
     }
-    //qDebug() << "Using _srcFolder: " << _srcFolder;
     _dstFolder = "/mnt2";
 
     //Mount the newly installed partition
-    //QDir dir;
-    //dir.mkdir(_dstFolder);
-    //qDebug() << "postInstallConfig: "+ customName;
     if (QProcess::execute("mount "+part+" "+_dstFolder) != 0)
     {
         qDebug() << (tr("%1: Error mounting file system").arg(customName));
@@ -1052,7 +1072,6 @@ QStringList MultiImageWriteThread::parseQuotedString(const QString &tarfile, int
 
 void MultiImageWriteThread::testForCustomFile(const QString &baseName, const QString &ext)
 {
-    MYDEBUG
     //Try to process a customName.tar file
     QString testfile = _srcFolder+"/"+baseName+ext;
     QFileInfo fi(testfile);
@@ -1266,12 +1285,9 @@ bool MultiImageWriteThread::isLabelAvailable(const QByteArray &label, const QByt
         if ( !device.isEmpty() && (part==device))
         {   //A device is specified and it matches part
             result=1;   //pretend it wasn't found
-            //qDebug() << label << " is available (Matches device)";
             return ( result != 0);
         }
-        //qDebug() << label << " is NOT available.";
     }
-    //qDebug() << label << " is available.";
     return ( result != 0);
 }
 
@@ -1507,28 +1523,4 @@ void MultiImageWriteThread::patchConfigTxt()
 }
 
 
-QString MultiImageWriteThread::getDescription(const QString &folder, const QString &flavour)
-{
-    if (QFile::exists(folder+"/flavours.json"))
-    {
-        QVariantMap v = Json::loadFromFile(folder+"/flavours.json").toMap();
-        QVariantList fl = v.value("flavours").toList();
-
-        foreach (QVariant f, fl)
-        {
-            QVariantMap fm  = f.toMap();
-            if (fm.value("name").toString() == flavour)
-            {
-                return fm.value("description").toString();
-            }
-        }
-    }
-    else if (QFile::exists(folder+"/os.json"))
-    {
-        QVariantMap v = Json::loadFromFile(folder+"/os.json").toMap();
-        return v.value("description").toString();
-    }
-
-    return "";
-}
 

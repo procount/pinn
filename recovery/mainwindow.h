@@ -42,6 +42,8 @@ public:
     explicit MainWindow(const QString &drive, const QString &defaultDisplay, KSplash *splash, bool noobsconfig, QWidget *parent = 0);
     ~MainWindow();
 
+    QListWidgetItem *findItemByName(const QString &name);
+
 protected:
     Ui::MainWindow *ui;
     OsGroup * ug;
@@ -87,7 +89,8 @@ protected:
     enum ModeTag {
         MODE_INSTALL=0,
         MODE_DOWNLOAD,
-        MODE_REINSTALL
+        MODE_REINSTALL,
+        MODE_BACKUP
     } _eDownloadMode;
 
     QMap<QString,QVariantMap> listImages(const QString &folder = "/mnt/os");
@@ -116,13 +119,13 @@ protected:
     bool isOnline();
     QStringList getFlavours(const QString &folder);
     void rebuildInstalledList();
-    QListWidgetItem *findItemByName(const QString &name);
     QList<QListWidgetItem *> selectedItems();
     void updateNeeded();
     void updateActions();
     void downloadMetaFile(const QString &url, const QString &saveAs);
     void downloadIcon(const QString &urlstring, const QString &originalurl);
     void downloadList(const QString &urlstring);
+    void assignPixmap(QString originalurl, QPixmap &pix);
     void downloadLists();
     void checkForUpdates(bool display = false);
     void downloadUpdate(const QString &urlstring, const QString &saveAs);
@@ -140,12 +143,13 @@ protected:
     QString menutext(int index);
     void fullFAT();
     void prepareMetaFiles();
-    void startImageDownload();//@@download
-    bool LooksLikePiDrive(QString devname);//@@download
-    bool LooksLikeOSDrive(QString devname);//@@download
-    void recalcAvailableMB();//@@download
-    void checkFileSize(const QString &url, const QString &saveAs);//@@download
-    void getDownloadSize(QVariantMap &new_details);//@@download
+    void startImageDownload();
+    void startImageBackup();
+    bool LooksLikePiDrive(QString devname);
+    bool LooksLikeOSDrive(QString devname);
+    void recalcAvailableMB();
+    void checkFileSize(const QString &url, const QString &saveAs);
+    void getDownloadSize(QVariantMap &new_details);
 
     void downloadRepoList(const QString &urlstring);
     void processRepoListJson(QVariant json);
@@ -158,8 +162,8 @@ protected slots:
     void tick(int secs);
     void expired(void);
 
-    void checkFileSizeRedirectCheck();//@@download
-    void checkFileSizeComplete();//@@download
+    void checkFileSizeRedirectCheck();
+    void checkFileSizeComplete();
     void populate();
     void startBrowser();
     void startNetworking();
@@ -171,7 +175,7 @@ protected slots:
     /* Events from ImageWriterThread */
     void onQpdError(const QString &msg);
     void onError(const QString &msg);
-    void onCompleted();
+    void onCompleted(int arg=0);
     void onCloneError(const QString &msg);
     void onCloneCompleted();
 
@@ -203,11 +207,12 @@ private slots:
     void on_actionClone_triggered();
     void on_actionInfo_triggered();
     void on_actionInfoInstalled_triggered();
-    void on_actionDownload_triggered();//@@download
+    void on_actionDownload_triggered();
     void on_actionWipe_triggered();
     void on_actionFschk_triggered();
     void on_actionRepair_triggered();
     void on_actionReplace_triggered();
+    void on_actionBackup_triggered();
     void on_actionFirmware_triggered();
     void updateFirmware_button();
 
@@ -219,6 +224,8 @@ private slots:
     void on_targetComboUsb_currentIndexChanged(int index);
 
     void on_actionClear_c_triggered();
+
+    void on_actionTime_triggered();
 
 signals:
     void networkUp();

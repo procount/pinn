@@ -2,6 +2,7 @@
 #include "json.h"
 #include "osgroup.h"
 #include "mydebug.h"
+#include "util.h"
 
 #include <iterator>
 #include <QFile>
@@ -82,6 +83,15 @@ QString OsGroup::getGroup(const QVariantMap& entry)
 
     if (_bGroup)
     {
+        if (entry.contains("name"))
+        {
+            QString name = entry.value("name").toString();
+            if (!getNameParts(name, eDATE).isEmpty())
+            {
+                group = "Backups";
+                return(group);
+            }
+        }
         if (entry.contains("group"))
             group = entry.value("group").toString();
     }
@@ -327,7 +337,7 @@ int OsGroup::updateInstalledStatus()
 
             QVariantMap matchEntry = matchItem->data(Qt::UserRole).toMap();
             QString friendlyname = name;
-            bool recommended = (name == RECOMMENDED_IMAGE);
+            bool recommended = (CORE(name) == RECOMMENDED_IMAGE);
             if (recommended)
                 friendlyname += " ["+tr("RECOMMENDED")+"]";
             QString installedname = friendlyname;

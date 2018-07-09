@@ -1,29 +1,67 @@
-#ifndef MultiImageDownloadThread_H
-#define MultiImageDownloadThread_H
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#ifndef BackupThread_H
+#define BackupThread_H
 
 #include <QThread>
 #include <QStringList>
-#include <QMultiMap>
+#include <QVariantMap>
 #include <QVariantList>
 
-class MultiImageDownloadThread : public QThread
+class BackupThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit MultiImageDownloadThread(QObject *parent = 0, QString local="/mnt/");
-    void addImage(const QString &folder, const QString &flavour);
+    explicit BackupThread(QObject *parent = 0, QString local="/mnt/");
+    void addImage(const QVariantMap &entry);
 
 protected:
     virtual void run();
-    bool processImage(const QString &folder, const QString &flavour);
+    bool processImage(const QVariantMap &entry);
     bool isLabelAvailable(const QByteArray &label);
-    QByteArray getLabel(const QString part);
-    QByteArray getUUID(const QString part);
     void patchConfigTxt();
     QString _local;
 
     /* key: folder, value: flavour */
-    QMultiMap<QString,QString> _images;
+    QList<QVariantMap> _images;
     int _extraSpacePerPartition, _sectorOffset, _part;
     QVariantList installed_os;
     
@@ -31,12 +69,13 @@ signals:
     void error(const QString &msg);
     void statusUpdate(const QString &msg);
     void parsedImagesize(qint64 size);
-    void completed();
+    void completed(int errors);
     void runningMKFS();
     void finishedMKFS();
+    void newDrive(const QString&);
     
 public slots:
     
 };
 
-#endif // MultiImageDownloadThread_H
+#endif // BackupThread_H
