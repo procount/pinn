@@ -9,7 +9,7 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 - **Reinstall**               - BUGFIX for Re-install.
 - **translations**            - Updated it and zh_TW translations.
-- **silentreinstallnewer**    - **USE WTIH CAUTION**. With `select=` it will silently re-install any selected OSes that are newer than the installed version.
+- **silentreinstallnewer**    - **USE WITH CAUTION**. With `select=` it will silently re-install any selected OSes that are newer than the installed version.
 
 ## V2.8.5
 
