@@ -5,7 +5,9 @@ PINN includes its own CEC mapping file, but a user-supplied one can override it 
 
 ## CEC Key Mapping file
 
-The user-supplied CEC key mapping file must be called *cec_keys.json* and be stored in PINN's recovery partition.
+The user-supplied CEC key mapping file must be called *cec_keys.json* and be stored in PINN's recovery partition (/dev/mmcblk0p1 if on an SD card, where you will find 
+the BUILD-DATA and recovery.rfs files - the only partition visible on the SD card if you insert it in a Windows PC)
+
 The default mapping looks like this:
 ```
 {
