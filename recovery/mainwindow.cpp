@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "backupthread.h"
 #include "multiimagewritethread.h"
 #include "multiimagedownloadthread.h"
 #include "initdrivethread.h"
@@ -4156,6 +4157,8 @@ void MainWindow::on_actionBackup_triggered()
     _local = "/tmp/media/"+partdev(_osdrive,1);
     if (QProcess::execute("mount -o remount,rw /dev/"+partdev(_osdrive,1)+" "+_local) != 0)
     {
+        BackupThread * bt = new BackupThread();
+
         return;
     }
 

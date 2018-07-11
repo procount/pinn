@@ -66,7 +66,8 @@ SOURCES += \
     repair.cpp \
     rerunsetup.cpp \
     replace.cpp \
-    splash.cpp
+    splash.cpp \
+    backupthread.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -110,7 +111,8 @@ HEADERS  += \
     rerunsetup.h \
     sleepsimulator.h \
     replace.h \
-    splash.h
+    splash.h \
+    backupthread.h
 
 FORMS    += \
     mainwindow.ui \
