@@ -160,6 +160,14 @@ fi
         fi
     done
 
+    if grep -q vncinstall /proc/cmdline; then
+        echo
+        echo "************************************************************************************"
+        echo "*** VNC is enabled on port 5900. Please connect using VNC to see the PINN screen ***"
+        echo "************************************************************************************"
+        echo
+    fi
+
     /usr/bin/recovery $RUN_INSTALLER $GPIO_TRIGGER $KEYBOARD_NO_TRIGGER $FORCE_TRIGGER $DEFAULT_KBD $DEFAULT_LANG $DEFAULT_DISPLAY $DEFAULT_PARTITION $DEFAULT_NOCONFIG $DEFAULT_DSI $DEFAULT_REPOS $EXTRA_REPOS $REPO_LIST $DEFAULT_STYLE -qws  2>/tmp/debug
 
 
