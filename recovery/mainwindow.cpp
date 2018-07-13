@@ -507,7 +507,7 @@ void MainWindow::untarFirmware()
     {
         QProcess::execute("mount -o remount,rw /mnt");
 
-        QProcess::execute("bsdtar -xzf /mnt/firmware.tar.gz -C /mnt");
+        QProcess::execute("bsdtar --no-same-permissions --no-same-owner --no-xattrs -xzf /mnt/firmware.tar.gz -C /mnt");
         QProcess::execute("rm /mnt/firmware.tar.gz");
         sync();
         QProcess::execute("mount -o remount,ro /mnt");
@@ -1065,7 +1065,8 @@ void MainWindow::on_actionReinstall_triggered()
         {
             //Only check upgrades to PINN if it is the ONLY Os to be reinstalled
             //Because it causes a reboot
-            checkForUpdates( true );
+            if (requireNetwork())
+                checkForUpdates( true );
             return;
         }
         //Otherwise ignore PINN if there are more selected

@@ -74,42 +74,42 @@
         <location filename="fullfatthread.cpp" line="39"/>
         <location filename="fullfatthread.cpp" line="47"/>
         <source>Mounting FAT partition</source>
-        <translation type="unfinished">تقسيم FAT المتزايد</translation>
+        <translation>تقسيم FAT المتزايد</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="50"/>
         <source>Error mounting system partition.</source>
-        <translation type="unfinished">خطا في تركيب قسم النظام.</translation>
+        <translation>خطا في تركيب قسم النظام.</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="62"/>
         <source>Error opening %1</source>
-        <translation type="unfinished">إفتتاح الخطأ %1</translation>
+        <translation>إفتتاح الخطأ %1</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="72"/>
         <source>Finish writing to disk (sync)</source>
-        <translation type="unfinished">إنهاء الكتابة على القرص (المزامنة)</translation>
+        <translation>إنهاء الكتابة على القرص (المزامنة)</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="85"/>
         <source>Error unmounting system partition.</source>
-        <translation type="unfinished">حدث خطأ أثناء إلغاء تثبيت قسم النظام.</translation>
+        <translation>حدث خطأ أثناء إلغاء تثبيت قسم النظام.</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="89"/>
         <source>Removing partitions 2,3,4</source>
-        <translation type="unfinished">أزاله الأقسام 2 ، 3 ، 4</translation>
+        <translation>أزاله الأقسام 2 ، 3 ، 4</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="103"/>
         <source>Resizing FAT partition</source>
-        <translation type="unfinished">تغيير حجم قسم FAT</translation>
+        <translation>تغيير حجم قسم FAT</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="127"/>
         <source>Error resizing existing FAT partition</source>
-        <translation type="unfinished">حدث خطأ أثناء تغيير حجم قسم FAT  الحالي</translation>
+        <translation>حدث خطأ أثناء تغيير حجم قسم FAT  الحالي</translation>
     </message>
 </context>
 <context>
@@ -154,7 +154,7 @@
 WARNING: This will erase all data on your SD card</source>
         <oldsource>Would you like NOOBS to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
-        <translation type="unfinished">هل تريد PINN  لإنشاء واحد بالنسبة لك؟ تحذير: سيؤدي هذا إلى محو جميع البيانات الموجودة على بطاقة SD </translation>
+        <translation>هل تريد PINN  لإنشاء واحد بالنسبة لك؟ تحذير: سيؤدي هذا إلى محو جميع البيانات الموجودة على بطاقة SD </translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="183"/>
@@ -175,7 +175,7 @@ WARNING: This will erase all data on your SD card</oldsource>
         <location filename="initdrivethread.cpp" line="212"/>
         <source>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</source>
         <oldsource>SD card has now been formatted ready for NOOBS installation. Please re-copy the NOOBS files onto the card and reboot</oldsource>
-        <translation type="unfinished">تم تنسيق بطاقة SD  الآن جاهزه للتثبيت التثبيت. الرجاء أعاده نسخ الملفات البينية علي البطاقة وأعاده التشغيل</translation>
+        <translation>تم تنسيق بطاقة SD  الآن جاهزه للتثبيت التثبيت. الرجاء أعاده نسخ الملفات البينية علي البطاقة وأعاده التشغيل</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="217"/>
@@ -562,18 +562,18 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation>SD اعداد بطاقة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3409"/>
-        <location filename="mainwindow.cpp" line="3439"/>
+        <location filename="mainwindow.cpp" line="3410"/>
+        <location filename="mainwindow.cpp" line="3440"/>
         <source>RECOMMENDED</source>
         <translation>اوصي</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="978"/>
         <location filename="mainwindow.cpp" line="983"/>
-        <location filename="mainwindow.cpp" line="1116"/>
-        <location filename="mainwindow.cpp" line="1176"/>
-        <location filename="mainwindow.cpp" line="1186"/>
-        <location filename="mainwindow.cpp" line="1686"/>
+        <location filename="mainwindow.cpp" line="1117"/>
+        <location filename="mainwindow.cpp" line="1177"/>
+        <location filename="mainwindow.cpp" line="1187"/>
+        <location filename="mainwindow.cpp" line="1687"/>
         <source>Confirm</source>
         <translation>تاكيد</translation>
     </message>
@@ -603,21 +603,21 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation>يشغل PINN الرجاء الإنتظار بينما</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1346"/>
-        <location filename="mainwindow.cpp" line="1357"/>
-        <location filename="mainwindow.cpp" line="1958"/>
-        <location filename="mainwindow.cpp" line="2093"/>
-        <location filename="mainwindow.cpp" line="3666"/>
+        <location filename="mainwindow.cpp" line="1347"/>
+        <location filename="mainwindow.cpp" line="1358"/>
+        <location filename="mainwindow.cpp" line="1959"/>
+        <location filename="mainwindow.cpp" line="2094"/>
+        <location filename="mainwindow.cpp" line="3667"/>
         <source>Error</source>
         <translation>خطا</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1488"/>
+        <location filename="mainwindow.cpp" line="1489"/>
         <source>Display Mode Changed</source>
         <translation>نمط العرض تغير</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1418"/>
+        <location filename="mainwindow.cpp" line="1419"/>
         <source>HDMI preferred mode</source>
         <translation>المفضل HDMI نمط</translation>
     </message>
@@ -688,7 +688,7 @@ All existing data on the SD card will be overwritten, including any OSes that ar
     </message>
     <message>
         <location filename="mainwindow.cpp" line="984"/>
-        <location filename="mainwindow.cpp" line="1187"/>
+        <location filename="mainwindow.cpp" line="1188"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>التالي لم يدعم على هذا تنقيح النسبة الثابتة توت عليق وقد يخفق في الاقلاع أو إشتغال بشكل صحيح OSes تحذير: أنظمة التشغيل الغير متوافقة إكتشفت:</translation>
     </message>
@@ -698,302 +698,302 @@ All existing data on the SD card will be overwritten, including any OSes that ar
         <translation>ستبدا عمليه التثبيت قريبا.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1102"/>
+        <location filename="mainwindow.cpp" line="1103"/>
         <source>ReInstall OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1103"/>
+        <location filename="mainwindow.cpp" line="1104"/>
         <source>Warning: No OSes selected or available
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1177"/>
+        <location filename="mainwindow.cpp" line="1178"/>
         <source>Warning: this will download the selected Operating System(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1251"/>
+        <location filename="mainwindow.cpp" line="1252"/>
         <source>The download process will begin shortly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1284"/>
+        <location filename="mainwindow.cpp" line="1285"/>
         <source>OS(es) downloaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1285"/>
+        <location filename="mainwindow.cpp" line="1286"/>
         <source>OS(es) Downloaded Successfully.
 Reboot PINN to take account of these OSes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1290"/>
+        <location filename="mainwindow.cpp" line="1291"/>
         <source>OS(es) installed</source>
         <translation>OS (es) مثبت</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1291"/>
+        <location filename="mainwindow.cpp" line="1292"/>
         <source>OS(es) Installed Successfully</source>
         <translation>OS (es) ثبت بنجاح</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1381"/>
+        <location filename="mainwindow.cpp" line="1382"/>
         <source>Reboot in %1 secs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1422"/>
+        <location filename="mainwindow.cpp" line="1423"/>
         <source>HDMI safe mode</source>
         <translation>HDMI  الوضع الأمن</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1426"/>
+        <location filename="mainwindow.cpp" line="1427"/>
         <source>composite PAL mode</source>
         <translation>وضع PAL المركب</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1430"/>
+        <location filename="mainwindow.cpp" line="1431"/>
         <source>composite NTSC mode</source>
         <translation>وضع NTSC  المركب</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1489"/>
+        <location filename="mainwindow.cpp" line="1490"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>تم تغيير وضع العرض إلى %1 
 هل ترغب في جعل هذا الاعداد دائما ؟</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1662"/>
+        <location filename="mainwindow.cpp" line="1663"/>
         <source>Wiping SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1687"/>
+        <location filename="mainwindow.cpp" line="1688"/>
         <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will restore your SD card to its initial state. All existing data on the SD card except PINN will be overwritten, including any OSes that are already installed.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1692"/>
+        <location filename="mainwindow.cpp" line="1693"/>
         <source>Drive Wiped!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1940"/>
-        <location filename="mainwindow.cpp" line="2070"/>
+        <location filename="mainwindow.cpp" line="1941"/>
+        <location filename="mainwindow.cpp" line="2071"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation>خطا في تحميل قائمه التوزيع من الإنترنت:
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1942"/>
-        <location filename="mainwindow.cpp" line="2072"/>
-        <location filename="mainwindow.cpp" line="2561"/>
-        <location filename="mainwindow.cpp" line="2572"/>
-        <location filename="mainwindow.cpp" line="3760"/>
-        <location filename="mainwindow.cpp" line="3782"/>
+        <location filename="mainwindow.cpp" line="1943"/>
+        <location filename="mainwindow.cpp" line="2073"/>
+        <location filename="mainwindow.cpp" line="2562"/>
+        <location filename="mainwindow.cpp" line="2573"/>
+        <location filename="mainwindow.cpp" line="3761"/>
+        <location filename="mainwindow.cpp" line="3783"/>
         <source>Download error</source>
         <translation>خطا في التحميل</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1958"/>
+        <location filename="mainwindow.cpp" line="1959"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation>خطا في تحليل أعاده التشغيل. json التحميل من الخادم</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2547"/>
+        <location filename="mainwindow.cpp" line="2548"/>
         <source>Error downloading meta file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2856"/>
-        <location filename="mainwindow.cpp" line="4017"/>
+        <location filename="mainwindow.cpp" line="2857"/>
+        <location filename="mainwindow.cpp" line="4018"/>
         <source>Replace OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3002"/>
+        <location filename="mainwindow.cpp" line="3003"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>مطلوب الوصول إلى الشبكة لاستخدام المكونات البينية بدون الصور المحلية. الرجاء تحديد شبكه wifi الخاصة بك في الشاشة التالية.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3010"/>
+        <location filename="mainwindow.cpp" line="3011"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>مطلوب الوصول إلى الشبكة السلكية لاستخدام pinoy بدون الصور المحلية. الرجاء إدخال كبل شبكه اتصال في منفذ الشبكة.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3321"/>
+        <location filename="mainwindow.cpp" line="3322"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>هل تريد بالتاكيد أعاده تهيئه محرك الاقراص &apos;%1&apos; لاستخدامه مع الشبكة PINN ؟ سيتم حذف كافة البيانات الموجودة علي محرك!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3620"/>
+        <location filename="mainwindow.cpp" line="3621"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>سيؤدي ذلك إلى مسح كافة المحتويات الموجودة علي الجهاز &apos;%s&apos;. هل أنت متأكد؟</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3622"/>
+        <location filename="mainwindow.cpp" line="3623"/>
         <source>Clone SD Card</source>
         <translation>إستنسخ بطاقة SD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3624"/>
+        <location filename="mainwindow.cpp" line="3625"/>
         <source>Yes</source>
         <translation>نعم</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3625"/>
+        <location filename="mainwindow.cpp" line="3626"/>
         <source>No</source>
         <translation>لا</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3653"/>
+        <location filename="mainwindow.cpp" line="3654"/>
         <source>Clone Completed</source>
         <translation>اكتمل الاستنساخ</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3654"/>
+        <location filename="mainwindow.cpp" line="3655"/>
         <source>Clone Completed Successfully</source>
         <translation>تم إكمال النسخ بنجاح</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3760"/>
+        <location filename="mainwindow.cpp" line="3761"/>
         <source>Error downloading update file</source>
         <translation>حدث خطا اثناء تنزيل ملف التحديث</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3767"/>
-        <location filename="mainwindow.cpp" line="3862"/>
+        <location filename="mainwindow.cpp" line="3768"/>
+        <location filename="mainwindow.cpp" line="3863"/>
         <source>PINN Update Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3767"/>
+        <location filename="mainwindow.cpp" line="3768"/>
         <source>Error contacting update server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3862"/>
+        <location filename="mainwindow.cpp" line="3863"/>
         <source>No updates available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3870"/>
+        <location filename="mainwindow.cpp" line="3871"/>
         <source>PINN UPDATE</source>
         <translation>PINN تحديث</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3871"/>
+        <location filename="mainwindow.cpp" line="3872"/>
         <source>A new version of PINN is available</source>
         <translation>يتوفر إصدار جديد من الشبكة PINN</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3872"/>
+        <location filename="mainwindow.cpp" line="3873"/>
         <source>Do you want to download this version?</source>
         <translation>هل تريد تحميل هذا الإصدار ؟</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3897"/>
+        <location filename="mainwindow.cpp" line="3898"/>
         <source>Downloading Update</source>
         <translation>تنزيل التحديث</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3897"/>
+        <location filename="mainwindow.cpp" line="3898"/>
         <source>Press ESC to cancel</source>
         <translation>اضغط هروب لالغاء الامر</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4018"/>
+        <location filename="mainwindow.cpp" line="4019"/>
         <source>Warning: No OSes selected
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2093"/>
+        <location filename="mainwindow.cpp" line="2094"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>خطا في توزيع القائمة. json تحميلها من الخادم</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1087"/>
-        <location filename="mainwindow.cpp" line="4008"/>
+        <location filename="mainwindow.cpp" line="1088"/>
+        <location filename="mainwindow.cpp" line="4009"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1113"/>
+        <location filename="mainwindow.cpp" line="1114"/>
         <source>Warning: this will Reinstall/Replace the selected Operating System(s). The existing data will be deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1154"/>
+        <location filename="mainwindow.cpp" line="1155"/>
         <source>The Reinstall process will begin shortly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1383"/>
+        <location filename="mainwindow.cpp" line="1384"/>
         <source>PINN v%1 - Built: %2 (%3) %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1693"/>
+        <location filename="mainwindow.cpp" line="1694"/>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2328"/>
-        <location filename="mainwindow.cpp" line="2331"/>
+        <location filename="mainwindow.cpp" line="2329"/>
+        <location filename="mainwindow.cpp" line="2332"/>
         <source>Needed</source>
         <translation>بحاجة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2329"/>
-        <location filename="mainwindow.cpp" line="2332"/>
+        <location filename="mainwindow.cpp" line="2330"/>
+        <location filename="mainwindow.cpp" line="2333"/>
         <source>Available</source>
         <translation>متاح</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2561"/>
+        <location filename="mainwindow.cpp" line="2562"/>
         <source>Error downloading meta file</source>
         <translation>حدث خطأ أثناء تنزيل ملف ميتا</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2572"/>
-        <location filename="mainwindow.cpp" line="3782"/>
+        <location filename="mainwindow.cpp" line="2573"/>
+        <location filename="mainwindow.cpp" line="3783"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>حدث خطأ أثناء كتابة الملف الذي تم تنزيله إلى بطاقة SD . قد تتلف بطاقة SD  أو نظام الملفات.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2676"/>
+        <location filename="mainwindow.cpp" line="2677"/>
         <source>filesize error checking </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2857"/>
+        <location filename="mainwindow.cpp" line="2858"/>
         <source> has an incompatible number of partitions with </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3320"/>
+        <location filename="mainwindow.cpp" line="3321"/>
         <source>Reformat drive?</source>
         <translation>أعاده تهيئه محرك الاقراص ؟</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1705"/>
-        <location filename="mainwindow.cpp" line="3001"/>
-        <location filename="mainwindow.cpp" line="3009"/>
+        <location filename="mainwindow.cpp" line="1706"/>
+        <location filename="mainwindow.cpp" line="3002"/>
+        <location filename="mainwindow.cpp" line="3010"/>
         <source>No network access</source>
         <translation>لا يوجد وصول إلى الشبكة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1706"/>
+        <location filename="mainwindow.cpp" line="1707"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>مطلوب الوصول إلى الشبكة السلكية لهذه الميزة. الرجاء إدخال كبل شبكه اتصال في منفذ الشبكة.</translation>
     </message>
@@ -1003,7 +1003,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="multiimagedownloadthread.cpp" line="49"/>
         <source>Finish writing (sync)</source>
-        <translation type="unfinished">إنهاء الكتابة (مزامنة)</translation>
+        <translation>إنهاء الكتابة (مزامنة)</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="79"/>
@@ -1013,7 +1013,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="multiimagedownloadthread.cpp" line="113"/>
         <source>Error downloading or extracting tarball</source>
-        <translation type="unfinished">خطا في تنزيل الكره أو استخراجها</translation>
+        <translation>خطا في تنزيل الكره أو استخراجها</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="146"/>
@@ -1272,7 +1272,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="osgroup.cpp" line="332"/>
         <source>RECOMMENDED</source>
-        <translation type="unfinished">اوصي</translation>
+        <translation>اوصي</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="337"/>
@@ -1288,7 +1288,7 @@ Partition not big enough for new image.</source>
         <location filename="osgroup.cpp" line="342"/>
         <location filename="osgroup.cpp" line="343"/>
         <source>INSTALLED</source>
-        <translation type="unfinished">مثبت</translation>
+        <translation>مثبت</translation>
     </message>
 </context>
 <context>
@@ -1618,7 +1618,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="rerunsetup.cpp" line="114"/>
         <source>%1: Error executing partition setup script</source>
-        <translation type="unfinished">%1:حدث خطأ أثناء تنفيذ البرنامج النصي لإعداد القسم</translation>
+        <translation>%1:حدث خطأ أثناء تنفيذ البرنامج النصي لإعداد القسم</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="119"/>
