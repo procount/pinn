@@ -140,6 +140,7 @@ protected:
     void fullFAT();
     void prepareMetaFiles();
     void startImageDownload();//@@download
+    void startImageBackup();//@@download
     bool LooksLikePiDrive(QString devname);//@@download
     bool LooksLikeOSDrive(QString devname);//@@download
     void recalcAvailableMB();//@@download

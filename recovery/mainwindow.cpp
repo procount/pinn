@@ -3004,6 +3004,83 @@ void MainWindow::startImageDownload()
     //QProcess::execute("mount -o remount,ro /mnt");
 }
 
+void MainWindow::startImageBackup()
+{
+    _piDrivePollTimer.stop();
+    // The drive is already mounted R/W from on_actionBackup_triggered
+
+    /* All meta files downloaded, extract slides tarball, and launch image download thread */
+    BackupThread *bt = new BackupThread(0, _local);
+    QString folder, slidesFolder;
+    QStringList slidesFolders;
+
+    QList<QListWidgetItem *> selected = ug->selectedInstalledItems();
+    foreach (QListWidgetItem *item, selected)
+    {
+        QVariantMap entry = item->data(Qt::UserRole).toMap();
+
+        {
+            //Get target foldername as entered by user
+            QFileInfo fi = entry.value("os_info").toString();   //full URL to os.json
+            //QFileInfo fipath = fi.path();                       //URL path
+            //QString foldername = fipath.fileName();
+
+            //folder = _local+"/os/"+foldername;
+            //folder.replace(' ', '_');
+
+
+            /* Insert tarball download URL information into partition_info.json to allow download */
+            //QVariantMap json = Json::loadFromFile(folder+"/partitions.json").toMap();
+            //QVariantList partitions = json["partitions"].toList();
+            //int i=0;
+            //QStringList tarballs = entry.value("tarballs").toStringList();
+            //foreach (QString tarball, tarballs)
+            //{
+            //    QVariantMap partition = partitions[i].toMap();
+            //    partition.insert("download", tarball);
+            //    partitions[i] = partition;
+            //    i++;
+           // }
+            //json["partitions"] = partitions;
+            //Json::saveToFile(folder+"/partitions.json", json);
+
+            //slidesFolder.clear();
+            //if (QFile::exists(folder+"/slides_vga"))
+            //{
+            //    slidesFolder = folder+"/slides_vga";
+            //}
+
+            /* Insert download_size into os.json to allow correct use of download size */
+            //json = Json::loadFromFile(folder+"/os.json").toMap();
+            //if (! json.contains("download_size"))
+           // {
+            //    quint64 downloadSize= entry.value("download_size").toULongLong();
+            //    json.insert("download_size",downloadSize);
+            //    Json::saveToFile(folder+"/os.json", json);
+           // }
+
+            bt->addImage(folder, entry.value("name").toString());
+            if (!slidesFolder.isEmpty())
+                slidesFolders.append(slidesFolder);
+        }
+    }
+
+    if (slidesFolders.isEmpty())
+        slidesFolder.append("/mnt/defaults/slides");
+
+    _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, _osdrive, this);
+    _qpssd->setWindowTitle("Downloading Images");
+    connect(bt, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
+    connect(bt, SIGNAL(completed()), this, SLOT(onCompleted()));
+    connect(bt, SIGNAL(error(QString)), this, SLOT(onError(QString)));
+    connect(bt, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
+    bt->start();
+    hide();
+    _qpssd->exec();
+    show();
+
+    //QProcess::execute("mount -o remount,ro /mnt");
+}
 
 void MainWindow::hideDialogIfNoNetwork()
 {
@@ -4157,11 +4234,58 @@ void MainWindow::on_actionBackup_triggered()
     _local = "/tmp/media/"+partdev(_osdrive,1);
     if (QProcess::execute("mount -o remount,rw /dev/"+partdev(_osdrive,1)+" "+_local) != 0)
     {
-        BackupThread * bt = new BackupThread();
-
         return;
     }
 
+    if (_silent || QMessageBox::warning(this,
+                                        tr("Confirm"),
+                                        tr("Warning: this will backup the selected Operating System(s)."),
+                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+    {
+        /* See if any of the OSes are unsupported */
+        bool allSupported = true;
+        QString unsupportedOses;
+        QList<QListWidgetItem *> selected = selectedItems();
+        //@@ Check for unsupported (undownloadable) OSes
+        if (_silent || allSupported || QMessageBox::warning(this,
+                                        tr("Confirm"),
+                                        tr("Warning: incompatible Operating System(s) detected. The following OSes aren't supported on this revision of Raspberry Pi and may fail to boot or function correctly:") + unsupportedOses,
+                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+        {
+            setEnabled(false);
+            _numMetaFilesToDownload = 0;
+
+            QList<QListWidgetItem *> selected = ug->selectedInstalledItems();
+            foreach (QListWidgetItem *item, selected)
+            {
+                QVariantMap entry = item->data(Qt::UserRole).toMap();
+                if (entry.value("source").toString() == SOURCE_INSTALLED_OS) // only installed OSes Can be backed up.
+                {
+                    QDir d;
+                    QString osname = entry.value("name").toString();
+
+                    //Get date/time
+                    //Append to osname
+
+                    //Dialog to request OSname, description
+
+                    //Don't need flavours because they would already have been applied
+
+                    //Copy:
+                    //- /slides_vga
+                    //- os.json (with new description
+                    //- partitions.json
+                    //- partition_setup.sh
+                    //- icon.png as name.png
+                    //- [Copy release_notes.txt?]
+
+                }
+            }
+
+            /* All OSes selected are local */
+            startImageBackup();
+        }
+    }
 }
 
 void MainWindow::createPinnEntry()
