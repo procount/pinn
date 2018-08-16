@@ -14,28 +14,28 @@
         <translation>掛載 settings 分割區時發生錯誤</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="304"/>
+        <location filename="bootselectiondialog.cpp" line="322"/>
         <source>HDMI safe mode</source>
         <translation>HDMI 安全模式</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="308"/>
+        <location filename="bootselectiondialog.cpp" line="326"/>
         <source>composite PAL mode</source>
         <translation>合成 PAL 模式</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="312"/>
+        <location filename="bootselectiondialog.cpp" line="330"/>
         <source>composite NTSC mode</source>
         <translation>合成 NTSC 模式</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="353"/>
+        <location filename="bootselectiondialog.cpp" line="371"/>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
         <translation>PINN - 先前選擇的作業系統將會在 %1 秒內啟動</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="25"/>
-        <location filename="bootselectiondialog.cpp" line="355"/>
+        <location filename="bootselectiondialog.cpp" line="373"/>
         <source>PINN - Select OS to boot</source>
         <translation>PINN - 選取要啟動的作業系統</translation>
     </message>

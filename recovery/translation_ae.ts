@@ -14,28 +14,28 @@
         <translation>خطا في تركيب قسم إعدادات</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="304"/>
+        <location filename="bootselectiondialog.cpp" line="322"/>
         <source>HDMI safe mode</source>
         <translation>HDMI الوضع الأمن</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="308"/>
+        <location filename="bootselectiondialog.cpp" line="326"/>
         <source>composite PAL mode</source>
         <translation>وضع PAL المركب</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="312"/>
+        <location filename="bootselectiondialog.cpp" line="330"/>
         <source>composite NTSC mode</source>
         <translation>وضع NTSC  المركب</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="353"/>
+        <location filename="bootselectiondialog.cpp" line="371"/>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
         <translation>PINN  - سيتم اختيار نظام التشغيل المحدد سابقا في %1 ثانية</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="25"/>
-        <location filename="bootselectiondialog.cpp" line="355"/>
+        <location filename="bootselectiondialog.cpp" line="373"/>
         <source>PINN - Select OS to boot</source>
         <translation>PINN - حدد نظام التشغيل للاقلاع</translation>
     </message>

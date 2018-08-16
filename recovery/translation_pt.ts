@@ -14,28 +14,28 @@
         <translation>Erro ao montar partição de configurações</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="304"/>
+        <location filename="bootselectiondialog.cpp" line="322"/>
         <source>HDMI safe mode</source>
         <translation>Modo HDMI seguro</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="308"/>
+        <location filename="bootselectiondialog.cpp" line="326"/>
         <source>composite PAL mode</source>
         <translation>Modo PAL composto</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="312"/>
+        <location filename="bootselectiondialog.cpp" line="330"/>
         <source>composite NTSC mode</source>
         <translation>Modo NTSC composto</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="353"/>
+        <location filename="bootselectiondialog.cpp" line="371"/>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
         <translation>PINN - O SO previamente selecionado irá inicializar em %1 segundos</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="25"/>
-        <location filename="bootselectiondialog.cpp" line="355"/>
+        <location filename="bootselectiondialog.cpp" line="373"/>
         <source>PINN - Select OS to boot</source>
         <translation>PINN - Selecione o SO para inicializar</translation>
     </message>

@@ -192,6 +192,9 @@ int main(int argc, char *argv[])
     GpioInput *gpio=NULL;
     cec = enableCEC();
 
+    QString drive;
+    bool driveReady = false;
+
     bool runinstaller = false;
     bool keyboard_trigger = true;
     bool force_trigger = false;
@@ -248,6 +251,11 @@ int main(int argc, char *argv[])
             if (argc > i+1)
                 defaultPartition = argv[i+1];
         }
+        else if (strcmp(argv[i], "-pinndrive") == 0)
+        {
+            if (argc > i+1)
+                drive = argv[i+1];
+        }
         // Allow default repos to be specified in commandline
         else if (strcmp(argv[i], "-no_default_source") == 0)
         {
@@ -272,6 +280,47 @@ int main(int argc, char *argv[])
             }
         }
     }
+
+    //==========================
+    // Wait for drive device to show up
+    QTime t;
+    t.start();
+
+    while (t.elapsed() < 10000)
+    {
+        if (drive.isEmpty())
+        {
+            /* We do not know the exact drive name to wait for */
+            drive = findRecoveryDrive();
+            if (!drive.isEmpty())
+            {
+                driveReady = true;
+                break;
+            }
+        }
+        else if (drive.startsWith("/dev"))
+        {
+            if (QFile::exists(drive))
+            {
+                driveReady = true;
+                break;
+            }
+        }
+
+        QApplication::processEvents(QEventLoop::WaitForMoreEvents, 100);
+    }
+    if (!driveReady)
+    {
+        QMessageBox::critical(NULL, "Files not found", QString("Cannot find the drive with PINN files %1").arg(drive), QMessageBox::Close);
+        return 1;
+    }
+    qDebug() << "PINN drive:" << drive;
+
+    QProcess::execute("mount -o ro -t vfat "+partdev(drive, 1)+" /mnt");
+    cec->loadCECmap("/mnt/cec_keys.json");
+
+    // do some stuff at start in background.
+    runCustomScript(drive, 1,"background.sh", true);
 
     if (use_default_source)
     {
@@ -302,7 +351,16 @@ int main(int argc, char *argv[])
 
     int r,g,b;
     int newBGnd;
-    QPixmap pixmap(":/wallpaper.png");
+
+    QPixmap pixmap;
+    if (QFile::exists("/mnt/wallpaper.png"))
+    {
+        pixmap.load("/mnt/wallpaper.png");
+    }
+    else
+    {
+        pixmap.load(":/wallpaper.png");
+    }
     QString cmdline = getFileContents("/proc/cmdline");
     QStringList args = cmdline.split(QChar(' '),QString::SkipEmptyParts);
     foreach (QString s, args)
@@ -356,48 +414,7 @@ int main(int argc, char *argv[])
     splash->show();
     QApplication::processEvents();
 
-    // Wait for drive device to show up
-    QString drive;
-    bool driveReady = false;
-    QTime t;
-    t.start();
-
-    while (t.elapsed() < 10000)
-    {
-        if (drive.isEmpty())
-        {
-            /* We do not know the exact drive name to wait for */
-            drive = findRecoveryDrive();
-            if (!drive.isEmpty())
-            {
-                driveReady = true;
-                break;
-            }
-        }
-        else if (drive.startsWith("/dev"))
-        {
-            if (QFile::exists(drive))
-            {
-                driveReady = true;
-                break;
-            }
-        }
-
-        QApplication::processEvents(QEventLoop::WaitForMoreEvents, 100);
-    }
-    if (!driveReady)
-    {
-        QMessageBox::critical(NULL, "Files not found", QString("Cannot find the drive with PINN files %1").arg(drive), QMessageBox::Close);
-        return 1;
-    }
-    qDebug() << "PINN drive:" << drive;
-
-    QProcess::execute("mount -o ro -t vfat "+partdev(drive, 1)+" /mnt");
-    cec->loadCECmap("/mnt/cec_keys.json");
-    QProcess::execute("umount /mnt");
-
-    // do some stuff at start in background.
-    runCustomScript(drive, 1,"background.sh", true);
+    //------------------------------------------------
 
     // If -runinstaller is not specified, only continue if SHIFT is pressed, GPIO is triggered,
     // or no OS is installed (/settings/installed_os.json does not exist)
@@ -433,6 +450,8 @@ int main(int argc, char *argv[])
             }
         }
     }
+
+    QProcess::execute("umount /mnt");   //restore mounted behaviour
 
     cec->clearKeyPressed();
 

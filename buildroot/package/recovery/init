@@ -62,7 +62,7 @@ if [ -e /sys/devices/platform/rpi_ft5406 ]; then
 fi
 
 #Check for user init script
-
+pinndrive=
 mkdir -p /tmp/mnt
 cd /sys/class/block
 for d in *1/;
@@ -79,6 +79,7 @@ do
         mount /dev/$d /tmp/mnt 2>/dev/null
         if [ $? -eq 0 ]; then
           if [ -f "/tmp/mnt/recovery.rfs" ]; then
+            pinndrive=/dev/$d
             if [ -f "/tmp/mnt/pinn_init.sh" ]; then
               sh -c "/tmp/mnt/pinn_init.sh"
             fi
@@ -114,6 +115,7 @@ fi
     EXTRA_REPOS=
     REPO_LIST=
     DEFAULT_STYLE=
+    DEFAULT_DRIVE=
 
     if grep -q runinstaller /proc/cmdline; then
         RUN_INSTALLER=-runinstaller
@@ -158,6 +160,9 @@ fi
         if [ "${p%%=*}" == "style" ] ; then
             DEFAULT_STYLE="-style=${p#*=}"
         fi
+        if [ -n "$pinndrive" ] ; then
+            DEFAULT_DRIVE="-pinndrive=$pinndrive"
+        fi
     done
 
     if grep -q vncinstall /proc/cmdline; then
@@ -168,7 +173,7 @@ fi
         echo
     fi
 
-    /usr/bin/recovery $RUN_INSTALLER $GPIO_TRIGGER $KEYBOARD_NO_TRIGGER $FORCE_TRIGGER $DEFAULT_KBD $DEFAULT_LANG $DEFAULT_DISPLAY $DEFAULT_PARTITION $DEFAULT_NOCONFIG $DEFAULT_DSI $DEFAULT_REPOS $EXTRA_REPOS $REPO_LIST $DEFAULT_STYLE -qws  2>/tmp/debug
+    /usr/bin/recovery $RUN_INSTALLER $GPIO_TRIGGER $KEYBOARD_NO_TRIGGER $FORCE_TRIGGER $DEFAULT_KBD $DEFAULT_LANG $DEFAULT_DISPLAY $DEFAULT_PARTITION $DEFAULT_NOCONFIG $DEFAULT_DSI $DEFAULT_REPOS $EXTRA_REPOS $REPO_LIST $DEFAULT_STYLE $DEFAULT_DRIVE -qws  2>/tmp/debug
 
 
 # Recovery should have rebooted
