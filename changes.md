@@ -414,3 +414,15 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Reinstall**               - BUGFIX for Re-install.
 - **translations**            - Updated it and zh_TW translations.
 - **silentreinstallnewer**    - **USE WITH CAUTION**. With `select=` it will silently re-install any selected OSes that are newer than the installed version.
+
+## V2.8.5.2
+
+- **VNCnotice**               - Displays a notice on the main screen when vncinstall is in use
+- **PINN update**             - Prevents crash on manual update when there is no network
+- **ae-ts**                   - tidy up of translations
+
+## V2.8.5.3
+
+- **Partuuid**                - Fixed an issue from v2.8 where partuuids were introduced to installed_os.json
+- **Wallpaper**               - Customised wallpaper is now available by writing your own `wallpaper.png` file to PINN's recovery partition
+

@@ -45,6 +45,17 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+## V2.8.5.3
+
+- **Partuuid**                - Fixed an issue from v2.8 where partuuids were introduced to installed_os.json
+- **Wallpaper**               - Customised wallpaper is now available by writing your own `wallpaper.png` file to PINN's recovery partition## V2.8.5.1
+
+## V2.8.5.2
+
+- **VNCnotice**               - Displays a notice on the main screen when vncinstall is in use
+- **PINN update**             - Prevents crash on manual update when there is no network
+- **ae-ts**                   - tidy up of translations
+
 ## V2.8.5.1
 
 - **Reinstall**               - BUGFIX for Re-install.
