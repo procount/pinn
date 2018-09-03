@@ -23,6 +23,8 @@
 #include "mydebug.h"
 #include "countdownfilter.h"
 #include "replace.h"
+#include "mydebug.h"
+#include "splash.h"
 
 #include <QByteArray>
 #include <QMessageBox>
@@ -38,7 +40,7 @@
 #include <QKeyEvent>
 #include <QApplication>
 #include <QScreen>
-#include <QSplashScreen>
+//#include <QSplashScreen>
 #include <QDesktopWidget>
 #include <QSettings>
 #include <QtNetwork/QNetworkAccessManager>
@@ -136,7 +138,7 @@ void MainWindow::expired(void)
     close();
 }
 
-MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSplashScreen *splash, bool noobsconfig, QWidget *parent) :
+MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSplash *splash, bool noobsconfig, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     _qpd(NULL), _kcpos(0), _defaultDisplay(defaultDisplay),
@@ -1467,7 +1469,18 @@ void MainWindow::displayMode(int modenr, bool silent)
     resize(w,h);
 
     // Update UI item locations
-    //@@ _splash->setPixmap(QPixmap(":/wallpaper.png")); //Comment out for now whilst changing pixmap background
+//    QPixmap pixmap;
+//    if (QFile::exists("/mnt/wallpaper.png"))
+//    {
+//        pixmap.load("/mnt/wallpaper.png");
+//    }
+//    else
+//    {
+//        pixmap.load(":/wallpaper.png");
+//    }
+    _splash->resize();
+    _splash->setPixmap(_splash->pixmap()); //reposition, keeping same image.
+
     LanguageDialog *ld = LanguageDialog::instance("en", "gb");
     ld->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignHCenter | Qt::AlignBottom, ld->size(), qApp->desktop()->availableGeometry()));
     this->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, this->size(), qApp->desktop()->availableGeometry()));

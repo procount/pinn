@@ -51,5 +51,6 @@ QByteArray getPartUUID(const QString &devpart);
 QByteArray getDevice(const QString & partuuid);
 
 QString getNameParts(const QString& input, eNAMEPARTS flags);
+int extractPartitionNumber(QByteArray& partition);
 
 #endif // UTIL_H

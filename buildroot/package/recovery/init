@@ -116,9 +116,13 @@ fi
     REPO_LIST=
     DEFAULT_STYLE=
     DEFAULT_DRIVE=
+    DEFAULT_WALLPAPER_RESIZE=
 
     if grep -q runinstaller /proc/cmdline; then
         RUN_INSTALLER=-runinstaller
+    fi
+    if grep -q wallpaper_resize /proc/cmdline; then
+        DEFAULT_WALLPAPER_RESIZE=-wallpaper_resize
     fi
     if grep -q gpiotriggerenable /proc/cmdline; then
         GPIO_TRIGGER=-gpiotriggerenable
@@ -173,7 +177,7 @@ fi
         echo
     fi
 
-    /usr/bin/recovery $RUN_INSTALLER $GPIO_TRIGGER $KEYBOARD_NO_TRIGGER $FORCE_TRIGGER $DEFAULT_KBD $DEFAULT_LANG $DEFAULT_DISPLAY $DEFAULT_PARTITION $DEFAULT_NOCONFIG $DEFAULT_DSI $DEFAULT_REPOS $EXTRA_REPOS $REPO_LIST $DEFAULT_STYLE $DEFAULT_DRIVE -qws  2>/tmp/debug
+    /usr/bin/recovery $RUN_INSTALLER $GPIO_TRIGGER $KEYBOARD_NO_TRIGGER $FORCE_TRIGGER $DEFAULT_KBD $DEFAULT_LANG $DEFAULT_DISPLAY $DEFAULT_PARTITION $DEFAULT_NOCONFIG $DEFAULT_DSI $DEFAULT_REPOS $EXTRA_REPOS $REPO_LIST $DEFAULT_STYLE $DEFAULT_DRIVE $DEFAULT_WALLPAPER_RESIZE -qws  2>/tmp/debug
 
 
 # Recovery should have rebooted

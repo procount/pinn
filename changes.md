@@ -426,3 +426,7 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Partuuid**                - Fixed an issue from v2.8 where partuuids were introduced to installed_os.json
 - **Wallpaper**               - Customised wallpaper is now available by writing your own `wallpaper.png` file to PINN's recovery partition
 
+## V2.8.5.4
+
+- **Boot menu**               - Fixed focus and sticky default partuuid issues.
+- **wallpaper_resize**        - Customised wallpaper can now be resized to fill the screen

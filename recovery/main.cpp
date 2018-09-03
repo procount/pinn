@@ -9,6 +9,8 @@
 #include "util.h"
 #include "bootselectiondialog.h"
 #include "ceclistener.h"
+#include "mydebug.h"
+#include "splash.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -16,7 +18,7 @@
 #include <QBitmap>
 #include <QStyle>
 #include <QDesktopWidget>
-#include <QSplashScreen>
+//#include <QSplashScreen>
 #include <QFile>
 #include <QIcon>
 #include <QProcess>
@@ -200,6 +202,7 @@ int main(int argc, char *argv[])
     bool force_trigger = false;
     bool noobsconfig = true;
     bool use_default_source = true;
+    bool wallpaper_resize = false;
 
     QString defaultLang = "en";
     QString defaultKeyboard = "gb";
@@ -212,6 +215,8 @@ int main(int argc, char *argv[])
         // Flag to indicate first boot
         if (strcmp(argv[i], "-runinstaller") == 0)
             runinstaller = true;
+        if (strcmp(argv[i], "-wallpaper_resize") == 0)
+            wallpaper_resize = true;
         // Enables use of GPIO 3 to force NOOBS to launch by pulling low
         else if (strcmp(argv[i], "-gpiotriggerenable") == 0)
             gpio = new GpioInput(gpioChannel);
@@ -360,6 +365,7 @@ int main(int argc, char *argv[])
     else
     {
         pixmap.load(":/wallpaper.png");
+        wallpaper_resize = false; //We don't want the standard logo resized - it looks really bad
     }
     QString cmdline = getFileContents("/proc/cmdline");
     QStringList args = cmdline.split(QChar(' '),QString::SkipEmptyParts);
@@ -409,9 +415,11 @@ int main(int argc, char *argv[])
 #ifdef Q_WS_QWS
     QWSServer::setBackground(backgroundColour);
 #endif
-    QSplashScreen *splash = new QSplashScreen(pixmap);
+    KSplash *splash = new KSplash(pixmap,0,wallpaper_resize);
 
     splash->show();
+    splash->resize();
+    splash->showMessage("For recovery mode, hold SHIFT...");
     QApplication::processEvents();
 
     //------------------------------------------------
@@ -451,13 +459,14 @@ int main(int argc, char *argv[])
         }
     }
 
+    splash->clearMessage();
+
     QProcess::execute("umount /mnt");   //restore mounted behaviour
 
     cec->clearKeyPressed();
 
     if (bailout)
     {
-        splash->hide();
         showBootMenu(drive, defaultPartition, true);
     }
 

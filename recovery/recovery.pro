@@ -63,7 +63,8 @@ SOURCES += \
     countdownfilter.cpp \
     repair.cpp \
     rerunsetup.cpp \
-    replace.cpp
+    replace.cpp \
+    splash.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -106,7 +107,8 @@ HEADERS  += \
     repair.h \
     rerunsetup.h \
     sleepsimulator.h \
-    replace.h
+    replace.h \
+    splash.h
 
 FORMS    += \
     mainwindow.ui \
