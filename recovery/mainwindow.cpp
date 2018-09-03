@@ -4245,7 +4245,7 @@ void MainWindow::on_actionBackup_triggered()
         /* See if any of the OSes are unsupported */
         bool allSupported = true;
         QString unsupportedOses;
-        QList<QListWidgetItem *> selected = selectedItems();
+        QList<QListWidgetItem *> selected = ug->selectedInstalledItems();
         //@@ Check for unsupported (undownloadable) OSes
         if (_silent || allSupported || QMessageBox::warning(this,
                                         tr("Confirm"),
@@ -4255,12 +4255,11 @@ void MainWindow::on_actionBackup_triggered()
             setEnabled(false);
             _numMetaFilesToDownload = 0;
 
-            QList<QListWidgetItem *> selected = ug->selectedInstalledItems();
             foreach (QListWidgetItem *item, selected)
             {
                 QVariantMap entry = item->data(Qt::UserRole).toMap();
-                if (entry.value("source").toString() == SOURCE_INSTALLED_OS) // only installed OSes Can be backed up.
-                {
+                //if (entry.value("source").toString() == SOURCE_INSTALLED_OS) // only installed OSes Can be backed up.
+                //{
                     QDir d;
                     QString osname = entry.value("name").toString();
 
@@ -4279,7 +4278,7 @@ void MainWindow::on_actionBackup_triggered()
                     //- icon.png as name.png
                     //- [Copy release_notes.txt?]
 
-                }
+                //}
             }
 
             /* All OSes selected are local */
