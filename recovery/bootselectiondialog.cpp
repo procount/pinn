@@ -9,12 +9,13 @@
 
 #include "bootselectiondialog.h"
 #include "ui_bootselectiondialog.h"
-#include "config.h"
-#include "json.h"
-#include "util.h"
 #include "ceclistener.h"
+#include "config.h"
 #include "countdownfilter.h"
+#include "json.h"
+#include "mydebug.h"
 #include "sleepsimulator.h"
+#include "util.h"
 
 #include <stdio.h>
 #include <QAbstractButton>
@@ -161,28 +162,25 @@ BootSelectionDialog::BootSelectionDialog(const QString &drive, const QString &de
             QString partnrStr = QString::number(partition);
             QString stickynrStr = QString::number(oldSticky);
 
-            qDebug() << "partnrStr = " << partnrStr;
-            qDebug() << "stickynrStr = " << stickynrStr;
+            qDebug() << "partnr = " << partition;
+            qDebug() << "stickynr = " << oldSticky;
 
-            QRegExp partnrRx("([0-9]+)$");
             for (int i=0; i<ui->list->count(); i++)
             {
                 QVariantMap m = ui->list->item(i)->data(Qt::UserRole).toMap();
-                QString bootpart = m.value("partitions").toList().first().toString();
+                QByteArray ba_bootpart = m.value("partitions").toList().first().toString().toLocal8Bit();
+                int bootpart = extractPartitionNumber( ba_bootpart );
                 qDebug() << "Partition " << i << " = " << bootpart;
-                if (partnrRx.indexIn(bootpart) != -1)
+
+                if (bootpart == partition)
                 {
-                    qDebug() << "partnrRx = " << partnrRx.cap(1);
-                    if (partnrRx.cap(1) == partnrStr)
-                    {
-                        qDebug() << "Previous OS " << bootpart << " at " <<i;
-                        ui->list->setCurrentRow(i);
-                    }
-                    if (partnrRx.cap(1) == stickynrStr)
-                    {
-                        qDebug() << "found sticky at " << i;
-                        ui->list->item(i)->setCheckState(Qt::Checked);
-                    }
+                    qDebug() << "Previous OS " << bootpart << " at " <<i;
+                    ui->list->setCurrentRow(i);
+                }
+                if (bootpart == oldSticky)
+                {
+                    qDebug() << "found sticky at " << i;
+                    ui->list->item(i)->setCheckState(Qt::Checked);
                 }
             }
         }
@@ -232,29 +230,7 @@ void BootSelectionDialog::accept()
     QVariantMap m = item->data(Qt::UserRole).toMap();
     QByteArray partition = m.value("partitions").toList().first().toByteArray();
 
-    QRegExp parttype("^PARTUUID");
-    int partitionNr;
-    if (parttype.indexIn(partition) == -1)
-    {   // Old style /dev/mmcblk0pDD
-        QRegExp partnrRx("([0-9]+)$");
-        if (partnrRx.indexIn(partition) == -1)
-        {
-            QMessageBox::critical(this, "installed_os.json corrupt", "Not a valid partition: "+partition);
-            return;
-        }
-        partitionNr    = partnrRx.cap(1).toInt();
-    }
-    else
-    {   //USB style PARTUUID=000dbedf-XX
-        QRegExp partnrRx("([0-9a-f][0-9a-f])$");
-        if (partnrRx.indexIn(partition) == -1)
-        {
-            QMessageBox::critical(this, "installed_os.json corrupt", "Not a valid partition: "+partition);
-            return;
-        }
-        bool ok;
-        partitionNr    = partnrRx.cap(1).toInt(&ok, 16);
-    }
+    int partitionNr = extractPartitionNumber(partition);
 
     int oldpartitionNr = settings.value("default_partition_to_boot", 0).toInt();
 
@@ -277,11 +253,12 @@ void BootSelectionDialog::accept()
         if (state == Qt::Checked)
         {
             QVariantMap m = row->data(Qt::UserRole).toMap();
-            QByteArray partition = m.value("partitions").toList().first().toByteArray();
-            QRegExp partnrRx("([0-9]+)$");
-            if (partnrRx.indexIn(partition) != -1)
+            QByteArray partition = m.value("partitions").toList().first().toString().toLocal8Bit();
+
+            int p = extractPartitionNumber(partition);
+            if (p!= 800)
             {
-                stickyBoot = partnrRx.cap(1).toInt();
+                stickyBoot = p;
             }
         }
     }
@@ -308,6 +285,8 @@ void BootSelectionDialog::accept()
 
 void BootSelectionDialog::setDisplayMode()
 {
+    MSG();
+
 #ifdef Q_WS_QWS
     QString cmd, mode;
     QSettings settings("/settings/noobs.conf", QSettings::IniFormat, this);
@@ -363,6 +342,7 @@ void BootSelectionDialog::setDisplayMode()
     qApp->processEvents();
     QWSServer::instance()->refresh();
 #endif
+    MSG();
 }
 
 void BootSelectionDialog::countdown(int count)

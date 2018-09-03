@@ -14,10 +14,11 @@
 #include "osgroup.h"
 #include "countdownfilter.h"
 #include "repair.h"
+#include "splash.h"
 
 #include <QMainWindow>
 #include <QModelIndex>
-#include <QSplashScreen>
+//#include <QSplashScreen>
 #include <QMessageBox>
 #include <QTimer>
 #include <QTime>
@@ -38,7 +39,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(const QString &drive, const QString &defaultDisplay, QSplashScreen *splash, bool noobsconfig, QWidget *parent = 0);
+    explicit MainWindow(const QString &drive, const QString &defaultDisplay, KSplash *splash, bool noobsconfig, QWidget *parent = 0);
     ~MainWindow();
 
 protected:
@@ -54,7 +55,7 @@ protected:
     bool _silent, _allowSilent, _showAll, _fixate, _usbimages, _sdimages;
     static bool _partInited;
     static int _currentMode;
-    QSplashScreen *_splash;
+    KSplash *_splash;
     QSettings *_settings;
     bool _hasWifi;
     int _numInstalledOS, _numBootableOS, _devlistcount;

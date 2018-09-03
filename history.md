@@ -5,10 +5,15 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+## V2.8.5.4
+
+- **Boot menu**               - Fixed focus and sticky default partuuid issues.
+- **wallpaper_resize**        - Customised wallpaper can now be resized to fill the screen
+
 ## V2.8.5.3
 
 - **Partuuid**                - Fixed an issue from v2.8 where partuuids were introduced to installed_os.json
-- **Wallpaper**               - Customised wallpaper is now available by writing your own `wallpaper.png` file to PINN's recovery partition## V2.8.5.1
+- **Wallpaper**               - Customised wallpaper is now available by writing your own `wallpaper.png` file to PINN's recovery partition
 
 ## V2.8.5.2
 

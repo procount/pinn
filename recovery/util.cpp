@@ -14,6 +14,7 @@
 #include <QList>
 #include <QtEndian>
 #include <QStringRef>
+#include <QMessageBox>
 
 /*
  * Convenience functions
@@ -347,4 +348,42 @@ QString getNameParts(const QString& input, eNAMEPARTS flags)
         }
     }
     return(output);
+}
+
+int extractPartitionNumber(QByteArray& partition)
+{
+    //Partition may be in format /dev/mmcblk0pD or PARTUUID=0000ABCD-HH
+    //Converts from decimal or hex accordingly
+
+    int partitionNr=800;
+    QRegExp parttype("^PARTUUID");
+
+    if (parttype.indexIn(partition) == -1)
+    {   // Old style /dev/mmcblk0pDD
+        QRegExp partnrRx("([0-9]+)$");
+        if (partnrRx.indexIn(partition) == -1)
+        {
+            QMessageBox::critical(NULL, "installed_os.json corrupt", "Not a valid partition: "+partition);
+            return partitionNr;
+        }
+        else
+        {
+            partitionNr    = partnrRx.cap(1).toInt();
+        }
+    }
+    else
+    {   //USB style PARTUUID=000dbedf-XX
+        QRegExp partnrRx("([0-9a-f][0-9a-f])$");
+        if (partnrRx.indexIn(partition) == -1)
+        {
+            QMessageBox::critical(NULL, "installed_os.json corrupt", "Not a valid partition: "+partition);
+            return partitionNr;
+        }
+        else
+        {
+            bool ok;
+            partitionNr    = partnrRx.cap(1).toInt(&ok, 16);
+        }
+    }
+    return partitionNr;
 }

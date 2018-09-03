@@ -625,7 +625,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
             if (fstype == "raw" || fstype.startsWith("partclone"))
                 tarball = findTarballExt(image->folder()+"/"+label,".img.lzo,.img.gz,.img.bz2,.img.zip,.img.xz,.lzo,.gz,.bz2,.zip,.xz");
             else
-                tarball = findTarballExt(image->folder()+"/"+label,".tar.lzo,.tar.gz,.tar.bz2,.tar.zip,.tar.xz");
+                tarball = findTarballExt(image->folder()+"/"+label,".tar.lzo,.tar.gz,.tar.bz2,.tar.zip,.tar.xz,.tar");
 
             if (!QFile::exists(tarball))
             {

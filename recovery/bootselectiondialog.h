@@ -54,7 +54,7 @@ protected:
     int _countdown;
     void updateConfig4dsi(QByteArray partition);
     bool _dsi;
-    int extractPartition(QVariantMap m);
+    //int extractPartition(QVariantMap m);
 
 private:
     Ui::BootSelectionDialog *ui;
