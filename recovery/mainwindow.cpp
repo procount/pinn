@@ -28,6 +28,7 @@
 #include "splash.h"
 
 #include <QByteArray>
+#include <QDateTime>
 #include <QMessageBox>
 #include <QProgressDialog>
 #include <QMap>
@@ -4254,17 +4255,30 @@ void MainWindow::on_actionBackup_triggered()
         {
             setEnabled(false);
             _numMetaFilesToDownload = 0;
-
             foreach (QListWidgetItem *item, selected)
             {
                 QVariantMap entry = item->data(Qt::UserRole).toMap();
-                //if (entry.value("source").toString() == SOURCE_INSTALLED_OS) // only installed OSes Can be backed up.
-                //{
-                    QDir d;
-                    QString osname = entry.value("name").toString();
+                if (entry.value("source").toString() == SOURCE_INSTALLED_OS) // only installed OSes Can be backed up.
+                {
+                    //QDir d;
+                    QString folder;
+                    QString name = entry.value("name").toString();
 
                     //Get date/time
+                    QDateTime tnow = QDateTime::currentDateTime();
+                    QString now = "#" + tnow.toString("yyyyMMddhhmmss");
+
+                    if (now.left(5)=="#1970")
+                    {
+                        qDebug() << "Current time is not known";
+                    }
+
                     //Append to osname
+                    QString osname = getNameParts(name, eCORE) + now +getNameParts(name, ePART);
+
+                    folder = _local+"/os/"+osname;
+                    folder.replace(' ', '_');
+                    qDebug() << "On backup triggered, save to "<<folder;
 
                     //Dialog to request OSname, description
 
@@ -4278,11 +4292,11 @@ void MainWindow::on_actionBackup_triggered()
                     //- icon.png as name.png
                     //- [Copy release_notes.txt?]
 
-                //}
+                }
             }
 
             /* All OSes selected are local */
-            startImageBackup();
+            //startImageBackup();
         }
     }
 }
