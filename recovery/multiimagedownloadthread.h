@@ -20,7 +20,6 @@ protected:
     QByteArray getLabel(const QString part);
     QByteArray getUUID(const QString part);
     void patchConfigTxt();
-    QString getDescription(const QString &folder, const QString &flavour);
     QString _local;
 
     /* key: folder, value: flavour */

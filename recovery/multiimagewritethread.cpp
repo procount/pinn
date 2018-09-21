@@ -1507,28 +1507,4 @@ void MultiImageWriteThread::patchConfigTxt()
 }
 
 
-QString MultiImageWriteThread::getDescription(const QString &folder, const QString &flavour)
-{
-    if (QFile::exists(folder+"/flavours.json"))
-    {
-        QVariantMap v = Json::loadFromFile(folder+"/flavours.json").toMap();
-        QVariantList fl = v.value("flavours").toList();
-
-        foreach (QVariant f, fl)
-        {
-            QVariantMap fm  = f.toMap();
-            if (fm.value("name").toString() == flavour)
-            {
-                return fm.value("description").toString();
-            }
-        }
-    }
-    else if (QFile::exists(folder+"/os.json"))
-    {
-        QVariantMap v = Json::loadFromFile(folder+"/os.json").toMap();
-        return v.value("description").toString();
-    }
-
-    return "";
-}
 

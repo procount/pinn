@@ -4296,7 +4296,7 @@ void MainWindow::on_actionBackup_triggered()
             }
 
             /* All OSes selected are local */
-            //startImageBackup();
+            startImageBackup();
         }
     }
 }
