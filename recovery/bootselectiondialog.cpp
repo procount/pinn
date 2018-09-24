@@ -43,7 +43,12 @@ extern "C" {
 
 extern CecListener * cec;
 
-BootSelectionDialog::BootSelectionDialog(const QString &drive, const QString &defaultPartition, bool stickyBoot, bool dsi, QWidget *parent) :
+BootSelectionDialog::BootSelectionDialog(
+        const QString &drive,               //PINN drive where boot partitions are stored for DSI mod
+        const QString &defaultPartition,    //Could be provided on cmdline. Only used if no previoous OS had been used.
+        bool stickyBoot,                    //Use Stickyboot i.e. when NOT going through recovery menu
+        bool dsi,                           //Adapt config.txt according to fitted monitor
+        QWidget *parent) :
     QDialog(parent),
     _countdown(11),
     _dsi(dsi),
@@ -125,6 +130,20 @@ BootSelectionDialog::BootSelectionDialog(const QString &drive, const QString &de
 #endif
     }
 
+    //Check for bootmenutimeout override (default==11)
+    QStringList args = cmdline.split(QChar(' '),QString::SkipEmptyParts);
+    foreach (QString s, args)
+    {
+        if (s.contains("bootmenutimeout"))
+        {
+            stickyBoot=false;
+            QStringList params = s.split(QChar('='));
+            _countdown = params.at(1).toInt() +1;
+        }
+    }
+
+
+
     if (ui->list->count() != 0)
     {
         // If default boot partition set then boot to that after 5 seconds
@@ -137,18 +156,6 @@ BootSelectionDialog::BootSelectionDialog(const QString &drive, const QString &de
         if (partition != 800)
         {
             cec->clearKeyPressed();
-
-            //Check for bootmenutimeout override (default==11)
-            QString cmdline = getFileContents("/proc/cmdline");
-            QStringList args = cmdline.split(QChar(' '),QString::SkipEmptyParts);
-            foreach (QString s, args)
-            {
-                if (s.contains("bootmenutimeout"))
-                {
-                    QStringList params = s.split(QChar('='));
-                    _countdown = params.at(1).toInt() +1;
-                }
-            }
 
             // Start timer
             qDebug() << "Starting " << _countdown-1 << " second timer before booting into partition" << partition;
@@ -209,7 +216,7 @@ BootSelectionDialog::~BootSelectionDialog()
     delete ui;
 }
 
-void BootSelectionDialog::bootPartition()
+void BootSelectionDialog::bootPartition()   //Boots whatever partition is set in default_partition_to_boot
 {
     QSettings settings("/settings/noobs.conf", QSettings::IniFormat, this);
     QByteArray partition = settings.value("default_partition_to_boot", 800).toByteArray();
@@ -227,10 +234,11 @@ void BootSelectionDialog::accept()
         return;
 
     QSettings settings("/settings/noobs.conf", QSettings::IniFormat, this);
+
     QVariantMap m = item->data(Qt::UserRole).toMap();
     QByteArray partition = m.value("partitions").toList().first().toByteArray();
 
-    int partitionNr = extractPartitionNumber(partition);
+    int partitionNr = extractPartitionNumber(partition); //Handle the int/hex partition number issue
 
     int oldpartitionNr = settings.value("default_partition_to_boot", 0).toInt();
 
@@ -243,7 +251,7 @@ void BootSelectionDialog::accept()
         QProcess::execute("mount -o remount,ro /settings");
     }
 
-    /* Identify if any sticky checks have been set */
+    /* Identify if any sticky checks have been set or changed */
     int count = ui->list->count();
     int stickyBoot = 800;
     for (int i=0; i<count; i++)
@@ -358,7 +366,7 @@ void BootSelectionDialog::countdown(int count)
 
 void BootSelectionDialog::countdownExpired()
 {
-    bootPartition();
+    QTimer::singleShot(1, this, SLOT(accept()));
 }
 
 void BootSelectionDialog::updateConfig4dsi(QByteArray partition)
