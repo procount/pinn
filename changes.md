@@ -430,3 +430,8 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 
 - **Boot menu**               - Fixed focus and sticky default partuuid issues.
 - **wallpaper_resize**        - Customised wallpaper can now be resized to fill the screen
+
+## V2.8.5.5
+
+- **Boot menu**               - Sticky default now uses bootmenutimeout
+- **rebootp**                 - Added rebootp command to recovery shell

@@ -104,6 +104,7 @@ IMAGES_DIR="output/images"
 
 SKIP_KERNEL_REBUILD=0
 SKIP_RECOVERY_REBUILD=0
+UPDATE_TS=0
 
 for i in $*; do
     # Update raspberrypi/firmware master HEAD version in package/rpi-firmware/rpi-firmware.mk to latest
@@ -119,6 +120,11 @@ for i in $*; do
     # Update raspberrypi/linux rpi-4.9.y HEAD version in buildroot/.config to latest
     if [ $i = "update-kernel" ]; then
         update_github_kernel_version raspberrypi/linux rpi-4.14.y
+    fi
+
+    # Update language TS files
+    if [ $i = "update-ts" ]; then
+        UPDATE_TS=1
     fi
 
     # Option to build just recovery without completely rebuilding both kernels
@@ -148,7 +154,9 @@ fi
 make
 
 # copy any updated translation files
-cp $BUILD_DIR/recovery-$(get_package_version recovery)/*.ts ../recovery
+if [ $UPDATE_TS -eq 1 ]; then
+    cp $BUILD_DIR/recovery-$(get_package_version recovery)/*.ts ../recovery
+fi
 
 # Create output dir and copy files
 FINAL_OUTPUT_DIR="../$NOOBS_OUTPUT_DIR"

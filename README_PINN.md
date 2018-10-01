@@ -7,7 +7,7 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v2.8.5.4
+This README relates to v2.8.5.5
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -418,7 +418,7 @@ In addition to specifying a list of OS names, some reserved words are also avail
 
 - **showall**: Shows all available installable OSes, whether they are suitable for the current model of Pi or not. Useful for preparing SD cards to be used in other RPis.
 
-- **bootmenutimeout=\<time in secs\>**: Changes the default timeout allowed before an OS is booted without any selection.
+- **bootmenutimeout=\<time in secs\>**: Changes the default timeout allowed before an OS is booted without any selection. (If this option is provided with a default sticky OS selected, the menu boot time will be respected, allowing you to choose another OS for this boot only).
 
 - **noobsconfig**: Prevents any noobsconfig customisations from being applied to an OS on installation
 
@@ -680,7 +680,8 @@ Also a Cancel button (Shortcut=Esc) is provided to boot back into PINN again.
 
 Each OS entry in the boot selection dialog has a checkbox next to it, allowing users to select it as a sticky default OS. If an OS is checked, PINN will operate as if that were the only OS installed (booting it automatically, without showing the boot selection dialog). This permits a slightly faster boot up time when one OS is used regularly. 
 
-To change or remove the sticky checkbox, or just to temporarily boot into another OS, the boot selection dialog can be shown again by pressing the Shift key on boot up and entering the recovery mode.
+To change or remove the sticky checkbox, or just to temporarily boot into another OS, the boot selection dialog can be shown again by pressing the Shift key on boot up and entering the recovery mode. Alternatively, if the cmdline **`bootmenutimeout`** option is specified, the bootmenu will be displayed for this timeout period before booting the selected OS, providing an alternative opportunity to change the OS to be booted.
+
 
 ### Reboot shell script
 
@@ -700,6 +701,10 @@ After you have installed your chosen OSes, add the following file to the root di
 The <partition_number> is the partition number of the boot partition of the OS you want to boot at each power on. The partition number can be found by running `sudo fdisk -l`. The partition will be one of the FAT32 partitions e.g. `/dev/mmcblk0p6` would be partition 6. It can also be found by looking at the installed_os.json file on the settings partition (partition 5) of the device that PINN is installed on. This will also prevent the splashscreen from being displayed at boot. 
 
 NOTE: that once an `autoboot.txt` file is present, there's then no way to force the PINN GUI to display, until you delete (or rename) the `autoboot.txt` file. The SD card behaves as if PINN were not there at all.
+
+## Booting an OS directly from the recovery shell.
+
+The ususal `reboot` command does not work in the PINN recovery shell. However, a new command `rebootp` has been added to allow this. By providing a partition number as an argument, it is possible to boot directly into one of the installed OSes directly. E.G. `reboot 6` will boot direclty into the OS installed in partition 6. There is also `rebootp.sh` which may be better to use from an ssh shell, as it provides a cleaner exit to the ssh terminal.
 
 ---
 
