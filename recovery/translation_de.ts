@@ -4,38 +4,38 @@
 <context>
     <name>BootSelectionDialog</name>
     <message>
-        <location filename="bootselectiondialog.cpp" line="64"/>
+        <location filename="bootselectiondialog.cpp" line="69"/>
         <source>Cannot display boot menu</source>
         <translation>Fehler beim Anzeigen des Bootmenüs</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="64"/>
+        <location filename="bootselectiondialog.cpp" line="69"/>
         <source>Error mounting settings partition</source>
         <translation>Fehler beim Einbinden der Einstellungspartition</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="301"/>
+        <location filename="bootselectiondialog.cpp" line="309"/>
         <source>HDMI safe mode</source>
         <translation>HDMI-Modus (sicher)</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="305"/>
+        <location filename="bootselectiondialog.cpp" line="313"/>
         <source>composite PAL mode</source>
         <translation>Composite-PAL-Modus</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="309"/>
+        <location filename="bootselectiondialog.cpp" line="317"/>
         <source>composite NTSC mode</source>
         <translation>Composite-NTSC-Modus</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="351"/>
+        <location filename="bootselectiondialog.cpp" line="359"/>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="25"/>
-        <location filename="bootselectiondialog.cpp" line="353"/>
+        <location filename="bootselectiondialog.cpp" line="361"/>
         <source>PINN - Select OS to boot</source>
         <translation type="unfinished"></translation>
     </message>

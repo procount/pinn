@@ -45,6 +45,16 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+## V2.8.5.5
+
+- **Boot menu**               - Sticky default now uses bootmenutimeout
+- **rebootp**                 - Added rebootp command to recovery shell
+
+## V2.8.5.4
+
+- **Boot menu**               - Fixed focus and sticky default partuuid issues.
+- **wallpaper_resize**        - Customised wallpaper can now be resized to fill the screen
+
 ## V2.8.5.3
 
 - **Partuuid**                - Fixed an issue from v2.8 where partuuids were introduced to installed_os.json

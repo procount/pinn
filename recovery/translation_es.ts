@@ -4,39 +4,39 @@
 <context>
     <name>BootSelectionDialog</name>
     <message>
-        <location filename="bootselectiondialog.cpp" line="64"/>
+        <location filename="bootselectiondialog.cpp" line="69"/>
         <source>Cannot display boot menu</source>
         <translation>No se puede mostrar el menú de arranque</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="64"/>
+        <location filename="bootselectiondialog.cpp" line="69"/>
         <source>Error mounting settings partition</source>
         <translatorcomment>La partición Settings es la partición con la configuración de PINN</translatorcomment>
         <translation>Error al montar la partición Settings</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="301"/>
+        <location filename="bootselectiondialog.cpp" line="309"/>
         <source>HDMI safe mode</source>
         <translation>Modo HDMI seguro (safe)</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="305"/>
+        <location filename="bootselectiondialog.cpp" line="313"/>
         <source>composite PAL mode</source>
         <translation>Modo PAL compuesto</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="309"/>
+        <location filename="bootselectiondialog.cpp" line="317"/>
         <source>composite NTSC mode</source>
         <translation>Modo NTSC compuesto</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="351"/>
+        <location filename="bootselectiondialog.cpp" line="359"/>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
         <translation>PINN - El SO previamente seleccionado se iniciara en %1 segundos</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="25"/>
-        <location filename="bootselectiondialog.cpp" line="353"/>
+        <location filename="bootselectiondialog.cpp" line="361"/>
         <source>PINN - Select OS to boot</source>
         <translation>PINN - Seleccione el SO qué desea iniciar</translation>
     </message>

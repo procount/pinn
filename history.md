@@ -5,6 +5,11 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+## V2.8.5.5
+
+- **Boot menu**               - Sticky default now uses bootmenutimeout
+- **rebootp**                 - Added rebootp command to recovery shell
+
 ## V2.8.5.4
 
 - **Boot menu**               - Fixed focus and sticky default partuuid issues.
