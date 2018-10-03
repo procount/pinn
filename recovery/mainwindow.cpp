@@ -592,6 +592,8 @@ void MainWindow::updateFirmware_button()
         ui->actionFirmware->setIcon(QIcon(":/icons/arrow_up.png"));
     else
         ui->actionFirmware->setIcon(QIcon(":/icons/arrow_down.png"));
+
+    ui->actionFirmware->setEnabled( ! _model.contains("Raspberry Pi 3 Model B Plus Rev", Qt::CaseInsensitive));
 }
 
 void MainWindow::on_actionFirmware_triggered()

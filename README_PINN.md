@@ -144,7 +144,7 @@ There are three toolbars:
   - **[Download](#download)**: Downloads an OS for offline installation.
   - **[Clone SD](#how-to-clone-an-sd-card)**: Clones the SD to another card.
   - **[Info](#info-on-os)**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
-  - **[Firmware](#pinn's-firmware-upgrade/downgrade)**: Upgrades or downgrades PINN's firmware for use on RPI3B+ or other models.
+  - **[Firmware](#pinns-firmware-upgradedowngrade)**: Upgrades or downgrades PINN's firmware for use on RPI3B+ or other models.
 - **[Maintenance](#maintenance-ment)**
   - **[Edit Config](#easy-config-file-editor)**: Opens a text editor, allowing the `cmdline` and `config` files for the selected installed OS to be edited.
   - **[Password](#how-to-recover-from-a-lost-password)**: Allows the password of an OS to be restored or replaced.
@@ -551,10 +551,10 @@ When replacing a project space with another OS, remember that the new OS must ha
 
 PINN v2.5.3+ includes new firmware, kernel and drivers to support the new Pi3B+ model. Whilst this firmware will allow PINN to run on all RPi models, some older OSes may not yet be compatible 
 and will not boot from PINN. So when booting on models older than the 3B+, PINN's firmware can be downgraded so that these older OSes can still boot from PINN. 
-On first startup on an older RPi model, PINN will ask to downgrade the firmware.
+On first startup on an older RPi model, PINN will automatically downgrade the firmware. It will need upgrading manually if you want to use the latest firmware.
 
 Once PINN's firmware has been downgraded, it will no longer run on the RPi3B+. To run it on a RPI3B+ again it is first necessary to upgrade the firmware on an older model.
-There is a menu item on the Archival menu to upgrade or downgrade PINN's firmware accordingly.
+There is a menu item on the Archival menu to upgrade or downgrade PINN's firmware accordingly. it is disabled on the RPi 3B+
 
 ## OS firmware upgrade
 
