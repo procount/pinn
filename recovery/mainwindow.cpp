@@ -1011,6 +1011,10 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
 
                     downloadMetaFile(entry.value("os_info").toString(), folder+"/os.json");
                     downloadMetaFile(entry.value("partitions_info").toString(), folder+"/partitions.json");
+
+                    QString urlpath = entry.value("os_info").toString().left(entry.value("os_info").toString().lastIndexOf('/'));
+                    downloadMetaFile(urlpath+"/release_notes.txt", "-"+folder+"/release_notes.txt"); //'-' indicates optional
+
                     if (entry.contains("marketing_info"))
                         downloadMetaFile(entry.value("marketing_info").toString(), folder+"/marketing.tar");
 
@@ -1029,8 +1033,13 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
                     QProcess::execute(cmd);
                     cmd = "cp "+ local+"/partitions.json "+folder;
                     QProcess::execute(cmd);
-                    //(@@Do we need to copy the slides to the settings partition, for backup maybe?)
+                    cmd = "cp "+ local+"/release_notes.txt "+folder;
+                    QProcess::execute(cmd);
                     cmd = "cp "+ local+"/partition_setup.sh "+folder;
+                    QProcess::execute(cmd);
+                    //(@@Do we need to copy the slides to the settings partition, for backup maybe?)
+                    //@@YES!
+                    cmd = "cp -r "+ local+"/slides_vga "+folder;
                     QProcess::execute(cmd);
 
                     //Icon gets copied at end of processing if installed from network or USB.
