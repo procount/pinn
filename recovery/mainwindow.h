@@ -87,7 +87,8 @@ protected:
     enum ModeTag {
         MODE_INSTALL=0,
         MODE_DOWNLOAD,
-        MODE_REINSTALL
+        MODE_REINSTALL,
+        MODE_BACKUP
     } _eDownloadMode;
 
     QMap<QString,QVariantMap> listImages(const QString &folder = "/mnt/os");

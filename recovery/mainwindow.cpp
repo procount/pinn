@@ -1003,7 +1003,7 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
             {
                 QVariantMap entry = item->data(Qt::UserRole).toMap();
                 QDir d;
-                QString folder = "/settings/os/"+entry.value("name").toString();
+                QString folder = "/settings/os/"+entry.value("name").toString(); //@@ Get eBASE only!
                 folder.replace(' ', '_');
                 if (!d.exists(folder))
                     d.mkpath(folder);
@@ -1041,7 +1041,7 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
                     QProcess::execute(cmd);
                     //(@@Do we need to copy the slides to the settings partition, for backup maybe?)
                     //@@YES!
-                    cmd = "cp -r "+ local+"/slides_vga "+folder;
+                    cmd = "cp -r "+ local+"/slides_vga/ "+folder;
                     QProcess::execute(cmd);
 
                     //Icon gets copied at end of processing if installed from network or USB.
@@ -1299,6 +1299,12 @@ void MainWindow::onCompleted()
             ret = QMessageBox::information(this,
                                      tr("OS(es) downloaded"),
                                      tr("OS(es) Downloaded Successfully.\nReboot PINN to take account of these OSes?"), QMessageBox::Ok|QMessageBox::Cancel);
+        }
+        else if (_eDownloadMode==MODE_BACKUP)
+        {
+            ret = QMessageBox::information(this,
+                                     tr("Backup OSes"),
+                                     tr("OS(es) Backed up Successfully."), QMessageBox::Ok);
         }
         else
         {
@@ -3015,52 +3021,67 @@ void MainWindow::startImageBackup()
     QString folder, slidesFolder;
     QStringList slidesFolders;
 
+    QString cmd;
+    int i=1;
+
     QList<QListWidgetItem *> selected = ug->selectedInstalledItems();
     foreach (QListWidgetItem *item, selected)
     {
+        //Mount every partition of each selected OS
         QVariantMap entry = item->data(Qt::UserRole).toMap();
-
         {
+            QVariantList PartitionList = entry.value("partitions").toList();
+            foreach (QVariant pv, PartitionList)
+            {
+                QString part = pv.toString();
+                QString mntpoint = "/tmp/media/p"+QString::number(i);
+
+                cmd = "mkdir -p "+mntpoint;
+                QProcess::execute(cmd);
+
+                cmd = "mount "+part +" "+mntpoint;
+                QProcess::execute(cmd);
+                i++;
+            }
+        }
+    }
+    // Capture the partition sizes
+    cmd = "sh -c \"df >/tmp/df.txt\"";
+    QProcess::execute(cmd);
+
+    i=1;
+    foreach (QListWidgetItem *item, selected)
+    {
+        QVariantMap entry = item->data(Qt::UserRole).toMap();
+        {
+            QVariantList partSizes;
+            QVariantList PartitionList = entry.value("partitions").toList();
+            foreach (QVariant pv, PartitionList)
+            {
+                QString part = pv.toString();
+                QString mntpoint = "/tmp/media/p"+QString::number(i);
+
+                cmd = "sh -c \"grep "+part+" /tmp/df.txt >/tmp/sizes.txt\""; qDebug()<<cmd; QProcess::execute(cmd);
+                cmd = "sh -c \"sed -i 's/ \\+/ /g' /tmp/sizes.txt\""; qDebug()<<cmd; QProcess::execute(cmd);
+                cmd = "sh -c \"cat /tmp/sizes.txt | cut -d ' ' -f 2 >/tmp/size"+QString::number(i)+".txt\""; qDebug()<<cmd; QProcess::execute(cmd);
+
+                //Unmount the partitions
+                cmd = "umount "+mntpoint;
+                QProcess::execute(cmd);
+
+                cmd = "rmdir "+mntpoint;
+                QProcess::execute(cmd);
+                i++;
+            }
+
+
             //Get target foldername as entered by user
-            QFileInfo fi = entry.value("os_info").toString();   //full URL to os.json
-            //QFileInfo fipath = fi.path();                       //URL path
-            //QString foldername = fipath.fileName();
+            QString backupFolder = entry.value("backupFolder").toString(); //destination=/tmp/media/sda1/os/backupname
+            QString backupName   = entry.value("backupName").toString();   //fullname ebase=nickname#date@partion
 
-            //folder = _local+"/os/"+foldername;
-            //folder.replace(' ', '_');
+            qDebug() << entry;
 
-
-            /* Insert tarball download URL information into partition_info.json to allow download */
-            //QVariantMap json = Json::loadFromFile(folder+"/partitions.json").toMap();
-            //QVariantList partitions = json["partitions"].toList();
-            //int i=0;
-            //QStringList tarballs = entry.value("tarballs").toStringList();
-            //foreach (QString tarball, tarballs)
-            //{
-            //    QVariantMap partition = partitions[i].toMap();
-            //    partition.insert("download", tarball);
-            //    partitions[i] = partition;
-            //    i++;
-           // }
-            //json["partitions"] = partitions;
-            //Json::saveToFile(folder+"/partitions.json", json);
-
-            //slidesFolder.clear();
-            //if (QFile::exists(folder+"/slides_vga"))
-            //{
-            //    slidesFolder = folder+"/slides_vga";
-            //}
-
-            /* Insert download_size into os.json to allow correct use of download size */
-            //json = Json::loadFromFile(folder+"/os.json").toMap();
-            //if (! json.contains("download_size"))
-           // {
-            //    quint64 downloadSize= entry.value("download_size").toULongLong();
-            //    json.insert("download_size",downloadSize);
-            //    Json::saveToFile(folder+"/os.json", json);
-           // }
-
-            bt->addImage(folder, entry.value("name").toString());
+            bt->addImage(backupFolder, backupName); //@@ maybe just pass entry instead?
             if (!slidesFolder.isEmpty())
                 slidesFolders.append(slidesFolder);
         }
@@ -4232,6 +4253,9 @@ void MainWindow::on_actionRepair_triggered()
 
 void MainWindow::on_actionBackup_triggered()
 {
+
+    _eDownloadMode = MODE_BACKUP;
+
     _local = "/tmp/media/"+partdev(_osdrive,1);
     if (QProcess::execute("mount -o remount,rw /dev/"+partdev(_osdrive,1)+" "+_local) != 0)
     {
@@ -4260,38 +4284,61 @@ void MainWindow::on_actionBackup_triggered()
                 QVariantMap entry = item->data(Qt::UserRole).toMap();
                 if (entry.value("source").toString() == SOURCE_INSTALLED_OS) // only installed OSes Can be backed up.
                 {
-                    //QDir d;
-                    QString folder;
-                    QString name = entry.value("name").toString();
-
                     //Get date/time
                     QDateTime tnow = QDateTime::currentDateTime();
                     QString now = "#" + tnow.toString("yyyyMMddhhmmss");
-
                     if (now.left(5)=="#1970")
                     {
                         qDebug() << "Current time is not known";
+                        //@@ Open dialog to request current date.
                     }
 
-                    //Append to osname
-                    QString osname = getNameParts(name, eCORE) + now +getNameParts(name, ePART);
+                    //Get partition number
+                    QString partnr;
+                    {
+                        //@@ partnr = entry.value["partitions"].blahblah;
+                    }
 
-                    folder = _local+"/os/"+osname;
-                    folder.replace(' ', '_');
-                    qDebug() << "On backup triggered, save to "<<folder;
+                    QString currentname = entry.value("name").toString();
 
-                    //Dialog to request OSname, description
+                    //Create the new osname and the folder the backup will be stored in
+                    QString backupName = getNameParts(currentname, eCORE|eNICKNAME) + now + partnr;
+                    QString backupFolder = _local+"/os/" + getNameParts(currentname, eBASE) + now + partnr;
+                    backupFolder.replace(' ', '_');
+                    qDebug() << "On backup triggered, save to "<<backupFolder;
+                    entry["backupFolder"] = backupFolder;
+                    entry["backupName"]   = backupName;
+                    item->setData(Qt::UserRole, entry);
+
+                    //@@Dialog to request OSname, description
 
                     //Don't need flavours because they would already have been applied
-
+                    QString settingsFolder = "/settings/os/"+entry.value("name").toString();
                     //Copy:
-                    //- /slides_vga
-                    //- os.json (with new description
-                    //- partitions.json
-                    //- partition_setup.sh
-                    //- icon.png as name.png
-                    //- [Copy release_notes.txt?]
+                    QString cmd;
 
+                    cmd = "mkdir "+ backupFolder;
+                    QProcess::execute(cmd);
+
+                    //- /slides_vga
+                    cmd = "cp -r "+ settingsFolder+"/slides_vga/ "+backupFolder;
+                    QProcess::execute(cmd);
+
+                    //- os.json (with new description
+                    cmd = "cp "+ settingsFolder+"/os.json "+backupFolder;
+                    QProcess::execute(cmd);
+                    //- partitions.json
+                    cmd = "cp "+ settingsFolder+"/partitions.json "+backupFolder;
+                    QProcess::execute(cmd);
+                    //- partition_setup.sh
+                    cmd = "cp "+ settingsFolder+"/partition_setup.sh "+backupFolder;
+                    QProcess::execute(cmd);
+                    //- icon.png as name.png
+                    cmd = "cp "+ settingsFolder+"/icon.png "+backupFolder;
+                    QProcess::execute(cmd);
+                    //- [Copy release_notes.txt?]
+                    cmd = "cp "+ settingsFolder+"/release_notes.txt "+backupFolder;
+                    QProcess::execute(cmd);
                 }
             }
 

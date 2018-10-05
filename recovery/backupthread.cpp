@@ -31,6 +31,13 @@ void BackupThread::run()
     /* Calculate space requirements */
     quint64 totalDownloadSize = 0;
 
+    // for each partition
+    //   Mount it
+    //   tar xz
+    // get disk sizes with df
+    // update partitions.json
+
+
     foreach (QString folder, _images.keys())
     {
         quint64 downloadSize=Json::loadFromFile(folder+"/os.json").toMap().value("download_size").toULongLong();
@@ -53,6 +60,8 @@ void BackupThread::run()
 
 bool BackupThread::processImage(const QString &folder, const QString &flavour)
 {
+    return(true); //@@ STUB IT OUT
+
     Q_UNUSED(flavour);
 
     QStringList splitted = folder.split("/");
