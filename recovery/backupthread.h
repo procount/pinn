@@ -3,7 +3,7 @@
 
 #include <QThread>
 #include <QStringList>
-#include <QMultiMap>
+#include <QVariantMap>
 #include <QVariantList>
 
 class BackupThread : public QThread
@@ -11,17 +11,17 @@ class BackupThread : public QThread
     Q_OBJECT
 public:
     explicit BackupThread(QObject *parent = 0, QString local="/mnt/");
-    void addImage(const QString &folder, const QString &flavour);
+    void addImage(const QVariantMap &entry);
 
 protected:
     virtual void run();
-    bool processImage(const QString &folder, const QString &flavour);
+    bool processImage(const QVariantMap &entry);
     bool isLabelAvailable(const QByteArray &label);
     void patchConfigTxt();
     QString _local;
 
     /* key: folder, value: flavour */
-    QMultiMap<QString,QString> _images;
+    QList<QVariantMap> _images;
     int _extraSpacePerPartition, _sectorOffset, _part;
     QVariantList installed_os;
     

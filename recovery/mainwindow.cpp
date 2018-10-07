@@ -3054,6 +3054,7 @@ void MainWindow::startImageBackup()
     {
         QVariantMap entry = item->data(Qt::UserRole).toMap();
         {
+            qulonglong overall = 0;
             QVariantList partSizes;
             QVariantList PartitionList = entry.value("partitions").toList();
             foreach (QVariant pv, PartitionList)
@@ -3063,7 +3064,15 @@ void MainWindow::startImageBackup()
 
                 cmd = "sh -c \"grep "+part+" /tmp/df.txt >/tmp/sizes.txt\""; qDebug()<<cmd; QProcess::execute(cmd);
                 cmd = "sh -c \"sed -i 's/ \\+/ /g' /tmp/sizes.txt\""; qDebug()<<cmd; QProcess::execute(cmd);
-                cmd = "sh -c \"cat /tmp/sizes.txt | cut -d ' ' -f 2 >/tmp/size"+QString::number(i)+".txt\""; qDebug()<<cmd; QProcess::execute(cmd);
+                cmd = "sh -c \"cat /tmp/sizes.txt | cut -d ' ' -f 2 >"+fname+"\""; qDebug()<<cmd; QProcess::execute(cmd);
+
+                QByteArray size = getFileContents(fname).trimmed();
+                qulonglong lsize = size.toULongLong();
+                overall += lsize;
+                lsize /= 1024;
+                lsize++; //MBs
+                QVariant qv = lsize;
+                partSizes.append(qv);
 
                 //Unmount the partitions
                 cmd = "umount "+mntpoint;
@@ -3073,15 +3082,12 @@ void MainWindow::startImageBackup()
                 QProcess::execute(cmd);
                 i++;
             }
-
-
-            //Get target foldername as entered by user
-            QString backupFolder = entry.value("backupFolder").toString(); //destination=/tmp/media/sda1/os/backupname
-            QString backupName   = entry.value("backupName").toString();   //fullname ebase=nickname#date@partion
-
+            entry["partsizes"] = partSizes;
+            entry["backupsize"] = overall;
+            item->setData(Qt::UserRole,entry);
             qDebug() << entry;
 
-            bt->addImage(backupFolder, backupName); //@@ maybe just pass entry instead?
+            bt->addImage(entry); //@@ maybe just pass entry instead?
             if (!slidesFolder.isEmpty())
                 slidesFolders.append(slidesFolder);
         }

@@ -11,9 +11,12 @@
 #include <QProcessEnvironment>
 #include <QSettings>
 #include <QTime>
+#include <QVariantList>
+#include <QVariantMap>
 #include <unistd.h>
 #include <linux/fs.h>
 #include <sys/ioctl.h>
+
 
 BackupThread::BackupThread(QObject *parent, QString local) :
     QThread(parent),  _local(local), _extraSpacePerPartition(0), _part(5)
@@ -21,35 +24,32 @@ BackupThread::BackupThread(QObject *parent, QString local) :
     /* local is "/tmp/media/sd*" or "/mnt" (in future) */
 }
 
-void BackupThread::addImage(const QString &folder, const QString &flavour)
+void BackupThread::addImage(const QVariantMap &entry)
 {
-    _images.insert(folder, flavour);
+    _images.insert(entry);
 }
 
 void BackupThread::run()
 {
     /* Calculate space requirements */
     quint64 totalDownloadSize = 0;
-
-    // for each partition
-    //   Mount it
-    //   tar xz
-    // get disk sizes with df
-    // update partitions.json
-
-
-    foreach (QString folder, _images.keys())
+    foreach (QVariantMap entry, _images)
     {
-        quint64 downloadSize=Json::loadFromFile(folder+"/os.json").toMap().value("download_size").toULongLong();
+        quint64 downloadSize = entry.value["backupsize"].toULonglong();
         totalDownloadSize += downloadSize;
     }
 
     emit parsedImagesize(totalDownloadSize);
 
     /* Process each image */
-    for (QMultiMap<QString,QString>::const_iterator iter = _images.constBegin(); iter != _images.constEnd(); iter++)
+    foreach (QVariantMap entry, _images)
     {
-        if (!processImage(iter.key(), iter.value()))
+        // for each partition
+        //   Mount it
+        //   tar xz
+        // get disk sizes with df
+        // update partitions.json
+        if (!processImage(entry))
             return;
     }
 
@@ -58,7 +58,7 @@ void BackupThread::run()
     emit completed();
 }
 
-bool BackupThread::processImage(const QString &folder, const QString &flavour)
+bool BackupThread::processImage(const QVariantMap & entry)
 {
     return(true); //@@ STUB IT OUT
 
