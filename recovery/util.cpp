@@ -1,7 +1,6 @@
 #include "util.h"
 #include "mbr.h"
 #include "json.h"
-
 #include <sys/ioctl.h>
 #include <stdint.h>
 #include <unistd.h>
@@ -16,7 +15,6 @@
 #include <QtEndian>
 #include <QStringRef>
 #include <QMessageBox>
-
 /*
  * Convenience functions
  *
@@ -156,7 +154,6 @@ uint readBoardRevision()
 bool canBootOs(const QString& name, const QVariantMap& values)
 {
     /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
-
     /* Check if it's explicitly not bootable */
     bool bootable = values.value("bootable", true).toBool();
     if (!bootable)

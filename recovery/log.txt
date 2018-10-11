@@ -1,0 +1,93 @@
+2792857
+3893232
+3277701
+Totladownloadsize=  9963790
+QMap(
+("backupFolder", QVariant(QString, "/tmp/media/sda1/os/Arch2#19700101000209") )
+( "backupName" ,  QVariant(QString, "Arch2#19700101000209") )
+( "backupsize" ,  QVariant(qulonglong, 2792857) )
+( "bootable" ,  QVariant(bool, true) )
+( "description" ,  QVariant(QString, "An Arch Linux port for ARM devices RPi2/3") )
+( "download_size" ,  QVariant(qulonglong, 331421544) )
+( "folder" ,  QVariant(QString, "/tmp/media/sda1/os/Arch2") )
+( "group" ,  QVariant(QString, "Minimal") )
+( "icon" ,  QVariant(QString, "/settings/os/Arch2/icon.png") )
+( "installed" ,  QVariant(bool, true) )
+( "name" ,  QVariant(QString, "Arch2") )
+( "partitions" , QVariant(QVariantList,
+    (QVariant(QString, "/dev/mmcblk0p6") ,
+    QVariant(QString, "/dev/mmcblk0p7") )  ) )
+( "partsizes" ,  QVariant(QVariantList,
+    (QVariant(qulonglong, 123) ,
+    QVariant(qulonglong, 2606) )  ) )
+( "password" ,  QVariant(QString, "root") )
+( "release_date" ,  QVariant(QString, "2017-05-17") )
+( "source" ,  QVariant(QString, "installed_os") )
+( "supported_models" ,  QVariant(QVariantList,
+    (QVariant(QString, "Pi 2") ,
+    QVariant(QString, "Pi 3") )  ) )
+( "url" ,  QVariant(QString, "https://archlinuxarm.org/platforms/armv6/raspberry-pi") )
+( "username" ,  QVariant(QString, "root") ) )
+
+# cat partitions.json
+{
+ "partitions" : [
+  {
+   "filesystem_type" : "FAT",
+   "label" : "boot_arch",
+   "mkfs_options" : "-F 32",
+   "partition_size_nominal" : 124,
+   "tarball" : "boot_arch.tar.xz",
+   "uncompressed_tarball_size" : 24,
+   "want_maximised" : false
+  },
+  {
+   "filesystem_type" : "ext4",
+   "label" : "root_arch",
+   "mkfs_options" : "-c",
+   "partition_size_nominal" : 790,
+   "tarball" : "ArchLinuxARM-rpi-2-latest.tar.gz",
+   "uncompressed_tarball_size" : 690,
+   "want_maximised" : true
+  }
+ ]
+}#
+
+}# cat os.json
+{
+ "description" : "An Arch Linux port for ARM devices RPi2/3",
+ "download_size" : 331421544,
+ "feature_level" : 0,
+ "group" : "Minimal",
+ "kernel" : "4.9.25",
+ "name" : "Arch2",
+ "password" : "root",
+ "release_date" : "2017-05-17",
+ "supported_hex_revisions" : "1040,1041,2082",
+ "supported_models" : [
+"Pi 2",
+"Pi 3"
+ ],
+ "url" : "https://archlinuxarm.org/platforms/armv6/raspberry-pi",
+ "username" : "root",
+ "version" : "20170405"
+}#
+
+
+
+QMap(("backupFolder", QVariant(QString, "/tmp/media/sda1/os/CentOS_RPi3#19700101000209") ) ( "backupName" ,  QVariant(QString, "CentOS_RPi3#19700101000209") ) ( "backupsize" ,  QVariant(qulonglong, 38932
+32) ) ( "bootable" ,  QVariant(bool, true) ) ( "description" ,  QVariant(QString, "CentOS 7 (Core) Minimal OS for Raspberry Pi 3") ) ( "folder" ,  QVariant(QString, "/tmp/media/sda1/os/CentOS_RPi3") ) (
+"group" ,  QVariant(QString, "Minimal") ) ( "icon" ,  QVariant(QString, "/settings/os/CentOS_RPi3/icon.png") ) ( "installed" ,  QVariant(bool, true) ) ( "name" ,  QVariant(QString, "CentOS_RPi3") ) ( "pa
+rtitions" ,  QVariant(QVariantList, (QVariant(QString, "/dev/mmcblk0p8") ,  QVariant(QString, "/dev/mmcblk0p9") )  ) ) ( "partsizes" ,  QVariant(QVariantList, (QVariant(qulonglong, 500) ,  QVariant(qulon
+glong, 3303) )  ) ) ( "password" ,  QVariant(QString, "centos") ) ( "release_date" ,  QVariant(QString, "2017-09-06") ) ( "source" ,  QVariant(QString, "installed_os") ) ( "supported_models" ,  QVariant(
+QVariantList, (QVariant(QString, "Pi 3") ,  QVariant(QString, "Pi Compute Module 3") )  ) ) ( "url" ,  QVariant(QString, "https://wiki.centos.org/SpecialInterestGroup/AltArch/Arm32/RaspberryPi3") ) ( "us
+ername" ,  QVariant(QString, "root") ) )
+
+QMap(("backupFolder", QVariant(QString, "/tmp/media/sda1/os/Raspbian_Lite#19700101000209") ) ( "backupName" ,  QVariant(QString, "Raspbian Lite#19700101000209") ) ( "backupsize" ,  QVariant(qulonglong, 3
+277701) ) ( "bootable" ,  QVariant(bool, true) ) ( "description" ,  QVariant(QString, "A port of Debian Stretch for the Raspberry Pi (minimal version)") ) ( "download_size" ,  QVariant(qulonglong, 256191
+928) ) ( "folder" ,  QVariant(QString, "/tmp/media/sda1/os/Raspbian_Lite") ) ( "group" ,  QVariant(QString, "Minimal") ) ( "icon" ,  QVariant(QString, "/settings/os/Raspbian_Lite/icon.png") ) ( "installe
+d" ,  QVariant(bool, true) ) ( "name" ,  QVariant(QString, "Raspbian Lite") ) ( "partitions" ,  QVariant(QVariantList, (QVariant(QString, "/dev/mmcblk0p10") ,  QVariant(QString, "/dev/mmcblk0p11") )  ) )
+ ( "partsizes" ,  QVariant(QVariantList, (QVariant(qulonglong, 68) ,  QVariant(qulonglong, 3133) )  ) ) ( "password" ,  QVariant(QString, "raspberry") ) ( "release_date" ,  QVariant(QString, "2018-04-18"
+) ) ( "source" ,  QVariant(QString, "installed_os") ) ( "supported_models" ,  QVariant(QVariantList, (QVariant(QString, "Pi Model") ,  QVariant(QString, "Pi 2") ,  QVariant(QString, "Pi Zero") ,  QVarian
+t(QString, "Pi 3") ,  QVariant(QString, "Pi Compute Module 3") )  ) ) ( "url" ,  QVariant(QString, "https://www.raspbian.org/") ) ( "username" ,  QVariant(QString, "pi") ) )
+

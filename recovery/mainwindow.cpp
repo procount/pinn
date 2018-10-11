@@ -755,7 +755,6 @@ bool MainWindow::canInstallOs(const QString &name, const QVariantMap &values)
 bool MainWindow::isSupportedOs(const QString &name, const QVariantMap &values)
 {
     /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
-
     /* If it's not bootable, it isn't really an OS, so is always supported */
     if (!canBootOs(name, values))
     {
@@ -775,7 +774,6 @@ bool MainWindow::isSupportedOs(const QString &name, const QVariantMap &values)
                 return true;
             }
         }
-
         return false;
     }
 
@@ -4319,7 +4317,7 @@ void MainWindow::on_actionBackup_triggered()
                     //@@Dialog to request OSname, description
 
                     //Don't need flavours because they would already have been applied
-                    QString settingsFolder = "/settings/os/"+entry.value("name").toString();
+                    QString settingsFolder = "/settings/os/"+entry.value("name").toString().replace(' ', '_');
                     //Copy:
                     QString cmd;
 

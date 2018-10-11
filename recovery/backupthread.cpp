@@ -4,6 +4,7 @@
 #include "util.h"
 #include "mbr.h"
 #include "partitioninfo.h"
+#include "osinfo.h"
 #include <QDir>
 #include <QFile>
 #include <QDebug>
@@ -26,7 +27,7 @@ BackupThread::BackupThread(QObject *parent, QString local) :
 
 void BackupThread::addImage(const QVariantMap &entry)
 {
-    _images.insert(entry);
+    _images.append(entry);
 }
 
 void BackupThread::run()
@@ -35,7 +36,7 @@ void BackupThread::run()
     quint64 totalDownloadSize = 0;
     foreach (QVariantMap entry, _images)
     {
-        quint64 downloadSize = entry.value["backupsize"].toULonglong();
+        quint64 downloadSize = entry.value("backupsize").toULongLong();
         totalDownloadSize += downloadSize;
     }
 
@@ -45,10 +46,6 @@ void BackupThread::run()
     foreach (QVariantMap entry, _images)
     {
         // for each partition
-        //   Mount it
-        //   tar xz
-        // get disk sizes with df
-        // update partitions.json
         if (!processImage(entry))
             return;
     }
@@ -60,10 +57,46 @@ void BackupThread::run()
 
 bool BackupThread::processImage(const QVariantMap & entry)
 {
+    qDebug() << entry;
+
+    QString backupFolder = entry.value("backupFolder").toString();
+
+    //Read the os.json and partitions.json files into pInfo
+    OsInfo * pOsInfo = new OsInfo(backupFolder, "", this);
+    QList<PartitionInfo *> *partitions = pOsInfo->partitions();
+    int i=0;
+    QVariantList partdevices = entry.value("partitions").toList();
+    QVariantList gzsize;
+    foreach (PartitionInfo * pPart, *partitions)
+    {
+        QString label = pPart->label();
+        QString dev = partdevices[i].toString();
+        qDebug() << i <<" "<< dev  <<" "<< label;
+
+        QDir dir;
+        if (!dir.exists("/tmp/src"))
+            dir.mkdir("/tmp/src");
+        //   Mount it
+        QProcess::execute("mount -o ro "+dev+" /tmp/src");
+        //   tar gzip
+        QString cmd = "sh -c \"tar -c /tmp/src/ | gzip > "+ backupFolder+"/"+label+".tar.gz\"";
+        qDebug()<<cmd;
+        QProcess::execute(cmd);
+        QFileInfo fi(backupFolder+"/"+label+".tar.gz");
+        qint64 filesize = fi.size();
+        gzsize.append(filesize);
+        i++;
+    }
+
+    //Update JSON files
+
     return(true); //@@ STUB IT OUT
 
-    Q_UNUSED(flavour);
+#if 0
+    // get disk sizes with df
+    // update partitions.json
 
+    QString folder; //@@
     QStringList splitted = folder.split("/");
     QString os_name   = splitted.last();
 
@@ -151,8 +184,8 @@ bool BackupThread::processImage(const QVariantMap & entry)
     }
     json["partitions"] = partitions;
     Json::saveToFile(folder+"/partitions.json", json);
-
-    emit statusUpdate(tr("Finished downloading %1").arg(os_name));
+    emit statusUpdate(tr("Finished backing up %1").arg(os_name));
+#endif
     return true;
 }
 
