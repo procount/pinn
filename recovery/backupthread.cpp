@@ -55,6 +55,10 @@ void BackupThread::run()
     emit completed();
 }
 
+#define copyentry(key1,key2) \
+    if (entry.contains(key2)) \
+        ventry[key1] = entry.value(key2)
+
 bool BackupThread::processImage(const QVariantMap & entry)
 {
     qDebug() << entry;
@@ -67,17 +71,19 @@ bool BackupThread::processImage(const QVariantMap & entry)
     int i=0;
     QVariantList partdevices = entry.value("partitions").toList();
     QVariantList gzsize;
+
+    QDir dir;
+    if (!dir.exists("/tmp/src"))
+        dir.mkdir("/tmp/src");
+
     foreach (PartitionInfo * pPart, *partitions)
     {
         QString label = pPart->label();
         QString dev = partdevices[i].toString();
-        qDebug() << i <<" "<< dev  <<" "<< label;
 
-        QDir dir;
-        if (!dir.exists("/tmp/src"))
-            dir.mkdir("/tmp/src");
         //   Mount it
         QProcess::execute("mount -o ro "+dev+" /tmp/src");
+        emit newDrive(dev);
         //   tar gzip
         QString cmd = "sh -c \"tar -c /tmp/src/ | gzip > "+ backupFolder+"/"+label+".tar.gz\"";
         qDebug()<<cmd;
@@ -85,10 +91,60 @@ bool BackupThread::processImage(const QVariantMap & entry)
         QFileInfo fi(backupFolder+"/"+label+".tar.gz");
         qint64 filesize = fi.size();
         gzsize.append(filesize);
+        //   UnMount it
+        QProcess::execute("umount /tmp/src");
         i++;
     }
 
+    dir.rmdir("/tmp/src");
+
     //Update JSON files
+    //os.json
+    QVariantMap ventry;
+    //  name = copied from installed_os.json (to include nickname etc. + backup date
+    copyentry("name", "backupName");
+    copyentry("description","description");
+    copyentry("feature_level","feature_level");
+    copyentry("group","group");
+    copyentry("kernel","kernel");
+    copyentry("name","name");
+    copyentry("password","password");
+    copyentry("release_date","release_date");
+    copyentry("supported_hex_revisions","supported_hex_revisions");
+    copyentry("supported_models","supported_models");
+    copyentry("url","url");
+    copyentry("username","username");
+    copyentry("version","version");
+    //  download_size = sum of tar.gz files sizes in bytes?
+    copyentry("download_size","backupsize");
+    //  icon=icon.png
+    ventry["icon"] = "icon.png";
+    Json::saveToFile(backupFolder+"/os.json", ventry);
+
+    //partitions.json
+    QVariantList tarballsizes = entry.value("partsizes").toList();
+    QVariantMap backupmap = Json::loadFromFile(backupFolder+"/partitions.json").toMap();
+    if (backupmap.contains("partitions"))
+    {
+        QVariantList backuplist = backupmap.value("partitions").toList();
+        int i=0;
+        foreach (QVariant sizeentry, gzsize)
+        {
+            QVariantMap pmap = backuplist[i].toMap();
+            pmap["uncompressed_tarball_size"] = gzsize[i];
+            if (i==0)
+                pmap["partition_size_nominal"] = tarballsizes[i].toULongLong()+100; //extra 100MB for boot
+            else
+                pmap["partition_size_nominal"] = tarballsizes[i].toULongLong()+500; //extra 500MB for other partitions
+            i++;
+        }
+    }
+    Json::saveToFile(backupFolder+"/partitions.json", backupmap);
+
+    //  uncompressed_tarball_size = size of tar file in MB
+    //  partition_size_nominal = uncompressed_tarball_size + 100MB?
+
+
 
     return(true); //@@ STUB IT OUT
 

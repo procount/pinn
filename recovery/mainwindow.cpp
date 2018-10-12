@@ -2896,7 +2896,7 @@ void MainWindow::startImageReinstall()
         slidesFolder.append("/mnt/defaults/slides");
 
     _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, _drive, this);
-    _qpssd->setWindowTitle("Installing Images");
+    _qpssd->setWindowTitle("Re-Installing Images");
     connect(imageWriteThread, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
     connect(imageWriteThread, SIGNAL(completed()), this, SLOT(onCompleted()));
     connect(imageWriteThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
@@ -3062,9 +3062,9 @@ void MainWindow::startImageBackup()
 
                 cmd = "sh -c \"grep "+part+" /tmp/df.txt >/tmp/sizes.txt\""; qDebug()<<cmd; QProcess::execute(cmd);
                 cmd = "sh -c \"sed -i 's/ \\+/ /g' /tmp/sizes.txt\""; qDebug()<<cmd; QProcess::execute(cmd);
-                cmd = "sh -c \"cat /tmp/sizes.txt | cut -d ' ' -f 2 >"+fname+"\""; qDebug()<<cmd; QProcess::execute(cmd);
+                cmd = "sh -c \"cat /tmp/sizes.txt | cut -d ' ' -f 3 >"+fname+"\""; qDebug()<<cmd; QProcess::execute(cmd);
 
-                QByteArray size = getFileContents(fname).trimmed();
+                QByteArray size = getFileContents(fname).trimmed(); //in KB
                 qulonglong lsize = size.toULongLong();
                 overall += lsize;
                 lsize /= 1024;
@@ -3081,7 +3081,7 @@ void MainWindow::startImageBackup()
                 i++;
             }
             entry["partsizes"] = partSizes;
-            entry["backupsize"] = overall;
+            entry["backupsize"] = overall*1024; //Convert from kB to bytes
             item->setData(Qt::UserRole,entry);
             qDebug() << entry;
 
@@ -3094,12 +3094,13 @@ void MainWindow::startImageBackup()
     if (slidesFolders.isEmpty())
         slidesFolder.append("/mnt/defaults/slides");
 
-    _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, _osdrive, this);
-    _qpssd->setWindowTitle("Downloading Images");
+    _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, _osdrive, this, true);
+    _qpssd->setWindowTitle("Backing Up Images");
     connect(bt, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
     connect(bt, SIGNAL(completed()), this, SLOT(onCompleted()));
     connect(bt, SIGNAL(error(QString)), this, SLOT(onError(QString)));
     connect(bt, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
+    connect(bt, SIGNAL(newDrive(const QString&)), _qpssd , SLOT(changeDrive(const QString&)), Qt::BlockingQueuedConnection);
     bt->start();
     hide();
     _qpssd->exec();
