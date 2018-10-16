@@ -67,12 +67,9 @@ This file uses the json file format. Be careful that you get the syntax correct,
 All given strings must match exactly in spelling and case to avoid any errors.
 
 This file structure consists of three levels:
-[list]
-[*] Window name (e.g. "mainwindow")
-[*] Menu name   (e.g. "Archival")
-[*] Key mapping (e.g. "Key_Enter": "CEC\_User\_Control\_Left")
-[/list]
-
+ * Window name (e.g. "mainwindow")
+ * Menu name   (e.g. "Archival")
+ * Key mapping (e.g. "Key_Enter": "CEC_User_Control_Left")
 
 ## Window Name
 Only the given "mainwindow", "bootSelection" or "any" window names can be specified.
