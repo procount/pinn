@@ -101,13 +101,13 @@ bool BackupThread::processImage(const QVariantMap & entry)
     //Update JSON files
     //os.json
     QVariantMap ventry;
+    copyentry("name","name");
     //  name = copied from installed_os.json (to include nickname etc. + backup date
     copyentry("name", "backupName");
     copyentry("description","description");
     copyentry("feature_level","feature_level");
     copyentry("group","group");
     copyentry("kernel","kernel");
-    copyentry("name","name");
     copyentry("password","password");
     copyentry("release_date","release_date");
     copyentry("supported_hex_revisions","supported_hex_revisions");
