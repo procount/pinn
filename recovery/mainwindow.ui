@@ -238,6 +238,7 @@
    <addaction name="actionBrowser"/>
    <addaction name="actionInfo"/>
    <addaction name="actionCancel"/>
+   <addaction name="actionClear_c"/>
   </widget>
   <widget class="QToolBar" name="toolBar_2">
    <property name="enabled">
@@ -667,6 +668,21 @@
    </property>
    <property name="shortcut">
     <string>F</string>
+   </property>
+  </action>
+  <action name="actionClear_c">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/clear.png</normaloff>:/icons/clear.png</iconset>
+   </property>
+   <property name="text">
+    <string>Clear (c)</string>
+   </property>
+   <property name="toolTip">
+    <string>Clear selection</string>
+   </property>
+   <property name="shortcut">
+    <string>C</string>
    </property>
   </action>
  </widget>

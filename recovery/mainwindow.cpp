@@ -4134,3 +4134,20 @@ void MainWindow::createPinnEntry()
     item->setCheckState(Qt::Unchecked);
     ug->listInstalled->insertItem(0, item);
 }
+
+void MainWindow::on_actionClear_c_triggered()
+{
+    QList<QListWidgetItem *> selected = selectedItems();
+
+    /* Get list of all selected OSes and see if any are unsupported */
+    foreach (QListWidgetItem *item, selected)
+    {
+            item->setCheckState(Qt::Unchecked);
+    }
+
+    selected = ug->selectedInstalledItems();
+    foreach (QListWidgetItem *item, selected)
+    {
+        item->setCheckState(Qt::Unchecked);
+    }
+}

@@ -217,6 +217,8 @@ private slots:
     void on_targetCombo_currentIndexChanged(int index);
     void on_targetComboUsb_currentIndexChanged(int index);
 
+    void on_actionClear_c_triggered();
+
 signals:
     void networkUp();
     void newVersion();
