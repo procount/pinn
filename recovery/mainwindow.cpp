@@ -4011,11 +4011,28 @@ void MainWindow::on_actionReplace_triggered()
     replacementList = ug->selectedItems();
     installedList   = ug->selectedInstalledItems();
 
-    //Ignore PINN if it is selected
-    QListWidgetItem *item = installedList.at(0);
-    QVariantMap installedMap = item->data(Qt::UserRole).toMap();
-    if (installedMap.value("name").toString() =="PINN")
-        installedList.removeFirst();
+    int i=0;
+    foreach (QListWidgetItem *item, installedList)
+    {
+        QVariantMap installedMap = item->data(Qt::UserRole).toMap();
+        //Ignore PINN if it is selected
+        if (installedMap.value("name").toString() =="PINN")
+            installedList.removeAt(i);
+        //Ignore RISC OS if it is selected
+        if (nameMatchesRiscOS(installedMap.value("name").toString()))
+            installedList.removeAt(i);
+        i++;
+    }
+
+    i=0;
+    foreach (QListWidgetItem *item, replacementList)
+    {
+        QVariantMap replacementMap = item->data(Qt::UserRole).toMap();
+        //Ignore RISC OS if it is selected
+        if (nameMatchesRiscOS(replacementMap.value("name").toString()))
+            replacementList.removeAt(i);
+        i++;
+    }
 
     replace dlg(replacementList,installedList,this);
     if (dlg.exec() != QDialog::Accepted)
