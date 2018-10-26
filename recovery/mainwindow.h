@@ -211,6 +211,7 @@ private slots:
     void on_actionReplace_triggered();
     void on_actionBackup_triggered();
     void on_actionFirmware_triggered();
+    void on_actionRename_triggered();
     void updateFirmware_button();
 
     void on_list_currentRowChanged();

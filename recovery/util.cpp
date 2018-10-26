@@ -331,6 +331,7 @@ QByteArray getDevice(const QString & partuuid)
 
 QString getNickNameParts(const QString& input, eNAMEPARTS flags)
 {
+    TRACE
     /* Same as getNameParts(),
      * but replaces any eBASE or eFLAVOUR parts
      * with eNICKNAME if it exists (no flavour)
@@ -346,7 +347,8 @@ QString getNickNameParts(const QString& input, eNAMEPARTS flags)
         flags |= (eNAMEPARTS) eNICKNAME;
         output = getNameParts(input, flags);
         //Remove the '=' prefix regardless of eSPLIT, to act the same as eCORE
-        output = output.mid(1);
+        if (output.left(1)=="=")
+            output = output.mid(1);
     }
     else
     {

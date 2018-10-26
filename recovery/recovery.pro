@@ -68,7 +68,8 @@ SOURCES += \
     backupthread.cpp \
     datetimedialog.cpp \
     backupdialog.cpp \
-    iconcache.cpp
+    iconcache.cpp \
+    renamedialog.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -116,7 +117,8 @@ HEADERS  += \
     backupthread.h \
     datetimedialog.h \
     backupdialog.h \
-    iconcache.h
+    iconcache.h \
+    renamedialog.h
 
 FORMS    += \
     mainwindow.ui \
@@ -132,7 +134,8 @@ FORMS    += \
     rerunsetup.ui \
     replace.ui \
     datetimedialog.ui \
-    backupdialog.ui
+    backupdialog.ui \
+    renamedialog.ui
 
 RESOURCES += \
     icons.qrc

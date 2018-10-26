@@ -66,7 +66,7 @@ QString joinNameParts(QStringList input);
 
 bool updatePartitionScript(QVariantMap & entry, QListWidgetItem * witem);
 
-#define NICKNAME(x) getNickNameParts(x, eNICKNAME|eSPLIT);
+#define NICKNAME(x) getNickNameParts(x, eCORE|eSPLIT);
 
 int extractPartitionNumber(QByteArray& partition);
 

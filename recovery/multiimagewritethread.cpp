@@ -43,7 +43,7 @@ void MultiImageWriteThread::addImage(const QString &folder, const QString &flavo
 void MultiImageWriteThread::addInstalledImage(const QString &folder, const QString &flavour, const QVariantMap &entry,
                                               const QString &replacedName)
 {   /* Copy the previously installed partitions to the new OS and add the OS to the list of OSes to be installed */
-    OsInfo * pInfo = new OsInfo(folder, CORE(flavour), this);
+    OsInfo * pInfo = new OsInfo(folder, getNameParts(flavour, eCORE|eNICKNAME), this);
 
     //Get the list of partitions where this OS is already installed
     QVariantList list = entry.value("partitions").toList(); //of QVariant Strings
@@ -1084,6 +1084,7 @@ void MultiImageWriteThread::testForCustomFile(const QString &baseName, const QSt
 
 void MultiImageWriteThread::processEntry(const QString &srcFolder, const QString &entry1)
 {
+    TRACE
     if (entry1.length()>0 && entry1.at(0)=='@')
     {
         DBG( "Processing " + entry1 + " in " + srcFolder);

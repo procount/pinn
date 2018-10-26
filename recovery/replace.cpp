@@ -1,6 +1,7 @@
 #include "json.h"
 #include "replace.h"
 #include "ui_replace.h"
+#include "util.h"
 
 #include <QDebug>
 #include <QListWidget>
@@ -44,7 +45,7 @@ replace::replace(QList<QListWidgetItem *> replacementList, QList<QListWidgetItem
         QListWidgetItem *item;
         item = installedList.at(i);
         QVariantMap installedMap = item->data(Qt::UserRole).toMap();
-        QString os_name = installedMap.value("name").toString();
+        QString os_name = NICKNAME( installedMap.value("name").toString() );
 
         //set column 0 to installed OS
         QTableWidgetItem * iTableItem= new QTableWidgetItem(os_name);

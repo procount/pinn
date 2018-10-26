@@ -26,6 +26,7 @@
 #include "countdownfilter.h"
 #include "replace.h"
 #include "mydebug.h"
+#include "renamedialog.h"
 #include "splash.h"
 #include "datetimedialog.h"
 #include "iconcache.h"
@@ -1141,7 +1142,7 @@ void MainWindow::on_actionReinstall_triggered()
     foreach (QListWidgetItem *item, installedList)
     {
         QVariantMap installedEntry = item->data(Qt::UserRole).toMap();
-        QString name = installedEntry.value("name").toString();
+        QString name = CORE(installedEntry.value("name").toString());
 
         //Look for the new version
         QListWidgetItem *witem = findItemByName(name);
@@ -1193,6 +1194,7 @@ void MainWindow::prepareMetaFiles()
             if ((!newOS.contains("folder")) || (newOS.value("folder").toString().startsWith("/settings")))
             {
                 QDir d;
+
                 QString folder = "/settings/os/"+newOS.value("name").toString();
                 folder.replace(' ', '_');
                 if (!d.exists(folder))
@@ -1218,7 +1220,7 @@ void MainWindow::prepareMetaFiles()
         }
         else if (!_silent)
         {
-            _qpd = new QProgressDialog(tr("The Reinstall process will begin shortly."), QString(), 0, 0, this);
+            _qpd = new QProgressDialog(tr("The Reinstall/Replace process will begin shortly."), QString(), 0, 0, this);
             _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
             _qpd->show();
         }
@@ -1330,7 +1332,9 @@ void MainWindow::on_actionCancel_triggered()
 void MainWindow::onCompleted(int arg)
 {
     TRACE
-    int ret = QMessageBox::Ok;
+    int ret;
+    Q_UNUSED(ret);
+    ret = QMessageBox::Ok;
 
     _qpssd->hide();
     _piDrivePollTimer.start(POLLTIME);
@@ -1349,7 +1353,7 @@ void MainWindow::onCompleted(int arg)
             /* make the USB stick read only again */
             QProcess::execute("sync");
             QProcess::execute("umount /dev/"+partdev(_osdrive,1));
-            QProcess::execute("mount -ro /dev/"+partdev(_osdrive,1)+" "+_local);
+            QProcess::execute("mount -o ro /dev/"+partdev(_osdrive,1)+" "+_local);
 
             ret = QMessageBox::information(this,
                                      tr("OS(es) downloaded"),
@@ -1357,6 +1361,13 @@ void MainWindow::onCompleted(int arg)
         }
         else if (_eDownloadMode==MODE_BACKUP)
         {
+            /* make the USB stick read only again */
+            QProcess::execute("sync");
+            QProcess::execute("umount /dev/"+partdev(_osdrive,1));
+            QString cmd = "mount -o ro /dev/"+partdev(_osdrive,1)+" "+_local;
+            DBG(cmd);
+            QProcess::execute(cmd);
+
             QString info;
             if (arg)
                 info = tr("OS(es) Backed up with errors.\nSee debug log for details");
@@ -2347,7 +2358,8 @@ QListWidgetItem *MainWindow::findItemByName(const QString &name)
     foreach (QListWidgetItem *item, all)
     {
         QVariantMap m = item->data(Qt::UserRole).toMap();
-        if (m.value("name").toString() == name)
+        QString name1 = name;
+        if (m.value("name").toString().replace(" ","_") == name1.replace(" ","_"))
         {
             DBG("Found");
             return item;
@@ -2537,8 +2549,9 @@ void MainWindow::updateActions()
     //item may still be NULL
     //Only need to make sure item is not null, since any item here is already installed    ?
     ui->actionEdit_config->setEnabled(item);
-    ui->actionPassword->setEnabled(item);
+    ui->actionPassword->setEnabled(item && (item != ug->listInstalled->item(0)));
     ui->actionInfoInstalled->setEnabled(item && item->data(Qt::UserRole).toMap().contains("url"));
+    ui->actionRename->setEnabled( item && (item != ug->listInstalled->item(0)) );
 
     QList<QListWidgetItem *> select = ug->selectedInstalledItems();
     int count = select.count();
@@ -3646,7 +3659,8 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
 
     //If it is already installed, we don't care that it WAS installed from a backup, so remove date.
     if (bInstalled)
-        name = getNameParts(name, eCORE);
+        name =NICKNAME(name);
+        //name = getNameParts(name, eCORE);
 
     witem = findItemByName(name);
     DBG("...");
@@ -4338,7 +4352,7 @@ void MainWindow::on_actionReplace_triggered()
     while (it != installedList.end())
     {
         QVariantMap installedMap = (*it)->data(Qt::UserRole).toMap();
-        QString name = installedMap.value("name").toString();
+        QString name = CORE(installedMap.value("name").toString());
         //Ignore PINN if it is selected
         if (name =="PINN")
         {
@@ -4359,7 +4373,7 @@ void MainWindow::on_actionReplace_triggered()
     while (it != replacementList.end())
     {
         QVariantMap replacementMap = (*it)->data(Qt::UserRole).toMap();
-        QString name = replacementMap.value("name").toString();
+        QString name = CORE(replacementMap.value("name").toString());
         //Ignore RISC OS if it is selected
         if (nameMatchesRiscOS(name) || nameMatchesWindows(name))
             it = replacementList.erase(it);
@@ -4481,14 +4495,18 @@ void MainWindow::on_actionRepair_triggered()
 
 void MainWindow::on_actionBackup_triggered()
 {
-
+    TRACE
     _eDownloadMode = MODE_BACKUP;
 
     _local = "/tmp/media/"+partdev(_osdrive,1);
-    if (QProcess::execute("mount -o remount,rw /dev/"+partdev(_osdrive,1)+" "+_local) != 0)
-    {
-        return;
-    }
+
+    //if (QProcess::execute("mount -o remount,rw /dev/"+partdev(_osdrive,1)+" "+_local) != 0)
+    //{
+    //    return;
+    //}
+    // The NTFS driver can't remount, so we'll just umount & mount again
+    QProcess::execute("umount /dev/"+partdev(_osdrive,1));
+    QProcess::execute("mount  /dev/"+partdev(_osdrive,1)+" "+_local);
 
     if (_silent || QMessageBox::warning(this,
                                         tr("Confirm"),
@@ -4504,7 +4522,7 @@ void MainWindow::on_actionBackup_triggered()
         foreach (QListWidgetItem *item, selected)
         {
             QVariantMap entry = item->data(Qt::UserRole).toMap();
-            QString name = entry.value("name").toString();
+            QString name = CORE(entry.value("name").toString());
             if (nameMatchesRiscOS(name) || nameMatchesWindows(name) || name.contains("XBian", Qt::CaseInsensitive))
             {
                 allSupported = false;
@@ -4561,7 +4579,11 @@ void MainWindow::on_actionBackup_triggered()
                         }
                         else
                         {
-                            QProcess::execute("mount -o remount,ro /dev/"+partdev(_osdrive,1)+" "+_local);
+                            //QProcess::execute("mount -o remount,ro /dev/"+partdev(_osdrive,1)+" "+_local);
+                            // The NTFS driver can't remount, so we'll just umount & mount again
+                            QProcess::execute("umount /dev/"+partdev(_osdrive,1));
+                            QProcess::execute("mount -o ro /dev/"+partdev(_osdrive,1)+" "+_local);
+
                             setEnabled(true);
                             return;
                         }
@@ -4596,7 +4618,7 @@ void MainWindow::on_actionBackup_triggered()
                     item->setData(Qt::UserRole, entry);
 
                     //Don't need flavours because they would already have been applied
-                    QString settingsFolder = "/settings/os/"+entry.value("name").toString().replace(' ', '_');
+                    QString settingsFolder = "/settings/os/"+ CORE(entry.value("name").toString()).replace(' ', '_');
                     //Copy:
                     QString cmd;
 
@@ -4688,4 +4710,22 @@ void MainWindow::on_actionTime_triggered()
 {
     DateTimeDialog dlg;
     dlg.exec();
+}
+
+void MainWindow::on_actionRename_triggered()
+{
+    QListWidgetItem *item = ug->listInstalled->currentItem();
+    QVariantMap m;
+
+    if (item)
+    {
+        m = item->data(Qt::UserRole).toMap();
+        renamedialog pDlg(m);
+        pDlg.exec();
+
+        ug->listInstalled->clear();
+        addInstalledImages();
+        updateInstalledStatus();
+
+    }
 }

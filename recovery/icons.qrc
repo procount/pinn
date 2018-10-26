@@ -73,5 +73,6 @@
         <file>icons/clear.png</file>
         <file>icons/backup_manager.png</file>
         <file>icons/date.png</file>
+        <file>icons/drive_edit.png</file>
     </qresource>
 </RCC>

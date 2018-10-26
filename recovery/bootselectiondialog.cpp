@@ -112,9 +112,10 @@ BootSelectionDialog::BootSelectionDialog(
                 }
             }
         }
-        QString name = m.value("name").toString();
+        QString name = CORE(m.value("name").toString());
         if (canBootOs(name, m))
         {
+            name=NICKNAME(m.value("name").toString());
             QListWidgetItem *item = new QListWidgetItem(icon, name+"\n"+m.value("description").toString(), ui->list);
             item->setData(Qt::UserRole, m);
             item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
