@@ -4011,27 +4011,44 @@ void MainWindow::on_actionReplace_triggered()
     replacementList = ug->selectedItems();
     installedList   = ug->selectedInstalledItems();
 
-    int i=0;
-    foreach (QListWidgetItem *item, installedList)
+    QList<QListWidgetItem*>::iterator it = installedList.begin();
+    while (it != installedList.end())
     {
-        QVariantMap installedMap = item->data(Qt::UserRole).toMap();
+        QVariantMap installedMap = (*it)->data(Qt::UserRole).toMap();
         //Ignore PINN if it is selected
         if (installedMap.value("name").toString() =="PINN")
-            installedList.removeAt(i);
+        {
+            it = installedList.erase(it);
+        }
         //Ignore RISC OS if it is selected
-        if (nameMatchesRiscOS(installedMap.value("name").toString()))
-            installedList.removeAt(i);
-        i++;
+        else if (nameMatchesRiscOS(installedMap.value("name").toString()))
+        {
+            it = installedList.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
     }
 
-    i=0;
-    foreach (QListWidgetItem *item, replacementList)
+    it = replacementList.begin();
+    while (it != replacementList.end())
     {
-        QVariantMap replacementMap = item->data(Qt::UserRole).toMap();
+        QVariantMap replacementMap = (*it)->data(Qt::UserRole).toMap();
         //Ignore RISC OS if it is selected
         if (nameMatchesRiscOS(replacementMap.value("name").toString()))
-            replacementList.removeAt(i);
-        i++;
+            it = replacementList.erase(it);
+        else
+            ++it;
+    }
+
+    if (!replacementList.count() || !installedList.count())
+    {
+        QMessageBox::warning(this,
+                             tr("Replace OSes"),
+                             tr("Error: No OSes selected\n(Do not choose RISC OS or PINN)"),
+                             QMessageBox::Close);
+        return;
     }
 
     replace dlg(replacementList,installedList,this);
