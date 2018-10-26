@@ -237,8 +237,8 @@
    <addaction name="actionWifi"/>
    <addaction name="actionBrowser"/>
    <addaction name="actionInfo"/>
-   <addaction name="actionCancel"/>
    <addaction name="actionClear_c"/>
+   <addaction name="actionCancel"/>
   </widget>
   <widget class="QToolBar" name="toolBar_2">
    <property name="enabled">
