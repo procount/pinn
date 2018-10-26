@@ -25,6 +25,14 @@
  * See LICENSE.txt for license details
  */
 
+struct partid_t
+{
+    int start;
+    int length;
+    const char * delim;
+};
+
+
 QByteArray getFileContents(const QString &filename)
 {
     QByteArray r;
@@ -290,33 +298,56 @@ QByteArray getDevice(const QString & partuuid)
     return device;
 }
 
+QString getNickNameParts(const QString& input, eNAMEPARTS flags)
+{
+    /* Same as getNameParts(),
+     * but replaces any eBASE or eFLAVOUR parts
+     * with eNICKNAME if it exists (no flavour)
+     */
+
+    QString nickname;
+    QString output;
+
+    nickname = getNameParts(input, eNICKNAME);
+    if (!nickname.isEmpty())
+    {   //If there is a nickname, request that instead of the basename & flavour
+        flags &= (eNAMEPARTS) ~eCORE;
+        flags |= (eNAMEPARTS) eNICKNAME;
+        output = getNameParts(input, flags);
+        //Remove the '=' prefix regardless of eSPLIT, to act the same as eCORE
+        output = output.mid(1);
+    }
+    else
+    {
+        output = getNameParts(input, flags);
+    }
+    return(output);
+}
 
 QString getNameParts(const QString& input, eNAMEPARTS flags)
 {
+    /* Splits an OS name into its consitutent parts and then
+     * concatenates specific parts back together again
+     * "Name - flavour=nickname#2018-12-31@1"
+     */
+
     int i,j;
     int index;
-    struct partid_t
-    {
-        QString value;
-        int start;
-        int length;
-        const char * delim;
-    };
 
-    struct partid_t parts[4]=
+    struct partid_t parts[eNUMPARTS]=
     {
-        {"", -1,  -1,  ""},    //Base
-        {"", -1,  -1,  " - "}, //Flavour
-        {"", -1,  -1,  "#"},   //Date
-        {"", -1,  -1,  "@"}    //Partition
+        {-1,  -1,  ""},    //Base
+        {-1,  -1,  " - "}, //Flavour
+        {-1,  -1,  "="},   //NickName
+        {-1,  -1,  "#"},   //Date
+        {-1,  -1,  "@"}    //Partition
     };
     QString output;
-
     if (!input.isEmpty())
     {
         //Identify which parts are present
         parts[0].start = 0;
-        for (i=1; i<4; i++)
+        for (i=1; i<eNUMPARTS; i++)
         {
             index = input.indexOf(parts[i].delim);
             if (index != -1)
@@ -324,31 +355,123 @@ QString getNameParts(const QString& input, eNAMEPARTS flags)
                 parts[i].start = index;
                 for (j=i-1; j>=0; j--)
                 {
-                    if (parts[j].length == -1)
+                    if ((parts[j].length == -1) && (parts[j].start != -1))
                         parts[j].length = index - parts[j].start;
                 }
             }
         }
-        if (parts[3].start != -1)
-            parts[3].length = input.length()-parts[3].start;
+        for (j=i-1; j>=0; j--)
+        {
+            if ((parts[j].length == -1) && (parts[j].start != -1))
+                parts[j].length = input.length() - parts[j].start;
+        }
 
-        for (i=0; i<4; i++)
+        for (i=0; i<eNUMPARTS; i++)
         {
             int offset = (flags & eSPLIT) ? strlen(parts[i].delim) : 0;
             if (parts[i].start != -1 && parts[i].length != -1)
             {
                 QString value = QStringRef(&input,parts[i].start+offset, (int)parts[i].length-offset).toString();
-                qDebug() << i << " " << value;
                 if (flags & (1<<i))
                 {
                     output += value;
-                    qDebug() << "output := " << output;
                 }
             }
         }
     }
     return(output);
 }
+
+QStringList splitNameParts(const QString& input)
+{
+    QStringList list;
+    /* Splits an OS name into its consitutent parts
+     * "Name - flavour=nickname#2018-12-31@1"
+     */
+
+    int i,j;
+    int index;
+
+    struct partid_t parts[eNUMPARTS]=
+    {
+        {-1,  -1,  ""},    //Base
+        {-1,  -1,  " - "}, //Flavour
+        {-1,  -1,  "="},   //NickName
+        {-1,  -1,  "#"},   //Date
+        {-1,  -1,  "@"}    //Partition
+    };
+
+    if (!input.isEmpty())
+    {
+        //Identify which parts are present
+        parts[0].start = 0;
+        for (i=1; i<eNUMPARTS; i++)
+        {
+            index = input.indexOf(parts[i].delim);
+            if (index != -1)
+            {
+                parts[i].start = index;
+                for (j=i-1; j>=0; j--)
+                {
+                    if ((parts[j].length == -1) && (parts[j].start != -1))
+                        parts[j].length = index - parts[j].start;
+                }
+            }
+        }
+        for (j=i-1; j>=0; j--)
+        {
+            if ((parts[j].length == -1) && (parts[j].start != -1))
+                parts[j].length = input.length() - parts[j].start;
+        }
+
+        list.clear();
+        for (i=0; i<eNUMPARTS; i++)
+        {
+            int offset = strlen(parts[i].delim);
+            if (parts[i].start != -1 && parts[i].length != -1)
+            {
+                QString value = QStringRef(&input,parts[i].start+offset, (int)parts[i].length-offset).toString();
+                list.append(value);
+            }
+            else
+                list.append("");
+        }
+    }
+    return(list);
+}
+
+void setNameParts(QStringList& parts, eNAMEPARTS flags, const QString& value )
+{
+    for (int i=0; i<eNUMPARTS; i++)
+    {
+        if (flags & (1<<i))
+        {
+            parts[i]=value;
+        }
+    }
+}
+
+QString joinNameParts(QStringList input)
+{
+    struct partid_t parts[eNUMPARTS]=
+    {
+        {-1,  -1,  ""},    //Base
+        {-1,  -1,  " - "}, //Flavour
+        {-1,  -1,  "="},   //NickName
+        {-1,  -1,  "#"},   //Date
+        {-1,  -1,  "@"}    //Partition
+    };
+    QString output;
+    int i;
+
+    for (i=0; i<eNUMPARTS; i++)
+    {
+        if (!input[i].isEmpty())
+            output += parts[i].delim+input[i];
+    }
+    return(output);
+}
+
 
 int extractPartitionNumber(QByteArray& partition)
 {

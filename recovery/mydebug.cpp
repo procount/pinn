@@ -39,5 +39,7 @@ void MyDebug::outstring(QString out)
         output += " ";
     output += out;
     qDebug() << output.toUtf8().constData();
+#else
+    Q_UNUSED(out);
 #endif
 }

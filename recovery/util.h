@@ -20,16 +20,20 @@ typedef enum eNAMEPARTS_T
 {   // Name = eBASE - eFLAVOUR#eDATE@ePART
     eBASE=1,
     eFLAVOUR=2,
-    eDATE=4,
-    ePART=8,
-    eSPLIT=16,  //Do not return prefix
+    eNICKNAME=4,
+    eDATE=8,
+    ePART=16,
+
+    eSPLIT=32,  //Do not return prefix
 
     //Useful combinations
     eCORE=eBASE|eFLAVOUR,           //Normally used name
     eBACKUP=eBASE|eFLAVOUR|eDATE,   //Normal name + backup date
     eUNIQUE=eBASE|eFLAVOUR|ePART,   //Name name + partition info
-    eFULL=eBASE|eFLAVOUR|eDATE|ePART//Everything
+    eFULL=eBASE|eFLAVOUR|eNICKNAME|eDATE|ePART//Everything
 } eNAMEPARTS;
+
+#define eNUMPARTS 5
 
 QByteArray getFileContents(const QString &filename);
 void putFileContents(const QString &filename, const QByteArray &data);
@@ -50,7 +54,16 @@ QByteArray getDiskId(const QString &device);
 QByteArray getPartUUID(const QString &devpart);
 QByteArray getDevice(const QString & partuuid);
 
+QString getDescription(const QString &folder, const QString &flavour);
+
 QString getNameParts(const QString& input, eNAMEPARTS flags);
+QString getNickNameParts(const QString& input, eNAMEPARTS flags);
+QStringList splitNameParts(const QString& input);
+void setNameParts(QStringList& list, eNAMEPARTS flags, const QString& part );
+QString joinNameParts(QStringList input);
+
+#define NICKNAME(x) getNickNameParts(x, eNICKNAME|eSPLIT);
+
 int extractPartitionNumber(QByteArray& partition);
 
 #endif // UTIL_H

@@ -6,6 +6,8 @@
 
 QT       += core gui network dbus
 
+QMAKE_CXXFLAGS += -fpermissive
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 RPI_USERLAND_DIR=../../staging/usr

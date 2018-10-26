@@ -112,9 +112,10 @@ BootSelectionDialog::BootSelectionDialog(
                 }
             }
         }
-        if (canBootOs(m.value("name").toString(), m))
+        QString name = m.value("name").toString();
+        if (canBootOs(name, m))
         {
-            QListWidgetItem *item = new QListWidgetItem(icon, m.value("name").toString()+"\n"+m.value("description").toString(), ui->list);
+            QListWidgetItem *item = new QListWidgetItem(icon, name+"\n"+m.value("description").toString(), ui->list);
             item->setData(Qt::UserRole, m);
             item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
             item->setCheckState(Qt::Unchecked);

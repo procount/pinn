@@ -264,6 +264,7 @@ void CecListener::cec_callback(uint32_t reason, uint32_t param1, uint32_t param2
 {
     Q_UNUSED(param2);
     Q_UNUSED(param3);
+    Q_UNUSED(param4);
 #ifdef RASPBERRY_CEC_SUPPORT
     if (CEC_CB_REASON(reason) == VC_CEC_BUTTON_PRESSED)
     {
