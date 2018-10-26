@@ -28,6 +28,8 @@ replace::replace(QList<QListWidgetItem *> replacementList, QList<QListWidgetItem
     int numRows=0;
     {
         QListWidgetItem *item = installedList.at(0);
+        if (!item)
+            return; //check for NULL ptr
         QVariantMap installedMap = item->data(Qt::UserRole).toMap();
         if (installedMap.value("name").toString() =="PINN")
         {
