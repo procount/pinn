@@ -72,5 +72,6 @@
         <file>icons/arrow_refresh.png</file>
         <file>icons/clear.png</file>
         <file>icons/backup_manager.png</file>
+        <file>icons/date.png</file>
     </qresource>
 </RCC>

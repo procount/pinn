@@ -67,7 +67,8 @@ SOURCES += \
     rerunsetup.cpp \
     replace.cpp \
     splash.cpp \
-    backupthread.cpp
+    backupthread.cpp \
+    datetimedialog.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -112,7 +113,8 @@ HEADERS  += \
     sleepsimulator.h \
     replace.h \
     splash.h \
-    backupthread.h
+    backupthread.h \
+    datetimedialog.h
 
 FORMS    += \
     mainwindow.ui \
@@ -126,7 +128,8 @@ FORMS    += \
     fscheck.ui \
     repair.ui \
     rerunsetup.ui \
-    replace.ui
+    replace.ui \
+    datetimedialog.ui
 
 RESOURCES += \
     icons.qrc

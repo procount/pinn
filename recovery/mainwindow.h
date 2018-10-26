@@ -222,6 +222,8 @@ private slots:
 
     void on_actionClear_c_triggered();
 
+    void on_actionTime_triggered();
+
 signals:
     void networkUp();
     void newVersion();

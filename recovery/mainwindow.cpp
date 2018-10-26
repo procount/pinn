@@ -26,6 +26,7 @@
 #include "replace.h"
 #include "mydebug.h"
 #include "splash.h"
+#include "datetimedialog.h"
 
 #include <QByteArray>
 #include <QDateTime>
@@ -4286,12 +4287,22 @@ void MainWindow::on_actionBackup_triggered()
                 if (entry.value("source").toString() == SOURCE_INSTALLED_OS) // only installed OSes Can be backed up.
                 {
                     //Get date/time
-                    QDateTime tnow = QDateTime::currentDateTime();
-                    QString now = "#" + tnow.toString("yyyyMMddhhmmss");
-                    if (now.left(5)=="#1970")
+                    QString now = "#" + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
+                    while (now.left(5)=="#1970")
                     {
                         qDebug() << "Current time is not known";
                         //@@ Open dialog to request current date.
+                        DateTimeDialog dlg;
+                        if (dlg.exec() == QDialog::Accepted)
+                        {
+                            now = "#" + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
+                        }
+                        else
+                        {
+                            QProcess::execute("mount -o remount,ro /dev/"+partdev(_osdrive,1)+" "+_local);
+                            setEnabled(true);
+                            return;
+                        }
                     }
 
                     //Get partition number
@@ -4385,4 +4396,10 @@ void MainWindow::on_actionClear_c_triggered()
     {
         item->setCheckState(Qt::Unchecked);
     }
+}
+
+void MainWindow::on_actionTime_triggered()
+{
+    DateTimeDialog dlg;
+    dlg.exec();
 }

@@ -284,6 +284,7 @@
    <addaction name="actionClone"/>
    <addaction name="actionInfo"/>
    <addaction name="actionFirmware"/>
+   <addaction name="actionTime"/>
   </widget>
   <widget class="QToolBar" name="toolBar_3">
    <property name="enabled">
@@ -686,6 +687,21 @@
    </property>
    <property name="shortcut">
     <string>C</string>
+   </property>
+  </action>
+  <action name="actionTime">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/date.png</normaloff>:/icons/date.png</iconset>
+   </property>
+   <property name="text">
+    <string>Time (t)</string>
+   </property>
+   <property name="toolTip">
+    <string>Set Data &amp; Time</string>
+   </property>
+   <property name="shortcut">
+    <string>T</string>
    </property>
   </action>
  </widget>
