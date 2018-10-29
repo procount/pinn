@@ -4340,9 +4340,13 @@ void MainWindow::on_actionBackup_triggered()
                     //- partition_setup.sh
                     cmd = "cp "+ settingsFolder+"/partition_setup.sh "+backupFolder;
                     QProcess::execute(cmd);
-                    //- icon.png as name.png
+                    //- icon.png
                     cmd = "cp "+ settingsFolder+"/icon.png "+backupFolder;
                     QProcess::execute(cmd);
+                    //Or osname_-_flavour.png
+                    cmd = "cp "+ settingsFolder+"/"+getNameParts(currentname, eCORE)+".png "+backupFolder;
+                    QProcess::execute(cmd);
+
                     //- [Copy release_notes.txt?]
                     cmd = "cp "+ settingsFolder+"/release_notes.txt "+backupFolder;
                     QProcess::execute(cmd);
