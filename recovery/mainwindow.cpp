@@ -4312,6 +4312,7 @@ void MainWindow::on_actionBackup_triggered()
                     QString backupName = getNameParts(currentname, eCORE|eNICKNAME) + now + partnr;
                     QString backupFolder = _local+"/os/" + getNameParts(currentname, eBASE) + now + partnr;
                     backupFolder.replace(' ', '_');
+                    backupName.replace(' ', '_');
                     qDebug() << "On backup triggered, save to "<<backupFolder;
                     entry["backupFolder"] = backupFolder;
                     entry["backupName"]   = backupName;
@@ -4341,10 +4342,7 @@ void MainWindow::on_actionBackup_triggered()
                     cmd = "cp "+ settingsFolder+"/partition_setup.sh "+backupFolder;
                     QProcess::execute(cmd);
                     //- icon.png
-                    cmd = "cp "+ settingsFolder+"/icon.png "+backupFolder;
-                    QProcess::execute(cmd);
-                    //Or osname_-_flavour.png
-                    cmd = "cp "+ settingsFolder+"/"+getNameParts(currentname, eCORE)+".png "+backupFolder;
+                    cmd = "cp "+ settingsFolder+"/icon.png "+backupFolder+"/"+backupName+".png";
                     QProcess::execute(cmd);
 
                     //- [Copy release_notes.txt?]

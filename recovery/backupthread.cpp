@@ -85,7 +85,7 @@ bool BackupThread::processImage(const QVariantMap & entry)
         QProcess::execute("mount -o ro "+dev+" /tmp/src");
         emit newDrive(dev);
         //   tar gzip
-        QString cmd = "sh -c \"tar -c /tmp/src/ | gzip > "+ backupFolder+"/"+label+".tar.gz\"";
+        QString cmd = "sh -c \"cd /tmp/src; tar -c * | gzip > "+ backupFolder+"/"+label+".tar.gz\"";
         qDebug()<<cmd;
         QProcess::execute(cmd);
         QFileInfo fi(backupFolder+"/"+label+".tar.gz");
