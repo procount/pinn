@@ -1037,8 +1037,6 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
                     QProcess::execute(cmd);
                     cmd = "cp "+ local+"/partition_setup.sh "+folder;
                     QProcess::execute(cmd);
-                    //(@@Do we need to copy the slides to the settings partition, for backup maybe?)
-                    //@@YES!
                     cmd = "cp -r "+ local+"/slides_vga/ "+folder;
                     QProcess::execute(cmd);
 
@@ -3011,6 +3009,7 @@ void MainWindow::startImageDownload()
 
 void MainWindow::startImageBackup()
 {
+    MYDEBUG
     _piDrivePollTimer.stop();
     // The drive is already mounted R/W from on_actionBackup_triggered
 

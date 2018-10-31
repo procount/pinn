@@ -5,6 +5,8 @@
 #include "mbr.h"
 #include "partitioninfo.h"
 #include "osinfo.h"
+#include "mydebug.h"
+
 #include <QDir>
 #include <QFile>
 #include <QDebug>
@@ -61,6 +63,7 @@ void BackupThread::run()
 
 bool BackupThread::processImage(const QVariantMap & entry)
 {
+    MYDEBUG
     qDebug() << entry;
 
     QString backupFolder = entry.value("backupFolder").toString();
@@ -100,25 +103,25 @@ bool BackupThread::processImage(const QVariantMap & entry)
 
     //Update JSON files
     //os.json
-    QVariantMap ventry;
+    QVariantMap ventry = Json::loadFromFile(backupFolder+"/os.json").toMap();
     copyentry("name","name");
     //  name = copied from installed_os.json (to include nickname etc. + backup date
     copyentry("name", "backupName");
     copyentry("description","description");
-    copyentry("feature_level","feature_level");
+    //copyentry("feature_level","feature_level");
     copyentry("group","group");
-    copyentry("kernel","kernel");
+    //copyentry("kernel","kernel");
     copyentry("password","password");
     copyentry("release_date","release_date");
-    copyentry("supported_hex_revisions","supported_hex_revisions");
-    copyentry("supported_models","supported_models");
-    copyentry("url","url");
+    //copyentry("supported_hex_revisions","supported_hex_revisions");
+    //copyentry("supported_models","supported_models");
+    //copyentry("url","url");
     copyentry("username","username");
-    copyentry("version","version");
+    //copyentry("version","version");
     //  download_size = sum of tar.gz files sizes in bytes?
     copyentry("download_size","backupsize");
-    //  icon=icon.png
-    ventry["icon"] = "icon.png";
+    // no icon entry to use default
+    // ventry["icon"] = "icon.png";
     Json::saveToFile(backupFolder+"/os.json", ventry);
 
     //partitions.json
