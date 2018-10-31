@@ -16,24 +16,23 @@
  * See LICENSE.txt for license details
  */
 
-typedef enum eNAMEPARTS_T
-{   // Name = eBASE - eFLAVOUR#eDATE@ePART
-    eBASE=1,
-    eFLAVOUR=2,
-    eNICKNAME=4,
-    eDATE=8,
-    ePART=16,
+typedef int eNAMEPARTS;
 
-    eSPLIT=32,  //Do not return prefix
-
-    //Useful combinations
-    eCORE=eBASE|eFLAVOUR,           //Normally used name
-    eBACKUP=eBASE|eFLAVOUR|eDATE,   //Normal name + backup date
-    eUNIQUE=eBASE|eFLAVOUR|ePART,   //Name name + partition info
-    eFULL=eBASE|eFLAVOUR|eNICKNAME|eDATE|ePART//Everything
-} eNAMEPARTS;
+#define eBASE 1
+#define eFLAVOUR 2
+#define eNICKNAME 4
+#define eDATE 8
+#define ePART 16
 
 #define eNUMPARTS 5
+
+//Do not return prefix
+#define eSPLIT 32
+
+#define eCORE (eBASE|eFLAVOUR)           //Normally used name
+#define eBACKUP (eBASE|eFLAVOUR|eDATE)   //Normal name + backup date
+#define eUNIQUE (eBASE|eFLAVOUR|ePART)   //Name name + partition info
+#define eFULL (eBASE|eFLAVOUR|eNICKNAME|eDATE|ePART) //Everything
 
 QByteArray getFileContents(const QString &filename);
 void putFileContents(const QString &filename, const QByteArray &data);
