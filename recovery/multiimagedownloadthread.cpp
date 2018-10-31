@@ -120,8 +120,6 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
             QFile g(filename);
             if (g.exists())
                 g.remove();
-
-            // return false; //@@Let's see what happens if we try to continue (maybe need to emit error with parameter to enable or not)
         }
         qDebug() << "finished downloading filesystem in" << (t1.elapsed()/1000.0) << "seconds";
         _part++;

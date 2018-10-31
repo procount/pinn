@@ -140,13 +140,13 @@ protected:
     QString menutext(int index);
     void fullFAT();
     void prepareMetaFiles();
-    void startImageDownload();//@@download
-    void startImageBackup();//@@download
-    bool LooksLikePiDrive(QString devname);//@@download
-    bool LooksLikeOSDrive(QString devname);//@@download
-    void recalcAvailableMB();//@@download
-    void checkFileSize(const QString &url, const QString &saveAs);//@@download
-    void getDownloadSize(QVariantMap &new_details);//@@download
+    void startImageDownload();
+    void startImageBackup();
+    bool LooksLikePiDrive(QString devname);
+    bool LooksLikeOSDrive(QString devname);
+    void recalcAvailableMB();
+    void checkFileSize(const QString &url, const QString &saveAs);
+    void getDownloadSize(QVariantMap &new_details);
 
     void downloadRepoList(const QString &urlstring);
     void processRepoListJson(QVariant json);
@@ -159,8 +159,8 @@ protected slots:
     void tick(int secs);
     void expired(void);
 
-    void checkFileSizeRedirectCheck();//@@download
-    void checkFileSizeComplete();//@@download
+    void checkFileSizeRedirectCheck();
+    void checkFileSizeComplete();
     void populate();
     void startBrowser();
     void startNetworking();
@@ -204,7 +204,7 @@ private slots:
     void on_actionClone_triggered();
     void on_actionInfo_triggered();
     void on_actionInfoInstalled_triggered();
-    void on_actionDownload_triggered();//@@download
+    void on_actionDownload_triggered();
     void on_actionWipe_triggered();
     void on_actionFschk_triggered();
     void on_actionRepair_triggered();

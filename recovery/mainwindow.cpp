@@ -704,7 +704,6 @@ void MainWindow::repopulate()
 
     //@@Add dummy icons?
 
-    //@@change to _numBootableOS
     if (_numBootableOS)
     {
         ui->actionCancel->setEnabled(true);
@@ -2304,9 +2303,6 @@ void MainWindow::downloadIconComplete()
 
     reply->deleteLater();
     _listno++;
-    //@@? if (_listno ==1)
-    //@@?    downloadList(DEFAULT_REPO_SERVER);
-
 }
 
 QList<QListWidgetItem *> MainWindow::selectedItems()
@@ -2879,7 +2875,7 @@ void MainWindow::startImageReinstall()
 
         if (i == nInstalledParts)
         {
-            imageWriteThread->addInstalledImage(folder, entry.value("name").toString(), installedEntry); //@@
+            imageWriteThread->addInstalledImage(folder, entry.value("name").toString(), installedEntry);
         }
         else
         {
@@ -3086,7 +3082,7 @@ void MainWindow::startImageBackup()
             item->setData(Qt::UserRole,entry);
             qDebug() << entry;
 
-            bt->addImage(entry); //@@ maybe just pass entry instead?
+            bt->addImage(entry);
             if (!slidesFolder.isEmpty())
                 slidesFolders.append(slidesFolder);
         }
@@ -3405,7 +3401,6 @@ bool MainWindow::LooksLikePiDrive(QString devname)
 
 bool MainWindow::LooksLikeOSDrive(QString devname)
 {
-    //@@ maybe mount and check for /os folder present?
     if( devname != "mmcblk0" && !LooksLikePiDrive(devname) )
     {
         return (QFile::exists("/tmp/media/"+partdev(devname,1)+"/os") );

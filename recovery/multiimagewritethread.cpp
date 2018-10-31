@@ -62,7 +62,7 @@ void MultiImageWriteThread::addInstalledImage(const QString &folder, const QStri
     if (! replacedName.isEmpty())
         pInfo->setReplacedName(replacedName);
     else
-        pInfo->setReplacedName(entry.value("name").toString()); //@@ or flavour?
+        pInfo->setReplacedName(entry.value("name").toString());
 
     _images.append(pInfo);
 }

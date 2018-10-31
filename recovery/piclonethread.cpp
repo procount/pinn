@@ -122,7 +122,6 @@ void piCloneThread::run()
     //QString cmd = "parted "+_src+" unit s print | tail -n +8 | head -n -1";
     sprintf (buffer, "parted %s unit s print | tail -n +7 | head -n -1", cc_src);   //Changed 8 to 7 Why?
 
-//@@
     fp = popen (buffer, "r");
     if (fp != NULL)
     {
@@ -323,7 +322,7 @@ void piCloneThread::run()
         emit doCopy(QString(src_mnt), QString(dst_mnt) );
 
         myCopyThread->start();
-        //@@ g_thread_new (NULL, copy_thread, NULL);
+        //g_thread_new (NULL, copy_thread, NULL);
 
         // get the size to be copied
         sprintf (buffer, "df %s | tail -n 1 | tr -s \" \" \" \" | cut -d ' ' -f 3",src_mnt);
@@ -360,7 +359,7 @@ void piCloneThread::run()
         QProcess::execute("sh -c \"umount "+ QString(src_mnt)+"\"");
         CANCEL_CHECK;
     }
-    //@@terminate_dialog (_("Copy complete."));
+    //terminate_dialog (_("Copy complete."));
     QProcess::execute("sh -c \"mount -o ro /dev/mmcblk0p1 /mnt\"");
     QProcess::execute("rmdir "+QString(src_mnt));
     QProcess::execute("rmdir "+QString(dst_mnt));
