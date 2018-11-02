@@ -1301,6 +1301,7 @@ void MainWindow::onCompleted()
             ret = QMessageBox::information(this,
                                      tr("Backup OSes"),
                                      tr("OS(es) Backed up Successfully."), QMessageBox::Ok);
+            addImagesFromUSB(partdev(_osdrive,1));
         }
         else
         {
