@@ -83,12 +83,19 @@ bool BackupThread::processImage(const QVariantMap & entry)
     {
         QString label = pPart->label();
         QString dev = partdevices[i].toString();
+        QByteArray fstype   = pPart->fsType();
+
+        //Check for fstype=="raw" ->image file. Check partition size is still the same and hasn't been expanded
+        //Check for emptyfs. Is it still empty? If not, remove attribute.
+        //Add "supports_archive" to prevent unsupported OSes from being backed up.
+        //If it was raw or empty & change to fat or ext4 tar file, change partition parameters.
+        //what if partclone?
 
         //   Mount it
         QProcess::execute("mount -o ro "+dev+" /tmp/src");
         emit newDrive(dev);
         //   tar gzip
-        QString cmd = "sh -c \"cd /tmp/src; tar -c * | gzip > "+ backupFolder+"/"+label+".tar.gz\"";
+        QString cmd = "sh -c \"cd /tmp/src; tar -c . | gzip > "+ backupFolder+"/"+label+".tar.gz\"";
         qDebug()<<cmd;
         QProcess::execute(cmd);
         QFileInfo fi(backupFolder+"/"+label+".tar.gz");
@@ -125,6 +132,7 @@ bool BackupThread::processImage(const QVariantMap & entry)
         for (int i=0; i<backuplist.count(); i++)
         {
             QVariantMap pmap = backuplist[i].toMap();
+            pmap.remove("tarball");
             pmap["uncompressed_tarball_size"] = tarballsizes[i].toULongLong();
             if (i==0)
                 pmap["partition_size_nominal"] = tarballsizes[i].toULongLong()+100; //extra 100MB for boot

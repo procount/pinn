@@ -3039,10 +3039,11 @@ void MainWindow::startImageBackup()
             }
         }
     }
-    // Capture the partition sizes
+    // Capture the partition sizes of all selected mounted OSes
     cmd = "sh -c \"df >/tmp/df.txt\"";
     QProcess::execute(cmd);
 
+    //Process the sizes of each partition
     i=1;
     foreach (QListWidgetItem *item, selected)
     {
@@ -3060,6 +3061,7 @@ void MainWindow::startImageBackup()
 
                 cmd = "sh -c \"grep "+part+" /tmp/df.txt >/tmp/sizes.txt\""; qDebug()<<cmd; QProcess::execute(cmd);
                 cmd = "sh -c \"sed -i 's/ \\+/ /g' /tmp/sizes.txt\""; qDebug()<<cmd; QProcess::execute(cmd);
+                //get USED space in 1K blocks
                 cmd = "sh -c \"cat /tmp/sizes.txt | cut -d ' ' -f 3 >"+fname+"\""; qDebug()<<cmd; QProcess::execute(cmd);
 
                 QByteArray size = getFileContents(fname).trimmed(); //in KB
@@ -3079,7 +3081,7 @@ void MainWindow::startImageBackup()
                 i++;
             }
             entry["partsizes"] = partSizes;
-            entry["backupsize"] = overall*1024; //Convert from kB to bytes
+            entry["backupsize"] = overall*1024; //Convert from kB to bytes -> Used to show read progress
             item->setData(Qt::UserRole,entry);
             qDebug() << entry;
 
