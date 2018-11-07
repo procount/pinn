@@ -65,9 +65,6 @@ void BackupThread::run()
 
 bool BackupThread::processImage(const QVariantMap & entry)
 {
-    MYDEBUG
-    qDebug() << entry;
-
     QString backupFolder = entry.value("backupFolder").toString();
 
     //Read the os.json and partitions.json files into pInfo
@@ -99,8 +96,7 @@ bool BackupThread::processImage(const QVariantMap & entry)
             {
                 int errorcode;
 
-                QString mounttype = readexec(true, "sh -c \"blkid -o value -s TYPE "+dev+"\"", errorcode).trimmed();
-                qDebug() << errorcode;
+                QString mounttype = readexec(false, "sh -c \"blkid -o value -s TYPE "+dev+"\"", errorcode).trimmed();
                 if (mounttype == "btrfs")
                 {
                     qDebug() << tr("Cannot backup ")+entry.value("name").toString()+tr(" :BTRFS file format");
@@ -163,6 +159,7 @@ bool BackupThread::processImage(const QVariantMap & entry)
     //  download_size = sum of tar.gz files sizes in bytes?
     ventry["download_size"] = downloadSize;
     // no icon entry to use default
+    ventry.remove("icon");
     Json::saveToFile(backupFolder+"/os.json", ventry);
 
 

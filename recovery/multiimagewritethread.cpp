@@ -938,7 +938,6 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
 
 void MultiImageWriteThread::postInstallConfig(OsInfo *image, const QString &part, const QString &customName)
 {
-    MYDEBUG
     const QString folder = image->folder();
 
     QString cmdline = getFileContents("/proc/cmdline");
@@ -1052,7 +1051,6 @@ QStringList MultiImageWriteThread::parseQuotedString(const QString &tarfile, int
 
 void MultiImageWriteThread::testForCustomFile(const QString &baseName, const QString &ext)
 {
-    MYDEBUG
     //Try to process a customName.tar file
     QString testfile = _srcFolder+"/"+baseName+ext;
     QFileInfo fi(testfile);
@@ -1065,7 +1063,6 @@ void MultiImageWriteThread::testForCustomFile(const QString &baseName, const QSt
 
 void MultiImageWriteThread::processEntry(const QString &srcFolder, const QString &entry1)
 {
-    MYDEBUG
     if (entry1.length()>0 && entry1.at(0)=='@')
     {
         DBG( "Processing " + entry1 + " in " + srcFolder);

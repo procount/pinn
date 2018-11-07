@@ -3012,7 +3012,6 @@ void MainWindow::startImageDownload()
 
 void MainWindow::startImageBackup()
 {
-    MYDEBUG
     _piDrivePollTimer.stop();
     // The drive is already mounted R/W from on_actionBackup_triggered
 
@@ -3065,10 +3064,10 @@ void MainWindow::startImageBackup()
 
                 QString fname = "/tmp/size"+QString::number(i)+".txt";
 
-                cmd = "sh -c \"grep "+part+" /tmp/df.txt >/tmp/sizes.txt\""; qDebug()<<cmd; QProcess::execute(cmd);
-                cmd = "sh -c \"sed -i 's/ \\+/ /g' /tmp/sizes.txt\""; qDebug()<<cmd; QProcess::execute(cmd);
+                cmd = "sh -c \"grep "+part+" /tmp/df.txt >/tmp/sizes.txt\""; QProcess::execute(cmd);
+                cmd = "sh -c \"sed -i 's/ \\+/ /g' /tmp/sizes.txt\""; QProcess::execute(cmd);
                 //get USED space in 1K blocks
-                cmd = "sh -c \"cat /tmp/sizes.txt | cut -d ' ' -f 3 >"+fname+"\""; qDebug()<<cmd; QProcess::execute(cmd);
+                cmd = "sh -c \"cat /tmp/sizes.txt | cut -d ' ' -f 3 >"+fname+"\""; QProcess::execute(cmd);
 
                 QByteArray size = getFileContents(fname).trimmed(); //in KB
                 qulonglong lsize = size.toULongLong();
@@ -3089,7 +3088,6 @@ void MainWindow::startImageBackup()
             entry["partsizes"] = partSizes;
             entry["backupsize"] = overall*1024; //Convert from kB to bytes -> Used to show read progress
             item->setData(Qt::UserRole,entry);
-            qDebug() << entry;
 
             bt->addImage(entry);
             if (!slidesFolder.isEmpty())
@@ -3645,7 +3643,6 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
 
 void MainWindow::addImagesFromUSB(const QString &device)
 {
-    MYDEBUG
     QDir dir;
     QString mntpath = "/tmp/media/"+device;
 
