@@ -92,21 +92,21 @@ bool BackupThread::processImage(const QVariantMap & entry)
             pmap.remove("tarball");
             //Check for emptyfs. Is it still empty? If not, remove attribute.
             pmap.remove("empty_fs");
-            //Check for fstype=="raw" ->image file. Check partition size is still the same and hasn't been expanded
+            //Check for fstype=="raw" ->image file.
             if (pmap.value("filesystem_type").toString() =="raw")
             {
                 int errorcode;
-                QString mounttype = readexec(true, "mount | grep /dev/sda1 | cut -d ' ' -f 5", errorcode);
+
+                QString mounttype = readexec(true, "blkid -o value -s TYPE "+dev, errorcode);
                 if (mounttype == "btrfs")
                 {
                     qDebug() << "Cannot backup BTRFS partition";
-                    //umount
                     return(false);
                 }
                 //If it was raw or empty & change to fat or ext4 tar file, change partition parameters.
                 pmap["filesystem_type"] = mounttype;
-                //Assume ext2 or 4
-                pmap["mkfs_options"] = "-O ^huge_file";
+                if (mounttype.left(3)=="ext")
+                    pmap["mkfs_options"] = "-O ^huge_file";
             }
             pmap["uncompressed_tarball_size"] = tarballsizes[i].toULongLong();
             if (i==0)
