@@ -1274,7 +1274,7 @@ void MainWindow::on_actionCancel_triggered()
     close();
 }
 
-void MainWindow::onCompleted()
+void MainWindow::onCompleted(int arg)
 {
     int ret = QMessageBox::Ok;
 
@@ -1298,9 +1298,14 @@ void MainWindow::onCompleted()
         }
         else if (_eDownloadMode==MODE_BACKUP)
         {
+            QString info;
+            if (arg)
+                info = tr("OS(es) Backed up with errors.\nSee debug log for details");
+            else
+                info = tr("OS(es) Backed up Successfully.");
             ret = QMessageBox::information(this,
                                      tr("Backup OSes"),
-                                     tr("OS(es) Backed up Successfully."), QMessageBox::Ok);
+                                     info, QMessageBox::Ok);
             //addImagesFromUSB(partdev(_osdrive,1));
         }
         else
@@ -3098,7 +3103,7 @@ void MainWindow::startImageBackup()
     _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, _osdrive, this, true);
     _qpssd->setWindowTitle("Backing Up Images");
     connect(bt, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
-    connect(bt, SIGNAL(completed()), this, SLOT(onCompleted()));
+    connect(bt, SIGNAL(completed(int)), this, SLOT(onCompleted(int)));
     connect(bt, SIGNAL(error(QString)), this, SLOT(onError(QString)));
     connect(bt, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
     connect(bt, SIGNAL(newDrive(const QString&)), _qpssd , SLOT(changeDrive(const QString&)), Qt::BlockingQueuedConnection);
@@ -3640,10 +3645,12 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
 
 void MainWindow::addImagesFromUSB(const QString &device)
 {
+    MYDEBUG
     QDir dir;
     QString mntpath = "/tmp/media/"+device;
 
     dir.mkpath(mntpath);
+    QProcess::execute("umount /dev/"+device);
     if (QProcess::execute("mount -o ro /dev/"+device+" "+mntpath) != 0)
     {
         dir.rmdir(mntpath);
@@ -4349,8 +4356,14 @@ void MainWindow::on_actionBackup_triggered()
                     //- partition_setup.sh
                     cmd = "cp "+ settingsFolder+"/partition_setup.sh "+backupFolder;
                     QProcess::execute(cmd);
+
                     //- icon.png
-                    cmd = "cp "+ settingsFolder+"/icon.png "+backupFolder+"/"+backupName+".png";
+                    QString iconfilename;
+                    if (entry.contains("icon"))
+                        iconfilename = entry.value("icon").toString();
+                    else
+                        iconfilename = settingsFolder+"/icon.png";
+                    cmd = "cp "+ iconfilename+" "+backupFolder+"/"+backupName+".png";
                     QProcess::execute(cmd);
 
                     //- [Copy release_notes.txt?]

@@ -29,7 +29,7 @@ signals:
     void error(const QString &msg);
     void statusUpdate(const QString &msg);
     void parsedImagesize(qint64 size);
-    void completed();
+    void completed(int errors);
     void runningMKFS();
     void finishedMKFS();
     void newDrive(const QString&);

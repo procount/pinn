@@ -10,6 +10,7 @@
 #include <QDir>
 #include <QFile>
 #include <QDebug>
+#include <QMessageBox>
 #include <QProcess>
 #include <QProcessEnvironment>
 #include <QSettings>
@@ -45,16 +46,17 @@ void BackupThread::run()
     emit parsedImagesize(totalDownloadSize);
 
     /* Process each image */
+    int errors=0;
     foreach (QVariantMap entry, _images)
     {
         // for each partition
         if (!processImage(entry))
-            return;
+            errors++;
     }
 
     emit statusUpdate(tr("Finish writing (sync)"));
     sync();
-    emit completed();
+    emit completed(errors);
 }
 
 #define copyentry(key1,key2) \
@@ -87,7 +89,7 @@ bool BackupThread::processImage(const QVariantMap & entry)
         {
             //Add "supports_archive" to prevent unsupported OSes from being backed up.
             //what if partclone?
-
+            QString dev = partdevices[i].toString();
             QVariantMap pmap = backuplist[i].toMap();
             pmap.remove("tarball");
             //Check for emptyfs. Is it still empty? If not, remove attribute.
@@ -97,16 +99,18 @@ bool BackupThread::processImage(const QVariantMap & entry)
             {
                 int errorcode;
 
-                QString mounttype = readexec(true, "blkid -o value -s TYPE "+dev, errorcode);
+                QString mounttype = readexec(true, "sh -c \"blkid -o value -s TYPE "+dev+"\"", errorcode).trimmed();
+                qDebug() << errorcode;
                 if (mounttype == "btrfs")
                 {
-                    qDebug() << "Cannot backup BTRFS partition";
+                    qDebug() << tr("Cannot backup ")+entry.value("name").toString()+tr(" :BTRFS file format");
                     return(false);
                 }
                 //If it was raw or empty & change to fat or ext4 tar file, change partition parameters.
                 pmap["filesystem_type"] = mounttype;
                 if (mounttype.left(3)=="ext")
                     pmap["mkfs_options"] = "-O ^huge_file";
+
             }
             pmap["uncompressed_tarball_size"] = tarballsizes[i].toULongLong();
             if (i==0)

@@ -72,14 +72,15 @@ QByteArray getRemoteFile(const QString &url)
 
 QString readexec(int log, const QString &cmd, int &errorcode)
 {
+    //NOTE: Often need to use "sh -c \"...\""
+
     QProcess proc;
     QString output;
-    //int errorcode=0;
 
+    proc.setProcessChannelMode(proc.MergedChannels);
     proc.start(cmd);
     proc.waitForFinished(-1);
     errorcode = proc.exitCode();
-    proc.setProcessChannelMode(proc.MergedChannels);
     output = proc.readAll();
 
     if (log)
