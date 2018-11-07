@@ -71,25 +71,63 @@ bool BackupThread::processImage(const QVariantMap & entry)
     //Read the os.json and partitions.json files into pInfo
     OsInfo * pOsInfo = new OsInfo(backupFolder, "", this);
     QList<PartitionInfo *> *partitions = pOsInfo->partitions();
-    int i=0;
     QVariantList partdevices = entry.value("partitions").toList();
-    qint64 downloadSize=0L;
 
     QDir dir;
     if (!dir.exists("/tmp/src"))
         dir.mkdir("/tmp/src");
 
+    //partitions.json
+    QVariantList tarballsizes = entry.value("partsizes").toList(); //in MB
+    QVariantMap backupmap = Json::loadFromFile(backupFolder+"/partitions.json").toMap();
+    if (backupmap.contains("partitions"))
+    {
+        QVariantList backuplist = backupmap.value("partitions").toList();
+        for (int i=0; i<backuplist.count(); i++)
+        {
+            //Add "supports_archive" to prevent unsupported OSes from being backed up.
+            //what if partclone?
+
+            QVariantMap pmap = backuplist[i].toMap();
+            pmap.remove("tarball");
+            //Check for emptyfs. Is it still empty? If not, remove attribute.
+            pmap.remove("empty_fs");
+            //Check for fstype=="raw" ->image file. Check partition size is still the same and hasn't been expanded
+            if (pmap.value("filesystem_type").toString() =="raw")
+            {
+                int errorcode;
+                QString mounttype = readexec(true, "mount | grep /dev/sda1 | cut -d ' ' -f 5", errorcode);
+                if (mounttype == "btrfs")
+                {
+                    qDebug() << "Cannot backup BTRFS partition";
+                    //umount
+                    return(false);
+                }
+                //If it was raw or empty & change to fat or ext4 tar file, change partition parameters.
+                pmap["filesystem_type"] = mounttype;
+                //Assume ext2 or 4
+                pmap["mkfs_options"] = "-O ^huge_file";
+            }
+            pmap["uncompressed_tarball_size"] = tarballsizes[i].toULongLong();
+            if (i==0)
+                pmap["partition_size_nominal"] = tarballsizes[i].toULongLong()+100; //extra 100MB for boot
+            else
+                pmap["partition_size_nominal"] = tarballsizes[i].toULongLong()+500; //extra 500MB for other partitions
+            backuplist[i] = pmap;
+        }
+        backupmap["partitions"] = backuplist;
+    }
+    Json::saveToFile(backupFolder+"/partitions.json", backupmap);
+
+    qint64 downloadSize=0L;
+
+
+    int i=0;
     foreach (PartitionInfo * pPart, *partitions)
     {
         QString label = pPart->label();
         QString dev = partdevices[i].toString();
         QByteArray fstype   = pPart->fsType();
-
-        //Check for fstype=="raw" ->image file. Check partition size is still the same and hasn't been expanded
-        //Check for emptyfs. Is it still empty? If not, remove attribute.
-        //Add "supports_archive" to prevent unsupported OSes from being backed up.
-        //If it was raw or empty & change to fat or ext4 tar file, change partition parameters.
-        //what if partclone?
 
         //   Mount it
         QProcess::execute("mount -o ro "+dev+" /tmp/src");
@@ -123,26 +161,6 @@ bool BackupThread::processImage(const QVariantMap & entry)
     // no icon entry to use default
     Json::saveToFile(backupFolder+"/os.json", ventry);
 
-    //partitions.json
-    QVariantList tarballsizes = entry.value("partsizes").toList(); //in MB
-    QVariantMap backupmap = Json::loadFromFile(backupFolder+"/partitions.json").toMap();
-    if (backupmap.contains("partitions"))
-    {
-        QVariantList backuplist = backupmap.value("partitions").toList();
-        for (int i=0; i<backuplist.count(); i++)
-        {
-            QVariantMap pmap = backuplist[i].toMap();
-            pmap.remove("tarball");
-            pmap["uncompressed_tarball_size"] = tarballsizes[i].toULongLong();
-            if (i==0)
-                pmap["partition_size_nominal"] = tarballsizes[i].toULongLong()+100; //extra 100MB for boot
-            else
-                pmap["partition_size_nominal"] = tarballsizes[i].toULongLong()+500; //extra 500MB for other partitions
-            backuplist[i] = pmap;
-        }
-        backupmap["partitions"] = backuplist;
-    }
-    Json::saveToFile(backupFolder+"/partitions.json", backupmap);
 
     return(true);
 }

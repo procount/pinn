@@ -37,6 +37,7 @@ typedef int eNAMEPARTS;
 QByteArray getFileContents(const QString &filename);
 void putFileContents(const QString &filename, const QByteArray &data);
 QByteArray getRemoteFile(const QString &url);
+QString readexec(int log, const QString &cmd, int &errorcode);
 void getOverscan(int &top, int &bottom, int &left, int &right);
 bool nameMatchesRiscOS(const QString &name);
 uint readBoardRevision();

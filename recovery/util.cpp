@@ -70,6 +70,24 @@ QByteArray getRemoteFile(const QString &url)
     return(result);
 }
 
+QString readexec(int log, const QString &cmd, int &errorcode)
+{
+    QProcess proc;
+    QString output;
+    //int errorcode=0;
+
+    proc.start(cmd);
+    proc.waitForFinished(-1);
+    errorcode = proc.exitCode();
+    proc.setProcessChannelMode(proc.MergedChannels);
+    output = proc.readAll();
+
+    if (log)
+        qDebug() << cmd << "\n" << output << "\n";
+    return (output);
+}
+
+
 /* Utility function to query current overscan setting */
 #define VCMSG_GET_OVERSCAN 0x0004000a
 #define VCMSG_SET_OVERSCAN 0x0004800a
