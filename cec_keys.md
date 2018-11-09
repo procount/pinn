@@ -17,7 +17,8 @@ The default mapping looks like this:
             "Key_W":        "CEC_User_Control_Number2",
             "Key_H":        "CEC_User_Control_Number3",
             "Key_N":        "CEC_User_Control_Number4",
-            "Key_Escape":   "CEC_User_Control_Number5"
+            "KEY_C":        "CEC_User_Control_Number5",
+            "Key_Escape":   "CEC_User_Control_Number6"
         },
         "Archival": {
             "Key_D":        "CEC_User_Control_Number1",
@@ -30,7 +31,8 @@ The default mapping looks like this:
             "Key_P":        "CEC_User_Control_Number2",
             "Key_F":        "CEC_User_Control_Number3",
             "Key_R":        "CEC_User_Control_Number4",
-            "Key_N":        "CEC_User_Control_Number5"
+            "Key_L":        "CEC_User_Control_Number5",
+            "Key_N":        "CEC_User_Control_Number6"
         },
         "any": {
             "Key_Space":    "CEC_User_Control_Play",

@@ -1,6 +1,7 @@
 #include "mydebug.h"
 #include <QString>
 
+extern QString readexec(int log, const QString &cmd, int &errorcode);
 
 int MyDebug::level = 0;
 
@@ -9,10 +10,12 @@ MyDebug::MyDebug(const char * func) :
 {
 #if DBG_FUNC
     QString output;
+    int errorcode;
     for (int i=0; i< level ; i++)
         output += " ";
     output += ">";
     output += name;
+    output += "   "+readexec(0,"sh -c \"mount | grep settings | cut -d ' ' -f 6\"", errorcode).trimmed();
     qDebug() << output;
 #endif
     level++;

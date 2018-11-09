@@ -10,6 +10,8 @@
 #include "initdrivethread.h"
 #include "mbr.h"
 #include "util.h"
+#include "mydebug.h"
+
 #include "config.h"
 #include <QProcess>
 #include <QFile>
@@ -24,6 +26,7 @@
 InitDriveThread::InitDriveThread(const QString &drive, QObject *parent, const QString& P1size ) :
     QThread(parent), _drive(drive)
 {
+    TRACE
     //P1size = "+nnn", means additional space
     //P1size = "nnn", means total space
     QString value=P1size;
@@ -37,6 +40,7 @@ InitDriveThread::InitDriveThread(const QString &drive, QObject *parent, const QS
 
 void InitDriveThread::run()
 {
+    TRACE
     QDir dir;
 
     emit statusUpdate("Waiting for SD card to be ready");
@@ -150,6 +154,7 @@ void InitDriveThread::run()
 
 bool InitDriveThread::method_resizePartitions()
 {
+    TRACE
     uint newStartOfRescuePartition = getFileContents(sysclassblock(_drive, 1)+"/start").trimmed().toUInt(); //Sectors
     uint newSizeOfRescuePartition  = sizeofBootFilesInKB()*1.024/1000 + 100; //MB
 
@@ -308,6 +313,7 @@ bool InitDriveThread::method_resizePartitions()
 
 int InitDriveThread::sizeofBootFilesInKB()
 {
+    TRACE
     QProcess proc;
     proc.start("du -s /mnt");
     proc.waitForFinished();
@@ -316,6 +322,7 @@ int InitDriveThread::sizeofBootFilesInKB()
 
 uint InitDriveThread::sizeofSDCardInBlocks()
 {
+    TRACE
     QFile f(sysclassblock(_drive)+"/size");
     f.open(f.ReadOnly);
     uint blocks = f.readAll().trimmed().toUInt();
@@ -326,21 +333,25 @@ uint InitDriveThread::sizeofSDCardInBlocks()
 
 bool InitDriveThread::mountSystemPartition()
 {
+    TRACE
     return QProcess::execute("mount "+partdev(_drive, 1)+" /mnt") == 0 || QProcess::execute("mount "+_drive+" /mnt") == 0;
 }
 
 bool InitDriveThread::umountSystemPartition()
 {
+    TRACE
     return QProcess::execute("umount /mnt") == 0;
 }
 
 bool InitDriveThread::formatSettingsPartition()
 {
+    TRACE
     return QProcess::execute("/usr/sbin/mkfs.ext4 -L SETTINGS "+partdev(_drive, SETTINGS_PARTNR)) == 0;
 }
 
 bool InitDriveThread::zeroMbr()
 {
+    TRACE
     /* First 512 bytes should be enough to zero out the MBR, but we zero out 8 kb to make sure we also erase any
      * GPT primary header and get rid of any partitionless FAT headers.
      * also zero out the last 4 kb of the card to get rid of any secondary GPT header
@@ -354,6 +365,7 @@ bool InitDriveThread::zeroMbr()
 #ifdef RISCOS_BLOB_FILENAME
 bool InitDriveThread::writeRiscOSblob()
 {
+    TRACE
     qDebug() << "writing RiscOS blob";
     return QProcess::execute("/bin/dd conv=fsync bs=512 if=" RISCOS_BLOB_FILENAME " of="+_drive+" seek="+QString::number(RISCOS_BLOB_SECTOR_OFFSET)) == 0;
 }
@@ -361,6 +373,7 @@ bool InitDriveThread::writeRiscOSblob()
 
 bool InitDriveThread::method_reformatDrive()
 {
+    TRACE
     emit statusUpdate(tr("Saving boot files to memory"));
     if (!saveBootFiles() )
     {
@@ -405,11 +418,13 @@ bool InitDriveThread::method_reformatDrive()
 
 bool InitDriveThread::saveBootFiles()
 {
+    TRACE
     return QProcess::execute("cp -a /mnt /tmp") == 0;
 }
 
 bool InitDriveThread::restoreBootFiles()
 {
+    TRACE
     bool status = QProcess::execute("cp -a /tmp/mnt /") == 0;
     QProcess::execute("rm -rf /tmp/mnt");
     return status;
@@ -417,11 +432,13 @@ bool InitDriveThread::restoreBootFiles()
 
 bool InitDriveThread::formatBootPartition()
 {
+    TRACE
     return QProcess::execute("/sbin/mkfs.fat -n RECOVERY "+partdev(_drive, 1)) == 0;
 }
 
 bool InitDriveThread::partitionDrive()
 {
+    TRACE
     /* Partition layout:
      *
      * First 4 MB kept empty for alignment
@@ -473,6 +490,7 @@ bool InitDriveThread::partitionDrive()
 
 bool InitDriveThread::setDiskId()
 {
+    TRACE
     mbr_table mbr;
 
     QFile f(_drive);
@@ -507,6 +525,7 @@ bool InitDriveThread::setDiskId()
  * Just in case the user wants to start booting from HDD later */
 bool InitDriveThread::formatUsbDrive()
 {
+    TRACE
     zeroMbr();
     partitionDrive();
     setDiskId();

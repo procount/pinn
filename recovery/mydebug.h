@@ -26,6 +26,9 @@
 #define MSG()
 #endif
 
+#define TRACEFN MYDEBUG
+#define TRACE TRACEFN
+
 class MyDebug
 {
 public:
