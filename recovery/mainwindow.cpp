@@ -642,20 +642,23 @@ void MainWindow::populate()
     /* Ask user to wait while list is populated */
     if (!_allowSilent)
     {
-        _qpd = new QProgressDialog(tr("Please wait while PINN initialises"), QString(), 0, 0, this);
-        _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
-        _qpd->show();
-
-        _qpd->installEventFilter(&counter);
-
         int timeout = _networkTimeout;
-        if (getFileContents("/settings/wpa_supplicant.conf").contains("ssid="))
+        if (timeout>0)
         {
-            /* Longer timeout if we have a wifi network configured */
-            timeout += 4000;
+            _qpd = new QProgressDialog(tr("Please wait while PINN initialises"), QString(), 0, 0, this);
+            _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+            _qpd->show();
+
+            _qpd->installEventFilter(&counter);
+
+            if (getFileContents("/settings/wpa_supplicant.conf").contains("ssid="))
+            {
+                /* Longer timeout if we have a wifi network configured */
+                timeout += 4000;
+            }
+            QTimer::singleShot(timeout, this, SLOT(hideDialogIfNoNetwork()));
+            _time.start();
         }
-        QTimer::singleShot(timeout, this, SLOT(hideDialogIfNoNetwork()));
-        _time.start();
     }
 
     _settings = new QSettings("/settings/noobs.conf", QSettings::IniFormat, this);
