@@ -129,6 +129,12 @@ bool nameMatchesRiscOS(const QString &name)
     return name.contains("risc", Qt::CaseInsensitive);
 }
 
+bool nameMatchesWindows(const QString &name)
+{
+    return name.contains("windows_10", Qt::CaseInsensitive);
+}
+
+
 static uint revision = 0;
 uint readBoardRevision()
 {

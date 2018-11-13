@@ -3697,7 +3697,7 @@ void MainWindow::filterList()
             {
                 /* Otherwise just assume Linux does, and RiscOS and Windows do not */
                 QString name = m.value("name").toString();
-                supportsUsb = (!nameMatchesRiscOS(name) && !name.contains("Windows", Qt::CaseInsensitive));
+                supportsUsb = (!nameMatchesRiscOS(name) && !nameMatchesWindows(name));
             }
 
             if (supportsUsb)
@@ -4121,13 +4121,14 @@ void MainWindow::on_actionReplace_triggered()
     while (it != installedList.end())
     {
         QVariantMap installedMap = (*it)->data(Qt::UserRole).toMap();
+        QString name = installedMap.value("name").toString();
         //Ignore PINN if it is selected
-        if (installedMap.value("name").toString() =="PINN")
+        if (name =="PINN")
         {
             it = installedList.erase(it);
         }
-        //Ignore RISC OS if it is selected
-        else if (nameMatchesRiscOS(installedMap.value("name").toString()))
+        //Ignore RISC OS or Windows if it is selected
+        else if (nameMatchesRiscOS(name) || nameMatchesWindows(name))
         {
             it = installedList.erase(it);
         }
@@ -4141,8 +4142,9 @@ void MainWindow::on_actionReplace_triggered()
     while (it != replacementList.end())
     {
         QVariantMap replacementMap = (*it)->data(Qt::UserRole).toMap();
+        QString name = replacementMap.value("name").toString();
         //Ignore RISC OS if it is selected
-        if (nameMatchesRiscOS(replacementMap.value("name").toString()))
+        if (nameMatchesRiscOS(name) || nameMatchesWindows(name))
             it = replacementList.erase(it);
         else
             ++it;

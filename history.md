@@ -5,6 +5,15 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+## V2.8.5.7
+
+- **Firmware**                - Disabled firmware downgrade on 3B+
+- **Clear**                   - Added Clear button to clear all selections
+- **Kernel Bump**             - Linux kernel 4.14.74, firmware and userland bumped to match NOOBS 2.9
+- **Replace**                 - Removed RiscOS & Windows_10 from OS replacement
+- **SilentInstall**           - Fixed waiting for USB images
+- **networktimeout**          - 0 means wait indefinitely for network before silentinstall
+
 ## V2.8.5.5
 
 - **Boot menu**               - Sticky default now uses bootmenutimeout

@@ -40,6 +40,7 @@ void putFileContents(const QString &filename, const QByteArray &data);
 QByteArray getRemoteFile(const QString &url);
 void getOverscan(int &top, int &bottom, int &left, int &right);
 bool nameMatchesRiscOS(const QString &name);
+bool nameMatchesWindows(const QString &name);
 uint readBoardRevision();
 bool canBootOs(const QString& name, const QVariantMap& values);
 bool setRebootPartition(QByteArray partition);

@@ -435,3 +435,13 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 
 - **Boot menu**               - Sticky default now uses bootmenutimeout
 - **rebootp**                 - Added rebootp command to recovery shell
+
+## V2.8.5.7
+
+- **Firmware**                - Disabled firmware downgrade on 3B+
+- **Clear**                   - Added Clear button to clear all selections
+- **Kernel Bump**             - Linux kernel 4.14.74, firmware and userland bumped to match NOOBS 2.9
+- **Replace**                 - Removed RiscOS & Windows_10 from OS replacement
+- **SilentInstall**           - Fixed waiting for USB images
+- **networktimeout**          - 0 means wait indefinitely for network before silentinstall
+

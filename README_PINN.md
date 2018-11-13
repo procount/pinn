@@ -7,7 +7,7 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v2.8.5.5
+This README relates to v2.8.5.7
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -139,6 +139,7 @@ There are three toolbars:
   - **[Wifi](#wireless-wifi-networks)**: configures the wifi.
   - **[Help](#online-help-via-web-browser)**: [Networking Required] Opens a browser that displays the Raspberry Pi Help page (http://www.raspberrypi.org/help/), allowing people to quickly access help and troubleshooting information.
   - **[Info](#info-on-os)**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
+  - **[Clear](#clear)**: Clears all selected OSes from the available and installed OS lists.
   - **[Exit](#exit)**: Quits PINN and reboots the Pi into the OS boot menu.
 - **[Archival](#archival-menu)**
   - **[Download](#download)**: Downloads an OS for offline installation.
@@ -381,7 +382,7 @@ The following is a complete list of all the PINN options that can be added to th
 
 - **remotetimeout=\<time in secs\>**: When used in conjunction with `forcetrigger` it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot. This permits normal default OS booting, yet also allows for a remote user to interrupt the startup process to change the OS to boot, or perform any remote maintenance. Any screen interaction over VNC will cancel the timeout. This additional timeout will lengthen the boot time into a default OS, so choose a value that is long enough to allow VNC access, yet short enough not to be annoying under normal circumstances.
 
-- **networktimeout=\<time in secs\>**: PINN will wait for a default timeout of 8 seconds to detect whether a network is connected or not. (This is extended by an additional 4 seconds if wifi is configured). This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.
+- **networktimeout=\<time in secs\>**: PINN will wait for a default timeout of 8 seconds to detect whether a network is connected or not. (This is extended by an additional 4 seconds if wifi is configured). This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish. Setting a value of 0 will disable the "Please wait while PINN initialises" progress box and will wait indefinitely for the network before installing any required OSes.
 
 - **disablesafemode**: If you have external hardware or an addon board connected to the GPIO header, you may find that pin 5 is being pulled low and accidentally triggering "Safe Mode" by entering the rescueshell. To prevent this, you can append `disablesafemode` to the `recovery.cmdline` file.
 
@@ -596,7 +597,7 @@ If a particular OS you want to install is on a particular source, you can force 
 `waitall` is a shorthand way of including all OSes and is equivalent to `waitsd,waitusb,waitnetwork`
 
 PINN only carries out the OS selection once all sources are present. So if you wait for a source that is not present, PINN may wait indefinitely until it appears.
-(This is modified in v2.8.5.1 to try and avoid indefinite waits).
+This is modified in v2.8.5.1 to try and avoid indefinite waits. However, adding a `networktimeout=0` option will wait indefinitely for the network to be present before silently installing.
 
 The `select=` option only determines which OSes are selected in the recovery menu at startup; it will not do anything with the listed OSes by itself.
 By adding the `silentinstall` option as well, then all selected OSes will be silently installed without user intervention. However, `silentinstall` only works 
@@ -635,7 +636,7 @@ For this reason, it may be beneficial to install a Data Partition on your instal
 In this way, the user data can be preserved when the OS is re-installed.
 
 It is advisable to only use named OSes in the `select=` option. Using any of the general options like `allinstalled` & `allnetwork` etc. May result in unexpected consequences!
-Likewise, you may wish to resict your installation sources to a single location with judiciious use of the `disableusbimages`, `disablesdimages` and the network source options
+Likewise, you may wish to restrict your installation sources to a single location with judicious use of the `disableusbimages`, `disablesdimages` and the network source options
 to avoid a newer OS being installed from an unintended source.
 
 ## Installation Progress
@@ -721,6 +722,12 @@ The built-in Arora web browser allows you to easily get help via the Raspberry P
 The Info button will take you to the web page specific to the currently highlighted OS in the selection list (network connection required).
 
 ![alt text](screenshots/info.png "The Info button takes you to an OS webpage.")
+
+## Clear
+
+The clear button will de-select any selected OSes either in the available or isntalled lists. On startup, PINN will auto-select any installed OSes, but this may be overridden
+by the select option. In any case, this button provides a quick way of de-selecting all OSes in case you want to start afresh, without having to track them all down in the 
+various tabs and windows.
 
 ## Exit
 
@@ -842,7 +849,7 @@ PINN itself is included in the list of installed OSes. If it is the ONLY OS to b
 
 ## Replace Individual OSes
 
-The `replace` function will allow the replacement of an installed OS with another different OS, provided the number of partitions in the two OSes is the same and the new OS will fit within the existing partition sizes. So it will work with most OSes, but not for those that use a non-standard partition layout, like Windows IoT or some Android versions. Any other installed OSes will remain unaltered.
+The `replace` function will allow the replacement of an installed OS with another different OS, provided the number of partitions in the two OSes is the same and the new OS will fit within the existing partition sizes. So it will work with most OSes, but not for those that use a non-standard partition layout. Windows IoT and RiscOS are specifically excluded and it is unlikely many Android versions witll work, but your mileage may vary. Any other installed OSes will remain unaltered.
 
 This is particularly useful with the [Project Spaces](#project-spaces) feature, which will allow OS space to be reserved for installing an OS at a later date.
 
