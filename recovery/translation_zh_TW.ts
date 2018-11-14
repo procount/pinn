@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BootSelectionDialog</name>
     <message>
@@ -444,12 +444,12 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="679"/>
         <source>Clear (c)</source>
-        <translation type="unfinished"></translation>
+        <translation>清除  (c)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="682"/>
         <source>Clear selection</source>
-        <translation type="unfinished"></translation>
+        <translation>清除選擇</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="484"/>
@@ -878,7 +878,8 @@ Reboot PINN to take account of these OSes?</source>
         <location filename="mainwindow.cpp" line="4157"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
-        <translation type="unfinished"></translation>
+        <translation>錯誤：未選取作業系統
+（不要選擇 RISC OS 或 PINN）</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4185"/>
