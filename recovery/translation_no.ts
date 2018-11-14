@@ -821,8 +821,8 @@ Would you like to make this setting permanent?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2958"/>
-        <location filename="mainwindow.cpp" line="4154"/>
-        <location filename="mainwindow.cpp" line="4182"/>
+        <location filename="mainwindow.cpp" line="4156"/>
+        <location filename="mainwindow.cpp" line="4184"/>
         <source>Replace OSes</source>
         <translation type="unfinished"></translation>
     </message>
@@ -918,13 +918,13 @@ Would you like to make this setting permanent?</source>
         <translation>Trykk ESC for å avbryte</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4155"/>
+        <location filename="mainwindow.cpp" line="4157"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4183"/>
+        <location filename="mainwindow.cpp" line="4185"/>
         <source>Warning: No OSes selected
 </source>
         <translation type="unfinished"></translation>
@@ -936,7 +936,7 @@ Would you like to make this setting permanent?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1130"/>
-        <location filename="mainwindow.cpp" line="4173"/>
+        <location filename="mainwindow.cpp" line="4175"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation type="unfinished"></translation>

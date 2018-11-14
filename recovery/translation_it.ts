@@ -830,8 +830,8 @@ Vuoi rendere questa impostazione permanente?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2958"/>
-        <location filename="mainwindow.cpp" line="4154"/>
-        <location filename="mainwindow.cpp" line="4182"/>
+        <location filename="mainwindow.cpp" line="4156"/>
+        <location filename="mainwindow.cpp" line="4184"/>
         <source>Replace OSes</source>
         <translation>Sostiuisci SO</translation>
     </message>
@@ -927,13 +927,13 @@ Vuoi rendere questa impostazione permanente?</translation>
         <translation>Premi ESC per annullare</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4155"/>
+        <location filename="mainwindow.cpp" line="4157"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4183"/>
+        <location filename="mainwindow.cpp" line="4185"/>
         <source>Warning: No OSes selected
 </source>
         <translation>Attenzione: nessun S.O. selezionato
@@ -946,7 +946,7 @@ Vuoi rendere questa impostazione permanente?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1130"/>
-        <location filename="mainwindow.cpp" line="4173"/>
+        <location filename="mainwindow.cpp" line="4175"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation> non è disponibile.
