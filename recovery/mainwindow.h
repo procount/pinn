@@ -104,6 +104,7 @@ protected:
     QProcess * _proc;
 
     void untarFirmware();
+    bool isLegacyHardware();
     void checkPinnFirmware();
     virtual void changeEvent(QEvent * event);
     virtual bool eventFilter(QObject *obj, QEvent *event);

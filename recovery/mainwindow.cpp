@@ -523,6 +523,16 @@ void MainWindow::untarFirmware()
     }
 }
 
+bool MainWindow::isLegacyHardware()
+{
+    bool legacy = true;
+
+    if ( _model.contains("Raspberry Pi 3 Model B Plus Rev", Qt::CaseInsensitive) ||
+         _model.contains("Raspberry Pi 3 Model A Plus Rev", Qt::CaseInsensitive) )
+        legacy=false;
+    return legacy;
+}
+
 void MainWindow::checkPinnFirmware()
 {
     TRACE
@@ -565,7 +575,7 @@ void MainWindow::checkPinnFirmware()
     //precondition: already read g_nofirmware setting but not processed
 
     //If we are not on 3B+,
-    if ( !_model.contains("Raspberry Pi 3 Model B Plus Rev", Qt::CaseInsensitive))
+    if ( isLegacyHardware())
     {
         // on legacy h/w
 
@@ -602,7 +612,7 @@ void MainWindow::updateFirmware_button()
     else
         ui->actionFirmware->setIcon(QIcon(":/icons/arrow_down.png"));
 
-    ui->actionFirmware->setEnabled( ! _model.contains("Raspberry Pi 3 Model B Plus Rev", Qt::CaseInsensitive));
+    ui->actionFirmware->setEnabled( isLegacyHardware() );
 }
 
 void MainWindow::on_actionFirmware_triggered()
