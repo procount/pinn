@@ -444,12 +444,12 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.ui" line="679"/>
         <source>Clear (c)</source>
-        <translation type="unfinished"></translation>
+        <translation>Azzera (c)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="682"/>
         <source>Clear selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Azzera selezione</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="484"/>
@@ -930,7 +930,8 @@ Vuoi rendere questa impostazione permanente?</translation>
         <location filename="mainwindow.cpp" line="4157"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore: nessun S.O. selezionato
+(non scegliere OS RISC o PINN)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4185"/>
