@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BackupThread</name>
     <message>
         <location filename="backupthread.cpp" line="60"/>
         <source>Finish writing (sync)</source>
-        <translation type="unfinished">寫入完成 (sync)</translation>
+        <translation>寫入完成 (sync)</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="106"/>
         <source>Cannot backup </source>
-        <translation type="unfinished"></translation>
+        <translation>無法備份 </translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="106"/>
         <source> :BTRFS file format</source>
-        <translation type="unfinished"></translation>
+        <translation> :BTRFS 檔案格式</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="137"/>
         <source>%1: Updating partitions.json</source>
-        <translation type="unfinished"></translation>
+        <translation>%1：正在更新 partitions.json</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="162"/>
         <source>%1: Writing image (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1：正在寫入映像檔 (%2)</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="168"/>
         <source>%1: Archiving (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1：正在歸檔 (%2)</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="175"/>
         <source>Error writing </source>
-        <translation type="unfinished"></translation>
+        <translation>寫入錯誤 </translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="175"/>
         <source>: Disk full?</source>
-        <translation type="unfinished"></translation>
+        <translation>: 磁碟已滿？</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="209"/>
         <source>%1: Updating os.json</source>
-        <translation type="unfinished"></translation>
+        <translation>%1：正在更新 os.json</translation>
     </message>
 </context>
 <context>
@@ -121,12 +121,12 @@
     <message>
         <location filename="datetimedialog.ui" line="14"/>
         <source>Set Date &amp; Time</source>
-        <translation type="unfinished"></translation>
+        <translation>設定日期與時間</translation>
     </message>
     <message>
         <location filename="datetimedialog.ui" line="52"/>
         <source>Please set the correct date and time below.</source>
-        <translation type="unfinished"></translation>
+        <translation>請在下方設定正確的時間與日期。</translation>
     </message>
 </context>
 <context>
@@ -505,27 +505,27 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="683"/>
         <source>Clear (c)</source>
-        <translation type="unfinished"></translation>
+        <translation>清除 (c)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="686"/>
         <source>Clear selection</source>
-        <translation type="unfinished"></translation>
+        <translation>清除選擇</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="698"/>
         <source>Time (t)</source>
-        <translation type="unfinished"></translation>
+        <translation>時間 (t)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="701"/>
         <source>Set Data &amp; Time</source>
-        <translation type="unfinished"></translation>
+        <translation>設定日期與時間</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="704"/>
         <source>T</source>
-        <translation type="unfinished"></translation>
+        <translation>T</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="485"/>
@@ -808,18 +808,19 @@ Reboot PINN to take account of these OSes?</source>
         <location filename="mainwindow.cpp" line="1356"/>
         <source>OS(es) Backed up with errors.
 See debug log for details</source>
-        <translation type="unfinished"></translation>
+        <translation>作業系統備份時發生錯誤。
+檢視除錯紀錄檔以取得更多資訊</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1358"/>
         <source>OS(es) Backed up Successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>作業系統備份成功。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1360"/>
         <location filename="mainwindow.cpp" line="4602"/>
         <source>Backup OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>備份作業系統</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1367"/>
@@ -881,34 +882,36 @@ See debug log for details</source>
     <message>
         <location filename="mainwindow.cpp" line="3231"/>
         <source>This backup may require </source>
-        <translation type="unfinished"></translation>
+        <translation>這個備份可能需要 </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3233"/>
         <source> MB of backup space, but only </source>
-        <translation type="unfinished"></translation>
+        <translation> MB 的備份空間，但只有 </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3235"/>
         <source> MB is available. This is only an estimate. If you continue, the backup may not complete successfully.
 
 Do you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation> MB 可用。這只是估計值。如果您繼續，備份可能無法成功完成。
+
+您想要繼續嗎？</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3236"/>
         <source>WARNING: Backup Space</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：備份空間</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3243"/>
         <source>Backup Info</source>
-        <translation type="unfinished"></translation>
+        <translation>備份資訊</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3243"/>
         <source>Always test your backups before relying on them</source>
-        <translation type="unfinished"></translation>
+        <translation>在依賴您備份前請測試它們</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3285"/>
@@ -1005,7 +1008,8 @@ Do you want to continue?</source>
         <location filename="mainwindow.cpp" line="4340"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
-        <translation type="unfinished"></translation>
+        <translation>錯誤：沒有已選取的作業系統
+（不要選取 RISC OS 或 PINN）</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4368"/>
@@ -1017,12 +1021,12 @@ Do you want to continue?</source>
     <message>
         <location filename="mainwindow.cpp" line="4461"/>
         <source>Warning: this will backup the selected Operating System(s).</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：這將會備份選定的作業系統。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4505"/>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：偵測到不支援的作業系統。PINN 目前無法正確備份下列的作業系統：</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1503"/>
@@ -1524,7 +1528,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="progressslideshowdialog.cpp" line="192"/>
         <source>%1 MB of %2 MB read (%3 MB/sec) Remaining: %4:%5:%6</source>
-        <translation type="unfinished"></translation>
+        <translation>%2 MB 中的 %1 MB 已讀取（%3 MB/秒）剩餘：%4:%5:%6</translation>
     </message>
     <message>
         <location filename="progressslideshowdialog.cpp" line="194"/>
@@ -1534,7 +1538,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="progressslideshowdialog.cpp" line="221"/>
         <source>%1 MB read (%2 MB/sec)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MB 已讀取（%2 MB/秒）</translation>
     </message>
     <message>
         <location filename="progressslideshowdialog.cpp" line="223"/>
@@ -1693,22 +1697,22 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="backupdialog.ui" line="14"/>
         <source>Set Backup Name</source>
-        <translation type="unfinished"></translation>
+        <translation>設定備份名稱</translation>
     </message>
     <message>
         <location filename="backupdialog.ui" line="61"/>
         <source>ID (date/time)</source>
-        <translation type="unfinished"></translation>
+        <translation>ID（日期／時間）</translation>
     </message>
     <message>
         <location filename="backupdialog.ui" line="77"/>
         <source>OS name</source>
-        <translation type="unfinished"></translation>
+        <translation>作業系統名稱</translation>
     </message>
     <message>
         <location filename="backupdialog.ui" line="122"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>描述</translation>
     </message>
 </context>
 <context>
@@ -1816,12 +1820,12 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="rerunsetup.cpp" line="63"/>
         <source>does not support re-running the setup script.</source>
-        <translation type="unfinished"></translation>
+        <translation>不支援重新執行設定指令稿。</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="72"/>
         <source> setup script needs to be updated.</source>
-        <translation type="unfinished"></translation>
+        <translation> 設定指令稿需要更新。</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="132"/>
