@@ -819,6 +819,7 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
 
     foreach (QString image,list)
     {
+        DBG(image);
         QString imagefolder = folder+"/"+image;
         if (!QFile::exists(imagefolder+"/os.json"))
             continue;
@@ -866,9 +867,10 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
             }
         }
     }
-
+    DBG("-------");
     for (QMap<QString,QVariantMap>::iterator i = images.begin(); i != images.end(); i++)
     {
+        DBG(i.value().value("name").toString());
         if (!i.value().contains("nominal_size"))
         {
             /* Calculate nominal_size based on information inside partitions.json */
@@ -1347,7 +1349,7 @@ void MainWindow::onCompleted(int arg)
         {
             ret = QMessageBox::information(this,
                                      tr("OS(es) downloaded"),
-                                     tr("OS(es) Downloaded Successfully.\nReboot PINN to take account of these OSes?"), QMessageBox::Ok|QMessageBox::Cancel);
+                                     tr("OS(es) Downloaded Successfully."), QMessageBox::Ok);
         }
         else if (_eDownloadMode==MODE_BACKUP)
         {
@@ -1359,7 +1361,6 @@ void MainWindow::onCompleted(int arg)
             ret = QMessageBox::information(this,
                                      tr("Backup OSes"),
                                      info, QMessageBox::Ok);
-            //addImagesFromUSB(partdev(_osdrive,1));
         }
         else
         {
@@ -1371,49 +1372,22 @@ void MainWindow::onCompleted(int arg)
     _qpssd->deleteLater();
     _qpssd = NULL;
 
-
-    if (_eDownloadMode==MODE_DOWNLOAD)
-    {
-        if (ret == QMessageBox::Ok)
-        {
-#if 0
-            addImagesFromUSB(partdev(_osdrive,1));
-#else
-            //@@Temporary solution....
-            // Shut down networking
-            QProcess::execute("ifdown -a");
-            // Unmount file systems
-            QProcess::execute("umount -ar");
-
-            //Reboot back into PINN
-            QByteArray partition("1");
-            setRebootPartition(partition);
-
-            // Reboot
-            reboot();
-
-            //@@What we really want to do is just refresh the dialog, but not possible yet.
-            //repopulate();
-#endif
-        }
-    }
-
     // Return back to main menu
     setEnabled(true);
     show();
     _silent=false;
-    // Update list of installed OSes.
-    ug->listInstalled->clear();
-    addInstalledImages();
-    updateInstalledStatus();
 
     if (_eDownloadMode == MODE_INSTALL)
     {
+        // Update list of installed OSes.
+        ug->listInstalled->clear();
+        addInstalledImages();
+        updateInstalledStatus();
+
         //Only close if there are bootable OSes
         if (_numBootableOS)
         {
             close();
-            return;
         }
     }
 }
@@ -2368,9 +2342,11 @@ QListWidgetItem *MainWindow::findItemByName(const QString &name)
         QVariantMap m = item->data(Qt::UserRole).toMap();
         if (m.value("name").toString() == name)
         {
+            DBG("Found");
             return item;
         }
     }
+    DBG("not found")
     return NULL;
 }
 
@@ -3127,6 +3103,7 @@ void MainWindow::startImageDownload()
     connect(imageDownloadThread, SIGNAL(completed()), this, SLOT(onCompleted()));
     connect(imageDownloadThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
     connect(imageDownloadThread, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
+    connect(imageDownloadThread, SIGNAL(imageWritten(QString)), this, SLOT(newImage(QString)));
     imageDownloadThread->start();
     hide();
     _qpssd->exec();
@@ -3252,6 +3229,7 @@ void MainWindow::startImageBackup()
     connect(bt, SIGNAL(error(QString)), this, SLOT(onError(QString)));
     connect(bt, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
     connect(bt, SIGNAL(newDrive(const QString&)), _qpssd , SLOT(changeDrive(const QString&)), Qt::BlockingQueuedConnection);
+    connect(bt, SIGNAL(newImage( QString)), this, SLOT(newImage( QString)));
     bt->start();
     hide();
     _qpssd->exec();
@@ -3656,7 +3634,7 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
     QString folder  = m.value("folder").toString();
     QString description = m.value("description").toString();
     bool recommended = m.value("recommended").toBool();
-
+    DBG(name);
     QListWidgetItem *witem = NULL;
 
     //If it is already installed, we don't care that it WAS installed from a backup, so remove date.
@@ -3664,8 +3642,10 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
         name = getNameParts(name, eCORE);
 
     witem = findItemByName(name);
+    DBG("...");
     if ((witem) && (!bInstalled))
     {
+        DBG("witem && Not installed")
         QVariantMap existing_details = witem->data(Qt::UserRole).toMap();
 
         bool bReplace=false;
@@ -3694,8 +3674,10 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
         }
         if (bReplace)
         {
+            DBG("replace");
             /* Existing item in list is same version or older. Prefer image on USB storage. */
             /* Copy current installed state */
+
             m.insert("installed", existing_details.value("installed", false));
 
             if (existing_details.contains("partitions"))
@@ -3713,6 +3695,8 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
             witem->setData(SecondIconRole, icon);
             ug->list->update();
         }
+        else
+            DBG("Ignore");
     }
     else //not found or bInstalled
     {
@@ -3794,6 +3778,7 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
         else
         {
             //Add new OS to os list.
+            DBG("Adding to list")
             if (recommended)
                 ug->insertItem(0, witem);
             else
@@ -3801,8 +3786,41 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
             //ug->list->update();
         }
     }
+    DBG("done");
     ug->showTab(DEFGROUP);
     QApplication::processEvents();
+}
+
+void MainWindow::newImage(QString Imagefile)
+{
+    TRACE
+    QVariantMap entry = Json::loadFromFile(Imagefile).toMap();
+
+    entry["source"] = SOURCE_USB;
+    QString folder = QFileInfo(Imagefile).path();
+    entry["folder"] = folder;
+
+    if (!entry.contains("nominal_size"))
+    {
+        /* Calculate nominal_size based on information inside partitions.json */
+        int nominal_size = 0;
+        QVariantMap pv = Json::loadFromFile(folder+"/partitions.json").toMap();
+        QVariantList pvl = pv.value("partitions").toList();
+
+        foreach (QVariant v, pvl)
+        {
+            QVariantMap pv = v.toMap();
+            nominal_size += pv.value("partition_size_nominal").toInt();
+            nominal_size += 1; /* Overhead per partition for EBR */
+        }
+
+        entry["nominal_size"]= nominal_size;
+    }
+
+    bool bInstalled=false;
+    QIcon usbIcon(":/icons/hdd_usb_unmount.png");
+    qDebug() << entry;
+    addImage(entry,usbIcon,bInstalled);
 }
 
 void MainWindow::addImagesFromUSB(const QString &device)

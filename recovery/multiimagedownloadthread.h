@@ -34,7 +34,8 @@ signals:
     void completed();
     void runningMKFS();
     void finishedMKFS();
-    
+    void imageWritten(QString Imagefile);
+
 public slots:
     
 };

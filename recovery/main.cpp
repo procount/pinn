@@ -354,10 +354,14 @@ int main(int argc, char *argv[])
     int newBGnd;
 
     QPixmap pixmap;
-    if (QFile::exists("/mnt/wallpaper.png"))
+    QString wallpaperName = "/mnt/wallpaper.jpg";
+    if (!QFile::exists(wallpaperName))
+        wallpaperName = "/mnt/wallpaper.png";
+
+    if (QFile::exists(wallpaperName))
     {
         QPixmap temp;
-        temp.load("/mnt/wallpaper.png");
+        temp.load(wallpaperName);
         QRect screen= a.desktop()->availableGeometry();
         QRect area = temp.rect();
         if (!wallpaper_resize)

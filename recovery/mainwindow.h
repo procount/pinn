@@ -178,6 +178,7 @@ protected slots:
     void onCompleted(int arg=0);
     void onCloneError(const QString &msg);
     void onCloneCompleted();
+    void newImage(QString Imagefile);
 
     void downloadIconRedirectCheck();
     void downloadIconComplete();

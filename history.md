@@ -5,6 +5,12 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+## V3.0.1
+
+- **Backup/Download**   - Removed the need to reboot after a download or backup.
+- **Wallpapers**        - removed wallpapers folder & Allowed JPEGs
+- **Default wallpaper   - Changed default to wallpaper.jpg
+
 ## V3.0
 
 - **Backup**                  - Backup an OS in PINN format

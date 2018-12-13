@@ -7,7 +7,7 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v3.0
+This README relates to v3.0.1
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -173,7 +173,7 @@ When the **Maintenance** toolbar is selected, this list will change to only show
 
 Below the main OS List Window is a status window indicating the capacity of appropriate attached memory devices.
 
-On the **Main Menu**, this status window will show the space on the SD card that is available to install OSes, along with the amount of required space for the selected OSes. If a USB drive is inserted, a drop down selection box will appear to change the install device from the SD card to the USB device. You will be prompted to format the USB drive if it is not already formatted in the correct way for a PINN installation. The model of RPi you are using is shown in the bottom right corener of this status window.
+On the **Main Menu**, this status window will show the space on the SD card that is available to install OSes, along with the amount of required space for the selected OSes. If a USB drive is inserted, a drop down selection box will appear to change the install device from the SD card to the USB device. You will be prompted to format the USB drive if it is not already formatted in the correct way for a PINN installation. The model of RPi you are using is shown in the bottom right corner of this status window.
 
 On the **Archival** menu, this status window will change to show the amount of available and required space on the USB drive for downloading OSes to. Such a USB drive will only be selectable if it has an /os folder on its first partition to store OSes on.
 
@@ -187,8 +187,9 @@ In addition to the toolbars, the following functionality is provided:
  - <b>Display Mode Selection</b>: By default, PINN will output over HDMI at your display's preferred resolution, even if no HDMI display is connected. If you do not see any output on your HDMI display or are using the composite output, press 1, 2, 3 or 4 on your keyboard to select HDMI preferred mode (1), HDMI safe mode (2), composite PAL mode (3), or composite NTSC mode (4), respectively.
  - <b>Background colour</b>: To change the background colour for the screen and most windows, add `background=r,g,b` to recovery.cmdline, where 0,0,0 is black and 255,255,255 is white.
  - <b>style</b>: The style of the windows display can be modified  by adding `style=motif/windows/platinum` to recovery.cmdline
- - <b>Wallpaper</b>: The background wallpaper of PINN can be changed by adding your own `wallpaper.png` file to PINN's recovery partition.
+ - <b>Wallpaper</b>: The background wallpaper of PINN can be changed by adding your own `wallpaper.jpg` or `wallpaper.png` file to PINN's recovery partition.
  - <b>wallpaper_resize</b>: A custom wallpaper can be resized to fill the entire desktop by adding this option.
+
 Note that all user settings (language, keyboard layout, display mode) will persist between reboots and will also be automatically passed to the installed OSes. This means that if you can see the PINN interface on your display device, you should be able to see the OS CLI/GUI when it boots too.
 
 ## User Control
@@ -247,6 +248,18 @@ dpi_group=<group> (e.g. dpi_group=1, or dpi_group=2)
 dpi_mode=<mode> (e.g. dpi_mode=28 - see tvservice for a list of possible modes)
 ```
 In addition, the `recovery.cmdline` file should have `disablesafemode` added as a parameter. Without it, the VGA666 will force PINN into safe mode, due to its connections to the GPIO header.
+
+Remember to also enable the display in each OS that you want to use it with.
+
+### How to use with Pimoroni's Hyperpixel displays
+
+Support for Pimoroni's original Hyperpixel and the Hyperpixel4 displays has now been added to PINN. 
+
+After installing PINN to the SD card, simply download and unzip hyperpixel-display.zip from the sourceforge website and copy the contents over the top of PINN. The rainbow square will not show up on the Hyperpixel, because the display is not initialised until just before PINN starts. Only the display works at the moment - no touchscreen.
+
+To use the Hyperpixel4 display, download and unzip hyperpixel4-display.zip from the sourceforge website and copy the contents over the top of PINN. 
+
+Remember to also enable the display in each OS that you want to use it with.
 
 ### How to use PINN Headlessly (VNC)
 
@@ -430,7 +443,7 @@ In addition to specifying a list of OS names, some reserved words are also avail
 
 - **background=\<r,g,b\>**: To change the background colour for the screen and most windows, add `background=r,g,b`, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.
 
-- **wallpaper_resize**: Causes a customised wallpaper.png file to be resized to fill the entire desktop. As an alternative to 'background', a small (8x8) png file can be used to fill the desktop only with a particular colour, leaving the background of the other windows alone.
+- **wallpaper_resize**: Causes a customised wallpaper.jpg or wallpaper.png file to be resized to fill the entire desktop. As an alternative to 'background', a small (8x8) png file can be used to fill the desktop only with a particular colour, leaving the background of the other windows alone.
 
 - **style=**: The style of the windows display can be modified to one of `motif`, `windows` or `platinum`
 
@@ -753,7 +766,7 @@ As documented earlier, PINN can install an OS from a local USB disk instead of d
 3. On the Archival Menu, select the USB drive in the status window.
 4. Select the list of OSes you want to download
 5. Select the Download button and wait for the OSes to download.
-6. Once download is complete, you will be prompted to reboot PINN for it to recognise the new OSes on the USB stick.
+6. Prior to v3.0.1, PINN will need rebooting to recognise and add these new OSes, but this is no longer necessary.
 
 The download icon is only available when the download size of all files are known. If the download icon is greyed out, and the toolbar indicates that that there are still more files to check, please wait until all files are checked. 
 
@@ -803,10 +816,6 @@ The maintenance toolbar contains commands to execute on installed OSes only, so 
 
 The first entry is a dummy fixed entry called `PINN` which represents the PINN recovery partition. This enables the same toolbar commands to be carried out on the PINN recovery partition, such as doing a file system check or editing recovery.cmdline or config.txt files. Of course, changing the password will have no effect.
 
-<!-- backup -->
-
-<!-- Restore -->
-
 ## Easy Config File Editor
 
 The built-in config file editor allows you to edit the config file of the OS that is currently highlighted in the OS list. This allows you to easily add license keys to different OS installs through the same interface. When the PINN entry is selected, it allows you to edit the recovery.cmdline instead of the cmdline.txt file.
@@ -844,7 +853,7 @@ Due to the compression, it is not known precisely how much disk space is require
 
 **Backups should be thoroughly tested that they are valid and restorable before relying upon them. This is a new PINN feature and every effort has been made to ensure it works as expected, but the author accepts no liability or responsibility for loss of data.**
 
-After backing up an OS, it may not show up in the list of installable OSes until PINN is rebooted. After that it will appear is a separate "Backups" tab with all the other backup versions.
+After backing up an OS prior to v3.0.1, it may not show up in the list of installable OSes until PINN is rebooted, but now it will appear immediately in a separate "Backups" tab with all the other backup versions.
 
 ## Restoring Backups
 

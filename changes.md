@@ -456,6 +456,9 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Download**          - Fixed foldername of some OSes when downloaded
 - **Iconcache**         - Cache icons when connected to internet to speed up startup
 
+## V3.0.1
 
-
+- **Backup/Download**   - Removed the need to reboot after a download or backup.
+- **Wallpapers**        - removed wallpapers folder & Allowed JPEGs
+- **Default wallpaper   - Changed default to wallpaper.jpg
 

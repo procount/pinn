@@ -210,6 +210,8 @@ bool BackupThread::processImage(const QVariantMap & entry)
     Json::saveToFile(backupFolder+"/os.json", ventry);
     sync();
 
+    emit newImage(QString(backupFolder+"/os.json"));
+
     delete pOsInfo;
 
     return(true);

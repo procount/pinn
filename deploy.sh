@@ -33,8 +33,8 @@ cp INSTRUC* $dst
 cp -r defaults $dst
 cp -r os $dst
 cp -r overlays $dst
-cp -r wallpapers $dst
-cp wallpapers/wallpaper1.png $dst/wallpaper.png
+#cp -r wallpapers $dst # No need to bloat it up!
+cp wallpapers/wallpaper1.jpg $dst/wallpaper.jpg
 cp *.img $dst
 cp recovery* $dst
 cp riscos-boot.bin $dst

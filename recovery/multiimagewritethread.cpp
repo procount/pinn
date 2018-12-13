@@ -804,7 +804,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
         }
 
         //If this is a backup, there maybe things in the partition_setup we don't want to repeat
-        //So set "reinstall=true"
+        //So set "restore=true"
         if ( !getNameParts(os_name, eDATE).isEmpty() )
             env.insert("restore", "true");
 

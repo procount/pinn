@@ -142,6 +142,10 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
     Json::saveToFile(folder+"/partitions.json", json);
 
     emit statusUpdate(tr("Finished downloading %1").arg(os_name));
+
+    QString Imagefile = folder+"/os.json";
+    emit imageWritten(Imagefile);
+
     return true;
 }
 

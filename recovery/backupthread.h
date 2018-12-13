@@ -1,43 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #ifndef BackupThread_H
 #define BackupThread_H
 
@@ -73,7 +33,8 @@ signals:
     void runningMKFS();
     void finishedMKFS();
     void newDrive(const QString&);
-    
+    void newImage(const QString Imagefile);
+
 public slots:
     
 };
