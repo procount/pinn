@@ -1,4 +1,4 @@
-CC=/home/kevin/noobs_test/buildroot/output/host/usr/bin/arm-buildroot-linux-uclibcgnueabi-gcc
+CC=$(PWD)/../buildroot/output/host/usr/bin/arm-buildroot-linux-uclibcgnueabi-gcc
 
 all: rebootp
 	$(MAKE) $(AM_MAKEFLAGS) rebootp
