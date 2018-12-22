@@ -310,15 +310,21 @@ QByteArray getPartUUID(const QString &devpart)
 QByteArray getDevice(const QString & partuuid)
 {
     QByteArray device;
-    QProcess p;
-    p.start("/sbin/blkid -t "+partuuid+" -s UUID");
-    p.waitForFinished();
 
-    if (p.exitCode() == 0)
+    if (partuuid.left(4)=="/dev")
+        device = partuuid.toAscii();
+    else
     {
-        device = p.readAll().trimmed();
-        int colonpos = device.indexOf(':');
-        device = device.left(colonpos);
+        QProcess p;
+        p.start("/sbin/blkid -t "+partuuid+" -s UUID");
+        p.waitForFinished();
+
+        if (p.exitCode() == 0)
+        {
+            device = p.readAll().trimmed();
+            int colonpos = device.indexOf(':');
+            device = device.left(colonpos);
+        }
     }
     return device;
 }

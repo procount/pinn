@@ -148,8 +148,10 @@ bool BackupThread::processImage(const QVariantMap & entry)
     foreach (PartitionInfo * pPart, *partitions)
     {
         QString label = pPart->label();
-        QString dev = partdevices[i].toString();
+        QString part = partdevices[i].toString();
         QByteArray fstype   = pPart->fsType();
+
+        QString dev = getDevice(part);
 
         //   Mount it
         QProcess::execute("mount -o ro "+dev+" /tmp/src");
