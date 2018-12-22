@@ -462,3 +462,7 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Wallpapers**        - removed wallpapers folder & Allowed JPEGs
 - **Default wallpaper   - Changed default to wallpaper.jpg
 
+## V3.0.2
+
+- **Backup USB**        - Improved backup size calculation for USB installed OSes.
+

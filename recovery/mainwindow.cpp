@@ -3164,10 +3164,11 @@ void MainWindow::startImageBackup()
             {
                 QString part = pv.toString();
                 QString mntpoint = "/tmp/media/p"+QString::number(i);
-
                 QString fname = "/tmp/size"+QString::number(i)+".txt";
 
-                cmd = "sh -c \"grep "+part+" /tmp/df.txt >/tmp/sizes.txt\""; QProcess::execute(cmd);
+                QString dev = getDevice(part);
+
+                cmd = "sh -c \"grep "+ dev +" /tmp/df.txt >/tmp/sizes.txt\""; QProcess::execute(cmd);
                 cmd = "sh -c \"sed -i 's/ \\+/ /g' /tmp/sizes.txt\""; QProcess::execute(cmd);
                 //get USED space in 1K blocks
                 cmd = "sh -c \"cat /tmp/sizes.txt | cut -d ' ' -f 3 >"+fname+"\""; QProcess::execute(cmd);

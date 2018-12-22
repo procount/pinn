@@ -45,6 +45,10 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+## V3.0.2
+
+- **Backup USB**        - Improved backup size calculation for USB installed OSes.
+
 ## V3.0.1
 
 - **Backup/Download**   - Removed the need to reboot after a download or backup.
