@@ -466,3 +466,8 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 
 - **Backup USB**        - Improved backup size calculation for USB installed OSes.
 
+## V3.0.3
+
+- **Backup USB**        - Fix for multiple USB sticks.
+- **Translation**       - Ko & zh_tw.ts updated.
+

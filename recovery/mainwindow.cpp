@@ -3472,7 +3472,6 @@ void MainWindow::pollForNewDisks()
 
                 if (_usbimages && !QFile::exists("/tmp/media/"+p1))
                 {
-                    _osdrive=devname; //eg 'sda'
                     addImagesFromUSB(p1); //eg 'sda1'
                 }
             }
