@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BackupThread</name>
     <message>
@@ -1047,7 +1047,7 @@ Please provide it locally or connect to the internet.</source>
     <message>
         <location filename="mainwindow.cpp" line="1352"/>
         <source>OS(es) Downloaded Successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>作業系統已下載成功。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1442"/>
