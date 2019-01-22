@@ -10,6 +10,7 @@
  *
  */
 
+#include "config.h"
 #include "languagedialog.h"
 #include "osgroup.h"
 #include "countdownfilter.h"
@@ -86,12 +87,7 @@ protected:
     unsigned _processedImages;
     QStringList _selectOsList;
 
-    enum ModeTag {
-        MODE_INSTALL=0,
-        MODE_DOWNLOAD,
-        MODE_REINSTALL,
-        MODE_BACKUP
-    } _eDownloadMode;
+    enum ModeTag _eDownloadMode;
 
     QMap<QString,QVariantMap> listImages(const QString &folder = "/mnt/os");
 

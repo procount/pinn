@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 /* Version number displayed in the title bar */
-#define VERSION_NUMBER "3.0.3"
+#define VERSION_NUMBER "3.0.4"
 
 /* Color of the background */
 // #define BACKGROUND_COLOR  Qt::white
@@ -87,5 +87,15 @@
 #define ALLINSTALLED    8
 
 extern bool g_nofirmware;
+
+enum ModeTag {
+    MODE_INSTALL=0,
+    MODE_DOWNLOAD,
+    MODE_REINSTALL,
+    MODE_BACKUP,
+    MODE_REPLACE
+};
+
+
 
 #endif // CONFIG_H

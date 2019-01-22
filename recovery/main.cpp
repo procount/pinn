@@ -1,6 +1,6 @@
-#include "mainwindow.h"
-#include "languagedialog.h"
 #include "config.h"
+#include "languagedialog.h"
+#include "mainwindow.h"
 #include "keydetection.h"
 #include "gpioinput.h"
 #include "rightbuttonfilter.h"

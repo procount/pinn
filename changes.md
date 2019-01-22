@@ -471,3 +471,6 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Backup USB**        - Fix for multiple USB sticks.
 - **Translation**       - Ko & zh_tw.ts updated.
 
+## V3.0.4
+- **forceupdatepinn**   - Add forceupdatepinn option
+- **OS Replace**        - Fixed problem replacing an OS when PINN is booted from USB

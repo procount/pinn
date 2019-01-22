@@ -5,6 +5,10 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+## V3.0.4    
+- **forceupdatepinn**   - Add forceupdatepinn option
+- **OS Replace**        - Fixed problem replacing an OS when PINN is booted from USB
+
 ## V3.0.3
 
 - **Backup USB**        - Fix for multiple USB sticks.
