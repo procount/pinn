@@ -1,3 +1,4 @@
+#include "config.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "backupdialog.h"
@@ -8,7 +9,6 @@
 #include "fullfatthread.h"
 #include "confeditdialog.h"
 #include "progressslideshowdialog.h"
-#include "config.h"
 #include "languagedialog.h"
 #include "json.h"
 #include "util.h"
@@ -970,7 +970,7 @@ void MainWindow::addInstalledImages()
             }
 
             bool bInstalled=true;
-            QIcon localIcon;
+            QIcon localIcon(":/icons/hdd_usb_unmount.png");
             addImage(m, localIcon, bInstalled);
         }
     }
@@ -1362,7 +1362,7 @@ void MainWindow::onCompleted(int arg)
                                      tr("Backup OSes"),
                                      info, QMessageBox::Ok);
         }
-        else
+        else // install,Reinstall or replace
         {
             ret = QMessageBox::information(this,
                                      tr("OS(es) installed"),
@@ -1377,7 +1377,7 @@ void MainWindow::onCompleted(int arg)
     show();
     _silent=false;
 
-    if (_eDownloadMode == MODE_INSTALL)
+    if ((_eDownloadMode == MODE_INSTALL) || (_eDownloadMode == MODE_REPLACE))
     {
         // Update list of installed OSes.
         ug->listInstalled->clear();
@@ -1385,9 +1385,12 @@ void MainWindow::onCompleted(int arg)
         updateInstalledStatus();
 
         //Only close if there are bootable OSes
-        if (_numBootableOS)
-        {
-            close();
+        if (_eDownloadMode == MODE_INSTALL)
+        {   //Only reboot for install
+            if (_numBootableOS)
+            {
+                close();
+            }
         }
     }
 }
@@ -2756,7 +2759,7 @@ void MainWindow::downloadMetaComplete()
         }
         if (_eDownloadMode == MODE_DOWNLOAD)
             startImageDownload();
-        else if (_eDownloadMode == MODE_REINSTALL)
+        else if ( (_eDownloadMode == MODE_REINSTALL) || (_eDownloadMode == MODE_REPLACE))
             startImageReinstall();
         else
             startImageWrite();
@@ -2928,7 +2931,7 @@ void MainWindow::startImageReinstall()
     TRACE
     _piDrivePollTimer.stop();
     /* All meta files downloaded, extract slides tarball, and launch image writer thread */
-    MultiImageWriteThread *imageWriteThread = new MultiImageWriteThread(_bootdrive, _drive, _noobsconfig, false);
+    MultiImageWriteThread *imageWriteThread = new MultiImageWriteThread(_bootdrive, _drive, _noobsconfig, false, _eDownloadMode);
     QString folder, slidesFolder;
     QStringList slidesFolders;
 
@@ -3696,7 +3699,9 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
             ug->list->update();
         }
         else
+        {
             DBG("Ignore");
+        }
     }
     else //not found or bInstalled
     {
@@ -4216,7 +4221,14 @@ void MainWindow::on_newVersion()
     }
 
     msgBox.installEventFilter(&counter);
-    int ret = msgBox.exec();
+
+    QString cmdline = getFileContents("/proc/cmdline");
+    int ret;
+    if (cmdline.contains("forceupdatepinn"))
+        ret=QMessageBox::Yes;
+    else
+        ret = msgBox.exec();
+
     switch (ret)
     {
         case QMessageBox::Yes:
@@ -4310,7 +4322,7 @@ void MainWindow::on_actionInfoInstalled_triggered()
 void MainWindow::on_actionReplace_triggered()
 {
     TRACE
-    _eDownloadMode = MODE_REINSTALL;    //or MODE_REPLACE?
+    _eDownloadMode = MODE_REPLACE;
 
     QList<QListWidgetItem *> replacementList;
     QList<QListWidgetItem *> installedList;

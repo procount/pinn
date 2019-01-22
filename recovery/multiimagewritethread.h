@@ -1,6 +1,6 @@
 #ifndef MULTIIMAGEWRITETHREAD_H
 #define MULTIIMAGEWRITETHREAD_H
-
+#include "config.h"
 #include <QThread>
 #include <QStringList>
 #include <QMultiMap>
@@ -14,7 +14,7 @@ class MultiImageWriteThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive,bool noobsconfig=false, bool partition=true, QObject *parent = 0);
+    explicit MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive,bool noobsconfig=false, bool partition=true,  enum ModeTag mode=MODE_INSTALL, QObject *parent = 0);
     void addImage(const QString &folder, const QString &flavour);
     void addInstalledImage(const QString& folder, const QString& flavour, const QVariantMap& sParts, const QString& replacedName="");
     bool untar(const QString &tarball, bool bSuppressError=false);
@@ -45,13 +45,13 @@ protected:
 
     /* key: folder, value: flavour */
     QList<OsInfo *> _images;
-
     QString _drive, _bootdrive;
     int _extraSpacePerPartition, _sectorOffset, _part;
     QVariantList installed_os;
     bool _multiDrives;
     bool _noobsconfig;
     bool _partition;
+    enum ModeTag _downloadMode;
     QString _srcFolder; //For noobsconfig
     QString _dstFolder;
     QStringList stack;

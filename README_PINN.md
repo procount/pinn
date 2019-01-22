@@ -7,7 +7,7 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v3.0.3
+This README relates to v3.0.4
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -113,7 +113,7 @@ The [pinn-lite.img.zip](http://sourceforge.net/projects/pinn/files/Etcher/pinn-l
 
 ## Self Update
 
-If PINN is connected to the Internet, it will check for the latest version available for download. If a newer version is available, a dialog box will pop up, showing the latest version number and the recent changes. You then have the option to cancel the update, download it, or ignore this version.
+If PINN is connected to the Internet, it will check for the latest version available for download from the recovery main menu. If a newer version is available, a dialog box will pop up, showing the latest version number and the recent changes. You then have the option to cancel the update, download it, or ignore this version.
 
 If you cancel the update, the dialog box will keep popping up to remind you each time PINN starts.
 
@@ -122,6 +122,8 @@ If you select "ignore", this version will be ignored and no dialogs will pop up 
 If you choose to download this update, the zip file will be downloaded and will overwrite your current version of PINN. PINN will then reboot the RPi and restart PINN.
 
 It is possible to disable self-update checks by adding the `no_update` option to `recovery.cmdline`. In this case you will have to delete this option to enable self-updates again. Or you can manually check for updates at any time by choosing to `reinstall` the PINN item in the archival menu, but it must be the only item selected.
+
+You can force new updates to be automatically installed without user interaction by adding the `forceupdatepinn` to `recovery.cmdline`.
 
 ---
 
@@ -371,6 +373,8 @@ The following is a complete list of all the PINN options that can be added to th
 - **reserve=(+)NNN**: This option will reserve a set amount of space for PINN's partition (typically /dev/mmcblk0p1) when the `runinstaller` option first formats the SD card. This space may be useful for adding OS install files later, or for using the first partition as a transfer area for data between the RPi and a Windows PC that can only read the SD card's first partition. NNN specifies the total size of this partition in MB. The default value is around 64MB. If the size is prefixed with a '+' sign, the value indicates an amount of disk space to be reserved [i]in addition[/i] to the size of PINN's files. So, `reserve=200` will make P1 200MB in size and `reserve=+200` will make it about 263MB in size.
 
 - **no_update**: Prevents PINN from performing a self-update check on boot up. Use the `reinstall` option to manually check for updates on PINN.
+
+- **forceupdatepinn** - Forces a PINN self update if one exists, without user interaction.
 
 - **nofirmware**: Prevents PINN from upgrading the firmware of old OSes to be compatible with PINN.
 

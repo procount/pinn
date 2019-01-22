@@ -45,6 +45,11 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+## V3.0.4    
+
+- **forceupdatepinn**   - Add forceupdatepinn option
+- **OS Replace**        - Fixed problem replacing an OS when PINN is booted from USB
+
 ## V3.0.3
 
 - **Backup USB**        - Fix for multiple USB sticks.

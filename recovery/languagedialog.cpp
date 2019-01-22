@@ -9,7 +9,6 @@
 
 #include "languagedialog.h"
 #include "ui_languagedialog.h"
-#include "config.h"
 #include <QIcon>
 #include <QDebug>
 #include <QFile>

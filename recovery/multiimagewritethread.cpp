@@ -1,5 +1,4 @@
 #include "multiimagewritethread.h"
-#include "config.h"
 #include "json.h"
 #include "util.h"
 #include "mbr.h"
@@ -26,8 +25,8 @@
 
 QString readexec(int log, const QString& cmd, int & errorcode);
 
-MultiImageWriteThread::MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive, bool noobsconfig, bool partition, QObject *parent) :
-    QThread(parent), _drive(rootdrive), _bootdrive(bootdrive), _extraSpacePerPartition(0), _part(5), _noobsconfig(noobsconfig), _partition(partition)
+MultiImageWriteThread::MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive, bool noobsconfig, bool partition, enum ModeTag mode, QObject *parent) :
+    QThread(parent), _drive(rootdrive), _bootdrive(bootdrive), _extraSpacePerPartition(0), _part(5), _noobsconfig(noobsconfig), _partition(partition), _downloadMode(mode)
 {
     QDir dir;
     _multiDrives = (bootdrive != rootdrive);
@@ -44,10 +43,9 @@ void MultiImageWriteThread::addImage(const QString &folder, const QString &flavo
 void MultiImageWriteThread::addInstalledImage(const QString &folder, const QString &flavour, const QVariantMap &entry,
                                               const QString &replacedName)
 {   /* Copy the previously installed partitions to the new OS and add the OS to the list of OSes to be installed */
-
     OsInfo * pInfo = new OsInfo(folder, CORE(flavour), this);
 
-    //Get the list of partitions where this OS is already isntalled
+    //Get the list of partitions where this OS is already installed
     QVariantList list = entry.value("partitions").toList(); //of QVariant Strings
     //Get ptr to partitions for new OS
     QList<PartitionInfo *> * tParts = pInfo->partitions();
@@ -374,7 +372,7 @@ void MultiImageWriteThread::run()
                 if (compressedSize*2048 > partitionSectors)
                 {
                     qDebug () << "CompressedSize=" <<compressedSize*2048<<". partitionSectors=" <<partitionSectors;
-                    emit error(tr("Cannot Reinstall ")+image->name()+tr(".\nPartition not big enough for new image."));
+                    emit error(tr("Cannot Reinstall/Replace ")+image->name()+tr(".\nPartition not big enough for new image."));
                     return;
                 }
             }
@@ -657,7 +655,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
         QByteArray partdevice = p->partitionDevice();
         emit newDrive(partdevice);
 
-        if (!_partition)
+        if ( (!_partition) && (_downloadMode == MODE_REINSTALL)) //@@ (not for replace)
         {   //Use the existing partition label
             int errorcode;
             QString s= readexec(0, "lsblk -noheadings -o label "+QString(partdevice), errorcode);
@@ -892,7 +890,6 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
         emit error(tr("%1: Error unmounting").arg(os_name));
     }
 
-
     /* Save information about installed operating systems in installed_os.json */
     QVariantMap ventry;
     ventry["name"]        = image->flavour();
@@ -942,7 +939,6 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     else
     {
         int i=0;
-
         //If we are not replacing a dfferent OS, search for the same name to replace
         if (image->replacedName().isEmpty())
             image->setReplacedName(image->flavour());
@@ -950,9 +946,13 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
         foreach (QVariant v, installed_os)
         {
             QVariantMap m = v.toMap();
+
+            //We use getDevice() to ensure both partition references are in /dev/xxx format, thus removing PARTUUIDS
             if ( (m.value("name").toString() == image->replacedName()) &&
-                 (m.value("partitions").toList().at(0).toString()  == image->partitions()->at(0)->partitionDevice()) )
+                 (getDevice(m.value("partitions").toList().at(0).toString())  == getDevice(image->partitions()->at(0)->partitionDevice())) )
+            {
                 installed_os.replace(i,ventry);
+            }
             i++;
         }
     }
@@ -1084,7 +1084,6 @@ void MultiImageWriteThread::testForCustomFile(const QString &baseName, const QSt
 
 void MultiImageWriteThread::processEntry(const QString &srcFolder, const QString &entry1)
 {
-    MYDEBUG
     if (entry1.length()>0 && entry1.at(0)=='@')
     {
         DBG( "Processing " + entry1 + " in " + srcFolder);
