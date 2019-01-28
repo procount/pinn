@@ -1101,7 +1101,7 @@ Copialo localmente o collegati ad internet.</translation>
     <message>
         <location filename="mainwindow.cpp" line="1352"/>
         <source>OS(es) Downloaded Successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Download SO completato.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1442"/>
