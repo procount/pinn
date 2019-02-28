@@ -1,4 +1,4 @@
-# select hyp4
+#select hyp4
 dtoverlay=pimhyp3:checkonly
 
 # HyperPixel4 LCD Settings

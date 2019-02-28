@@ -62,28 +62,28 @@
         <translation>Errorea ezarpenen partizioa muntatzean</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="310"/>
+        <location filename="bootselectiondialog.cpp" line="311"/>
         <source>HDMI safe mode</source>
         <translation>HDMI segurua modua</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="314"/>
+        <location filename="bootselectiondialog.cpp" line="315"/>
         <source>composite PAL mode</source>
         <translation>PAL konposatua modua</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="318"/>
+        <location filename="bootselectiondialog.cpp" line="319"/>
         <source>composite NTSC mode</source>
         <translation>NTSC konposatua modua</translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.cpp" line="360"/>
+        <location filename="bootselectiondialog.cpp" line="361"/>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
         <translation>PINN - Aurrez hautatutako SEa %1 segundo barru abiaraziko da</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="25"/>
-        <location filename="bootselectiondialog.cpp" line="362"/>
+        <location filename="bootselectiondialog.cpp" line="363"/>
         <source>PINN - Select OS to boot</source>
         <translation>PINN - Hautatu SEa abiarazteko</translation>
     </message>
@@ -409,130 +409,145 @@ KONTUZ: Honek zure SD txarteleko datu guztiak ezabatuko ditu</translation>
         <translation>tresnaBarra</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="386"/>
+        <location filename="mainwindow.ui" line="387"/>
         <source>Install (i)</source>
         <translation>Instalatu (i)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="389"/>
+        <location filename="mainwindow.ui" line="390"/>
         <source>Installs the selected operating system image onto this SD card.</source>
         <translation>Hautatutako sistema eragilearen irudia instalatzen du SD txartelean.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="392"/>
+        <location filename="mainwindow.ui" line="393"/>
         <source>I</source>
         <translatorcomment>Zer da hau?</translatorcomment>
         <translation>I</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="401"/>
+        <location filename="mainwindow.ui" line="402"/>
         <source>Exit (Esc)</source>
         <translation>Irten (Esc)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="404"/>
+        <location filename="mainwindow.ui" line="405"/>
         <source>Exits and boots the installed operating system.</source>
         <translation>Irten eta instalatutako sistema eragilea abiarazten du.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="419"/>
+        <location filename="mainwindow.ui" line="420"/>
         <source>More (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="422"/>
+        <location filename="mainwindow.ui" line="423"/>
         <source>More menus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="425"/>
+        <location filename="mainwindow.ui" line="426"/>
         <source>M</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="518"/>
+        <location filename="mainwindow.ui" line="519"/>
         <source>Download (d)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="521"/>
+        <location filename="mainwindow.ui" line="522"/>
         <source>Downloads the selected operating system image to USB for local installation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="524"/>
+        <location filename="mainwindow.ui" line="525"/>
         <source>D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="557"/>
+        <location filename="mainwindow.ui" line="558"/>
         <source>Reinstall (r)</source>
         <oldsource>Refresh (r)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="560"/>
+        <location filename="mainwindow.ui" line="561"/>
         <source>R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="575"/>
+        <location filename="mainwindow.ui" line="576"/>
         <source>Replace (l)</source>
         <oldsource>Replace (p)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="578"/>
+        <location filename="mainwindow.ui" line="579"/>
         <source>L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="629"/>
+        <location filename="mainwindow.ui" line="630"/>
         <source>Wipe (w)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="656"/>
+        <location filename="mainwindow.ui" line="657"/>
         <source>Information about the installed OS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="668"/>
+        <location filename="mainwindow.ui" line="669"/>
         <source>Firmware (f)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="671"/>
+        <location filename="mainwindow.ui" line="672"/>
         <source>Change Firmware</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="683"/>
+        <location filename="mainwindow.ui" line="684"/>
         <source>Clear (c)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="686"/>
+        <location filename="mainwindow.ui" line="687"/>
         <source>Clear selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="698"/>
+        <location filename="mainwindow.ui" line="699"/>
         <source>Time (t)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="701"/>
+        <location filename="mainwindow.ui" line="702"/>
         <source>Set Data &amp; Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="704"/>
+        <location filename="mainwindow.ui" line="705"/>
         <source>T</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="485"/>
+        <location filename="mainwindow.ui" line="714"/>
+        <source>Alias (a)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="717"/>
+        <source>Rename an OS with an alias</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="720"/>
+        <source>A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="486"/>
         <source>Wifi (w)</source>
         <translation>Wifia (w)</translation>
     </message>
@@ -542,197 +557,197 @@ KONTUZ: Honek zure SD txarteleko datu guztiak ezabatuko ditu</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="503"/>
+        <location filename="mainwindow.ui" line="504"/>
         <source>Password (p)</source>
         <translation>Pasahitza (p)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="506"/>
+        <location filename="mainwindow.ui" line="507"/>
         <source>Change password</source>
         <translation>Aldatu pasahitza</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="509"/>
+        <location filename="mainwindow.ui" line="510"/>
         <source>P</source>
         <translation>P</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="539"/>
+        <location filename="mainwindow.ui" line="540"/>
         <source>Backup (b)</source>
         <translation>Babeskopia (b)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="542"/>
+        <location filename="mainwindow.ui" line="543"/>
         <source>B</source>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="593"/>
+        <location filename="mainwindow.ui" line="594"/>
         <source>fsck (f)</source>
         <oldsource>fschk (f)</oldsource>
         <translation type="unfinished">fschk (f)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="596"/>
-        <location filename="mainwindow.ui" line="614"/>
-        <location filename="mainwindow.ui" line="674"/>
+        <location filename="mainwindow.ui" line="597"/>
+        <location filename="mainwindow.ui" line="615"/>
+        <location filename="mainwindow.ui" line="675"/>
         <source>F</source>
         <translation>F</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="611"/>
+        <location filename="mainwindow.ui" line="612"/>
         <source>Fix (f)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="641"/>
+        <location filename="mainwindow.ui" line="642"/>
         <source>Clone (c)</source>
         <translation>Klonatu (c)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="644"/>
-        <location filename="mainwindow.ui" line="689"/>
+        <location filename="mainwindow.ui" line="645"/>
+        <location filename="mainwindow.ui" line="690"/>
         <source>C</source>
         <translation>C</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="336"/>
+        <location filename="mainwindow.ui" line="337"/>
         <source>Advanced</source>
         <translation>Aurreratua</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="437"/>
+        <location filename="mainwindow.ui" line="438"/>
         <source>Edit config (e)</source>
         <translation>Editatu konfigurazioa (e)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="440"/>
+        <location filename="mainwindow.ui" line="441"/>
         <source>Opens the config.txt and cmdline.txt for the installed OS in a text editor.</source>
         <translation>Instalatutako SEaren config.txt eta cmdline.txt irekitzen ditu testu-editore batean.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="452"/>
+        <location filename="mainwindow.ui" line="453"/>
         <source>Online help (h)</source>
         <translation>Lineako laguntza (h)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="455"/>
+        <location filename="mainwindow.ui" line="456"/>
         <source>Opens a web browser displaying the Raspberry Pi Forum.</source>
         <translation>Web nabigatzaile bat ireki eta Raspberry Pi Foroa bistaratzen du bertan.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="467"/>
-        <location filename="mainwindow.ui" line="653"/>
+        <location filename="mainwindow.ui" line="468"/>
+        <location filename="mainwindow.ui" line="654"/>
         <source>Info (n)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="470"/>
+        <location filename="mainwindow.ui" line="471"/>
         <source>Information about the selected OS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="473"/>
-        <location filename="mainwindow.ui" line="659"/>
+        <location filename="mainwindow.ui" line="474"/>
+        <location filename="mainwindow.ui" line="660"/>
         <source>N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="488"/>
+        <location filename="mainwindow.ui" line="489"/>
         <source>Select a wifi network to connect to</source>
         <translation>Hautatu wifi sare bat konektatzeko</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="491"/>
-        <location filename="mainwindow.ui" line="632"/>
+        <location filename="mainwindow.ui" line="492"/>
+        <location filename="mainwindow.ui" line="633"/>
         <source>W</source>
         <translation>W</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="260"/>
+        <location filename="mainwindow.cpp" line="261"/>
         <source>Setting up SD card</source>
         <translation>SD txartela prestatzen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="318"/>
+        <location filename="mainwindow.cpp" line="319"/>
         <source>Error mounting settings partition</source>
         <translation>Errorea ezarpenen partizioa muntatzean</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="293"/>
+        <location filename="mainwindow.cpp" line="294"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation>SD txartelaren zain (ezarpenak partizioa)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="306"/>
+        <location filename="mainwindow.cpp" line="307"/>
         <source>Mounting settings partition</source>
         <translation>Ezarpenak partizioa muntatzen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="319"/>
+        <location filename="mainwindow.cpp" line="320"/>
         <source>Persistent settings partition seems corrupt. Reformat?</source>
         <translation>Ezarpen iraunkorren partizioa hondatuta dagoela dirudi. Berriz formateatu?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="326"/>
+        <location filename="mainwindow.cpp" line="327"/>
         <source>Reformat failed</source>
         <translation>Berriz formateatzeak huts egin du</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="326"/>
+        <location filename="mainwindow.cpp" line="327"/>
         <source>SD card might be damaged</source>
         <translation>SD txartela hondatuta egon daiteke</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="644"/>
+        <location filename="mainwindow.cpp" line="645"/>
         <source>Main Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="645"/>
+        <location filename="mainwindow.cpp" line="646"/>
         <source>Archival</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="646"/>
+        <location filename="mainwindow.cpp" line="647"/>
         <source>Maintenance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="663"/>
+        <location filename="mainwindow.cpp" line="664"/>
         <source>Please wait while PINN initialises</source>
         <translation>Mesedez itxaron PINN hasieratu arte</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3690"/>
-        <location filename="mainwindow.cpp" line="3721"/>
+        <location filename="mainwindow.cpp" line="3719"/>
+        <location filename="mainwindow.cpp" line="3752"/>
         <source>RECOMMENDED</source>
         <translation>GOMENDATUA</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1022"/>
+        <location filename="mainwindow.cpp" line="1023"/>
         <source>ERROR</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1023"/>
+        <location filename="mainwindow.cpp" line="1024"/>
         <source>Error: Some OSes are not available:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1028"/>
+        <location filename="mainwindow.cpp" line="1029"/>
         <source>Warning: this will install the selected Operating System(s) to </source>
         <oldsource>Warning: this will install the selected Operating System(s):</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1028"/>
+        <location filename="mainwindow.cpp" line="1029"/>
         <source>:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1030"/>
+        <location filename="mainwindow.cpp" line="1031"/>
         <source>
 All existing data on the SD card will be overwritten, including any OSes that are already installed. Continue?</source>
         <oldsource>
@@ -740,418 +755,418 @@ All existing data on the SD card will be overwritten, including any OSes that ar
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1035"/>
-        <location filename="mainwindow.cpp" line="1040"/>
-        <location filename="mainwindow.cpp" line="1183"/>
-        <location filename="mainwindow.cpp" line="1244"/>
-        <location filename="mainwindow.cpp" line="1254"/>
-        <location filename="mainwindow.cpp" line="1761"/>
-        <location filename="mainwindow.cpp" line="4479"/>
-        <location filename="mainwindow.cpp" line="4523"/>
+        <location filename="mainwindow.cpp" line="1036"/>
+        <location filename="mainwindow.cpp" line="1041"/>
+        <location filename="mainwindow.cpp" line="1184"/>
+        <location filename="mainwindow.cpp" line="1245"/>
+        <location filename="mainwindow.cpp" line="1255"/>
+        <location filename="mainwindow.cpp" line="1779"/>
+        <location filename="mainwindow.cpp" line="4521"/>
+        <location filename="mainwindow.cpp" line="4565"/>
         <source>Confirm</source>
         <translation>Berretsi</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1168"/>
+        <location filename="mainwindow.cpp" line="1169"/>
         <source>ReInstall OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1169"/>
+        <location filename="mainwindow.cpp" line="1170"/>
         <source>Warning: No OSes selected or available
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1245"/>
+        <location filename="mainwindow.cpp" line="1223"/>
+        <source>The Reinstall/Replace process will begin shortly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1246"/>
         <source>Warning: this will download the selected Operating System(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1317"/>
+        <location filename="mainwindow.cpp" line="1318"/>
         <source>The download process will begin shortly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1351"/>
+        <location filename="mainwindow.cpp" line="1359"/>
         <source>OS(es) downloaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1358"/>
+        <location filename="mainwindow.cpp" line="1373"/>
         <source>OS(es) Backed up with errors.
 See debug log for details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1360"/>
+        <location filename="mainwindow.cpp" line="1375"/>
         <source>OS(es) Backed up Successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1362"/>
-        <location filename="mainwindow.cpp" line="4621"/>
+        <location filename="mainwindow.cpp" line="1377"/>
+        <location filename="mainwindow.cpp" line="4667"/>
         <source>Backup OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1440"/>
+        <location filename="mainwindow.cpp" line="1458"/>
         <source>Reboot in %1 secs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1736"/>
+        <location filename="mainwindow.cpp" line="1754"/>
         <source>Wiping SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1762"/>
+        <location filename="mainwindow.cpp" line="1780"/>
         <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will restore your SD card to its initial state. All existing data on the SD card except PINN will be overwritten, including any OSes that are already installed.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1767"/>
+        <location filename="mainwindow.cpp" line="1785"/>
         <source>Drive Wiped!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2045"/>
+        <location filename="mainwindow.cpp" line="2072"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2679"/>
+        <location filename="mainwindow.cpp" line="2708"/>
         <source>Error downloading meta file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2993"/>
-        <location filename="mainwindow.cpp" line="4358"/>
-        <location filename="mainwindow.cpp" line="4386"/>
+        <location filename="mainwindow.cpp" line="3022"/>
+        <location filename="mainwindow.cpp" line="4396"/>
+        <location filename="mainwindow.cpp" line="4424"/>
         <source>Replace OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3209"/>
+        <location filename="mainwindow.cpp" line="3238"/>
         <source>This backup may require </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3211"/>
+        <location filename="mainwindow.cpp" line="3240"/>
         <source> MB of backup space, but only </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3213"/>
+        <location filename="mainwindow.cpp" line="3242"/>
         <source> MB is available. This is only an estimate. If you continue, the backup may not complete successfully.
 
 Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3214"/>
+        <location filename="mainwindow.cpp" line="3243"/>
         <source>WARNING: Backup Space</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3221"/>
+        <location filename="mainwindow.cpp" line="3250"/>
         <source>Backup Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3221"/>
+        <location filename="mainwindow.cpp" line="3250"/>
         <source>Always test your backups before relying on them</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3264"/>
+        <location filename="mainwindow.cpp" line="3293"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>Sareko sarbidea behar da PINN irudi lokalik gabe erabiltzeko. Hautatu zure wifi sarea hurrengo pantailan.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3272"/>
+        <location filename="mainwindow.cpp" line="3301"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>Haridun sareko sarbidea behar da PINN irudi lokalik gabe erabiltzeko. Txertatu sareko kable bat sareko atakan.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3592"/>
+        <location filename="mainwindow.cpp" line="3620"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>Ziur zaude &apos;%1&apos; unitatea PINNekin erabiltzeko birformateatu nahi duzula? Unitateko datu guztiak ezabatuko dira!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3941"/>
+        <location filename="mainwindow.cpp" line="3972"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>Honek &apos;%s&apos; gailuko eduki guztiak ezabatuko ditu. Ziur zaude?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3943"/>
+        <location filename="mainwindow.cpp" line="3974"/>
         <source>Clone SD Card</source>
         <translation>Klonatu SD txartela</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3945"/>
+        <location filename="mainwindow.cpp" line="3976"/>
         <source>Yes</source>
         <translation>Bai</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3946"/>
+        <location filename="mainwindow.cpp" line="3977"/>
         <source>No</source>
         <translation>Ez</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3975"/>
+        <location filename="mainwindow.cpp" line="4006"/>
         <source>Clone Completed</source>
         <translation>Klonazio burututa</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3976"/>
+        <location filename="mainwindow.cpp" line="4007"/>
         <source>Clone Completed Successfully</source>
         <translation>Klonazioa behar bezala burutu da</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4088"/>
+        <location filename="mainwindow.cpp" line="4119"/>
         <source>Error downloading update file</source>
         <translation>Errorea eguneraketa fitxategia deskargatzean</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4095"/>
-        <location filename="mainwindow.cpp" line="4190"/>
+        <location filename="mainwindow.cpp" line="4126"/>
+        <location filename="mainwindow.cpp" line="4221"/>
         <source>PINN Update Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4095"/>
+        <location filename="mainwindow.cpp" line="4126"/>
         <source>Error contacting update server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4190"/>
+        <location filename="mainwindow.cpp" line="4221"/>
         <source>No updates available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4199"/>
+        <location filename="mainwindow.cpp" line="4230"/>
         <source>PINN UPDATE</source>
         <translation>PINN EGUNERAKETA</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4200"/>
+        <location filename="mainwindow.cpp" line="4231"/>
         <source>A new version of PINN is available</source>
         <translation>PINNen bertsio berri bat eskuragarri dago</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4201"/>
+        <location filename="mainwindow.cpp" line="4232"/>
         <source>Do you want to download this version?</source>
         <translation>Bertsio hau deskargatu nahi duzu?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4226"/>
+        <location filename="mainwindow.cpp" line="4264"/>
         <source>Downloading Update</source>
         <translation>Eguneraketa deskargatzen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4226"/>
+        <location filename="mainwindow.cpp" line="4264"/>
         <source>Press ESC to cancel</source>
         <translation>Sakatu ESC ezeztatzeko</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4359"/>
+        <location filename="mainwindow.cpp" line="4397"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4387"/>
+        <location filename="mainwindow.cpp" line="4425"/>
         <source>Warning: No OSes selected
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4480"/>
+        <location filename="mainwindow.cpp" line="4522"/>
         <source>Warning: this will backup the selected Operating System(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4524"/>
+        <location filename="mainwindow.cpp" line="4566"/>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1032"/>
+        <location filename="mainwindow.cpp" line="1033"/>
         <source>SD card</source>
         <translation>SD txartela</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1032"/>
+        <location filename="mainwindow.cpp" line="1033"/>
         <source>drive</source>
         <translation>unitatea</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1041"/>
-        <location filename="mainwindow.cpp" line="1255"/>
+        <location filename="mainwindow.cpp" line="1042"/>
+        <location filename="mainwindow.cpp" line="1256"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>Kontuz: sistema eragile bateraezina(k) detektatu d(ir)a. Ondorengo SEek ez dute euskarririk Raspberry Piren bertsio honetan eta baliteke ez abiaraztea edo gaizki funtzionatzea:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1107"/>
+        <location filename="mainwindow.cpp" line="1108"/>
         <source>The install process will begin shortly.</source>
         <translation>Instalazio prozesua laster hasiko da.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1153"/>
-        <location filename="mainwindow.cpp" line="4377"/>
+        <location filename="mainwindow.cpp" line="1154"/>
+        <location filename="mainwindow.cpp" line="4415"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1180"/>
+        <location filename="mainwindow.cpp" line="1181"/>
         <source>Warning: this will Reinstall/Replace the selected Operating System(s). The existing data will be deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1221"/>
-        <source>The Reinstall process will begin shortly.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="1352"/>
+        <location filename="mainwindow.cpp" line="1360"/>
         <source>OS(es) Downloaded Successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1368"/>
+        <location filename="mainwindow.cpp" line="1383"/>
         <source>OS(es) installed</source>
         <translation>SEa(k) instalatu dira</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1369"/>
+        <location filename="mainwindow.cpp" line="1384"/>
         <source>OS(es) Installed Successfully</source>
         <translation>SEa(k) behar bezala instalatu dira</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1402"/>
-        <location filename="mainwindow.cpp" line="1414"/>
-        <location filename="mainwindow.cpp" line="2045"/>
-        <location filename="mainwindow.cpp" line="2185"/>
-        <location filename="mainwindow.cpp" line="3989"/>
+        <location filename="mainwindow.cpp" line="1420"/>
+        <location filename="mainwindow.cpp" line="1432"/>
+        <location filename="mainwindow.cpp" line="2072"/>
+        <location filename="mainwindow.cpp" line="2212"/>
+        <location filename="mainwindow.cpp" line="4020"/>
         <source>Error</source>
         <translation>Errorea</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1442"/>
+        <location filename="mainwindow.cpp" line="1460"/>
         <source>PINN v%1 - Built: %2 (%3) %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1477"/>
+        <location filename="mainwindow.cpp" line="1495"/>
         <source>HDMI preferred mode</source>
         <translation>HDMI modu hobetsia</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1481"/>
+        <location filename="mainwindow.cpp" line="1499"/>
         <source>HDMI safe mode</source>
         <translation>HDMI modu segurua</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1485"/>
+        <location filename="mainwindow.cpp" line="1503"/>
         <source>composite PAL mode</source>
         <translation>PAL konposatu modua</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1489"/>
+        <location filename="mainwindow.cpp" line="1507"/>
         <source>composite NTSC mode</source>
         <translation>NTSC konposatu modua</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1558"/>
+        <location filename="mainwindow.cpp" line="1576"/>
         <source>Display Mode Changed</source>
         <translation>Bistaratze-modua aldatuta</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1559"/>
+        <location filename="mainwindow.cpp" line="1577"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>Bistaratze modua %1(e)ra aldatu da
 Ezarpen hau iraunkortu nahi duzu?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1768"/>
+        <location filename="mainwindow.cpp" line="1786"/>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1781"/>
-        <location filename="mainwindow.cpp" line="3263"/>
-        <location filename="mainwindow.cpp" line="3271"/>
+        <location filename="mainwindow.cpp" line="1799"/>
+        <location filename="mainwindow.cpp" line="3292"/>
+        <location filename="mainwindow.cpp" line="3300"/>
         <source>No network access</source>
         <translation>Sareko sarbiderik ez</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1782"/>
+        <location filename="mainwindow.cpp" line="1800"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Haridun sareko sarbidea behar da ezaugarri honentzat. Mesedez sartu sareko kable bat sareko atakan.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2026"/>
-        <location filename="mainwindow.cpp" line="2161"/>
+        <location filename="mainwindow.cpp" line="2053"/>
+        <location filename="mainwindow.cpp" line="2188"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation>Errorea banaketa zerrenda Internetetik deskargatzean:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2028"/>
-        <location filename="mainwindow.cpp" line="2163"/>
-        <location filename="mainwindow.cpp" line="2693"/>
-        <location filename="mainwindow.cpp" line="2704"/>
-        <location filename="mainwindow.cpp" line="4088"/>
-        <location filename="mainwindow.cpp" line="4110"/>
+        <location filename="mainwindow.cpp" line="2055"/>
+        <location filename="mainwindow.cpp" line="2190"/>
+        <location filename="mainwindow.cpp" line="2722"/>
+        <location filename="mainwindow.cpp" line="2733"/>
+        <location filename="mainwindow.cpp" line="4119"/>
+        <location filename="mainwindow.cpp" line="4141"/>
         <source>Download error</source>
         <translation>Errorea deskargatzean</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2185"/>
+        <location filename="mainwindow.cpp" line="2212"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>Errorea zerbitzaritik deskargatutako list.json fitxategia analizatzean</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2452"/>
-        <location filename="mainwindow.cpp" line="2455"/>
+        <location filename="mainwindow.cpp" line="2480"/>
+        <location filename="mainwindow.cpp" line="2483"/>
         <source>Needed</source>
         <translation>Behar dena</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2453"/>
-        <location filename="mainwindow.cpp" line="2456"/>
+        <location filename="mainwindow.cpp" line="2481"/>
+        <location filename="mainwindow.cpp" line="2484"/>
         <source>Available</source>
         <translation>Erabilgarri dagoena</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2693"/>
+        <location filename="mainwindow.cpp" line="2722"/>
         <source>Error downloading meta file</source>
         <translation>Errorea meta fitxategia deskargatzean</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2704"/>
-        <location filename="mainwindow.cpp" line="4110"/>
+        <location filename="mainwindow.cpp" line="2733"/>
+        <location filename="mainwindow.cpp" line="4141"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>Errorea deskargatutako fitxategia SD txartelean idaztean. SD txartela edo fitxategi-sistema hondatuta egon daitezke.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2811"/>
+        <location filename="mainwindow.cpp" line="2840"/>
         <source>filesize error checking </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2994"/>
+        <location filename="mainwindow.cpp" line="3023"/>
         <source> has an incompatible number of partitions with </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3591"/>
+        <location filename="mainwindow.cpp" line="3619"/>
         <source>Reformat drive?</source>
         <translation>Unitatea birformateatu?</translation>
     </message>
@@ -1182,189 +1197,188 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
 <context>
     <name>MultiImageWriteThread</name>
     <message>
-        <location filename="multiimagewritethread.cpp" line="88"/>
+        <location filename="multiimagewritethread.cpp" line="86"/>
         <source>partitions.json invalid</source>
         <translation>partitions.json baliogabea</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="101"/>
+        <location filename="multiimagewritethread.cpp" line="99"/>
         <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
         <translatorcomment>offset itzuli gabe utzi dut ez nekielako kasu honetan duen esanahi zehatza</translatorcomment>
         <translation>Ezin da RISCOS instalatu. RISCOS offset balioa ez dator bat.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="107"/>
+        <location filename="multiimagewritethread.cpp" line="105"/>
         <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
         <translatorcomment>offset itzuli gabe utzi dut ez nekielako kasu honetan duen esanahi zehatza</translatorcomment>
         <translation>Ezin da RISCOS instalatu. RISCOS offset balioa falta da.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="112"/>
+        <location filename="multiimagewritethread.cpp" line="110"/>
         <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
         <translation>Ezin da RISCOS instalatu. Berreskuratze-partizio handiegia.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="139"/>
+        <location filename="multiimagewritethread.cpp" line="137"/>
         <source>More than one operating system requires partition number %1</source>
         <translation>Sistema eragile batek baino gehiagok behar dute %1 zenbakidun partizioa</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="144"/>
+        <location filename="multiimagewritethread.cpp" line="142"/>
         <source>Operating system cannot require a system partition (1,5)</source>
         <translation>Sistema eragileak ezin du sistemaren partizioa eskatu (1,5)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="149"/>
+        <location filename="multiimagewritethread.cpp" line="147"/>
         <source>Operating system cannot claim both primary partitions 2 and 4</source>
         <translation>Sistema eragileak ezin ditu 2 eta 4 partizio primarioak eskatu</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="177"/>
+        <location filename="multiimagewritethread.cpp" line="175"/>
         <source>Not enough disk space. Need %1 MB, got %2 MB</source>
         <translation>Ez dago nahikoa leku diskoan. %1 MB behar dira, %2 MB daude</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="397"/>
+        <location filename="multiimagewritethread.cpp" line="395"/>
         <source>Finish writing (sync)</source>
         <translation>Idazten bukatu (sinkronizatu)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="643"/>
+        <location filename="multiimagewritethread.cpp" line="641"/>
         <source>File &apos;%1&apos; does not exist</source>
         <translation>&apos;%1&apos; fitxategia ez da existitzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="257"/>
+        <location filename="multiimagewritethread.cpp" line="255"/>
         <source>Fixed partition offset too low</source>
         <translation>Partizio finkoaren desplazamendua baxuegia da </translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="206"/>
+        <location filename="multiimagewritethread.cpp" line="204"/>
         <source>Cannot boot partitions &gt; 62. Reduce the number of OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="228"/>
+        <location filename="multiimagewritethread.cpp" line="226"/>
         <source>Cannot boot partitions &gt; #62. Reduce the number of OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="317"/>
+        <location filename="multiimagewritethread.cpp" line="315"/>
         <source>Writing partition table</source>
         <translation>Partizio-taula idazten</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="332"/>
+        <location filename="multiimagewritethread.cpp" line="330"/>
         <source>Writing boot partition table</source>
         <translation>Abioko partizio-taula idazten</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="322"/>
-        <location filename="multiimagewritethread.cpp" line="338"/>
+        <location filename="multiimagewritethread.cpp" line="320"/>
+        <location filename="multiimagewritethread.cpp" line="336"/>
         <source>Zero&apos;ing start of each partition</source>
         <translation>Partizio bakoitzaren hasiera zerotzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="377"/>
-        <source>Cannot Reinstall </source>
-        <oldsource>Cannot Refresh </oldsource>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="multiimagewritethread.cpp" line="377"/>
+        <location filename="multiimagewritethread.cpp" line="375"/>
         <source>.
 Partition not big enough for new image.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="417"/>
+        <location filename="multiimagewritethread.cpp" line="375"/>
+        <source>Cannot Reinstall/Replace </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="multiimagewritethread.cpp" line="415"/>
         <source>Error reading existing partition table</source>
         <translation>Errorea lehendik dagoen partizio-taula irakurtzean</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="502"/>
+        <location filename="multiimagewritethread.cpp" line="500"/>
         <source>Error creating partition table</source>
         <translation>Errorea partizio-taula sortzean</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="672"/>
-        <location filename="multiimagewritethread.cpp" line="678"/>
+        <location filename="multiimagewritethread.cpp" line="670"/>
+        <location filename="multiimagewritethread.cpp" line="676"/>
         <source>%1: Writing OS image</source>
         <translation>%1: SE irudia idazten</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="685"/>
+        <location filename="multiimagewritethread.cpp" line="683"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation>%1: Fitxategi-sistema sortzen (%2)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="692"/>
+        <location filename="multiimagewritethread.cpp" line="690"/>
         <source>%1: Mounting file system</source>
         <translation>%1: Fitxategi-sistema muntatzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="695"/>
-        <location filename="multiimagewritethread.cpp" line="719"/>
-        <location filename="multiimagewritethread.cpp" line="855"/>
+        <location filename="multiimagewritethread.cpp" line="693"/>
+        <location filename="multiimagewritethread.cpp" line="717"/>
+        <location filename="multiimagewritethread.cpp" line="853"/>
         <location filename="multiimagewritethread.cpp" line="990"/>
         <source>%1: Error mounting file system</source>
         <translation>%1: Errorea fitxategi-sistema muntatzean</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="700"/>
+        <location filename="multiimagewritethread.cpp" line="698"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation>%1: Fitxategi-sistema deskargatu eta erauzten</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="702"/>
+        <location filename="multiimagewritethread.cpp" line="700"/>
         <source>%1: Extracting filesystem</source>
         <translation>%1: Fitxategi-sistema erauzten</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="716"/>
-        <location filename="multiimagewritethread.cpp" line="851"/>
+        <location filename="multiimagewritethread.cpp" line="714"/>
+        <location filename="multiimagewritethread.cpp" line="849"/>
         <source>%1: Mounting FAT partition</source>
         <translation>%1: FAT partizioa muntatzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="724"/>
+        <location filename="multiimagewritethread.cpp" line="722"/>
         <source>%1: Creating os_config.json</source>
         <translation>%1: os_config.json sortzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="757"/>
+        <location filename="multiimagewritethread.cpp" line="755"/>
         <source>%1: Saving display mode to config.txt</source>
         <translation>%1: Bistaratze-modua config.txt-n gordetzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="768"/>
+        <location filename="multiimagewritethread.cpp" line="766"/>
         <source>%1: Running partition setup script</source>
         <translation>%1: Partizioa prestatzeko script-a exekutatzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="822"/>
+        <location filename="multiimagewritethread.cpp" line="820"/>
         <source>%1: Error executing partition setup script</source>
         <translation>%1: Errorea partizioa prestatzeko script-a exekutatzean</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="838"/>
+        <location filename="multiimagewritethread.cpp" line="836"/>
         <source>%1: Configuring flavour</source>
         <translation>%1: Zaporea konfiguratzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="828"/>
-        <location filename="multiimagewritethread.cpp" line="889"/>
+        <location filename="multiimagewritethread.cpp" line="826"/>
+        <location filename="multiimagewritethread.cpp" line="887"/>
         <source>%1: Unmounting FAT partition</source>
         <translation>%1: FAT partizioa desmuntatzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="831"/>
-        <location filename="multiimagewritethread.cpp" line="892"/>
+        <location filename="multiimagewritethread.cpp" line="829"/>
+        <location filename="multiimagewritethread.cpp" line="890"/>
         <source>%1: Error unmounting</source>
         <translation>%1: Errorea desmuntatzean</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="861"/>
+        <location filename="multiimagewritethread.cpp" line="859"/>
         <source>%1: Checking firmware update</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1540,57 +1554,57 @@ Partition not big enough for new image.</source>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="languagedialog.cpp" line="27"/>
+        <location filename="languagedialog.cpp" line="26"/>
         <source>OK</source>
         <translation>Ados</translation>
     </message>
     <message>
-        <location filename="languagedialog.cpp" line="28"/>
+        <location filename="languagedialog.cpp" line="27"/>
         <source>&amp;OK</source>
         <translation>&amp;Ados</translation>
     </message>
     <message>
-        <location filename="languagedialog.cpp" line="29"/>
+        <location filename="languagedialog.cpp" line="28"/>
         <source>Cancel</source>
         <translation>Utzi</translation>
     </message>
     <message>
-        <location filename="languagedialog.cpp" line="30"/>
+        <location filename="languagedialog.cpp" line="29"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Utzi</translation>
     </message>
     <message>
-        <location filename="languagedialog.cpp" line="31"/>
+        <location filename="languagedialog.cpp" line="30"/>
         <source>Close</source>
         <translation>Itxi</translation>
     </message>
     <message>
-        <location filename="languagedialog.cpp" line="32"/>
+        <location filename="languagedialog.cpp" line="31"/>
         <source>&amp;Close</source>
         <translation>&amp;Itxi</translation>
     </message>
     <message>
-        <location filename="languagedialog.cpp" line="33"/>
+        <location filename="languagedialog.cpp" line="32"/>
         <source>&amp;Yes</source>
         <translation>&amp;Bai</translation>
     </message>
     <message>
-        <location filename="languagedialog.cpp" line="34"/>
+        <location filename="languagedialog.cpp" line="33"/>
         <source>&amp;No</source>
         <translation>&amp;Ez</translation>
     </message>
     <message>
-        <location filename="languagedialog.cpp" line="35"/>
+        <location filename="languagedialog.cpp" line="34"/>
         <source>Ignore</source>
         <translation>Ez ikusi egin</translation>
     </message>
     <message>
-        <location filename="languagedialog.cpp" line="36"/>
+        <location filename="languagedialog.cpp" line="35"/>
         <source>Show Details...</source>
         <translation>Erakutsi xehetasunak...</translation>
     </message>
     <message>
-        <location filename="languagedialog.cpp" line="37"/>
+        <location filename="languagedialog.cpp" line="36"/>
         <source>Hide Details...</source>
         <translation>Ezkutatu xehetasunak...</translation>
     </message>
@@ -1767,6 +1781,25 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="piclonedialog.ui" line="88"/>
         <source>Resize Last Partition</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>renamedialog</name>
+    <message>
+        <location filename="renamedialog.ui" line="14"/>
+        <location filename="renamedialog.ui" line="61"/>
+        <source>Alias</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="renamedialog.ui" line="77"/>
+        <source>OS name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="renamedialog.ui" line="122"/>
+        <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

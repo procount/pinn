@@ -44,7 +44,7 @@ bsdtar cvzf firmware.tar.gz firmware.*
 cp firmware.tar.gz $dst
 cp changefirmware $dst
 cp ~/pinn-os/os/overrides.json $dst
-cp config.txt $dst
+cp config.* $dst
 
 # Make amendments
 #================

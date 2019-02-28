@@ -45,6 +45,14 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+## V3.1
+
+- **Nano**              - Added nano text editor
+- **Rename**            - Allows giving an OS an Alias name & change its description	
+- **Hyperpixel**        - Added full kernel drivers to support Pimoroni Hyperpixel 3.5" and 4" touchscreens 
+- **ScreenSwitch**      - Performs automatic screen switching at bootup
+- **dhcpcd**            - Now configurable
+
 ## V3.0.4    
 
 - **forceupdatepinn**   - Add forceupdatepinn option

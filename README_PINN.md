@@ -7,7 +7,7 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v3.0.4
+This README relates to v3.1
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -158,6 +158,7 @@ There are three toolbars:
   - **[Reinstall](#reinstall-individual-oses)**: Allows individual installed OSes to be reinstalled back to their original installation without affecting any of the other installed OSes.
   - **[Replace](#replace-individual-oses)**: Allows individual installed OSes to be replaced by other/different OSes without affecting any of the other installed OSes.
   - **[Info](#info-on-os)**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
+  - **[Alias](#alias)**: Renames an installed OS by assigning it an alias.
 
 The `more` button can be used to cycle through the 3 toolbars. (shortcuts = M or PageDown)
 
@@ -255,11 +256,36 @@ Remember to also enable the display in each OS that you want to use it with.
 
 ### How to use with Pimoroni's Hyperpixel displays
 
-Support for Pimoroni's original Hyperpixel and the Hyperpixel4 displays has now been added to PINN. 
+Support for Pimoroni's original Hyperpixel and the Hyperpixel4 displays has now been built into PINN in the form of new composite kernel drivers. These provide screen detection, LCD initialisation and touchscreen support for both screens.
 
-After installing PINN to the SD card, simply download and unzip hyperpixel-display.zip from the sourceforge website and copy the contents over the top of PINN. The rainbow square will not show up on the Hyperpixel, because the display is not initialised until just before PINN starts. Only the display works at the moment - no touchscreen.
+To enable support for these screens add the appropriate dtoverlay to your config.txt file. The supported parameters are provided below:
 
-To use the Hyperpixel4 display, download and unzip hyperpixel4-display.zip from the sourceforge website and copy the contents over the top of PINN. 
+Name:   pimhyp3  
+Info:   Overlay for activation of Pimoroni Hyperpixel 3.5"  
+Load:   dtoverlay=pimhyp3,<param>[=<val>]  
+Params: rotate or rotate_0          Default orientation (landscape)  
+        rotate_1                    Rotate 90 degrees CW (portrait)  
+        rotate_2                    Rotate 180 degrees (landscape)  
+        rotate_3                    Rotate 180 degrees (landscape)  
+        checkonly                   Checks for presence of screen but does not load driver  
+        poll                        Uses polling instead of interrupts for Touchscreen  
+        refresh-rate=               Sets the refresh rate for polling mode in ms.  
+
+Name:   pimhyp4  
+Info:   Overlay for activation of Pimoroni Hyperpixel 4"  
+Load:   dtoverlay=pimhyp4,<param>[=<val>]  
+Params: rotate or rotate_0          Default orientation (portrait)  
+        rotate_1                    Rotate 90 degrees CW (landscape)  
+        rotate_2                    Rotate 180 degrees (portrait)  
+        rotate_3                    Rotate 270 degrees (landscap)  
+        checkonly                   Checks for presence of screen but does not load driver  
+
+To rotate the screens, add `display_lcd_rotate_0` to config.txt.  
+Replace the `0` with 1,2 or 3 for the various rotations.  
+To rotate the touchscreen add the appopriate dtparam to the overlay, e.g. `dtoverlay=pimhyp4:rotate_0`  
+For some rotations, it may also be necessary to set the `framebuffer_width` and `framebuffer_height` parameters.  
+
+Example config.txt files called config.hyp3 and config.hyp4 are included with example settings for each of the 4 rotations.  
 
 Remember to also enable the display in each OS that you want to use it with.
 
@@ -288,6 +314,10 @@ The IP address of the PI is shown in the window title bar for ease of connection
 Use the username of `root` and password `raspberry` to login to the shell via the console or SSH.
 
 NOTE: This SSH option is meant to be used on a local LAN only. If your Pi is open to the internet, **anyone** can gain access to PINN as the only security is a well-known username/password.
+
+### Shell editors
+
+Two editors are available in the recovery shell: vi and nano. Only the Tiny version of nano is included, so some features may not be present when compared to the version supplied with Raspbian.
 
 ### How to change display output modes
 
@@ -321,6 +351,8 @@ PINN will remember your wifi network connections, so it is only necessary to ent
 ### Preconfiguring a WiFi network
 
 If you already know your WiFi details, you can preconfigure PINN to use them straight away. Put a copy of your `wpa_supplicant.conf` file on the PINN root partition and PINN will read it and store it in its settings for all future uses. The file will be renamed to `wpa_supplicant.conf.bak` to prevent it from overwriting any subsequent changes you make to the Wi-Fi networks using the GUI. This file will also be passed on to some OSes when they install.
+
+If you need to have more control over your network connection, like setting a static IP address, it is also possible to drop a new copy of the dhcpcd.conf file onto the PINN root partition and PINN will read it and store it in its settings for all future uses. The file will be renamed to `dhcpcd.conf.bak` after being copied.
 
 ### Network Drivers
 
@@ -903,6 +935,13 @@ To replace one or more OSes, first select the new OSes you want to install on th
 
 ![alt text](screenshots/replace.png "Replace OSes.")
 
+
+## Alias
+
+The `alias` function will allow an installed OS to be given an alias name, which can be used to rename an OS.  
+When selected, a dialog box will open where the alias can be edited. The description of the OS can also be edited here.  
+This can be useful to distinguish multiple copies of the same OS that have been installed using ProjectSpaces.
+
 ---
 
 # Advanced Usage
@@ -970,7 +1009,19 @@ PINN will automatically boot the last selected OS after it times out. If a HDMI 
 
 If an HDMI screen was not detected, PINN will copy the `config.dsi` file to config.txt on the selected OS and reboot into it.
 
-When using this technique, do not make any modifications to config.txt directly otherwise they will be overwritten bny PINN on next boot. Instead, modify the appropriate config.dsi or config.hdmi file.
+When using this technique, do not make any modifications to config.txt directly otherwise they will be overwritten by PINN on next boot. Instead, modify the appropriate config.dsi or config.hdmi file.
+
+### Automatic Screen Detection
+
+From v3.1 PINN includes automatic screen detection amongst HDMI, DSI and Pimoroni Hyperpixel screens. To enable this feature, download screenswitch.zip and unzip to the PINN recovery partition. This includes some config.txt files for the various screens and a pinn_init.sh script to detect and switch the screen configuration. The idea is that no matter which of these screens is fitted, PINN will always be able to make its display visible. 
+
+In the case where mutiple screens are attached at the same time, enter your preferred screen on the first line of `screenpref` as hdmi, dsi, hyp3 or hyp4 and PINN will attempt to select this one.
+
+When PINN detects a different screen is fitted, it will reconfigure itself and reboot to make this take effect, so it takes slightly longer to boot in this instance. 
+
+Whilst the Hyperpixel screens and the HDMI monitor can nearly always be detected, the RPF DSI Touchscreen is sometimes not detectable, or hidden, depending on the current configuration. In this case it may be necessary to remove some displays and/or switch to HDMI mode in order to detect the DSI touchscreen and then switch to it.
+
+Whilst using this screen detection technqiue, do not edit config.txt, but rather change the config file for the appropriate display. Also do not change the first line of each config file as this is used by the script to detect the current configuration.
 
 ---
 
