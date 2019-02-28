@@ -474,3 +474,14 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 ## V3.0.4
 - **forceupdatepinn**   - Add forceupdatepinn option
 - **OS Replace**        - Fixed problem replacing an OS when PINN is booted from USB
+
+## V3.1
+
+- **Nano**              - Added nano text editor
+- **Rename**            - Allows giving an OS an Alias name & change its description	
+- **Hyperpixel**        - Added full kernel drivers to support Pimoroni Hyperpixel 3.5" and 4" touchscreens 
+- **ScreenSwitch**      - Performs automatic screen switching at bootup
+- **dhcpcd**            - Now configurable
+
+
+

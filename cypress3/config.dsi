@@ -1,4 +1,6 @@
-# selects dsi (rpf 7" touchsreen)
+#select dsi
+#(rpf 7" touchsreen)
+
 dtoverlay=pimhyp3:checkonly
 dtoverlay=pimhyp4:checkonly
 

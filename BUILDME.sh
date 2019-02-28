@@ -103,6 +103,8 @@ BUILD_DIR="output/build"
 IMAGES_DIR="output/images"
 
 SKIP_KERNEL_REBUILD=0
+SKIP_KERNEL_6=0
+SKIP_KERNEL_7=0
 SKIP_RECOVERY_REBUILD=0
 UPDATE_TS=0
 
@@ -130,6 +132,15 @@ for i in $*; do
     # Option to build just recovery without completely rebuilding both kernels
     if [ $i = "skip-kernel-rebuild" ]; then
         SKIP_KERNEL_REBUILD=1
+    fi
+    # Option to build just recovery without completely rebuilding both kernels
+    if [ $i = "skip-kernel-6" ]; then
+        SKIP_KERNEL_6=1
+    fi
+
+    # Option to build just recovery without completely rebuilding both kernels
+    if [ $i = "skip-kernel-7" ]; then
+        SKIP_KERNEL_7=1
     fi
 
     # Option to build just recovery without completely rebuilding both kernels
@@ -165,17 +176,26 @@ mkdir -p "$FINAL_OUTPUT_DIR/os"
 cp -r ../sdcontent/* "$FINAL_OUTPUT_DIR"
 
 if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
-    # Rebuild kernel for ARMv7
-    select_kernelconfig armv7
-    make linux-reconfigure
-    # copy ARMv7 kernel
-    cp "$IMAGES_DIR/zImage" "$FINAL_OUTPUT_DIR/recovery7.img"
 
-    # Rebuild kernel for ARMv6
-    select_kernelconfig armv6
-    make linux-reconfigure
-    # copy ARMv6 kernel
-    cp "$IMAGES_DIR/zImage" "$FINAL_OUTPUT_DIR/recovery.img"
+    if [ $SKIP_KERNEL_7 -ne 1 ]; then
+        # Rebuild kernel for ARMv7
+        select_kernelconfig armv7
+        make linux-reconfigure
+        # copy ARMv7 kernel
+        cp "$IMAGES_DIR/zImage" "$FINAL_OUTPUT_DIR/recovery7.img"
+    else
+        echo "Warning: kernel armv7 in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
+    fi
+
+    if [ $SKIP_KERNEL_6 -ne 1 ]; then
+        # Rebuild kernel for ARMv6
+        select_kernelconfig armv6
+        make linux-reconfigure
+        # copy ARMv6 kernel
+        cp "$IMAGES_DIR/zImage" "$FINAL_OUTPUT_DIR/recovery.img"
+    else
+        echo "Warning: kernel armv6 in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
+    fi
 else
     echo "Warning: kernels in '$NOOBS_OUTPUT_DIR' directory haven't been updated"
 fi
