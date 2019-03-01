@@ -1233,12 +1233,11 @@ void MainWindow::on_actionDownload_triggered()
     //@@ maybe here decide if to download to /mnt or /settings and only mount that one rw
 
     _local = "/tmp/media/"+partdev(_osdrive,1);
-    if (QProcess::execute("mount -o remount,rw /dev/"+partdev(_osdrive,1)+" "+_local) != 0)
-    {
-        return;
-    }
-    // OR ....
-    // QProcess::execute("mount -o remount,rw /mnt");
+
+    //if (QProcess::execute("mount -o remount,rw /dev/"+partdev(_osdrive,1)+" "+_local) != 0)
+    // The NTFS driver can't remount, so we'll just umount & mount again
+    QProcess::execute("umount /dev/"+partdev(_osdrive,1));
+    QProcess::execute("mount  /dev/"+partdev(_osdrive,1)+" "+_local);
 
     if (_silent || QMessageBox::warning(this,
                                         tr("Confirm"),
@@ -1347,6 +1346,11 @@ void MainWindow::onCompleted(int arg)
     {
         if (_eDownloadMode==MODE_DOWNLOAD)
         {
+            /* make the USB stick read only again */
+            QProcess::execute("sync");
+            QProcess::execute("umount /dev/"+partdev(_osdrive,1));
+            QProcess::execute("mount -ro /dev/"+partdev(_osdrive,1)+" "+_local);
+
             ret = QMessageBox::information(this,
                                      tr("OS(es) downloaded"),
                                      tr("OS(es) Downloaded Successfully."), QMessageBox::Ok);
