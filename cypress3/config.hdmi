@@ -1,0 +1,6 @@
+#select hdmi
+dtoverlay=pimhyp3:checkonly
+dtoverlay=pimhyp4:checkonly
+
+#Add any additional config options for HDMI hee
+

@@ -1,0 +1,167 @@
+/*
+ * Device tree overlay for Goodix ft6236 Touchscreen & Pimoroni Hyperpixel4 LCD
+ * V2
+ *
+ * Compile:
+ * dtc -@ -I dts -O dtb -o cypress.dtbo cypress.dts
+ */
+
+/dts-v1/;
+/plugin/;
+/ {
+    /* Identify the RPi models this is compatible with (is this sufficient?) */
+    compatible = "brcm,bcm2708";
+
+    fragment@0 {
+        target = <&leds>;
+        __overlay__ {
+            pinctrl-names = "default";
+            pinctrl-0 = <&dpi18_pins>;
+        };
+    };
+
+    /* Define a group of pins to be configured by the GPIO driver as function 6 = ALT2 = DPI mode */
+    fragment@1 {
+        target = <&gpio>;
+        __overlay__ {
+            dpi18_pins: dpi18_pins {
+                brcm,pins = <0x0 0x1 0x2 0x3 0x4 0x5 0x6 0x7 0x8 0x9    0xc 0xd 0xe 0xf 0x10 0x11     0x14 0x15 0x16 0x17 0x18 0x19>;
+                brcm,function = <0x6>;
+                brcm,pull = <0x0>;
+            };
+        };
+    };
+
+    fragment@2 {
+        target-path = "/";
+        __overlay__ {
+            i2c_gpio: i2c@0 {
+                #address-cells = <1>;
+                #size-cells = <0>;
+                compatible = "i2c-gpio";
+                gpios = <&gpio 10 0 /* sda */
+                         &gpio 11 0 /* scl */
+                        >;
+                i2c-gpio,delay-us = <4>;        /* ~100 kHz */
+            };
+        };
+    };
+
+    fragment@3 {
+        target = <&i2c_gpio>;
+        __overlay__ {
+            /* needed to avoid dtc warning */
+            #address-cells = <1>;
+            #size-cells = <0>;
+            ft6236: ft6236@5d {
+                compatible = "pimoroni,ft6236";
+                reg = <0x5d>;
+                interrupt-parent = <&gpio>;
+                interrupts = <27 2>;
+                irq-gpios  = <&gpio 27 0>; // specify  GPIO27 as the irq line from the TS controller, CLK from LCD
+                mosi-gpios = <&gpio 26 0>; // specify  GPIO26 as the mosi line from the LCD controller
+                cs-gpios   = <&gpio 18 0>; // specify  GPIO27 as the cs line from the LCD controller
+            };
+        };
+    };
+
+    fragment@4 {                //TO BE DELETED, OR PUT DPI18_PINS GERE TO OVERLAY FT6236
+        target = <&i2c_gpio>;
+        __dormant__ {
+            /* needed to avoid dtc warning */
+            #address-cells = <1>;
+            #size-cells = <0>;
+            ft6236a: ft6236@5d {
+                compatible = "pimoroni,ft6236";
+                reg = <0x5d>;
+                interrupt-parent = <&gpio>;
+                interrupts = <27 2>;
+                irq-gpios  = <&gpio 27 0>; // specify  GPIO27 as the irq line from the TS controller, CLK from LCD
+                touchscreen-check;              //Indicate to driver that we are just checking presence.
+            };
+        };
+    };
+
+    fragment@5 {
+        target = <&ft6236>;
+        __dormant__ {
+                touchscreen-check;              //Indicate to driver that we are just checking presence.
+        };
+    };
+
+    /* Define a group of pins to be configured by the GPIO driver as function 6 = ALT2 = DPI mode */
+    fragment@6 {
+        target = <&dpi18_pins>;
+        __dormant__ {
+                brcm,pins = <0x2 0x3 0x4 0x5 0x6 0x7 0x8 0x9    0xc 0xd 0xe 0xf 0x10 0x11     0x14 0x15 0x16 0x17 0x18 0x19>;
+        };
+    };
+
+    fragment@7 {
+        target-path = "/";
+        __overlay__ {
+            rpi_backlight: rpi_backlight {
+                compatible = "gpio-backlight";
+                gpios = <&gpio 19 0>;
+                default-on;
+            };
+        };
+    };
+
+    /* display_lcd_rotate=0 */
+    /* Portrait, USB ports on top */
+    fragment@8 {
+        target = <&ft6236>;
+        __overlay__ {
+            touchscreen-inverted-x;
+            touchscreen-size-x = <480>;
+            touchscreen-size-y = <800>;
+        };
+    };
+
+    /* display_lcd_rotate=1 */
+    /* Landscape, USB ports on left */
+    fragment@9 {
+        target = <&ft6236>;
+        __dormant__ {
+            touchscreen-swapped-x-y;
+            touchscreen-size-x = <480>;
+            touchscreen-size-y = <800>;
+        };
+    };
+
+    /* display_lcd_rotate=2 */
+    /* Portrait, USB ports on bottom */
+    fragment@10 {
+        target = <&ft6236>;
+        __dormant__ {
+            touchscreen-inverted-y;
+            touchscreen-size-x = <480>;
+            touchscreen-size-y = <800>;
+        };
+    };
+
+    /* display_lcd_rotate=3 */
+    /* Landscape, USB ports on right */
+    fragment@11 {
+        target = <&ft6236>;
+        __dormant__ {
+            touchscreen-swapped-x-y;
+            touchscreen-inverted-x;
+            touchscreen-inverted-y;
+            touchscreen-size-x = <480>;
+            touchscreen-size-y = <800>;
+        };
+    };
+
+
+    __overrides__ {
+        rotate =   <0>,"+8-9-10-11";
+        rotate_0 = <0>,"+8-9-10-11";
+        rotate_1 = <0>,"-8+9-10-11";
+        rotate_2 = <0>,"-8-9+10-11";
+        rotate_3 = <0>,"-8-9-10+11";
+        checkonly= <0>,"-3+4-8-9-10-11";
+    };
+};
+

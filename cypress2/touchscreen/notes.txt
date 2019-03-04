@@ -1,0 +1,46 @@
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f    0123456789abcdef
+00: 00 01 00 02 00 05 00 03 00 08 00 06 00 08 00 01    .?.?.?.?.?.?.?.? 8 words for Y0-Y7
+10: 00 04 00 0b 00 07 00 02 00 00 00 01 00 02 00 00    .?.?.?.?...?.?.. 8 words for X0-X7
+20: 00 0b 00 0a 00 02 00 01 00 0b 00 00 00 00 00 e0    .?.?.?.?.?.....? 6 words for X8-X13,0,0,0,E0
+30: e0 00 01 04 04 3c 53 78 78 00 01 00 00 0c 14 00    ?.???<Sxx.?..??. <FIXED>
+40: 00 00 00 00 00 00 00 00 00 32 3c 7e 1b 00 00 00    .........2<~?... X1L,Y1L,X2L,Y2L,X1H,Y1H,X2H,Y2H;00,32,3c,7e,1b,00,00,(MT1?)
+50: 00 00 00 00 00 00 00 00 00 00 00 00 78 00 8c 00    ............x.?. MT1: 4f,51,53,54,57,58; Mt2: 50,55,56;
+60: 00 00 00 00 00 00 00 64 64 00 00 00 00 00 0e 05    .......dd.....?? 0x6d = #of MTs; 0x6e=write 0x0E; rest fixed
+70: a0 01 02 00 00 00 00 00 00 11 23 50 13 01 00 ^C    ???......?#P??.. <FIXED>
+
+
+Cypress Cy8c20466 Capsense Psoc
+
+You basically read 44 bytes from 0x00 which correspond to the 2 byte readings for 8 rows and 14 columns of ADC values (8+14)*2
+Then get creative with signal processing on that stream of data until you can track touches :smile:
+
+You can read 8bytes of touch data directly from 0x40 onwards, and unpack that unto (x,y)1 and (x,y)2 but the internally-recognised coords are just junk
+Beyond 0x48 I don't know- there be dragons! There might be a chip ID, but since it's software on a microprocessor I'm not optimistic
+
+I think 0x5a and 0x5b are the X and Y sensitivity but I'm not sure
+Only relevant for the built-in touch sensing though
+Oh wait, 0x67 and 0x68 even
+
+0x6e is interrupt settings.
+
+Summary:
+0x00 to 0x0f: 8 raw Y ADC values, 10bit, 2 bytes each (MSB first)
+0x10 to 0x2c: 14 raw X ADC values, 10bit, 2 bytes each (MSB first)
+0x40 to 0x48: x1L, y1L, X2L, Y2L, X1H, Y1H, X2H, Y2H
+0x67: X sensitivity
+0x68: Y sensitivity
+0x6d: # of MTs (0/1/2)
+0x6e: interrupt settings - 0 0 0 0 EN_INT INT_POL INT_MODE1 INT_MODE2
+0x6f?: interrupt width
+0x70: power mode 0000 <- IDLE PERIOD, 1 ALLOW SLEEP 00 <- POWER MODE
+  - idle period is a value in milliseconds
+  - allow sleep allows switch from 60Hz back to 10Hz after idle period?
+  - power mode 0 = 60Hz scan
+  - power mode 1 - 10Hz (sleep)
+  - power mode 2 - 0hz (deep sleep)
+  ( auto switches from 10hz to 60hz if panel touched )
+
+NOTE: The LCD initialiser (hyperpixel-init.c) uses BCM27 (pin 13) as CLK input to the LCD, but leaves it in an OUTPUT state.
+Therefore DTS configuration of this pin is futile for the touchscreen.
+In the touchscreen driver, it is necessary to reset this pin direction manually to INPUT before use.
+

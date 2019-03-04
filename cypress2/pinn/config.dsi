@@ -1,0 +1,5 @@
+# selects dsi (rpf 7" touchsreen)
+dtoverlay=pimhyp3:checkonly
+dtoverlay=pimhyp4:checkonly
+
+display_default_lcd=1

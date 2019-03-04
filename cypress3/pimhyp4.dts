@@ -1,0 +1,132 @@
+/dts-v1/;
+/plugin/;
+/ {
+    compatible = "brcm,bcm2708";
+    fragment@0 {
+        target = <0xdeadbeef>;
+        __overlay__ {
+            pinctrl-names = "default";
+            pinctrl-0 = <0x1>;
+        };
+    };
+    fragment@1 {
+        target = <0xdeadbeef>;
+        __overlay__ {
+            dpi18_pins {
+//              brcm,pins = <0x0 0x1 0x2 0x3 0x4 0x5 0x6 0x7 0x8 0x9    0xa 0xb 0xc 0xd 0xe 0xf 0x10 0x11 0x12 0x13       0x14 0x15>;
+                brcm,pins = <0x0 0x1 0x2 0x3 0x4 0x5 0x6 0x7 0x8 0x9    0xc 0xd 0xe 0xf 0x10 0x11     0x14 0x15 0x16 0x17 0x18 0x19>;
+                brcm,function = <0x6>;
+                brcm,pull = <0x0>;
+                phandle = <0x1>;
+            };
+        };
+    };
+    fragment@2 {
+        target-path = "/";
+        __overlay__ {
+            i2c_gpio: i2c@0 {
+                compatible = "i2c-gpio";
+                gpios = <&gpio 10 0 /* sda */
+                         &gpio 11 0 /* scl */
+                        >;
+                i2c-gpio,delay-us = <4>;        /* ~100 kHz */
+                #address-cells = <1>;
+                #size-cells = <0>;
+            };
+        };
+    };
+    fragment@3 {
+        target = <&i2c_gpio>;
+        __overlay__ {
+            /* needed to avoid dtc warning */
+            #address-cells = <1>;
+            #size-cells = <0>;
+            ft6236: ft6236@5d {
+                compatible = "pimoroni,ft6236";
+                reg = <0x5d>;
+                interrupt-parent = <&gpio>;
+                interrupts = <27 2>;
+                irq-gpios  = <&gpio 27 0>; // specify  GPIO27 as the irq line from the TS controller, CLK from LCD
+                mosi-gpios = <&gpio 26 0>; // specify  GPIO26 as the mosi line from the LCD controller
+                cs-gpios   = <&gpio 18 0>; // specify  GPIO27 as the cs line from the LCD controller
+            };
+        };
+    };
+    fragment@4 {
+        target-path = "/";
+        __overlay__ {
+            rpi_backlight: rpi_backlight {
+                compatible = "gpio-backlight";
+                gpios = <&gpio 19 0>;
+                default-on;
+            };
+        };
+    };
+    /* display_lcd_rotate=2 */
+    /* Portrait, USB ports on bottom */
+    fragment@5 {
+        target = <&ft6236>;
+        __dormant__ {
+            touchscreen-inverted-y;
+            touchscreen-size-x = <480>;
+            touchscreen-size-y = <800>;
+        };
+    };
+    /* display_lcd_rotate=0 */
+    /* Portrait, USB ports on top */
+    fragment@6 {
+        target = <&ft6236>;
+        __overlay__ {
+            touchscreen-inverted-x;
+            touchscreen-size-x = <480>;
+            touchscreen-size-y = <800>;
+        };
+    };
+
+    /* display_lcd_rotate=3 */
+    /* Landscape, USB ports on right */
+    fragment@7 {
+        target = <&ft6236>;
+        __dormant__ {
+            touchscreen-swapped-x-y;
+            touchscreen-inverted-x;
+            touchscreen-inverted-y;
+            touchscreen-size-x = <480>;
+            touchscreen-size-y = <800>;
+        };
+    };
+    /* display_lcd_rotate=1 */
+    /* Landscape, USB ports on left */
+    fragment@8 {
+        target = <&ft6236>;
+        __dormant__ {
+            touchscreen-swapped-x-y;
+            touchscreen-size-x = <480>;
+            touchscreen-size-y = <800>;
+        };
+    };
+
+
+    __symbols__ {
+        dpi18_pins = "/fragment@1/__overlay__/dpi18_pins";
+    };
+    __local_fixups__ {
+        fragment@0 {
+            __overlay__ {
+                pinctrl-0 = <0x0>;
+            };
+        };
+    };
+    __fixups__ {
+        leds = "/fragment@0:target:0";
+        gpio = "/fragment@1:target:0";
+    };
+    __overrides__ {
+        rotate = <0>,"-5-7-8+6";
+        rotate_0 = <0>,"-5-7-8+6";
+        rotate_1 = <0>,"-5-6-7+8";
+        rotate_2 = <0>,"-6-7-8+5";
+        rotate_3 = <0>,"-5-6-8+7";
+    };
+};
+

@@ -61,6 +61,12 @@ if [ -e /sys/devices/platform/rpi_ft5406 ]; then
     export QWS_MOUSE_PROTO="linuxinput:/dev/input/event0:grab=1 intellimouse:/dev/input/mice"
 fi
 
+# Hyperpixel touchscreen
+dmesg | grep "Using: pimhyp" >/dev/null
+if [ "$?" == "0" ] ; then
+    export QWS_MOUSE_PROTO="linuxinput:/dev/input/event0:grab=1 intellimouse:/dev/input/mice"
+fi
+
 #Check for user init script
 pinndrive=
 mkdir -p /tmp/mnt
