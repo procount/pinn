@@ -134,7 +134,9 @@ protected:
     void addInstalledImages();
     void addImagesFromUSB(const QString &device);
     void filterList();
+    void copyConf(const QString &fconf);
     void copyWpa();
+    void copyDhcp();
     void on_newVersion();
     QString menutext(int index);
     void fullFAT();

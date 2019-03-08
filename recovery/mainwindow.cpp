@@ -472,7 +472,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     }
 
     copyWpa();
-
+    copyDhcp();
 
     if (cmdline.contains("silentinstall"))
     {
@@ -1838,33 +1838,34 @@ void MainWindow::on_list_doubleClicked(const QModelIndex &index)
     }
 }
 
-void MainWindow::copyWpa()
+
+void MainWindow::copyConf(const QString &fconf)
 {
     TRACE
     //This file is the one used by dhcpcd
-    QFile f("/settings/wpa_supplicant.conf");
+    QFile f("/settings/"+fconf);
     if ( f.exists() && f.size() == 0 )
     {
         /* Remove corrupt file */
         f.remove();
     }
 
-    /* If user supplied a wpa_supplicant.conf on the FAT partition copy that one to settings regardless */
-    if (QFile::exists("/mnt/wpa_supplicant.conf"))
+    /* If user supplied a conf file on the FAT partition copy that one to settings regardless */
+    if (QFile::exists("/mnt/"+fconf))
     {
-        qDebug() << "Copying  user wpa_supplicant.conf to /settings/wpa_supplicant.conf";
+        qDebug() << "Copying  user "+fconf+" to /settings";
 
         QProcess::execute("mount -o remount,rw /settings");
         QProcess::execute("mount -o remount,rw /mnt");
 
-        QFile::remove("/settings/wpa_supplicant.conf.bak");
-        QFile::rename("/settings/wpa_supplicant.conf","/settings/wpa_supplicant.conf.bak");
-        QFile::copy("/mnt/wpa_supplicant.conf", "/settings/wpa_supplicant.conf");
+        QFile::remove("/settings/"+fconf+".bak");
+        QFile::rename("/settings/"+fconf,"/settings/"+fconf+".bak");
+        QFile::copy("/mnt/"+fconf, "/settings/"+fconf);
         f.setPermissions( QFile::WriteUser | QFile::ReadGroup | QFile::ReadOther | QFile::ReadUser );
 
         /* rename the user file to avoid overwriting any manually set SSIDs */
-        QFile::remove("/mnt/wpa_supplicant.conf.bak");
-        QFile::rename("/mnt/wpa_supplicant.conf","/mnt/wpa_supplicant.conf.bak");
+        QFile::remove("/mnt/"+fconf+".bak");
+        QFile::rename("/mnt/"+fconf,"/mnt/"+fconf+".bak");
 
         QProcess::execute("sync");
         //QProcess::execute("mount -o remount,ro /settings");
@@ -1873,12 +1874,20 @@ void MainWindow::copyWpa()
     else if ( !f.exists() )
     {
         /* There is no existing file, must be first installation */
-        qDebug() << "Copying /etc/wpa_supplicant.conf to /settings/wpa_supplicant.conf";
-        QFile::copy("/etc/wpa_supplicant.conf", "/settings/wpa_supplicant.conf");
+        qDebug() << "Copying /etc/"+fconf+" to /settings";
+        QFile::copy("/etc/"+fconf, "/settings/"+fconf);
     }
-    QFile::remove("/etc/wpa_supplicant.conf");
 }
 
+void MainWindow::copyWpa()
+{
+    copyConf("wpa_supplicant.conf");
+}
+
+void MainWindow::copyDhcp()
+{
+    copyConf("dhcpcd.conf");
+}
 
 void MainWindow::startNetworking()
 {
@@ -1890,7 +1899,7 @@ void MainWindow::startNetworking()
     /* Run dhcpcd in background */
     QProcess *proc = new QProcess(this);
     qDebug() << "Starting dhcpcd";
-    proc->start("/sbin/dhcpcd --noarp -e wpa_supplicant_conf=/settings/wpa_supplicant.conf --denyinterfaces \"*_ap\"");
+    proc->start("/sbin/dhcpcd --noarp -f /settings/dhcpcd.conf -e wpa_supplicant_conf=/settings/wpa_supplicant.conf --denyinterfaces \"*_ap\"");
 
     if ( isOnline() )
     {
