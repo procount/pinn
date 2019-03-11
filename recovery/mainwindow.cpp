@@ -1115,8 +1115,14 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
 
 void MainWindow::on_actionReinstall_triggered()
 {
-    TRACE
     _eDownloadMode = MODE_REINSTALL;
+    doReinstall();
+}
+
+
+void MainWindow::doReinstall()
+{
+    TRACE
     _newList.clear();
     QList<QListWidgetItem *> installedList;
 
@@ -1392,7 +1398,7 @@ void MainWindow::onCompleted(int arg)
     show();
     _silent=false;
 
-    if ((_eDownloadMode == MODE_INSTALL) || (_eDownloadMode == MODE_REPLACE))
+    if ((_eDownloadMode == MODE_INSTALL) || (_eDownloadMode == MODE_REPLACE) || (_eDownloadMode == MODE_REINSTALLNEWER))
     {
         // Update list of installed OSes.
         ug->listInstalled->clear();
@@ -1400,7 +1406,7 @@ void MainWindow::onCompleted(int arg)
         updateInstalledStatus();
 
         //Only close if there are bootable OSes
-        if (_eDownloadMode == MODE_INSTALL)
+        if ((_eDownloadMode == MODE_INSTALL)  || (_eDownloadMode == MODE_REINSTALLNEWER))
         {   //Only reboot for install
             if (_numBootableOS)
             {
@@ -2779,7 +2785,7 @@ void MainWindow::downloadMetaComplete()
         }
         if (_eDownloadMode == MODE_DOWNLOAD)
             startImageDownload();
-        else if ( (_eDownloadMode == MODE_REINSTALL) || (_eDownloadMode == MODE_REPLACE))
+        else if ( (_eDownloadMode == MODE_REINSTALL) || (_eDownloadMode == MODE_REINSTALLNEWER) || (_eDownloadMode == MODE_REPLACE))
             startImageReinstall();
         else
             startImageWrite();
@@ -3394,8 +3400,10 @@ void MainWindow::pollForNewDisks()
                     QVariantMap installed_os = witem->data(Qt::UserRole).toMap();
                     foreach (QString osname, _selectOsList)
                     {
-                        if (installed_os["name"].toString()== osname)
+                        qDebug()<<"Checking "+installed_os["name"].toString()+" vs "+osname;
+                        if ( CORE(installed_os["name"].toString())== osname)
                         {
+                            qDebug() << "found";
                             witem->setCheckState(Qt::Checked);
                         }
                     }
@@ -3408,6 +3416,7 @@ void MainWindow::pollForNewDisks()
                 if ((_allowSilent) && !_numInstalledOS &&  ug->count() >= 1)
                 {   //silentInstall was selected, so let's auto-install them
                     _silent=true;
+                    counter.stopCountdown();
                     on_actionWrite_image_to_disk_triggered();
                     //Following will be done in onCompleted()
                     //addInstalledImages();   //Update the installed lists
@@ -3425,11 +3434,12 @@ void MainWindow::pollForNewDisks()
                     foreach (QListWidgetItem * witem, select)
                     {
                         QVariantMap selected_os = witem->data(Qt::UserRole).toMap();
-                        QString installedName = selected_os["name"].toString();
-
+                        QString installedName = CORE(selected_os["name"].toString());
+                        qDebug() <<"Searching for "+installedName;
                         QListWidgetItem * matchItem = ug->findItemByDataName(installedName);
                         if (matchItem)
                         {
+                            qDebug() << "found";
                             QVariantMap matchEntry = matchItem->data(Qt::UserRole).toMap();
                             if (selected_os["release_date"].toString() >= matchEntry["release_date"].toString() )
                             {
@@ -3452,7 +3462,11 @@ void MainWindow::pollForNewDisks()
                     {
                         _silent=true;
                         qDebug() <<"Silently re-installing updates";
-                        on_actionReinstall_triggered();
+
+                        //on_actionReinstall_triggered();
+                        _eDownloadMode = MODE_REINSTALLNEWER;
+                        counter.stopCountdown();
+                        doReinstall();
 
                         //Following will be done in onCompleted()
                         //addInstalledImages();   //Update the installed lists

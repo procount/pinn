@@ -655,7 +655,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
         QByteArray partdevice = p->partitionDevice();
         emit newDrive(partdevice);
 
-        if ( (!_partition) && (_downloadMode == MODE_REINSTALL)) //@@ (not for replace)
+        if ( (!_partition) && ( (_downloadMode == MODE_REINSTALL) || (_downloadMode == MODE_REINSTALLNEWER))) //@@ (not for replace)
         {   //Use the existing partition label
             int errorcode;
             QString s= readexec(0, "lsblk -noheadings -o label "+QString(partdevice), errorcode);
