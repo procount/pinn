@@ -4627,7 +4627,6 @@ void MainWindow::on_actionBackup_triggered()
                     }
 
                     backupName = entry.value("backupName").toString();
-                    backupName.replace(' ', '_');
                     QString backupFolder = _local+"/os/" + getNameParts(backupName, eBASE|eDATE) + partnr;
                     backupFolder.replace(' ', '_'); //Reqd??
 

@@ -5,6 +5,14 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.1.1
+
+- **alias**                 - Fix underscores
+- **backup**                - Much faster backups on multicore processors
+- **silentreinstallnewer**  - exits to boot menu & stops remotetimeout
+- **menu**                  - Removed PageDown->nextmenu function because it conflicts
+- **Translations**          - Updated IT & zh_TW translations
+
 ## V3.1
 
 - **Nano**              - Added nano text editor
