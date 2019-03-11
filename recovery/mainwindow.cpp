@@ -1637,12 +1637,6 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             on_list_doubleClicked(ug->list->currentIndex());
         }
 
-        // catch toolbar changes (PageDown is same as M)
-        if (keyEvent->key() == Qt::Key_PageDown)
-        {
-            on_actionAdvanced_triggered();
-        }
-
         // cursor Right changes tab headings
         if (keyEvent->key() == Qt::Key_Right)
         {
