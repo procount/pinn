@@ -55,6 +55,6 @@ void backupdialog::on_buttonBox_accepted()
     name = joinNameParts(parts);
 
     //Update map with new name & Description
-    _map["backupName"] = name.replace(" ","_");
+    _map["backupName"] = name; //@@ was .replace(" ","_")
     _map["description"] = description;
 }

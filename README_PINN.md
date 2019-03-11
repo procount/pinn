@@ -7,7 +7,7 @@ The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn
 
 ### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-This README relates to v3.1
+This README relates to v3.1.1
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -160,7 +160,7 @@ There are three toolbars:
   - **[Info](#info-on-os)**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
   - **[Alias](#alias)**: Renames an installed OS by assigning it an alias.
 
-The `more` button can be used to cycle through the 3 toolbars. (shortcuts = M or PageDown)
+The `more` button can be used to cycle through the 3 toolbars. (shortcuts = M)
 
 ## Main OS List Window
 
@@ -883,9 +883,11 @@ Select all OSes to backup and then click the backup button. After a confirmation
 
 When an OS is backed up, it is given a name that includes the current time as a suffix in the format #YYYYMMDD-HHMMSS so that backups can be readily identified. If the RPi does not know the current time because it is not connected to the internet, you will be prompted to enter the current time. PINN gives you the opportunity to change this suffix and alter the OS description in the next dialog.
 
+This Backup feature is also useful to create Custom OS versions that can be installed by PINN or NOOBS onto other systems.
+
 OSes are backed up in NOOBS/PINN format as .tar.gz files. These do not compress as well as .tar.xz files, but require less memory and can be created faster on the RPi.
 Nevertheless, compressing tar files is still a processor intensive task, so backing up an OS will take a lot longer than installing an OS, especially on some of the less powerful RPis.
-Due to the compression, it is not known precisely how much disk space is required to store the backup, so PINN makes a conservative guess of 33% of the original size. It may require more or less that this amount, but if less disk space is available, a warning message is displayed, but the backup may continue if you wish. If there is insufficient disk space to complete the backup, this should be indicated. (You can also check the log in /tmp/debug for any errors.)
+Due to the compression, it is not known precisely how much disk space is required to store the backup, so PINN makes a conservative guess of 33% of the original size. It may require more or less than this amount, but if less disk space is available, a warning message is displayed, but the backup may continue if you wish. If there is insufficient disk space to complete the backup, this should be indicated. (You can also check the log in /tmp/debug for any errors.)
 
 **Backups should be thoroughly tested that they are valid and restorable before relying upon them. This is a new PINN feature and every effort has been made to ensure it works as expected, but the author accepts no liability or responsibility for loss of data.**
 

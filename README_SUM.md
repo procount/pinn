@@ -45,7 +45,16 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
-## V3.1
+### V3.1.1
+
+- **alias**                 - Fix underscores
+- **backup**                - Much faster backups on multicore processors
+- **silentreinstallnewer**  - exits to boot menu & stops remotetimeout
+- **menu**                  - Removed PageDown->nextmenu function because it conflicts
+- **Translations**          - Updated IT & zh_TW translations
+
+
+### V3.1
 
 - **Nano**              - Added nano text editor
 - **Rename**            - Allows giving an OS an Alias name & change its description	
@@ -53,38 +62,38 @@ Please note that in some cases it may extract the files into a folder, if this i
 - **ScreenSwitch**      - Performs automatic screen switching at bootup
 - **dhcpcd**            - Now configurable
 
-## V3.0.4    
+### V3.0.4    
 
 - **forceupdatepinn**   - Add forceupdatepinn option
 - **OS Replace**        - Fixed problem replacing an OS when PINN is booted from USB
 
-## V3.0.3
+### V3.0.3
 
 - **Backup USB**        - Fix for multiple USB sticks.
 - **Translation**       - Ko & zh_tw.ts updated.
 
-## V3.0.2
+### V3.0.2
 
 - **Backup USB**        - Improved backup size calculation for USB installed OSes.
 
-## V3.0.1
+### V3.0.1
 
 - **Backup/Download**   - Removed the need to reboot after a download or backup.
 - **Wallpapers**        - removed wallpapers folder & Allowed JPEGs
 - **Default wallpaper   - Changed default to wallpaper.jpg
 
-## V3.0
+### V3.0
 
 - **Backup**                  - Backup an OS in PINN format
 - **Time**            	      - Added button to set date & time	
 - **Download**                - Fix Foldername of some OSes when downloaded
 - **Iconcache**               - Cache icons when connected to internet to speedup startup
 
-## V2.8.5.8
+### V2.8.5.8
 
 - **RPi 3A+**                 - Supports RPi 3A+
 
-## V2.8.5.7
+### V2.8.5.7
 
 - **Firmware**                - Disabled firmware downgrade on 3B+
 - **Clear**                   - Added Clear button to clear all selections
@@ -93,28 +102,28 @@ Please note that in some cases it may extract the files into a folder, if this i
 - **SilentInstall**           - Fixed waiting for USB images
 - **networktimeout**          - 0 means wait indefinitely for network before silentinstall
 
-## V2.8.5.5
+### V2.8.5.5
 
 - **Boot menu**               - Sticky default now uses bootmenutimeout
 - **rebootp**                 - Added rebootp command to recovery shell
 
-## V2.8.5.4
+### V2.8.5.4
 
 - **Boot menu**               - Fixed focus and sticky default partuuid issues.
 - **wallpaper_resize**        - Customised wallpaper can now be resized to fill the screen
 
-## V2.8.5.3
+### V2.8.5.3
 
 - **Partuuid**                - Fixed an issue from v2.8 where partuuids were introduced to installed_os.json
 - **Wallpaper**               - Customised wallpaper is now available by writing your own `wallpaper.png` file to PINN's recovery partition## V2.8.5.1
 
-## V2.8.5.2
+### V2.8.5.2
 
 - **VNCnotice**               - Displays a notice on the main screen when vncinstall is in use
 - **PINN update**             - Prevents crash on manual update when there is no network
 - **ae-ts**                   - tidy up of translations
 
-## V2.8.5.1
+### V2.8.5.1
 
 - **Reinstall**               - BUGFIX for Re-install.
 - **translations**            - Updated it and zh_TW translations.

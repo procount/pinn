@@ -50,7 +50,7 @@ void renamedialog::on_buttonBox_accepted()
     name = joinNameParts(parts);
 
     //Update map with new name & Description
-    _map["name"] = name.replace(" ","_");
+    _map["name"] = name;
     _map["description"] = description;
 
     //Retrieve existing list of installed_os

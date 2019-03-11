@@ -483,5 +483,12 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **ScreenSwitch**      - Performs automatic screen switching at bootup
 - **dhcpcd**            - Now configurable
 
+## V3.1.1
+
+- **alias**                 - Fix underscores
+- **backup**                - Much faster backups on multicore processors
+- **silentreinstallnewer**  - exits to boot menu & stops remotetimeout
+- **menu**                  - Removed PageDown->nextmenu function because it conflicts
+- **Translations**          - Updated IT & zh_TW translations
 
 
