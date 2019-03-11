@@ -530,17 +530,17 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.ui" line="714"/>
         <source>Alias (a)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alias (a)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="717"/>
         <source>Rename an OS with an alias</source>
-        <translation type="unfinished"></translation>
+        <translation>Rinomina un SO con un alias</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="720"/>
         <source>A</source>
-        <translation type="unfinished"></translation>
+        <translation>A</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="486"/>
@@ -819,7 +819,7 @@ Tutti i dati esistenti nella scheda SD verranno sovrascritti, incluso qualsiasi 
     <message>
         <location filename="mainwindow.cpp" line="1223"/>
         <source>The Reinstall/Replace process will begin shortly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il processo di reinstallazione/sostituzione partirà a breve.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1246"/>
@@ -1116,7 +1116,7 @@ Copialo localmente o collegati ad internet.</translation>
     <message>
         <location filename="mainwindow.cpp" line="1360"/>
         <source>OS(es) Downloaded Successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Download OS completato.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1460"/>
@@ -1326,7 +1326,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="multiimagewritethread.cpp" line="375"/>
         <source>Cannot Reinstall/Replace </source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile reinstallare/sostituire </translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="415"/>
@@ -1812,17 +1812,17 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
         <location filename="renamedialog.ui" line="14"/>
         <location filename="renamedialog.ui" line="61"/>
         <source>Alias</source>
-        <translation type="unfinished"></translation>
+        <translation>Alias</translation>
     </message>
     <message>
         <location filename="renamedialog.ui" line="77"/>
         <source>OS name</source>
-        <translation type="unfinished">Nome SO</translation>
+        <translation>Nome SO</translation>
     </message>
     <message>
         <location filename="renamedialog.ui" line="122"/>
         <source>Description</source>
-        <translation type="unfinished">Descrizione</translation>
+        <translation>Descrizione</translation>
     </message>
 </context>
 <context>
