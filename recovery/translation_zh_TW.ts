@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BackupThread</name>
     <message>
@@ -530,17 +530,17 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="714"/>
         <source>Alias (a)</source>
-        <translation type="unfinished"></translation>
+        <translation>別名 (a)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="717"/>
         <source>Rename an OS with an alias</source>
-        <translation type="unfinished"></translation>
+        <translation>使用別名重新命名作業系統</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="720"/>
         <source>A</source>
-        <translation type="unfinished"></translation>
+        <translation>A</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="486"/>
@@ -800,7 +800,7 @@ All existing data on the SD card will be overwritten, including any OSes that ar
     <message>
         <location filename="mainwindow.cpp" line="1223"/>
         <source>The Reinstall/Replace process will begin shortly.</source>
-        <translation type="unfinished"></translation>
+        <translation>重新安裝／取代的過程將壞很快地開始</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1246"/>
@@ -1285,7 +1285,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="375"/>
         <source>Cannot Reinstall/Replace </source>
-        <translation type="unfinished"></translation>
+        <translation>無法重新安裝／取代 </translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="395"/>
@@ -1797,17 +1797,17 @@ Partition not big enough for new image.</source>
         <location filename="renamedialog.ui" line="14"/>
         <location filename="renamedialog.ui" line="61"/>
         <source>Alias</source>
-        <translation type="unfinished"></translation>
+        <translation>別名</translation>
     </message>
     <message>
         <location filename="renamedialog.ui" line="77"/>
         <source>OS name</source>
-        <translation type="unfinished">作業系統名稱</translation>
+        <translation>作業系統名稱</translation>
     </message>
     <message>
         <location filename="renamedialog.ui" line="122"/>
         <source>Description</source>
-        <translation type="unfinished">描述</translation>
+        <translation>描述</translation>
     </message>
 </context>
 <context>
