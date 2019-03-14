@@ -168,7 +168,7 @@ bool BackupThread::processImage(const QVariantMap & entry)
         {
             //   tar gzip
             emit statusUpdate(tr("%1: Archiving (%2)").arg(os_name, QString(label)));
-            cmd = "sh -c \"cd /tmp/src; tar -c . | gzip > "+ backupFolder+"/"+label+".tar.gz\"";
+            cmd = "sh -c \"cd /tmp/src; tar -c . | pigz > "+ backupFolder+"/"+label+".tar.gz\"";
         }
 
         qDebug()<<cmd;

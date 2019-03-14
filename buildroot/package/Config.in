@@ -7,6 +7,7 @@ menu "Target packages"
 	source "package/recovery/Config.in"
 	source "package/rebootp/Config.in"
 	source "package/rpi-wifi-firmware/Config.in"
+	source "package/pigz/Config.in"
 
 menu "Audio and video applications"
 	source "package/alsa-utils/Config.in"
