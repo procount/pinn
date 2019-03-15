@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BackupThread</name>
     <message>
@@ -800,7 +800,7 @@ All existing data on the SD card will be overwritten, including any OSes that ar
     <message>
         <location filename="mainwindow.cpp" line="1229"/>
         <source>The Reinstall/Replace process will begin shortly.</source>
-        <translation>重新安裝／取代的過程將壞很快地開始</translation>
+        <translation type="unfinished">重新安裝／取代的過程將會在短時間內開始。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1252"/>
