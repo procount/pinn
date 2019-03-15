@@ -630,3 +630,16 @@ bool updatePartitionScript(QVariantMap & entry, QListWidgetItem * witem)
     qDebug() << "No OS installation found";
     return false;
 }
+
+QString getCsumType(const QVariantMap &partition)
+{
+    QStringList options;
+    options << "sha512sum" <<"sha256sum" <<"sha1sum"<<"md5sum";
+
+    foreach (QString csum, options)
+    {
+        if (partition.contains(csum))
+            return(csum);
+    }
+    return("");
+}

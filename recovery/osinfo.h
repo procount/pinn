@@ -109,11 +109,33 @@ public:
         return _supports_backup;
     }
 
+    inline QString csumType()
+    {
+        return (_csumType);
+    }
+
+    inline void setCsumType(const QString & type)
+    {
+        _csumType = type;
+    }
+
+    inline QString csum()
+    {
+        return (_csum);
+    }
+
+    inline void setCsum(const QString & csum)
+    {
+        _csum = csum;
+    }
+
+
 protected:
     QString _folder, _flavour, _name, _description, _version, _releaseDate;
     QString _username, _password, _url, _group, _configpath, _replacedName;
     bool _bootable;
     QString _supports_backup;
+    QString _csum, _csumType;
     QList<PartitionInfo *> _partitions;
     QStringList _supportedModels;
     int _riscosOffset;

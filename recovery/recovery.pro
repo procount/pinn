@@ -69,7 +69,9 @@ SOURCES += \
     datetimedialog.cpp \
     backupdialog.cpp \
     iconcache.cpp \
-    renamedialog.cpp
+    renamedialog.cpp \
+    termsdialog.cpp \
+    optionsdialog.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -118,7 +120,9 @@ HEADERS  += \
     datetimedialog.h \
     backupdialog.h \
     iconcache.h \
-    renamedialog.h
+    renamedialog.h \
+    termsdialog.h \
+    optionsdialog.h
 
 FORMS    += \
     mainwindow.ui \
@@ -135,7 +139,9 @@ FORMS    += \
     replace.ui \
     datetimedialog.ui \
     backupdialog.ui \
-    renamedialog.ui
+    renamedialog.ui \
+    termsdialog.ui \
+    optionsdialog.ui
 
 RESOURCES += \
     icons.qrc

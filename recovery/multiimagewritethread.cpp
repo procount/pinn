@@ -23,6 +23,9 @@
 #include <sys/ioctl.h>
 #include <QtEndian>
 
+#include <sys/types.h>
+#include <sys/stat.h>
+
 QString readexec(int log, const QString& cmd, int & errorcode);
 
 MultiImageWriteThread::MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive, bool noobsconfig, bool partition, enum ModeTag mode, QObject *parent) :
@@ -67,6 +70,7 @@ void MultiImageWriteThread::addInstalledImage(const QString &folder, const QStri
 
 void MultiImageWriteThread::run()
 {
+    TRACE
     if (_partition)
     {
         /* Calculate space requirements, and check special requirements */
@@ -386,19 +390,52 @@ void MultiImageWriteThread::run()
     }
 
     /* Install each operating system */
+    int oserrors=0;
     foreach (OsInfo *image, _images)
     {
-        if (!processImage(image))
+        QMessageBox::ButtonRole reply;
+
+        reply=processImage(image);
+
+        if (_checksumError || _setupError )
+            oserrors++;
+
+        if ((reply == QMessageBox::RejectRole) || (reply == QMessageBox::DestructiveRole))
+        {
+            //Delete the faulty OS.
+            oserrors++;
+            QList<PartitionInfo *> *partitions = image->partitions();
+            foreach (PartitionInfo *p, *partitions)
+            {
+                //mount partition
+                QByteArray partdevice = p->partitionDevice();
+                if (QProcess::execute("mount "+partdevice+" /mnt2") == 0)
+                {
+                    //remove all files
+                    QProcess::execute("sh -c \" cd /mnt2;rm -rf *\"");
+                    //Umount
+                    QProcess::execute("umount /mnt2");
+                }
+            }
+        }
+
+        if (reply == QMessageBox::DestructiveRole)
+        {   //Cancel all downloads
+            sync();
+            emit error(tr("Operation cancelled by user"));
             return;
+        }
+
     }
 
     emit statusUpdate(tr("Finish writing (sync)"));
     sync();
-    emit completed();
+    emit completed(oserrors);
 }
 
 bool MultiImageWriteThread::writePartitionTable(const QString &drive, const QMap<int, PartitionInfo *> &pmap)
 {
+    TRACE
     /* Write partition table using sfdisk */
 
     /* Fixed PINN partition */
@@ -613,12 +650,16 @@ QByteArray MultiImageWriteThread::makeLabelUnique(QByteArray label, int maxLabel
     return (label);
 }
 
-bool MultiImageWriteThread::processImage(OsInfo *image)
+QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
 {
+    TRACE
     QString os_name = image->name();
     qDebug() << "Processing OS:" << os_name;
 
+    _setupError = false;
+
     QList<PartitionInfo *> *partitions = image->partitions();
+    _checksumError = 0;
 
     foreach (PartitionInfo *p, *partitions)
     {
@@ -627,6 +668,11 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
         QByteArray label = p->label();
         QString tarball  = p->tarball();
         bool emptyfs     = p->emptyFS();
+        QString csumType = p->csumType();
+        QString csum     = p->csum();
+
+        if (csumType=="")
+            csumType="sha512sum";
 
         if (!emptyfs && tarball.isEmpty())
         {
@@ -639,7 +685,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
             if (!QFile::exists(tarball))
             {
                 emit error(tr("File '%1' does not exist").arg(tarball));
-                return false;
+                return QMessageBox::RejectRole;
             }
         }
         else if (!emptyfs && !isURL(tarball))
@@ -665,59 +711,72 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
             label = s.toLocal8Bit();
         }
 
-        if (fstype == "raw")
+        if ((p->requiresLabel()) && (!isLabelAvailable(label,partdevice)))
         {
-            emit statusUpdate(tr("%1: Writing OS image").arg(os_name));
-            if (!dd(tarball, partdevice))
-                return false;
+            emit error(tr("OS: '%1' needs a partition label of '%2' which is not available").arg(image->name(),QString(label)));
+            return QMessageBox::RejectRole;
         }
-        else if (fstype.startsWith("partclone"))
-        {
-            emit statusUpdate(tr("%1: Writing OS image").arg(os_name));
-            if (!partclone_restore(tarball, partdevice))
-                return false;
-        }
-        else if (fstype != "unformatted")
-        {
-            emit runningMKFS();
-            emit statusUpdate(tr("%1: Creating filesystem (%2)").arg(os_name, QString(fstype)));
-            if (!mkfs(partdevice, fstype, label, mkfsopt))
-                return false;
-            emit finishedMKFS();
 
-            if (!emptyfs)
+        QMessageBox::ButtonRole result = QMessageBox::AcceptRole;
+        uint paused=0;
+        _checksumError++;
+        do
+        {
+            _checksumError--;
+            emit resume( paused );  //1st time through this does nothing, 2nd time restores what was captured
+            emit pause( &paused );  //Capture the current ioaccounting
+
+            if (fstype == "raw")
             {
-                emit statusUpdate(tr("%1: Mounting file system").arg(os_name));
-                if (QProcess::execute("mount "+partdevice+" /mnt2") != 0)
-                {
-                    emit error(tr("%1: Error mounting file system").arg(os_name));
-                    return false;
-                }
-
-                if (tarball.startsWith("http"))
-                    emit statusUpdate(tr("%1: Downloading and extracting filesystem").arg(os_name));
-                else
-                    emit statusUpdate(tr("%1: Extracting filesystem").arg(os_name));
-
-                bool result = untar(tarball);
-
-                QProcess::execute("umount /mnt2");
-
-                if (!result)
-                    return false;
+                emit statusUpdate(tr("%1: Writing OS image").arg(os_name));
+                result = dd(tarball, csumType, csum, partdevice);
             }
-        }
+            else if (fstype.startsWith("partclone"))
+            {
+                emit statusUpdate(tr("%1: Writing OS image").arg(os_name));
+                result = partclone_restore(tarball, csumType, csum, partdevice);
+            }
+            else if (fstype != "unformatted")
+            {
+                emit runningMKFS();
+                emit statusUpdate(tr("%1: Creating filesystem (%2)").arg(os_name, QString(fstype)));
+                if (!mkfs(partdevice, fstype, label, mkfsopt))
+                    return QMessageBox::RejectRole;
+                emit finishedMKFS();
+
+                if (!emptyfs)
+                {
+                    emit statusUpdate(tr("%1: Mounting file system").arg(os_name));
+                    if (QProcess::execute("mount "+partdevice+" /mnt2") != 0)
+                    {
+                        emit error(tr("%1: Error mounting file system").arg(os_name));
+                        return QMessageBox::RejectRole;
+                    }
+
+                    if (tarball.startsWith("http"))
+                        emit statusUpdate(tr("%1: Downloading and extracting filesystem").arg(os_name));
+                    else
+                        emit statusUpdate(tr("%1: Extracting filesystem").arg(os_name));
+
+                    result = untar(tarball,csumType, csum);
+
+                    QProcess::execute("umount /mnt2");
+                }
+            }
+        } while (result == QMessageBox::NoRole); //retry
+
+        if (result != QMessageBox::AcceptRole)
+            return result;
 
         _part++;
-    }
+    } //next partition
 
     emit statusUpdate(tr("%1: Mounting FAT partition").arg(os_name));
     if (QProcess::execute("mount "+partitions->first()->partitionDevice()+" /mnt2") != 0)
     {
         emit error(tr("%1: Error mounting file system").arg(os_name));
-        return false;
+        return QMessageBox::RejectRole;
     }
-
 
     emit statusUpdate(tr("%1: Creating os_config.json").arg(os_name));
 
@@ -763,62 +822,81 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
 
     if (QFile::exists(postInstallScript))
     {
-        emit statusUpdate(tr("%1: Running partition setup script").arg(os_name));
-        QProcess proc;
-        QProcessEnvironment env;
-        QStringList args(postInstallScript);
-        env.insert("PATH", "/bin:/usr/bin:/sbin:/usr/sbin");
+        QString csumType = image->csumType();
+        QString csum     = image->csum();
 
-        /* - Parameters to the partition-setup script are supplied both as
-         *   command line parameters and set as environement variables
-         * - Boot partition is mounted, working directory is set to its mnt folder
-         *
-         *  partition_setup.sh part1=/dev/mmcblk0p3 id1=LABEL=BOOT part2=/dev/mmcblk0p4
-         *  id2=UUID=550e8400-e29b-41d4-a716-446655440000
-         */
-        int pnr = 1;
-        foreach (PartitionInfo *p, *partitions)
+        if ((csum != "") && (csumType != ""))
         {
-            QString part  = p->partitionDevice();
-            QString nr    = QString::number(pnr);
-            QString uuid  = getUUID(part);
-            QString label = getLabel(part);
-            QString partuuid = getPartUUID(part);
-            QString id;
-            if (!label.isEmpty())
-                id = "LABEL="+label;
-            else
-                id = "UUID="+uuid;
-            if (_drive != "/dev/mmcblk0")
-                part = partuuid;
-
-            qDebug() << "part" << part << uuid << label;
-
-            args << "part"+nr+"="+part << "id"+nr+"="+id;
-            env.insert("part"+nr, part);
-            env.insert("id"+nr, id);
-            env.insert("partuuid"+nr, partuuid);
-            pnr++;
+            int errorcode;
+            QString filecsum = readexec(1,csumType+" "+postInstallScript, errorcode).split(" ").first();
+            qDebug()<< "Expected partition_setup.sh csum= "<<csum<<" Calculated= "<<filecsum;
+            if (filecsum != csum)
+            {
+                emit errorContinue(tr("Error in checksum for partition_setup.sh"));
+                _setupError = true;   //Force OS to be non-bootable.
+            }
         }
 
-        //If this is a backup, there maybe things in the partition_setup we don't want to repeat
-        //So set "restore=true"
-        if ( !getNameParts(os_name, eDATE).isEmpty() )
-            env.insert("restore", "true");
-
-        qDebug() << "Executing: sh" << args;
-        qDebug() << "Env:" << env.toStringList();
-        proc.setProcessChannelMode(proc.MergedChannels);
-        proc.setProcessEnvironment(env);
-        proc.setWorkingDirectory("/mnt2");
-        proc.start("/bin/sh", args);
-        proc.waitForFinished(-1);
-        qDebug() << proc.exitStatus();
-
-        if (proc.exitCode() != 0)
+        if ( !_setupError )
         {
-            emit error(tr("%1: Error executing partition setup script").arg(os_name)+"\n"+proc.readAll());
-            return false;
+            emit statusUpdate(tr("%1: Running partition setup script").arg(os_name));
+            QProcess proc;
+            QProcessEnvironment env;
+            QStringList args(postInstallScript);
+            env.insert("PATH", "/bin:/usr/bin:/sbin:/usr/sbin");
+
+            /* - Parameters to the partition-setup script are supplied both as
+             *   command line parameters and set as environement variables
+             * - Boot partition is mounted, working directory is set to its mnt folder
+             *
+             *  partition_setup.sh part1=/dev/mmcblk0p3 id1=LABEL=BOOT part2=/dev/mmcblk0p4
+             *  id2=UUID=550e8400-e29b-41d4-a716-446655440000
+             */
+            int pnr = 1;
+            foreach (PartitionInfo *p, *partitions)
+            {
+                QString part  = p->partitionDevice();
+                QString nr    = QString::number(pnr);
+                QString uuid  = getUUID(part);
+                QString label = getLabel(part);
+                QString partuuid = getPartUUID(part);
+                QString id;
+                if (!label.isEmpty())
+                    id = "LABEL="+label;
+                else
+                    id = "UUID="+uuid;
+                if (_drive != "/dev/mmcblk0")
+                    part = partuuid;
+
+                qDebug() << "part" << part << uuid << label;
+
+                args << "part"+nr+"="+part << "id"+nr+"="+id;
+                env.insert("part"+nr, part);
+                env.insert("id"+nr, id);
+                env.insert("partuuid"+nr, partuuid);
+                pnr++;
+            }
+
+            //If this is a backup, there maybe things in the partition_setup we don't want to repeat
+            //So set "restore=true"
+            if ( !getNameParts(os_name, eDATE).isEmpty() )
+                env.insert("restore", "true");
+
+            qDebug() << "Executing: sh" << args;
+            qDebug() << "Env:" << env.toStringList();
+            proc.setProcessChannelMode(proc.MergedChannels);
+            proc.setProcessEnvironment(env);
+            proc.setWorkingDirectory("/mnt2");
+            proc.start("/bin/sh", args);
+            proc.waitForFinished(-1);
+            qDebug() << proc.exitStatus();
+
+            if (proc.exitCode() != 0)
+            {
+                QProcess::execute("umount /mnt2");
+                emit statusUpdate(tr("%1: Error executing partition setup script").arg(os_name)+"\n"+proc.readAll());
+                return QMessageBox::RejectRole;
+            }
         }
 
     }
@@ -826,7 +904,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     emit statusUpdate(tr("%1: Unmounting FAT partition").arg(os_name));
     if (QProcess::execute("umount /mnt2") != 0)
     {
-        emit error(tr("%1: Error unmounting").arg(os_name));
+        emit errorContinue(tr("%1: Error unmounting").arg(os_name));
     }
 
     /* Now see if there are any customisations
@@ -851,7 +929,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     if (QProcess::execute(cmd) != 0)
     {
         emit error(tr("%1: Error mounting file system").arg(os_name));
-        return false;
+        return QMessageBox::RejectRole;
     }
 
     if (!g_nofirmware)
@@ -887,7 +965,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     emit statusUpdate(tr("%1: Unmounting FAT partition").arg(os_name));
     if (QProcess::execute("umount /mnt2") != 0)
     {
-        emit error(tr("%1: Error unmounting").arg(os_name));
+        emit errorContinue(tr("%1: Error unmounting").arg(os_name));
     }
 
     /* Save information about installed operating systems in installed_os.json */
@@ -904,6 +982,9 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     ventry["password"]    = image->password();
     ventry["url"]         = image->url();
     ventry["group"]       = image->group();
+
+    if (_checksumError || _setupError )
+        ventry["bootable"]    = false;
 
     QString backup        = image->supportsBackup();
     if (backup == "true")
@@ -958,7 +1039,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     }
     Json::saveToFile("/settings/installed_os.json", installed_os);
 
-    return true;
+    return QMessageBox::AcceptRole;
 }
 
 void MultiImageWriteThread::postInstallConfig(OsInfo *image, const QString &part, const QString &customName)
@@ -1144,7 +1225,7 @@ void MultiImageWriteThread::processEntry(const QString &srcFolder, const QString
         }
         else
         {   //assume it is a compressed or plain tar file
-            untar (entry, true);
+            untar (entry, "sha512sum", "", true);
         }
     }
     else
@@ -1198,7 +1279,7 @@ void MultiImageWriteThread::processEntry(const QString &srcFolder, const QString
         else
         { //URL
             DBG( "Downloading file: " + entry);
-            QString cmd = "wget --no-check-certificate --no-verbose --tries=inf -O "+_dstFolder + dstSubFolder + "/" +fname + " " +entry;
+            QString cmd = "wget --retry-connrefused  --read-timeout=120 --no-verbose --tries=inf -O "+_dstFolder + dstSubFolder + "/" +fname + " " +entry;
             DBG(cmd);
             QProcess::execute(cmd);
         }
@@ -1228,6 +1309,7 @@ void MultiImageWriteThread::processEntry(const QString &srcFolder, const QString
 
 bool MultiImageWriteThread::mkfs(const QByteArray &device, const QByteArray &fstype, const QByteArray &label, const QByteArray &mkfsopt)
 {
+    TRACE
     QString cmd;
 
     if (fstype == "fat" || fstype == "FAT")
@@ -1292,50 +1374,57 @@ bool MultiImageWriteThread::isLabelAvailable(const QByteArray &label, const QByt
 }
 
 
-bool MultiImageWriteThread::untar(const QString &tarball, bool bSuppressError)
+QMessageBox::ButtonRole  MultiImageWriteThread::untar(const QString &tarball, const QString &csumType, const QString &csum, bool bSuppressError)
 {
+    TRACE
+
+    QFile f("/tmp/fifo");
+    if (f.exists())
+        f.remove();
+    mkfifo("/tmp/fifo", S_IRUSR | S_IWUSR);
+
     QString cmd = "sh -o pipefail -c \"";
 
     QString tarballPath = QString(tarball);
     if (isURL(tarball)){
         tarballPath = QUrl::fromUserInput(tarball).toString(QUrl::RemoveQuery);
-        cmd += "wget --no-verbose --tries=inf -O- "+tarball+" | ";
+        cmd += "wget  --retry-connrefused  --read-timeout=120 --tries=inf --no-verbose -O- "+tarball;
     }
+    else
+        cmd += "cat "+tarball;
+
+    cmd += " | tee /tmp/fifo";
 
     if (tarballPath.endsWith(".gz"))
     {
-        cmd += "gzip -dc";
+        cmd += " | gzip -dc";
     }
     else if (tarballPath.endsWith(".xz"))
     {
-        cmd += "xz -dc";
+        cmd += " | xz -dc";
     }
     else if (tarballPath.endsWith(".bz2"))
     {
-        cmd += "bzip2 -dc";
+        cmd += " | bzip2 -dc";
     }
     else if (tarballPath.endsWith(".lzo"))
     {
-        cmd += "lzop -dc";
+        cmd += " | lzop -dc";
     }
     else if (tarballPath.endsWith(".zip"))
     {
         /* Note: the image must be the only file inside the .zip */
-        cmd += "unzip -p";
+        cmd += " | unzip -p";
     }
     else if (tarballPath.endsWith(".tar"))
     {
         /* Note: No decompression needed for a plain tar file */
-        cmd += "cat";
+        ;
     }
     else
     {
         emit error(tr("Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip"));
-        return false;
-    }
-    if (!isURL(tarball))
-    {
-        cmd += " "+tarball;
+        return QMessageBox::RejectRole ;
     }
 
     cmd += " | bsdtar -xf - -C /mnt2 ";
@@ -1346,6 +1435,8 @@ bool MultiImageWriteThread::untar(const QString &tarball, bool bSuppressError)
         /* File system does not support uid/gid, tell bsdtar not to set those or it will error out */
         cmd += " --no-same-owner ";
     }
+
+    cmd += " | "+ csumType +" /tmp/fifo > /tmp/sha1.out.txt";
 
     cmd += "\"";
 
@@ -1359,57 +1450,92 @@ bool MultiImageWriteThread::untar(const QString &tarball, bool bSuppressError)
     p.closeWriteChannel();
     p.waitForFinished(-1);
 
+    f.remove(); //rm /tmp/fifo";
+
+    if (p.exitCode() == 0)
+    { //download was ok
+        QString csum_download = getFileContents("/tmp/sha1.out.txt");
+        csum_download=csum_download.split(" ").first();
+        qDebug() << "Calculated Checksum="<<csum_download;
+        if (csum != "")
+        {
+            qDebug()<< "Expected csum= "<<csum;
+            if (csum_download != csum)
+            {
+                QMessageBox::ButtonRole answer;
+                QString msg = tr("An incorrect file checksum has been detected in %1").arg(tarball);
+                QString title = tr("Checksum error");
+                qDebug() << msg;
+                _checksumError++;
+
+                emit checksumError( msg, title, &answer); //@@
+
+                if (answer != QMessageBox::AcceptRole)
+                    return(answer);
+            }
+        }
+    }
+
     if (p.exitCode() != 0)
     {
         QByteArray msg = p.readAll();
         qDebug() << msg;
         if (!bSuppressError)
             emit error(tr("Error downloading or extracting tarball")+"\n"+msg);
-        return false;
+        return QMessageBox::RejectRole ;
     }
     qDebug() << "finished writing filesystem in" << (t1.elapsed()/1000.0) << "seconds";
 
-    return true;
+    return QMessageBox::AcceptRole;
 }
 
-bool MultiImageWriteThread::dd(const QString &imagePath, const QString &device)
+QMessageBox::ButtonRole MultiImageWriteThread::dd(const QString &imagePath, const QString &csumType, const QString &csum, const QString &device)
 {
+    TRACE
+    QFile f("/tmp/fifo");
+    if (f.exists())
+        f.remove();
+    mkfifo("/tmp/fifo", S_IRUSR | S_IWUSR);
+
     QString cmd = "sh -o pipefail -c \"";
 
     if (isURL(imagePath))
-        cmd += "wget --no-verbose --tries=inf -O- "+imagePath+" | ";
+        cmd += "wget  --retry-connrefused --read-timeout=120 --tries=inf --no-verbose -O- "+imagePath;
+    else
+        cmd += "cat "+imagePath;
+
+    cmd += " | tee /tmp/fifo";
 
     if (imagePath.endsWith(".gz"))
     {
-        cmd += "gzip -dc";
+        cmd += " | gzip -dc";
     }
     else if (imagePath.endsWith(".xz"))
     {
-        cmd += "xz -dc";
+        cmd += " | xz -dc";
     }
     else if (imagePath.endsWith(".bz2"))
     {
-        cmd += "bzip2 -dc";
+        cmd += " | bzip2 -dc";
     }
     else if (imagePath.endsWith(".lzo"))
     {
-        cmd += "lzop -dc";
+        cmd += " | lzop -dc";
     }
     else if (imagePath.endsWith(".zip"))
     {
         /* Note: the image must be the only file inside the .zip */
-        cmd += "unzip -p";
+        cmd += " | unzip -p";
     }
     else
     {
         emit error(tr("Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip"));
-        return false;
+        return QMessageBox::RejectRole;
     }
 
-    if (!isURL(imagePath))
-        cmd += " "+imagePath;
+    cmd += " | dd of="+device+" conv=fsync obs=4M";
 
-    cmd += " | dd of="+device+" conv=fsync obs=4M\"";
+    cmd += " | "+ csumType +" /tmp/fifo > /tmp/sha1.out.txt;\"";
 
     QTime t1;
     t1.start();
@@ -1421,54 +1547,88 @@ bool MultiImageWriteThread::dd(const QString &imagePath, const QString &device)
     p.closeWriteChannel();
     p.waitForFinished(-1);
 
+    f.remove(); //rm /tmp/fifo";
+
+    if (p.exitCode() == 0)
+    { //download was ok
+        QString csum_download = getFileContents("/tmp/sha1.out.txt");
+        csum_download=csum_download.split(" ").first();
+        qDebug() << "Calculated Checksum="<<csum_download;
+        if (csum != "")
+        {
+            qDebug()<< "Expected csum= "<<csum;
+            if (csum_download != csum)
+            {
+                QMessageBox::ButtonRole answer;
+                QString msg = tr("An incorrect file checksum has been detected in %1").arg(imagePath);
+                qDebug() << msg;
+                _checksumError++;
+
+                emit checksumError( msg,tr("Checksum error"), &answer);
+
+                if (answer != QMessageBox::AcceptRole)
+                    return(answer);
+            }
+        }
+    }
+
     if (p.exitCode() != 0)
     {
         emit error(tr("Error downloading or writing OS to SD card")+"\n"+p.readAll());
-        return false;
+        return QMessageBox::RejectRole;
     }
     qDebug() << "finished writing filesystem in" << (t1.elapsed()/1000.0) << "seconds";
 
-    return true;
+    return QMessageBox::AcceptRole;
 }
 
-bool MultiImageWriteThread::partclone_restore(const QString &imagePath, const QString &device)
+QMessageBox::ButtonRole MultiImageWriteThread::partclone_restore(const QString &imagePath, const QString &csumType, const QString &csum, const QString &device)
 {
+    TRACE
+    QFile f("/tmp/fifo");
+    if (f.exists())
+        f.remove();
+    mkfifo("/tmp/fifo", S_IRUSR | S_IWUSR);
+
     QString cmd = "sh -o pipefail -c \"";
 
     if (isURL(imagePath))
-        cmd += "wget --no-verbose --tries=inf -O- "+imagePath+" | ";
+        cmd += "wget --retry-connrefused --read-timeout=120 --tries=inf --no-verbose --tries=inf -O- "+imagePath;
+    else
+        cmd += " "+imagePath;
+
+    cmd += " | tee /tmp/fifo";
 
     if (imagePath.endsWith(".gz"))
     {
-        cmd += "gzip -dc";
+        cmd += " | gzip -dc";
     }
     else if (imagePath.endsWith(".xz"))
     {
-        cmd += "xz -dc";
+        cmd += " | xz -dc";
     }
     else if (imagePath.endsWith(".bz2"))
     {
-        cmd += "bzip2 -dc";
+        cmd += " | bzip2 -dc";
     }
     else if (imagePath.endsWith(".lzo"))
     {
-        cmd += "lzop -dc";
+        cmd += " | lzop -dc";
     }
     else if (imagePath.endsWith(".zip"))
     {
         /* Note: the image must be the only file inside the .zip */
-        cmd += "unzip -p";
+        cmd += " | unzip -p";
     }
     else
     {
         emit error(tr("Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip"));
-        return false;
+        return QMessageBox::RejectRole;
     }
 
-    if (!isURL(imagePath))
-        cmd += " "+imagePath;
+    cmd += " | partclone.restore -q -s - -o "+device;
 
-    cmd += " | partclone.restore -q -s - -o "+device+" \"";
+    cmd += " | "+ csumType +" /tmp/fifo > /tmp/sha1.out.txt;\"";
 
     QTime t1;
     t1.start();
@@ -1480,14 +1640,39 @@ bool MultiImageWriteThread::partclone_restore(const QString &imagePath, const QS
     p.closeWriteChannel();
     p.waitForFinished(-1);
 
+    f.remove(); //rm /tmp/fifo";
+
+    if (p.exitCode() == 0)
+    { //download was ok
+        QString csum_download = getFileContents("/tmp/sha1.out.txt");
+        csum_download=csum_download.split(" ").first();
+        qDebug() << "Calculated Checksum="<<csum_download;
+        if (csum != "")
+        {
+            qDebug()<< "Expected csum= "<<csum;
+            if (csum_download != csum)
+            {
+                QMessageBox::ButtonRole answer;
+                QString msg = tr("An incorrect file checksum has been detected in %1").arg(imagePath);
+                qDebug() << msg;
+                _checksumError++;
+
+                emit checksumError( msg,tr("Checksum error"), &answer);
+
+                if (answer != QMessageBox::AcceptRole)
+                    return(answer);
+            }
+        }
+    }
+
     if (p.exitCode() != 0)
     {
         emit error(tr("Error downloading or writing OS to SD card")+"\n"+p.readAll());
-        return false;
+        return QMessageBox::RejectRole;
     }
     qDebug() << "finished writing filesystem in" << (t1.elapsed()/1000.0) << "seconds";
 
-    return true;
+    return QMessageBox::AcceptRole;
 }
 
 void MultiImageWriteThread::patchConfigTxt()

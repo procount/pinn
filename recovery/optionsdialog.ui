@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OptionsDialog</class>
+ <widget class="QDialog" name="OptionsDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>383</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>PINN Options</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QTabWidget" name="tabWidget">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string/>
+       </property>
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <widget class="QWidget" name="installation">
+        <attribute name="title">
+         <string>Installation</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_9">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="5" column="0">
+            <widget class="QCheckBox" name="cb_noobsconfig">
+             <property name="toolTip">
+              <string>PREVENTS any noobsconfig customisations from being applied to an OS on installation</string>
+             </property>
+             <property name="text">
+              <string>noobsconfig</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="l_reserve">
+             <property name="toolTip">
+              <string>Reserve some space on PINN's partition (MB)</string>
+             </property>
+             <property name="text">
+              <string>reserve=</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QLabel" name="l_configpath">
+             <property name="toolTip">
+              <string>Specifies a path or URL where the noobsconfig customisation files can be found (rather than being in /os/&amp;lt;distro&amp;gt;/)</string>
+             </property>
+             <property name="text">
+              <string>configpath=</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="2" colspan="2">
+            <widget class="QLineEdit" name="eb_configpath">
+             <property name="toolTip">
+              <string>Specifies a path or URL where the noobsconfig customisation files can be found (rather than being in /os/&amp;lt;distro&amp;gt;/)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" colspan="2">
+            <widget class="QLineEdit" name="eb_reserve_space">
+             <property name="toolTip">
+              <string>Amount of space to reserve (MB) on PINN's partition</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="cb_runinstaller">
+             <property name="toolTip">
+              <string>Selecting this will erase all of your OSes</string>
+             </property>
+             <property name="text">
+              <string>runinstaller</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QCheckBox" name="cb_noupdate">
+             <property name="toolTip">
+              <string>Prevents PINN from checking for self updates</string>
+             </property>
+             <property name="text">
+              <string>no_update</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QCheckBox" name="cb_forceupdatepinn">
+             <property name="toolTip">
+              <string>Force PINN to self-update whenever a new version is detected</string>
+             </property>
+             <property name="text">
+              <string>forceupdatepinn</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QCheckBox" name="cb_nofirmware">
+             <property name="toolTip">
+              <string>DO not update the firmware of old OSes on installation</string>
+             </property>
+             <property name="text">
+              <string>nofirmware</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="2">
+            <widget class="QCheckBox" name="cb_allsd">
+             <property name="toolTip">
+              <string>Selects all OSes where the most recent one is on the SD card</string>
+             </property>
+             <property name="text">
+              <string>allsd</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="2">
+            <widget class="QCheckBox" name="cb_allusb">
+             <property name="toolTip">
+              <string> Selects all OSes where the most recent one is on a local USB drive</string>
+             </property>
+             <property name="text">
+              <string>allusb</string>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="2">
+            <widget class="QCheckBox" name="cb_allnetwork">
+             <property name="toolTip">
+              <string>Selects all OSes where the most recent one is on remote repositories.</string>
+             </property>
+             <property name="text">
+              <string>allnetwork</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="2">
+            <widget class="QCheckBox" name="cb_allinstalled">
+             <property name="toolTip">
+              <string>Ensures all installed OSes are selected again.</string>
+             </property>
+             <property name="text">
+              <string>allinstalled</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="3">
+            <widget class="QCheckBox" name="cb_waitsd">
+             <property name="toolTip">
+              <string>Waits for all OSes on the SD card to be listed</string>
+             </property>
+             <property name="text">
+              <string>waitsd</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="3">
+            <widget class="QCheckBox" name="cb_waitusb">
+             <property name="toolTip">
+              <string> Waits for all OSes on local USBs to be listed</string>
+             </property>
+             <property name="text">
+              <string>waitusb</string>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="3">
+            <widget class="QCheckBox" name="cb_waitnetwork">
+             <property name="toolTip">
+              <string>Waits for all OS lists to be downloaded from the internet before checking the list of OSes</string>
+             </property>
+             <property name="text">
+              <string>waitnetwork</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="3">
+            <widget class="QCheckBox" name="cb_waitall">
+             <property name="toolTip">
+              <string> Waits for OSes from all sources to be listed</string>
+             </property>
+             <property name="text">
+              <string>waitall</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0" rowspan="4" colspan="2">
+            <widget class="QListWidget" name="lv_select">
+             <property name="toolTip">
+              <string>The list of OSes that will be selected at startup</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QCheckBox" name="cb_reserve_plus">
+             <property name="toolTip">
+              <string>Reserve an ADDITIONAL amount of space</string>
+             </property>
+             <property name="text">
+              <string>+</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="2">
+            <widget class="QCheckBox" name="cb_silentreinstallnewer">
+             <property name="toolTip">
+              <string>Automatically reinstalls any selected OSes if newer versions exist</string>
+             </property>
+             <property name="text">
+              <string>silentreinstallnewer</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QCheckBox" name="cb_silentinstall">
+             <property name="toolTip">
+              <string>Allows a single or multiple OSes to be installed automatically, useful during headless installs. </string>
+             </property>
+             <property name="text">
+              <string>silentinstall</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>select=</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="source">
+        <attribute name="title">
+         <string>Source</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_8">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="3" column="0">
+            <widget class="QCheckBox" name="cb_no_default_source">
+             <property name="toolTip">
+              <string>Prevents the default RaspberryPi Foundation repository from being used.</string>
+             </property>
+             <property name="text">
+              <string>no_default_source</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QCheckBox" name="cb_disableusbimages">
+             <property name="toolTip">
+              <string>Prevents OSes stored on local USB memory devices from being used.</string>
+             </property>
+             <property name="text">
+              <string>disableusbimages</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QCheckBox" name="cb_disablesdimages">
+             <property name="toolTip">
+              <string>Prevent OSes stored on the SD card from being used.</string>
+             </property>
+             <property name="text">
+              <string>disablesdimages</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QCheckBox" name="cb_showall">
+             <property name="toolTip">
+              <string>Shows all available installable OSes, whether they are suitable for the current model of Pi or not. Useful for preparing SD cards to be used in other RPis.</string>
+             </property>
+             <property name="text">
+              <string>showall</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="l_repo_list">
+             <property name="toolTip">
+              <string>Provides the URL of a repo_list.json file that contains a list of URLs to other os-list_v3.json files. This allows easy remote management of Internet repositories.</string>
+             </property>
+             <property name="text">
+              <string>repo_list=</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="l_repo">
+             <property name="toolTip">
+              <string> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</string>
+             </property>
+             <property name="text">
+              <string>repo=</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="eb_repo_list">
+             <property name="toolTip">
+              <string>Provides the URL of a repo_list.json file that contains a list of URLs to other os-list_v3.json files. This allows easy remote management of Internet repositories.</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="l_alt_image_source">
+             <property name="toolTip">
+              <string>: Provides the URL of an additional os_list_v3.json file indicating the location of other OSes that can be downloaded from the Internet. Multiple instances of this option can be used.</string>
+             </property>
+             <property name="text">
+              <string>alt_image_source=</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="eb_repo">
+             <property name="toolTip">
+              <string> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="eb_alt_image_source">
+             <property name="toolTip">
+              <string>: Provides the URL of an additional os_list_v3.json file indicating the location of other OSes that can be downloaded from the Internet. Multiple instances of this option can be used.</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="booting">
+        <attribute name="title">
+         <string>Booting</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_7">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="3" column="0">
+            <widget class="QLabel" name="l_remotetimeout">
+             <property name="toolTip">
+              <string> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</string>
+             </property>
+             <property name="text">
+              <string>remotetimeout=&lt;secs&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="cb_forcetrigger">
+             <property name="toolTip">
+              <string>Forces the PINN interface to be entered on startup (as if the shift key had been pressed). This is very useful when using a VNC connection.</string>
+             </property>
+             <property name="text">
+              <string>forcetrigger</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QCheckBox" name="cb_gpiotriggerenable">
+             <property name="toolTip">
+              <string>Forces Recovery Mode to be entered on boot if GPIO pin 3 on header P1 is connected to GND (pin 25).</string>
+             </property>
+             <property name="text">
+              <string>gpiotriggerenable</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="l_networktimeout">
+             <property name="toolTip">
+              <string> This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</string>
+             </property>
+             <property name="text">
+              <string>networktimeout=&lt;secs&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QCheckBox" name="cb_keyboardtriggerenable">
+             <property name="toolTip">
+              <string>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</string>
+             </property>
+             <property name="text">
+              <string>keyboardtriggerenable</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" colspan="2">
+            <widget class="QLineEdit" name="eb_remotetimeout">
+             <property name="toolTip">
+              <string> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" colspan="2">
+            <widget class="QLineEdit" name="eb_networktimeout">
+             <property name="toolTip">
+              <string> This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="interface">
+        <attribute name="title">
+         <string>Interface</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_6">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_5">
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="cb_vncinstall">
+             <property name="toolTip">
+              <string>Uses a VNC network connection to control PINN instead of any locally attached keyboard, mouse and display. When this is used, any local display will remain blank.</string>
+             </property>
+             <property name="text">
+              <string>vncinstall</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QCheckBox" name="cb_vncshare">
+             <property name="toolTip">
+              <string>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</string>
+             </property>
+             <property name="text">
+              <string>vncshare</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QCheckBox" name="cb_ssh">
+             <property name="toolTip">
+              <string>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions</string>
+             </property>
+             <property name="text">
+              <string>ssh</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QCheckBox" name="cb_rescueshell">
+             <property name="toolTip">
+              <string>This option causes a local command shell to be opened when PINN is booted. When the shell is exited, PINN will then be booted as normal.</string>
+             </property>
+             <property name="text">
+              <string>rescueshell</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QCheckBox" name="cb_disablesafemode">
+             <property name="toolTip">
+              <string>Prevents safemode being entered if you have external hardware that pulls pin 5 low.</string>
+             </property>
+             <property name="text">
+              <string>disablesafemode</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QCheckBox" name="cb_dsi">
+             <property name="toolTip">
+              <string>A special boot feature to swap the priority of the DSI and HDMI video outputs, allowing an OS to give priority to a HDMI screen if attached.</string>
+             </property>
+             <property name="text">
+              <string>dsi</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QCheckBox" name="cb_no_group">
+             <property name="toolTip">
+              <string>Prevents the list of OSes from being grouped into categories.</string>
+             </property>
+             <property name="text">
+              <string>no_group</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QCheckBox" name="cb_no_cursor">
+             <property name="toolTip">
+              <string>Prevents the cursor from being shown on the boot selection dialog (requested for touchscreen devices)</string>
+             </property>
+             <property name="text">
+              <string>no_cursor</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QCheckBox" name="cb_wallpaper_resize">
+             <property name="toolTip">
+              <string>Causes a customised wallpaper.jpg or wallpaper.png file to be resized to fill the entire desktop</string>
+             </property>
+             <property name="text">
+              <string>wallpaper_resize</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="l_display">
+             <property name="toolTip">
+              <string>Sets one of 4 simple display modes: 0=HDMI preferred, 1=HDMI safe, 2= PAL 4:3, 3=NTSC  4:3</string>
+             </property>
+             <property name="text">
+              <string>display=</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="l_style">
+             <property name="toolTip">
+              <string>Changes the style of the windows</string>
+             </property>
+             <property name="text">
+              <string>style=</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="0">
+            <widget class="QLabel" name="l_bootmenutimeout">
+             <property name="toolTip">
+              <string>Changes the default timeout allowed before an OS is booted without any selection. </string>
+             </property>
+             <property name="text">
+              <string>bootmenutimeout=&lt;secs&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="0">
+            <widget class="QLabel" name="l_background">
+             <property name="toolTip">
+              <string>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</string>
+             </property>
+             <property name="text">
+              <string>background=&lt;r,g,b&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1" colspan="2">
+            <widget class="QComboBox" name="dd_display">
+             <property name="toolTip">
+              <string>Sets one of 4 simple display modes: 0=HDMI preferred, 1=HDMI safe, 2= PAL 4:3, 3=NTSC  4:3</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>none</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>0</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>3</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="8" column="1" colspan="2">
+            <widget class="QComboBox" name="dd_style">
+             <property name="toolTip">
+              <string>Changes the style of the windows</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>none</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>windows</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>motif</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>platinum</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="9" column="1" colspan="2">
+            <widget class="QLineEdit" name="eb_bootmenutimeout">
+             <property name="toolTip">
+              <string>Changes the default timeout allowed before an OS is booted without any selection. </string>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="1" colspan="2">
+            <widget class="QLineEdit" name="eb_background">
+             <property name="toolTip">
+              <string>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

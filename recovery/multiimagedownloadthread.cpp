@@ -19,11 +19,17 @@ MultiImageDownloadThread::MultiImageDownloadThread(QObject *parent, QString loca
     QThread(parent),  _local(local), _extraSpacePerPartition(0), _part(5)
 {
     /* local is "/tmp/media/sd*" or "/mnt" (in future) */
+    allowResume(false);
 }
 
 void MultiImageDownloadThread::addImage(const QString &folder, const QString &flavour)
 {
     _images.insert(folder, flavour);
+}
+
+void MultiImageDownloadThread::allowResume(bool allow)
+{
+    _allowResume=allow;
 }
 
 void MultiImageDownloadThread::run()
@@ -57,7 +63,7 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
 
     QStringList splitted = folder.split("/");
     QString os_name   = splitted.last();
-
+    bool downloadError;
 
     qDebug() << "Processing OS:" << os_name;
 
@@ -67,6 +73,9 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
         QVariantMap partition = pv.toMap();
         QString tarball  = partition.value("download").toString();
         bool emptyfs     = partition.value("empty_fs", false).toBool();
+        QString csumType = getCsumType(partition);
+        QString csum     = partition.value(csumType, "").toString();
+        downloadError = false;
 
         if (emptyfs)
         {
@@ -87,14 +96,18 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
             filename += "/";
         filename += split_tar.last();
 
-        // If it already exists, delete it to avoid .1 .2 filenames
+        //Check for file transfer resuming
         QFile f(filename);
-        if (f.exists())
-            f.remove();
+        if (!_allowResume)
+        {
+            // If it already exists, delete it to avoid .1 .2 filenames
+            if (f.exists())
+                f.remove();
+        }
 
         /* Download the compressed tarball */
         //"sh -o pipefail -c \"";
-        QString cmd = "wget --no-verbose --tries=inf --directory-prefix "+folder+" "+tarball;
+        QString cmd = "wget --continue --retry-connrefused --read-timeout=20 --waitretry=1 --no-verbose --tries=inf --directory-prefix "+folder+" "+tarball;
 
         QTime t1;
         t1.start();
@@ -106,12 +119,32 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
         p.closeWriteChannel();
         p.waitForFinished(-1);
 
+        QByteArray msg = p.readAll();
+
+        if (p.exitCode() == 0)
+        { //download was ok
+            if ((csum != "") && (csumType != ""))
+            {
+                int errorcode;
+                QString csum_download = readexec(1,csumType+" "+filename, errorcode).split(" ").first();
+                if (csum_download != csum)
+                {
+                    qDebug()<< "Expected csum= "<<csum<<" Calculated= "<<csum_download;
+                    emit error(tr("Error in checksum"));
+                    downloadError = true;
+                }
+            }
+        }
+
         if (p.exitCode() != 0)
         {
-            QByteArray msg = p.readAll();
             qDebug() << msg;
             emit error(tr("Error downloading or extracting tarball")+"\n"+msg);
+            downloadError = true;
+        }
 
+        if (downloadError)
+        {
             //Delete os.json to hide partial OS from PINN
             QString filename   = folder;
             if (filename.right(1) !="/")
@@ -121,6 +154,7 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
             if (g.exists())
                 g.remove();
         }
+
         qDebug() << "finished downloading filesystem in" << (t1.elapsed()/1000.0) << "seconds";
         _part++;
     }

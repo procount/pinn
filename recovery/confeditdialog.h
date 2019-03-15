@@ -31,6 +31,9 @@ public:
 public slots:
     virtual void accept();
 
+private slots:
+    void on_pbEdit_clicked();
+
 private:
     Ui::ConfEditDialog *ui;
     QList<ConfEditDialogTab *> _tabs;

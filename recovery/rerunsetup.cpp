@@ -73,6 +73,26 @@ rerunsetup::rerunsetup(QListWidget * listinstalled, MainWindow * mw, const QStri
                         os_err =1;
                     }
                 }
+
+                if (QFile::exists(postInstallScript))
+                {
+                    QString csumType = getCsumType(image);
+                    QString csum     = image.value(csumType, "").toString();
+
+                    if ((csum != "") && (csumType != ""))
+                    {
+                        int errorcode;
+                        QString filecsum = readexec(1,csumType+" "+postInstallScript, errorcode).split(" ").first();
+                        if (filecsum != csum)
+                        {
+                            qDebug()<< "Expected partition_setup.sh csum= "<<csum<<" Calculated= "<<filecsum;
+                            ui->plainTextEdit->appendPlainText(os_name+tr("Error in checksum for partition_setup.sh"));
+                            ui->plainTextEdit->appendPlainText(os_name+QString(tr("Expected csum= %1 Calculated= %2")).arg(csum,filecsum));
+                            os_err=1;
+                        }
+                    }
+                }
+
                 if (!os_err)
                 {
                     QProcess proc;

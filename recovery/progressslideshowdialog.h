@@ -36,6 +36,8 @@ public slots:
     void updateIOstats();
     void pauseIOaccounting();
     void resumeIOaccounting();
+    void captureIOaccounting(uint *paused=NULL);
+    void restoreIOaccounting(uint paused=0);
     void updateProgress(qint64 value);
     void changeDrive(const QString &drive);
 

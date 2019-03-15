@@ -9,7 +9,14 @@
 #include "util.h"
 #include "bootselectiondialog.h"
 #include "ceclistener.h"
+
+#define DBG_LOCAL 1
+#define LOCAL_DO_DBG 0
+//#define LOCAL_DBG_FUNC 0
+//#define LOCAL_DBG_OUT 0
+//#define LOCAL_DBG_MSG 0
 #include "mydebug.h"
+
 #include "splash.h"
 
 #include <stdio.h>
@@ -50,6 +57,8 @@ QString stylesheet = "";
 QColor backgroundColour = BACKGROUND_COLOR;
 
 bool timedReboot=false;
+
+MainWindow * gMW=NULL;
 
 void runCustomScript(const QString &driveDev, int partNr, const QString &cmd, bool inBackground=false )
 {
@@ -189,6 +198,8 @@ int main(int argc, char *argv[])
         gpioChannel = 2;
 
     QApplication a(argc, argv);
+    a.setQuitOnLastWindowClosed(false);
+
     RightButtonFilter rbf;
     LongPressHandler lph;
     GpioInput *gpio=NULL;
@@ -323,6 +334,14 @@ int main(int argc, char *argv[])
 
     QProcess::execute("mount -o ro -t vfat "+partdev(drive, 1)+" /mnt");
     cec->loadCECmap("/mnt/cec_keys.json");
+
+#if 0
+    qDebug() << "Starting dbus";
+    QProcess::execute("/etc/init.d/S30dbus start");
+    QProcess *proc = new QProcess();
+    qDebug() << "Starting dhcpcd from main";
+    proc->start("/sbin/dhcpcd --noarp -f /settings/dhcpcd.conf -e wpa_supplicant_conf=/settings/wpa_supplicant.conf --denyinterfaces \"*_ap\"");
+#endif
 
     // do some stuff at start in background.
     runCustomScript(drive, 1,"background.sh", true);
@@ -498,6 +517,8 @@ int main(int argc, char *argv[])
 
     // Main window in the middle of screen
     MainWindow mw(drive, defaultDisplay, splash, noobsconfig);
+    gMW = &mw;  //Make it available globally.
+
     mw.setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, mw.size(), a.desktop()->availableGeometry()));
     mw.show();
 

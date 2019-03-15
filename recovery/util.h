@@ -63,6 +63,7 @@ QString getNickNameParts(const QString& input, eNAMEPARTS flags);
 QStringList splitNameParts(const QString& input);
 void setNameParts(QStringList& list, eNAMEPARTS flags, const QString& part );
 QString joinNameParts(QStringList input);
+QString getCsumType(const QVariantMap &partition);
 
 bool updatePartitionScript(QVariantMap & entry, QListWidgetItem * witem);
 

@@ -280,7 +280,7 @@ Params: rotate or rotate_0          Default orientation (portrait)
         rotate_3                    Rotate 270 degrees (landscap)  
         checkonly                   Checks for presence of screen but does not load driver  
 
-To rotate the screens, add `display_lcd_rotate_0` to config.txt.  
+To rotate the screens, add `display_lcd_rotate=0` to config.txt.  
 Replace the `0` with 1,2 or 3 for the various rotations.  
 To rotate the touchscreen add the appopriate dtparam to the overlay, e.g. `dtoverlay=pimhyp4:rotate_0`  
 For some rotations, it may also be necessary to set the `framebuffer_width` and `framebuffer_height` parameters.  

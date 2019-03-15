@@ -40,6 +40,28 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="pb_Up">
+         <property name="text">
+          <string>Up</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/up.png</normaloff>:/icons/up.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pb_Down">
+         <property name="text">
+          <string>Down</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/down.png</normaloff>:/icons/down.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QDialogButtonBox" name="buttonBox">
          <property name="focusPolicy">
           <enum>Qt::StrongFocus</enum>
@@ -97,6 +119,8 @@
   <tabstop>pushButton</tabstop>
   <tabstop>buttonBox</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

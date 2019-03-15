@@ -22,14 +22,20 @@
 #include "osgroup.h"
 #include "fscheck.h"
 #include "repair.h"
-#include "mydebug.h"
 #include "countdownfilter.h"
 #include "replace.h"
-#include "mydebug.h"
 #include "renamedialog.h"
 #include "splash.h"
 #include "datetimedialog.h"
 #include "iconcache.h"
+#include "termsdialog.h"
+
+#define DBG_LOCAL 1
+#define LOCAL_DO_DBG 1
+#define LOCAL_DBG_FUNC 1
+#define LOCAL_DBG_OUT 0
+#define LOCAL_DBG_MSG 0
+#include "mydebug.h"
 
 #include <QByteArray>
 #include <QDateTime>
@@ -142,6 +148,7 @@ void MainWindow::expired(void)
 
     timedReboot=true;
     close();
+    QApplication::quit();  //@@ test?
 }
 
 MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSplash *splash, bool noobsconfig, QWidget *parent) :
@@ -318,7 +325,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
         if (QMessageBox::question(this,
                                   tr("Error mounting settings partition"),
                                   tr("Persistent settings partition seems corrupt. Reformat?"),
-                                  QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+                                  QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes)
         {
             QProcess::execute("umount /settings");
             if (QProcess::execute("/usr/sbin/mkfs.ext4 "+settingsPartition) != 0
@@ -897,6 +904,7 @@ void MainWindow::updateInstalledStatus()
 {
     TRACE
     _numBootableOS = ug->updateInstalledStatus();
+    qDebug() << "Number of bootables = "<<_numBootableOS;
     //@@ Maybe add: _numInstalledOS = ug->listInstalled->count();
     //@@if (ug->listInstalled->count()>1)
     if (_numBootableOS)
@@ -998,12 +1006,15 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
         return;
     }
 
+    _newList.clear();
     /* Get list of all selected OSes and see if any are unsupported */
     foreach (QListWidgetItem *item, selected)
     {
         QVariantMap entry = item->data(Qt::UserRole).toMap();
         QString name = entry.value("name").toString();
         selectedOSes += "\n" + name;
+
+        _newList.append(entry);
         if (!isSupportedOs(name, entry))
         {
             allSupported = false;
@@ -1026,89 +1037,14 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
         return;
     }
 
-    QString warning = tr("Warning: this will install the selected Operating System(s) to ")+_drive+tr(":")+
-            selectedOSes+
-            tr("\nAll existing data on the SD card will be overwritten, including any OSes that are already installed. Continue?");
-    if (_drive != "mmcblk0")
-        warning.replace(tr("SD card"), tr("drive"));
-
-    if (_silent || QMessageBox::warning(this,
-                                        tr("Confirm"),
-                                        warning,
-                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+    if (_newList.count())
     {
         if (_silent || allSupported || QMessageBox::warning(this,
-                                        tr("Confirm"),
-                                        tr("Warning: incompatible Operating System(s) detected. The following OSes aren't supported on this revision of Raspberry Pi and may fail to boot or function correctly:") + unsupportedOses,
-                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+                                    tr("Confirm"),
+                                    tr("Warning: incompatible Operating System(s) detected. The following OSes aren't supported on this revision of Raspberry Pi and may fail to boot or function correctly:") + unsupportedOses,
+                                    QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes)
         {
-            setEnabled(false);
-
-            //Remove any old OS meta files from previous installs.
-            QProcess::execute("rm -rf /settings/os");
-
-            _numMetaFilesToDownload = 0;
-            if (_networkStatusPollTimer.isActive())
-                _networkStatusPollTimer.stop();
-
-            foreach (QListWidgetItem *item, selected)
-            {
-                QVariantMap entry = item->data(Qt::UserRole).toMap();
-                QDir d;
-                QString folder = "/settings/os/"+CORE(entry.value("name").toString()); //@@ Get eCORE only!
-                folder.replace(' ', '_');
-                if (!d.exists(folder))
-                    d.mkpath(folder);
-
-                if (!entry.contains("folder"))
-                {   //Download meta files from the internet to /settings folder
-
-                    downloadMetaFile(entry.value("os_info").toString(), folder+"/os.json");
-                    downloadMetaFile(entry.value("partitions_info").toString(), folder+"/partitions.json");
-
-                    QString urlpath = entry.value("os_info").toString().left(entry.value("os_info").toString().lastIndexOf('/'));
-                    downloadMetaFile(urlpath+"/release_notes.txt", "-"+folder+"/release_notes.txt"); //'-' indicates optional
-
-                    if (entry.contains("marketing_info"))
-                        downloadMetaFile(entry.value("marketing_info").toString(), folder+"/marketing.tar");
-
-                    if (entry.contains("partition_setup"))
-                        downloadMetaFile(entry.value("partition_setup").toString(), folder+"/partition_setup.sh");
-
-                    if (entry.contains("icon"))
-                        downloadMetaFile(entry.value("icon").toString(), folder+"/icon.png");
-                }
-                else
-                { //Copy files from local storage to /settings folder
-                    QString local = entry.value("folder").toString();
-
-                    QString cmd;
-                    cmd = "cp " + local+"/os.json "+folder;
-                    QProcess::execute(cmd);
-                    cmd = "cp "+ local+"/partitions.json "+folder;
-                    QProcess::execute(cmd);
-                    cmd = "cp "+ local+"/release_notes.txt "+folder;
-                    QProcess::execute(cmd);
-                    cmd = "cp "+ local+"/partition_setup.sh "+folder;
-                    QProcess::execute(cmd);
-                    cmd = "cp -r "+ local+"/slides_vga/ "+folder;
-                    QProcess::execute(cmd);
-
-                    //Icon gets copied at end of processing if installed from network or USB.
-                }
-            }
-
-            if (_numMetaFilesToDownload == 0)
-            {
-                /* All OSes selected are local */
-                startImageWrite();
-            }
-            else if (!_silent)
-            {
-                _qpd = new QProgressDialog(tr("The install process will begin shortly."), QString(), 0, 0, this);
-                _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
-                _qpd->show();
-            }
+            prepareMetaFiles();
         }
     }
 }
@@ -1184,30 +1120,64 @@ void MainWindow::prepareMetaFiles()
     TRACE
     _numMetaFilesToDownload=0;
 
-    QString warning = tr("Warning: this will Reinstall/Replace the selected Operating System(s). The existing data will be deleted.");
+    QString mode;
+    switch(_eDownloadMode)
+    {
+    case MODE_INSTALL:
+        mode =tr("install");
+        break;
+    case MODE_REINSTALL:
+        mode =tr("reinstall");
+        break;
+    case MODE_REPLACE:
+        mode =tr("replace");
+        break;
+    default:
+        mode="?";
+        break;
+    }
+
+    QString driveType;
+    driveType = (_drive == "/dev/mmcblk0") ? tr("SD card") : tr("USB drive");
+
+    QString warning = tr("Warning: this will %1 the selected Operating System(s) to %2. All existing data on the %3 will be deleted.").arg(mode,_drive,driveType);
 
     if ( _silent || QMessageBox::warning(this,
                             tr("Confirm"),
                             warning,
-                            QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+                            QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes)
     {
         setEnabled(false);
+
+        if ( MODE_INSTALL == _eDownloadMode)
+        {
+            //Remove any old OS meta files from previous installs.
+            QProcess::execute("rm -rf /settings/os");
+        }
+
         if (_networkStatusPollTimer.isActive())
             _networkStatusPollTimer.stop();
 
         foreach (QVariantMap newOS, _newList)
         {
+            QDir d;
+
+            QString folder = "/settings/os/"+ CORE(newOS.value("name").toString());
+            folder.replace(' ', '_');
+            if (!d.exists(folder))
+                d.mkpath(folder);
+
             if ((!newOS.contains("folder")) || (newOS.value("folder").toString().startsWith("/settings")))
             {
-                QDir d;
-
-                QString folder = "/settings/os/"+newOS.value("name").toString();
-                folder.replace(' ', '_');
-                if (!d.exists(folder))
-                    d.mkpath(folder);
 
                 downloadMetaFile(newOS.value("os_info").toString(), folder+"/os.json");
                 downloadMetaFile(newOS.value("partitions_info").toString(), folder+"/partitions.json");
+
+                QString urlpath = newOS.value("os_info").toString().left(newOS.value("os_info").toString().lastIndexOf('/'));
+                downloadMetaFile(urlpath+"/release_notes.txt", "-"+folder+"/release_notes.txt"); //'-' indicates optional
+                downloadMetaFile(urlpath+"/terms", "-"+folder+"/terms"); //'-' indicates optional
+
+
                 if (newOS.contains("marketing_info"))
                     downloadMetaFile(newOS.value("marketing_info").toString(), folder+"/marketing.tar");
 
@@ -1217,16 +1187,40 @@ void MainWindow::prepareMetaFiles()
                 if (newOS.contains("icon"))
                     downloadMetaFile(newOS.value("icon").toString(), folder+"/icon.png");
             }
+            else
+            { //Copy files from local storage to /settings folder
+                QString local = newOS.value("folder").toString();
+
+                QString cmd;
+                cmd = "cp " + local+"/os.json "+folder;
+                QProcess::execute(cmd);
+                cmd = "cp "+ local+"/partitions.json "+folder;
+                QProcess::execute(cmd);
+                cmd = "cp "+ local+"/release_notes.txt "+folder;
+                QProcess::execute(cmd);
+                cmd = "cp "+ local+"/terms "+folder;
+                QProcess::execute(cmd);
+                cmd = "cp "+ local+"/partition_setup.sh "+folder;
+                QProcess::execute(cmd);
+                cmd = "cp -r "+ local+"/slides_vga/ "+folder;
+                QProcess::execute(cmd);
+
+                //Icon gets copied at end of processing if installed from network or USB.
+            }
+
         }
 
         if (_numMetaFilesToDownload == 0)
         {
             /* All OSes selected are local */
-            startImageReinstall();
+            if (_eDownloadMode == MODE_INSTALL)
+                startImageWrite();
+            else
+                startImageReinstall();
         }
         else if (!_silent)
         {
-            _qpd = new QProgressDialog(tr("The Reinstall/Replace process will begin shortly."), QString(), 0, 0, this);
+            _qpd = new QProgressDialog(tr("The %1 process will begin shortly.").arg(mode), QString(), 0, 0, this);
             _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
             _qpd->show();
         }
@@ -1250,7 +1244,7 @@ void MainWindow::on_actionDownload_triggered()
     if (_silent || QMessageBox::warning(this,
                                         tr("Confirm"),
                                         tr("Warning: this will download the selected Operating System(s)."),
-                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+                                        QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes)
     {
         /* See if any of the OSes are unsupported */
         bool allSupported = true;
@@ -1260,7 +1254,7 @@ void MainWindow::on_actionDownload_triggered()
         if (_silent || allSupported || QMessageBox::warning(this,
                                         tr("Confirm"),
                                         tr("Warning: incompatible Operating System(s) detected. The following OSes aren't supported on this revision of Raspberry Pi and may fail to boot or function correctly:") + unsupportedOses,
-                                        QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+                                        QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes)
         {
             setEnabled(false);
             _numMetaFilesToDownload = 0;
@@ -1297,6 +1291,7 @@ void MainWindow::on_actionDownload_triggered()
                     downloadMetaFile(entry.value("partitions_info").toString(), folder+"/partitions.json");
                     QString urlpath = entry.value("os_info").toString().left(entry.value("os_info").toString().lastIndexOf('/'));
                     downloadMetaFile(urlpath+"/release_notes.txt", "-" + folder+"/release_notes.txt"); //'-' indicates optional
+                    downloadMetaFile(urlpath+"/terms", "-" + folder+"/terms"); //'-' indicates optional
                     if (entry.contains("marketing_info"))
                         downloadMetaFile(entry.value("marketing_info").toString(), folder+"/marketing.tar");
 
@@ -1333,6 +1328,7 @@ void MainWindow::on_actionDownload_triggered()
 void MainWindow::on_actionCancel_triggered()
 {
     close();
+    QApplication::quit();
 }
 
 void MainWindow::onCompleted(int arg)
@@ -1361,9 +1357,15 @@ void MainWindow::onCompleted(int arg)
             QProcess::execute("umount /dev/"+partdev(_osdrive,1));
             QProcess::execute("mount -o ro /dev/"+partdev(_osdrive,1)+" "+_local);
 
+            QString info;
+            if (arg)
+                info = tr("OS(es) Downloaded with errors.\nSee debug log for details");
+            else
+                info = tr("OS(es) Downloaded Successfully.");
+
             ret = QMessageBox::information(this,
                                      tr("OS(es) downloaded"),
-                                     tr("OS(es) Downloaded Successfully."), QMessageBox::Ok);
+                                     info, QMessageBox::Ok);
         }
         else if (_eDownloadMode==MODE_BACKUP)
         {
@@ -1385,9 +1387,14 @@ void MainWindow::onCompleted(int arg)
         }
         else // install,Reinstall or replace
         {
+            QString info;
+            if (arg)
+                info = tr("OS(es) Installed with errors.\nSee debug log for details");
+            else
+                info = tr("OS(es) Installed Successfully");
             ret = QMessageBox::information(this,
-                                     tr("OS(es) installed"),
-                                     tr("OS(es) Installed Successfully"), QMessageBox::Ok);
+                                     tr("Installation complete"),
+                                     info, QMessageBox::Ok);
         }
     }
     _qpssd->deleteLater();
@@ -1411,9 +1418,18 @@ void MainWindow::onCompleted(int arg)
             if (_numBootableOS)
             {
                 close();
+                QApplication::quit();
             }
         }
     }
+}
+
+void MainWindow::onErrorContinue(const QString &msg)
+{
+    TRACE
+    qDebug() << "Error:" << msg;
+    if (!_silent)
+        QMessageBox::critical(this, tr("Error"), msg, QMessageBox::Close);
 }
 
 void MainWindow::onError(const QString &msg)
@@ -1443,10 +1459,34 @@ void MainWindow::onQpdError(const QString &msg)
 
 void MainWindow::onQuery(const QString &msg, const QString &title, QMessageBox::StandardButton* answer)
 {
-    *answer = QMessageBox::question(this, title, msg, QMessageBox::Yes|QMessageBox::No);
+    *answer = QMessageBox::question(this, title, msg, QMessageBox::Yes|QMessageBox::No,QMessageBox::No);
 }
 
+void MainWindow::onChecksumError(const QString &msg, const QString &title, QMessageBox::ButtonRole* answer)
+{
+    TRACE
 
+    if (!_silent)
+    {
+        QMessageBox msgBox;
+        //this->blockSignals(true);
+        msgBox.setParent(NULL);
+        msgBox.setWindowTitle(title);
+        msgBox.setText(msg);
+
+        msgBox.addButton(tr("Abort"), QMessageBox::DestructiveRole);
+        msgBox.addButton(tr("Discard"), QMessageBox::RejectRole);
+        msgBox.addButton(tr("Retry"), QMessageBox::NoRole);
+        msgBox.addButton(tr("Keep"), QMessageBox::AcceptRole);
+        msgBox.exec();
+
+        *answer = msgBox.buttonRole(msgBox.clickedButton());
+    }
+    else
+    {   //If silent, we'll accept any checksum errors, but we'll make it non-bootable.
+        *answer = QMessageBox::AcceptRole;
+    }
+}
 
 void MainWindow::on_list_currentRowChanged()
 {
@@ -1778,7 +1818,7 @@ void MainWindow::on_actionWipe_triggered()
     if (QMessageBox::warning(this,
                              tr("Confirm"),
                              tr("Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed."),
-                             QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+                             QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes)
     {
         fullFAT();
         QMessageBox::warning(this,
@@ -1970,6 +2010,7 @@ void MainWindow::onOnlineStateChanged(bool online)
             QNetworkConfigurationManager manager;
             _netaccess->setConfiguration(manager.defaultConfiguration());
 
+            UpdateTime();
             QString cmdline = getFileContents("/proc/cmdline");
             if (!cmdline.contains("no_update"))
                 checkForUpdates();
@@ -1978,6 +2019,9 @@ void MainWindow::onOnlineStateChanged(bool online)
 
             downloadRepoList(repoList);
         }
+        else
+            UpdateTime();   //Re-check the time everytime we come online
+
         ui->actionBrowser->setEnabled(true);
         emit networkUp();
     }
@@ -2013,23 +2057,8 @@ void MainWindow::downloadRepoListRedirectCheck()
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
 
-    /* Set our clock to server time if we currently have a date before 2015 */
-    QByteArray dateStr = reply->rawHeader("Date");
-    if (!dateStr.isEmpty() && QDate::currentDate().year() < 2016)
-    {
-        // Qt 4 does not have a standard function for parsing the Date header, but it does
-        // have one for parsing a Last-Modified header that uses the same date/time format, so just use that
-        QNetworkRequest dummyReq;
-        dummyReq.setRawHeader("Last-Modified", dateStr);
-        QDateTime parsedDate = dummyReq.header(dummyReq.LastModifiedHeader).toDateTime();
-
-        struct timeval tv;
-        tv.tv_sec = parsedDate.toTime_t();
-        tv.tv_usec = 0;
-        settimeofday(&tv, NULL);
-
-        qDebug() << "Time set to: " << parsedDate;
-    }
+    /* Set our clock to server time if we currently have an old date */
+    setTime(reply);
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
@@ -2615,23 +2644,8 @@ void MainWindow::downloadListRedirectCheck()
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
 
-    /* Set our clock to server time if we currently have a date before 2015 */
-    QByteArray dateStr = reply->rawHeader("Date");
-    if (!dateStr.isEmpty() && QDate::currentDate().year() < 2016)
-    {
-        // Qt 4 does not have a standard function for parsing the Date header, but it does
-        // have one for parsing a Last-Modified header that uses the same date/time format, so just use that
-        QNetworkRequest dummyReq;
-        dummyReq.setRawHeader("Last-Modified", dateStr);
-        QDateTime parsedDate = dummyReq.header(dummyReq.LastModifiedHeader).toDateTime();
-
-        struct timeval tv;
-        tv.tv_sec = parsedDate.toTime_t();
-        tv.tv_usec = 0;
-        settimeofday(&tv, NULL);
-
-    qDebug() << "Time set to: " << parsedDate;
-    }
+    /* Set our clock to server time if we currently have an old date */
+    setTime(reply);
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
@@ -2930,9 +2944,22 @@ void MainWindow::startImageWrite()
         {
             slidesFolder = folder+"/slides_vga";
         }
-        imageWriteThread->addImage(folder, entry.value("name").toString());
-        if (!slidesFolder.isEmpty())
-            slidesFolders.append(slidesFolder);
+
+        QString sTerms(folder+"/terms");
+        bool allowContinue=true;
+        if (QFile(sTerms).exists())
+        {
+            TermsDialog dlg( CORE(entry.value("name").toString()), sTerms);
+            if (dlg.exec() != dlg.Accepted)
+                allowContinue = false;
+        }
+        if (allowContinue)
+        {
+            imageWriteThread->addImage(folder, entry.value("name").toString());
+            if (!slidesFolder.isEmpty())
+                slidesFolders.append(slidesFolder);
+        }
+
     }
 
     if (slidesFolders.isEmpty())
@@ -2941,12 +2968,16 @@ void MainWindow::startImageWrite()
     _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, _drive, this);
     _qpssd->setWindowTitle("Installing Images");
     connect(imageWriteThread, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
-    connect(imageWriteThread, SIGNAL(completed()), this, SLOT(onCompleted()));
+    connect(imageWriteThread, SIGNAL(completed(int)), this, SLOT(onCompleted(int)));
     connect(imageWriteThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
+    connect(imageWriteThread, SIGNAL(errorContinue(QString)), this, SLOT(onErrorContinue(QString)), Qt::BlockingQueuedConnection);
     connect(imageWriteThread, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
     connect(imageWriteThread, SIGNAL(runningMKFS()), _qpssd, SLOT(pauseIOaccounting()), Qt::BlockingQueuedConnection);
     connect(imageWriteThread, SIGNAL(finishedMKFS()), _qpssd , SLOT(resumeIOaccounting()), Qt::BlockingQueuedConnection);
     connect(imageWriteThread, SIGNAL(newDrive(const QString&)), _qpssd , SLOT(changeDrive(const QString&)), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(checksumError(const QString&, const QString&, QMessageBox::ButtonRole*)), this, SLOT(onChecksumError(QString,QString,QMessageBox::ButtonRole*)),Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(pause(uint *)), _qpssd, SLOT(captureIOaccounting( uint * )), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(resume( uint )), _qpssd , SLOT(restoreIOaccounting( uint )), Qt::BlockingQueuedConnection);
     imageWriteThread->start();
     hide();
     _qpssd->exec();
@@ -3015,7 +3046,20 @@ void MainWindow::startImageReinstall()
 
         if (i == nInstalledParts)
         {
-            imageWriteThread->addInstalledImage(folder, entry.value("name").toString(), installedEntry);
+
+            QString sTerms(folder+"/terms");
+            bool allowContinue=true;
+            if (QFile(sTerms).exists())
+            {
+                TermsDialog dlg( CORE(entry.value("name").toString()), sTerms);
+                if (dlg.exec() != dlg.Accepted)
+                    allowContinue = false;
+            }
+            if (allowContinue)
+            {
+                imageWriteThread->addInstalledImage(folder, entry.value("name").toString(), installedEntry);
+
+            }
         }
         else
         {
@@ -3032,12 +3076,16 @@ void MainWindow::startImageReinstall()
     _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, _drive, this);
     _qpssd->setWindowTitle("Re-Installing Images");
     connect(imageWriteThread, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
-    connect(imageWriteThread, SIGNAL(completed()), this, SLOT(onCompleted()));
+    connect(imageWriteThread, SIGNAL(completed(int)), this, SLOT(onCompleted(int)));
     connect(imageWriteThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
+    connect(imageWriteThread, SIGNAL(errorContinue(QString)), this, SLOT(onErrorContinue(QString)), Qt::BlockingQueuedConnection);
     connect(imageWriteThread, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
     connect(imageWriteThread, SIGNAL(runningMKFS()), _qpssd, SLOT(pauseIOaccounting()), Qt::BlockingQueuedConnection);
     connect(imageWriteThread, SIGNAL(finishedMKFS()), _qpssd , SLOT(resumeIOaccounting()), Qt::BlockingQueuedConnection);
     connect(imageWriteThread, SIGNAL(newDrive(const QString&)), _qpssd , SLOT(changeDrive(const QString&)), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(checksumError(const QString&, const QString&, QMessageBox::ButtonRole*)), this, SLOT(onChecksumError(QString,QString,QMessageBox::ButtonRole*)),Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(pause(uint *)), _qpssd, SLOT(captureIOaccounting( uint * )), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(resume( uint )), _qpssd , SLOT(restoreIOaccounting( uint )), Qt::BlockingQueuedConnection);
     imageWriteThread->start();
     hide();
     _qpssd->exec();
@@ -3055,6 +3103,19 @@ void MainWindow::startImageDownload()
     MultiImageDownloadThread *imageDownloadThread = new MultiImageDownloadThread(0, _local);
     QString folder, slidesFolder;
     QStringList slidesFolders;
+
+    if (QMessageBox::question(this,
+                              tr("Resume partial downloads?"),
+                              tr("Normally select NO, unless your last download was not successful, in which case select YES"),
+                              QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes)
+    {
+        imageDownloadThread->allowResume(true);
+    }
+    else
+    {
+        imageDownloadThread->allowResume(false);
+    }
+
 
     QList<QListWidgetItem *> selected = selectedItems();
     foreach (QListWidgetItem *item, selected)
@@ -3117,9 +3178,21 @@ void MainWindow::startImageDownload()
                 Json::saveToFile(folder+"/os.json", json);
             }
 
-            imageDownloadThread->addImage(folder, entry.value("name").toString());
-            if (!slidesFolder.isEmpty())
-                slidesFolders.append(slidesFolder);
+            QString sTerms(folder+"/terms");
+            bool allowContinue=true;
+            if (QFile(sTerms).exists())
+            {
+                TermsDialog dlg( CORE(entry.value("name").toString()), sTerms);
+                if (dlg.exec() != dlg.Accepted)
+                    allowContinue = false;
+            }
+            if (allowContinue)
+            {
+                imageDownloadThread->addImage(folder, entry.value("name").toString());
+                if (!slidesFolder.isEmpty())
+                    slidesFolders.append(slidesFolder);
+
+            }
         }
     }
 
@@ -3240,7 +3313,7 @@ void MainWindow::startImageBackup()
                 +tr(" MB of backup space, but only ")
                 +QString::number(_availableDownloadMB)
                 +tr(" MB is available. This is only an estimate. If you continue, the backup may not complete successfully.\n\nDo you want to continue?");
-        if (QMessageBox::warning(this, tr("WARNING: Backup Space"),message,QMessageBox::Yes, QMessageBox::No) == QMessageBox::No)
+        if (QMessageBox::warning(this, tr("WARNING: Backup Space"),message,QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::No)
         {
             setEnabled(false);
             return;
@@ -3626,7 +3699,7 @@ void MainWindow::on_targetCombo_currentIndexChanged(int index)
             if (QMessageBox::question(this,
                                       tr("Reformat drive?"),
                                       tr("Are you sure you want to reformat the drive '%1' for use with PINN? All existing data on the drive will be deleted!").arg(devname),
-                                      QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+                                      QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes)
             {
                 InitDriveThread idt("/dev/"+devname);
                 idt.formatUsbDrive();
@@ -4528,7 +4601,7 @@ void MainWindow::on_actionBackup_triggered()
     if (_silent || QMessageBox::warning(this,
                                         tr("Confirm"),
                                         tr("Warning: this will backup the selected Operating System(s)."),
-                                        QMessageBox::Ok, QMessageBox::Cancel) == QMessageBox::Ok)
+                                        QMessageBox::Ok|QMessageBox::Cancel, QMessageBox::Cancel) == QMessageBox::Ok)
     {
         /* See if any of the OSes are unsupported */
         bool allSupported = true;
@@ -4743,5 +4816,49 @@ void MainWindow::on_actionRename_triggered()
         addInstalledImages();
         updateInstalledStatus();
 
+    }
+}
+
+
+void MainWindow::UpdateTime()
+{
+    TRACE
+    if (QDate::currentDate().year() < 2019)
+    {
+        qDebug() << "Requesting current time";
+        QUrl url(BUILD_URL);
+        QNetworkRequest request(url);
+        request.setRawHeader("User-Agent", AGENT);
+        QNetworkReply *reply = _netaccess->head(request);
+        connect(reply, SIGNAL(finished()), this, SLOT(checkUpdateTime()));
+    }
+}
+
+void MainWindow::checkUpdateTime()
+{
+    TRACE
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+
+    setTime(reply);
+}
+
+void MainWindow::setTime(QNetworkReply *reply)
+{
+    /* Set our clock to server time if we currently have a date before 2019 */
+    QByteArray dateStr = reply->rawHeader("Date");
+    if (!dateStr.isEmpty() && QDate::currentDate().year() < 2019)
+    {
+        // Qt 4 does not have a standard function for parsing the Date header, but it does
+        // have one for parsing a Last-Modified header that uses the same date/time format, so just use that
+        QNetworkRequest dummyReq;
+        dummyReq.setRawHeader("Last-Modified", dateStr);
+        QDateTime parsedDate = dummyReq.header(dummyReq.LastModifiedHeader).toDateTime();
+
+        struct timeval tv;
+        tv.tv_sec = parsedDate.toTime_t();
+        tv.tv_usec = 0;
+        settimeofday(&tv, NULL);
+
+        qDebug() << "Time set to: " << parsedDate;
     }
 }

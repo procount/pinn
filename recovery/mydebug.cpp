@@ -10,7 +10,7 @@ MyDebug::MyDebug(const char * func) :
 {
 #if DBG_FUNC
     QString output;
-    int errorcode;
+    //int errorcode;
     for (int i=0; i< level ; i++)
         output += " ";
     output += ">";

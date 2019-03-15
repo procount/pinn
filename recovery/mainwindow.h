@@ -25,6 +25,7 @@
 #include <QTime>
 #include <QHostAddress>
 #include <QProcess>
+#include <QNetworkReply>
 
 namespace Ui {
 class MainWindow;
@@ -44,6 +45,10 @@ public:
     ~MainWindow();
 
     QListWidgetItem *findItemByName(const QString &name);
+    QList<QListWidgetItem *> allItems()
+    {
+        return ug->allItems();
+    }
 
 protected:
     Ui::MainWindow *ui;
@@ -154,6 +159,8 @@ protected:
     void loadOverrides(const QString &filename);
     void OverrideJson(QVariantMap& m);
     void createPinnEntry();
+    void UpdateTime();
+    void setTime(QNetworkReply *reply);
 
 protected slots:
 
@@ -173,6 +180,7 @@ protected slots:
     /* Events from ImageWriterThread */
     void onQpdError(const QString &msg);
     void onError(const QString &msg);
+    void onErrorContinue(const QString &msg);
     void onCompleted(int arg=0);
     void onCloneError(const QString &msg);
     void onCloneCompleted();
@@ -188,10 +196,12 @@ protected slots:
     void downloadRepoListComplete();
     void downloadRepoListRedirectCheck();
     void onQuery(const QString &msg, const QString &title, QMessageBox::StandardButton* answer);
+    void onChecksumError(const QString &msg, const QString &title, QMessageBox::ButtonRole* answer);
     void hideDialogIfNoNetwork();
     void pollForNewDisks();
     void onKeyPress(int key);
     void closeEvent(QCloseEvent *event);
+    void checkUpdateTime();
 
 private slots:
     /* UI events */

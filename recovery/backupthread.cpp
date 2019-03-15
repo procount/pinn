@@ -83,15 +83,16 @@ bool BackupThread::processImage(const QVariantMap & entry)
     //partitions.json
     QVariantList tarballsizes = entry.value("partsizes").toList(); //in MB
     QVariantMap backupmap = Json::loadFromFile(backupFolder+"/partitions.json").toMap();
+    QVariantList backuplist = backupmap.value("partitions").toList();
     if (backupmap.contains("partitions"))
     {
-        QVariantList backuplist = backupmap.value("partitions").toList();
         for (int i=0; i<backuplist.count(); i++)
         {
             //Add "supports_backup" to prevent unsupported OSes from being backed up.
             //what if partclone?
             QString dev = partdevices[i].toString();
             QVariantMap pmap = backuplist[i].toMap();
+
             pmap.remove("tarball");
             //Check for emptyfs. Is it still empty? If not, remove attribute.
             pmap.remove("empty_fs");
@@ -134,9 +135,6 @@ bool BackupThread::processImage(const QVariantMap & entry)
         backupmap["partitions"] = backuplist;
     }
 
-    emit statusUpdate(tr("%1: Updating partitions.json").arg(os_name));
-    Json::saveToFile(backupFolder+"/partitions.json", backupmap);
-
     qint64 downloadSize=0L;
 
     //Re-read the modified partitions.json file
@@ -150,8 +148,16 @@ bool BackupThread::processImage(const QVariantMap & entry)
         QString label = pPart->label();
         QString part = partdevices[i].toString();
         QByteArray fstype   = pPart->fsType();
-
+        QString targetFileName;
         QString dev = getDevice(part);
+
+        //QVariantList backuplist = backupmap.value("partitions").toList();
+        QVariantMap pmap = backuplist[i].toMap();
+
+        pmap.remove("md5sum");
+        pmap.remove("sha1sum");
+        pmap.remove("sha256sum");
+        pmap.remove("sha512sum");
 
         //   Mount it
         QProcess::execute("mount -o ro "+dev+" /tmp/src");
@@ -162,13 +168,15 @@ bool BackupThread::processImage(const QVariantMap & entry)
         {
             //   dd/gzip image
             emit statusUpdate(tr("%1: Writing image (%2)").arg(os_name, QString(label)));
-            cmd = "sh -c \"dd if=" +dev+ " obs=4M | gzip > "+ backupFolder+"/"+label+".img.gz\"";
+            targetFileName = backupFolder+"/"+label+".img.gz";
+            cmd = "sh -c \"dd if=" +dev+ " obs=4M | pigz > "+targetFileName+"\"";
         }
         else
         {
             //   tar gzip
             emit statusUpdate(tr("%1: Archiving (%2)").arg(os_name, QString(label)));
-            cmd = "sh -c \"cd /tmp/src; tar -c . | pigz > "+ backupFolder+"/"+label+".tar.gz\"";
+            targetFileName = backupFolder+"/"+label+".tar.gz";
+            cmd = "sh -c \"cd /tmp/src; tar -c . | pigz > "+targetFileName+"\"";
         }
 
         qDebug()<<cmd;
@@ -179,17 +187,32 @@ bool BackupThread::processImage(const QVariantMap & entry)
             return(false);
         }
 
-        QString filename(backupFolder+"/"+label);
-        if (fstype=="raw")
-            filename += ".img.gz";
-        else
-            filename += ".tar.gz";
-        QFileInfo fi(filename);
+        QString csumType = getCsumType(pmap);
+        if (csumType.isEmpty())
+        {
+            csumType = "sha512sum";
+            pPart->setCsumType(csumType);
+        }
+        emit statusUpdate(tr("%1: Checksumming (%2)").arg(os_name, QString(label)));
+        int errorcode;
+        QString csum = readexec(1,csumType+" "+targetFileName, errorcode).split(" ").first();
+        pPart->setCsum(csum);
+        pmap[csumType] = csum;
+
+        QFileInfo fi(targetFileName);
         downloadSize += fi.size();
         //   UnMount it
         QProcess::execute("umount /tmp/src");
+
+        backuplist[i] = pmap;
+
         i++;
     }
+    backupmap["partitions"] = backuplist;
+
+    emit statusUpdate(tr("%1: Updating partitions.json").arg(os_name));
+    Json::saveToFile(backupFolder+"/partitions.json", backupmap);
+
 
     dir.rmdir("/tmp/src");
 

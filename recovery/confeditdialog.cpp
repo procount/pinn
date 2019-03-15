@@ -10,6 +10,7 @@
 #include "confeditdialog.h"
 #include "ui_confeditdialog.h"
 #include "config.h"
+#include "optionsdialog.h"
 #include <QDir>
 #include <QFile>
 #include <QtGui/QPlainTextEdit>
@@ -80,6 +81,7 @@ ConfEditDialog::ConfEditDialog(const QVariantMap &map, const QString &partition,
         QProcess::execute("mount -o remount,rw /mnt");
         _tabs.append(new ConfEditDialogTab("config.txt", "/mnt/config.txt", false, ui->tabWidget));
         _tabs.append(new ConfEditDialogTab("recovery.cmdline", "/mnt/recovery.cmdline", false, ui->tabWidget));
+        ui->pbEdit->show();
     }
     else
     {
@@ -97,6 +99,7 @@ ConfEditDialog::ConfEditDialog(const QVariantMap &map, const QString &partition,
         }
         _tabs.append(new ConfEditDialogTab("config.txt", "/boot/config.txt", false, ui->tabWidget));
         _tabs.append(new ConfEditDialogTab("cmdline.txt", "/boot/cmdline.txt", false, ui->tabWidget));
+        ui->pbEdit->hide();
     }
 }
 
@@ -120,3 +123,21 @@ void ConfEditDialog::accept()
     sync();
     QDialog::accept();
 }
+
+void ConfEditDialog::on_pbEdit_clicked()
+{
+    foreach (ConfEditDialogTab *tab, _tabs)
+    {
+        tab->save();
+    }
+    sync();
+
+
+    OptionsDialog dlg;
+    dlg.exec();
+
+    ui->tabWidget->removeTab(_tabs.count()-1);
+    _tabs.removeLast();
+    _tabs.append(new ConfEditDialogTab("recovery.cmdline", "/mnt/recovery.cmdline", false, ui->tabWidget));
+}
+

@@ -49,9 +49,15 @@ private slots:
 
     void on_buttonBox_clicked(QAbstractButton *button);
 
+    void on_pb_Up_clicked();
+
+    void on_pb_Down_clicked();
+
 protected:
     QTimer _timer;
     int _countdown;
+    bool _altered;
+    QVariantList installed_os;
     void updateConfig4dsi(QByteArray partition);
     bool _dsi;
     //int extractPartition(QVariantMap m);

@@ -1,6 +1,7 @@
 #include "osinfo.h"
 #include "partitioninfo.h"
 #include "json.h"
+#include "util.h"
 
 OsInfo::OsInfo(const QString &folder, const QString &flavour, QObject *parent) :
     QObject(parent), _folder(folder), _flavour(flavour)
@@ -18,6 +19,11 @@ OsInfo::OsInfo(const QString &folder, const QString &flavour, QObject *parent) :
     _url = m.value("url").toString();
     _group = m.value("group").toString();
     _replacedName = "";
+
+    _csumType      = getCsumType(m);
+    if (_csumType != "")
+        _csum          = m.value(_csumType, "").toString();
+
 
     if (m.contains("supports_backup"))
     {

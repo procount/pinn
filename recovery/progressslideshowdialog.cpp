@@ -1,6 +1,8 @@
 #include "progressslideshowdialog.h"
 #include "ui_progressslideshowdialog.h"
 #include "util.h"
+#include "mydebug.h"
+
 #include <QDir>
 #include <QFile>
 #include <QPixmap>
@@ -138,10 +140,34 @@ void ProgressSlideshowDialog::disableIOaccounting()
     ui->mbwrittenLabel->setText("");
 }
 
+void ProgressSlideshowDialog::captureIOaccounting(uint *paused)
+{
+    TRACE
+    if (paused)
+    {
+        *paused = sectorsAccessed()-_sectorsStart;
+    }
+    DBG (QString::number(*paused));
+}
+
+void ProgressSlideshowDialog::restoreIOaccounting(uint paused)
+{
+    TRACE
+    DBG (QString::number(paused));
+    _iotimer.stop();
+    if (paused)
+    {
+        _sectorsStart = sectorsAccessed()-paused;
+        updateIOstats();
+    }
+    _iotimer.start(1000);
+}
+
 void ProgressSlideshowDialog::pauseIOaccounting()
 {
     _iotimer.stop();
     _pausedAt = sectorsAccessed();
+
 }
 
 void ProgressSlideshowDialog::resumeIOaccounting()

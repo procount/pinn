@@ -12,6 +12,7 @@ class MultiImageDownloadThread : public QThread
 public:
     explicit MultiImageDownloadThread(QObject *parent = 0, QString local="/mnt/");
     void addImage(const QString &folder, const QString &flavour);
+    void allowResume(bool allow);
 
 protected:
     virtual void run();
@@ -26,7 +27,8 @@ protected:
     QMultiMap<QString,QString> _images;
     int _extraSpacePerPartition, _sectorOffset, _part;
     QVariantList installed_os;
-    
+    bool _allowResume;
+
 signals:
     void error(const QString &msg);
     void statusUpdate(const QString &msg);

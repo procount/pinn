@@ -70,6 +70,8 @@ BootSelectionDialog::BootSelectionDialog(
         return;
     }
 
+    _altered=false;
+
     cec->setWindow("bootSelection");
     cec->setMenu("any");
     connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
@@ -79,7 +81,7 @@ BootSelectionDialog::BootSelectionDialog(
     {
         /* Not fatal if this fails */
     }
-    QVariantList installed_os = Json::loadFromFile("/settings/installed_os.json").toList();
+    installed_os = Json::loadFromFile("/settings/installed_os.json").toList();
     QSize currentsize = ui->list->iconSize();
 
     QSettings settings("/settings/noobs.conf", QSettings::IniFormat, this);
@@ -143,8 +145,6 @@ BootSelectionDialog::BootSelectionDialog(
             _countdown = params.at(1).toInt() +1;
         }
     }
-
-
 
     if (ui->list->count() != 0)
     {
@@ -234,6 +234,13 @@ void BootSelectionDialog::accept()
     QListWidgetItem *item = ui->list->currentItem();
     if (!item)
         return;
+
+    if (_altered)
+    {
+        QProcess::execute("mount -o remount,rw /settings");
+        Json::saveToFile("/settings/installed_os.json", installed_os);
+        QProcess::execute("mount -o remount,ro /settings");
+    }
 
     QSettings settings("/settings/noobs.conf", QSettings::IniFormat, this);
 
@@ -457,4 +464,34 @@ void BootSelectionDialog::on_buttonBox_clicked(QAbstractButton *button)
 {
     Q_UNUSED(button);
     reject();
+}
+
+void BootSelectionDialog::on_pb_Up_clicked()
+{
+    int row = ui->list->currentRow();
+    if(row>0)
+    {
+        _altered=true;
+        QListWidgetItem* pTemp = ui->list->takeItem(row);
+        ui->list->insertItem(row-1,pTemp);
+        ui->list->setCurrentRow(row-1);
+
+        QVariant entry = installed_os.takeAt(row);
+        installed_os.insert(row-1,entry);
+
+    }
+}
+
+void BootSelectionDialog::on_pb_Down_clicked()
+{
+    int row = ui->list->currentRow();
+    if(row<ui->list->count()-1){
+        _altered=true;
+        QListWidgetItem* pTemp = ui->list->takeItem(row);
+        ui->list->insertItem(row+1,pTemp);
+        ui->list->setCurrentRow(row+1);
+
+        QVariant entry = installed_os.takeAt(row);
+        installed_os.insert(row+1,entry);
+    }
 }
