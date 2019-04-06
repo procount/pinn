@@ -11,42 +11,42 @@
     <message>
         <location filename="backupthread.cpp" line="106"/>
         <source>Cannot backup </source>
-        <translation type="unfinished"></translation>
+        <translation>Backup kann nicht erstellt werden</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="106"/>
         <source> :BTRFS file format</source>
-        <translation type="unfinished"></translation>
+        <translation> :BTRFS Dateiformat</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="137"/>
         <source>%1: Updating partitions.json</source>
-        <translation type="unfinished"></translation>
+        <translation>partitions.json wird aktualisiert</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="164"/>
         <source>%1: Writing image (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Image wird geschrieben ($2)</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="170"/>
         <source>%1: Archiving (%2)</source>
-        <translation type="unfinished"></translation>
+        <translatio>%1: Wird archiviert (%2)</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="177"/>
         <source>Error writing </source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Schreiben</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="177"/>
         <source>: Disk full?</source>
-        <translation type="unfinished"></translation>
+        <translation>Speicher voll?</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="211"/>
         <source>%1: Updating os.json</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: os.json wird aktualisiert</translation>
     </message>
 </context>
 <context>
@@ -79,13 +79,13 @@
     <message>
         <location filename="bootselectiondialog.cpp" line="361"/>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN - Das als letzes ausgewählte Betriebsystem wird in %1 Sekunden starten</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="25"/>
         <location filename="bootselectiondialog.cpp" line="363"/>
         <source>PINN - Select OS to boot</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle ein Betriebsystem zum starten aus</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="38"/>
@@ -95,7 +95,7 @@
     <message>
         <location filename="bootselectiondialog.ui" line="67"/>
         <source>BOOT</source>
-        <translation type="unfinished"></translation>
+        <translation>BOOT</translation>
     </message>
 </context>
 <context>
@@ -121,12 +121,12 @@
     <message>
         <location filename="datetimedialog.ui" line="14"/>
         <source>Set Date &amp; Time</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lege Datum und Uhrzeit fest</translation>
     </message>
     <message>
         <location filename="datetimedialog.ui" line="52"/>
         <source>Please set the correct date and time below.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte lege Datum und Uhrzeit fest</translation>
     </message>
 </context>
 <context>
@@ -272,7 +272,7 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
     <message>
         <location filename="initdrivethread.cpp" line="377"/>
         <source>Saving boot files to memory</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichere die Boot-Dateien</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="380"/>
