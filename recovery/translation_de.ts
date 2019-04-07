@@ -26,7 +26,7 @@
     <message>
         <location filename="backupthread.cpp" line="164"/>
         <source>%1: Writing image (%2)</source>
-        <translation>Image wird geschrieben ($2)</translation>
+        <translation>%1: Image wird geschrieben (%2)</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="170"/>
