@@ -277,37 +277,37 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
     <message>
         <location filename="initdrivethread.cpp" line="380"/>
         <source>Error saving boot files to memory. SD card may be damaged.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Speichern der Boot-Dateien. Die SD-Karte ist vielleicht beschädigt.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="396"/>
         <source>Creating partitions</source>
-        <translation type="unfinished"></translation>
+        <translation>Partitionen werden erstellt.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="400"/>
         <source>Error partitioning</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Partitionieren.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="404"/>
         <source>Formatting boot partition (fat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Boot-Partition wird formatiert (FAT)</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="407"/>
         <source>Error formatting boot partition (fat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Partitionieren (FAT)</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="411"/>
         <source>Copying boot files to storage</source>
-        <translation type="unfinished"></translation>
+        <translation>Boot-Dateien werden auf den Speicher kopiert.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="503"/>
         <source>Setting disk volume ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Disk-Volume-ID wird gesetzt.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="86"/>
@@ -374,7 +374,7 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
         <location filename="mainwindow.ui" line="74"/>
         <location filename="mainwindow.ui" line="175"/>
         <source>Destination drive:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ziellaufwerk</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="103"/>
@@ -397,13 +397,13 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
     <message>
         <location filename="mainwindow.ui" line="163"/>
         <source>Download space</source>
-        <translation type="unfinished"></translation>
+        <translation>Download-Speicherplatz</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="254"/>
         <location filename="mainwindow.ui" line="294"/>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation>Toolbar</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="387"/>
@@ -433,74 +433,74 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
     <message>
         <location filename="mainwindow.ui" line="420"/>
         <source>More (m)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mehr (m)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="423"/>
         <source>More menus</source>
-        <translation type="unfinished"></translation>
+        <translation>Mehr Menüs</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="426"/>
         <source>M</source>
-        <translation type="unfinished"></translation>
+        <translation>M</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="519"/>
         <source>Download (d)</source>
-        <translation type="unfinished"></translation>
+        <translation>Download (d)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="522"/>
         <source>Downloads the selected operating system image to USB for local installation</source>
-        <translation type="unfinished"></translation>
+        <translation>Lädt die ausgewählten Betreibssystem-Images auf den USB-Stick zur späteren lokalen Installation.</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="525"/>
         <source>D</source>
-        <translation type="unfinished"></translation>
+        <translation>D</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="558"/>
         <source>Reinstall (r)</source>
         <oldsource>Refresh (r)</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Neu installieren (r)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="561"/>
         <source>R</source>
-        <translation type="unfinished"></translation>
+        <translation>R</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="576"/>
         <source>Replace (l)</source>
         <oldsource>Replace (p)</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Ersetzen (1)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="579"/>
         <source>L</source>
-        <translation type="unfinished"></translation>
+        <translation>L</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="630"/>
         <source>Wipe (w)</source>
-        <translation type="unfinished"></translation>
+        <translation>Löschen (w)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="657"/>
         <source>Information about the installed OS</source>
-        <translation type="unfinished"></translation>
+        <translation>Informationen über das installierte Betriebsystem</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="669"/>
         <source>Firmware (f)</source>
-        <translation type="unfinished"></translation>
+        <translation>Firmware (f)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="672"/>
         <source>Change Firmware</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändere die Firmware</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="684"/>
@@ -515,17 +515,17 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
     <message>
         <location filename="mainwindow.ui" line="699"/>
         <source>Time (t)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeit (t)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="702"/>
         <source>Set Data &amp; Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Uhrzeit &amp; Datum festlegen</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="705"/>
         <source>T</source>
-        <translation type="unfinished"></translation>
+        <translation>T</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="714"/>
