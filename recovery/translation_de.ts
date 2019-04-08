@@ -6,7 +6,7 @@
     <message>
         <location filename="backupthread.cpp" line="60"/>
         <source>Finish writing (sync)</source>
-        <translation type="unfinished">Schließe Schreibvorgang ab (sync)</translation>
+        <translation>Schließe Schreibvorgang ab (sync)</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="106"/>
