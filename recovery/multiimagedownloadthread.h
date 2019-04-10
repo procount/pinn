@@ -31,6 +31,7 @@ protected:
 
 signals:
     void error(const QString &msg);
+    void errorContinue(const QString &msg);
     void statusUpdate(const QString &msg);
     void parsedImagesize(qint64 size);
     void completed();

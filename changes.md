@@ -492,3 +492,12 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Translations**          - Updated IT & zh_TW translations
 
 
+### V3.2
+
+- **Added Ts & C's dialog** - for Future OSes
+- **Resumable download**    - in case of downloade errors
+- **More robust file transfer** - in case of download errors
+- **Change boot selection order** - Just for aesthetics
+- **Added file checksums** - for download verification
+- **Added partition_setup.sh checksum** - for download verification
+- **Added options dialog** - To make option setting easier.

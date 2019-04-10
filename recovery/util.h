@@ -64,6 +64,7 @@ QStringList splitNameParts(const QString& input);
 void setNameParts(QStringList& list, eNAMEPARTS flags, const QString& part );
 QString joinNameParts(QStringList input);
 QString getCsumType(const QVariantMap &partition);
+QString getCsum(const QVariantMap &partition, const QString &csumType);
 
 bool updatePartitionScript(QVariantMap & entry, QListWidgetItem * witem);
 

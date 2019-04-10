@@ -45,6 +45,16 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V3.2
+
+- **Added Ts & C's dialog** - for Future OSes
+- **Resumable download**    - in case of downloade errors
+- **More robust file transfer** - in case of download errors
+- **Change boot selection order** - Just for aesthetics
+- **Added file checksums** - for download verification
+- **Added partition_setup.sh checksum** - for download verification
+- **Added options dialog** - To make option setting easier.
+
 ### V3.1.1
 
 - **alias**                 - Fix underscores

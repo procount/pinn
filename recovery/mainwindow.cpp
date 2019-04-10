@@ -2788,6 +2788,11 @@ void MainWindow::downloadMetaComplete()
             else
                 QFile::remove(saveAs);
         }
+        if (fi.fileName() == "partition_setup.sh")
+        {
+            int errorcode;
+            QString csum_download = readexec(1,"sha512sum "+fi.absoluteFilePath(), errorcode).split(" ").first();
+        }
     }
     if (_numMetaFilesToDownload == 0)
     {
@@ -3204,6 +3209,7 @@ void MainWindow::startImageDownload()
     connect(imageDownloadThread, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
     connect(imageDownloadThread, SIGNAL(completed()), this, SLOT(onCompleted()));
     connect(imageDownloadThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
+    connect(imageDownloadThread, SIGNAL(errorContinue(QString)), this, SLOT(onErrorContinue(QString)), Qt::BlockingQueuedConnection);
     connect(imageDownloadThread, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
     connect(imageDownloadThread, SIGNAL(imageWritten(QString)), this, SLOT(newImage(QString)));
     imageDownloadThread->start();
@@ -3932,7 +3938,7 @@ void MainWindow::newImage(QString Imagefile)
 
     bool bInstalled=false;
     QIcon usbIcon(":/icons/hdd_usb_unmount.png");
-    qDebug() << entry;
+    //qDebug() << entry;
     addImage(entry,usbIcon,bInstalled);
 }
 

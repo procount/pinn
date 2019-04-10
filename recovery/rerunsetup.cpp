@@ -77,7 +77,7 @@ rerunsetup::rerunsetup(QListWidget * listinstalled, MainWindow * mw, const QStri
                 if (QFile::exists(postInstallScript))
                 {
                     QString csumType = getCsumType(image);
-                    QString csum     = image.value(csumType, "").toString();
+                    QString csum     = getCsum(image,csumType);
 
                     if ((csum != "") && (csumType != ""))
                     {

@@ -636,10 +636,21 @@ QString getCsumType(const QVariantMap &partition)
     QStringList options;
     options << "sha512sum" <<"sha256sum" <<"sha1sum"<<"md5sum";
 
-    foreach (QString csum, options)
+    foreach (QString csumType, options)
     {
-        if (partition.contains(csum))
-            return(csum);
+        if (partition.contains(csumType))
+            return(csumType);
     }
     return("");
+}
+
+QString getCsum(const QVariantMap &partition, const QString &csumType)
+{
+    QString csum     = partition.value(csumType, "").toString();
+
+    if (csum.startsWith("http"))
+    {
+        csum = QString(getRemoteFile(csum)).split(" ").first();
+    }
+    return(csum);
 }

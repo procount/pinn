@@ -487,6 +487,9 @@ In addition to specifying a list of OS names, some reserved words are also avail
 
 - **dsi**: A special boot feature to swap the priority of the DSI and HDMI video outputs, allowing an OS to give priority to a HDMI screen if attached.
 
+
+The recovery.cmdline can be edited using the [Edit Config](#easy-config-file-editor) option on the maintenance menu. From v3.2, this now includes an Edit Options button which launches a dialog to set all the options more easily using simpler checkboxes.
+
 ---
 
 # Installing OSes
@@ -495,9 +498,28 @@ In addition to specifying a list of OS names, some reserved words are also avail
 
 Simply select the checkbox next to each OS you want to install, using either a mouse or keyboard (use the arrow keys to traverse the list; the Enter or Space key to toggle the selected OS's checkbox), then click the "Install" icon (or press "i" on your keyboard) to install the selection. The icons shown on the right of the list indicate whether the OS is being installed from the SD card (SD card icon), USB device (USB icon) or from the online OS repository (Ethernet icon).
 
+_Some OSes may require some terms and conditions to be accepted before the OS can be installed._
+
 ![alt text](screenshots/os_selected.png "Select your choice of OSes to install")
 
 <sup>*NOTE: The list of OSes in this image is indicative only. It will vary according to your Raspberry Pi model and the availability of OSes on the installation sources.</sup>
+
+### File Signatures and Checksums
+
+OS maintainers have the option of providing signatures or checksums for their main OS tarballs/images and their partition_setup.sh script. These may be of type sha512sum, sha256sum, sha1sum or md5sum. When PINN sees such a signature it will verify the downloaded file against its signature for correctness and an error will result if they differ.
+
+When a checksum error occurs during installation, 4 options are available:
+
+- **keep** - Keep the current file and continue, but the OS will be marked as non-bootable
+- **retry** - retry the file again
+- **discard** - discard this file, but continue with any other OSes
+- **abort** - Abort all OSes
+
+When OSes are installed, the checksums are calculated during the installation, but for downloads and backups they are calculated at the end.
+
+Checksums can be found in each partition section of the `partitions.json` file for tarballs, and in `os.json` for the `partition_setup.sh` script.
+
+The keys: "sha512sum", "sha256sum", "sha1sum" and "md5sum" indicate the type of the checksum and its value is the checksum expressed as a quoted Hex string. Alternatively, the checksum value can be the URL of a standard digest file, being the captured output of one of these checksum programs.
 
 ## OS Network Installation
 
@@ -505,7 +527,7 @@ PINN allows additional operating systems to be downloaded from a remote reposito
 
 Once connected, the Pi will only show a list of operating systems that are appropriate to your Pi Model. If you want to see _all_ available OSes, edit the `recovery.cmdline` file in the root PINN directory and append `showall` to the arguments list.
 
-Once PINN has connectd to your network, the IP address of the PI is shown in the window title bar.
+Once PINN has connected to your network, the IP address of the PI is shown in the window title bar.
 
 ### How to install OSes from an alternative network sources
 
@@ -735,6 +757,9 @@ Each OS entry in the boot selection dialog has a checkbox next to it, allowing u
 
 To change or remove the sticky checkbox, or just to temporarily boot into another OS, the boot selection dialog can be shown again by pressing the Shift key on boot up and entering the recovery mode. Alternatively, if the cmdline **`bootmenutimeout`** option is specified, the bootmenu will be displayed for this timeout period before booting the selected OS, providing an alternative opportunity to change the OS to be booted.
 
+## OS Boot selection order
+
+The order of the OSes presented on the boot selection dialog is dependent on their physical position on the drive, essentially the order they were installed. Using the up and down buttons, any selected OS can be moved up or down in this list, and hence the order can be changed to suit your needs.
 
 ### Reboot shell script
 
@@ -795,9 +820,11 @@ The Exit button (Esc) will exit recovery mode and go to the boot selection dialo
 
 As documented earlier, PINN can install an OS from a local USB disk instead of directly from the internet for use when no internet is available, or to avoid repetitive slow or costly downloads. But to do this, the OS and is accompanying meta-files must be downloaded from the internet to the USB drive. PINN's `download` feature allows this task to be done easily. It will only download OSes that are sourced from the network - selected OSes on a USB stick, for example, will be ignored.
 
+You will be asked if you want to resume partial downloads. Only select this option if a previous download failed and you wnat to continue downloading the same file rather than starting again. Selecting Yes when no partial downloads are available could end up extending an existing file with a newer file, causing a problem.
+
 ![alt text](screenshots/download.png "Downloading OSes for offline use.")
 
-1. Format a USB drive as FAT32 and create a `/os` folder on it.
+1. Format a USB drive as FAT32,ext4 or NTFS and create an `/os` folder on it.
 2. Insert the USB drive into the Pi.
 3. On the Archival Menu, select the USB drive in the status window.
 4. Select the list of OSes you want to download
@@ -806,7 +833,11 @@ As documented earlier, PINN can install an OS from a local USB disk instead of d
 
 The download icon is only available when the download size of all files are known. If the download icon is greyed out, and the toolbar indicates that that there are still more files to check, please wait until all files are checked. 
 
-The download function will also download OS flavours and their customisation files from a remote repository. When downloading flavours, it is only necessary to download 1 of the flavours and all associated flavours will be downloaded. (OSes that have flavours should include all their additional flavour customisations in a single flavours.tar.xz file to allow for thier download).
+The download function will also download OS flavours and their customisation files from a remote repository. When downloading flavours, it is only necessary to download 1 of the flavours and all associated flavours will be downloaded. (OSes that have flavours should include all their additional flavour customisations in a single flavours.tar.xz file to allow for their download).
+
+After a file is downloaded it is checked against its signature checksum, if one is available. See [File Signatures and Checksums](#file-signatures-and-checksums)
+
+_Some OSes may require some terms and conditions to be accepted before the OS can be downloaded._
 
 ## How to Clone an SD Card
 
@@ -854,7 +885,9 @@ The first entry is a dummy fixed entry called `PINN` which represents the PINN r
 
 ## Easy Config File Editor
 
-The built-in config file editor allows you to edit the config file of the OS that is currently highlighted in the OS list. This allows you to easily add license keys to different OS installs through the same interface. When the PINN entry is selected, it allows you to edit the recovery.cmdline instead of the cmdline.txt file.
+The built-in config file editor allows you to edit the config file of the OS that is currently highlighted in the OS list. This allows you to easily add license keys to different OS installs through the same interface.
+
+When the PINN entry is selected, it allows you to edit the recovery.cmdline instead of the cmdline.txt file. A button called "Edit Options" will also appear which can launch a dialog box with all the possible options laid out amongst 4 tabs. This means you no longer need to remember all the option names as check and edit boxes are used instead.
 
 Note that the output mode selected by the user through pressing one of number keys 1 to 4 (for HDMI preferred, HDMI VGA, Composite PAL, and Composite NTSC, respectively), will be automatically set in the `config.txt` files of your installed OSes. This means that you shouldn't have to worry about manually changing your display settings to get your installed OS to display correctly on your display device.
 
@@ -893,11 +926,14 @@ Due to the compression, it is not known precisely how much disk space is require
 
 After backing up an OS prior to v3.0.1, it may not show up in the list of installable OSes until PINN is rebooted, but now it will appear immediately in a separate "Backups" tab with all the other backup versions.
 
+When an OS is backed up, an sha512sum signature checksum is calculated for each tarball which will be used to verify its correctness when next installed. See [File Signatures and Checksums](#file-signatures-and-checksums)
+
+
 ## Restoring Backups
 
 There is no specific "Restore" button to restore a Backed up OS. As the backup is aready in NOOBS format, the backed up OS can be installed as any other OS to a fresh (PINN format) SD Card or USB drive, or they can be used to replace an existing OS or ProjectSpace (if it is in a compatible partition layout).
 
-When a backed up OS is restored, PINN will fix up partition references by running the partitions_setup.sh script. However, certain tasks in that script that are only needed on an initial install will be skipped, as it is assumed they have were already done and are not needed on restoration. This also includes the copying of ssh and wpa_supplicant.conf files from the PINN partition. Flavour customisation scripts are also not executed.
+When a backed up OS is restored, PINN will fix up partition references by running the partitions_setup.sh script. However, certain tasks in that script that are only needed on an initial install will be skipped, as it is assumed they were already done and are not needed on restoration. This also includes the copying of ssh and wpa_supplicant.conf files from the PINN partition. Flavour customisation scripts are also not executed.
 
 Backed up OSes may be installed by NOOBS, but some OSes may not restore properly due to the need for modified setup scripts (see above) that NOOBS is not aware of.
 
@@ -973,6 +1009,8 @@ The following steps allow you to create a modified copy of one of the standard O
   * To create the boot tarball, you will need to run `sudo bsdtar --numeric-owner --format gnutar -cpvf \<label\>_boot.tar .` from the boot partition of your custom OS version. You should then compress the resulting tarball with `xz -9 -e \<label\>_boot.tar`.
 
 _More detailed instructions are available in the Wiki at https://github.com/procount/pinn/wiki/How-to-Create-a-Multi-Boot-SD-card-out-of-2-existing-OSes-using-PINN_
+
+Also note that if your custom OS is already on a PINN formatted SD card but you've made some changes that for example you want to install as a custom OS to other cards, then simply backing up the OS will create a custom OS version.
 
 ## How to customise an OS install (noobsconfig)
 

@@ -65,8 +65,6 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
     QString os_name   = splitted.last();
     bool downloadError;
 
-    qDebug() << "Processing OS:" << os_name;
-
     QVariantList partitions = Json::loadFromFile(folder+"/partitions.json").toMap().value("partitions").toList();
     foreach (QVariant pv, partitions)
     {
@@ -74,7 +72,7 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
         QString tarball  = partition.value("download").toString();
         bool emptyfs     = partition.value("empty_fs", false).toBool();
         QString csumType = getCsumType(partition);
-        QString csum     = partition.value(csumType, "").toString();
+        QString csum     = getCsum(partition,csumType);
         downloadError = false;
 
         if (emptyfs)
@@ -95,6 +93,10 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
         if (filename.right(1) !="/")
             filename += "/";
         filename += split_tar.last();
+
+        QString errmsg = tr("Downloading %1:%2").arg(os_name,split_tar.last());
+        qDebug() << errmsg;
+        emit statusUpdate(errmsg);
 
         //Check for file transfer resuming
         QFile f(filename);
@@ -123,23 +125,29 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
 
         if (p.exitCode() == 0)
         { //download was ok
-            if ((csum != "") && (csumType != ""))
+
+            if (csumType.isEmpty())
+                csumType="sha512sum";
+
+            errmsg = tr("Checking %1:%2").arg(os_name,split_tar.last());
+            qDebug() << errmsg;
+            emit statusUpdate(errmsg);
+
+            int errorcode;
+            QString csum_download = readexec(1,csumType+" "+filename, errorcode).split(" ").first();
+
+            if ((csum != "") && (csum_download != csum))
             {
-                int errorcode;
-                QString csum_download = readexec(1,csumType+" "+filename, errorcode).split(" ").first();
-                if (csum_download != csum)
-                {
-                    qDebug()<< "Expected csum= "<<csum<<" Calculated= "<<csum_download;
-                    emit error(tr("Error in checksum"));
-                    downloadError = true;
-                }
+                qDebug()<< "Expected csum= "<<csum;
+                emit error(tr("Error in checksum"));
+                downloadError = true;
             }
         }
 
         if (p.exitCode() != 0)
         {
             qDebug() << msg;
-            emit error(tr("Error downloading or extracting tarball")+"\n"+msg);
+            emit errorContinue(tr("Error downloading or extracting tarball")+"\n"+msg);
             downloadError = true;
         }
 

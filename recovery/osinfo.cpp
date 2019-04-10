@@ -22,7 +22,7 @@ OsInfo::OsInfo(const QString &folder, const QString &flavour, QObject *parent) :
 
     _csumType      = getCsumType(m);
     if (_csumType != "")
-        _csum          = m.value(_csumType, "").toString();
+        _csum = getCsum(m,_csumType);
 
 
     if (m.contains("supports_backup"))

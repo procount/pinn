@@ -19,7 +19,7 @@ PartitionInfo::PartitionInfo(const QVariantMap &m, QObject *parent) :
 
     _csumType      = getCsumType(m);
     if (_csumType != "")
-        _csum          = m.value(_csumType, "").toString();
+        _csum = getCsum(m,_csumType);
 
     QByteArray defaultPartType;
     if (_fstype.contains("fat"))
