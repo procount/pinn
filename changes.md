@@ -501,3 +501,7 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Added file checksums** - for download verification
 - **Added partition_setup.sh checksum** - for download verification
 - **Added options dialog** - To make option setting easier.
+
+### V3.2.1
+
+- **Bootselectiondialog** - update for CEC and keyboard

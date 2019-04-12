@@ -152,6 +152,20 @@ for i in $*; do
     if [ $i = "nobuild" ]; then
         exit
     fi
+
+    if [ $i = "help" ]; then
+        echo "Options:"
+	echo "update-firmware"
+	echo "update-userland"
+	echo "update-kernel"
+	echo "update-ts"
+	echo "skip-kernel-rebuild"
+	echo "skip-kernel-6"
+	echo "skip-kernel-7"
+	echo "skip-recovery-rebuild"
+	echo "nobuild"
+	exit
+    fi
 done
 
 if [ $SKIP_RECOVERY_REBUILD -ne 1 ]; then
