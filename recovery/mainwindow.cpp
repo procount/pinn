@@ -30,10 +30,10 @@
 #include "iconcache.h"
 #include "termsdialog.h"
 
-#define DBG_LOCAL 1
+#define DBG_LOCAL 0
 #define LOCAL_DO_DBG 1
 #define LOCAL_DBG_FUNC 1
-#define LOCAL_DBG_OUT 0
+#define LOCAL_DBG_OUT 1
 #define LOCAL_DBG_MSG 0
 #include "mydebug.h"
 
@@ -231,7 +231,10 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
 
     ug = new OsGroup(this, ui, !cmdline.contains("no_group"));
 
-    ug->list->setIconSize(QSize(40,40)); //ALL?? set each list?
+    _currentsize = QSize(40,40);
+    ug->list->setIconSize(_currentsize); //ALL?? set each list?
+    ug->listInstalled->setIconSize(_currentsize); //ALL?? set each list?
+
     connect(ug->list, SIGNAL(currentRowChanged(int)), this, SLOT(on_list_currentRowChanged(void)));
     connect(ug->list, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(on_list_doubleClicked(const QModelIndex&)));
     connect(ug->list, SIGNAL(itemChanged(QListWidgetItem *)), this, SLOT(on_list_itemChanged(QListWidgetItem *)));
@@ -722,7 +725,7 @@ void MainWindow::repopulate()
 {
     TRACE
     QMap<QString,QVariantMap> images;
-    _currentsize = ug->list->iconSize();
+
     QIcon localIcon(":/icons/hdd.png");
 
     if ( _sdimages )
@@ -2451,7 +2454,6 @@ void MainWindow::assignPixmap(QString originalurl, QPixmap &pix)
     for (int i=0; i<ug->count(); i++)
     {
         QVariantMap m = all.value(i)->data(Qt::UserRole).toMap();
-        ug->list->setIconSize(QSize(40,40)); //ALL??
         if (m.value("icon") == originalurl)
         {
             all.value(i)->setIcon(icon);
@@ -3154,19 +3156,24 @@ void MainWindow::startImageDownload()
             }
 
             /* Insert tarball download URL information into partition_info.json to allow download */
-            QVariantMap json = Json::loadFromFile(folder+"/partitions.json").toMap();
-            QVariantList partitions = json["partitions"].toList();
-            int i=0;
-            QStringList tarballs = entry.value("tarballs").toStringList();
-            foreach (QString tarball, tarballs)
+            if (QFile::exists(folder+"/partitions.json"))
             {
-                QVariantMap partition = partitions[i].toMap();
-                partition.insert("download", tarball);
-                partitions[i] = partition;
-                i++;
+                QVariantMap json = Json::loadFromFile(folder+"/partitions.json").toMap();
+                QVariantList partitions = json["partitions"].toList();
+                int i=0;
+                QStringList tarballs = entry.value("tarballs").toStringList();
+                foreach (QString tarball, tarballs)
+                {
+                    QVariantMap partition = partitions[i].toMap();
+                    partition.insert("download", tarball);
+                    partitions[i] = partition;
+                    i++;
+                }
+                json["partitions"] = partitions;
+                Json::saveToFile(folder+"/partitions.json", json);
             }
-            json["partitions"] = partitions;
-            Json::saveToFile(folder+"/partitions.json", json);
+            else
+                continue;
 
             slidesFolder.clear();
             if (QFile::exists(folder+"/slides_vga"))
@@ -3175,13 +3182,18 @@ void MainWindow::startImageDownload()
             }
 
             /* Insert download_size into os.json to allow correct use of download size */
-            json = Json::loadFromFile(folder+"/os.json").toMap();
-            if (! json.contains("download_size"))
+            if (QFile::exists(folder+"/os.json"))
             {
-                quint64 downloadSize= entry.value("download_size").toULongLong();
-                json.insert("download_size",downloadSize);
-                Json::saveToFile(folder+"/os.json", json);
+                QVariantMap json = Json::loadFromFile(folder+"/os.json").toMap();
+                if (! json.contains("download_size"))
+                {
+                    quint64 downloadSize= entry.value("download_size").toULongLong();
+                    json.insert("download_size",downloadSize);
+                    Json::saveToFile(folder+"/os.json", json);
+                }
             }
+            else
+                continue;
 
             QString sTerms(folder+"/terms");
             bool allowContinue=true;
@@ -3855,18 +3867,6 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
             {
                 /* Icon file corrupt */
                 iconos = QIcon();
-            }
-            else
-            {
-                QSize iconsize = avs.first();
-
-                if (iconsize.width() > _currentsize.width() || iconsize.height() > _currentsize.height())
-                {
-                    /* Make all icons as large as the largest icon we have */
-                    _currentsize = QSize(qMax(iconsize.width(), _currentsize.width()),qMax(iconsize.height(), _currentsize.height()));
-                    ug->list->setIconSize(_currentsize);
-                    ug->listInstalled->setIconSize(_currentsize);
-                }
             }
             witem->setIcon(iconos);
         }
@@ -4741,7 +4741,7 @@ void MainWindow::on_actionBackup_triggered()
                         iconfilename = entry.value("icon").toString();
                     else
                         iconfilename = settingsFolder+"/icon.png";
-                    cmd = "cp "+ iconfilename+" "+backupFolder+"/"+CORE(backupName)+".png";
+                    cmd = "cp "+ iconfilename+" "+backupFolder+"/"+CORE(backupName).replace(' ', '_')+".png";
                     errors += QProcess::execute(cmd);
 
                     //- [Copy release_notes.txt?]
