@@ -469,6 +469,7 @@ void BootSelectionDialog::on_buttonBox_clicked(QAbstractButton *button)
 void BootSelectionDialog::on_pb_Up_clicked()
 {
     int row = ui->list->currentRow();
+    _counter.stopCountdown();
     if(row>0)
     {
         _altered=true;
@@ -478,13 +479,13 @@ void BootSelectionDialog::on_pb_Up_clicked()
 
         QVariant entry = installed_os.takeAt(row);
         installed_os.insert(row-1,entry);
-
     }
 }
 
 void BootSelectionDialog::on_pb_Down_clicked()
 {
     int row = ui->list->currentRow();
+    _counter.stopCountdown();
     if(row<ui->list->count()-1){
         _altered=true;
         QListWidgetItem* pTemp = ui->list->takeItem(row);

@@ -45,6 +45,10 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V3.2.1
+
+- **Bootselectiondialog** - update for CEC and keyboard
+
 ### V3.2
 
 - **Added Ts & C's dialog** - for Future OSes

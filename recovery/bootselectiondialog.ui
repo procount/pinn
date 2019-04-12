@@ -42,22 +42,28 @@
        <item>
         <widget class="QPushButton" name="pb_Up">
          <property name="text">
-          <string>Up</string>
+          <string>&amp;Up</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
            <normaloff>:/icons/up.png</normaloff>:/icons/up.png</iconset>
+         </property>
+         <property name="shortcut">
+          <string>U</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pb_Down">
          <property name="text">
-          <string>Down</string>
+          <string>&amp;Down</string>
          </property>
          <property name="icon">
           <iconset resource="icons.qrc">
            <normaloff>:/icons/down.png</normaloff>:/icons/down.png</iconset>
+         </property>
+         <property name="shortcut">
+          <string>D</string>
          </property>
         </widget>
        </item>
@@ -118,6 +124,8 @@
   <tabstop>list</tabstop>
   <tabstop>pushButton</tabstop>
   <tabstop>buttonBox</tabstop>
+  <tabstop>pb_Up</tabstop>
+  <tabstop>pb_Down</tabstop>
  </tabstops>
  <resources>
   <include location="icons.qrc"/>
