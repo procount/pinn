@@ -46,7 +46,7 @@
     <message>
         <location filename="backupthread.cpp" line="196"/>
         <source>%1: Checksumming (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1：正在檢查雜湊碼 (%2)</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="234"/>
@@ -99,16 +99,27 @@
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="45"/>
-        <source>Up</source>
+        <source>&amp;Up</source>
+        <oldsource>Up</oldsource>
+        <translation type="unfinished">上</translation>
+    </message>
+    <message>
+        <location filename="bootselectiondialog.ui" line="52"/>
+        <source>U</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="56"/>
-        <source>Down</source>
+        <location filename="bootselectiondialog.ui" line="59"/>
+        <source>&amp;Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="bootselectiondialog.ui" line="89"/>
+        <location filename="bootselectiondialog.ui" line="66"/>
+        <source>D</source>
+        <translation type="unfinished">D</translation>
+    </message>
+    <message>
+        <location filename="bootselectiondialog.ui" line="95"/>
         <source>BOOT</source>
         <translation>開機</translation>
     </message>
@@ -123,7 +134,7 @@
     <message>
         <location filename="confeditdialog.ui" line="36"/>
         <source>Edit Options</source>
-        <translation type="unfinished"></translation>
+        <translation>編輯選項</translation>
     </message>
     <message>
         <location filename="confeditdialog.cpp" line="95"/>
@@ -680,275 +691,275 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation>W</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="268"/>
+        <location filename="mainwindow.cpp" line="271"/>
         <source>Setting up SD card</source>
         <translation>正在設定 SD 記憶卡</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="301"/>
+        <location filename="mainwindow.cpp" line="304"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation>正在等待 SD 記憶卡（settings 分割區）</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="314"/>
+        <location filename="mainwindow.cpp" line="317"/>
         <source>Mounting settings partition</source>
         <translation>正在掛載 settings 分割區</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="326"/>
+        <location filename="mainwindow.cpp" line="329"/>
         <source>Error mounting settings partition</source>
         <translation>掛載 settings 分割區時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="327"/>
+        <location filename="mainwindow.cpp" line="330"/>
         <source>Persistent settings partition seems corrupt. Reformat?</source>
         <translation>持續性的 settings 分割區似乎已毀損。重新格式化？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="334"/>
+        <location filename="mainwindow.cpp" line="337"/>
         <source>Reformat failed</source>
         <translation>重新格式化失敗</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="334"/>
+        <location filename="mainwindow.cpp" line="337"/>
         <source>SD card might be damaged</source>
         <translation>SD 記憶卡可能已受損</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1127"/>
-        <source>install</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="mainwindow.cpp" line="1130"/>
-        <source>reinstall</source>
-        <translation type="unfinished"></translation>
+        <source>install</source>
+        <translation>安裝</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1133"/>
+        <source>reinstall</source>
+        <translation>重新安裝</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1136"/>
         <source>replace</source>
-        <translation type="unfinished"></translation>
+        <translation>取代</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1141"/>
+        <location filename="mainwindow.cpp" line="1144"/>
         <source>USB drive</source>
-        <translation type="unfinished"></translation>
+        <translation>USB 磁碟</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1143"/>
+        <location filename="mainwindow.cpp" line="1146"/>
         <source>Warning: this will %1 the selected Operating System(s) to %2. All existing data on the %3 will be deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：這將會 %1 選定的作業系統到 %2。所有在 %3 上的資料都將會被刪除。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1223"/>
+        <location filename="mainwindow.cpp" line="1226"/>
         <source>The %1 process will begin shortly.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 程序將會很快開始。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3806"/>
-        <location filename="mainwindow.cpp" line="3839"/>
+        <location filename="mainwindow.cpp" line="3818"/>
+        <location filename="mainwindow.cpp" line="3851"/>
         <source>RECOMMENDED</source>
         <translation>建議</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1043"/>
-        <location filename="mainwindow.cpp" line="1146"/>
-        <location filename="mainwindow.cpp" line="1245"/>
-        <location filename="mainwindow.cpp" line="1255"/>
-        <location filename="mainwindow.cpp" line="1819"/>
+        <location filename="mainwindow.cpp" line="1046"/>
+        <location filename="mainwindow.cpp" line="1149"/>
+        <location filename="mainwindow.cpp" line="1248"/>
+        <location filename="mainwindow.cpp" line="1258"/>
+        <location filename="mainwindow.cpp" line="1822"/>
         <location filename="mainwindow.cpp" line="4608"/>
         <location filename="mainwindow.cpp" line="4652"/>
         <source>Confirm</source>
         <translation>確認</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="652"/>
+        <location filename="mainwindow.cpp" line="655"/>
         <source>Main Menu</source>
         <translation>主選單</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="653"/>
+        <location filename="mainwindow.cpp" line="656"/>
         <source>Archival</source>
         <translation>封存</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="654"/>
+        <location filename="mainwindow.cpp" line="657"/>
         <source>Maintenance</source>
         <translation>維護</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="671"/>
+        <location filename="mainwindow.cpp" line="674"/>
         <source>Please wait while PINN initialises</source>
         <translation>請等待 PINN 初始化</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1034"/>
+        <location filename="mainwindow.cpp" line="1037"/>
         <source>ERROR</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1035"/>
+        <location filename="mainwindow.cpp" line="1038"/>
         <source>Error: Some OSes are not available:
 </source>
         <translation>錯誤：部份作業系統不可用：
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1141"/>
+        <location filename="mainwindow.cpp" line="1144"/>
         <source>SD card</source>
         <translation>SD 記憶卡</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1044"/>
-        <location filename="mainwindow.cpp" line="1256"/>
+        <location filename="mainwindow.cpp" line="1047"/>
+        <location filename="mainwindow.cpp" line="1259"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>警告：已偵測到不相容的作業系統。以下的作業系統在此版本的 Raspberry Pi 不被支援，它們可能會啟動失敗，或是有功能執行不正確：</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1111"/>
+        <location filename="mainwindow.cpp" line="1114"/>
         <source>ReInstall OSes</source>
         <translation>重新安裝作業系統</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1112"/>
+        <location filename="mainwindow.cpp" line="1115"/>
         <source>Warning: No OSes selected or available
 </source>
         <translation>警告：未選擇作業系統或未提供
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1246"/>
+        <location filename="mainwindow.cpp" line="1249"/>
         <source>Warning: this will download the selected Operating System(s).</source>
         <translation>警告：這將會下載選定的作業系統。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1319"/>
+        <location filename="mainwindow.cpp" line="1322"/>
         <source>The download process will begin shortly.</source>
         <translation>很快就會開始下載。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1367"/>
+        <location filename="mainwindow.cpp" line="1370"/>
         <source>OS(es) downloaded</source>
         <translation>作業系統已下載完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1381"/>
+        <location filename="mainwindow.cpp" line="1384"/>
         <source>OS(es) Backed up with errors.
 See debug log for details</source>
         <translation>作業系統備份時發生錯誤。
 檢視除錯紀錄檔以取得更多資訊</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1383"/>
+        <location filename="mainwindow.cpp" line="1386"/>
         <source>OS(es) Backed up Successfully.</source>
         <translation>作業系統備份成功。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1385"/>
+        <location filename="mainwindow.cpp" line="1388"/>
         <location filename="mainwindow.cpp" line="4753"/>
         <source>Backup OSes</source>
         <translation>備份作業系統</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1394"/>
+        <location filename="mainwindow.cpp" line="1397"/>
         <source>OS(es) Installed Successfully</source>
         <translation>作業系統已成功安裝</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1396"/>
+        <location filename="mainwindow.cpp" line="1399"/>
         <source>Installation complete</source>
-        <translation type="unfinished"></translation>
+        <translation>安裝完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1432"/>
-        <location filename="mainwindow.cpp" line="1442"/>
-        <location filename="mainwindow.cpp" line="1454"/>
-        <location filename="mainwindow.cpp" line="2101"/>
-        <location filename="mainwindow.cpp" line="2241"/>
+        <location filename="mainwindow.cpp" line="1435"/>
+        <location filename="mainwindow.cpp" line="1445"/>
+        <location filename="mainwindow.cpp" line="1457"/>
+        <location filename="mainwindow.cpp" line="2104"/>
+        <location filename="mainwindow.cpp" line="2244"/>
         <location filename="mainwindow.cpp" line="4107"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1477"/>
-        <source>Abort</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="1478"/>
-        <source>Discard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="1479"/>
-        <source>Retry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="mainwindow.cpp" line="1480"/>
-        <source>Keep</source>
-        <translation type="unfinished"></translation>
+        <source>Abort</source>
+        <translation>放棄</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1504"/>
+        <location filename="mainwindow.cpp" line="1481"/>
+        <source>Discard</source>
+        <translation>丟棄</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1482"/>
+        <source>Retry</source>
+        <translation>重試</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1483"/>
+        <source>Keep</source>
+        <translation>保留</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1507"/>
         <source>Reboot in %1 secs</source>
         <translation>在 %1 秒內重新啟動</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1794"/>
+        <location filename="mainwindow.cpp" line="1797"/>
         <source>Wiping SD card</source>
         <translation>抹除 SD 記憶卡</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1820"/>
+        <location filename="mainwindow.cpp" line="1823"/>
         <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will restore your SD card to its initial state. All existing data on the SD card except PINN will be overwritten, including any OSes that are already installed.</oldsource>
         <translation>警告：這將會讓您的 PINN 磁碟復原到初始狀態。所有在磁碟上，除了 PINN 以外既有的資料都將會被覆寫，其中也包含任何您已安裝的作業系統。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1825"/>
+        <location filename="mainwindow.cpp" line="1828"/>
         <source>Drive Wiped!</source>
         <translation>磁碟已抹除！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2101"/>
+        <location filename="mainwindow.cpp" line="2104"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation>解析從伺服器下載的 repolist.json 時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2722"/>
+        <location filename="mainwindow.cpp" line="2724"/>
         <source>Error downloading meta file: </source>
         <translation>下載詮釋檔案錯誤： </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3071"/>
+        <location filename="mainwindow.cpp" line="3073"/>
         <location filename="mainwindow.cpp" line="4483"/>
         <location filename="mainwindow.cpp" line="4511"/>
         <source>Replace OSes</source>
         <translation>取代作業系統</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3113"/>
+        <location filename="mainwindow.cpp" line="3115"/>
         <source>Resume partial downloads?</source>
-        <translation type="unfinished"></translation>
+        <translation>復原部份下載？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3114"/>
+        <location filename="mainwindow.cpp" line="3116"/>
         <source>Normally select NO, unless your last download was not successful, in which case select YES</source>
-        <translation type="unfinished"></translation>
+        <translation>一般會選擇否，除非您最後一次下載並未成功，這種情況下才會選取是</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3317"/>
+        <location filename="mainwindow.cpp" line="3329"/>
         <source>This backup may require </source>
         <translation>這個備份可能需要 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3319"/>
+        <location filename="mainwindow.cpp" line="3331"/>
         <source> MB of backup space, but only </source>
         <translation> MB 的備份空間，但只有 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3321"/>
+        <location filename="mainwindow.cpp" line="3333"/>
         <source> MB is available. This is only an estimate. If you continue, the backup may not complete successfully.
 
 Do you want to continue?</source>
@@ -957,32 +968,32 @@ Do you want to continue?</source>
 您想要繼續嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3322"/>
+        <location filename="mainwindow.cpp" line="3334"/>
         <source>WARNING: Backup Space</source>
         <translation>警告：備份空間</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3329"/>
+        <location filename="mainwindow.cpp" line="3341"/>
         <source>Backup Info</source>
         <translation>備份資訊</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3329"/>
+        <location filename="mainwindow.cpp" line="3341"/>
         <source>Always test your backups before relying on them</source>
         <translation>在依賴您備份前請測試它們</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3372"/>
+        <location filename="mainwindow.cpp" line="3384"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>不使用本機映像檔的 PINN 需要網路。請在下一個畫面選擇您的 wifi 連線。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3380"/>
+        <location filename="mainwindow.cpp" line="3392"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>不使用本機映像檔的 PINN 需要有線網路。請將網路線插入網路孔。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3707"/>
+        <location filename="mainwindow.cpp" line="3719"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>您確定您要重新格式化磁碟 &apos;%1&apos; 以供 PINN 使用嗎？所有在該磁碟上的資料都會被刪除！</translation>
     </message>
@@ -1087,12 +1098,12 @@ Do you want to continue?</source>
         <translation>警告：偵測到不支援的作業系統。PINN 目前無法正確備份下列的作業系統：</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1541"/>
+        <location filename="mainwindow.cpp" line="1544"/>
         <source>HDMI preferred mode</source>
         <translation>偏好 HDMI 模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1096"/>
+        <location filename="mainwindow.cpp" line="1099"/>
         <location filename="mainwindow.cpp" line="4502"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
@@ -1100,56 +1111,58 @@ Please provide it locally or connect to the internet.</source>
 請在本機提供它，或是連線到網際網路。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1362"/>
+        <location filename="mainwindow.cpp" line="1365"/>
         <source>OS(es) Downloaded with errors.
 See debug log for details</source>
-        <translation type="unfinished"></translation>
+        <translation>作業系統下載時發生錯誤。
+檢視除錯紀錄以取得更多資訊</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1364"/>
+        <location filename="mainwindow.cpp" line="1367"/>
         <source>OS(es) Downloaded Successfully.</source>
         <translation>作業系統已下載成功。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1392"/>
+        <location filename="mainwindow.cpp" line="1395"/>
         <source>OS(es) Installed with errors.
 See debug log for details</source>
-        <translation type="unfinished"></translation>
+        <translation>作業系統安裝時發生錯誤。
+檢視除錯紀錄以取得更多資訊</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1506"/>
+        <location filename="mainwindow.cpp" line="1509"/>
         <source>PINN v%1 - Built: %2 (%3) %4</source>
         <translation>PINN v%1 - 建構： %2 (%3) %4</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1545"/>
+        <location filename="mainwindow.cpp" line="1548"/>
         <source>HDMI safe mode</source>
         <translation>HDMI 安全模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1549"/>
+        <location filename="mainwindow.cpp" line="1552"/>
         <source>composite PAL mode</source>
         <translation>合成 PAL 模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1553"/>
+        <location filename="mainwindow.cpp" line="1556"/>
         <source>composite NTSC mode</source>
         <translation>合成 NTSC 模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1622"/>
+        <location filename="mainwindow.cpp" line="1625"/>
         <source>Display Mode Changed</source>
         <translation>顯示模式已變更</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1623"/>
+        <location filename="mainwindow.cpp" line="1626"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>顯示模式已變更為 %1
 您想要讓這個設定永久生效嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1826"/>
+        <location filename="mainwindow.cpp" line="1829"/>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
@@ -1158,75 +1171,75 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
 再次於這個磁碟上開機將會恢復 PINN 的分割區結構。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1839"/>
-        <location filename="mainwindow.cpp" line="3371"/>
-        <location filename="mainwindow.cpp" line="3379"/>
+        <location filename="mainwindow.cpp" line="1842"/>
+        <location filename="mainwindow.cpp" line="3383"/>
+        <location filename="mainwindow.cpp" line="3391"/>
         <source>No network access</source>
         <translation>無法存取網路</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1840"/>
+        <location filename="mainwindow.cpp" line="1843"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>這個功能要求有線網路連線。請插入一條網路纜線至網路埠中。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2082"/>
-        <location filename="mainwindow.cpp" line="2217"/>
+        <location filename="mainwindow.cpp" line="2085"/>
+        <location filename="mainwindow.cpp" line="2220"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation>從網路上下載散佈版清單時發生錯誤：
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2084"/>
-        <location filename="mainwindow.cpp" line="2219"/>
-        <location filename="mainwindow.cpp" line="2736"/>
-        <location filename="mainwindow.cpp" line="2747"/>
+        <location filename="mainwindow.cpp" line="2087"/>
+        <location filename="mainwindow.cpp" line="2222"/>
+        <location filename="mainwindow.cpp" line="2738"/>
+        <location filename="mainwindow.cpp" line="2749"/>
         <location filename="mainwindow.cpp" line="4206"/>
         <location filename="mainwindow.cpp" line="4228"/>
         <source>Download error</source>
         <translation>下載錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2241"/>
+        <location filename="mainwindow.cpp" line="2244"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>解析從伺服器上下載的 list.json 時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2509"/>
-        <location filename="mainwindow.cpp" line="2512"/>
+        <location filename="mainwindow.cpp" line="2511"/>
+        <location filename="mainwindow.cpp" line="2514"/>
         <source>Needed</source>
         <translation>需要</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2510"/>
-        <location filename="mainwindow.cpp" line="2513"/>
+        <location filename="mainwindow.cpp" line="2512"/>
+        <location filename="mainwindow.cpp" line="2515"/>
         <source>Available</source>
         <translation>可用</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2736"/>
+        <location filename="mainwindow.cpp" line="2738"/>
         <source>Error downloading meta file</source>
         <translation>下載後設檔案時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2747"/>
+        <location filename="mainwindow.cpp" line="2749"/>
         <location filename="mainwindow.cpp" line="4228"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>寫入已下載的檔案至 SD 記憶卡時發生錯誤。SD 記憶卡或檔案系統可能受損。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2859"/>
+        <location filename="mainwindow.cpp" line="2861"/>
         <source>filesize error checking </source>
         <translation>檢查檔案大小錯誤 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3072"/>
+        <location filename="mainwindow.cpp" line="3074"/>
         <source> has an incompatible number of partitions with </source>
         <translation> 有不相容數量的分割區 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3706"/>
+        <location filename="mainwindow.cpp" line="3718"/>
         <source>Reformat drive?</source>
         <translation>重新格式化磁碟？</translation>
     </message>
@@ -1246,17 +1259,17 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="multiimagedownloadthread.cpp" line="97"/>
         <source>Downloading %1:%2</source>
-        <translation type="unfinished"></translation>
+        <translation>正在下載 %1：%2</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="132"/>
         <source>Checking %1:%2</source>
-        <translation type="unfinished"></translation>
+        <translation>正在檢查 %1：%2</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="142"/>
         <source>Error in checksum</source>
-        <translation type="unfinished"></translation>
+        <translation>檢查碼錯誤</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="150"/>
@@ -1357,7 +1370,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="425"/>
         <source>Operation cancelled by user</source>
-        <translation type="unfinished"></translation>
+        <translation>操作已由使用者取消</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="431"/>
@@ -1382,7 +1395,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="716"/>
         <source>OS: &apos;%1&apos; needs a partition label of &apos;%2&apos; which is not available</source>
-        <translation type="unfinished"></translation>
+        <translation>作業系統：&apos;%1&apos; 需要分割區標籤 &apos;%2&apos;，但並不可用</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="731"/>
@@ -1437,7 +1450,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="835"/>
         <source>Error in checksum for partition_setup.sh</source>
-        <translation type="unfinished"></translation>
+        <translation>partition_setup.sh 的檢查碼錯誤</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="842"/>
@@ -1488,14 +1501,14 @@ Partition not big enough for new image.</source>
         <location filename="multiimagewritethread.cpp" line="1563"/>
         <location filename="multiimagewritethread.cpp" line="1656"/>
         <source>An incorrect file checksum has been detected in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>在 %1 偵測到不正確的檔案檢查碼</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1467"/>
         <location filename="multiimagewritethread.cpp" line="1567"/>
         <location filename="multiimagewritethread.cpp" line="1660"/>
         <source>Checksum error</source>
-        <translation type="unfinished"></translation>
+        <translation>檢查碼錯誤</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1484"/>
@@ -1514,536 +1527,538 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="14"/>
         <source>PINN Options</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN 選項</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="35"/>
         <source>Installation</source>
-        <translation type="unfinished"></translation>
+        <translation>安裝</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="43"/>
         <source>PREVENTS any noobsconfig customisations from being applied to an OS on installation</source>
-        <translation type="unfinished"></translation>
+        <translation>防止將任何 noobsconfig 的自訂選項套用到安裝作業系統中</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="46"/>
         <source>noobsconfig</source>
-        <translation type="unfinished"></translation>
+        <translation>noobsconfig</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="53"/>
         <source>Reserve some space on PINN&apos;s partition (MB)</source>
-        <translation type="unfinished"></translation>
+        <translation>在 PINN 的分割區中保留部份空間 (MB)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="56"/>
         <source>reserve=</source>
-        <translation type="unfinished"></translation>
+        <translation>reserve=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="63"/>
         <location filename="optionsdialog.ui" line="73"/>
         <source>Specifies a path or URL where the noobsconfig customisation files can be found (rather than being in /os/&amp;lt;distro&amp;gt;/)</source>
-        <translation type="unfinished"></translation>
+        <translation>指定尋找 noobsconfig 檔案的路徑或 URL（而不是在 /os/&amp;lt;distro&amp;gt;/）</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="66"/>
         <source>configpath=</source>
-        <translation type="unfinished"></translation>
+        <translation>configpath=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="80"/>
         <source>Amount of space to reserve (MB) on PINN&apos;s partition</source>
-        <translation type="unfinished"></translation>
+        <translation>要在 PINN 分割區上保留的空間 (MB)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="87"/>
         <source>Selecting this will erase all of your OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>選取這個會抹除您所有的作業系統</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="90"/>
         <source>runinstaller</source>
-        <translation type="unfinished"></translation>
+        <translation>runinstaller</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="97"/>
         <source>Prevents PINN from checking for self updates</source>
-        <translation type="unfinished"></translation>
+        <translation>避免 PINN 檢查自身的更新</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="100"/>
         <source>no_update</source>
-        <translation type="unfinished"></translation>
+        <translation>no_update</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="107"/>
         <source>Force PINN to self-update whenever a new version is detected</source>
-        <translation type="unfinished"></translation>
+        <translation>強制 PINN 在檢測到新版本時自我更新</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="110"/>
         <source>forceupdatepinn</source>
-        <translation type="unfinished"></translation>
+        <translation>forceupdatepinn</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="117"/>
         <source>DO not update the firmware of old OSes on installation</source>
-        <translation type="unfinished"></translation>
+        <translation>不要更新安裝上舊版作業系統的韌體</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="120"/>
         <source>nofirmware</source>
-        <translation type="unfinished"></translation>
+        <translation>nofirmware</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="127"/>
         <source>Selects all OSes where the most recent one is on the SD card</source>
-        <translation type="unfinished"></translation>
+        <translation>選取所有作業系統，最新的在 SD 記憶卡上</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="130"/>
         <source>allsd</source>
-        <translation type="unfinished"></translation>
+        <translation>allsd</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="137"/>
         <source> Selects all OSes where the most recent one is on a local USB drive</source>
-        <translation type="unfinished"></translation>
+        <translation> 選取所有作業系統，最新的在 USB 磁碟上</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="140"/>
         <source>allusb</source>
-        <translation type="unfinished"></translation>
+        <translation>allusb</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="147"/>
         <source>Selects all OSes where the most recent one is on remote repositories.</source>
-        <translation type="unfinished"></translation>
+        <translation>選取所有作業系統，最新的在遠端倉庫上。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="150"/>
         <source>allnetwork</source>
-        <translation type="unfinished"></translation>
+        <translation>allnetwork</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="157"/>
         <source>Ensures all installed OSes are selected again.</source>
-        <translation type="unfinished"></translation>
+        <translation>確保所有已安裝的作業系統都再次被選取。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="160"/>
         <source>allinstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>allinstalled</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="167"/>
         <source>Waits for all OSes on the SD card to be listed</source>
-        <translation type="unfinished"></translation>
+        <translation>等待所有在 SD 記憶卡上的作業系統被列出</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="170"/>
         <source>waitsd</source>
-        <translation type="unfinished"></translation>
+        <translation>waitsd</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="177"/>
         <source> Waits for all OSes on local USBs to be listed</source>
-        <translation type="unfinished"></translation>
+        <translation>等待所有在本機 USB 磁碟上的作業系統被列出</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="180"/>
         <source>waitusb</source>
-        <translation type="unfinished"></translation>
+        <translation>waitusb</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="187"/>
         <source>Waits for all OS lists to be downloaded from the internet before checking the list of OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>在檢查作業系統列表前等待所有作業系統清單都被下載</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="190"/>
         <source>waitnetwork</source>
-        <translation type="unfinished"></translation>
+        <translation>waitnetwork</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="197"/>
         <source> Waits for OSes from all sources to be listed</source>
-        <translation type="unfinished"></translation>
+        <translation> 等待所有來源的作業系統都被列出</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="200"/>
         <source>waitall</source>
-        <translation type="unfinished"></translation>
+        <translation>waitall</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="207"/>
         <source>The list of OSes that will be selected at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>作業系統清單將會在啟動時被選取</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="214"/>
         <source>Reserve an ADDITIONAL amount of space</source>
-        <translation type="unfinished"></translation>
+        <translation>保留額外的空間</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="217"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation>+</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="224"/>
         <source>Automatically reinstalls any selected OSes if newer versions exist</source>
-        <translation type="unfinished"></translation>
+        <translation>如果新版本可用的話，自動重新安裝任何選定的作業系統</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="227"/>
         <source>silentreinstallnewer</source>
-        <translation type="unfinished"></translation>
+        <translation>silentreinstallnewer</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="234"/>
         <source>Allows a single or multiple OSes to be installed automatically, useful during headless installs. </source>
-        <translation type="unfinished"></translation>
+        <translation>允許自動安裝一個或多個作業系統，在無人值守安裝時很有用。 </translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="237"/>
         <source>silentinstall</source>
-        <translation type="unfinished"></translation>
+        <translation>silentinstall</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="244"/>
         <source>select=</source>
-        <translation type="unfinished"></translation>
+        <translation>select=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="254"/>
         <source>Source</source>
-        <translation type="unfinished"></translation>
+        <translation>來源</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="262"/>
         <source>Prevents the default RaspberryPi Foundation repository from being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>避免使用預設的樹莓派基金會倉庫。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="265"/>
         <source>no_default_source</source>
         <oldsource>nodefaultsource</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>no_default_source</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="272"/>
         <source>Prevents OSes stored on local USB memory devices from being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>避免使用儲存在本機 USB 記憶裝置的作業系統。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="275"/>
         <source>disableusbimages</source>
-        <translation type="unfinished"></translation>
+        <translation>disableusbimages</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="282"/>
         <source>Prevent OSes stored on the SD card from being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>避免使用儲存在 SD 記憶卡上的作業系統。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="285"/>
         <source>disablesdimages</source>
-        <translation type="unfinished"></translation>
+        <translation>disablesdimages</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="292"/>
         <source>Shows all available installable OSes, whether they are suitable for the current model of Pi or not. Useful for preparing SD cards to be used in other RPis.</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示所有可安裝的作業系統，不管它們是否適用於目前樹莓派的型號。對準備要用於其他樹莓派上的 SD 記憶卡時很有用。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="295"/>
         <source>showall</source>
-        <translation type="unfinished"></translation>
+        <translation>showall</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="302"/>
         <location filename="optionsdialog.ui" line="322"/>
         <source>Provides the URL of a repo_list.json file that contains a list of URLs to other os-list_v3.json files. This allows easy remote management of Internet repositories.</source>
-        <translation type="unfinished"></translation>
+        <translation>提供包含其他 os-list_v3.json 檔案 URL 的 repo_list.json 檔案 URL。這讓遠端管理網路儲存庫簡單許多。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="305"/>
         <source>repo_list=</source>
-        <translation type="unfinished"></translation>
+        <translation>repo_list=</translation>
     </message>
     <message utf8="true">
         <location filename="optionsdialog.ui" line="312"/>
         <location filename="optionsdialog.ui" line="339"/>
         <source> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
-        <translation type="unfinished"></translation>
+        <translation> 類似於 alt_image_source 但其與指定其他額外儲存庫的 NOOBS 方法相符合，為以空格分隔的有引號字串。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="315"/>
         <source>repo=</source>
-        <translation type="unfinished"></translation>
+        <translation>repo=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="329"/>
         <location filename="optionsdialog.ui" line="346"/>
         <source>: Provides the URL of an additional os_list_v3.json file indicating the location of other OSes that can be downloaded from the Internet. Multiple instances of this option can be used.</source>
-        <translation type="unfinished"></translation>
+        <translation>：提供指出其他作業系統位置的額外 os_list_v3.json 檔案 URL，可以從網路上下載。此選項可以使用多個實體。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="332"/>
         <source>alt_image_source=</source>
-        <translation type="unfinished"></translation>
+        <translation>alt_image_source=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="356"/>
         <source>Booting</source>
-        <translation type="unfinished"></translation>
+        <translation>開機</translation>
     </message>
     <message utf8="true">
         <location filename="optionsdialog.ui" line="364"/>
         <location filename="optionsdialog.ui" line="414"/>
         <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
-        <translation type="unfinished"></translation>
+        <translation> 當與 forcetrigger 一起使用時，它會設定一個最大逾時（以秒為單位），以便在繼續開機選取對話框前顯示復原選單，並可以選取要開機的預設作業系統。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="367"/>
         <source>remotetimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>remotetimeout=&lt;secs&gt;</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="374"/>
         <source>Forces the PINN interface to be entered on startup (as if the shift key had been pressed). This is very useful when using a VNC connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>強制在啟動時進入 PINN 介面（如同按下 Shift 鍵）。這在使用 VNC 連線時非常有用。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="377"/>
         <source>forcetrigger</source>
-        <translation type="unfinished"></translation>
+        <translation>forcetrigger</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="384"/>
         <source>Forces Recovery Mode to be entered on boot if GPIO pin 3 on header P1 is connected to GND (pin 25).</source>
-        <translation type="unfinished"></translation>
+        <translation>如果 GPIO 標頭 P1 上的 pin3 連線到 GND (pin25)，就強制在開機時進入復原模式。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="387"/>
         <source>gpiotriggerenable</source>
-        <translation type="unfinished"></translation>
+        <translation>gpiotriggerenable</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="394"/>
         <location filename="optionsdialog.ui" line="421"/>
         <source> This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</source>
-        <translation type="unfinished"></translation>
+        <translation> 這個設定讓網路逾時可使用秒指定，對需要較長時間辨識的網路尤為有用。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="397"/>
         <source>networktimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>networktimeout=&lt;secs&gt;</translation>
     </message>
     <message utf8="true">
         <location filename="optionsdialog.ui" line="404"/>
         <source>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</source>
-        <translation type="unfinished"></translation>
+        <translation>避免在開機時按下 Shift 鍵進入復原模式（也許您有個有問題的鍵盤，會在您每次開機時錯誤觸發）</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="407"/>
         <source>keyboardtriggerenable</source>
-        <translation type="unfinished"></translation>
+        <translation>keyboardtriggerenable</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="431"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>介面</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="442"/>
         <source>Uses a VNC network connection to control PINN instead of any locally attached keyboard, mouse and display. When this is used, any local display will remain blank.</source>
-        <translation type="unfinished"></translation>
+        <translation>使用 VNC 網路連線以控制 PINN 而非任何本機連線的鍵盤、滑鼠與顯示器。當使用此選項時，任何本機的顯示器都會保持為空白。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="445"/>
         <source>vncinstall</source>
-        <translation type="unfinished"></translation>
+        <translation>vncinstall</translation>
     </message>
     <message utf8="true">
         <location filename="optionsdialog.ui" line="452"/>
         <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>使用 VNC 網路連線控制 PINN。但不像 vncinstall，任何本機連線的鍵盤與滑鼠都還是可以使用，而顯示畫面也會在本機螢幕與 VNC 連線上同步顯示。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="455"/>
         <source>vncshare</source>
-        <translation type="unfinished"></translation>
+        <translation>vncshare</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="462"/>
         <source>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions</source>
-        <translation type="unfinished"></translation>
+        <translation>啟用到 PINN 中的緊急殼層的 SSH 連線。這對控制 PINN 沒什麼用，但在執行對任何 SD 記憶卡分割區的遠端維護時相當有用</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="465"/>
         <source>ssh</source>
-        <translation type="unfinished"></translation>
+        <translation>ssh</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="472"/>
         <source>This option causes a local command shell to be opened when PINN is booted. When the shell is exited, PINN will then be booted as normal.</source>
-        <translation type="unfinished"></translation>
+        <translation>此選項會在 PINN 開機時開啟本機殼層。當殼層存在時，PINN 將會正常開機。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="475"/>
         <source>rescueshell</source>
-        <translation type="unfinished"></translation>
+        <translation>rescueshell</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="482"/>
         <source>Prevents safemode being entered if you have external hardware that pulls pin 5 low.</source>
-        <translation type="unfinished"></translation>
+        <translation>如果您有外部硬體將 pin 5 拉低，避免進入安全模式。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="485"/>
         <source>disablesafemode</source>
-        <translation type="unfinished"></translation>
+        <translation>disablesafemode</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="492"/>
         <source>A special boot feature to swap the priority of the DSI and HDMI video outputs, allowing an OS to give priority to a HDMI screen if attached.</source>
-        <translation type="unfinished"></translation>
+        <translation>交換 DSI 與 HDMI 視訊輸入的特殊開機功能，讓作業系統可以在 HDMI 螢幕連線時較高的優先權。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="495"/>
         <source>dsi</source>
-        <translation type="unfinished"></translation>
+        <translation>dsi</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="502"/>
         <source>Prevents the list of OSes from being grouped into categories.</source>
-        <translation type="unfinished"></translation>
+        <translation>避免將作業系統清單加入到分類中。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="505"/>
         <source>no_group</source>
-        <translation type="unfinished"></translation>
+        <translation>no_group</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="512"/>
         <source>Prevents the cursor from being shown on the boot selection dialog (requested for touchscreen devices)</source>
-        <translation type="unfinished"></translation>
+        <translation>避免在開機選取對話框時顯示游標（對觸控螢幕有用）</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="515"/>
         <source>no_cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>no_cursor</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="522"/>
         <source>Causes a customised wallpaper.jpg or wallpaper.png file to be resized to fill the entire desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>使用自訂的 wallpaper.jpg 或 wallpaper.png 檔案調整大小到填滿整個桌面</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="525"/>
         <source>wallpaper_resize</source>
-        <translation type="unfinished"></translation>
+        <translation>wallpaper_resize</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="532"/>
         <location filename="optionsdialog.ui" line="572"/>
         <source>Sets one of 4 simple display modes: 0=HDMI preferred, 1=HDMI safe, 2= PAL 4:3, 3=NTSC  4:3</source>
-        <translation type="unfinished"></translation>
+        <translation>設定四個簡易顯示模式其中之一：0=HDMI preferred, 1=HDMI safe, 2= PAL 4:3, 3=NTSC  4:3</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="535"/>
         <source>display=</source>
-        <translation type="unfinished"></translation>
+        <translation>display=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="542"/>
         <location filename="optionsdialog.ui" line="604"/>
         <source>Changes the style of the windows</source>
-        <translation type="unfinished"></translation>
+        <translation>變更視窗樣式</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="545"/>
         <source>style=</source>
-        <translation type="unfinished"></translation>
+        <translation>style=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="552"/>
         <location filename="optionsdialog.ui" line="631"/>
         <source>Changes the default timeout allowed before an OS is booted without any selection. </source>
-        <translation type="unfinished"></translation>
+        <translation>變更沒有選取作業系統時在開機選單允許的逾時。 </translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="555"/>
         <source>bootmenutimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>bootmenutimeout=&lt;secs&gt;</translation>
     </message>
     <message utf8="true">
         <location filename="optionsdialog.ui" line="562"/>
         <location filename="optionsdialog.ui" line="638"/>
         <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
-        <translation type="unfinished"></translation>
+        <translation>要變更畫面與大多數視窗的背景色彩，新增 background=r,g,b，0,0,0 是黑色，而 255,255,255 是白色。我建議使用 127 以上的值。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="565"/>
         <source>background=&lt;r,g,b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>background=&lt;r,g,b&gt;</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="576"/>
         <location filename="optionsdialog.ui" line="608"/>
         <source>none</source>
-        <translation type="unfinished"></translation>
+        <translation>無</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="581"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="586"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="591"/>
         <source>2</source>
-        <translation type="unfinished"></translation>
+        <translation>2</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="596"/>
         <source>3</source>
-        <translation type="unfinished"></translation>
+        <translation>3</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="613"/>
         <source>windows</source>
-        <translation type="unfinished"></translation>
+        <translation>windows</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="618"/>
         <source>motif</source>
-        <translation type="unfinished"></translation>
+        <translation>motif</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="623"/>
         <source>platinum</source>
-        <translation type="unfinished"></translation>
+        <translation>platinum</translation>
     </message>
     <message>
         <location filename="optionsdialog.cpp" line="278"/>
         <source>WARNING</source>
-        <translation type="unfinished"></translation>
+        <translation>警告</translation>
     </message>
     <message>
         <location filename="optionsdialog.cpp" line="279"/>
         <source>Warning: You have chosen the &apos;runinstaller&apos; option.
 This will erase all your OSes on next boot.
 Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：您已選擇 &apos;runinstaller&apos; 選項。
+這將會在下次開機抹除您所有的作業系統。
+您確定嗎？</translation>
     </message>
 </context>
 <context>
@@ -2254,12 +2269,12 @@ Are you sure?</source>
     <message>
         <location filename="termsdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>對話框</translation>
     </message>
     <message>
         <location filename="termsdialog.ui" line="27"/>
         <source>Please accept these T&amp;Cs to continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>請接受這些條款與細則以繼續。</translation>
     </message>
 </context>
 <context>
@@ -2507,12 +2522,12 @@ Are you sure?</source>
     <message>
         <location filename="rerunsetup.cpp" line="89"/>
         <source>Error in checksum for partition_setup.sh</source>
-        <translation type="unfinished"></translation>
+        <translation>partition_setup.sh 的檢查碼錯誤</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="90"/>
         <source>Expected csum= %1 Calculated= %2</source>
-        <translation type="unfinished"></translation>
+        <translation>預期的 csum= %1 計算後= %2</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="152"/>

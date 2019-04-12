@@ -45,6 +45,13 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V3.2.2
+
+- **Backup hotfix** - Fix for OSnames with spaces.
+- **Translations**    - Updated IT & zh_TW
+- **Iconsizes** - fixed to 40x40
+- **Download** - ignore partials
+
 ### V3.2.1
 
 - **Bootselectiondialog** - update for CEC and keyboard
@@ -52,7 +59,7 @@ Please note that in some cases it may extract the files into a folder, if this i
 ### V3.2
 
 - **Added Ts & C's dialog** - for Future OSes
-- **Resumable download**    - in case of downloade errors
+- **Resumable download**    - in case of download errors
 - **More robust file transfer** - in case of download errors
 - **Change boot selection order** - Just for aesthetics
 - **Added file checksums** - for download verification
