@@ -996,7 +996,7 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="mainwindow.cpp" line="3113"/>
         <source>Resume partial downloads?</source>
-        <translation>Ripriendi download parziali?</translation>
+        <translation>Vuoi riprendere i download parziali?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3114"/>
@@ -1796,7 +1796,7 @@ Ciò consente una facile gestione remota dei repository internet.</translation>
     <message>
         <location filename="optionsdialog.ui" line="312"/>
         <location filename="optionsdialog.ui" line="339"/>
-        <source> Similar to&#xa0;alt_image_source&#xa0;but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
+        <source> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
         <translation>Simile a alt_image_source ma corrisponde al metodo NOOBS di specificare un elenco di respository aggiuntivi come stringa quotata separata da spazio.</translation>
     </message>
     <message>
@@ -1866,7 +1866,7 @@ Questo è molto utile quando si usa una connessione VNC.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="404"/>
-        <source>Prevents a&#xa0;SHIFT&#xa0;keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</source>
+        <source>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</source>
         <translation>Impedisce che la pressione dela tasto MAIUSC abiliti la modalità di ripristino all&apos;avvio (potresti avere una tastiera problematica che si attiva erroneamente ogni volta che fai il boot)</translation>
     </message>
     <message>
