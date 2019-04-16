@@ -46,7 +46,7 @@
     <message>
         <location filename="backupthread.cpp" line="196"/>
         <source>%1: Checksumming (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: creazione checksum (%2)</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="234"/>
@@ -100,12 +100,12 @@
     <message>
         <location filename="bootselectiondialog.ui" line="45"/>
         <source>Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Su</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="56"/>
         <source>Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Giù</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="89"/>
@@ -123,7 +123,7 @@
     <message>
         <location filename="confeditdialog.ui" line="36"/>
         <source>Edit Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifica opzioni</translation>
     </message>
     <message>
         <location filename="confeditdialog.cpp" line="95"/>
@@ -729,44 +729,47 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
     <message>
         <location filename="mainwindow.cpp" line="1127"/>
         <source>install</source>
-        <translation type="unfinished"></translation>
+        <translation>installa</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1130"/>
         <source>reinstall</source>
-        <translation type="unfinished"></translation>
+        <translation>reinstalla</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1133"/>
         <source>replace</source>
-        <translation type="unfinished"></translation>
+        <translation>sostituisci</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1141"/>
         <source>USB drive</source>
-        <translation type="unfinished"></translation>
+        <translation>Unità USB</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1143"/>
         <source>Warning: this will %1 the selected Operating System(s) to %2. All existing data on the %3 will be deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Attenzioen: questo %1 i sistemi operativi selezionati in %2.
+Tutti i dati esistenti in %3 verranno eliminati.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1223"/>
         <source>The %1 process will begin shortly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il processo &apos;%1&apos; partirà a breve.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1362"/>
         <source>OS(es) Downloaded with errors.
 See debug log for details</source>
-        <translation type="unfinished"></translation>
+        <translation>SO scaricati con errori.
+Vedi registro debug per i dettagli.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1392"/>
         <source>OS(es) Installed with errors.
 See debug log for details</source>
-        <translation type="unfinished"></translation>
+        <translation>SO installati con errori.
+Vedi registro debug per i dettagli.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1432"/>
@@ -890,27 +893,27 @@ Per i dettagli vedi registro debug</translation>
     <message>
         <location filename="mainwindow.cpp" line="1396"/>
         <source>Installation complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Installazione completata</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1477"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Interrompi</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1478"/>
         <source>Discard</source>
-        <translation type="unfinished"></translation>
+        <translation>Scarta</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1479"/>
         <source>Retry</source>
-        <translation type="unfinished"></translation>
+        <translation>Riprova</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1480"/>
         <source>Keep</source>
-        <translation type="unfinished"></translation>
+        <translation>Mantieni</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1504"/>
@@ -993,12 +996,12 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="mainwindow.cpp" line="3113"/>
         <source>Resume partial downloads?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ripriendi download parziali?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3114"/>
         <source>Normally select NO, unless your last download was not successful, in which case select YES</source>
-        <translation type="unfinished"></translation>
+        <translation>Normalmente seleziona NO, a meno che l&apos;ultimo download non è stato completato, in questo caso seleziona SI.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3317"/>
@@ -1249,17 +1252,17 @@ Riavviando l&apos;unità verrà re-installata la struttura di PINN.</translation
     <message>
         <location filename="multiimagedownloadthread.cpp" line="97"/>
         <source>Downloading %1:%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Download %1:%2</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="132"/>
         <source>Checking %1:%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Verifica %1:%2</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="142"/>
         <source>Error in checksum</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore nella checksum</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="150"/>
@@ -1397,7 +1400,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="multiimagewritethread.cpp" line="425"/>
         <source>Operation cancelled by user</source>
-        <translation type="unfinished"></translation>
+        <translation>Operazione annullata dall&apos;utente</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="452"/>
@@ -1412,7 +1415,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="multiimagewritethread.cpp" line="716"/>
         <source>OS: &apos;%1&apos; needs a partition label of &apos;%2&apos; which is not available</source>
-        <translation type="unfinished"></translation>
+        <translation>SO: &apos;%1&apos; richiede un&apos;etichetta partizione &apos;%2&apos; che non è disponibile</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="757"/>
@@ -1447,7 +1450,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="multiimagewritethread.cpp" line="835"/>
         <source>Error in checksum for partition_setup.sh</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore nella checksum per partition_setup.sh</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="842"/>
@@ -1502,14 +1505,14 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
         <location filename="multiimagewritethread.cpp" line="1563"/>
         <location filename="multiimagewritethread.cpp" line="1656"/>
         <source>An incorrect file checksum has been detected in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>È stato rilevata una checksum file errata in %1</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1467"/>
         <location filename="multiimagewritethread.cpp" line="1567"/>
         <location filename="multiimagewritethread.cpp" line="1660"/>
         <source>Checksum error</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore checksum</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1484"/>
@@ -1528,536 +1531,547 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="optionsdialog.ui" line="14"/>
         <source>PINN Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opzioni PINN</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="35"/>
         <source>Installation</source>
-        <translation type="unfinished"></translation>
+        <translation>Installazione</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="43"/>
         <source>PREVENTS any noobsconfig customisations from being applied to an OS on installation</source>
-        <translation type="unfinished"></translation>
+        <translation>PREVIENE che venga applicata qualsiasi personalizzazione ai SO in installazione</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="46"/>
         <source>noobsconfig</source>
-        <translation type="unfinished"></translation>
+        <translation>noobsconfig</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="53"/>
         <source>Reserve some space on PINN&apos;s partition (MB)</source>
-        <translation type="unfinished"></translation>
+        <translation>Riserva spazio (xx MB) nella partizione PINN</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="56"/>
         <source>reserve=</source>
-        <translation type="unfinished"></translation>
+        <translation>reserve=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="63"/>
         <location filename="optionsdialog.ui" line="73"/>
         <source>Specifies a path or URL where the noobsconfig customisation files can be found (rather than being in /os/&amp;lt;distro&amp;gt;/)</source>
-        <translation type="unfinished"></translation>
+        <translation>Specifica un percorso o una URL dove i file di personalizzazione noobconfig sono disponibili (a meno che siano in /os/&amp;lt;distro&amp;gt;/)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="66"/>
         <source>configpath=</source>
-        <translation type="unfinished"></translation>
+        <translation>configpath=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="80"/>
         <source>Amount of space to reserve (MB) on PINN&apos;s partition</source>
-        <translation type="unfinished"></translation>
+        <translation>Quantità di spazio da riservare (in MB) nella partizione PINN</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="87"/>
         <source>Selecting this will erase all of your OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>Selezionando questa opzione verranno eliminati tutti i SO</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="90"/>
         <source>runinstaller</source>
-        <translation type="unfinished"></translation>
+        <translation>runinstaller</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="97"/>
         <source>Prevents PINN from checking for self updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Evita che PINN cerchi gli aggiornamenti</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="100"/>
         <source>no_update</source>
-        <translation type="unfinished"></translation>
+        <translation>no_update</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="107"/>
         <source>Force PINN to self-update whenever a new version is detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza PINN all&apos;aggiornamento automaticato quando viene rilevata una nuova versione</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="110"/>
         <source>forceupdatepinn</source>
-        <translation type="unfinished"></translation>
+        <translation>forceupdatepinn</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="117"/>
         <source>DO not update the firmware of old OSes on installation</source>
-        <translation type="unfinished"></translation>
+        <translation>NON aggiorna i firmware di vecchie installazioni di SO</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="120"/>
         <source>nofirmware</source>
-        <translation type="unfinished"></translation>
+        <translation>nofirmware</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="127"/>
         <source>Selects all OSes where the most recent one is on the SD card</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona tutti i SO in cui si trova il più recente nella scheda SD</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="130"/>
         <source>allsd</source>
-        <translation type="unfinished"></translation>
+        <translation>allsd</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="137"/>
         <source> Selects all OSes where the most recent one is on a local USB drive</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona tutti i SO in cui si trova il più recente nell&apos;unità USB</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="140"/>
         <source>allusb</source>
-        <translation type="unfinished"></translation>
+        <translation>allusb</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="147"/>
         <source>Selects all OSes where the most recent one is on remote repositories.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona tutti i SO in cui si trova il più recente nei repository remoti</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="150"/>
         <source>allnetwork</source>
-        <translation type="unfinished"></translation>
+        <translation>allnetwork</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="157"/>
         <source>Ensures all installed OSes are selected again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verifica di nuovo tutti i SO installati.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="160"/>
         <source>allinstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>allinstalled</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="167"/>
         <source>Waits for all OSes on the SD card to be listed</source>
-        <translation type="unfinished"></translation>
+        <translation>Attende che siano elencati tutti i sistemi operativi presenti nella scheda SD</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="170"/>
         <source>waitsd</source>
-        <translation type="unfinished"></translation>
+        <translation>waitsd</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="177"/>
         <source> Waits for all OSes on local USBs to be listed</source>
-        <translation type="unfinished"></translation>
+        <translation>Attende che siano elencati tutti i sistemi operativi presenti nell&apos;unità USB</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="180"/>
         <source>waitusb</source>
-        <translation type="unfinished"></translation>
+        <translation>waitusb</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="187"/>
         <source>Waits for all OS lists to be downloaded from the internet before checking the list of OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>Attende che siano elencati tutti i sistemi operativi presenti nei repository remoti</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="190"/>
         <source>waitnetwork</source>
-        <translation type="unfinished"></translation>
+        <translation>waitnetwork</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="197"/>
         <source> Waits for OSes from all sources to be listed</source>
-        <translation type="unfinished"></translation>
+        <translation>Attende che siano elencati tutti i sistemi operativi presenti in tutte le sorgenti</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="200"/>
         <source>waitall</source>
-        <translation type="unfinished"></translation>
+        <translation>waitall</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="207"/>
         <source>The list of OSes that will be selected at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;elenco dei sistemi operativi che saranno selezionati all&apos;avvio</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="214"/>
         <source>Reserve an ADDITIONAL amount of space</source>
-        <translation type="unfinished"></translation>
+        <translation>Riserva una quantità AGGIUNTIVA di spazio</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="217"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation>+</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="224"/>
         <source>Automatically reinstalls any selected OSes if newer versions exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Installa automaticamente tutti i SO selezionati se esistono versioni più recenti</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="227"/>
         <source>silentreinstallnewer</source>
-        <translation type="unfinished"></translation>
+        <translation>silentreinstallnewer</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="234"/>
         <source>Allows a single or multiple OSes to be installed automatically, useful during headless installs. </source>
-        <translation type="unfinished"></translation>
+        <translation>Consente l&apos;installazione automatica di un singolo o più SO, utile durante installazioni automatiche. </translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="237"/>
         <source>silentinstall</source>
-        <translation type="unfinished"></translation>
+        <translation>silentreinstallnewer</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="244"/>
         <source>select=</source>
-        <translation type="unfinished"></translation>
+        <translation>select=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="254"/>
         <source>Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Sorgente</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="262"/>
         <source>Prevents the default RaspberryPi Foundation repository from being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impedisce l&apos;utilizzo del repository predefinito di RaspberryPi Foundation.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="265"/>
         <source>no_default_source</source>
         <oldsource>nodefaultsource</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>no_default_source</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="272"/>
         <source>Prevents OSes stored on local USB memory devices from being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impedisce l&apos;utilizzo di sistemi operativi memorizzati nei dispositivi di memoria USB locali.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="275"/>
         <source>disableusbimages</source>
-        <translation type="unfinished"></translation>
+        <translation>disableusbimages</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="282"/>
         <source>Prevent OSes stored on the SD card from being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impedisce l&apos;uso dei sistemi operativi memorizzati nella scheda SD.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="285"/>
         <source>disablesdimages</source>
-        <translation type="unfinished"></translation>
+        <translation>disablesdimages</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="292"/>
         <source>Shows all available installable OSes, whether they are suitable for the current model of Pi or not. Useful for preparing SD cards to be used in other RPis.</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizza tutti i SO installabili disponibili, indipendentemente dal fatto che siano adatti al modello attuale di Pi o meno.
+Utile per preparare le schede SD da utilizzare in altri RPi.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="295"/>
         <source>showall</source>
-        <translation type="unfinished"></translation>
+        <translation>showall</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="302"/>
         <location filename="optionsdialog.ui" line="322"/>
         <source>Provides the URL of a repo_list.json file that contains a list of URLs to other os-list_v3.json files. This allows easy remote management of Internet repositories.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fornisce l&apos;URL di un file repo_list.json che contiene un elenco di URL per altri file os-list_v3.json. 
+Ciò consente una facile gestione remota dei repository internet.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="305"/>
         <source>repo_list=</source>
-        <translation type="unfinished"></translation>
+        <translation>repo_list=</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="312"/>
         <location filename="optionsdialog.ui" line="339"/>
-        <source> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
-        <translation type="unfinished"></translation>
+        <source> Similar to&#xa0;alt_image_source&#xa0;but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
+        <translation>Simile a alt_image_source ma corrisponde al metodo NOOBS di specificare un elenco di respository aggiuntivi come stringa quotata separata da spazio.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="315"/>
         <source>repo=</source>
-        <translation type="unfinished"></translation>
+        <translation>repo=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="329"/>
         <location filename="optionsdialog.ui" line="346"/>
         <source>: Provides the URL of an additional os_list_v3.json file indicating the location of other OSes that can be downloaded from the Internet. Multiple instances of this option can be used.</source>
-        <translation type="unfinished"></translation>
+        <translation>: Fornisce l&apos;URL di un file os_list_v3.json aggiuntivo che indica la posizione di altri sistemi operativi che possono essere scaricati da Internet. 
+Possono essere usate istanze multiple di questa opzione.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="332"/>
         <source>alt_image_source=</source>
-        <translation type="unfinished"></translation>
+        <translation>alt_image_source=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="356"/>
         <source>Booting</source>
-        <translation type="unfinished"></translation>
+        <translation>Booting</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="364"/>
         <location filename="optionsdialog.ui" line="414"/>
-        <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
-        <translation type="unfinished"></translation>
+        <source> When used in conjunction with&#xa0;forcetrigger&#xa0;it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
+        <translation>Quando viene usato insieme a forcetrigger, imposta un periodo di timeout massimo in secondi per la visualizzazione del menu di ripristino prima di continuare con la finestra di dialogo di selezione di avvio e di selezionare potenzialmente un SO predefinito per l&apos;avvio.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="367"/>
         <source>remotetimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>remotetimeout=&lt;sec&gt;</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="374"/>
         <source>Forces the PINN interface to be entered on startup (as if the shift key had been pressed). This is very useful when using a VNC connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza l&apos;accesso all&apos;interfaccia PINN all&apos;avvio (come se fosse stato premuto il tasto Maiusc). 
+Questo è molto utile quando si usa una connessione VNC.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="377"/>
         <source>forcetrigger</source>
-        <translation type="unfinished"></translation>
+        <translation>forcetrigger</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="384"/>
         <source>Forces Recovery Mode to be entered on boot if GPIO pin 3 on header P1 is connected to GND (pin 25).</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza la modalità di recupero da inserire all&apos;avvio se il pin 3 del GPIO sull&apos;header P1 è collegato a GND (pin 25).</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="387"/>
         <source>gpiotriggerenable</source>
-        <translation type="unfinished"></translation>
+        <translation>gpiotriggerenable</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="394"/>
         <location filename="optionsdialog.ui" line="421"/>
         <source> This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</source>
-        <translation type="unfinished"></translation>
+        <translation>Questa impostazione consente di specificare il timeout della rete in secondi, soprattutto per le reti che impiegano più tempo per stabilirsi.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="397"/>
         <source>networktimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>networktimeout=&lt;sec&gt;</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="404"/>
-        <source>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</source>
-        <translation type="unfinished"></translation>
+        <source>Prevents a&#xa0;SHIFT&#xa0;keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</source>
+        <translation>Impedisce che la pressione dela tasto MAIUSC abiliti la modalità di ripristino all&apos;avvio (potresti avere una tastiera problematica che si attiva erroneamente ogni volta che fai il boot)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="407"/>
         <source>keyboardtriggerenable</source>
-        <translation type="unfinished"></translation>
+        <translation>keyboardtriggerenable</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="431"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfaccia</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="442"/>
         <source>Uses a VNC network connection to control PINN instead of any locally attached keyboard, mouse and display. When this is used, any local display will remain blank.</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa una connessione di rete VNC per controllare PINN anziché qualsiasi tastiera, mouse e display collegati localmente. 
+Quando viene usata, qualsiasi display locale rimarrà vuoto.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="445"/>
         <source>vncinstall</source>
-        <translation type="unfinished"></translation>
+        <translation>vncinstall</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="452"/>
-        <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
-        <translation type="unfinished"></translation>
+        <source>Uses a VNC network connection to control PINN. However, unlike&#xa0;vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
+        <translation>Usa una connessione di rete VNC per controllare PINN. 
+Tuttavia, a differenza di vncinstall, qualsiasi tastiera e mouse collegati localmente saranno ancora attivi e il display sarà duplicato sullo schermo locale e nella connessione VNC.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="455"/>
         <source>vncshare</source>
-        <translation type="unfinished"></translation>
+        <translation>vncshare</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="462"/>
         <source>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita una connessione SSH al rescueshell in PINN. 
+Non può essere usata per controllare PINN, ma avere una shell è molto utile per eseguire la manutenzione remota in una qualsiasi delle partizioni della scheda SD.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="465"/>
         <source>ssh</source>
-        <translation type="unfinished"></translation>
+        <translation>ssh</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="472"/>
         <source>This option causes a local command shell to be opened when PINN is booted. When the shell is exited, PINN will then be booted as normal.</source>
-        <translation type="unfinished"></translation>
+        <translation>Questa opzione fa sì che una shell di comando locale venga aperta all&apos;avvio di PINN. 
+Quando la shell viene chiusa, PINN verrà avviato normalmente.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="475"/>
         <source>rescueshell</source>
-        <translation type="unfinished"></translation>
+        <translation>rescueshell</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="482"/>
         <source>Prevents safemode being entered if you have external hardware that pulls pin 5 low.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impedisce l&apos;avvio in safemode se si dispone di hardware esterno che fa il pullup verso il basso del pin 5.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="485"/>
         <source>disablesafemode</source>
-        <translation type="unfinished"></translation>
+        <translation>disablesafemode</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="492"/>
         <source>A special boot feature to swap the priority of the DSI and HDMI video outputs, allowing an OS to give priority to a HDMI screen if attached.</source>
-        <translation type="unfinished"></translation>
+        <translation>Una speciale funzione di avvio per scambiare la priorità delle uscite video DSI e HDMI, consentendo a un sistema operativo di dare priorità a uno schermo HDMI se collegato.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="495"/>
         <source>dsi</source>
-        <translation type="unfinished"></translation>
+        <translation>dsi</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="502"/>
         <source>Prevents the list of OSes from being grouped into categories.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impedisce che l&apos;elenco dei sistemi operativi venga raggruppato in categorie.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="505"/>
         <source>no_group</source>
-        <translation type="unfinished"></translation>
+        <translation>no_group</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="512"/>
         <source>Prevents the cursor from being shown on the boot selection dialog (requested for touchscreen devices)</source>
-        <translation type="unfinished"></translation>
+        <translation>Impedisce che il cursore venga visualizzato nella finestra di dialogo di avvio (richiesto per i dispositivi touchscreen)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="515"/>
         <source>no_cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>no_cursor</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="522"/>
         <source>Causes a customised wallpaper.jpg or wallpaper.png file to be resized to fill the entire desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Fa sì che un file wallpaper.jpg o wallpaper.png personalizzato venga ridimensionato per riempire l&apos;intero desktop</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="525"/>
         <source>wallpaper_resize</source>
-        <translation type="unfinished"></translation>
+        <translation>wallpaper_resize</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="532"/>
         <location filename="optionsdialog.ui" line="572"/>
         <source>Sets one of 4 simple display modes: 0=HDMI preferred, 1=HDMI safe, 2= PAL 4:3, 3=NTSC  4:3</source>
-        <translation type="unfinished"></translation>
+        <translation>Imposta una delle 4 modalità di visualizzazione: 0 = HDMI preferito, 1 = HDMI sicuro, 2 = PAL 4:3, 3 = NTSC 4:3</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="535"/>
         <source>display=</source>
-        <translation type="unfinished"></translation>
+        <translation>display=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="542"/>
         <location filename="optionsdialog.ui" line="604"/>
         <source>Changes the style of the windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifica lo stile delle finestre</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="545"/>
         <source>style=</source>
-        <translation type="unfinished"></translation>
+        <translation>style=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="552"/>
         <location filename="optionsdialog.ui" line="631"/>
         <source>Changes the default timeout allowed before an OS is booted without any selection. </source>
-        <translation type="unfinished"></translation>
+        <translation>Modifica il timeout predefinito prima che un SO venga avviato senza alcuna selezione.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="555"/>
         <source>bootmenutimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>bootmenutimeout=&lt;sec&gt;</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="562"/>
         <location filename="optionsdialog.ui" line="638"/>
-        <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
-        <translation type="unfinished"></translation>
+        <source>To change the background colour for the screen and most windows, add&#xa0;background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
+        <translation>Per modificare il colore di sfondo per lo schermo e la maggior parte delle finestre, aggiungi background=r,g,b, dove 0,0,0 è il nero e 255,255,255 è il bianco. 
+Ti suggeriamo di usare valori superiori a 127.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="565"/>
         <source>background=&lt;r,g,b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>background=&lt;r,g,b&gt;</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="576"/>
         <location filename="optionsdialog.ui" line="608"/>
         <source>none</source>
-        <translation type="unfinished"></translation>
+        <translation>nessuno</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="581"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="586"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="591"/>
         <source>2</source>
-        <translation type="unfinished"></translation>
+        <translation>2</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="596"/>
         <source>3</source>
-        <translation type="unfinished"></translation>
+        <translation>3</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="613"/>
         <source>windows</source>
-        <translation type="unfinished"></translation>
+        <translation>finestre</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="618"/>
         <source>motif</source>
-        <translation type="unfinished"></translation>
+        <translation>motif</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="623"/>
         <source>platinum</source>
-        <translation type="unfinished"></translation>
+        <translation>platino</translation>
     </message>
     <message>
         <location filename="optionsdialog.cpp" line="278"/>
         <source>WARNING</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENZIONE</translation>
     </message>
     <message>
         <location filename="optionsdialog.cpp" line="279"/>
         <source>Warning: You have chosen the &apos;runinstaller&apos; option.
 This will erase all your OSes on next boot.
 Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>Attenzione: hai scelto l&apos;opzione &apos;runinstaller&apos;.
+Questo cancellerà tutti i tuoi SO al prossimo avvio.
+Vuoi proseguire?</translation>
     </message>
 </context>
 <context>
@@ -2268,12 +2282,12 @@ Are you sure?</source>
     <message>
         <location filename="termsdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Accettazione termini e condizioni</translation>
     </message>
     <message>
         <location filename="termsdialog.ui" line="27"/>
         <source>Please accept these T&amp;Cs to continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>Per continuare accetta Termini e &amp;condidizoni</translation>
     </message>
 </context>
 <context>
@@ -2521,12 +2535,12 @@ Are you sure?</source>
     <message>
         <location filename="rerunsetup.cpp" line="89"/>
         <source>Error in checksum for partition_setup.sh</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore nella checksum per partition_setup.sh</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="90"/>
         <source>Expected csum= %1 Calculated= %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Checksum attesa= %1 calcolata= %2</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="152"/>
