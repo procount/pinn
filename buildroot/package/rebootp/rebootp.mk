@@ -15,7 +15,7 @@ REBOOTP_INSTALL_STAGING = NO
 define REBOOTP_BUILD_CMDS
 	cd $(@D) 
 	$(MAKE) -C $(@D) all
-	$(TARGET_STRIP) $(@D)/rebootp
+#	$(TARGET_STRIP) $(@D)/rebootp
 endef
 
 define REBOOTP_INSTALL_TARGET_CMDS
