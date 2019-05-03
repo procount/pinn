@@ -5,7 +5,7 @@
 
 The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn-lite.zip) can be downloaded from [sourceforge](http://www.sourceforge.net/projects/pinn).
 
-This README relates to v3.2.3
+This README relates to v3.2.4a
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -428,6 +428,10 @@ The following is a complete list of all the PINN options that can be added to th
 
 - **gpiotriggerenable**: Forces Recovery Mode to be entered on boot if GPIO pin 3 on header P1 is connected to GND (pin 25). 
 
+- **gpiochannel=\<channel\>**: Allows a different GPIO pin to be specified to trigger the recovery menu.
+
+- **gpiochannelValue=\<value\>**: This specifies the value the GPIO shoudl be set to to trigger the recovery menu. The default is 0. Specify 1 to trigger when the GPIO pin goes high.
+
 - **keyboardtriggerdisable**: Prevents a `SHIFT` keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)
 
 - **remotetimeout=\<time in secs\>**: When used in conjunction with `forcetrigger` it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot. This permits normal default OS booting, yet also allows for a remote user to interrupt the startup process to change the OS to boot, or perform any remote maintenance. Any screen interaction over VNC will cancel the timeout. This additional timeout will lengthen the boot time into a default OS, so choose a value that is long enough to allow VNC access, yet short enough not to be annoying under normal circumstances.
@@ -624,7 +628,8 @@ When replacing a project space with another OS, remember that the new OS must ha
 
 PINN v2.5.3+ includes new firmware, kernel and drivers to support the new Pi3B+ model. Whilst this firmware will allow PINN to run on all RPi models, some older OSes may not yet be compatible 
 and will not boot from PINN. So when booting on models older than the 3B+, PINN's firmware can be downgraded so that these older OSes can still boot from PINN. 
-On first startup on an older RPi model, PINN will automatically downgrade the firmware. It will need upgrading manually if you want to use the latest firmware.
+Prior to v3.2.4, On first startup on an older RPi model, PINN will automatically downgrade the firmware. It will need upgrading manually if you want to use the latest firmware.
+From v3.2.4 onwards, the automatic downgrade has been removed and it must be downgraded manually if required.
 
 Once PINN's firmware has been downgraded, it will no longer run on the RPi3B+. To run it on a RPI3B+ again it is first necessary to upgrade the firmware on an older model.
 There is a menu item on the Archival menu to upgrade or downgrade PINN's firmware accordingly. it is disabled on the RPi 3B+
@@ -807,6 +812,7 @@ various tabs and windows.
 ## Exit
 
 The Exit button (Esc) will exit recovery mode and go to the boot selection dialog, or directly boot the OS if only one is installed. The Exit button is ony enabled if bootable OSes have been installed. If only data partitions or ProjectSpaces have been installed, for example, then it will be greyed out.
+From p3.2.4 It is also possible to exit to the boot selection dialog from the other menus by pressing the Esc key, even though there is no toolbar button available.
 
 ---
 

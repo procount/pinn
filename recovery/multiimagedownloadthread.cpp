@@ -4,6 +4,8 @@
 #include "util.h"
 #include "mbr.h"
 #include "partitioninfo.h"
+#include "progressslideshowdialog.h"
+
 #include <QDir>
 #include <QFile>
 #include <QDebug>
@@ -15,8 +17,8 @@
 #include <linux/fs.h>
 #include <sys/ioctl.h>
 
-MultiImageDownloadThread::MultiImageDownloadThread(QObject *parent, QString local) :
-    QThread(parent),  _local(local), _extraSpacePerPartition(0), _part(5)
+MultiImageDownloadThread::MultiImageDownloadThread(QObject *parent, QString local, QString drive) :
+    QThread(parent),  _local(local), _extraSpacePerPartition(0), _part(5), _drive(drive)
 {
     /* local is "/tmp/media/sd*" or "/mnt" (in future) */
     allowResume(false);
@@ -36,6 +38,7 @@ void MultiImageDownloadThread::run()
 {
     /* Calculate space requirements */
     quint64 totalDownloadSize = 0;
+    emit newDrive(_drive, ePM_WRITEDF);
 
     foreach (QString folder, _images.keys())
     {
@@ -115,11 +118,14 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
         t1.start();
         qDebug() << "Executing:" << cmd;
 
+        emit newDrive(_drive, ePM_WRITEDF);
+        emit startAccounting();
         QProcess p;
         p.setProcessChannelMode(p.MergedChannels);
         p.start(cmd);
         p.closeWriteChannel();
         p.waitForFinished(-1);
+        emit stopAccounting();
 
         QByteArray msg = p.readAll();
 
@@ -150,6 +156,8 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
             emit errorContinue(tr("Error downloading or extracting tarball")+"\n"+msg);
             downloadError = true;
         }
+
+        emit consolidate();
 
         if (downloadError)
         {

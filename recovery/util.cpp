@@ -571,7 +571,7 @@ QString getDescription(const QString &folder, const QString &flavour)
 
 bool updatePartitionScript(QVariantMap & entry, QListWidgetItem * witem)
 {   //Entry.value("supports_backup").toString() == "update"
-    MYDEBUG
+    TRACE
     /*
      * Read local partition_setup.sh in /settings/os/os_name
      * If 2nd line contains "backup supported"
