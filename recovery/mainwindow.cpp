@@ -31,9 +31,9 @@
 #include "termsdialog.h"
 
 #define DBG_LOCAL 0
-#define LOCAL_DO_DBG 1
-#define LOCAL_DBG_FUNC 1
-#define LOCAL_DBG_OUT 1
+#define LOCAL_DO_DBG 0
+#define LOCAL_DBG_FUNC 0
+#define LOCAL_DBG_OUT 0
 #define LOCAL_DBG_MSG 0
 #include "mydebug.h"
 
@@ -187,6 +187,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     _processedImages = 0;
     _numListsToDownload=0;
 
+
     QWidget* spacer = new QWidget();
     spacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
     ui->advToolBar->addWidget(spacer);
@@ -205,6 +206,19 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     ui->toolBar_3->setVisible(toolbar_index==TOOLBAR_MAINTENANCE);
     ui->groupBox->setVisible(toolbar_index==TOOLBAR_MAIN);
     ui->groupBoxUsb->setVisible(toolbar_index==TOOLBAR_ARCHIVAL);
+
+    //====================
+    QAction *foo2 = new QAction(ui->toolBar_2);
+    foo2->setShortcut(Qt::Key_Escape);
+    connect(foo2, SIGNAL(triggered()), this, SLOT(on_actionCancel_triggered()));
+    ui->toolBar_2->addAction(foo2);
+
+    QAction *foo3 = new QAction(ui->toolBar_3);
+    foo3->setShortcut(Qt::Key_Escape);
+    connect(foo3, SIGNAL(triggered()), this, SLOT(on_actionCancel_triggered()));
+    ui->toolBar_3->addAction(foo3);
+    //====================
+
 
     QString cmdline = getFileContents("/proc/cmdline");
 
@@ -603,11 +617,13 @@ void MainWindow::checkPinnFirmware()
         }
         else if (firmwareState.isEmpty())
         {
+            //Comment out because I don't want to downgrade automatically.
+
             /* Just installed or upgraded on legacy h/w, so installed firmware=latest */
             /* => downgrade firmware */
-            QProcess::execute("/mnt/changefirmware down");
-            g_nofirmware = true;
-            qDebug()<< "Firmware downgraded";
+            //QProcess::execute("/mnt/changefirmware down");
+            //g_nofirmware = true;
+            //qDebug()<< "Firmware downgraded";
         }
     }
     updateFirmware_button();
@@ -2406,7 +2422,7 @@ QListWidgetItem *MainWindow::findItemByName(const QString &name)
             return item;
         }
     }
-    DBG("not found")
+    DBG("not found");
     return NULL;
 }
 
@@ -2972,19 +2988,21 @@ void MainWindow::startImageWrite()
     if (slidesFolders.isEmpty())
         slidesFolder.append("/mnt/defaults/slides");
 
-    _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, _drive, this);
+    _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, this); //_drive
     _qpssd->setWindowTitle("Installing Images");
     connect(imageWriteThread, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
     connect(imageWriteThread, SIGNAL(completed(int)), this, SLOT(onCompleted(int)));
     connect(imageWriteThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
     connect(imageWriteThread, SIGNAL(errorContinue(QString)), this, SLOT(onErrorContinue(QString)), Qt::BlockingQueuedConnection);
     connect(imageWriteThread, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
-    connect(imageWriteThread, SIGNAL(runningMKFS()), _qpssd, SLOT(pauseIOaccounting()), Qt::BlockingQueuedConnection);
-    connect(imageWriteThread, SIGNAL(finishedMKFS()), _qpssd , SLOT(resumeIOaccounting()), Qt::BlockingQueuedConnection);
-    connect(imageWriteThread, SIGNAL(newDrive(const QString&)), _qpssd , SLOT(changeDrive(const QString&)), Qt::BlockingQueuedConnection);
     connect(imageWriteThread, SIGNAL(checksumError(const QString&, const QString&, QMessageBox::ButtonRole*)), this, SLOT(onChecksumError(QString,QString,QMessageBox::ButtonRole*)),Qt::BlockingQueuedConnection);
-    connect(imageWriteThread, SIGNAL(pause(uint *)), _qpssd, SLOT(captureIOaccounting( uint * )), Qt::BlockingQueuedConnection);
-    connect(imageWriteThread, SIGNAL(resume( uint )), _qpssd , SLOT(restoreIOaccounting( uint )), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(newDrive(const QString&,eProgressMode)), _qpssd , SLOT(setDriveMode(const QString&,eProgressMode)), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(startAccounting()), _qpssd, SLOT(startAccounting()), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(stopAccounting()), _qpssd , SLOT(stopAccounting()), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(idle()), _qpssd , SLOT(idle()));
+    connect(imageWriteThread, SIGNAL(cont()), _qpssd , SLOT(cont()));
+    connect(imageWriteThread, SIGNAL(consolidate()), _qpssd , SLOT(consolidate()));
+    connect(imageWriteThread, SIGNAL(finish()), _qpssd , SLOT(finish()));
     imageWriteThread->start();
     hide();
     _qpssd->exec();
@@ -3080,19 +3098,22 @@ void MainWindow::startImageReinstall()
     if (slidesFolders.isEmpty())
         slidesFolder.append("/mnt/defaults/slides");
 
-    _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, _drive, this);
+    _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20,  this); //_drive
     _qpssd->setWindowTitle("Re-Installing Images");
     connect(imageWriteThread, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
     connect(imageWriteThread, SIGNAL(completed(int)), this, SLOT(onCompleted(int)));
     connect(imageWriteThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
     connect(imageWriteThread, SIGNAL(errorContinue(QString)), this, SLOT(onErrorContinue(QString)), Qt::BlockingQueuedConnection);
     connect(imageWriteThread, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
-    connect(imageWriteThread, SIGNAL(runningMKFS()), _qpssd, SLOT(pauseIOaccounting()), Qt::BlockingQueuedConnection);
-    connect(imageWriteThread, SIGNAL(finishedMKFS()), _qpssd , SLOT(resumeIOaccounting()), Qt::BlockingQueuedConnection);
-    connect(imageWriteThread, SIGNAL(newDrive(const QString&)), _qpssd , SLOT(changeDrive(const QString&)), Qt::BlockingQueuedConnection);
     connect(imageWriteThread, SIGNAL(checksumError(const QString&, const QString&, QMessageBox::ButtonRole*)), this, SLOT(onChecksumError(QString,QString,QMessageBox::ButtonRole*)),Qt::BlockingQueuedConnection);
-    connect(imageWriteThread, SIGNAL(pause(uint *)), _qpssd, SLOT(captureIOaccounting( uint * )), Qt::BlockingQueuedConnection);
-    connect(imageWriteThread, SIGNAL(resume( uint )), _qpssd , SLOT(restoreIOaccounting( uint )), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(newDrive(const QString&,eProgressMode)), _qpssd , SLOT(setDriveMode(const QString&,eProgressMode)), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(startAccounting()), _qpssd, SLOT(startAccounting()), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(stopAccounting()), _qpssd , SLOT(stopAccounting()), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(idle()), _qpssd , SLOT(idle()));
+    connect(imageWriteThread, SIGNAL(cont()), _qpssd , SLOT(cont()));
+    connect(imageWriteThread, SIGNAL(consolidate()), _qpssd , SLOT(consolidate()));
+    connect(imageWriteThread, SIGNAL(finish()), _qpssd , SLOT(finish()));
+
     imageWriteThread->start();
     hide();
     _qpssd->exec();
@@ -3107,7 +3128,7 @@ void MainWindow::startImageDownload()
     // The drive is already mounted R/W from on_actionDownload_triggered
 
     /* All meta files downloaded, extract slides tarball, and launch image download thread */
-    MultiImageDownloadThread *imageDownloadThread = new MultiImageDownloadThread(0, _local);
+    MultiImageDownloadThread *imageDownloadThread = new MultiImageDownloadThread(0, _local, _osdrive);
     QString folder, slidesFolder;
     QStringList slidesFolders;
 
@@ -3216,9 +3237,10 @@ void MainWindow::startImageDownload()
     if (slidesFolders.isEmpty())
         slidesFolder.append("/mnt/defaults/slides");
 
-    _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, _osdrive, this);
+    _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, this); //_osdrive
     _qpssd->setWindowTitle("Downloading Images");
     connect(imageDownloadThread, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
+    connect(imageDownloadThread, SIGNAL(newDrive(const QString&,eProgressMode)), _qpssd , SLOT(setDriveMode(const QString&,eProgressMode)), Qt::BlockingQueuedConnection);
     connect(imageDownloadThread, SIGNAL(completed()), this, SLOT(onCompleted()));
     connect(imageDownloadThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
     connect(imageDownloadThread, SIGNAL(errorContinue(QString)), this, SLOT(onErrorContinue(QString)), Qt::BlockingQueuedConnection);
@@ -3343,14 +3365,21 @@ void MainWindow::startImageBackup()
     if (slidesFolders.isEmpty())
         slidesFolder.append("/mnt/defaults/slides");
 
-    _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, _osdrive, this, true);
+    _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, this); //_osdrive, ePM_READSTATS
     _qpssd->setWindowTitle("Backing Up Images");
     connect(bt, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
     connect(bt, SIGNAL(completed(int)), this, SLOT(onCompleted(int)));
     connect(bt, SIGNAL(error(QString)), this, SLOT(onError(QString)));
     connect(bt, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
-    connect(bt, SIGNAL(newDrive(const QString&)), _qpssd , SLOT(changeDrive(const QString&)), Qt::BlockingQueuedConnection);
+    connect(bt, SIGNAL(newDrive(const QString&,eProgressMode)), _qpssd , SLOT(setDriveMode(const QString&,eProgressMode)), Qt::BlockingQueuedConnection);
+    connect(bt, SIGNAL(startAccounting()), _qpssd, SLOT(startAccounting()), Qt::BlockingQueuedConnection);
+    connect(bt, SIGNAL(stopAccounting()), _qpssd , SLOT(stopAccounting()), Qt::BlockingQueuedConnection);
     connect(bt, SIGNAL(newImage( QString)), this, SLOT(newImage( QString)));
+    connect(bt, SIGNAL(idle()), _qpssd , SLOT(idle()));
+    connect(bt, SIGNAL(cont()), _qpssd , SLOT(cont()));
+    connect(bt, SIGNAL(consolidate()), _qpssd , SLOT(consolidate()), Qt::BlockingQueuedConnection);
+    connect(bt, SIGNAL(finish()), _qpssd , SLOT(finish()));
+
     bt->start();
     hide();
     _qpssd->exec();
@@ -3774,7 +3803,7 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
     DBG("...");
     if ((witem) && (!bInstalled))
     {
-        DBG("witem && Not installed")
+        DBG("witem && Not installed");
         QVariantMap existing_details = witem->data(Qt::UserRole).toMap();
 
         bool bReplace=false;
@@ -3897,7 +3926,7 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
         else
         {
             //Add new OS to os list.
-            DBG("Adding to list")
+            DBG("Adding to list");
             if (recommended)
                 ug->insertItem(0, witem);
             else
@@ -4071,7 +4100,7 @@ void MainWindow::on_actionClone_triggered()
         //Reuse the existing Progress Slide Dialog
         _qpd = new ProgressSlideshowDialog(DirList, "", 20);//Add dst_dev
         _qpd->setWindowTitle("Clone SD Card");
-        ((ProgressSlideshowDialog*)_qpd)->disableIOaccounting();
+        // ((ProgressSlideshowDialog*)_qpd)->disableIOaccounting();
         connect(cloneThread, SIGNAL(setMaxProgress(qint64)), _qpd, SLOT(setMaximum(qint64)));
         connect(cloneThread, SIGNAL(completed()), this, SLOT(onCloneCompleted()));
         connect(cloneThread, SIGNAL(error(QString)), this, SLOT(onCloneError(QString)));

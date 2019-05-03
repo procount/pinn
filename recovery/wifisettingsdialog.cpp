@@ -186,13 +186,14 @@ void WifiSettingsDialog::on_list_currentItemChanged(QListWidgetItem *current)
         ui->userLabel->setEnabled(supportsEAP);
         ui->userEdit->setEnabled(supportsEAP);
 
-        if (ui->passwordRadio->isChecked())
+/*        if (ui->passwordRadio->isChecked())
         {
             if (supportsEAP)
                 ui->userEdit->setFocus();
             else
                 ui->passwordEdit->setFocus();
         }
+*/
     }
     else
     {

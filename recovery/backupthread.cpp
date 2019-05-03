@@ -5,6 +5,12 @@
 #include "mbr.h"
 #include "partitioninfo.h"
 #include "osinfo.h"
+
+#define DBG_LOCAL 0
+#define LOCAL_DO_DBG 1
+#define LOCAL_DBG_FUNC 1
+#define LOCAL_DBG_OUT 1
+#define LOCAL_DBG_MSG 0
 #include "mydebug.h"
 
 #include <QDir>
@@ -161,9 +167,10 @@ bool BackupThread::processImage(const QVariantMap & entry)
 
         //   Mount it
         QProcess::execute("mount -o ro "+dev+" /tmp/src");
-        emit newDrive(dev);
+        emit newDrive(dev, ePM_READSTATS);
         QString cmd;
 
+        emit startAccounting();
         if (fstype=="raw")
         {
             //   dd/gzip image
@@ -184,8 +191,11 @@ bool BackupThread::processImage(const QVariantMap & entry)
         {
             qDebug() << tr("Error writing ")+entry.value("name").toString()+tr(": Disk full?");
             delete pOsInfo;
+            emit stopAccounting();
             return(false);
         }
+        emit stopAccounting();
+        emit consolidate();
 
         QString csumType = getCsumType(pmap);
         if (csumType.isEmpty())

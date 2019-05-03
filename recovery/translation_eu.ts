@@ -4,52 +4,52 @@
 <context>
     <name>BackupThread</name>
     <message>
-        <location filename="backupthread.cpp" line="60"/>
+        <location filename="backupthread.cpp" line="66"/>
         <source>Finish writing (sync)</source>
         <translation type="unfinished">Idazten bukatu (sinkronizatu)</translation>
     </message>
     <message>
-        <location filename="backupthread.cpp" line="107"/>
+        <location filename="backupthread.cpp" line="113"/>
         <source>Cannot backup </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="backupthread.cpp" line="107"/>
+        <location filename="backupthread.cpp" line="113"/>
         <source> :BTRFS file format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="backupthread.cpp" line="213"/>
+        <location filename="backupthread.cpp" line="223"/>
         <source>%1: Updating partitions.json</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="backupthread.cpp" line="170"/>
+        <location filename="backupthread.cpp" line="177"/>
         <source>%1: Writing image (%2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="backupthread.cpp" line="177"/>
+        <location filename="backupthread.cpp" line="184"/>
         <source>%1: Archiving (%2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="backupthread.cpp" line="185"/>
+        <location filename="backupthread.cpp" line="192"/>
         <source>Error writing </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="backupthread.cpp" line="185"/>
+        <location filename="backupthread.cpp" line="192"/>
         <source>: Disk full?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="backupthread.cpp" line="196"/>
+        <location filename="backupthread.cpp" line="206"/>
         <source>%1: Checksumming (%2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="backupthread.cpp" line="234"/>
+        <location filename="backupthread.cpp" line="244"/>
         <source>%1: Updating os.json</source>
         <translation type="unfinished"></translation>
     </message>
@@ -133,7 +133,8 @@
     </message>
     <message>
         <location filename="confeditdialog.ui" line="36"/>
-        <source>Edit Options</source>
+        <source>&amp;Edit Options</source>
+        <oldsource>Edit Options</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -695,542 +696,542 @@ KONTUZ: Honek zure SD txarteleko datu guztiak ezabatuko ditu</translation>
         <translation>W</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="271"/>
+        <location filename="mainwindow.cpp" line="285"/>
         <source>Setting up SD card</source>
         <translation>SD txartela prestatzen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="329"/>
+        <location filename="mainwindow.cpp" line="343"/>
         <source>Error mounting settings partition</source>
         <translation>Errorea ezarpenen partizioa muntatzean</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="304"/>
+        <location filename="mainwindow.cpp" line="318"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation>SD txartelaren zain (ezarpenak partizioa)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="317"/>
+        <location filename="mainwindow.cpp" line="331"/>
         <source>Mounting settings partition</source>
         <translation>Ezarpenak partizioa muntatzen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="330"/>
+        <location filename="mainwindow.cpp" line="344"/>
         <source>Persistent settings partition seems corrupt. Reformat?</source>
         <translation>Ezarpen iraunkorren partizioa hondatuta dagoela dirudi. Berriz formateatu?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="337"/>
+        <location filename="mainwindow.cpp" line="351"/>
         <source>Reformat failed</source>
         <translation>Berriz formateatzeak huts egin du</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="337"/>
+        <location filename="mainwindow.cpp" line="351"/>
         <source>SD card might be damaged</source>
         <translation>SD txartela hondatuta egon daiteke</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="655"/>
+        <location filename="mainwindow.cpp" line="671"/>
         <source>Main Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="656"/>
+        <location filename="mainwindow.cpp" line="672"/>
         <source>Archival</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="657"/>
+        <location filename="mainwindow.cpp" line="673"/>
         <source>Maintenance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="674"/>
+        <location filename="mainwindow.cpp" line="690"/>
         <source>Please wait while PINN initialises</source>
         <translation>Mesedez itxaron PINN hasieratu arte</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1130"/>
+        <location filename="mainwindow.cpp" line="1146"/>
         <source>install</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1133"/>
+        <location filename="mainwindow.cpp" line="1149"/>
         <source>reinstall</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1136"/>
+        <location filename="mainwindow.cpp" line="1152"/>
         <source>replace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1144"/>
+        <location filename="mainwindow.cpp" line="1160"/>
         <source>USB drive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1146"/>
+        <location filename="mainwindow.cpp" line="1162"/>
         <source>Warning: this will %1 the selected Operating System(s) to %2. All existing data on the %3 will be deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1226"/>
+        <location filename="mainwindow.cpp" line="1242"/>
         <source>The %1 process will begin shortly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3818"/>
-        <location filename="mainwindow.cpp" line="3851"/>
+        <location filename="mainwindow.cpp" line="3847"/>
+        <location filename="mainwindow.cpp" line="3880"/>
         <source>RECOMMENDED</source>
         <translation>GOMENDATUA</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1037"/>
+        <location filename="mainwindow.cpp" line="1053"/>
         <source>ERROR</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1038"/>
+        <location filename="mainwindow.cpp" line="1054"/>
         <source>Error: Some OSes are not available:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1046"/>
-        <location filename="mainwindow.cpp" line="1149"/>
-        <location filename="mainwindow.cpp" line="1248"/>
-        <location filename="mainwindow.cpp" line="1258"/>
-        <location filename="mainwindow.cpp" line="1822"/>
-        <location filename="mainwindow.cpp" line="4608"/>
-        <location filename="mainwindow.cpp" line="4652"/>
+        <location filename="mainwindow.cpp" line="1062"/>
+        <location filename="mainwindow.cpp" line="1165"/>
+        <location filename="mainwindow.cpp" line="1264"/>
+        <location filename="mainwindow.cpp" line="1274"/>
+        <location filename="mainwindow.cpp" line="1838"/>
+        <location filename="mainwindow.cpp" line="4637"/>
+        <location filename="mainwindow.cpp" line="4681"/>
         <source>Confirm</source>
         <translation>Berretsi</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1114"/>
+        <location filename="mainwindow.cpp" line="1130"/>
         <source>ReInstall OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1115"/>
+        <location filename="mainwindow.cpp" line="1131"/>
         <source>Warning: No OSes selected or available
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1249"/>
+        <location filename="mainwindow.cpp" line="1265"/>
         <source>Warning: this will download the selected Operating System(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1322"/>
+        <location filename="mainwindow.cpp" line="1338"/>
         <source>The download process will begin shortly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1365"/>
+        <location filename="mainwindow.cpp" line="1381"/>
         <source>OS(es) Downloaded with errors.
 See debug log for details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1370"/>
+        <location filename="mainwindow.cpp" line="1386"/>
         <source>OS(es) downloaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1384"/>
+        <location filename="mainwindow.cpp" line="1400"/>
         <source>OS(es) Backed up with errors.
 See debug log for details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1386"/>
+        <location filename="mainwindow.cpp" line="1402"/>
         <source>OS(es) Backed up Successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1388"/>
-        <location filename="mainwindow.cpp" line="4753"/>
+        <location filename="mainwindow.cpp" line="1404"/>
+        <location filename="mainwindow.cpp" line="4782"/>
         <source>Backup OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1395"/>
+        <location filename="mainwindow.cpp" line="1411"/>
         <source>OS(es) Installed with errors.
 See debug log for details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1399"/>
+        <location filename="mainwindow.cpp" line="1415"/>
         <source>Installation complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1480"/>
+        <location filename="mainwindow.cpp" line="1496"/>
         <source>Abort</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1481"/>
+        <location filename="mainwindow.cpp" line="1497"/>
         <source>Discard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1482"/>
+        <location filename="mainwindow.cpp" line="1498"/>
         <source>Retry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1483"/>
+        <location filename="mainwindow.cpp" line="1499"/>
         <source>Keep</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1507"/>
+        <location filename="mainwindow.cpp" line="1523"/>
         <source>Reboot in %1 secs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1797"/>
+        <location filename="mainwindow.cpp" line="1813"/>
         <source>Wiping SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1823"/>
+        <location filename="mainwindow.cpp" line="1839"/>
         <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will restore your SD card to its initial state. All existing data on the SD card except PINN will be overwritten, including any OSes that are already installed.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1828"/>
+        <location filename="mainwindow.cpp" line="1844"/>
         <source>Drive Wiped!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2104"/>
+        <location filename="mainwindow.cpp" line="2120"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2724"/>
+        <location filename="mainwindow.cpp" line="2740"/>
         <source>Error downloading meta file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3073"/>
-        <location filename="mainwindow.cpp" line="4483"/>
-        <location filename="mainwindow.cpp" line="4511"/>
+        <location filename="mainwindow.cpp" line="3091"/>
+        <location filename="mainwindow.cpp" line="4512"/>
+        <location filename="mainwindow.cpp" line="4540"/>
         <source>Replace OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3115"/>
+        <location filename="mainwindow.cpp" line="3136"/>
         <source>Resume partial downloads?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3116"/>
+        <location filename="mainwindow.cpp" line="3137"/>
         <source>Normally select NO, unless your last download was not successful, in which case select YES</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3329"/>
+        <location filename="mainwindow.cpp" line="3351"/>
         <source>This backup may require </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3331"/>
+        <location filename="mainwindow.cpp" line="3353"/>
         <source> MB of backup space, but only </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3333"/>
+        <location filename="mainwindow.cpp" line="3355"/>
         <source> MB is available. This is only an estimate. If you continue, the backup may not complete successfully.
 
 Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3334"/>
+        <location filename="mainwindow.cpp" line="3356"/>
         <source>WARNING: Backup Space</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3341"/>
+        <location filename="mainwindow.cpp" line="3363"/>
         <source>Backup Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3341"/>
+        <location filename="mainwindow.cpp" line="3363"/>
         <source>Always test your backups before relying on them</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3384"/>
+        <location filename="mainwindow.cpp" line="3413"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>Sareko sarbidea behar da PINN irudi lokalik gabe erabiltzeko. Hautatu zure wifi sarea hurrengo pantailan.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3392"/>
+        <location filename="mainwindow.cpp" line="3421"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>Haridun sareko sarbidea behar da PINN irudi lokalik gabe erabiltzeko. Txertatu sareko kable bat sareko atakan.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3719"/>
+        <location filename="mainwindow.cpp" line="3748"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>Ziur zaude &apos;%1&apos; unitatea PINNekin erabiltzeko birformateatu nahi duzula? Unitateko datu guztiak ezabatuko dira!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4059"/>
+        <location filename="mainwindow.cpp" line="4088"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>Honek &apos;%s&apos; gailuko eduki guztiak ezabatuko ditu. Ziur zaude?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4061"/>
+        <location filename="mainwindow.cpp" line="4090"/>
         <source>Clone SD Card</source>
         <translation>Klonatu SD txartela</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4063"/>
+        <location filename="mainwindow.cpp" line="4092"/>
         <source>Yes</source>
         <translation>Bai</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4064"/>
+        <location filename="mainwindow.cpp" line="4093"/>
         <source>No</source>
         <translation>Ez</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4093"/>
+        <location filename="mainwindow.cpp" line="4122"/>
         <source>Clone Completed</source>
         <translation>Klonazio burututa</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4094"/>
+        <location filename="mainwindow.cpp" line="4123"/>
         <source>Clone Completed Successfully</source>
         <translation>Klonazioa behar bezala burutu da</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4206"/>
+        <location filename="mainwindow.cpp" line="4235"/>
         <source>Error downloading update file</source>
         <translation>Errorea eguneraketa fitxategia deskargatzean</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4213"/>
-        <location filename="mainwindow.cpp" line="4308"/>
+        <location filename="mainwindow.cpp" line="4242"/>
+        <location filename="mainwindow.cpp" line="4337"/>
         <source>PINN Update Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4213"/>
+        <location filename="mainwindow.cpp" line="4242"/>
         <source>Error contacting update server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4308"/>
+        <location filename="mainwindow.cpp" line="4337"/>
         <source>No updates available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4317"/>
+        <location filename="mainwindow.cpp" line="4346"/>
         <source>PINN UPDATE</source>
         <translation>PINN EGUNERAKETA</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4318"/>
+        <location filename="mainwindow.cpp" line="4347"/>
         <source>A new version of PINN is available</source>
         <translation>PINNen bertsio berri bat eskuragarri dago</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4319"/>
+        <location filename="mainwindow.cpp" line="4348"/>
         <source>Do you want to download this version?</source>
         <translation>Bertsio hau deskargatu nahi duzu?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4351"/>
+        <location filename="mainwindow.cpp" line="4380"/>
         <source>Downloading Update</source>
         <translation>Eguneraketa deskargatzen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4351"/>
+        <location filename="mainwindow.cpp" line="4380"/>
         <source>Press ESC to cancel</source>
         <translation>Sakatu ESC ezeztatzeko</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4484"/>
+        <location filename="mainwindow.cpp" line="4513"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4512"/>
+        <location filename="mainwindow.cpp" line="4541"/>
         <source>Warning: No OSes selected
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4609"/>
+        <location filename="mainwindow.cpp" line="4638"/>
         <source>Warning: this will backup the selected Operating System(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4653"/>
+        <location filename="mainwindow.cpp" line="4682"/>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1144"/>
+        <location filename="mainwindow.cpp" line="1160"/>
         <source>SD card</source>
         <translation>SD txartela</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1047"/>
-        <location filename="mainwindow.cpp" line="1259"/>
+        <location filename="mainwindow.cpp" line="1063"/>
+        <location filename="mainwindow.cpp" line="1275"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>Kontuz: sistema eragile bateraezina(k) detektatu d(ir)a. Ondorengo SEek ez dute euskarririk Raspberry Piren bertsio honetan eta baliteke ez abiaraztea edo gaizki funtzionatzea:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1099"/>
-        <location filename="mainwindow.cpp" line="4502"/>
+        <location filename="mainwindow.cpp" line="1115"/>
+        <location filename="mainwindow.cpp" line="4531"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1367"/>
+        <location filename="mainwindow.cpp" line="1383"/>
         <source>OS(es) Downloaded Successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1397"/>
+        <location filename="mainwindow.cpp" line="1413"/>
         <source>OS(es) Installed Successfully</source>
         <translation>SEa(k) behar bezala instalatu dira</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1435"/>
-        <location filename="mainwindow.cpp" line="1445"/>
-        <location filename="mainwindow.cpp" line="1457"/>
-        <location filename="mainwindow.cpp" line="2104"/>
-        <location filename="mainwindow.cpp" line="2244"/>
-        <location filename="mainwindow.cpp" line="4107"/>
+        <location filename="mainwindow.cpp" line="1451"/>
+        <location filename="mainwindow.cpp" line="1461"/>
+        <location filename="mainwindow.cpp" line="1473"/>
+        <location filename="mainwindow.cpp" line="2120"/>
+        <location filename="mainwindow.cpp" line="2260"/>
+        <location filename="mainwindow.cpp" line="4136"/>
         <source>Error</source>
         <translation>Errorea</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1509"/>
+        <location filename="mainwindow.cpp" line="1525"/>
         <source>PINN v%1 - Built: %2 (%3) %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1544"/>
+        <location filename="mainwindow.cpp" line="1560"/>
         <source>HDMI preferred mode</source>
         <translation>HDMI modu hobetsia</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1548"/>
+        <location filename="mainwindow.cpp" line="1564"/>
         <source>HDMI safe mode</source>
         <translation>HDMI modu segurua</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1552"/>
+        <location filename="mainwindow.cpp" line="1568"/>
         <source>composite PAL mode</source>
         <translation>PAL konposatu modua</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1556"/>
+        <location filename="mainwindow.cpp" line="1572"/>
         <source>composite NTSC mode</source>
         <translation>NTSC konposatu modua</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1625"/>
+        <location filename="mainwindow.cpp" line="1641"/>
         <source>Display Mode Changed</source>
         <translation>Bistaratze-modua aldatuta</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1626"/>
+        <location filename="mainwindow.cpp" line="1642"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>Bistaratze modua %1(e)ra aldatu da
 Ezarpen hau iraunkortu nahi duzu?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1829"/>
+        <location filename="mainwindow.cpp" line="1845"/>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1842"/>
-        <location filename="mainwindow.cpp" line="3383"/>
-        <location filename="mainwindow.cpp" line="3391"/>
+        <location filename="mainwindow.cpp" line="1858"/>
+        <location filename="mainwindow.cpp" line="3412"/>
+        <location filename="mainwindow.cpp" line="3420"/>
         <source>No network access</source>
         <translation>Sareko sarbiderik ez</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1843"/>
+        <location filename="mainwindow.cpp" line="1859"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Haridun sareko sarbidea behar da ezaugarri honentzat. Mesedez sartu sareko kable bat sareko atakan.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2085"/>
-        <location filename="mainwindow.cpp" line="2220"/>
+        <location filename="mainwindow.cpp" line="2101"/>
+        <location filename="mainwindow.cpp" line="2236"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation>Errorea banaketa zerrenda Internetetik deskargatzean:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2087"/>
-        <location filename="mainwindow.cpp" line="2222"/>
-        <location filename="mainwindow.cpp" line="2738"/>
-        <location filename="mainwindow.cpp" line="2749"/>
-        <location filename="mainwindow.cpp" line="4206"/>
-        <location filename="mainwindow.cpp" line="4228"/>
+        <location filename="mainwindow.cpp" line="2103"/>
+        <location filename="mainwindow.cpp" line="2238"/>
+        <location filename="mainwindow.cpp" line="2754"/>
+        <location filename="mainwindow.cpp" line="2765"/>
+        <location filename="mainwindow.cpp" line="4235"/>
+        <location filename="mainwindow.cpp" line="4257"/>
         <source>Download error</source>
         <translation>Errorea deskargatzean</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2244"/>
+        <location filename="mainwindow.cpp" line="2260"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>Errorea zerbitzaritik deskargatutako list.json fitxategia analizatzean</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2511"/>
-        <location filename="mainwindow.cpp" line="2514"/>
+        <location filename="mainwindow.cpp" line="2527"/>
+        <location filename="mainwindow.cpp" line="2530"/>
         <source>Needed</source>
         <translation>Behar dena</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2512"/>
-        <location filename="mainwindow.cpp" line="2515"/>
+        <location filename="mainwindow.cpp" line="2528"/>
+        <location filename="mainwindow.cpp" line="2531"/>
         <source>Available</source>
         <translation>Erabilgarri dagoena</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2738"/>
+        <location filename="mainwindow.cpp" line="2754"/>
         <source>Error downloading meta file</source>
         <translation>Errorea meta fitxategia deskargatzean</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2749"/>
-        <location filename="mainwindow.cpp" line="4228"/>
+        <location filename="mainwindow.cpp" line="2765"/>
+        <location filename="mainwindow.cpp" line="4257"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>Errorea deskargatutako fitxategia SD txartelean idaztean. SD txartela edo fitxategi-sistema hondatuta egon daitezke.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2861"/>
+        <location filename="mainwindow.cpp" line="2877"/>
         <source>filesize error checking </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3074"/>
+        <location filename="mainwindow.cpp" line="3092"/>
         <source> has an incompatible number of partitions with </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3718"/>
+        <location filename="mainwindow.cpp" line="3747"/>
         <source>Reformat drive?</source>
         <translation>Unitatea birformateatu?</translation>
     </message>
@@ -1238,37 +1239,37 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
 <context>
     <name>MultiImageDownloadThread</name>
     <message>
-        <location filename="multiimagedownloadthread.cpp" line="55"/>
+        <location filename="multiimagedownloadthread.cpp" line="58"/>
         <source>Finish writing (sync)</source>
         <translation type="unfinished">Idazten bukatu (sinkronizatu)</translation>
     </message>
     <message>
-        <location filename="multiimagedownloadthread.cpp" line="86"/>
+        <location filename="multiimagedownloadthread.cpp" line="89"/>
         <source>File &apos;%1&apos; does not need downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagedownloadthread.cpp" line="97"/>
+        <location filename="multiimagedownloadthread.cpp" line="100"/>
         <source>Downloading %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagedownloadthread.cpp" line="132"/>
+        <location filename="multiimagedownloadthread.cpp" line="138"/>
         <source>Checking %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagedownloadthread.cpp" line="142"/>
+        <location filename="multiimagedownloadthread.cpp" line="148"/>
         <source>Error in checksum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagedownloadthread.cpp" line="150"/>
+        <location filename="multiimagedownloadthread.cpp" line="156"/>
         <source>Error downloading or extracting tarball</source>
         <translation type="unfinished">Errorea tar fitxategia deskargatu edo erauztean</translation>
     </message>
     <message>
-        <location filename="multiimagedownloadthread.cpp" line="186"/>
+        <location filename="multiimagedownloadthread.cpp" line="194"/>
         <source>Finished downloading %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1298,218 +1299,233 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <translation>Ezin da RISCOS instalatu. Berreskuratze-partizio handiegia.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="141"/>
+        <location filename="multiimagewritethread.cpp" line="143"/>
         <source>More than one operating system requires partition number %1</source>
         <translation>Sistema eragile batek baino gehiagok behar dute %1 zenbakidun partizioa</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="146"/>
+        <location filename="multiimagewritethread.cpp" line="148"/>
         <source>Operating system cannot require a system partition (1,5)</source>
         <translation>Sistema eragileak ezin du sistemaren partizioa eskatu (1,5)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="151"/>
+        <location filename="multiimagewritethread.cpp" line="153"/>
         <source>Operating system cannot claim both primary partitions 2 and 4</source>
         <translation>Sistema eragileak ezin ditu 2 eta 4 partizio primarioak eskatu</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="179"/>
+        <location filename="multiimagewritethread.cpp" line="181"/>
         <source>Not enough disk space. Need %1 MB, got %2 MB</source>
         <translation>Ez dago nahikoa leku diskoan. %1 MB behar dira, %2 MB daude</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="431"/>
+        <location filename="multiimagewritethread.cpp" line="439"/>
         <source>Finish writing (sync)</source>
         <translation>Idazten bukatu (sinkronizatu)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="687"/>
+        <location filename="multiimagewritethread.cpp" line="695"/>
         <source>File &apos;%1&apos; does not exist</source>
         <translation>&apos;%1&apos; fitxategia ez da existitzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="259"/>
+        <location filename="multiimagewritethread.cpp" line="261"/>
         <source>Fixed partition offset too low</source>
         <translation>Partizio finkoaren desplazamendua baxuegia da </translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="208"/>
+        <location filename="multiimagewritethread.cpp" line="210"/>
         <source>Cannot boot partitions &gt; 62. Reduce the number of OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="230"/>
+        <location filename="multiimagewritethread.cpp" line="232"/>
         <source>Cannot boot partitions &gt; #62. Reduce the number of OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="319"/>
+        <location filename="multiimagewritethread.cpp" line="321"/>
         <source>Writing partition table</source>
         <translation>Partizio-taula idazten</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="334"/>
+        <location filename="multiimagewritethread.cpp" line="336"/>
         <source>Writing boot partition table</source>
         <translation>Abioko partizio-taula idazten</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="324"/>
-        <location filename="multiimagewritethread.cpp" line="340"/>
+        <location filename="multiimagewritethread.cpp" line="326"/>
+        <location filename="multiimagewritethread.cpp" line="342"/>
         <source>Zero&apos;ing start of each partition</source>
         <translation>Partizio bakoitzaren hasiera zerotzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="379"/>
+        <location filename="multiimagewritethread.cpp" line="387"/>
         <source>.
 Partition not big enough for new image.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="379"/>
+        <location filename="multiimagewritethread.cpp" line="387"/>
         <source>Cannot Reinstall/Replace </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="425"/>
+        <location filename="multiimagewritethread.cpp" line="433"/>
         <source>Operation cancelled by user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="452"/>
+        <location filename="multiimagewritethread.cpp" line="460"/>
         <source>Error reading existing partition table</source>
         <translation>Errorea lehendik dagoen partizio-taula irakurtzean</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="537"/>
+        <location filename="multiimagewritethread.cpp" line="545"/>
         <source>Error creating partition table</source>
         <translation>Errorea partizio-taula sortzean</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="716"/>
+        <location filename="multiimagewritethread.cpp" line="723"/>
         <source>OS: &apos;%1&apos; needs a partition label of &apos;%2&apos; which is not available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="731"/>
-        <location filename="multiimagewritethread.cpp" line="736"/>
+        <location filename="multiimagewritethread.cpp" line="735"/>
+        <location filename="multiimagewritethread.cpp" line="742"/>
         <source>%1: Writing OS image</source>
         <translation>%1: SE irudia idazten</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="742"/>
+        <location filename="multiimagewritethread.cpp" line="749"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation>%1: Fitxategi-sistema sortzen (%2)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="749"/>
+        <location filename="multiimagewritethread.cpp" line="758"/>
         <source>%1: Mounting file system</source>
         <translation>%1: Fitxategi-sistema muntatzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="752"/>
-        <location filename="multiimagewritethread.cpp" line="777"/>
-        <location filename="multiimagewritethread.cpp" line="931"/>
-        <location filename="multiimagewritethread.cpp" line="1071"/>
+        <location filename="multiimagewritethread.cpp" line="761"/>
+        <location filename="multiimagewritethread.cpp" line="795"/>
+        <location filename="multiimagewritethread.cpp" line="949"/>
+        <location filename="multiimagewritethread.cpp" line="1089"/>
         <source>%1: Error mounting file system</source>
         <translation>%1: Errorea fitxategi-sistema muntatzean</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="757"/>
+        <location filename="multiimagewritethread.cpp" line="766"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation>%1: Fitxategi-sistema deskargatu eta erauzten</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="759"/>
+        <location filename="multiimagewritethread.cpp" line="768"/>
         <source>%1: Extracting filesystem</source>
         <translation>%1: Fitxategi-sistema erauzten</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="774"/>
-        <location filename="multiimagewritethread.cpp" line="927"/>
+        <source>Syncing Filesystem</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="multiimagewritethread.cpp" line="792"/>
+        <location filename="multiimagewritethread.cpp" line="945"/>
         <source>%1: Mounting FAT partition</source>
         <translation>%1: FAT partizioa muntatzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="781"/>
+        <location filename="multiimagewritethread.cpp" line="799"/>
         <source>%1: Creating os_config.json</source>
         <translation>%1: os_config.json sortzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="814"/>
+        <location filename="multiimagewritethread.cpp" line="832"/>
         <source>%1: Saving display mode to config.txt</source>
         <translation>%1: Bistaratze-modua config.txt-n gordetzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="835"/>
+        <location filename="multiimagewritethread.cpp" line="853"/>
         <source>Error in checksum for partition_setup.sh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="842"/>
+        <location filename="multiimagewritethread.cpp" line="860"/>
         <source>%1: Running partition setup script</source>
         <translation>%1: Partizioa prestatzeko script-a exekutatzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="897"/>
+        <location filename="multiimagewritethread.cpp" line="915"/>
         <source>%1: Error executing partition setup script</source>
         <translation>%1: Errorea partizioa prestatzeko script-a exekutatzean</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="914"/>
+        <location filename="multiimagewritethread.cpp" line="932"/>
         <source>%1: Configuring flavour</source>
         <translation>%1: Zaporea konfiguratzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="904"/>
-        <location filename="multiimagewritethread.cpp" line="965"/>
+        <location filename="multiimagewritethread.cpp" line="922"/>
+        <location filename="multiimagewritethread.cpp" line="983"/>
         <source>%1: Unmounting FAT partition</source>
         <translation>%1: FAT partizioa desmuntatzen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="907"/>
-        <location filename="multiimagewritethread.cpp" line="968"/>
+        <location filename="multiimagewritethread.cpp" line="925"/>
+        <location filename="multiimagewritethread.cpp" line="986"/>
         <source>%1: Error unmounting</source>
         <translation>%1: Errorea desmuntatzean</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="937"/>
+        <location filename="multiimagewritethread.cpp" line="955"/>
         <source>%1: Checking firmware update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1354"/>
+        <location filename="multiimagewritethread.cpp" line="1372"/>
         <source>Error creating file system</source>
         <translation>Errorea fitxategi-sistema sortzean</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1426"/>
-        <location filename="multiimagewritethread.cpp" line="1532"/>
-        <location filename="multiimagewritethread.cpp" line="1625"/>
+        <location filename="multiimagewritethread.cpp" line="1444"/>
+        <location filename="multiimagewritethread.cpp" line="1554"/>
+        <location filename="multiimagewritethread.cpp" line="1647"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
         <translation>Konpresio-formatuaren fitxategi-luzapen ezezaguna. .lzo, .gz, .xz, .bz2 edo .zip espero zen</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1466"/>
-        <location filename="multiimagewritethread.cpp" line="1563"/>
-        <location filename="multiimagewritethread.cpp" line="1656"/>
+        <location filename="multiimagewritethread.cpp" line="1484"/>
+        <location filename="multiimagewritethread.cpp" line="1585"/>
+        <location filename="multiimagewritethread.cpp" line="1678"/>
         <source>An incorrect file checksum has been detected in %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1467"/>
-        <location filename="multiimagewritethread.cpp" line="1567"/>
-        <location filename="multiimagewritethread.cpp" line="1660"/>
+        <location filename="multiimagewritethread.cpp" line="1485"/>
+        <location filename="multiimagewritethread.cpp" line="1589"/>
+        <location filename="multiimagewritethread.cpp" line="1682"/>
         <source>Checksum error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1484"/>
+        <location filename="multiimagewritethread.cpp" line="1495"/>
+        <source>Checksum OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="multiimagewritethread.cpp" line="1498"/>
+        <source>Finished downloading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="multiimagewritethread.cpp" line="1506"/>
         <source>Error downloading or extracting tarball</source>
         <translation>Errorea tar fitxategia deskargatu edo erauztean</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1577"/>
-        <location filename="multiimagewritethread.cpp" line="1670"/>
+        <location filename="multiimagewritethread.cpp" line="1599"/>
+        <location filename="multiimagewritethread.cpp" line="1692"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>Errorea SEa SD txartelera deskargatu edo idaztean</translation>
     </message>
@@ -1533,7 +1549,8 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="46"/>
-        <source>noobsconfig</source>
+        <source>noobs&amp;config</source>
+        <oldsource>noobsconfig</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1543,500 +1560,500 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="56"/>
-        <source>reserve=</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="63"/>
-        <location filename="optionsdialog.ui" line="73"/>
-        <source>Specifies a path or URL where the noobsconfig customisation files can be found (rather than being in /os/&amp;lt;distro&amp;gt;/)</source>
+        <source>re&amp;serve=</source>
+        <oldsource>reserve=</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="66"/>
-        <source>configpath=</source>
+        <location filename="optionsdialog.ui" line="79"/>
+        <source>Specifies a path or URL where the noobsconfig customisation files can be found (rather than being in /os/&amp;lt;distro&amp;gt;/)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="80"/>
+        <location filename="optionsdialog.ui" line="86"/>
         <source>Amount of space to reserve (MB) on PINN&apos;s partition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="87"/>
+        <location filename="optionsdialog.ui" line="93"/>
         <source>Selecting this will erase all of your OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="90"/>
-        <source>runinstaller</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="97"/>
+        <location filename="optionsdialog.ui" line="103"/>
         <source>Prevents PINN from checking for self updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="100"/>
-        <source>no_update</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="107"/>
+        <location filename="optionsdialog.ui" line="113"/>
         <source>Force PINN to self-update whenever a new version is detected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="110"/>
-        <source>forceupdatepinn</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="117"/>
+        <location filename="optionsdialog.ui" line="123"/>
         <source>DO not update the firmware of old OSes on installation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="120"/>
-        <source>nofirmware</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="127"/>
+        <location filename="optionsdialog.ui" line="133"/>
         <source>Selects all OSes where the most recent one is on the SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="130"/>
-        <source>allsd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="137"/>
+        <location filename="optionsdialog.ui" line="143"/>
         <source> Selects all OSes where the most recent one is on a local USB drive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="140"/>
-        <source>allusb</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="147"/>
+        <location filename="optionsdialog.ui" line="153"/>
         <source>Selects all OSes where the most recent one is on remote repositories.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="150"/>
-        <source>allnetwork</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="157"/>
+        <location filename="optionsdialog.ui" line="163"/>
         <source>Ensures all installed OSes are selected again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="160"/>
-        <source>allinstalled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="167"/>
+        <location filename="optionsdialog.ui" line="173"/>
         <source>Waits for all OSes on the SD card to be listed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="170"/>
-        <source>waitsd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="177"/>
+        <location filename="optionsdialog.ui" line="183"/>
         <source> Waits for all OSes on local USBs to be listed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="180"/>
-        <source>waitusb</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="187"/>
+        <location filename="optionsdialog.ui" line="193"/>
         <source>Waits for all OS lists to be downloaded from the internet before checking the list of OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="190"/>
-        <source>waitnetwork</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="197"/>
+        <location filename="optionsdialog.ui" line="203"/>
         <source> Waits for OSes from all sources to be listed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="200"/>
-        <source>waitall</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="207"/>
+        <location filename="optionsdialog.ui" line="213"/>
         <source>The list of OSes that will be selected at startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="214"/>
+        <location filename="optionsdialog.ui" line="220"/>
         <source>Reserve an ADDITIONAL amount of space</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="217"/>
+        <location filename="optionsdialog.ui" line="223"/>
         <source>+</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="224"/>
+        <location filename="optionsdialog.ui" line="230"/>
         <source>Automatically reinstalls any selected OSes if newer versions exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="227"/>
-        <source>silentreinstallnewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="234"/>
+        <location filename="optionsdialog.ui" line="240"/>
         <source>Allows a single or multiple OSes to be installed automatically, useful during headless installs. </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="237"/>
-        <source>silentinstall</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="244"/>
-        <source>select=</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="254"/>
+        <location filename="optionsdialog.ui" line="263"/>
         <source>Source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="262"/>
+        <location filename="optionsdialog.ui" line="271"/>
         <source>Prevents the default RaspberryPi Foundation repository from being used.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="265"/>
-        <source>no_default_source</source>
-        <oldsource>nodefaultsource</oldsource>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="272"/>
+        <location filename="optionsdialog.ui" line="281"/>
         <source>Prevents OSes stored on local USB memory devices from being used.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="275"/>
-        <source>disableusbimages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="282"/>
+        <location filename="optionsdialog.ui" line="291"/>
         <source>Prevent OSes stored on the SD card from being used.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="285"/>
-        <source>disablesdimages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="292"/>
+        <location filename="optionsdialog.ui" line="301"/>
         <source>Shows all available installable OSes, whether they are suitable for the current model of Pi or not. Useful for preparing SD cards to be used in other RPis.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="295"/>
-        <source>showall</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="302"/>
-        <location filename="optionsdialog.ui" line="322"/>
+        <location filename="optionsdialog.ui" line="311"/>
+        <location filename="optionsdialog.ui" line="337"/>
         <source>Provides the URL of a repo_list.json file that contains a list of URLs to other os-list_v3.json files. This allows easy remote management of Internet repositories.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="305"/>
-        <source>repo_list=</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="312"/>
-        <location filename="optionsdialog.ui" line="339"/>
+        <location filename="optionsdialog.ui" line="324"/>
+        <location filename="optionsdialog.ui" line="357"/>
         <source> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
         <oldsource> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="315"/>
-        <source>repo=</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="329"/>
-        <location filename="optionsdialog.ui" line="346"/>
+        <location filename="optionsdialog.ui" line="344"/>
+        <location filename="optionsdialog.ui" line="364"/>
         <source>: Provides the URL of an additional os_list_v3.json file indicating the location of other OSes that can be downloaded from the Internet. Multiple instances of this option can be used.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="332"/>
-        <source>alt_image_source=</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="356"/>
+        <location filename="optionsdialog.ui" line="374"/>
         <source>Booting</source>
         <translation type="unfinished"></translation>
     </message>
     <message utf8="true">
-        <location filename="optionsdialog.ui" line="364"/>
-        <location filename="optionsdialog.ui" line="414"/>
+        <location filename="optionsdialog.ui" line="382"/>
+        <location filename="optionsdialog.ui" line="438"/>
         <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="367"/>
-        <source>remotetimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="374"/>
+        <location filename="optionsdialog.ui" line="395"/>
         <source>Forces the PINN interface to be entered on startup (as if the shift key had been pressed). This is very useful when using a VNC connection.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="377"/>
-        <source>forcetrigger</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="384"/>
+        <location filename="optionsdialog.ui" line="405"/>
         <source>Forces Recovery Mode to be entered on boot if GPIO pin 3 on header P1 is connected to GND (pin 25).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="387"/>
-        <source>gpiotriggerenable</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="394"/>
-        <location filename="optionsdialog.ui" line="421"/>
+        <location filename="optionsdialog.ui" line="415"/>
+        <location filename="optionsdialog.ui" line="445"/>
         <source> This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="397"/>
-        <source>networktimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="404"/>
+        <location filename="optionsdialog.ui" line="428"/>
         <source>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</source>
         <oldsource>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="407"/>
-        <source>keyboardtriggerenable</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="431"/>
+        <location filename="optionsdialog.ui" line="455"/>
         <source>Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="442"/>
+        <location filename="optionsdialog.ui" line="466"/>
         <source>Uses a VNC network connection to control PINN instead of any locally attached keyboard, mouse and display. When this is used, any local display will remain blank.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="optionsdialog.ui" line="445"/>
-        <source>vncinstall</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message utf8="true">
-        <location filename="optionsdialog.ui" line="452"/>
+        <location filename="optionsdialog.ui" line="476"/>
         <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="455"/>
-        <source>vncshare</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="462"/>
+        <location filename="optionsdialog.ui" line="486"/>
         <source>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="465"/>
-        <source>ssh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="472"/>
+        <location filename="optionsdialog.ui" line="496"/>
         <source>This option causes a local command shell to be opened when PINN is booted. When the shell is exited, PINN will then be booted as normal.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="475"/>
-        <source>rescueshell</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="482"/>
+        <location filename="optionsdialog.ui" line="506"/>
         <source>Prevents safemode being entered if you have external hardware that pulls pin 5 low.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="485"/>
-        <source>disablesafemode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="492"/>
+        <location filename="optionsdialog.ui" line="516"/>
         <source>A special boot feature to swap the priority of the DSI and HDMI video outputs, allowing an OS to give priority to a HDMI screen if attached.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="495"/>
-        <source>dsi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="502"/>
+        <location filename="optionsdialog.ui" line="526"/>
         <source>Prevents the list of OSes from being grouped into categories.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="505"/>
-        <source>no_group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="512"/>
+        <location filename="optionsdialog.ui" line="536"/>
         <source>Prevents the cursor from being shown on the boot selection dialog (requested for touchscreen devices)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="515"/>
-        <source>no_cursor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="522"/>
+        <location filename="optionsdialog.ui" line="546"/>
         <source>Causes a customised wallpaper.jpg or wallpaper.png file to be resized to fill the entire desktop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="525"/>
-        <source>wallpaper_resize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="532"/>
-        <location filename="optionsdialog.ui" line="572"/>
+        <location filename="optionsdialog.ui" line="556"/>
+        <location filename="optionsdialog.ui" line="608"/>
         <source>Sets one of 4 simple display modes: 0=HDMI preferred, 1=HDMI safe, 2= PAL 4:3, 3=NTSC  4:3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="535"/>
-        <source>display=</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="542"/>
-        <location filename="optionsdialog.ui" line="604"/>
+        <location filename="optionsdialog.ui" line="569"/>
+        <location filename="optionsdialog.ui" line="640"/>
         <source>Changes the style of the windows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="545"/>
-        <source>style=</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="552"/>
-        <location filename="optionsdialog.ui" line="631"/>
+        <location filename="optionsdialog.ui" line="582"/>
+        <location filename="optionsdialog.ui" line="667"/>
         <source>Changes the default timeout allowed before an OS is booted without any selection. </source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="optionsdialog.ui" line="555"/>
-        <source>bootmenutimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message utf8="true">
-        <location filename="optionsdialog.ui" line="562"/>
-        <location filename="optionsdialog.ui" line="638"/>
+        <location filename="optionsdialog.ui" line="595"/>
+        <location filename="optionsdialog.ui" line="674"/>
         <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="565"/>
-        <source>background=&lt;r,g,b&gt;</source>
+        <location filename="optionsdialog.ui" line="69"/>
+        <source>&amp;configpath=</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="576"/>
-        <location filename="optionsdialog.ui" line="608"/>
+        <location filename="optionsdialog.ui" line="96"/>
+        <source>&amp;runinstaller</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="106"/>
+        <source>no_&amp;update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="116"/>
+        <source>&amp;forceupdatepinn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="126"/>
+        <source>nofirm&amp;ware</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="136"/>
+        <source>&amp;allsd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="146"/>
+        <source>all&amp;usb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="156"/>
+        <source>all&amp;network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="166"/>
+        <source>all&amp;installed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="176"/>
+        <source>&amp;waitsd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="186"/>
+        <source>waitus&amp;b</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="196"/>
+        <source>waitnetwor&amp;k</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="206"/>
+        <source>waita&amp;ll</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="233"/>
+        <source>sil&amp;entreinstallnewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="243"/>
+        <source>&amp;silentinstall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="250"/>
+        <source>selec&amp;t=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="274"/>
+        <source>no_&amp;default_source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="284"/>
+        <source>disable&amp;usbimages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="294"/>
+        <source>disable&amp;sdimages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="304"/>
+        <source>&amp;showall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="314"/>
+        <source>repo_&amp;list=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="327"/>
+        <source>&amp;repo=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="347"/>
+        <source>alt_&amp;image_source=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="385"/>
+        <source>&amp;remotetimeout=&lt;secs&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="398"/>
+        <source>&amp;forcetrigger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="408"/>
+        <source>&amp;gpiotriggerenable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="418"/>
+        <source>&amp;networktimeout=&lt;secs&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="431"/>
+        <source>&amp;keyboardtriggerenable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="469"/>
+        <source>v&amp;ncinstall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="479"/>
+        <source>&amp;vncshare</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="489"/>
+        <source>&amp;ssh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="499"/>
+        <source>&amp;rescueshell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="509"/>
+        <source>disablesafe&amp;mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="519"/>
+        <source>&amp;dsi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="529"/>
+        <source>no_&amp;group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="539"/>
+        <source>no_&amp;cursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="549"/>
+        <source>&amp;wallpaper_resize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="559"/>
+        <source>dis&amp;play=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="572"/>
+        <source>s&amp;tyle=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="585"/>
+        <source>b&amp;ootmenutimeout=&lt;secs&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="598"/>
+        <source>&amp;background=&lt;r,g,b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="optionsdialog.ui" line="612"/>
+        <location filename="optionsdialog.ui" line="644"/>
         <source>none</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="581"/>
+        <location filename="optionsdialog.ui" line="617"/>
         <source>0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="586"/>
+        <location filename="optionsdialog.ui" line="622"/>
         <source>1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="591"/>
+        <location filename="optionsdialog.ui" line="627"/>
         <source>2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="596"/>
+        <location filename="optionsdialog.ui" line="632"/>
         <source>3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="613"/>
+        <location filename="optionsdialog.ui" line="649"/>
         <source>windows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="618"/>
+        <location filename="optionsdialog.ui" line="654"/>
         <source>motif</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="623"/>
+        <location filename="optionsdialog.ui" line="659"/>
         <source>platinum</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2178,22 +2195,22 @@ Are you sure?</source>
 <context>
     <name>ProgressSlideshowDialog</name>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="218"/>
+        <location filename="progressslideshowdialog.cpp" line="245"/>
         <source>%1 MB of %2 MB read (%3 MB/sec) Remaining: %4:%5:%6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="220"/>
+        <location filename="progressslideshowdialog.cpp" line="247"/>
         <source>%1 MB of %2 MB written (%3 MB/sec) Remaining: %4:%5:%6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="247"/>
+        <location filename="progressslideshowdialog.cpp" line="278"/>
         <source>%1 MB read (%2 MB/sec)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="progressslideshowdialog.cpp" line="249"/>
+        <location filename="progressslideshowdialog.cpp" line="280"/>
         <source>%1 MB written (%2 MB/sec)</source>
         <translation>%1 MB idatzita (%2 MB/s)</translation>
     </message>
@@ -2322,37 +2339,37 @@ Are you sure?</source>
         <translation>Wifi interfazerik ez erabilgarri</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="227"/>
+        <location filename="wifisettingsdialog.cpp" line="228"/>
         <source>Authenticated but still waiting for DHCP lease</source>
         <translation>Autentifikatuta baina DHCP lortzeko zain</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="234"/>
+        <location filename="wifisettingsdialog.cpp" line="235"/>
         <source>Connecting to wifi failed</source>
         <translation>Wifi-ra konektatzeak huts egin du</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="234"/>
+        <location filename="wifisettingsdialog.cpp" line="235"/>
         <source>Connecting to the wifi access point failed. Check your password</source>
         <translation>Wifi sarbide-puntura konektatzeak huts egin du. Egiaztatu zure pasahitza</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="269"/>
+        <location filename="wifisettingsdialog.cpp" line="270"/>
         <source>Cancel</source>
         <translation>Utzi</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="275"/>
+        <location filename="wifisettingsdialog.cpp" line="276"/>
         <source>Releasing old DHCP lease</source>
         <translation>DHCP zaharra uzten</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="290"/>
+        <location filename="wifisettingsdialog.cpp" line="291"/>
         <source>Disconnecting</source>
         <translation>Deskonektatzen</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="295"/>
+        <location filename="wifisettingsdialog.cpp" line="296"/>
         <source>Connecting</source>
         <translation>Konektatzen</translation>
     </message>

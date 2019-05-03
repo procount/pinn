@@ -127,11 +127,13 @@ void MultiImageWriteThread::run()
                 numparts++;
                 if ( partition->wantMaximised() )
                     numexpandparts++;
-                totalnominalsize += partition->partitionSizeNominal();
+                uint nominalsize = partition->partitionSizeNominal();
+                totalnominalsize += nominalsize;
                 totaluncompressedsize += partition->uncompressedTarballSize();
+
                 if (partition->fsType() == "ext4")
                 {
-                    totaluncompressedsize += /*0.035*/ 0.01 * totalnominalsize; /* overhead for file system meta data */
+                    totaluncompressedsize += nominalsize / 20 ; /* overhead for file system meta data */
                 }
                 int reqPart = partition->requiresPartitionNumber();
                 if (reqPart)
@@ -363,8 +365,14 @@ void MultiImageWriteThread::run()
             QList<PartitionInfo *> *partitions = image->partitions();
             foreach (PartitionInfo *partition, *partitions)
             {
-                uint compressedSize = partition->uncompressedTarballSize(); //in MB
-                totaluncompressedsize += compressedSize;
+                uint uncompressedSize = partition->uncompressedTarballSize(); //in MB
+                uint nominalsize = partition->partitionSizeNominal();
+
+                totaluncompressedsize += partition->uncompressedTarballSize();
+                if (partition->fsType() == "ext4")
+                {
+                    totaluncompressedsize += nominalsize / 20 ; /* overhead for file system meta data */
+                }
 
                 if (partition->partitionDevice().contains("PARTUUID"))
                 {
@@ -373,9 +381,9 @@ void MultiImageWriteThread::run()
                 }
 
                 uint partitionSectors = getFileContents(sysclassblock(partition->partitionDevice())+"/size").trimmed().toUInt();
-                if (compressedSize*2048 > partitionSectors)
+                if (uncompressedSize*2048 > partitionSectors)
                 {
-                    qDebug () << "CompressedSize=" <<compressedSize*2048<<". partitionSectors=" <<partitionSectors;
+                    qDebug () << "UncompressedSize=" <<uncompressedSize*2048<<". partitionSectors=" <<partitionSectors;
                     emit error(tr("Cannot Reinstall/Replace ")+image->name()+tr(".\nPartition not big enough for new image."));
                     return;
                 }
@@ -699,7 +707,6 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
         }
 
         QByteArray partdevice = p->partitionDevice();
-        emit newDrive(partdevice);
 
         if ( (!_partition) && ( (_downloadMode == MODE_REINSTALL) || (_downloadMode == MODE_REINSTALLNEWER))) //@@ (not for replace)
         {   //Use the existing partition label
@@ -718,31 +725,33 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
         }
 
         QMessageBox::ButtonRole result = QMessageBox::AcceptRole;
-        uint paused=0;
         _checksumError++;
         do
         {
             _checksumError--;
-            emit resume( paused );  //1st time through this does nothing, 2nd time restores what was captured
-            emit pause( &paused );  //Capture the current ioaccounting
 
             if (fstype == "raw")
             {
                 emit statusUpdate(tr("%1: Writing OS image").arg(os_name));
+                emit newDrive(partdevice,ePM_WRITESTATS);
+                emit startAccounting();
                 result = dd(tarball, csumType, csum, partdevice);
             }
             else if (fstype.startsWith("partclone"))
             {
                 emit statusUpdate(tr("%1: Writing OS image").arg(os_name));
+                emit newDrive(partdevice,ePM_WRITESTATS);
+                emit startAccounting();
                 result = partclone_restore(tarball, csumType, csum, partdevice);
             }
             else if (fstype != "unformatted")
             {
-                emit runningMKFS();
                 emit statusUpdate(tr("%1: Creating filesystem (%2)").arg(os_name, QString(fstype)));
+
+                emit idle();
                 if (!mkfs(partdevice, fstype, label, mkfsopt))
                     return QMessageBox::RejectRole;
-                emit finishedMKFS();
+                emit cont();
 
                 if (!emptyfs)
                 {
@@ -758,12 +767,21 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
                     else
                         emit statusUpdate(tr("%1: Extracting filesystem").arg(os_name));
 
+                    emit newDrive(partdevice,ePM_WRITEDF);
+                    emit startAccounting();
                     result = untar(tarball,csumType, csum);
 
+                    emit statusUpdate(tr("Syncing Filesystem"));
+                    emit idle();
                     QProcess::execute("umount /mnt2");
+                    emit cont();
                 }
             }
+            emit stopAccounting();
+
         } while (result == QMessageBox::NoRole); //retry
+
+        emit consolidate();
 
         if (result != QMessageBox::AcceptRole)
             return result;
@@ -1413,8 +1431,8 @@ QMessageBox::ButtonRole  MultiImageWriteThread::untar(const QString &tarball, co
     }
     else if (tarballPath.endsWith(".zip"))
     {
-        /* Note: the image must be the only file inside the .zip */
-        cmd += " | unzip -p";
+        /* Note: the image must be the only file inside the .zip. {This does not make sense for a tarball!} */
+        cmd += " "; /* Actually, if we just use bsdtar to unzip it, we may be able to unzip multiple files */
     }
     else if (tarballPath.endsWith(".tar"))
     {
@@ -1473,7 +1491,11 @@ QMessageBox::ButtonRole  MultiImageWriteThread::untar(const QString &tarball, co
                 if (answer != QMessageBox::AcceptRole)
                     return(answer);
             }
+            else
+                emit statusUpdate(tr("Checksum OK"));
         }
+        else
+            emit statusUpdate(tr("Finished downloading"));
     }
 
     if (p.exitCode() != 0)

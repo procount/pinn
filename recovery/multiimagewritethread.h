@@ -1,6 +1,8 @@
 #ifndef MULTIIMAGEWRITETHREAD_H
 #define MULTIIMAGEWRITETHREAD_H
 #include "config.h"
+#include "progressslideshowdialog.h"
+
 #include <QThread>
 #include <QStringList>
 #include <QMultiMap>
@@ -65,11 +67,13 @@ signals:
     void statusUpdate(const QString &msg);
     void parsedImagesize(qint64 size);
     void completed(int arg);
-    void runningMKFS();
-    void finishedMKFS();
-    void newDrive(const QString&);
-    void pause(uint *paused);
-    void resume(uint paused);
+    void newDrive(const QString&, eProgressMode);
+    void startAccounting();
+    void stopAccounting();
+    void consolidate();
+    void finish();
+    void idle();
+    void cont();
 
 public slots:
 };
