@@ -1,6 +1,11 @@
 #include "progressslideshowdialog.h"
 #include "ui_progressslideshowdialog.h"
 #include "util.h"
+#define DBG_LOCAL 1
+#define LOCAL_DO_DBG 0
+#define LOCAL_DBG_FUNC 0
+#define LOCAL_DBG_OUT 0
+#define LOCAL_DBG_MSG 0
 #include "mydebug.h"
 
 #include <QDir>
@@ -13,22 +18,25 @@
 /* Progress dialog with slideshow
  *
  * Initial author: Floris Bos
- * Maintained by Raspberry Pi
+ * Maintained by ProCount
  *
  * See LICENSE.txt for license details
  *
  */
 
-ProgressSlideshowDialog::ProgressSlideshowDialog(const QStringList &slidesDirectories, const QString &statusMsg, int changeInterval, const QString &drive, QWidget *parent, bool readmode) :
+//@@ Constructor with parameters & initiliasers
+ProgressSlideshowDialog::ProgressSlideshowDialog(const QStringList &slidesDirectories, const QString &statusMsg, int changeInterval, QWidget *parent) :
     QDialog(parent),
-    _drive(drive),
+    _drive(""),
     _pos(0),
     _changeInterval(changeInterval),
     _maxSectors(0),
     _pausedAt(0),
-    _readmode(readmode),
+    _totalSize(0),
+    _accountMode(ePM_NONE),
     ui(new Ui::ProgressSlideshowDialog)
 {
+    TRACE
     ui->setupUi(this);
     setLabelText(statusMsg);
 
@@ -89,33 +97,54 @@ ProgressSlideshowDialog::ProgressSlideshowDialog(const QStringList &slidesDirect
         _timer.start(changeInterval * 1000);
     }
     connect(&_iotimer, SIGNAL(timeout()), this, SLOT(updateIOstats()));
-    enableIOaccounting();
+
+    //enableIOaccounting();
+    _t1.start();
+    QProcess::execute("rm /tmp/progress");
 }
 
+//@@ ok
 ProgressSlideshowDialog::~ProgressSlideshowDialog()
 {
+    TRACE
+    _iotimer.stop();
+    finish();
     delete ui;
 }
 
+//@@ ok
 void ProgressSlideshowDialog::setLabelText(const QString &text)
 {
+    TRACE
     QString txt = text;
     txt.replace('\n',' ');
     ui->statusLabel->setText(txt);
     //qDebug() << text;
 }
 
+//@@ ok
 void ProgressSlideshowDialog::setMBWrittenText(const QString &text)
 {
+    TRACE
     QString txt = text;
     txt.replace('\n',' ');
     ui->mbwrittenLabel->setText(txt);
     //qDebug() << text;
 }
 
+//@@ Manually set progress bar
+void ProgressSlideshowDialog::updateProgress(qint64 value)
+{
+    TRACE
+    int fraction = (int)(value>>9);
+    ui->progressBar->setValue(fraction);
+    //qDebug() << "updateProgress " << fraction;
+}
 
+//@@ ok
 void ProgressSlideshowDialog::nextSlide()
 {
+    TRACE
     if (++_pos >= _slides.size())
         _pos = 0;
 
@@ -126,66 +155,10 @@ void ProgressSlideshowDialog::nextSlide()
 
 /* IO accounting functionality for analyzing SD card write speed / showing progress */
 
-void ProgressSlideshowDialog::enableIOaccounting()
-{
-    _sectorsStart = sectorsAccessed();
-    _t1.start();
-    _iotimer.start(1000);
-    QProcess::execute("rm /tmp/progress");
-}
-
-void ProgressSlideshowDialog::disableIOaccounting()
-{
-    _iotimer.stop();
-    ui->mbwrittenLabel->setText("");
-}
-
-void ProgressSlideshowDialog::captureIOaccounting(uint *paused)
-{
-    TRACE
-    if (paused)
-    {
-        *paused = sectorsAccessed()-_sectorsStart;
-    }
-    DBG (QString::number(*paused));
-}
-
-void ProgressSlideshowDialog::restoreIOaccounting(uint paused)
-{
-    TRACE
-    DBG (QString::number(paused));
-    _iotimer.stop();
-    if (paused)
-    {
-        _sectorsStart = sectorsAccessed()-paused;
-        updateIOstats();
-    }
-    _iotimer.start(1000);
-}
-
-void ProgressSlideshowDialog::pauseIOaccounting()
-{
-    _iotimer.stop();
-    _pausedAt = sectorsAccessed();
-
-}
-
-void ProgressSlideshowDialog::resumeIOaccounting()
-{
-    _sectorsStart += sectorsAccessed()-_pausedAt;
-    _iotimer.start(1000);
-}
-
-void ProgressSlideshowDialog::changeDrive(const QString &drive)
-{
-    pauseIOaccounting();
-    _drive = drive;
-    resumeIOaccounting();
-}
-
-
+//@@ Setup total size
 void ProgressSlideshowDialog::setMaximum(qint64 bytes)
 {
+    TRACE
     /* restrict to size of 1TB since the progressbar expects an int32 */
     /* to prevent overflow */
     if (bytes > 1099511627775LL) /* == 2147483648 * 512 -1*/
@@ -194,10 +167,64 @@ void ProgressSlideshowDialog::setMaximum(qint64 bytes)
     ui->progressBar->setMaximum(_maxSectors);
 }
 
+//@@ Setup parameters for accounting for this partition
+void ProgressSlideshowDialog::setDriveMode(const QString &drive, eProgressMode mode)
+{
+    TRACE
+    _drive = drive;
+    _accountMode = mode;
+}
+
+//@@ Start accounting
+void ProgressSlideshowDialog::startAccounting()
+{
+    TRACE
+    _sectorsStart = sectorsAccessed();
+    _iotimer.start(1000);
+}
+
+//@@ Stop accounting
+void ProgressSlideshowDialog::stopAccounting()
+{
+    TRACE
+    _iotimer.stop();
+}
+
+void ProgressSlideshowDialog::idle()
+{
+    TRACE
+    ui->progressBar->setMaximum(0);
+}
+
+void ProgressSlideshowDialog::cont()
+{
+    TRACE
+    ui->progressBar->setMaximum(_maxSectors);
+}
+
+//@@ Consolidate
+void ProgressSlideshowDialog::consolidate()
+{
+    TRACE
+    _totalSize += sectorsAccessed()-_sectorsStart;
+    _sectorsStart = sectorsAccessed();
+}
+
+
+void ProgressSlideshowDialog::finish()
+{
+    TRACE
+    //Force progress bar and /tmp/progress to display 100%
+    _totalSize = _maxSectors;
+    updateIOstats();
+}
+
+//@@ Update stats
 void ProgressSlideshowDialog::updateIOstats()
 {
+    TRACE
     static int last_percent=-1;
-    uint sectors = sectorsAccessed()-_sectorsStart;
+    uint sectors = _totalSize + sectorsAccessed()-_sectorsStart;
 
     double sectorsPerSec = sectors * 1000.0 / _t1.elapsed();
     if (_maxSectors)
@@ -214,7 +241,7 @@ void ProgressSlideshowDialog::updateIOstats()
         uint hrs = remaining ;
 
         QString mode;
-        if (_readmode)
+        if (_accountMode==ePM_READSTATS)
             mode=tr("%1 MB of %2 MB read (%3 MB/sec) Remaining: %4:%5:%6");
         else
             mode=tr("%1 MB of %2 MB written (%3 MB/sec) Remaining: %4:%5:%6");
@@ -227,7 +254,11 @@ void ProgressSlideshowDialog::updateIOstats()
             .arg(mins,2,10,QLatin1Char( '0' ))
             .arg(secs,2,10,QLatin1Char( '0' )));
 
-        int percent = (100*sectors)/_maxSectors;
+        int percent;
+        if (_maxSectors>0)
+                percent = (100*sectors)/_maxSectors;
+        else
+                percent = last_percent;
         if (last_percent != percent)
         {
             last_percent=percent;
@@ -243,7 +274,7 @@ void ProgressSlideshowDialog::updateIOstats()
     else
     {
         QString mode;
-        if (_readmode)
+        if (_accountMode==ePM_READSTATS)
             mode=tr("%1 MB read (%2 MB/sec)");
         else
             mode=tr("%1 MB written (%2 MB/sec)");
@@ -265,15 +296,10 @@ void ProgressSlideshowDialog::updateIOstats()
     }
 }
 
-void ProgressSlideshowDialog::updateProgress(qint64 value)
-{
-    int fraction = (int)(value>>9);
-    ui->progressBar->setValue(fraction);
-    //qDebug() << "updateProgress " << fraction;
-}
-
+//@@ Get current progress
 uint ProgressSlideshowDialog::sectorsAccessed()
 {
+    TRACE
     /* Poll kernel counters to get number of bytes written
      *
      * Fields available in /sys/block/<DEVICE>/stat
@@ -294,21 +320,32 @@ uint ProgressSlideshowDialog::sectorsAccessed()
      * time_in_queue   milliseconds  total wait time for all requests
      */
 
-    int field=6;
-    if (_readmode)
-        field=2;
+    static uint numsectors=0;
 
-    uint numsectors=0;
+    if (_accountMode==ePM_WRITEDF)
+    {
+        int errorcode;
+        QString cmd = "sh -c \"df -k | grep "+_drive+" | sed -e 's/ \\+/ /g' | cut -d ' ' -f 3\"";
+        QString result =readexec(false, cmd, errorcode);
+        if (!result.isEmpty())
+            numsectors = 2* result.toUInt();
+    }
+    else if (_accountMode!=ePM_NONE)
+    {
+        int field=6;
+        if (_accountMode==ePM_READSTATS)
+            field=2;
 
-    QFile f(sysclassblock(_drive)+"/stat");
-    f.open(f.ReadOnly);
-    QByteArray ioline = f.readAll().simplified();
-    f.close();
+        QFile f(sysclassblock(_drive)+"/stat");
+        f.open(f.ReadOnly);
+        QByteArray ioline = f.readAll().simplified();
+        f.close();
 
-    QList<QByteArray> stats = ioline.split(' ');
+        QList<QByteArray> stats = ioline.split(' ');
 
-    if (stats.count() >= field)
-        numsectors = stats.at(field).toUInt(); /* Read or write sectors */
+        if (stats.count() >= field)
+            numsectors = stats.at(field).toUInt(); /* Read or write sectors */
+    }
 
     if (numsectors > 2147483647)        //Maybe use MAX_INT from limits.h?
        numsectors = 2147483647;

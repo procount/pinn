@@ -5,13 +5,13 @@
 
 //Conditional GLOBAL flags
 #define DO_DBG 0	//global debug enabler
-#define DBG_FUNC 0	//Debug entry/exit of functions
-#define DBG_OUT 0	//Debug  output strings
-#define DBG_MSG 0   //Debug message boxes
+#define DBG_FUNC 0	//global Debug entry/exit of functions
+#define DBG_OUT 0	//global Debug  output strings
+#define DBG_MSG 0   //global Debug message boxes
 
 
-#ifndef LOCAL_DO_DBG
-#define LOCAL_DO_DBG DO_DBG
+#ifndef LOCAL_DO_DBG        //If the local debug does not exist
+#define LOCAL_DO_DBG DO_DBG //Use the global version
 #endif
 
 #ifndef LOCAL_DBG_FUNC
@@ -27,12 +27,12 @@
 #endif
 
 
-#if DO_DBG && DBG_LOCAL
+#if DO_DBG && DBG_LOCAL                 //Use local debug where it is given
   #define FILE_DO_DBG   LOCAL_DO_DBG
   #define FILE_DBG_FUNC LOCAL_DBG_FUNC
   #define FILE_DBG_OUT  LOCAL_DBG_OUT
   #define FILE_DBG_MSG  LOCAL_DBG_MSG
-#else
+#else                                   //Else use the global file
   #define FILE_DO_DBG   DO_DBG
   #define FILE_DBG_FUNC DBG_FUNC
   #define FILE_DBG_OUT  DBG_OUT
@@ -41,42 +41,53 @@
 
 
 #if FILE_DO_DBG
-  //macros when debugging is on
-  #define MYDEBUG MyDebug dbg(__PRETTY_FUNCTION__);
 
-  #if FILE_DBG_OUT
-    #define DBG(x) dbg.outstring(x);
-  #else
-    #define DBG(x)
-  #endif
+ #define MYDEBUG MyDebug dbg(__PRETTY_FUNCTION__, FILE_DBG_FUNC)
+ #define TRACE MYDEBUG;
+ #define PARAMS qDebug() << dbg.header() << (const char *)"Params:"
+ #define INDENT(n) dbg._local_level+=n
+ #define OUTDENT(n) dbg._local_level-=n
 
-  #if FILE_DBG_MSG
-    #define MSG() QMessageBox::warning(NULL, QString(__FILE__),QString(__PRETTY_FUNCTION__)+":#"+QString::number(__LINE__), QMessageBox::Close)
-  #else
-    #define MSG()
-  #endif
+ #if FILE_DBG_OUT
+  #define DBG2 qDebug() << dbg.header() <<""
+  #define DBG(x) DBG2 << x
+ #else
+  #define DBG2
+  #define DBG
+ #endif
+
+ #if FILE_DBG_MSG
+  #define MSG() QMessageBox::warning(NULL, QString(__FILE__),QString(__PRETTY_FUNCTION__)+":#"+QString::number(__LINE__), QMessageBox::Close)
+ #else
+  #define MSG()
+ #endif
 
 #else
-//macros when debugging is off
-  #define DBG(x)
-  #define MYDEBUG
-  #define MSG()
-#endif
 
-#define TRACEFN MYDEBUG
-#define TRACE TRACEFN
+ #define MYDEBUG
+ #define TRACE
+ #define DBG2
+ #define PARAMS
+ #define INDENT(n)
+ #define OUTDENT(n)
+ #define DBG(x)
+ #define MSG(x)
+
+#endif
 
 class MyDebug
 {
 public:
-
-    explicit MyDebug(const char * func);
+    MyDebug(const char * funcname, int display=0);
     ~MyDebug();
-    void outstring(QString out);
+    int _local_level;
 
+    const char * header();
 private:
-    QString name;
-    static int level;
+    QString _name;
+    static int _level;
+    int _display;
 };
+
 
 #endif // MYDEBUG_H

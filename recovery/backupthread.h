@@ -1,6 +1,8 @@
 #ifndef BackupThread_H
 #define BackupThread_H
 
+#include "progressslideshowdialog.h"
+
 #include <QThread>
 #include <QStringList>
 #include <QVariantMap>
@@ -30,9 +32,10 @@ signals:
     void statusUpdate(const QString &msg);
     void parsedImagesize(qint64 size);
     void completed(int errors);
-    void runningMKFS();
-    void finishedMKFS();
-    void newDrive(const QString&);
+    void startAccounting();
+    void stopAccounting();
+    void consolidate();
+    void newDrive(const QString&, eProgressMode mode);
     void newImage(const QString Imagefile);
 
 public slots:

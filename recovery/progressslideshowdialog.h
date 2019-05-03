@@ -18,37 +18,45 @@ namespace Ui {
 class ProgressSlideshowDialog;
 }
 
+typedef enum progressmode_tag
+{
+    ePM_NONE=0,
+    ePM_WRITESTATS,
+    ePM_WRITEDF,
+    ePM_READSTATS
+} eProgressMode;
+
 class ProgressSlideshowDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit ProgressSlideshowDialog(const QStringList &slidesDirectories, const QString &statusMsg = "", int changeInterval = 20, const QString &drive = "/dev/mmcblk0", QWidget *parent = 0, bool readmode=false);
+    explicit ProgressSlideshowDialog(const QStringList &slidesDirectories, const QString &statusMsg = "", int changeInterval = 20, QWidget *parent = 0);
     ~ProgressSlideshowDialog();
-    void enableIOaccounting();
-    void disableIOaccounting();
 
 public slots:
     void setLabelText(const QString &text);
     void setMBWrittenText(const QString &text);
-    void setMaximum(qint64 bytes);
-    void nextSlide();
-    void updateIOstats();
-    void pauseIOaccounting();
-    void resumeIOaccounting();
-    void captureIOaccounting(uint *paused=NULL);
-    void restoreIOaccounting(uint paused=0);
     void updateProgress(qint64 value);
-    void changeDrive(const QString &drive);
+    void nextSlide();
+    void setMaximum(qint64 bytes);
+    void setDriveMode(const QString &drive, eProgressMode mode);
+    void startAccounting();
+    void stopAccounting();
+    void idle();
+    void cont();
+    void consolidate();
+    void finish();
+    void updateIOstats();
 
 protected:
     QString _drive;
     QStringList _slides;
     int _pos, _changeInterval;
-    uint _sectorsStart, _maxSectors, _pausedAt;
+    uint _sectorsStart, _maxSectors, _pausedAt, _totalSize;
     QTimer _timer, _iotimer;
     QTime _t1;
-    bool _readmode;
+    eProgressMode _accountMode;
 
     uint sectorsAccessed();
 

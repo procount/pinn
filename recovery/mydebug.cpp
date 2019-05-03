@@ -1,47 +1,31 @@
 #include "mydebug.h"
 #include <QString>
 
-extern QString readexec(int log, const QString &cmd, int &errorcode);
+int MyDebug::_level = 0;
 
-int MyDebug::level = 0;
-
-MyDebug::MyDebug(const char * func) :
-    name(func)
+MyDebug::MyDebug(const char * funcname, int display) :
+    _local_level(0), _name(funcname), _display(display)
 {
 #if DBG_FUNC
-    QString output;
-    //int errorcode;
-    for (int i=0; i< level ; i++)
-        output += " ";
-    output += ">";
-    output += name;
-    qDebug() << output;
+    if (_display)
+        qDebug() << this->header() << ">" << _name;
 #endif
-    level++;
+    _level++;
+    _local_level++;
 }
 
 MyDebug::~MyDebug()
 {
-    level--;
+    _level--;
+    _local_level=0;
 #if DBG_FUNC
-    QString output;
-    for (int i=0; i< level ; i++)
-        output += " ";
-    output += "<";
-    output += name;
-    qDebug() << output;
+    if (_display)
+        qDebug() << this->header() << "<" << _name;
 #endif
 }
 
-void MyDebug::outstring(QString out)
+const char * MyDebug::header()
 {
-#if DBG_OUT
-    QString output;
-    for (int i=0; i< level ; i++)
-        output += " ";
-    output += out;
-    qDebug() << output.toUtf8().constData();
-#else
-    Q_UNUSED(out);
-#endif
+    QString out(" ");
+    return out.repeated(_level+1+_local_level).toLatin1().data();
 }

@@ -191,6 +191,7 @@ int main(int argc, char *argv[])
     qDebug() << "Board revision is " << rev;
 
     int gpioChannel;
+    int gpioChannelValue = 0;
 
     if (rev == 2 || rev == 3)
         gpioChannel = 0;
@@ -214,6 +215,7 @@ int main(int argc, char *argv[])
     bool noobsconfig = true;
     bool use_default_source = true;
     bool wallpaper_resize = false;
+    bool gpio_trigger = false;
 
     QString defaultLang = "en";
     QString defaultKeyboard = "gb";
@@ -230,7 +232,7 @@ int main(int argc, char *argv[])
             wallpaper_resize = true;
         // Enables use of GPIO 3 to force NOOBS to launch by pulling low
         else if (strcmp(argv[i], "-gpiotriggerenable") == 0)
-            gpio = new GpioInput(gpioChannel);
+            gpio_trigger=true;
         // Disables use of keyboard to trigger recovery GUI
         else if (strcmp(argv[i], "-keyboardtriggerdisable") == 0)
             keyboard_trigger = false;
@@ -295,7 +297,23 @@ int main(int argc, char *argv[])
                   repoList = argv[i+1];
             }
         }
+        // Allow gpio channel to be specified in commandline
+        else if (strcmp(argv[i], "-gpiochannel") == 0)
+        {
+          if (argc > i+1)
+              gpioChannel = atoi(argv[i+1]);
+        }
+        // Allow gpio channel value i.e pull up or pull down to be specified in commandline
+        else if (strcmp(argv[i], "-gpiochannelvalue") == 0)
+        {
+          if (argc > i+1)
+              gpioChannelValue = atoi(argv[i+1]);
+        }
     }
+
+    if (gpio_trigger)
+        gpio = new GpioInput(gpioChannel);
+
 
     //==========================
     // Wait for drive device to show up
@@ -469,7 +487,7 @@ int main(int argc, char *argv[])
     // or no OS is installed (/settings/installed_os.json does not exist)
     bool bailout = !runinstaller
         && !force_trigger
-        && !(gpio && (gpio->value() == 0 ))
+        && !(gpio && (gpio->value() == gpioChannelValue ))
         && hasInstalledOS(drive);
 
     if (bailout && keyboard_trigger)
