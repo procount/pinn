@@ -1833,11 +1833,12 @@ Possono essere usate istanze multiple di questa opzione.</translation>
         <source>Booting</source>
         <translation>Booting</translation>
     </message>
-    <message>
+    <message utf8="true">
         <location filename="optionsdialog.ui" line="364"/>
         <location filename="optionsdialog.ui" line="414"/>
-        <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
-        <translation>Quando viene usato insieme a forcetrigger, imposta un periodo di timeout massimo in secondi per la visualizzazione del menu di ripristino prima di continuare con la finestra di dialogo di selezione di avvio e di selezionare potenzialmente un SO predefinito per l&apos;avvio.</translation>
+        <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
+        <oldsource> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
+        <translation type="unfinished">Quando viene usato insieme a forcetrigger, imposta un periodo di timeout massimo in secondi per la visualizzazione del menu di ripristino prima di continuare con la finestra di dialogo di selezione di avvio e di selezionare potenzialmente un SO predefinito per l&apos;avvio.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="367"/>
@@ -1903,10 +1904,11 @@ Quando viene usata, qualsiasi display locale rimarrà vuoto.</translation>
         <source>vncinstall</source>
         <translation>vncinstall</translation>
     </message>
-    <message>
+    <message utf8="true">
         <location filename="optionsdialog.ui" line="452"/>
-        <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
-        <translation>Usa una connessione di rete VNC per controllare PINN. 
+        <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
+        <oldsource>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</oldsource>
+        <translation type="unfinished">Usa una connessione di rete VNC per controllare PINN. 
 Tuttavia, a differenza di vncinstall, qualsiasi tastiera e mouse collegati localmente saranno ancora attivi e il display sarà duplicato sullo schermo locale e nella connessione VNC.</translation>
     </message>
     <message>
@@ -2019,11 +2021,12 @@ Quando la shell viene chiusa, PINN verrà avviato normalmente.</translation>
         <source>bootmenutimeout=&lt;secs&gt;</source>
         <translation>bootmenutimeout=&lt;sec&gt;</translation>
     </message>
-    <message>
+    <message utf8="true">
         <location filename="optionsdialog.ui" line="562"/>
         <location filename="optionsdialog.ui" line="638"/>
-        <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
-        <translation>Per modificare il colore di sfondo per lo schermo e la maggior parte delle finestre, aggiungi background=r,g,b, dove 0,0,0 è il nero e 255,255,255 è il bianco. 
+        <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
+        <oldsource>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</oldsource>
+        <translation type="unfinished">Per modificare il colore di sfondo per lo schermo e la maggior parte delle finestre, aggiungi background=r,g,b, dove 0,0,0 è il nero e 255,255,255 è il bianco. 
 Ti suggeriamo di usare valori superiori a 127.</translation>
     </message>
     <message>

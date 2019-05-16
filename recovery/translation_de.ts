@@ -1784,10 +1784,11 @@ Partition not big enough for new image.</source>
         <source>repo_list=</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="312"/>
         <location filename="optionsdialog.ui" line="339"/>
-        <source> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
+        <source> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
+        <oldsource> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1853,9 +1854,10 @@ Partition not big enough for new image.</source>
         <source>networktimeout=&lt;secs&gt;</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="404"/>
-        <source>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</source>
+        <source>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</source>
+        <oldsource>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
