@@ -101,22 +101,22 @@
         <location filename="bootselectiondialog.ui" line="45"/>
         <source>&amp;Up</source>
         <oldsource>Up</oldsource>
-        <translation type="unfinished">Su</translation>
+        <translation>&amp;Su</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="52"/>
         <source>U</source>
-        <translation type="unfinished"></translation>
+        <translation>U</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="59"/>
         <source>&amp;Down</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Giù</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="66"/>
         <source>D</source>
-        <translation type="unfinished">D</translation>
+        <translation>D</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="95"/>
@@ -1804,12 +1804,12 @@ Ciò consente una facile gestione remota dei repository internet.</translation>
         <source>repo_list=</source>
         <translation>repo_list=</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="312"/>
         <location filename="optionsdialog.ui" line="339"/>
-        <source> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
+        <source> Similar to&#xa0;alt_image_source&#xa0;but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
         <oldsource> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</oldsource>
-        <translation type="unfinished">Simile a alt_image_source ma corrisponde al metodo NOOBS di specificare un elenco di respository aggiuntivi come stringa quotata separata da spazio.</translation>
+        <translation>Simile a alt_image_source ma corrisponde al metodo NOOBS di specificare un elenco di respository aggiuntivi come stringa quotata separata da spazio.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="315"/>
@@ -1833,10 +1833,10 @@ Possono essere usate istanze multiple di questa opzione.</translation>
         <source>Booting</source>
         <translation>Booting</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="364"/>
         <location filename="optionsdialog.ui" line="414"/>
-        <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
+        <source> When used in conjunction with&#xa0;forcetrigger&#xa0;it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
         <translation>Quando viene usato insieme a forcetrigger, imposta un periodo di timeout massimo in secondi per la visualizzazione del menu di ripristino prima di continuare con la finestra di dialogo di selezione di avvio e di selezionare potenzialmente un SO predefinito per l&apos;avvio.</translation>
     </message>
     <message>
@@ -1876,11 +1876,11 @@ Questo è molto utile quando si usa una connessione VNC.</translation>
         <source>networktimeout=&lt;secs&gt;</source>
         <translation>networktimeout=&lt;sec&gt;</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="404"/>
-        <source>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</source>
+        <source>Prevents a&#xa0;SHIFT&#xa0;keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</source>
         <oldsource>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</oldsource>
-        <translation type="unfinished">Impedisce che la pressione dela tasto MAIUSC abiliti la modalità di ripristino all&apos;avvio (potresti avere una tastiera problematica che si attiva erroneamente ogni volta che fai il boot)</translation>
+        <translation>Impedisce che la pressione dela tasto MAIUSC abiliti la modalità di ripristino all&apos;avvio (potresti avere una tastiera problematica che si attiva erroneamente ogni volta che fai il boot)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="407"/>
@@ -1903,9 +1903,9 @@ Quando viene usata, qualsiasi display locale rimarrà vuoto.</translation>
         <source>vncinstall</source>
         <translation>vncinstall</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="452"/>
-        <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
+        <source>Uses a VNC network connection to control PINN. However, unlike&#xa0;vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
         <translation>Usa una connessione di rete VNC per controllare PINN. 
 Tuttavia, a differenza di vncinstall, qualsiasi tastiera e mouse collegati localmente saranno ancora attivi e il display sarà duplicato sullo schermo locale e nella connessione VNC.</translation>
     </message>
@@ -2019,10 +2019,10 @@ Quando la shell viene chiusa, PINN verrà avviato normalmente.</translation>
         <source>bootmenutimeout=&lt;secs&gt;</source>
         <translation>bootmenutimeout=&lt;sec&gt;</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="562"/>
         <location filename="optionsdialog.ui" line="638"/>
-        <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
+        <source>To change the background colour for the screen and most windows, add&#xa0;background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
         <translation>Per modificare il colore di sfondo per lo schermo e la maggior parte delle finestre, aggiungi background=r,g,b, dove 0,0,0 è il nero e 255,255,255 è il bianco. 
 Ti suggeriamo di usare valori superiori a 127.</translation>
     </message>
