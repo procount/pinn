@@ -106,7 +106,7 @@
     <message>
         <location filename="bootselectiondialog.ui" line="52"/>
         <source>U</source>
-        <translation>U</translation>
+        <translation>S</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="59"/>
@@ -116,7 +116,7 @@
     <message>
         <location filename="bootselectiondialog.ui" line="66"/>
         <source>D</source>
-        <translation>D</translation>
+        <translation>G</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="95"/>
@@ -247,7 +247,7 @@ WARNING: This will erase all data on your SD card</source>
         <oldsource>Would you like NOOBS to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
         <translation>Vuoi che PINN ne crei una per te?
-ATTENZIONE: questo eliminerà tutti i dati nella scheda SD</translation>
+ATTENZIONE: questo eliminerà tutti i dati nella scheda SD.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="188"/>
@@ -1638,7 +1638,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="optionsdialog.ui" line="137"/>
         <source> Selects all OSes where the most recent one is on a local USB drive</source>
-        <translation>Seleziona tutti i SO in cui si trova il più recente nell&apos;unità USB</translation>
+        <translation> Seleziona tutti i SO in cui si trova il più recente nell&apos;unità USB</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="140"/>
@@ -1648,7 +1648,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="optionsdialog.ui" line="147"/>
         <source>Selects all OSes where the most recent one is on remote repositories.</source>
-        <translation>Seleziona tutti i SO in cui si trova il più recente nei repository remoti</translation>
+        <translation>Seleziona tutti i SO in cui si trova il più recente nei repository remoti.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="150"/>
@@ -1678,7 +1678,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="optionsdialog.ui" line="177"/>
         <source> Waits for all OSes on local USBs to be listed</source>
-        <translation>Attende che siano elencati tutti i sistemi operativi presenti nell&apos;unità USB</translation>
+        <translation> Attende che siano elencati tutti i sistemi operativi presenti nell&apos;unità USB</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="180"/>
@@ -1698,7 +1698,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="optionsdialog.ui" line="197"/>
         <source> Waits for OSes from all sources to be listed</source>
-        <translation>Attende che siano elencati tutti i sistemi operativi presenti in tutte le sorgenti</translation>
+        <translation> Attende che siano elencati tutti i sistemi operativi presenti in tutte le sorgenti</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="200"/>
@@ -1809,7 +1809,7 @@ Ciò consente una facile gestione remota dei repository internet.</translation>
         <location filename="optionsdialog.ui" line="339"/>
         <source> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
         <oldsource> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</oldsource>
-        <translation>Simile a alt_image_source ma corrisponde al metodo NOOBS di specificare un elenco di respository aggiuntivi come stringa quotata separata da spazio.</translation>
+        <translation> Simile a alt_image_source ma corrisponde al metodo NOOBS di specificare un elenco di respository aggiuntivi come stringa quotata separata da spazio.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="315"/>
@@ -1833,12 +1833,12 @@ Possono essere usate istanze multiple di questa opzione.</translation>
         <source>Booting</source>
         <translation>Booting</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="364"/>
         <location filename="optionsdialog.ui" line="414"/>
-        <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
+        <source> When used in conjunction with&#xa0;forcetrigger&#xa0;it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
         <oldsource> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
-        <translation type="unfinished">Quando viene usato insieme a forcetrigger, imposta un periodo di timeout massimo in secondi per la visualizzazione del menu di ripristino prima di continuare con la finestra di dialogo di selezione di avvio e di selezionare potenzialmente un SO predefinito per l&apos;avvio.</translation>
+        <translation> Quando viene usato insieme a forcetrigger, imposta un periodo di timeout massimo in secondi per la visualizzazione del menu di ripristino prima di continuare con la finestra di dialogo di selezione di avvio e di selezionare potenzialmente un SO predefinito per l&apos;avvio.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="367"/>
@@ -1870,7 +1870,7 @@ Questo è molto utile quando si usa una connessione VNC.</translation>
         <location filename="optionsdialog.ui" line="394"/>
         <location filename="optionsdialog.ui" line="421"/>
         <source> This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</source>
-        <translation>Questa impostazione consente di specificare il timeout della rete in secondi, soprattutto per le reti che impiegano più tempo per stabilirsi.</translation>
+        <translation> Questa impostazione consente di specificare il timeout della rete in secondi, soprattutto per le reti che impiegano più tempo per stabilirsi.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="397"/>
@@ -1904,11 +1904,11 @@ Quando viene usata, qualsiasi display locale rimarrà vuoto.</translation>
         <source>vncinstall</source>
         <translation>vncinstall</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="452"/>
-        <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
+        <source>Uses a VNC network connection to control PINN. However, unlike&#xa0;vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
         <oldsource>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</oldsource>
-        <translation type="unfinished">Usa una connessione di rete VNC per controllare PINN. 
+        <translation>Usa una connessione di rete VNC per controllare PINN. 
 Tuttavia, a differenza di vncinstall, qualsiasi tastiera e mouse collegati localmente saranno ancora attivi e il display sarà duplicato sullo schermo locale e nella connessione VNC.</translation>
     </message>
     <message>
@@ -2014,19 +2014,19 @@ Quando la shell viene chiusa, PINN verrà avviato normalmente.</translation>
         <location filename="optionsdialog.ui" line="552"/>
         <location filename="optionsdialog.ui" line="631"/>
         <source>Changes the default timeout allowed before an OS is booted without any selection. </source>
-        <translation>Modifica il timeout predefinito prima che un SO venga avviato senza alcuna selezione.</translation>
+        <translation>Modifica il timeout predefinito prima che un SO venga avviato senza alcuna selezione. </translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="555"/>
         <source>bootmenutimeout=&lt;secs&gt;</source>
         <translation>bootmenutimeout=&lt;sec&gt;</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="562"/>
         <location filename="optionsdialog.ui" line="638"/>
-        <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
+        <source>To change the background colour for the screen and most windows, add&#xa0;background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
         <oldsource>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</oldsource>
-        <translation type="unfinished">Per modificare il colore di sfondo per lo schermo e la maggior parte delle finestre, aggiungi background=r,g,b, dove 0,0,0 è il nero e 255,255,255 è il bianco. 
+        <translation>Per modificare il colore di sfondo per lo schermo e la maggior parte delle finestre, aggiungi background=r,g,b, dove 0,0,0 è il nero e 255,255,255 è il bianco. 
 Ti suggeriamo di usare valori superiori a 127.</translation>
     </message>
     <message>
@@ -2303,7 +2303,7 @@ Vuoi proseguire?</translation>
     <message>
         <location filename="termsdialog.ui" line="27"/>
         <source>Please accept these T&amp;Cs to continue.</source>
-        <translation>Per continuare accetta Termini e &amp;condidizoni</translation>
+        <translation>Per continuare accetta i Termini e &amp;condidizoni.</translation>
     </message>
 </context>
 <context>
