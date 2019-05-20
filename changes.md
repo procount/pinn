@@ -512,3 +512,7 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Translations**    - Updated IT & zh_TW
 - **Iconsizes** - fixed to 40x40
 - **Download** - ignore partials
+
+### V3.2.3
+
+- **Customisations** - Fix bug introduced by backup preventing customisations.
