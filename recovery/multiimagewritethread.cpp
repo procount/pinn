@@ -909,7 +909,7 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
 
     /* Now see if there are any customisations
      */
-    if ((_noobsconfig) && (!getNameParts(os_name, eDATE).isEmpty() )) //Only process flavour if it is NOT a backup
+    if ((_noobsconfig) && (getNameParts(os_name, eDATE).isEmpty() )) //Only process flavour if it is NOT a backup
     {
         emit statusUpdate(tr("%1: Configuring flavour").arg(os_name));
         qDebug() <<"Checking for partition customisations"    ;
