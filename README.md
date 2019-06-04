@@ -42,6 +42,8 @@ Please note that in some cases it may extract the files into a folder, if this i
 - A list of OSes that are available to install will be displayed.
 - Select one or more OSes that you want and click INSTALL.
 
+## Community
+PINN is on AlternativeTo: https://alternativeto.net/software/pinn-is-not-noobs/
 
 ## Change History
 
