@@ -5,6 +5,17 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.2.4a
+
+-**Build**       - Modified to build on Ubuntu 18.10 'cosmic'
+-**Progress**    - Experimental modification to measure installation progress more accurately
+-**Wifi dialog** - Removed focus for better use by keyboard
+-**Zipfles**     - Use bsdtar to unzip inline for checksums
+-**Esc**         - Esc key exits all menus
+-**Firmware**    - Don't automatically downgrade firmware
+-**Options**     - Added shortcuts for better keyboard use
+-**GPIO**        - Allows gpiochannel and gpiochannelValue to be specified to trigger the recovery menu
+
 ### V3.2.3
 
 - **Customisations** - Fix bug introduced by backup preventing customisations.
