@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 /* Version number displayed in the title bar */
-#define VERSION_NUMBER "3.2.4a"
+#define VERSION_NUMBER "3.2.4b"
 
 /* Color of the background */
 // #define BACKGROUND_COLOR  Qt::white
@@ -41,12 +41,12 @@
 #define INFO_URL        "https://github.com/procount/pinn"
 
 /* Size of recovery FAT partition in MB when using reformat drive initialization method. */
-#define RESCUE_PARTITION_SIZE  63
+#define RESCUE_PARTITION_SIZE  80
 
 /* Files that are currently on the FAT partition are normally saved to memory during
  * repartitioning.
  * If files they are larger than number of MB, try resizing the FAT partition instead */
-#define MAXIMUM_BOOTFILES_SIZE  64
+#define MAXIMUM_BOOTFILES_SIZE  80
 
 /* Partitioning settings */
 #define PARTITION_ALIGNMENT  8192

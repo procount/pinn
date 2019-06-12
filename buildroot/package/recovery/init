@@ -11,6 +11,11 @@
 /bin/hostname -F /etc/hostname
 /bin/mount -t tmpfs tmpfs /tmp
 
+modprobe rtl8192cu
+#modprobe rtl818x
+modprobe rtl8xxxu
+modprobe rtlwifi
+
 # Newer kernel versions can load firmware from /lib/firmware by themselves without help
 # However that can fail during boot due to our initrd ramdisk not being mounted in time
 # Retry any pending requests

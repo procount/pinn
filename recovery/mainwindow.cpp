@@ -357,6 +357,9 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     _qpd->hide();
     _qpd->deleteLater();
     _qpd = NULL;
+
+
+
     QProcess::execute("mount -o ro -t vfat "+partdev(_bootdrive, 1)+" /mnt");
 
     _model = getFileContents("/proc/device-tree/model");

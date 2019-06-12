@@ -45,6 +45,11 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V3.2.4b
+
+-**Wifi**        - Added realtek modular device drivers
+-**size**        - increased partition size to 80MB
+
 ### V3.2.4a
 
 -**Build**       - Modified to build on Ubuntu 18.10 'cosmic'

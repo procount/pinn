@@ -5,6 +5,11 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.2.4b
+
+-**Wifi**        - Added realtek modular device drivers
+-**size**        - increased partition size to 80MB
+
 ### V3.2.4a
 
 -**Build**       - Modified to build on Ubuntu 18.10 'cosmic'

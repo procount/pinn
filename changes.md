@@ -528,3 +528,8 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 -**Options**     - Added shortcuts for better keyboard use
 -**GPIO**        - Allows gpiochannel and gpiochannelValue to be specified to trigger the recovery menu
 
+### V3.2.4b
+
+-**Wifi**        - Added realtek modular device drivers
+-**size**        - increased partition size to 80MB
+

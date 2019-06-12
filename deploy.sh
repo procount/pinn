@@ -1,5 +1,5 @@
 #!/bin/sh
-set -x
+#set -x
 
 # backup the source code to pinn
 #===============================
@@ -15,6 +15,8 @@ cp ../noobs_test/README_SUM.md README.md
 git add README.md
 git add README_PINN.md
 git commit --amend
+
+
 
 # Copy the distributable files
 #=============================
