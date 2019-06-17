@@ -5,7 +5,7 @@
 
 The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn-lite.zip) can be downloaded from [sourceforge](http://www.sourceforge.net/projects/pinn).
 
-This README relates to v3.2.4a
+This README relates to v3.3
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -375,7 +375,8 @@ from v2.1
 from 2.4.5f
 * rtl8812
 
-NOTE: Realtek wifi drivers (rtl8188eu, rtl8812au, rtl8192cu) are not present in v2.5.1.
+NOTE: Realtek wifi drivers (rtl8188eu, rtl8812au, rtl8192cu) are not present in v2.5.1 onwards.
+NOTE: Realtek wifi drivers (rtl8188eu, rtl8192cu) are added back in from v3.2.4b
 
 ### Enabling SSH for Raspbian
 

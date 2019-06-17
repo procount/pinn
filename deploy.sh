@@ -1,5 +1,6 @@
 #!/bin/sh
-set -x
+
+#set -x
 
 # backup the source code to pinn
 #===============================
@@ -40,16 +41,20 @@ cp recovery* $dst
 cp riscos-boot.bin $dst
 cp RECOVERY_FILES_DO_NOT_EDIT $dst
 # preserve the modification filestamps of firmware.override folder
+rm firmware.tar.gz
 bsdtar cvzf firmware.tar.gz firmware.*
 cp firmware.tar.gz $dst
 cp changefirmware $dst
 cp ~/pinn-os/os/overrides.json $dst
 cp config.* $dst
+cp recovery.cmdline $dst
+cp recovery.cmdline.new $dst
+
 
 # Make amendments
 #================
-cp ~/pinn-release/recovery.cmdline $dst
-cp ~/pinn-release/recovery.cmdline.new $dst
+#cp ~/pinn-release/recovery.cmdline $dst
+#cp ~/pinn-release/recovery.cmdline.new $dst
 
 # Create the Zip file
 #====================
@@ -60,5 +65,6 @@ cd ..
 
 # Create other formats
 #=====================
+#./create4
 ./create_etcher_img
 ./create_full

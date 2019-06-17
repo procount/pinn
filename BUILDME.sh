@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#pre-pi4 release
+#rpi-linux be0a940de66666c10c9071cddafce6284c400734
+
+#Post Pi4 release
+#rpi-linux: 71d47f4c4bd7fd395b87c474498187b2f9be8751
+#rpi-firmware: 64b5649a41b69d09bfe0ed05448d28a66be3edfd
+#rpi-userland: de4a7f2e3c391e2d3bc76af31864270e7802d9ac
+
 # Bash script to rebuild recovery
 
 set -e
@@ -86,15 +94,30 @@ function update_github_kernel_version {
     fi
 }
 
-
 function select_kernelconfig {
     ARCH=$1
     CONFIG_FILE=.config
     CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE
     VAR_PREFIX=kernelconfig-recovery
     sed -ri "s/(^$CONFIG_VAR=\"$VAR_PREFIX\.).+(\")$/\1$ARCH\2/" "$CONFIG_FILE"
-}
 
+    if [ "$ARCH" == "armv6" ]; then
+        REPO="git:\/\/github.com\/raspberrypi\/linux.git";
+        VERSION="71d47f4c4bd7fd395b87c474498187b2f9be8751";
+    elif [ "$ARCH" == "armv7" ]; then
+        REPO="git:\/\/github.com\/raspberrypi\/linux.git";
+        VERSION="71d47f4c4bd7fd395b87c474498187b2f9be8751";
+    elif [ "$ARCH" == "armv7l" ]; then
+        REPO="git:\/\/github.com\/raspberrypi\/linux.git"
+        VERSION="71d47f4c4bd7fd395b87c474498187b2f9be8751";
+    fi
+    CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_REPO_URL
+    sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$REPO\2/" "$CONFIG_FILE"
+    CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_REPO_VERSION
+    sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$VERSION\2/" "$CONFIG_FILE"
+    CONFIG_VAR=BR2_LINUX_KERNEL_VERSION
+    sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$VERSION\2/" "$CONFIG_FILE"
+}
 
 cd buildroot
 
@@ -105,6 +128,7 @@ IMAGES_DIR="output/images"
 SKIP_KERNEL_REBUILD=0
 SKIP_KERNEL_6=0
 SKIP_KERNEL_7=0
+SKIP_KERNEL_7L=0
 SKIP_RECOVERY_REBUILD=0
 UPDATE_TS=0
 
@@ -119,9 +143,9 @@ for i in $*; do
         update_github_package_version rpi-userland raspberrypi/userland master
     fi
 
-    # Update raspberrypi/linux rpi-4.9.y HEAD version in buildroot/.config to latest
+    # Update raspberrypi/linux rpi-4.19.y HEAD version in buildroot/.config to latest
     if [ $i = "update-kernel" ]; then
-        update_github_kernel_version raspberrypi/linux rpi-4.14.y
+        update_github_kernel_version raspberrypi/linux rpi-4.19.y
     fi
 
     # Update language TS files
@@ -141,6 +165,11 @@ for i in $*; do
     # Option to build just recovery without completely rebuilding both kernels
     if [ $i = "skip-kernel-7" ]; then
         SKIP_KERNEL_7=1
+    fi
+
+    # Option to build just recovery without completely rebuilding both kernels
+    if [ $i = "skip-kernel-7l" ]; then
+        SKIP_KERNEL_7L=1
     fi
 
     # Option to build just recovery without completely rebuilding both kernels
@@ -175,7 +204,10 @@ if [ $SKIP_RECOVERY_REBUILD -ne 1 ]; then
     fi
 fi
 
+
 # Let buildroot build everything
+#select_kernelconfig armv6 git://github.com/raspberrypi/linux.git be0a940de66666c10c9071cddafce6284c400734 ???
+#select_kernelconfig armv7l "git@github.com:raspberrypi\/linux-vc5.git" "vc5-db83d4b7c10d0a4251780d2c7a033c2a1216d47c"
 make
 
 # copy any updated translation files
@@ -190,6 +222,16 @@ mkdir -p "$FINAL_OUTPUT_DIR/os"
 cp -r ../sdcontent/* "$FINAL_OUTPUT_DIR"
 
 if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
+
+    if [ $SKIP_KERNEL_7L -ne 1 ]; then
+        # Rebuild kernel for ARMv7L
+        select_kernelconfig armv7l
+        make linux-reconfigure
+        # copy ARMv7L kernel
+        cp "$IMAGES_DIR/zImage" "$FINAL_OUTPUT_DIR/recovery7l.img"
+    else
+        echo "Warning: kernel armv7l in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
+    fi
 
     if [ $SKIP_KERNEL_7 -ne 1 ]; then
         # Rebuild kernel for ARMv7
@@ -210,6 +252,7 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
     else
         echo "Warning: kernel armv6 in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
     fi
+
 else
     echo "Warning: kernels in '$NOOBS_OUTPUT_DIR' directory haven't been updated"
 fi
@@ -223,6 +266,7 @@ cp "$IMAGES_DIR/rpi-firmware/start.elf" "$FINAL_OUTPUT_DIR/recovery.elf"
 cp "$IMAGES_DIR/rpi-firmware/bootcode.bin" "$FINAL_OUTPUT_DIR"
 cp -a $IMAGES_DIR/*.dtb "$IMAGES_DIR/overlays" "$FINAL_OUTPUT_DIR"
 cp "$IMAGES_DIR/cmdline.txt" "$FINAL_OUTPUT_DIR/recovery.cmdline"
+cp "$IMAGES_DIR/recovery.cmdline.new" "$FINAL_OUTPUT_DIR"
 touch "$FINAL_OUTPUT_DIR/RECOVERY_FILES_DO_NOT_EDIT"
 
 #Use the latest PINN firmware
@@ -239,7 +283,7 @@ echo "PINN Version: $(sed -n 's|.*VERSION_NUMBER.*\"\(.*\)\"|v\1|p' ../recovery/
 echo "PINN Git HEAD @ $(git rev-parse --verify HEAD)" >> "$BUILD_INFO"
 echo "rpi-userland Git master @ $(get_package_version rpi-userland)" >> "$BUILD_INFO"
 echo "rpi-firmware Git master @ $(get_package_version rpi-firmware)" >> "$BUILD_INFO"
-echo "rpi-linux Git rpi-4.14.y @ $(get_kernel_version)" >> "$BUILD_INFO"
+echo "rpi-linux Git rpi-4.19.y @ $(get_kernel_version)" >> "$BUILD_INFO"
 
 cd ..
 

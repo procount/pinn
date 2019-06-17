@@ -1,21 +1,35 @@
-From 7b49c0c24fb473f6c841ab5d906016211b341f03 Mon Sep 17 00:00:00 2001
+From 167a7a4237b0642cec9bcab50912123eb4cc4ff4 Mon Sep 17 00:00:00 2001
 From: procount <kevin.procount@googlemail.com>
-Date: Sat, 15 Jun 2019 13:25:41 +0100
-Subject: [PATCH 2/2] Add pimoroni hyperpixel drivers
+Date: Fri, 21 Jun 2019 23:49:40 +0100
+Subject: [PATCH] Added pimoroni hyperpixel drivers
 
 ---
+ arch/arm/boot/dts/overlays/Makefile            |    2 +
  arch/arm/boot/dts/overlays/pimhyp3-overlay.dts |  198 ++++
  arch/arm/boot/dts/overlays/pimhyp4-overlay.dts |  167 ++++
  drivers/input/touchscreen/Kconfig              |   26 +
  drivers/input/touchscreen/Makefile             |    2 +
  drivers/input/touchscreen/pimhyp3.c            |  808 +++++++++++++++
  drivers/input/touchscreen/pimhyp4.c            | 1263 ++++++++++++++++++++++++
- 6 files changed, 2464 insertions(+)
+ 7 files changed, 2466 insertions(+)
  create mode 100644 arch/arm/boot/dts/overlays/pimhyp3-overlay.dts
  create mode 100644 arch/arm/boot/dts/overlays/pimhyp4-overlay.dts
  create mode 100644 drivers/input/touchscreen/pimhyp3.c
  create mode 100644 drivers/input/touchscreen/pimhyp4.c
 
+diff --git a/arch/arm/boot/dts/overlays/Makefile b/arch/arm/boot/dts/overlays/Makefile
+index 2faeb11..cd4fbf2 100644
+--- a/arch/arm/boot/dts/overlays/Makefile
++++ b/arch/arm/boot/dts/overlays/Makefile
+@@ -102,6 +102,8 @@ dtbo-$(CONFIG_ARCH_BCM2835) += \
+ 	pi3-miniuart-bt.dtbo \
+ 	pibell.dtbo \
+ 	piglow.dtbo \
++	pimhyp3.dtbo \
++	pimhyp4.dtbo \
+ 	piscreen.dtbo \
+ 	piscreen2r.dtbo \
+ 	pisound.dtbo \
 diff --git a/arch/arm/boot/dts/overlays/pimhyp3-overlay.dts b/arch/arm/boot/dts/overlays/pimhyp3-overlay.dts
 new file mode 100644
 index 0000000..1bfb718
@@ -394,12 +408,12 @@ index 0000000..a667005
 +};
 +
 diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-index 80c3f6e..7eed366 100644
+index 8e6cb40..6a24f5b 100644
 --- a/drivers/input/touchscreen/Kconfig
 +++ b/drivers/input/touchscreen/Kconfig
-@@ -354,6 +354,32 @@ config TOUCHSCREEN_GOODIX
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called goodix.
+@@ -401,6 +401,32 @@ config TOUCHSCREEN_HIDEEP
+ 	  To compile this driver as a module, choose M here : the
+ 	  module will be called hideep_ts.
  
 +config TOUCHSCREEN_PIMHYP3
 +	tristate "Cypress I2C touchscreen for Pimoroni Hyperpixel 3.5"
@@ -431,18 +445,15 @@ index 80c3f6e..7eed366 100644
  	tristate "Ilitek ILI210X based touchscreen"
  	depends on I2C
 diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
-index 12ff121..2331eb0 100644
+index cbc2159..c6916af 100644
 --- a/drivers/input/touchscreen/Makefile
 +++ b/drivers/input/touchscreen/Makefile
-@@ -42,6 +42,8 @@ obj-$(CONFIG_TOUCHSCREEN_EGALAX_SERIAL)	+= egalax_ts_serial.o
- obj-$(CONFIG_TOUCHSCREEN_EXC3000)	+= exc3000.o
- obj-$(CONFIG_TOUCHSCREEN_FUJITSU)	+= fujitsu_ts.o
- obj-$(CONFIG_TOUCHSCREEN_GOODIX)	+= goodix.o
+@@ -110,3 +110,5 @@ obj-$(CONFIG_TOUCHSCREEN_ZET6223)	+= zet6223.o
+ obj-$(CONFIG_TOUCHSCREEN_ZFORCE)	+= zforce_ts.o
+ obj-$(CONFIG_TOUCHSCREEN_COLIBRI_VF50)	+= colibri-vf50-ts.o
+ obj-$(CONFIG_TOUCHSCREEN_ROHM_BU21023)	+= rohm_bu21023.o
 +obj-$(CONFIG_TOUCHSCREEN_PIMHYP3)	+= pimhyp3.o
 +obj-$(CONFIG_TOUCHSCREEN_PIMHYP4)	+= pimhyp4.o
- obj-$(CONFIG_TOUCHSCREEN_ILI210X)	+= ili210x.o
- obj-$(CONFIG_TOUCHSCREEN_IMX6UL_TSC)	+= imx6ul_tsc.o
- obj-$(CONFIG_TOUCHSCREEN_INEXIO)	+= inexio.o
 diff --git a/drivers/input/touchscreen/pimhyp3.c b/drivers/input/touchscreen/pimhyp3.c
 new file mode 100644
 index 0000000..fe283fb
