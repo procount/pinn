@@ -1,355 +1,430 @@
-# NOOBS (New Out of Box Software)
-#### An easy Operating System installer for the Raspberry Pi
+# PINN (PINN is not NOOBS)
+#### An enhanced Operating System installer for the Raspberry Pi
 
-NOOBS is designed to make it easy to select and install operating systems for the Raspberry Pi without having to worry about manually imaging your SD card.
+PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi. See the change history below for the additional features.
 
-The latest official release of NOOBS can be downloaded from http://downloads.raspberrypi.org/NOOBS_latest
+### - [If you have PINN v2.4.3 - v2.4.4b installed, please manually update to v2.4.4c or later](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=142574&start=200#p1239359)
 
-For information on previous releases and version changelists, visit https://github.com/raspberrypi/noobs/releases
+Documentation on how to use PINN can be found in **[README_PINN.md](README_PINN.md)**, which includes all of the original NOOBS documentation.
 
-![alt text](screenshots/os_installed.png "NOOBS Interface")
+If you are already familiar with NOOBS' features, you may prefer to read the reduced documenation that just contains **[PINN's new features](changes.md)** alone.
 
-<sup>*NOTE: The list of OSes in this image is indicative only. It will vary according to your Raspberry Pi model and the availability of OSes on our remote download repository.</sup>
+The latest version of **[PINN-lite](http://sourceforge.net/projects/pinn/files/pinn-lite.zip)** can be downloaded from [sourceforge](http://www.sourceforge.net/projects/pinn).
 
-### About
-On first boot NOOBS will format your SD card and allow you to select which OSes you want to install from a list. This OS list is automatically generated from both locally available OSes (i.e. those contained in the `/os` directory on disk) or those available from our remote repository (network connection required).
+Source code is available from [github](https://github.com/procount/pinn)
 
-Only the latest version of each OS will ever be displayed meaning that you can be sure that you have installed the most up-to-date release of your selected OS.
+see  [github](https://github.com/procount/pinn) for full information
 
-On any subsequent boot you can then press the SHIFT key to enter the NOOBS interface and easily reinstall your choice of OSes.
+## Quick Start
 
-The NOOBS interface provides the following functionality:
-- <b>Install</b>: Installs the selected OSes onto your SD card. Changing this selection erases all OSes currently installed.
-- <b>Edit Config</b>: Opens a text editor allowing the cmdline and config for the selected installed OS to be edited.
-- <b>Online Help</b>: [Networking Required] Open a browser that displays the Raspberry Pi Help page ( http://www.raspberrypi.org/help/ ), allowing people to quickly access help and troubleshooting.
-- <b>Exit</b>: Quits NOOBS and reboots the Pi into the OS boot menu.
-- <b>Language Selection</b>: Allows you to select the language to be displayed.
-- <b>Keyboard Layout Selection</b>: Allows you to select the keyboard layout to be used.
-- <b>Display Mode Selection</b>: By default, NOOBS will output over HDMI at your display's preferred resolution, even if no HDMI display is connected. If you do not see any output on your HDMI display or are using the composite output, press 1, 2, 3 or 4 on your keyboard to select HDMI preferred mode, HDMI safe mode, composite PAL mode or composite NTSC mode respectively.
+#### Format your SD card as FAT32
 
-Note that all user settings (language, keyboard layout, display mode) will persist between reboots and will also be automatically passed to the installed OSes. This means that if you can see the NOOBS interface on your display device then you should be able to see the OS CLI/GUI when it boots too!
-### Setup
+For **Windows** users, we recommend formatting your SD card using the SD Association's Formatting Tool, which can be downloaded from https://www.sdcard.org/downloads/formatter_4/ .
+If you are still using v4 of this tool, you will need to set the "FORMAT SIZE ADJUSTMENT" option to "ON" in the "Options" menu to ensure that the entire SD card volume is formatted - not just a single partition. However, this tool has now been upgraded to v5 where this feature is now the default and is no longer selectable. For more detailed and beginner-friendly formatting instructions, please refer to http://www.raspberrypi.org/quick-start-guide .
 
-To set up a blank SD card with NOOBS:
-- Format an SD card that is 8GB or greater in size as FAT32 (see instructions on how to do this below)
-- Download and extract the files from the NOOBS zip file. (Windows built-in zip features may have trouble with this file. If so, use another program such as [7zip](http://www.7-zip.org/).)
-- Copy the extracted files onto the SD card that you just formatted so that this file is at the root directory of the SD card.
-<b> Please note that in some cases it may extract the files into a folder, if this is the case then please copy across the files from inside the folder rather than the folder itself.</b>
+The SD Association's Formatting Tool is also available for <b>Mac</b> users. However, note that the default OSX Disk Utility is also capable of formatting the entire disk (select the SD card volume and choose "Erase" with "MS-DOS" format).
 
-On first boot the "RECOVERY" FAT partition will be automatically resized to a minimum and a list of OSes that are available to install will be displayed.
+For **Linux** users, we recommend `gparted` (or the command line version `parted`). (Update: Norman Dunbar has written up the following formatting instructions for Linux users: http://qdosmsq.dunbar-it.co.uk/blog/2013/06/NOOBS-for-raspberry-pi/)
 
-### Operating System Choice
+#### Copy the pinn files to your SD card.
 
-NOOBS is available in 2 formats:
-- `NOOBS Full` includes the installation files for Raspbian only.
-- `NOOBS-Lite` does not include any Operating Systems at all.
+- Download **[pinn-lite.zip](http://sourceforge.net/projects/pinn/files/pinn-lite.zip)** from [sourceforge](http://www.sourceforge.net/projects/pinn)
+- Extract the files from pinn-lite.zip file onto the SD card. (Windows built-in zip features may have trouble with this file. If so, use another program such as 7zip.)
 
-#### OS Network Download
+Please note that in some cases it may extract the files into a folder, if this is the case then please copy across the files from inside the folder rather than the folder itself.
 
-Both versions of NOOBS allow additional Operating Systems to be downloaded from our remote repository. To do this, the Raspberry Pi must be connected to a wired network, or it can connect over Wifi using the [Raspberry Pi USB wifi dongle](https://www.raspberrypi.org/products/usb-wifi-dongle/) or the Raspberry Pi 3 Model B built-in wifi. 
+#### Boot pinn on your PI
+- Put the PINN SD card into your Pi and boot it.
+- On first boot the "RECOVERY" FAT partition will be automatically resized to a minimum, so if you ever put your SD card back into a Windows machine it will look like a very small partition. THIS IS NORMAL.
+- PINN does not come supplied with any OSes. You must download them from the internet or provide them on a USB stick. So,....
+- Connect your Pi to the internet with an Ethernet cable (easiest)
+- Or If you prefer to use Wifi, click on the wifi button and select your SSID and password. If the wifi button is greyed out, choose another type of wifi dongle.
+- A list of OSes that are available to install will be displayed.
+- Select one or more OSes that you want and click INSTALL.
 
-Once connected, the Pi will only show a list of Operating Systems that are appropriate to your Pi Model. If you want to see ALL available OSes, edit the `recovery.cmdline` file in the root NOOBS directory and append `showall` to the arguments list.
 
-#### Wired Networks
+## Change History
 
-If a wired ethernet cable is plugged into the Pi before NOOBS starts, NOOBS will connect via DHCP to our remote download repository and present a list of available Operating Systems that are available for installation.
+### V3.3
 
-#### Wifi Networks
+-**PI4 support**  - Added support for the new RPi4. Includes Raspbian Buster in full version.
 
-If you have the official [Raspberry Pi USB wifi Dongle](https://www.raspberrypi.org/products/usb-wifi-dongle/), or are using the Raspberry Pi 3 Model B with built-in wifi, the wifi icon on the NOOBS toolbar will be available. Click on this to select your Wifi SSID network and enter the wifi password. 
+### V3.2.4c
 
-![alt text](screenshots/wifi_selector.png "Select your wifi network and enter the password")
+-**Hyperpixel**   - Fixed hyperpixel 4 overlay file
 
-### How to Format an SD card as FAT
+### V3.2.4b
 
-For <b>Windows</b> users, we recommend formatting your SD card using the SD Association's Formatting Tool, which can be downloaded from https://www.sdcard.org/downloads/formatter_4/ You will need to set "FORMAT SIZE ADJUSTMENT" option to "ON" in the "Options" menu to ensure that the entire SD card volume is formatted - not just a single partition. With the latest SD Association Formatting Tool (V5.0) that option has been removed and is now the default. For more detailed and beginner-friendly formatting instructions, please refer to http://www.raspberrypi.org/quick-start-guide
+-**Wifi Drivers** - Re-added Realtek rtl8188eu and rtl8192cu modular wifi drivers.
 
-The SD Association's Formatting Tool is also available for <b>Mac</b> users although the default OSX Disk Utility is also capable of formatting the entire disk (select the SD card volume and choose "Erase" with "MS-DOS" format).
+### V3.2.4a
 
-For <b>Linux</b> users we recommend `gparted` (or the command line version `parted`). (Update: Norman Dunbar has written up the following formatting instructions for Linux users: http://qdosmsq.dunbar-it.co.uk/blog/2013/06/noobs-for-raspberry-pi/ )
+-**Build**       - Modified to build on Ubuntu 18.10 'cosmic'
+-**Progress**    - Experimental modification to measure installation progress more accurately
+-**Wifi dialog** - Removed focus for better use by keyboard
+-**Zipfles**     - Use bsdtar to unzip inline for checksums
+-**Esc**         - Esc key exits all menus
+-**Firmware**    - Don't automatically downgrade firmware
+-**Options**     - Added shortcuts for better keyboard use
+-**GPIO**        - Allows gpiochannel and gpiochannelValue to be specified to trigger the recovery menu
 
-===
+### V3.2.3
 
-### Screenshots
+- **Customisations** - Fix bug introduced by backup preventing customisations.
 
-#### OS Installation
+### V3.2.2
 
-Simply select the checkbox next to each OS you want to install using either a mouse or keyboard (arrow keys to traverse the list, enter to toggle the selected OS's checkbox), then click the "Install" icon (or press "i" on your keyboard) to install the selection. The icons shown on the right of the list indicate whether the OS is being installed from the SD card (SD card icon) or from the online OS repository (Ethernet icon).
+- **Backup hotfix** - Fix for OSnames with spaces.
+- **Translations**    - Updated IT & zh_TW
+- **Iconsizes** - fixed to 40x40
+- **Download** - ignore partials
 
-![alt text](screenshots/os_selected.png "Select your choice of OSes to install")
+### V3.2.1
 
-<sup>*NOTE: The list of OSes in this image is indicative only. It will vary according to your Raspberry Pi model and the availability of OSes on our remote download repository.</sup>
+- **Bootselectiondialog** - update for CEC and keyboard
 
+### V3.2
 
-#### Online Help via Web Browser
+- **Added Ts & C's dialog** - for Future OSes
+- **Resumable download**    - in case of download errors
+- **More robust file transfer** - in case of download errors
+- **Change boot selection order** - Just for aesthetics
+- **Added file checksums** - for download verification
+- **Added partition_setup.sh checksum** - for download verification
+- **Added options dialog** - To make option setting easier.
 
-The built-in Arora web browser allows you to easily get help via the Raspberry Pi Forums (wired network connection required).
+### V3.1.1
 
-![alt text](screenshots/browser.png "Search the Raspberry Pi forums for help via the built-in web browser")
+- **alias**                 - Fix underscores
+- **backup**                - Much faster backups on multicore processors
+- **silentreinstallnewer**  - exits to boot menu & stops remotetimeout
+- **menu**                  - Removed PageDown->nextmenu function because it conflicts
+- **Translations**          - Updated IT & zh_TW translations
 
-#### Easy Config File Editor
 
-The built-in config file editor allows you to edit the config file of the OS currently highlighted in the OS list. This allows you to easily add license keys to different OS installs through the same interface.
+### V3.1
 
-Note that the output mode selected by the user through pressing one of number keys 1 to 4 (for HDMI preferred, HDMI VGA, Composite PAL and Composite NTSC respectively), will be automatically set in the `config.txt` files of your installed OSes. This means that you shouldn't have to worry about manually changing your display settings to get your installed OS to display correctly on your display device.
+- **Nano**              - Added nano text editor
+- **Rename**            - Allows giving an OS an Alias name & change its description	
+- **Hyperpixel**        - Added full kernel drivers to support Pimoroni Hyperpixel 3.5" and 4" touchscreens 
+- **ScreenSwitch**      - Performs automatic screen switching at bootup
+- **dhcpcd**            - Now configurable
 
-![alt text](screenshots/config_editor.png "Easily edit the config files of any installed OS")
+### V3.0.4    
 
-#### Installer Slideshow
+- **forceupdatepinn**   - Add forceupdatepinn option
+- **OS Replace**        - Fixed problem replacing an OS when PINN is booted from USB
 
-An installer slideshow guides you through your first steps with each OS while it installs.
+### V3.0.3
 
-![alt text](screenshots/installer_slides.png "An installer slideshow guides you through your first steps with each OS")
+- **Backup USB**        - Fix for multiple USB sticks.
+- **Translation**       - Ko & zh_tw.ts updated.
 
-#### OS Boot Selector
+### V3.0.2
 
-After multiple OSes have been installed, you can select which OS to boot through this selection window that is automatically displayed. NOOBS will remember your choice and boot this OS by default unless a different option has been selected within 10 seconds.
+- **Backup USB**        - Improved backup size calculation for USB installed OSes.
 
-Note that if only one OS is installed then the boot selector will not be displayed and the OS will be automatically booted.
+### V3.0.1
 
-![alt text](screenshots/boot_select.png "Easily select which OS you want to boot from a list of those currently installed")
+- **Backup/Download**   - Removed the need to reboot after a download or backup.
+- **Wallpapers**        - removed wallpapers folder & Allowed JPEGs
+- **Default wallpaper   - Changed default to wallpaper.jpg
 
-==
+### V3.0
 
-## Advanced Usage (for experts and teachers)
+- **Backup**                  - Backup an OS in PINN format
+- **Time**            	      - Added button to set date & time	
+- **Download**                - Fix Foldername of some OSes when downloaded
+- **Iconcache**               - Cache icons when connected to internet to speedup startup
 
-### How to Automatically Install an OS
+### V2.8.5.8
 
-Even if you are using your Pi without a display, you can still use NOOBS to easily install an OS of your choice. To set up NOOBS to automatically and silently (i.e. without requiring any user input) install a specific OS, follow these steps:
+- **RPi 3A+**                 - Supports RPi 3A+
 
-1. Copy the OS folder for the OS you want to install into the `/os` dir (or alternatively delete all other OSes contained in the `/os` dir so that only your chosen OS remains.
+### V2.8.5.7
 
-2. If the OS you want to automatically install has multiple flavours available, edit the `flavours.json` file so that it only contains the flavour entry that you want to install.
+- **Firmware**                - Disabled firmware downgrade on 3B+
+- **Clear**                   - Added Clear button to clear all selections
+- **Kernel Bump**             - Linux kernel 4.14.74, firmware and userland bumped to match NOOBS 2.9
+- **Replace**                 - Removed RiscOS & Windows_10 from OS replacement
+- **SilentInstall**           - Fixed waiting for USB images
+- **networktimeout**          - 0 means wait indefinitely for network before silentinstall
 
-3. Edit the `recovery.cmdline` file in the root NOOBS directory and append `silentinstall` to the arguments list.
+### V2.8.5.5
 
-When you now boot your Pi using an SD card containing the modified version of NOOBS that you just created, it will automatically install the OS you chose and boot into it after the installation has finished.
+- **Boot menu**               - Sticky default now uses bootmenutimeout
+- **rebootp**                 - Added rebootp command to recovery shell
 
-### Preconfiguring a WiFi network
+### V2.8.5.4
 
-If you already know your WiFi details, you can preconfigure NOOBS to use it straight away. Put a copy of your `wpa_supplicant.conf` file on the NOOBS root partition and NOOBS will read it and store it in its settings for all future uses.
+- **Boot menu**               - Fixed focus and sticky default partuuid issues.
+- **wallpaper_resize**        - Customised wallpaper can now be resized to fill the screen
 
-### How to create a custom OS version
+### V2.8.5.3
 
-There are two main use cases for which you may want to create a custom version of one of the standard OS releases that is suitable for installation via NOOBS:
-- If you are a teacher wanting to easily deploy a custom OS release containing pre-defined set of packages and files onto a number of SD cards (e.g. to provision a class set of Raspberry Pi's or quickly restore a Raspberry Pi back to custom "factory" settings).
-- If you want to be able to back up your existing installed packages and files so that any future OS re-install does not force you back to a clean install.
+- **Partuuid**                - Fixed an issue from v2.8 where partuuids were introduced to installed_os.json
+- **Wallpaper**               - Customised wallpaper is now available by writing your own `wallpaper.png` file to PINN's recovery partition## V2.8.5.1
 
-The following steps allow you to create a modified copy of one of the standard OS releases that contains your custom files, packages and settings.
+### V2.8.5.2
 
-1. Download a base version of NOOBS from http://downloads.raspberrypi.org/NOOBS_latest
+- **VNCnotice**               - Displays a notice on the main screen when vncinstall is in use
+- **PINN update**             - Prevents crash on manual update when there is no network
+- **ae-ts**                   - tidy up of translations
 
-2. Extract the NOOBS zipfile
+### V2.8.5.1
 
-3. Navigate to the `os` directory
+- **Reinstall**               - BUGFIX for Re-install.
+- **translations**            - Updated it and zh_TW translations.
+- **silentreinstallnewer**    - **USE WITH CAUTION**. With `select=` it will silently re-install any selected OSes that are newer than the installed version.
 
-4. Create a copy of the folder containing the OS release that you want to modify and rename it with a custom name.
+### V2.8.5
 
-5. Edit the following fields in the `os.json` file contained in the folder that you just created
-  1. "name" - replace the name of the base OS with the name of your custom OS version
-  2. "description" - replace the description of the standard OS install with one for your custom OS version
+- **Boot Cancel**             - Added a new cancel button to the bootselection dialog which will reboot back into PINN
+- **Swedish keyboard**        - Swedish keyboard fixed when language selected
+- **Bootable selection**      - The bootselection dialog is only available if a bootable OS is installed.
+- **Select Option**           - Auto select/check OSes to be installed. "allsd,allusb,allnetwork,waitsd,waitusb,waitnetwork,waitall,allinstalled,<osname>"
+- **SilentInstall**           - with Select will auto-install selected OSes
+- **Added Disablesdimages**   - Disablesdimages in recovery.cmdline will prevent OSes on SD card from being shown
+- **Network start**           - The network is always started, even with silentinstall.
+- **Flavour download**        - Flavours can now be downloaded from remote repos. Only need to download 1
+- **Added flavours.tar.xz**   - Remote flavours need to include flavours.tar.xz
+- **RPi Model Name**          - Added name of RPi model to MainMenu screen
 
-6. [Optional] Rename or replace the existing `<OS>.png` icon file with one matching the name of your custom OS version
+### V2.8.4
 
-7. [Optional] Replace the PNG image files in the `slides` and `slides_vga` directory with your own custom installer slides
+- **Replace OSes**            - Allows the replacement of one OS with another
+- **Project Spaces**          - Added Project Spaces
+- **Reserve disk space**      - Reserve some space on PINN's partition before formatting
+- **mkimage**                 - Added mkimage from uboot
+- **xz**                      - Allow XZ Compression
+- **Update Dialog**           - This now cancels any timeout setting
 
-8. Edit the following fields in the `partitions.json` file contained in the folder that you just created
-  1. "partition_size_nominal" - replace the numerical value with the size of the paritions in your custom OS version
-  2. "uncompressed_tarball_size" - replace the numerical value with the size of your filesystem tarballs when uncompressed
+### V2.8.3
 
-9. Replace the `.tar.xz` root and boot filesystem tarballs with copies created from your custom OS version (these instructions assume you're only using a single OS at a time with NOOBS - they won't work if you're running multiple OSes from a single SD card). The name of these tarballs needs to match the labels given in `partitions.json`.
-  1. To create the root tarball you will need to run `bsdtar --numeric-owner --format gnutar --one-file-system -cpf <label>.tar .` from within the root filesystem of your custom OS version. You should then compress the resulting tarball with `xz -9 -e <label>.tar`.
-  2. To create the boot tarball you will need to run `bsdtar --numeric-owner --format gnutar -cpf <label>.tar .` at the root directory of the boot partition of your custom OS version. You should then compress the resulting tarball with `xz -9 -e <label>.tar`.
+- **Programmable CEC**        - Fixed bugs
+- **networktimeout**          - Added timeout to detect network presence
 
-### How to change the default Language, Keyboard layout, Display mode or Boot Partition etc.
+### V2.8.2
 
-Edit the `recovery.cmdline` file in the root NOOBS directory and append the following arguments where relevant:
-- `lang=<two-letter language code>` (e.g. `lang=de` or `lang=en`)
-- `keyboard=<two-letter layout code>` (e.g. `keyboard=de` or `keyboard=us`)
-- `display=<display mode number>` (e.g. `display=1` or `display=3`)
-- `partition=<partition_number>` (e.g. `partition=6`)
-- `showall` (shows all available OSes regardless of your Raspberry Pi model)
+- **Reinstall**        - bugfix to Reinstall option following partuuid change on USBs
 
-Note that these defaults will be overwritten by any changes made in the GUI to these settings.
+### V2.8.1
 
-### How to bypass the Recovery splashscreen and boot directly into a fixed partition
+- **Programmable CEC** - Program your TV remote for use with PINN
 
-After you have installed your chosen OSes, add the following file to the root directory of NOOBS to force the indicated partition to be booted at power-on.
+### V2.8
 
-1. Add a text file named `autoboot.txt` to the root directory of NOOBS.
+- **Fix menu**        - Replaced Fsck with Fix menu option to include a wider range of tools
+- **Store meta**      - Additional meta files stored on installation for fix up tools
+- **Partuuid**        - Store partuuid references for better USB support
+- **Tab fix**         - Fixed synchronisation of OS tab display
 
-2. Add `boot_partition=<partition number>` to the file and save it to disk.
+### V2.6.2
 
-This will also prevent the splashscreen from being displayed at boot. The partition number can be found by running `sudo fdisk -l` the partition will be one of the FAT32 partitions `/dev/mmcblk0p6` would be partition 6. Note that once an `autoboot.txt` file is present, there's then no way to force the NOOBS GUI to display, until you delete (or rename) the `autoboot.txt` file.
+- **pinn_init.sh**    - Improve calling of script to run before PINN
+- **config.txt**      - deleted
 
-### How to use with the Raspberry Pi Touch Display
+### V2.6.1
 
-If NOOBS detects you are using the [Raspberry Pi Touch Display](https://www.raspberrypi.org/products/raspberry-pi-touch-display/), it will enable the following functionality:
-- A tap on the raspberry logo in the centre of the touchscreen can activate NOOBS, as well as holding the shift key down.
-- A tap on the touchscreen will simulate a mouse click
-- A longpress on the touchscreen will simulate a mouse double-click.
+- **Kernel**          - Bump kernel to suppress missing mailbox commands in old firmware
+- **pinn_init.sh**    - Add initialisation script to run before PINN
 
-===
+### V2.6
 
-## Troubleshooting
+- **Firmware**        - Update firmware
+- **Kernel**          - Update kernel to 4.14
 
-#### What to do if your SHIFT keypress isn't detected
+### V2.5.5
 
-Try pressing shift only when the grey splashscreen is displayed rather than holding it from boot up.
+- **Self-Update**     - A small fix to the self-update ignore feature
 
-#### How to boot into "Safe Mode"
+### V2.5.4
 
-To boot into a basic busybox shell rather than launching the NOOBS GUI, you can *either*:
+- **Countdown**       - Re-enabled the boot selection dialog countdown timer.
 
-1. Append `rescueshell` to the argument list in the `recovery.cmdline` file which is found in the root NOOBS directory.
+### V2.5.3
 
-2. Insert a physical jumper between pins 5 & 6 of GPIO header P1. If you have external hardware or an addon board connected to the GPIO header, you may find that pin 5 is being pulled low and accidentally triggering "Safe Mode". To prevent this you can append `disablesafemode` to the argument list in the `recovery.cmdline` file which is found in the root NOOBS directory.
+- **Switch firmware** - Enable switching of firmware for 3B+ and other models.
 
-#### How to enable using the GPIO to trigger entering Recovery Mode
+### V2.5.2a
 
-To force Recovery Mode to be entered on boot and to show the NOOBS interface, you normally press the `SHIFT` key during bootup. If you don't have a keyboard or the `SHIFT` keypress isn't being detected, you should complete the following steps to force the NOOBS interface to be displayed on boot:
+Fixes the incorrect recovery.cmdline bug in v2.5.2.
+(There's a reason why I didn't make this v2.7 just yet!)
 
-1. Append `gpiotriggerenable` to the argument list in the `recovery.cmdline` file which is found in the root NOOBS directory.
-2. Reboot
+### V2.5.2
 
-To force Recovery Mode being entered on boot, connect GPIO pin 3 on header P1 to GND (pin 25). If GPIO pin 3 remains unconnected then it will boot through to the installed OS as normal.
+- **OS Firmware**   - Includes a better method of slipstreaming new Firmware
+- **BUG: Cmdline**  - Note that the recovery.cmdline is incorrect in this version
+### V2.5.1
 
-#### How to force Recovery Mode being entered on boot (overrides GPIO or keyboard input)
+- **firmware**      - New firmware for Rpi 3B+
+- **Kernel**        - Update to kernel 4.9.80
+- **OS firmware**   - Latest firmware is slip streamed onto old OSes
+- **wifi drivers**  - Some wifi drivers temporarily removed until they can be upgraded
+- **Arora**         - Prevented multiple instances of Arora browser running
 
-Alternatively, if you are unable to use either the GPIO or keyboard to trigger entering Recovery Mode, you can:
+### V2.4.5f
 
-1. Append `forcetrigger` to the argument list in the `recovery.cmdline` file which is found in the root NOOBS directory.
-2. Reboot
+- **rtl8812 wifi**   - added wifi driver for rtl8812 5GHz dongles
 
-Note that with this option enabled, the Recovery Mode will be displayed <b>every</b> time you boot from your NOOBS card (until you edit `recovery.cmdline` again).
+### V2.4.5e
 
-#### How to disable using the keyboard to trigger entering Recovery Mode
+- **remotetimeout**  - Enable network for remote boot alteration.
 
-In some rare cases, you may find that NOOBS incorrectly detects a `SHIFT` keypress from your keyboard regardless of the presence of user input. In such cases it may be helpful to disable using the keyboard to trigger Recovery Mode being entered.
+### V2.4.5b
 
-To prevent a `SHIFT` keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot), you can:
+- **background**  - The background has now been fixed on the bootmenu
+- **reinstall**   - Reinstall should now use data from the NEW version rather than the OLD version
 
-1. Append `keyboardtriggerdisable` to the argument list in the `recovery.cmdline` file which is found in the root NOOBS directory.
-2. Reboot
+### V2.4.5
 
-#### How to change display output modes
+This is a small maintenance release for some cosmetic changes and bugfixes mainly.
 
-By default, NOOBS will output over HDMI at your display’s preferred resolution, even if no HDMI display is connected. If you do not see any output on your HDMI display or are using the composite output, press 1, 2, 3 or 4 on your keyboard to select HDMI preferred mode, HDMI safe mode, composite PAL mode or composite NTSC mode respectively.
+- **background**  - Specify the background colour as background=r,g,b
+- **style**       - Change the style with style=motif/windows/platinum
+- **configpath**  - (partially) allow remote flavours to customise an OS
+- **dsi**         - Allows the HDMI/DSI switching option to work with OSes installed to USB
 
-If you don't have a keyboard, you can still change the display mode used by NOOBS through editing the `recovery.cmdline` file in the root NOOBS directory prior to first boot and appending the following argument:
-- `display=<display mode number>` (e.g. `display=1` or `display=3`)
+### V2.4.4
 
-===
+Finally, PINN can now re-install any installed OS WITHOUT affecting the other OSes, eliminating one of my NOOBS bugbears.
 
-## How to Rebuild NOOBS
+- **Re-install**  - Re-install an OS without affecting others
+- **no_update**   - disable PINN self-update (manual refesh of PINN available)
+- **update PINN** - A manual PINN update check can now be done (for when no_update is used)
+- **Edit PINN**   - The recovery.cmdline and config.txt fiels of PINN can now be edited.
+- **no_cursor**   - The no_cursor option now only affects the bootselection dialog
+- **Wipe**        - The Wipe Disk command has been temporarily removed
+- **Max OSes**    - The number of OSes has been restricted so that boot partitions numbers are &lt;63
 
-Note that this will require a minimum of 6GB free disk space.
+### V2.4.3
 
-#### Get Build Dependencies
+A major change to the User Interface in preparation for some new features.
 
-On Ubuntu:
+- **3 Toolbars**  - Main Menu, Archival and Maintenance.
+- **OS Groups**   - OS lists are grouped into General, Minimal, Educational, Media and Gaming.
+- **Download OS** - Download an OS to USB for local installation.
+- **Fsck**        - Check and fix your filesystems in case of error.
+- **Wipe Disk**   - delete all OSes and restore drive to full capacity.
+- **Info button** - Go directly to the webpage of each OS.
 
-`sudo apt-get install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-linguist-tools`
+### V2.4.2h
 
-#### Run Build Script
+- **Translations**    - udpate to Portugese + other translations
+- **Password**        - A new password will not expire
+- **Slideshow**       - Slides during installation are now scaled to be the same size.
+- **>1TB MSDs**       - Installing OSes to a USB Mass Storage Device > 1TB would fail. 2TB is the maximum size.
 
-`./BUILDME.sh`
+### V2.4.2
 
-Buildroot will then build the software and all dependencies, putting the result in the `output` directory.
+- **repo_list**       - Added repo_list cmdline argument
 
-Buildroot by default compiles multiple files in parallel, depending on the number of CPU cores you have.
+#### Bugfixes
 
-If your build machine does have a quad core CPU, but relatively little RAM, you may want
-to lower the number to prevent swapping:
-- `cd buildroot ; make menuconfig`
-- "Build options" -> "Number of jobs to run simultaneously"
+- **Win10IoT**        - Fixed annoying warning messages on installation
+- **RTAndrod**        - re-included missing cpio to allow installation
 
-If your build machine also has some QT5 components, it is useful to `export QT_SELECT=4` before building to ensure the QT4 component versions are selected.
+### V2.4.1
 
-## How to run your Build
+- **btrfs**           - Added support for btrfs file systems
 
-In order to setup an SD card with a newly built version of NOOBS, you will need to:
-- Format an SD card that is 8GB or greater in size as FAT32
-- Replace the `/os` directory in `/output` with the copy contained in the release version of NOOBS (see above for download links)
-- Copy the files in the `/output` directory onto the SD card
+### V2.4
 
-## About the Buildroot infrastructure
+- **Update**          - Rebase onto NOOBS 2.4
+- **repo**            - Support "repo=" from NOOBS
+- **USB support**     - Supports USB BOOT and USB ROOTFS
 
-To add extra packages: `cd buildroot ; make menuconfig`
+### V2.3
 
-Recovery software packaging is in: `buildroot/package/recovery`
+- **PiZeroW**         - Further update to match NOOBS 2.3. Added regDB for channel 13 & missing DTBs
 
-Kernel configuration used: `buildroot/kernelconfig-recovery.armv6` and `kernelconfig-recovery.armv7`
+### V2.2
 
-Main differences with bcmrpi_defconfig:
-- `CONFIG_BLK_DEV_INITRD=y` - initramfs support
-- `CONFIG_INPUT_EVDEV=y` - evdev support built-in
-- `CONFIG_USB_HID=y` - usb HID driver built-in
-- All modules disabled.
-- (This has changed significantly from v1.5 to use a squashfs)
+- **PiZeroW**         - Update firmware/kernel for PiZero Wifi version
 
-## Modifying Qt source
+### V2.1.4
 
-Source is in the `recovery` folder.
-Be aware that user interface screens will appear larger in Qt Creator then when deployed on the Pi, can
-raise font sizes 2 points to compensate.
+- **IP address**      - Shown in window title
+- **CEC key mapping** - Replaced  0 button with PLAY button for greater applicability
+- **BOOT**            - Added BOOT button to boot selection dialog for use with limited TV remotes
+- **Tarball names**   - Allow local tarballs to have a different name to the partition labell
+- **SD Card**         - Recommend 8GB card minimum
+- **SD Card**         - Update SD card requirements
+- **Network**         - Do not continue polling for connectivity during installation
+- **Update**          - Bump kernel and firmware versions
 
-Several constants can be changed in `config.h`
+### V2.1.3
 
-Wrap code that calls Qt Embedded specific classes (such as QWSServer) between
-```C
-#ifdef Q_WS_QWS
-```
-and
-```C
-#endif
-```
-so that the project also compiles and can be tested under standard Qt.
+- **Translations**    - Added many translations from the community
 
-## Adding/Updating Translations
+### V2.1.2
 
-References:
+- **Default Boot**    - A default OS can be set in a multi-boot setup for quicker boots.
+- **Bootmenutimout**  - The timeout of the boot selection dialog can be changed.
+- **SHIFT key**       - The PINN interface can be reached using the Left mouse button as well as shift.
 
-http://qt-project.org/doc/qt-4.8/i18n-source-translation.html
+### V2.1.1
 
-http://qt-project.org/doc/qt-4.8/linguist-manual.html
+- **CEC Support**     - Added CEC support to control PINN with a TV remote
 
-To set up a git pre-commit hook to automatically update the translation files, run the following commands in the project root:
-- `chmod +x pre-commit-translation-update-hook.sh`
-- `cp pre-commit-translation-update-hook.sh .git/hooks/pre-commit`
+### V2.1
 
-To add a new translation:
-- Add to `recovery/recovery.pro` the following: `TRANSLATIONS += translation_<languagecode>.ts`
-- Run `lupdate recovery/recovery.pro` which extracts strings from the source code and generates/updates the *.ts* files.
-- The *.ts* can then be sent to the translator, opened in Qt Linguist and filled in.
-- Add a line for the *.ts* file in to `recovery/icons.qrc`, but substitute *.ts* extension with *.qm* . This file contains a list
-  of resource files that will be embedded into the application's executable during build.
-- Add a flag icon for your language from http://www.famfamfam.com/lab/icons/flags/ flag icon collection or if it
-  doesn't have the one you need, you may use some other small png icon for it. Copy the icon file to the `recovery/icons`
-  folder and add a line for it into `recovery/icons.qrc` as well.
+- **IoTpHAT support** - Updated to match NOOBS v2.1 for IoTpHAT wifi
 
+### V2.0
 
-### Legal compliance
+- **Network Drivers** - Added the popular RTL8188eu wifi driver (for HubPiWi and others)
+- **New Firmware**    - Updated Firmware and Kernel to match NOOBS 2.0
 
-Copyright (c) 2013, Raspberry Pi
-All rights reserved.
+### V1.9.5 
 
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+- **Self-Update**     - Notification and download of new releases
 
-Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-Neither the name of the Raspberry Pi Foundation nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#### Bugfixes
 
-#### Third party licenses:
+- **Network Drivers** - Fixed the popular RTL8188cus wifi driver.
+- **RPI3 ACT_LED**    - Now displays correctly on SD card access
 
-Recovery software directly links to:
-- Qt libraries, available under LGPL and commercial license.
 
-Currently used icon sets:
-- http://www.fatcow.com/free-icons - Creative commons Attribution license
-- http://www.famfamfam.com/lab/icons/flags - "These flag icons are available for free use for any purpose with no requirement for attribution."
-- http://www.oxygen-icons.org/ - Available under Creative Common Attribution-ShareAlike 3.0 and LGPL license
+### V1.9.4
 
-Licenses of utility software built by buildroot:
-Type `cd buildroot ; make legal-info` to generate a list, which will be available under `output/legal-info`.
+- **Network Drivers** - A number of additional wifi and ethernet drivers have been added.
+
+#### Bugfixes
+
+- **Dialog Box**      - The initialisation dialog box is removed under network errors
+
+
+### V1.9.3
+
+- **Clone SD Card**   - Copy the SD card to another card in a USB reader (BETA)
+- **Rescue shell**    - Exiting the rescue shell now enters the PINN recovery program instead of another shell.
+- **VNCSHARE**        - Sets up PINN to use VNC at the same time as an attached screen
+
+#### Bugfixes
+
+- **https**           - Fixed the ability to use https protocol (which was preventing Arch from installing sometimes).
+- **wifi config**     - A user supplied wpa_supplicant.conf file is now ALWAYS copied to /settings and then renamed to wpa_supplicant.conf.bak so that it does not continually overwrite any manual changes made through the GUI.
+
+
+### V1.9.2 
+
+- **Password**        - Change or reset your password for each OS.
+- **DSI/HDMI**        - Auto-switching of DSI/HDMI screen with HDMI taking priority 
+
+#### BugFixes
+
+- **NoobsConfig**     - Config filenames now now have all spaces converted to underscores 
+- **Multiple Os**     - Multiple installed OSes can now be selected again. 
+- **DHCP**            - ClientID is now used instead of DUID to request an IP address 
+
+
+### V1.9.1 (based on NOOBS v1.9)
+
+- **USB support**     - store your OS installations on USB stick to avoid wasting SD card space and avoid downloading each time.
+- **Alternative Src** - Install OSes from an alternative website, or local webserver
+- **ARCH support**    - Install the Arch Linux OS directly from the Arch website
+- **VGA666 support**  - Alow PINN to be used with Gert's VGA666 adaptor
+- **NOOBSCONFIG support** - Allow customisation of an OS installation as it installs
+- **SSH support**     - SSH remotely into you PINN installation.
+- **Progress**        - View your installation progress via alternative means

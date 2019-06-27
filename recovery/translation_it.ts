@@ -135,7 +135,7 @@
         <location filename="confeditdialog.ui" line="36"/>
         <source>&amp;Edit Options</source>
         <oldsource>Edit Options</oldsource>
-        <translation type="unfinished">Modifica opzioni</translation>
+        <translation>Modifica opzioni</translation>
     </message>
     <message>
         <location filename="confeditdialog.cpp" line="95"/>
@@ -1443,7 +1443,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="multiimagewritethread.cpp" line="774"/>
         <source>Syncing Filesystem</source>
-        <translation type="unfinished"></translation>
+        <translation>Sincronizzazione file system</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="792"/>
@@ -1534,12 +1534,12 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     <message>
         <location filename="multiimagewritethread.cpp" line="1495"/>
         <source>Checksum OK</source>
-        <translation type="unfinished"></translation>
+        <translation>Checksum Ok</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1498"/>
         <source>Finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Download completato</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1506"/>
@@ -1574,7 +1574,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
         <location filename="optionsdialog.ui" line="46"/>
         <source>noobs&amp;config</source>
         <oldsource>noobsconfig</oldsource>
-        <translation type="unfinished">noobsconfig</translation>
+        <translation>noobsconfig</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="53"/>
@@ -1585,7 +1585,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
         <location filename="optionsdialog.ui" line="56"/>
         <source>re&amp;serve=</source>
         <oldsource>reserve=</oldsource>
-        <translation type="unfinished">reserve=</translation>
+        <translation>reserve=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="66"/>
@@ -1737,7 +1737,6 @@ Possono essere usate istanze multiple di questa opzione.</translation>
     </message>
     <message utf8="true">
         <location filename="optionsdialog.ui" line="382"/>
-        <location filename="optionsdialog.ui" line="438"/>
         <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
         <oldsource> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
         <translation> Quando viene usato insieme a forcetrigger, imposta un periodo di timeout massimo in secondi per la visualizzazione del menu di ripristino prima di continuare con la finestra di dialogo di selezione di avvio e di selezionare potenzialmente un SO predefinito per l&apos;avvio.</translation>
@@ -1766,6 +1765,11 @@ Questo è molto utile quando si usa una connessione VNC.</translation>
         <translation>Impedisce che la pressione dela tasto MAIUSC abiliti la modalità di ripristino all&apos;avvio (potresti avere una tastiera problematica che si attiva erroneamente ogni volta che fai il boot)</translation>
     </message>
     <message>
+        <location filename="optionsdialog.ui" line="438"/>
+        <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="optionsdialog.ui" line="455"/>
         <source>Interface</source>
         <translation>Interfaccia</translation>
@@ -1776,11 +1780,11 @@ Questo è molto utile quando si usa una connessione VNC.</translation>
         <translation>Usa una connessione di rete VNC per controllare PINN anziché qualsiasi tastiera, mouse e display collegati localmente. 
 Quando viene usata, qualsiasi display locale rimarrà vuoto.</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="476"/>
-        <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
-        <oldsource>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</oldsource>
-        <translation>Usa una connessione di rete VNC per controllare PINN. 
+        <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
+        <oldsource>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</oldsource>
+        <translation type="unfinished">Usa una connessione di rete VNC per controllare PINN. 
 Tuttavia, a differenza di vncinstall, qualsiasi tastiera e mouse collegati localmente saranno ancora attivi e il display sarà duplicato sullo schermo locale e nella connessione VNC.</translation>
     </message>
     <message>
@@ -1838,8 +1842,12 @@ Quando la shell viene chiusa, PINN verrà avviato normalmente.</translation>
         <source>Changes the default timeout allowed before an OS is booted without any selection. </source>
         <translation>Modifica il timeout predefinito prima che un SO venga avviato senza alcuna selezione. </translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="595"/>
+        <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
         <location filename="optionsdialog.ui" line="674"/>
         <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
         <oldsource>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</oldsource>
@@ -1849,207 +1857,207 @@ Ti suggeriamo di usare valori superiori a 127.</translation>
     <message>
         <location filename="optionsdialog.ui" line="69"/>
         <source>&amp;configpath=</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;configpath=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="96"/>
         <source>&amp;runinstaller</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;runinstaller</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="106"/>
         <source>no_&amp;update</source>
-        <translation type="unfinished"></translation>
+        <translation>no_&amp;update</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="116"/>
         <source>&amp;forceupdatepinn</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;forceupdatepinn</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="126"/>
         <source>nofirm&amp;ware</source>
-        <translation type="unfinished"></translation>
+        <translation>nofirm&amp;ware</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="136"/>
         <source>&amp;allsd</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;allsd</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="146"/>
         <source>all&amp;usb</source>
-        <translation type="unfinished"></translation>
+        <translation>all&amp;usb</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="156"/>
         <source>all&amp;network</source>
-        <translation type="unfinished"></translation>
+        <translation>all&amp;network</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="166"/>
         <source>all&amp;installed</source>
-        <translation type="unfinished"></translation>
+        <translation>all&amp;installed</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="176"/>
         <source>&amp;waitsd</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;waitsd</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="186"/>
         <source>waitus&amp;b</source>
-        <translation type="unfinished"></translation>
+        <translation>waitus&amp;b</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="196"/>
         <source>waitnetwor&amp;k</source>
-        <translation type="unfinished"></translation>
+        <translation>waitnetwor&amp;k</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="206"/>
         <source>waita&amp;ll</source>
-        <translation type="unfinished"></translation>
+        <translation>waita&amp;ll</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="233"/>
         <source>sil&amp;entreinstallnewer</source>
-        <translation type="unfinished"></translation>
+        <translation>sil&amp;entreinstallnewer</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="243"/>
         <source>&amp;silentinstall</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;silentinstall</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="250"/>
         <source>selec&amp;t=</source>
-        <translation type="unfinished"></translation>
+        <translation>selec&amp;t=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="274"/>
         <source>no_&amp;default_source</source>
-        <translation type="unfinished"></translation>
+        <translation>no_&amp;default_source</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="284"/>
         <source>disable&amp;usbimages</source>
-        <translation type="unfinished"></translation>
+        <translation>disable&amp;usbimages</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="294"/>
         <source>disable&amp;sdimages</source>
-        <translation type="unfinished"></translation>
+        <translation>disable&amp;sdimages</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="304"/>
         <source>&amp;showall</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;showall</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="314"/>
         <source>repo_&amp;list=</source>
-        <translation type="unfinished"></translation>
+        <translation>repo_&amp;list=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="327"/>
         <source>&amp;repo=</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;repo=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="347"/>
         <source>alt_&amp;image_source=</source>
-        <translation type="unfinished"></translation>
+        <translation>alt_&amp;image_source=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="385"/>
         <source>&amp;remotetimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;remotetimeout=&lt;secs&gt;</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="398"/>
         <source>&amp;forcetrigger</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;forcetrigger</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="408"/>
         <source>&amp;gpiotriggerenable</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;gpiotriggerenable</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="418"/>
         <source>&amp;networktimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;networktimeout=&lt;secs&gt;</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="431"/>
         <source>&amp;keyboardtriggerenable</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;keyboardtriggerenable</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="469"/>
         <source>v&amp;ncinstall</source>
-        <translation type="unfinished"></translation>
+        <translation>v&amp;ncinstall</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="479"/>
         <source>&amp;vncshare</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;vncshare</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="489"/>
         <source>&amp;ssh</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ssh</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="499"/>
         <source>&amp;rescueshell</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;rescueshell</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="509"/>
         <source>disablesafe&amp;mode</source>
-        <translation type="unfinished"></translation>
+        <translation>disablesafe&amp;mode</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="519"/>
         <source>&amp;dsi</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;dsi</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="529"/>
         <source>no_&amp;group</source>
-        <translation type="unfinished"></translation>
+        <translation>no_&amp;group</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="539"/>
         <source>no_&amp;cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>no_&amp;cursor</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="549"/>
         <source>&amp;wallpaper_resize</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;wallpaper_resize</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="559"/>
         <source>dis&amp;play=</source>
-        <translation type="unfinished"></translation>
+        <translation>dis&amp;play=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="572"/>
         <source>s&amp;tyle=</source>
-        <translation type="unfinished"></translation>
+        <translation>s&amp;tyle=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="585"/>
         <source>b&amp;ootmenutimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>b&amp;ootmenutimeout=&lt;secs&gt;</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="598"/>
         <source>&amp;background=&lt;r,g,b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;background=&lt;r,g,b&gt;</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="612"/>

@@ -1718,7 +1718,6 @@ Partition not big enough for new image.</source>
     </message>
     <message utf8="true">
         <location filename="optionsdialog.ui" line="382"/>
-        <location filename="optionsdialog.ui" line="438"/>
         <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
         <translation> 當與 forcetrigger 一起使用時，它會設定一個最大逾時（以秒為單位），以便在繼續開機選取對話框前顯示復原選單，並可以選取要開機的預設作業系統。</translation>
     </message>
@@ -1744,6 +1743,11 @@ Partition not big enough for new image.</source>
         <translation>避免在開機時按下 Shift 鍵進入復原模式（也許您有個有問題的鍵盤，會在您每次開機時錯誤觸發）</translation>
     </message>
     <message>
+        <location filename="optionsdialog.ui" line="438"/>
+        <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="optionsdialog.ui" line="455"/>
         <source>Interface</source>
         <translation>介面</translation>
@@ -1753,10 +1757,11 @@ Partition not big enough for new image.</source>
         <source>Uses a VNC network connection to control PINN instead of any locally attached keyboard, mouse and display. When this is used, any local display will remain blank.</source>
         <translation>使用 VNC 網路連線以控制 PINN 而非任何本機連線的鍵盤、滑鼠與顯示器。當使用此選項時，任何本機的顯示器都會保持為空白。</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="476"/>
-        <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
-        <translation>使用 VNC 網路連線控制 PINN。但不像 vncinstall，任何本機連線的鍵盤與滑鼠都還是可以使用，而顯示畫面也會在本機螢幕與 VNC 連線上同步顯示。</translation>
+        <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
+        <oldsource>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</oldsource>
+        <translation type="unfinished">使用 VNC 網路連線控制 PINN。但不像 vncinstall，任何本機連線的鍵盤與滑鼠都還是可以使用，而顯示畫面也會在本機螢幕與 VNC 連線上同步顯示。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="486"/>
@@ -1811,8 +1816,12 @@ Partition not big enough for new image.</source>
         <source>Changes the default timeout allowed before an OS is booted without any selection. </source>
         <translation>變更沒有選取作業系統時在開機選單允許的逾時。 </translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="595"/>
+        <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
         <location filename="optionsdialog.ui" line="674"/>
         <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
         <translation>要變更畫面與大多數視窗的背景色彩，新增 background=r,g,b，0,0,0 是黑色，而 255,255,255 是白色。我建議使用 127 以上的值。</translation>
