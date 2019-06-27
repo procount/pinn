@@ -184,7 +184,7 @@ bool InitDriveThread::method_resizePartitions()
         // Warn user that their SD card does not have an MBR and ask
         // if they would like us to create one for them
         QMessageBox::StandardButton answer;
-        emit query(tr("Would you like PINN to create one for you?\nWARNING: This will erase all data on your SD card"),
+        emit query(tr("Would you like PINN to create one for you?\nWARNING: This will erase all data on your SD card."),
                    tr("Error: No MBR present on SD Card"),
                    &answer);
 

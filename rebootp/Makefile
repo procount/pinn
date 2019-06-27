@@ -1,5 +1,3 @@
-#CC=/home/kevin/noobs_test/buildroot/output/host/usr/bin/arm-buildroot-linux-uclibcgnueabi-gcc
-#CC=$(PWD)/../noobs_test/buildroot/output/host/usr/bin/arm-buildroot-linux-uclibcgnueabi-gcc
 CC=$(PWD)/output/host/usr/bin/arm-buildroot-linux-uclibcgnueabi-gcc
 
 all: rebootp

@@ -1378,7 +1378,7 @@ void MainWindow::onCompleted(int arg)
 
             QString info;
             if (arg)
-                info = tr("OS(es) Downloaded with errors.\nSee debug log for details");
+                info = tr("OS(es) Downloaded with errors.\nSee debug log for details.");
             else
                 info = tr("OS(es) Downloaded Successfully.");
 
@@ -1397,7 +1397,7 @@ void MainWindow::onCompleted(int arg)
 
             QString info;
             if (arg)
-                info = tr("OS(es) Backed up with errors.\nSee debug log for details");
+                info = tr("OS(es) Backed up with errors.\nSee debug log for details.");
             else
                 info = tr("OS(es) Backed up Successfully.");
             ret = QMessageBox::information(this,
@@ -1408,7 +1408,7 @@ void MainWindow::onCompleted(int arg)
         {
             QString info;
             if (arg)
-                info = tr("OS(es) Installed with errors.\nSee debug log for details");
+                info = tr("OS(es) Installed with errors.\nSee debug log for details.");
             else
                 info = tr("OS(es) Installed Successfully");
             ret = QMessageBox::information(this,
@@ -1457,9 +1457,29 @@ void MainWindow::onError(const QString &msg)
     qDebug() << "Error:" << msg;
     if (_qpssd)
         _qpssd->hide();
+
+    setEnabled(true);
+
+    this->lower();
+
     if (!_silent)
         QMessageBox::critical(this, tr("Error"), msg, QMessageBox::Close);
-    setEnabled(true);
+
+
+    QWidgetList topWidgets = QApplication::topLevelWidgets();
+    foreach (QWidget *w, topWidgets)
+    {
+        if (qobject_cast<QMessageBox *>(w) || qobject_cast<WifiSettingsDialog*>(w))
+        {
+            if (w->isVisible())
+            {
+                //numDialogs++;
+                w->close();
+                QApplication::processEvents();
+            }
+        }
+    }
+
     _piDrivePollTimer.start(POLLTIME);
     show();
 }
@@ -2992,8 +3012,8 @@ void MainWindow::startImageWrite()
     _qpssd->setWindowTitle("Installing Images");
     connect(imageWriteThread, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
     connect(imageWriteThread, SIGNAL(completed(int)), this, SLOT(onCompleted(int)));
-    connect(imageWriteThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
-    connect(imageWriteThread, SIGNAL(errorContinue(QString)), this, SLOT(onErrorContinue(QString)), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(error(QString)), this, SLOT(onError(QString)), Qt::BlockingQueuedConnection);
+    connect(imageWriteThread, SIGNAL(errorContinue(QString)), this, SLOT(onErrorContinue(QString)));
     connect(imageWriteThread, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
     connect(imageWriteThread, SIGNAL(checksumError(const QString&, const QString&, QMessageBox::ButtonRole*)), this, SLOT(onChecksumError(QString,QString,QMessageBox::ButtonRole*)),Qt::BlockingQueuedConnection);
     connect(imageWriteThread, SIGNAL(newDrive(const QString&,eProgressMode)), _qpssd , SLOT(setDriveMode(const QString&,eProgressMode)), Qt::BlockingQueuedConnection);

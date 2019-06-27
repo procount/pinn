@@ -379,7 +379,7 @@
            <item row="3" column="0">
             <widget class="QLabel" name="l_remotetimeout">
              <property name="toolTip">
-              <string> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</string>
+              <string> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</string>
              </property>
              <property name="text">
               <string>&amp;remotetimeout=&lt;secs&gt;</string>
@@ -435,7 +435,7 @@
            <item row="3" column="1" colspan="2">
             <widget class="QLineEdit" name="eb_remotetimeout">
              <property name="toolTip">
-              <string> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</string>
+              <string> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</string>
              </property>
             </widget>
            </item>
@@ -473,7 +473,7 @@
            <item row="1" column="0">
             <widget class="QCheckBox" name="cb_vncshare">
              <property name="toolTip">
-              <string>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</string>
+              <string>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</string>
              </property>
              <property name="text">
               <string>&amp;vncshare</string>
@@ -483,7 +483,7 @@
            <item row="2" column="0">
             <widget class="QCheckBox" name="cb_ssh">
              <property name="toolTip">
-              <string>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
               <string>&amp;ssh</string>
@@ -592,7 +592,7 @@
            <item row="10" column="0">
             <widget class="QLabel" name="l_background">
              <property name="toolTip">
-              <string>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</string>
+              <string>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</string>
              </property>
              <property name="text">
               <string>&amp;background=&lt;r,g,b&gt;</string>
@@ -671,7 +671,7 @@
            <item row="10" column="1" colspan="2">
             <widget class="QLineEdit" name="eb_background">
              <property name="toolTip">
-              <string>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</string>
+              <string>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</string>
              </property>
             </widget>
            </item>

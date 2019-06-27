@@ -1502,8 +1502,8 @@ QMessageBox::ButtonRole  MultiImageWriteThread::untar(const QString &tarball, co
     {
         QByteArray msg = p.readAll();
         qDebug() << msg;
-        if (!bSuppressError)
-            emit error(tr("Error downloading or extracting tarball")+"\n"+msg);
+        //if (!bSuppressError)
+        //S    emit error(tr("Error downloading or extracting tarball")+"\n"+msg);
         return QMessageBox::RejectRole ;
     }
     qDebug() << "finished writing filesystem in" << (t1.elapsed()/1000.0) << "seconds";

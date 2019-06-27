@@ -540,3 +540,7 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 
 -**PI4 support** - Added support for the new RPi4. Includes Raspbian Buster in full version.
 
+### V3.3a
+
+-**Tidy up** - Development moved to Ubuntu 18.04 prompting a tidy up
+

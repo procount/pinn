@@ -5,6 +5,10 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.3a
+
+-**Tidy up** - Development moved to Ubuntu 18.04 prompting a tidy up
+
 ### V3.3
 
 -**PI4 support**  - Added support for the new RPi4. Includes Raspbian Buster in full version.
