@@ -1013,7 +1013,7 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="mainwindow.cpp" line="3137"/>
         <source>Normally select NO, unless your last download was not successful, in which case select YES</source>
-        <translation>Normalmente seleziona NO, a meno che l&apos;ultimo download non è stato completato, in questo caso seleziona SI.</translation>
+        <translation>Normalmente seleziona NO, a meno che l&apos;ultimo download non è stato completato, in questo caso seleziona SI</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3351"/>
@@ -1767,7 +1767,7 @@ Questo è molto utile quando si usa una connessione VNC.</translation>
     <message>
         <location filename="optionsdialog.ui" line="438"/>
         <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
-        <translation type="unfinished"></translation>
+        <translation> Quando viene usato insieme a forcetrigger, imposta un periodo di timeout massimo in secondi per la visualizzazione del menu di ripristino prima di continuare con la finestra di dialogo di selezione di avvio e di selezione di un SO predefinito per l&apos;avvio.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="455"/>
@@ -1783,8 +1783,8 @@ Quando viene usata, qualsiasi display locale rimarrà vuoto.</translation>
     <message>
         <location filename="optionsdialog.ui" line="476"/>
         <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
-        <oldsource>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</oldsource>
-        <translation type="unfinished">Usa una connessione di rete VNC per controllare PINN. 
+        <oldsource>Uses a VNC network connection to control PINN. However, unlike&#xa0;vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</oldsource>
+        <translation>Usa una connessione di rete VNC per controllare PINN. 
 Tuttavia, a differenza di vncinstall, qualsiasi tastiera e mouse collegati localmente saranno ancora attivi e il display sarà duplicato sullo schermo locale e nella connessione VNC.</translation>
     </message>
     <message>
@@ -1845,11 +1845,12 @@ Quando la shell viene chiusa, PINN verrà avviato normalmente.</translation>
     <message>
         <location filename="optionsdialog.ui" line="595"/>
         <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
-        <translation type="unfinished"></translation>
+        <translation>Per modificare il colore di sfondo per lo schermo e la maggior parte delle finestre, aggiungi background=r,g,b, dove 0,0,0 è il nero e 255,255,255 è il bianco. 
+Ti suggeriamo di usare valori superiori a 127.</translation>
     </message>
     <message utf8="true">
         <location filename="optionsdialog.ui" line="674"/>
-        <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
+        <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
         <oldsource>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</oldsource>
         <translation>Per modificare il colore di sfondo per lo schermo e la maggior parte delle finestre, aggiungi background=r,g,b, dove 0,0,0 è il nero e 255,255,255 è il bianco. 
 Ti suggeriamo di usare valori superiori a 127.</translation>
