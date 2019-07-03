@@ -1779,7 +1779,7 @@ Quando viene usata, qualsiasi display locale rimarrà vuoto.</translation>
         <location filename="optionsdialog.ui" line="476"/>
         <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
         <oldsource>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</oldsource>
-        <translation type="unfinished">Usa una connessione di rete VNC per controllare PINN. 
+        <translation>Usa una connessione di rete VNC per controllare PINN. 
 Tuttavia, a differenza di vncinstall, qualsiasi tastiera e mouse collegati localmente saranno ancora attivi e il display sarà duplicato sullo schermo locale e nella connessione VNC.</translation>
     </message>
     <message>
@@ -1841,7 +1841,7 @@ Quando la shell viene chiusa, PINN verrà avviato normalmente.</translation>
         <location filename="optionsdialog.ui" line="595"/>
         <location filename="optionsdialog.ui" line="674"/>
         <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
-        <translation type="unfinished">Per modificare il colore di sfondo per lo schermo e la maggior parte delle finestre, aggiungi background=r,g,b, dove 0,0,0 è il nero e 255,255,255 è il bianco. 
+        <translation>Per modificare il colore di sfondo per lo schermo e la maggior parte delle finestre, aggiungi background=r,g,b, dove 0,0,0 è il nero e 255,255,255 è il bianco. 
 Ti suggeriamo di usare valori superiori a 127.</translation>
     </message>
     <message>
