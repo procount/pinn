@@ -94,7 +94,7 @@
     <message>
         <location filename="bootselectiondialog.ui" line="38"/>
         <source>Sticky default</source>
-        <translation type="unfinished"/>
+        <translation>Angeheftetes Standardbetriebssystem</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="45"/>
@@ -1169,26 +1169,26 @@ Do you want to continue?</source>
     <message>
         <location filename="mainwindow.cpp" line="1242"/>
         <source>The %1 process will begin shortly.</source>
-        <translation>Der %1 Prozess beginnt in Kürze</translation>
+        <translation>Der %1 Prozess beginnt in Kürze.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1381"/>
         <source>OS(es) Downloaded with errors.
 See debug log for details</source>
-        <translation type="unfinished"/>
+        <translation>Betriebssystem(e) nicht fehlerfrei heruntergeladen. Schaue in das Debug-Log für Details.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1411"/>
         <source>OS(es) Installed with errors.
 See debug log for details</source>
-        <translation type="unfinished"/>
+        <translation>Betriebssystem(e) nicht fehlerfrei heruntergeladen. Schaue in das Debug-Log für Details.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1865"/>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN's partition structure.</source>
-        <translation type="unfinished"/>
+        <translation>Warnung: Alle installierten Betriebssysteme wurden gelöscht und der Datenträger wurde auf seine Originalgröße zurückgesetzt. Installieren und Herunterladen funktioniert nicht mehr, bis dieses Laufwerk neu gestartet ist. Dieses Laufwerk erneut zu starten erstellt PINNs Partitions-Struktur neu. </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2547"/>
@@ -1216,17 +1216,17 @@ Booting this drive again will re-instate PINN's partition structure.</source>
     <message>
         <location filename="mainwindow.cpp" line="2897"/>
         <source>filesize error checking </source>
-        <translation type="unfinished"/>
+        <translation>fehler beim Überprüfen der Dateigröße</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3112"/>
         <source> has an incompatible number of partitions with </source>
-        <translation type="unfinished"/>
+        <translation>hat eine inkompatible Anzahl an Partitionen, welche</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3767"/>
         <source>Reformat drive?</source>
-        <translation type="unfinished"/>
+        <translation>Laufwerk neu formatieren?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1878"/>
@@ -1246,37 +1246,37 @@ Booting this drive again will re-instate PINN's partition structure.</source>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="58"/>
         <source>Finish writing (sync)</source>
-        <translation type="unfinished">Schließe Schreibvorgang ab (sync)</translation>
+        <translation>Schließe Schreibvorgang ab (sync)</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="89"/>
         <source>File '%1' does not need downloading</source>
-        <translation type="unfinished"/>
+        <translation>Datei '%1' muss nicht heruntergeladen werden</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="100"/>
         <source>Downloading %1:%2</source>
-        <translation type="unfinished"/>
+        <translation>Heruntergeladen wird %1:%2</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="138"/>
         <source>Checking %1:%2</source>
-        <translation type="unfinished"/>
+        <translation>Überprüft wird %1:%2</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="148"/>
         <source>Error in checksum</source>
-        <translation type="unfinished"/>
+        <translation>Fehler in der Checksumme</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="156"/>
         <source>Error downloading or extracting tarball</source>
-        <translation type="unfinished">Fehler beim Herunterladen oder Extrahieren des TAR-Archivs</translation>
+        <translation>Fehler beim Herunterladen oder Extrahieren des TAR-Archivs</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="194"/>
         <source>Finished downloading %1</source>
-        <translation type="unfinished"/>
+        <translation>Herunterladen von %1 abgeschlossen</translation>
     </message>
 </context>
 <context>
@@ -1299,7 +1299,7 @@ Booting this drive again will re-instate PINN's partition structure.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="153"/>
         <source>Operating system cannot claim both primary partitions 2 and 4</source>
-        <translation type="unfinished"/>
+        <translation>Das Betriebssystem kann nicht beide primären Partitionen 2 und 4 verwenden</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="181"/>
@@ -1361,12 +1361,12 @@ Booting this drive again will re-instate PINN's partition structure.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="210"/>
         <source>Cannot boot partitions &gt; 62. Reduce the number of OSes</source>
-        <translation type="unfinished"/>
+        <translation>Kann keine Partitionen &gt; 62 booten. Reduziere die Anzahl an Betriebssystemen</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="232"/>
         <source>Cannot boot partitions &gt; #62. Reduce the number of OSes</source>
-        <translation type="unfinished"/>
+        <translation>Kann keine Partitionen &gt; #62 booten. Reduziere die Anzahl an Betriebssystemen</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="261"/>
@@ -1381,7 +1381,7 @@ Booting this drive again will re-instate PINN's partition structure.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="336"/>
         <source>Writing boot partition table</source>
-        <translation type="unfinished"/>
+        <translation>Boot-Partitionstabelle wird geschrieben</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="326"/>
@@ -1393,17 +1393,17 @@ Booting this drive again will re-instate PINN's partition structure.</source>
         <location filename="multiimagewritethread.cpp" line="387"/>
         <source>.
 Partition not big enough for new image.</source>
-        <translation type="unfinished"/>
+        <translation>. Die Partition ist nicht groß genug für ein neues Image.</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="387"/>
         <source>Cannot Reinstall/Replace </source>
-        <translation type="unfinished"/>
+        <translation>Kann nicht erneut installieren/ersetzen</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="433"/>
         <source>Operation cancelled by user</source>
-        <translation type="unfinished"/>
+        <translation>Der Vorgang wurde vom Benutzer abgebrochen</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="460"/>
@@ -1418,7 +1418,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="723"/>
         <source>OS: '%1' needs a partition label of '%2' which is not available</source>
-        <translation type="unfinished"/>
+        <translation>Bertriebssystem: '%1' benötigt eine Partition mit dem Namen '%2', welche aber nicht vorhanden ist</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="766"/>
@@ -1434,7 +1434,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="774"/>
         <source>Syncing Filesystem</source>
-        <translation type="unfinished"/>
+        <translation>Dateisystem wird synchronisiert</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="792"/>
@@ -1458,7 +1458,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="853"/>
         <source>Error in checksum for partition_setup.sh</source>
-        <translation type="unfinished"/>
+        <translation>Fehler in der Checksumme von partition_setup.sh</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="860"/>
@@ -1475,7 +1475,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="932"/>
         <source>%1: Configuring flavour</source>
-        <translation type="unfinished"/>
+        <translation>%1: Flavour wird konfiguriert</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="922"/>
@@ -1494,7 +1494,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="955"/>
         <source>%1: Checking firmware update</source>
-        <translation type="unfinished"/>
+        <translation>%1: Auf Firmware-Updates wird überprüft</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1372"/>
@@ -1513,24 +1513,24 @@ Partition not big enough for new image.</source>
         <location filename="multiimagewritethread.cpp" line="1585"/>
         <location filename="multiimagewritethread.cpp" line="1678"/>
         <source>An incorrect file checksum has been detected in %1</source>
-        <translation type="unfinished"/>
+        <translation>Eine inkorrekte Datei-Prüfsumme wurde in %1 erkannt.</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1485"/>
         <location filename="multiimagewritethread.cpp" line="1589"/>
         <location filename="multiimagewritethread.cpp" line="1682"/>
         <source>Checksum error</source>
-        <translation type="unfinished"/>
+        <translation>Prüfsumme fehlerhaft</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1495"/>
         <source>Checksum OK</source>
-        <translation type="unfinished"/>
+        <translation>Prüfsumme OK</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1498"/>
         <source>Finished downloading</source>
-        <translation type="unfinished"/>
+        <translation>Herunterladen abgeschlossen</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1506"/>
@@ -1549,65 +1549,65 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="14"/>
         <source>PINN Options</source>
-        <translation type="unfinished"/>
+        <translation>PINN Einstellungen</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="35"/>
         <source>Installation</source>
-        <translation type="unfinished"/>
+        <translation>Installation</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="43"/>
         <source>PREVENTS any noobsconfig customisations from being applied to an OS on installation</source>
-        <translation type="unfinished"/>
+        <translation>VERHINDERT, dass irgendwelche noobsconfig-Anpassungen auf ein Betriebssystem bei der Installation angewendet werden.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="46"/>
         <source>noobs&amp;config</source>
         <oldsource>noobsconfig</oldsource>
-        <translation type="unfinished"/>
+        <translation>noobs&amp;config</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="53"/>
         <source>Reserve some space on PINN's partition (MB)</source>
-        <translation type="unfinished"/>
+        <translation>Reserviere Speicherplatz auf der PINN-Partition</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="56"/>
         <source>re&amp;serve=</source>
         <oldsource>reserve=</oldsource>
-        <translation type="unfinished"/>
+        <translation>re&amp;serve=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="66"/>
         <location filename="optionsdialog.ui" line="79"/>
         <source>Specifies a path or URL where the noobsconfig customisation files can be found (rather than being in /os/&amp;lt;distro&amp;gt;/)</source>
-        <translation type="unfinished"/>
+        <translation>Gibt einen Dateipfad oder eine URL an, wo noobsconfig Anpassungsdateien gefunden werden können (außer denen in /os/&amp;lt;distro&amp;gt;/)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="86"/>
         <source>Amount of space to reserve (MB) on PINN's partition</source>
-        <translation type="unfinished"/>
+        <translation>Menge an zu reservierendem Speicherplatz auf der PINN-Partition</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="93"/>
         <source>Selecting this will erase all of your OSes</source>
-        <translation type="unfinished"/>
+        <translation>Dies auszuwählen löscht alle Betriebssysteme</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="103"/>
         <source>Prevents PINN from checking for self updates</source>
-        <translation type="unfinished"/>
+        <translation>Halte PINN vom automatischen Überprüfen auf Updates ab</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="113"/>
         <source>Force PINN to self-update whenever a new version is detected</source>
-        <translation type="unfinished"/>
+        <translation>Halte PINN vom automatischen Installieren von Updates ab, wenn diese verfügbar sind</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="123"/>
         <source>DO not update the firmware of old OSes on installation</source>
-        <translation type="unfinished"/>
+        <translation>Aktualisiere nicht die Firmware alter Betriebssysteme bei der Installation</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="133"/>
