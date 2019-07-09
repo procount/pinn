@@ -244,8 +244,8 @@
     <message>
         <location filename="initdrivethread.cpp" line="187"/>
         <source>Would you like PINN to create one for you?
-WARNING: This will erase all data on your SD card</source>
-        <oldsource>Would you like NOOBS to create one for you?
+WARNING: This will erase all data on your SD card.</source>
+        <oldsource>Would you like PINN to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
         <translation>Vuoi che PINN ne crei una per te?
 ATTENZIONE: questo eliminerà tutti i dati nella scheda SD.</translation>
@@ -772,14 +772,18 @@ Tutti i dati esistenti in %3 verranno eliminati.</translation>
     <message>
         <location filename="mainwindow.cpp" line="1381"/>
         <source>OS(es) Downloaded with errors.
-See debug log for details</source>
+See debug log for details.</source>
+        <oldsource>OS(es) Downloaded with errors.
+See debug log for details</oldsource>
         <translation>SO scaricati con errori.
 Vedi registro debug per i dettagli.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1411"/>
         <source>OS(es) Installed with errors.
-See debug log for details</source>
+See debug log for details.</source>
+        <oldsource>OS(es) Installed with errors.
+See debug log for details</oldsource>
         <translation>SO installati con errori.
 Vedi registro debug per i dettagli.</translation>
     </message>
@@ -881,7 +885,9 @@ Vedi registro debug per i dettagli.</translation>
     <message>
         <location filename="mainwindow.cpp" line="1400"/>
         <source>OS(es) Backed up with errors.
-See debug log for details</source>
+See debug log for details.</source>
+        <oldsource>OS(es) Backed up with errors.
+See debug log for details</oldsource>
         <translation>Errori backup SO.
 Per i dettagli vedi registro debug</translation>
     </message>
@@ -1542,11 +1548,6 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
         <translation>Download completato</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1506"/>
-        <source>Error downloading or extracting tarball</source>
-        <translation>Errore download od estrazione tarball</translation>
-    </message>
-    <message>
         <location filename="multiimagewritethread.cpp" line="1599"/>
         <location filename="multiimagewritethread.cpp" line="1692"/>
         <source>Error downloading or writing OS to SD card</source>
@@ -1784,7 +1785,8 @@ Tuttavia, a differenza di vncinstall, qualsiasi tastiera e mouse collegati local
     </message>
     <message>
         <location filename="optionsdialog.ui" line="486"/>
-        <source>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <oldsource>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions</oldsource>
         <translation>Abilita una connessione SSH al rescueshell in PINN. 
 Non può essere usata per controllare PINN, ma avere una shell è molto utile per eseguire la manutenzione remota in una qualsiasi delle partizioni della scheda SD.</translation>
     </message>
@@ -1958,6 +1960,11 @@ Ti suggeriamo di usare valori superiori a 127.</translation>
         <location filename="optionsdialog.ui" line="347"/>
         <source>alt_&amp;image_source=</source>
         <translation>alt_&amp;image_source=</translation>
+    </message>
+    <message utf8="true">
+        <location filename="optionsdialog.ui" line="382"/>
+        <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="385"/>

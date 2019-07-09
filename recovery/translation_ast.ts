@@ -324,8 +324,8 @@
     <message>
         <location filename="initdrivethread.cpp" line="187"/>
         <source>Would you like PINN to create one for you?
-WARNING: This will erase all data on your SD card</source>
-        <oldsource>Would you like NOOBS to create one for you?
+WARNING: This will erase all data on your SD card.</source>
+        <oldsource>Would you like PINN to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
         <translation type="unfinished">¿Prestaríate que PINN cree una por ti?
 AVISU: Esto desaniciará tolos datos na to tarxeta SD</translation>
@@ -828,7 +828,9 @@ AVISU: Esto desaniciará tolos datos na to tarxeta SD</translation>
     <message>
         <location filename="mainwindow.cpp" line="1381"/>
         <source>OS(es) Downloaded with errors.
-See debug log for details</source>
+See debug log for details.</source>
+        <oldsource>OS(es) Downloaded with errors.
+See debug log for details</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -839,7 +841,9 @@ See debug log for details</source>
     <message>
         <location filename="mainwindow.cpp" line="1400"/>
         <source>OS(es) Backed up with errors.
-See debug log for details</source>
+See debug log for details.</source>
+        <oldsource>OS(es) Backed up with errors.
+See debug log for details</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -856,7 +860,9 @@ See debug log for details</source>
     <message>
         <location filename="mainwindow.cpp" line="1411"/>
         <source>OS(es) Installed with errors.
-See debug log for details</source>
+See debug log for details.</source>
+        <oldsource>OS(es) Installed with errors.
+See debug log for details</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1513,11 +1519,6 @@ Partition not big enough for new image.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1506"/>
-        <source>Error downloading or extracting tarball</source>
-        <translation>Fallu baxando o estrayendo&apos;l comprimíu</translation>
-    </message>
-    <message>
         <location filename="multiimagewritethread.cpp" line="1599"/>
         <location filename="multiimagewritethread.cpp" line="1692"/>
         <source>Error downloading or writing OS to SD card</source>
@@ -1703,8 +1704,8 @@ Partition not big enough for new image.</source>
         <source>Booting</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
-        <location filename="optionsdialog.ui" line="382"/>
+    <message>
+        <location filename="optionsdialog.ui" line="438"/>
         <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
         <oldsource> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
         <translation type="unfinished"></translation>
@@ -1732,11 +1733,6 @@ Partition not big enough for new image.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="438"/>
-        <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="optionsdialog.ui" line="455"/>
         <source>Interface</source>
         <translation type="unfinished"></translation>
@@ -1754,7 +1750,8 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="486"/>
-        <source>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <oldsource>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1809,13 +1806,6 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="595"/>
         <location filename="optionsdialog.ui" line="674"/>
         <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="595"/>
-        <location filename="optionsdialog.ui" line="674"/>
-        <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
-        <oldsource>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>

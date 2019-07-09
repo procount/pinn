@@ -277,8 +277,10 @@
     <message>
         <location filename="initdrivethread.cpp" line="187"/>
         <source>Would you like PINN to create one for you?
-WARNING: This will erase all data on your SD card</source>
-        <translation>PINN으로 작업을 시작하시겠습니까?
+WARNING: This will erase all data on your SD card.</source>
+        <oldsource>Would you like PINN to create one for you?
+WARNING: This will erase all data on your SD card</oldsource>
+        <translation type="unfinished">PINN으로 작업을 시작하시겠습니까?
 경고: SD 카드의 모든 데이터를 지웁니다.</translation>
     </message>
     <message>
@@ -749,7 +751,9 @@ WARNING: This will erase all data on your SD card</source>
     <message>
         <location filename="mainwindow.cpp" line="1411"/>
         <source>OS(es) Installed with errors.
-See debug log for details</source>
+See debug log for details.</source>
+        <oldsource>OS(es) Installed with errors.
+See debug log for details</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -863,7 +867,9 @@ Please provide it locally or connect to the internet.</source>
     <message>
         <location filename="mainwindow.cpp" line="1381"/>
         <source>OS(es) Downloaded with errors.
-See debug log for details</source>
+See debug log for details.</source>
+        <oldsource>OS(es) Downloaded with errors.
+See debug log for details</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -874,8 +880,10 @@ See debug log for details</source>
     <message>
         <location filename="mainwindow.cpp" line="1400"/>
         <source>OS(es) Backed up with errors.
-See debug log for details</source>
-        <translation>선택한 OS에 대한 백업 과정에 오류가 있었습니다.
+See debug log for details.</source>
+        <oldsource>OS(es) Backed up with errors.
+See debug log for details</oldsource>
+        <translation type="unfinished">선택한 OS에 대한 백업 과정에 오류가 있었습니다.
 자세한 정보는 디버깅 로그를 참조해 주십시요.</translation>
     </message>
     <message>
@@ -1517,11 +1525,6 @@ Partition not big enough for new image.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1506"/>
-        <source>Error downloading or extracting tarball</source>
-        <translation>tarball을 다운로드 및 압축 해제하는 과정에서 오류가 발생하였습니다</translation>
-    </message>
-    <message>
         <location filename="multiimagewritethread.cpp" line="1599"/>
         <location filename="multiimagewritethread.cpp" line="1692"/>
         <source>Error downloading or writing OS to SD card</source>
@@ -1707,8 +1710,8 @@ Partition not big enough for new image.</source>
         <source>Booting</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
-        <location filename="optionsdialog.ui" line="382"/>
+    <message>
+        <location filename="optionsdialog.ui" line="438"/>
         <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
         <oldsource> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
         <translation type="unfinished"></translation>
@@ -1736,11 +1739,6 @@ Partition not big enough for new image.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="438"/>
-        <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="optionsdialog.ui" line="455"/>
         <source>Interface</source>
         <translation type="unfinished"></translation>
@@ -1758,7 +1756,8 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="486"/>
-        <source>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <oldsource>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1813,13 +1812,6 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="595"/>
         <location filename="optionsdialog.ui" line="674"/>
         <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="595"/>
-        <location filename="optionsdialog.ui" line="674"/>
-        <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
-        <oldsource>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
