@@ -1717,10 +1717,11 @@ Partition not big enough for new image.</source>
         <source>Booting</source>
         <translation>開機</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="optionsdialog.ui" line="382"/>
-        <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
-        <oldsource> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
+        <location filename="optionsdialog.ui" line="438"/>
+        <source>When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
+        <oldsource> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
         <translation type="unfinished"> 當與 forcetrigger 一起使用時，它會設定一個最大逾時（以秒為單位），以便在繼續開機選取對話框前顯示復原選單，並可以選取要開機的預設作業系統。</translation>
     </message>
     <message>
@@ -1745,9 +1746,11 @@ Partition not big enough for new image.</source>
         <translation>避免在開機時按下 Shift 鍵進入復原模式（也許您有個有問題的鍵盤，會在您每次開機時錯誤觸發）</translation>
     </message>
     <message>
+        <location filename="optionsdialog.ui" line="382"/>
         <location filename="optionsdialog.ui" line="438"/>
-        <source> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
-        <translation> 當與 forcetrigger 一起使用時，它會設定最大逾時時間（以秒為單位），以便在繼續啟動選擇對話框前顯示復原選單，並可以選取要開機的預設作業系統。</translation>
+        <source>When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
+        <oldsource> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
+        <translation type="unfinished"> 當與 forcetrigger 一起使用時，它會設定最大逾時時間（以秒為單位），以便在繼續啟動選擇對話框前顯示復原選單，並可以選取要開機的預設作業系統。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="455"/>
@@ -1824,13 +1827,6 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="674"/>
         <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
         <translation>要變更畫面與大多數視窗的背景色彩，加入 background=r,g,b，0,0,0 是黑色，255,255,255 是白色。我建議使用大於 127 的值。</translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="595"/>
-        <location filename="optionsdialog.ui" line="674"/>
-        <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
-        <oldsource>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</oldsource>
-        <translation type="unfinished">要變更畫面與大多數視窗的背景色彩，新增 background=r,g,b，0,0,0 是黑色，而 255,255,255 是白色。我建議使用 127 以上的值。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="69"/>

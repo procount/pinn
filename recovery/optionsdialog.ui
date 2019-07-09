@@ -379,7 +379,7 @@
            <item row="3" column="0">
             <widget class="QLabel" name="l_remotetimeout">
              <property name="toolTip">
-              <string> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</string>
+              <string>When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</string>
              </property>
              <property name="text">
               <string>&amp;remotetimeout=&lt;secs&gt;</string>
@@ -435,7 +435,7 @@
            <item row="3" column="1" colspan="2">
             <widget class="QLineEdit" name="eb_remotetimeout">
              <property name="toolTip">
-              <string> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</string>
+              <string>When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</string>
              </property>
             </widget>
            </item>
