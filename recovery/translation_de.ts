@@ -1065,48 +1065,48 @@ Do you want to continue?</source>
     <message>
         <location filename="mainwindow.cpp" line="4255"/>
         <source>Error downloading update file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Herunterladen der Update-Datei</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4262"/>
         <location filename="mainwindow.cpp" line="4357"/>
         <source>PINN Update Check</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN Update-Check</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4262"/>
         <source>Error contacting update server</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Kontaktieren des Update-Servers</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4357"/>
         <source>No updates available</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Update verfügbar</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4366"/>
         <source>PINN UPDATE</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN UPDATE</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4367"/>
         <source>A new version of PINN is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Eine neue Version von PINN ist verfügba</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4368"/>
         <source>Do you want to download this version?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten Sie diese Version herunterladen?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4400"/>
         <source>Downloading Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Update wird heruntergeladen</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4400"/>
         <source>Press ESC to cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Drücken Sie zum Abbrechen die ESC-Taste</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4533"/>

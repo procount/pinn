@@ -184,6 +184,7 @@ for i in $*; do
 	echo "skip-kernel-rebuild"
 	echo "skip-kernel-6"
 	echo "skip-kernel-7"
+	echo "skip-kernel-7l"
 	echo "skip-recovery-rebuild"
 	echo "nobuild"
 	exit
