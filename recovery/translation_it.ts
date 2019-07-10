@@ -512,7 +512,7 @@ ATTENZIONE: questo eliminerà tutti i dati nella scheda SD.</translation>
     <message>
         <location filename="mainwindow.ui" line="579"/>
         <source>L</source>
-        <translation></translation>
+        <translation>L</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="630"/>
