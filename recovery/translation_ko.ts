@@ -781,7 +781,8 @@ See debug log for details</oldsource>
         <location filename="mainwindow.cpp" line="1054"/>
         <source>Error: Some OSes are not available:
 </source>
-        <translation>오류: 일부 OS는 사용할 수 없습니다. 대상 OS: </translation>
+        <translation>오류: 일부 OS는 사용할 수 없습니다. 대상 OS:
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1160"/>
@@ -822,7 +823,8 @@ Please provide it locally or connect to the internet.</source>
         <location filename="mainwindow.cpp" line="1131"/>
         <source>Warning: No OSes selected or available
 </source>
-        <translation>경고: 선택한 운영체제가 없거나 재설치할 수 없습니다.</translation>
+        <translation>경고: 선택한 운영체제가 없거나 재설치할 수 없습니다
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1146"/>
@@ -1015,7 +1017,8 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <location filename="mainwindow.cpp" line="2256"/>
         <source>Error downloading distribution list from Internet:
 </source>
-        <translation>인터넷에서 배포판 목록을 가져오는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>인터넷에서 배포판 목록을 가져오는 과정에서 오류가 발생하였습니다:
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2123"/>
@@ -1222,14 +1225,15 @@ Do you want to continue?</source>
         <location filename="mainwindow.cpp" line="4533"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
-        <translation>경고: 선택한 OS가 없습니다.
-(RISC OS 또는 PINN을 선택하지 마십시요.)</translation>
+        <translation>경고: 선택한 OS가 없습니다
+(RISC OS 또는 PINN을 선택하지 마십시요)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4561"/>
         <source>Warning: No OSes selected
 </source>
-        <translation>경고: 선택한 OS가 없습니다.</translation>
+        <translation>경고: 선택한 OS가 없습니다
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4658"/>

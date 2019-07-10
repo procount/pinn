@@ -809,7 +809,8 @@ Please provide it locally or connect to the internet.</source>
         <location filename="mainwindow.cpp" line="1054"/>
         <source>Error: Some OSes are not available:
 </source>
-        <translation>Fehler einige Betriebssysteme sind nicht verfügbar</translation>
+        <translation>Fehler einige Betriebssysteme sind nicht verfügbar:
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1160"/>
@@ -831,7 +832,8 @@ Please provide it locally or connect to the internet.</source>
         <location filename="mainwindow.cpp" line="1131"/>
         <source>Warning: No OSes selected or available
 </source>
-        <translation>Warnung: Keine Betriebssysteme ausgewählt oder verfügbar</translation>
+        <translation>Warnung: Keine Betriebssysteme ausgewählt oder verfügbar
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1265"/>
@@ -946,7 +948,8 @@ Wollen Sie diese Einstellung dauerhaft speichern?</translation>
         <location filename="mainwindow.cpp" line="2256"/>
         <source>Error downloading distribution list from Internet:
 </source>
-        <translation>Fehler beim Herunterladen der Distributions-Liste aus dem Internet:</translation>
+        <translation>Fehler beim Herunterladen der Distributions-Liste aus dem Internet:
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2123"/>

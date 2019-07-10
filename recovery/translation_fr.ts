@@ -975,7 +975,8 @@ Would you like to make this setting permanent?</source>
         <location filename="mainwindow.cpp" line="2256"/>
         <source>Error downloading distribution list from Internet:
 </source>
-        <translation>Erreur lors du téléchargement des listes de distribution par Internet</translation>
+        <translation>Erreur lors du téléchargement des listes de distribution par Internet:
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2123"/>
