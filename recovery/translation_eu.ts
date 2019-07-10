@@ -1186,7 +1186,8 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <location filename="mainwindow.cpp" line="2256"/>
         <source>Error downloading distribution list from Internet:
 </source>
-        <translation>Errorea banaketa zerrenda Internetetik deskargatzean:</translation>
+        <translation>Errorea banaketa zerrenda Internetetik deskargatzean:
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2123"/>

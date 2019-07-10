@@ -972,7 +972,8 @@ Would you like to make this setting permanent?</source>
         <location filename="mainwindow.cpp" line="2256"/>
         <source>Error downloading distribution list from Internet:
 </source>
-        <translation>Feil ved nedlasting av distribusjonsliste fra internett:</translation>
+        <translation>Feil ved nedlasting av distribusjonsliste fra internett:
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2123"/>
