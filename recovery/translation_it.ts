@@ -135,7 +135,7 @@
         <location filename="confeditdialog.ui" line="36"/>
         <source>&amp;Edit Options</source>
         <oldsource>Edit Options</oldsource>
-        <translation>Modifica opzioni</translation>
+        <translation>&amp;Modifica opzioni</translation>
     </message>
     <message>
         <location filename="confeditdialog.cpp" line="95"/>
@@ -889,7 +889,7 @@ See debug log for details.</source>
         <oldsource>OS(es) Backed up with errors.
 See debug log for details</oldsource>
         <translation>Errori backup SO.
-Per i dettagli vedi registro debug</translation>
+Per i dettagli vedi registro debug.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1402"/>
@@ -1019,7 +1019,7 @@ Vuoi rendere questa impostazione permanente?</translation>
     <message>
         <location filename="mainwindow.cpp" line="3157"/>
         <source>Normally select NO, unless your last download was not successful, in which case select YES</source>
-        <translation>Normalmente seleziona NO, a meno che l&apos;ultimo download non è stato completato, in questo caso seleziona SI.</translation>
+        <translation>Normalmente seleziona NO, a meno che l&apos;ultimo download non è stato completato, in questo caso seleziona SI</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3371"/>
@@ -1575,7 +1575,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
         <location filename="optionsdialog.ui" line="46"/>
         <source>noobs&amp;config</source>
         <oldsource>noobsconfig</oldsource>
-        <translation>noobsconfig</translation>
+        <translation>noobs&amp;config</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="53"/>
@@ -1586,7 +1586,7 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
         <location filename="optionsdialog.ui" line="56"/>
         <source>re&amp;serve=</source>
         <oldsource>reserve=</oldsource>
-        <translation>reserve=</translation>
+        <translation>re&amp;serve=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="66"/>
@@ -1741,7 +1741,7 @@ Possono essere usate istanze multiple di questa opzione.</translation>
         <location filename="optionsdialog.ui" line="438"/>
         <source>When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
         <oldsource> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
-        <translation type="unfinished"> Quando viene usato insieme a forcetrigger, imposta un periodo di timeout massimo in secondi per la visualizzazione del menu di ripristino prima di continuare con la finestra di dialogo di selezione di avvio e di selezionare potenzialmente un SO predefinito per l&apos;avvio.</translation>
+        <translation>Quando viene usato insieme a forcetrigger, imposta un periodo di timeout massimo in secondi per la visualizzazione del menu di ripristino prima di continuare con la finestra di dialogo di selezione di avvio e di selezionare potenzialmente un SO predefinito per l&apos;avvio.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="395"/>
@@ -1786,8 +1786,8 @@ Tuttavia, a differenza di vncinstall, qualsiasi tastiera e mouse collegati local
     </message>
     <message>
         <location filename="optionsdialog.ui" line="486"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <oldsource>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions</oldsource>
+        <source>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions.</source>
+        <oldsource>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
         <translation>Abilita una connessione SSH al rescueshell in PINN. 
 Non può essere usata per controllare PINN, ma avere una shell è molto utile per eseguire la manutenzione remota in una qualsiasi delle partizioni della scheda SD.</translation>
     </message>
@@ -1961,13 +1961,6 @@ Ti suggeriamo di usare valori superiori a 127.</translation>
         <location filename="optionsdialog.ui" line="347"/>
         <source>alt_&amp;image_source=</source>
         <translation>alt_&amp;image_source=</translation>
-    </message>
-    <message>
-        <location filename="optionsdialog.ui" line="382"/>
-        <location filename="optionsdialog.ui" line="438"/>
-        <source>When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
-        <oldsource> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
-        <translation type="unfinished"> Quando viene usato insieme a forcetrigger, imposta un periodo di timeout massimo in secondi per la visualizzazione del menu di ripristino prima di continuare con la finestra di dialogo di selezione di avvio e di selezionare potenzialmente un SO predefinito per l&apos;avvio.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="385"/>

@@ -1746,13 +1746,6 @@ Partition not big enough for new image.</source>
         <translation>避免在開機時按下 Shift 鍵進入復原模式（也許您有個有問題的鍵盤，會在您每次開機時錯誤觸發）</translation>
     </message>
     <message>
-        <location filename="optionsdialog.ui" line="382"/>
-        <location filename="optionsdialog.ui" line="438"/>
-        <source>When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
-        <oldsource> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
-        <translation type="unfinished"> 當與 forcetrigger 一起使用時，它會設定最大逾時時間（以秒為單位），以便在繼續啟動選擇對話框前顯示復原選單，並可以選取要開機的預設作業系統。</translation>
-    </message>
-    <message>
         <location filename="optionsdialog.ui" line="455"/>
         <source>Interface</source>
         <translation>介面</translation>
@@ -1770,8 +1763,8 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="486"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <oldsource>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions</oldsource>
+        <source>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions.</source>
+        <oldsource>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
         <translation type="unfinished">啟用到 PINN 中的緊急殼層的 SSH 連線。這對控制 PINN 沒什麼用，但在執行對任何 SD 記憶卡分割區的遠端維護時相當有用</translation>
     </message>
     <message>

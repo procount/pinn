@@ -1,16 +1,9 @@
 #!/bin/bash
-
-#pre-pi4 release
-#rpi-linux be0a940de66666c10c9071cddafce6284c400734
-
-#Post Pi4 release
-#rpi-linux: 71d47f4c4bd7fd395b87c474498187b2f9be8751
-#rpi-firmware: 64b5649a41b69d09bfe0ed05448d28a66be3edfd
-#rpi-userland: de4a7f2e3c391e2d3bc76af31864270e7802d9ac
-
 # Bash script to rebuild recovery
 
 set -e
+
+KERNEL="4.19"
 
 # Final directory where NOOBS files will be copied to
 NOOBS_OUTPUT_DIR="output"
@@ -143,9 +136,9 @@ for i in $*; do
         update_github_package_version rpi-userland raspberrypi/userland master
     fi
 
-    # Update raspberrypi/linux rpi-4.19.y HEAD version in buildroot/.config to latest
+    # Update raspberrypi/linux rpi-$KERNEL.y HEAD version in buildroot/.config to latest
     if [ $i = "update-kernel" ]; then
-        update_github_kernel_version raspberrypi/linux rpi-4.19.y
+        update_github_kernel_version raspberrypi/linux rpi-$KERNEL.y
     fi
 
     # Update language TS files
@@ -206,8 +199,6 @@ fi
 
 
 # Let buildroot build everything
-#select_kernelconfig armv6 git://github.com/raspberrypi/linux.git be0a940de66666c10c9071cddafce6284c400734 ???
-#select_kernelconfig armv7l "git@github.com:raspberrypi\/linux-vc5.git" "vc5-db83d4b7c10d0a4251780d2c7a033c2a1216d47c"
 make
 
 # copy any updated translation files
@@ -286,7 +277,7 @@ echo "PINN Version: $(sed -n 's|.*VERSION_NUMBER.*\"\(.*\)\"|v\1|p' ../recovery/
 echo "PINN Git HEAD @ $(git rev-parse --verify HEAD)" >> "$BUILD_INFO"
 echo "rpi-userland Git master @ $(get_package_version rpi-userland)" >> "$BUILD_INFO"
 echo "rpi-firmware Git master @ $(get_package_version rpi-firmware)" >> "$BUILD_INFO"
-echo "rpi-linux Git rpi-4.19.y @ $(get_kernel_version)" >> "$BUILD_INFO"
+echo "rpi-linux Git rpi-$KERNEL.y @ $(get_kernel_version)" >> "$BUILD_INFO"
 
 cd ..
 
