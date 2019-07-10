@@ -1626,8 +1626,9 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="143"/>
-        <source> Selects all OSes where the most recent one is on a local USB drive</source>
-        <translation> Seleziona tutti i SO in cui si trova il più recente nell&apos;unità USB</translation>
+        <source>Selects all OSes where the most recent one is on a local USB drive</source>
+        <oldsource> Selects all OSes where the most recent one is on a local USB drive</oldsource>
+        <translation type="unfinished"> Seleziona tutti i SO in cui si trova il più recente nell&apos;unità USB</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="153"/>
@@ -1646,8 +1647,9 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="183"/>
-        <source> Waits for all OSes on local USBs to be listed</source>
-        <translation> Attende che siano elencati tutti i sistemi operativi presenti nell&apos;unità USB</translation>
+        <source>Waits for all OSes on local USBs to be listed</source>
+        <oldsource> Waits for all OSes on local USBs to be listed</oldsource>
+        <translation type="unfinished"> Attende che siano elencati tutti i sistemi operativi presenti nell&apos;unità USB</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="193"/>
@@ -1656,8 +1658,9 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="203"/>
-        <source> Waits for OSes from all sources to be listed</source>
-        <translation> Attende che siano elencati tutti i sistemi operativi presenti in tutte le sorgenti</translation>
+        <source>Waits for OSes from all sources to be listed</source>
+        <oldsource> Waits for OSes from all sources to be listed</oldsource>
+        <translation type="unfinished"> Attende che siano elencati tutti i sistemi operativi presenti in tutte le sorgenti</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="213"/>
@@ -1720,9 +1723,9 @@ Ciò consente una facile gestione remota dei repository internet.</translation>
     <message>
         <location filename="optionsdialog.ui" line="324"/>
         <location filename="optionsdialog.ui" line="357"/>
-        <source> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
+        <source>Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
         <oldsource> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</oldsource>
-        <translation> Simile a alt_image_source ma corrisponde al metodo NOOBS di specificare un elenco di respository aggiuntivi come stringa quotata separata da spazio.</translation>
+        <translation type="unfinished"> Simile a alt_image_source ma corrisponde al metodo NOOBS di specificare un elenco di respository aggiuntivi come stringa quotata separata da spazio.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="344"/>
@@ -1757,8 +1760,9 @@ Questo è molto utile quando si usa una connessione VNC.</translation>
     <message>
         <location filename="optionsdialog.ui" line="415"/>
         <location filename="optionsdialog.ui" line="445"/>
-        <source> This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</source>
-        <translation> Questa impostazione consente di specificare il timeout della rete in secondi, soprattutto per le reti che impiegano più tempo per stabilirsi.</translation>
+        <source>This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</source>
+        <oldsource> This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</oldsource>
+        <translation type="unfinished"> Questa impostazione consente di specificare il timeout della rete in secondi, soprattutto per le reti che impiegano più tempo per stabilirsi.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="428"/>

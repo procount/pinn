@@ -140,7 +140,7 @@
            <item row="9" column="2">
             <widget class="QCheckBox" name="cb_allusb">
              <property name="toolTip">
-              <string> Selects all OSes where the most recent one is on a local USB drive</string>
+              <string>Selects all OSes where the most recent one is on a local USB drive</string>
              </property>
              <property name="text">
               <string>all&amp;usb</string>
@@ -180,7 +180,7 @@
            <item row="9" column="3">
             <widget class="QCheckBox" name="cb_waitusb">
              <property name="toolTip">
-              <string> Waits for all OSes on local USBs to be listed</string>
+              <string>Waits for all OSes on local USBs to be listed</string>
              </property>
              <property name="text">
               <string>waitus&amp;b</string>
@@ -200,7 +200,7 @@
            <item row="11" column="3">
             <widget class="QCheckBox" name="cb_waitall">
              <property name="toolTip">
-              <string> Waits for OSes from all sources to be listed</string>
+              <string>Waits for OSes from all sources to be listed</string>
              </property>
              <property name="text">
               <string>waita&amp;ll</string>
@@ -321,7 +321,7 @@
            <item row="1" column="0">
             <widget class="QLabel" name="l_repo">
              <property name="toolTip">
-              <string> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</string>
+              <string>Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</string>
              </property>
              <property name="text">
               <string>&amp;repo=</string>
@@ -354,7 +354,7 @@
            <item row="1" column="1">
             <widget class="QLineEdit" name="eb_repo">
              <property name="toolTip">
-              <string> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</string>
+              <string>Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</string>
              </property>
             </widget>
            </item>
@@ -412,7 +412,7 @@
            <item row="4" column="0">
             <widget class="QLabel" name="l_networktimeout">
              <property name="toolTip">
-              <string> This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</string>
+              <string>This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</string>
              </property>
              <property name="text">
               <string>&amp;networktimeout=&lt;secs&gt;</string>
@@ -442,7 +442,7 @@
            <item row="4" column="1" colspan="2">
             <widget class="QLineEdit" name="eb_networktimeout">
              <property name="toolTip">
-              <string> This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</string>
+              <string>This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</string>
              </property>
             </widget>
            </item>

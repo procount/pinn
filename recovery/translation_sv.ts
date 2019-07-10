@@ -1608,7 +1608,8 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="143"/>
-        <source> Selects all OSes where the most recent one is on a local USB drive</source>
+        <source>Selects all OSes where the most recent one is on a local USB drive</source>
+        <oldsource> Selects all OSes where the most recent one is on a local USB drive</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1628,7 +1629,8 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="183"/>
-        <source> Waits for all OSes on local USBs to be listed</source>
+        <source>Waits for all OSes on local USBs to be listed</source>
+        <oldsource> Waits for all OSes on local USBs to be listed</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1638,7 +1640,8 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="203"/>
-        <source> Waits for OSes from all sources to be listed</source>
+        <source>Waits for OSes from all sources to be listed</source>
+        <oldsource> Waits for OSes from all sources to be listed</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1700,7 +1703,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="324"/>
         <location filename="optionsdialog.ui" line="357"/>
-        <source> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
+        <source>Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
         <oldsource> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</oldsource>
         <translation type="unfinished"></translation>
     </message>
@@ -1735,7 +1738,8 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="415"/>
         <location filename="optionsdialog.ui" line="445"/>
-        <source> This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</source>
+        <source>This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</source>
+        <oldsource> This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>

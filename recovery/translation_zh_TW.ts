@@ -1611,8 +1611,9 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="143"/>
-        <source> Selects all OSes where the most recent one is on a local USB drive</source>
-        <translation> 選取所有作業系統，最新的在 USB 磁碟上</translation>
+        <source>Selects all OSes where the most recent one is on a local USB drive</source>
+        <oldsource> Selects all OSes where the most recent one is on a local USB drive</oldsource>
+        <translation type="unfinished"> 選取所有作業系統，最新的在 USB 磁碟上</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="153"/>
@@ -1631,8 +1632,9 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="183"/>
-        <source> Waits for all OSes on local USBs to be listed</source>
-        <translation>等待所有在本機 USB 磁碟上的作業系統被列出</translation>
+        <source>Waits for all OSes on local USBs to be listed</source>
+        <oldsource> Waits for all OSes on local USBs to be listed</oldsource>
+        <translation type="unfinished">等待所有在本機 USB 磁碟上的作業系統被列出</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="193"/>
@@ -1641,8 +1643,9 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="203"/>
-        <source> Waits for OSes from all sources to be listed</source>
-        <translation> 等待所有來源的作業系統都被列出</translation>
+        <source>Waits for OSes from all sources to be listed</source>
+        <oldsource> Waits for OSes from all sources to be listed</oldsource>
+        <translation type="unfinished"> 等待所有來源的作業系統都被列出</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="213"/>
@@ -1703,8 +1706,9 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="324"/>
         <location filename="optionsdialog.ui" line="357"/>
-        <source> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
-        <translation> 類似於 alt_image_source 但其與指定其他額外儲存庫的 NOOBS 方法相符合，為以空格分隔的有引號字串。</translation>
+        <source>Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
+        <oldsource> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</oldsource>
+        <translation type="unfinished"> 類似於 alt_image_source 但其與指定其他額外儲存庫的 NOOBS 方法相符合，為以空格分隔的有引號字串。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="344"/>
@@ -1737,8 +1741,9 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="415"/>
         <location filename="optionsdialog.ui" line="445"/>
-        <source> This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</source>
-        <translation> 這個設定讓網路逾時可使用秒指定，對需要較長時間辨識的網路尤為有用。</translation>
+        <source>This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</source>
+        <oldsource> This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</oldsource>
+        <translation type="unfinished"> 這個設定讓網路逾時可使用秒指定，對需要較長時間辨識的網路尤為有用。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="428"/>
