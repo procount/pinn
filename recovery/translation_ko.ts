@@ -280,7 +280,7 @@
 WARNING: This will erase all data on your SD card.</source>
         <oldsource>Would you like PINN to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
-        <translation>PINN으로 생성을 시작하시겠습니까?
+        <translation>PINN으로 MBR 생성을 진행하시겠습니까?
 경고: SD 카드의 모든 데이터를 지웁니다.</translation>
     </message>
     <message>
@@ -873,7 +873,8 @@ Please provide it locally or connect to the internet.</source>
 See debug log for details.</source>
         <oldsource>OS(es) Downloaded with errors.
 See debug log for details</oldsource>
-        <translation></translation>
+        <translation>선택한 OS를 다운로드하는 과정에 오류가 있었습니다.
+자세한 정보는 디버깅 로그를 참조해 주십시요.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1386"/>
