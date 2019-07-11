@@ -1129,8 +1129,7 @@ Do you want to continue?</source>
     <message>
         <location filename="mainwindow.cpp" line="3433"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
-        <translatorcomment>로컬 이미지가 없는 PINN은 네트워크 접속이 필요합니다. 다음 화면에서 Wi-Fi 네트워크를 선택해 주십시오.</translatorcomment>
-        <translation></translation>
+        <translation>로컬 이미지가 없는 PINN은 네트워크 접속이 필요합니다. 다음 화면에서 Wi-Fi 네트워크를 선택해 주십시오.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3441"/>
