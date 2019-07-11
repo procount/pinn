@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ko" sourcelanguage="en">
+<TS version="2.0" language="ko" sourcelanguage="en">
 <context>
     <name>BackupThread</name>
     <message>
         <location filename="backupthread.cpp" line="66"/>
         <source>Finish writing (sync)</source>
-        <translation>(동기화) 기록을 완료합니다.</translation>
+        <translation>(동기화) 기록을 완료합니다</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="113"/>
@@ -21,7 +21,7 @@
     <message>
         <location filename="backupthread.cpp" line="223"/>
         <source>%1: Updating partitions.json</source>
-        <translation>%1: partitions.json 내용을 업데이트하고 있습니다.</translation>
+        <translation>%1: partitions.json 내용을 업데이트하고 있습니다</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="177"/>
@@ -31,17 +31,17 @@
     <message>
         <location filename="backupthread.cpp" line="184"/>
         <source>%1: Archiving (%2)</source>
-        <translation>%1: (%2) 보관 작업하고 있습니다.</translation>
+        <translation>%1: (%2) 보관 작업하고 있습니다</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="192"/>
         <source>Error writing </source>
-        <translation>기록 오류</translation>
+        <translation>기록 오류 </translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="192"/>
         <source>: Disk full?</source>
-        <translation>: 디스크 용량이 가득 찬 것 같습니다.</translation>
+        <translation>: 디스크 용량이 가득 찬 것 같습니다?</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="206"/>
@@ -51,7 +51,7 @@
     <message>
         <location filename="backupthread.cpp" line="244"/>
         <source>%1: Updating os.json</source>
-        <translation>%1: os.json 내용을 업데이트하고 있습니다.</translation>
+        <translation>%1: os.json 내용을 업데이트하고 있습니다</translation>
     </message>
 </context>
 <context>
@@ -145,7 +145,7 @@
     <message>
         <location filename="confeditdialog.cpp" line="96"/>
         <source>Error mounting boot partition</source>
-        <translation>부팅 파티션을 마운트하는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>부팅 파티션을 마운트하는 과정에서 오류가 발생하였습니다</translation>
     </message>
 </context>
 <context>
@@ -167,7 +167,7 @@
         <location filename="fullfatthread.cpp" line="39"/>
         <location filename="fullfatthread.cpp" line="47"/>
         <source>Mounting FAT partition</source>
-        <translation>FAT 파티션을 마운트하고 있습니다.</translation>
+        <translation>FAT 파티션을 마운트하고 있습니다</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="50"/>
@@ -177,12 +177,12 @@
     <message>
         <location filename="fullfatthread.cpp" line="62"/>
         <source>Error opening %1</source>
-        <translation>%1 을 여는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>%1 을 여는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="72"/>
         <source>Finish writing to disk (sync)</source>
-        <translation>(동기화) 디스크 기록을 완료합니다.</translation>
+        <translation>(동기화) 디스크 기록을 완료합니다</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="85"/>
@@ -192,17 +192,17 @@
     <message>
         <location filename="fullfatthread.cpp" line="89"/>
         <source>Removing partitions 2,3,4</source>
-        <translation>2,3,4번 파티션을 제거하고 있습니다.</translation>
+        <translation>2,3,4번 파티션을 제거하고 있습니다</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="103"/>
         <source>Resizing FAT partition</source>
-        <translation>FAT 파티션의 크기를 조정하고 있습니다.</translation>
+        <translation>FAT 파티션의 크기를 조정하고 있습니다</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="127"/>
         <source>Error resizing existing FAT partition</source>
-        <translation>이미 있는 FAT 파티션의 크기를 조정하는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>이미 있는 FAT 파티션의 크기를 조정하는 과정에서 오류가 발생하였습니다</translation>
     </message>
 </context>
 <context>
@@ -211,17 +211,17 @@
         <location filename="initdrivethread.cpp" line="52"/>
         <location filename="initdrivethread.cpp" line="83"/>
         <source>Mounting FAT partition</source>
-        <translation>FAT 파티션을 마운트하고 있습니다.</translation>
+        <translation>FAT 파티션을 마운트하고 있습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="76"/>
         <source>Formatting settings partition</source>
-        <translation>설정 파티션을 초기화하고 있습니다.</translation>
+        <translation>설정 파티션을 초기화하고 있습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="79"/>
         <source>Error formatting settings partition</source>
-        <translation>설정 파티션을 초기화하는 과정에 오류가 발생하였습니다.</translation>
+        <translation>설정 파티션을 초기화하는 과정에 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="86"/>
@@ -231,37 +231,37 @@
     <message>
         <location filename="initdrivethread.cpp" line="91"/>
         <source>Editing cmdline.txt</source>
-        <translation>cmdline.txt 를 편집하고 있습니다.</translation>
+        <translation>cmdline.txt 를 편집하고 있습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="101"/>
         <source>Error opening %1</source>
-        <translation>%1 을 여는 과정에 오류가 발생하였습니다.</translation>
+        <translation>%1 을 여는 과정에 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="114"/>
         <source>Writing RiscOS blob</source>
-        <translation>RiscOS 바이너리 데이터를 기록하고 있습니다.</translation>
+        <translation>RiscOS 바이너리 데이터를 기록하고 있습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="117"/>
         <source>Error writing RiscOS blob</source>
-        <translation>RiscOS 바이너리 데이터를 기록하는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>RiscOS 바이너리 데이터를 기록하는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="124"/>
         <source>Unmounting boot partition</source>
-        <translation>부팅 파티션을 마운트 해제하고 있습니다.</translation>
+        <translation>부팅 파티션을 마운트 해제하고 있습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="127"/>
         <source>Finish writing to disk (sync)</source>
-        <translation>(동기화) 디스크 기록을 완료합니다.</translation>
+        <translation>(동기화) 디스크 기록을 완료합니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="137"/>
         <source>Mounting boot partition again</source>
-        <translation>부팅 파티션을 다시 마운트하고 있습니다.</translation>
+        <translation>부팅 파티션을 다시 마운트하고 있습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="148"/>
@@ -286,13 +286,13 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="initdrivethread.cpp" line="188"/>
         <source>Error: No MBR present on SD Card</source>
-        <translation>오류: SD 카드에 MBR이 없습니다.</translation>
+        <translation>오류: SD 카드에 MBR이 없습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="193"/>
         <location filename="initdrivethread.cpp" line="389"/>
         <source>Zeroing partition table</source>
-        <translation>파티션 테이블을 초기화하고 있습니다.</translation>
+        <translation>파티션 테이블을 초기화하고 있습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="196"/>
@@ -303,17 +303,17 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="initdrivethread.cpp" line="201"/>
         <source>Writing new MBR</source>
-        <translation>새 MBR을 기록하고 있습니다.</translation>
+        <translation>새 MBR을 기록하고 있습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="209"/>
         <source>Error creating MBR</source>
-        <translation>MBR을 기록하는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>MBR을 기록하는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="217"/>
         <source>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</source>
-        <translation>PINN을 설치할 수 있도록 SD 카드를 초기화하였습니다.SD 카드에 PINN 파일을 다시 복사한 다음 재부팅하여 주십시요.</translation>
+        <translation>PINN을 설치할 수 있도록 SD 카드를 초기화하였습니다.SD 카드에 PINN 파일을 다시 복사한 다음 재부팅하여 주십시요</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="222"/>
@@ -323,27 +323,27 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="initdrivethread.cpp" line="228"/>
         <source>Removing partitions 2,3,4</source>
-        <translation>2,3,4번 파티션을 제거하고 있습니다.</translation>
+        <translation>2,3,4번 파티션을 제거하고 있습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="242"/>
         <source>Resizing FAT partition</source>
-        <translation>FAT 파티션의 크기를 조정하고 있습니다.</translation>
+        <translation>FAT 파티션의 크기를 조정하고 있습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="266"/>
         <source>Error resizing existing FAT partition</source>
-        <translation>이미 있는 FAT 파티션의 크기를 조정하는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>이미 있는 FAT 파티션의 크기를 조정하는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="272"/>
         <source>Creating extended partition</source>
-        <translation>확장 파티션을 만들고 있습니다.</translation>
+        <translation>확장 파티션을 만들고 있습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="303"/>
         <source>Error creating extended partition</source>
-        <translation>확장 파티션을 만드는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>확장 파티션을 만드는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="377"/>
@@ -515,7 +515,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="471"/>
         <source>Information about the selected OS</source>
-        <translation>선택한 OS에 대한 정보를 확인합니다.</translation>
+        <translation>선택한 OS에 대한 정보를 확인합니다</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="474"/>
@@ -562,7 +562,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="522"/>
         <source>Downloads the selected operating system image to USB for local installation</source>
-        <translation>USB에 선택한 운영체제에 대한  로컬 설치용 이미지 파일을 다운로드합니다.</translation>
+        <translation>USB에 선택한 운영체제에 대한  로컬 설치용 이미지 파일을 다운로드합니다</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="525"/>
@@ -608,7 +608,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="657"/>
         <source>Information about the installed OS</source>
-        <translation>설치한 OS에 대한 정보를 확인합니다.</translation>
+        <translation>설치한 OS에 대한 정보를 확인합니다</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="669"/>
@@ -618,7 +618,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="672"/>
         <source>Change Firmware</source>
-        <translation>바꿀 펌웨어를 선택하세요.</translation>
+        <translation>바꿀 펌웨어를 선택하세요</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="684"/>
@@ -638,7 +638,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="702"/>
         <source>Set Data &amp; Time</source>
-        <translation>날짜 및 시간을 선택합니다.</translation>
+        <translation>날짜 및 시간을 선택합니다</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="705"/>
@@ -696,7 +696,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="318"/>
         <source>Waiting for SD card (settings partition)</source>
-        <translation>(설정 파티션) SD 카드를 준비하고 있습니다.</translation>
+        <translation>(설정 파티션) SD 카드를 준비하고 있습니다</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="331"/>
@@ -706,7 +706,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="343"/>
         <source>Error mounting settings partition</source>
-        <translation>설정 파티션을 마운트하는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>설정 파티션을 마운트하는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="344"/>
@@ -721,7 +721,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="351"/>
         <source>SD card might be damaged</source>
-        <translation>SD 카드가 손상된 것으로 보입니다.</translation>
+        <translation>SD 카드가 손상된 것으로 보입니다</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="671"/>
@@ -741,7 +741,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="690"/>
         <source>Please wait while PINN initialises</source>
-        <translation>PINN을 초기화하고 있습니다. 잠시만 기다려 주십시요.</translation>
+        <translation>PINN을 초기화하고 있습니다. 잠시만 기다려 주십시요</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1383"/>
@@ -765,7 +765,7 @@ See debug log for details</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="3112"/>
         <source> has an incompatible number of partitions with </source>
-        <translation>은(는) 다음 파티션과 호환되지 않은 파티션 번호를 갖고 있습니다.대상 파티션: </translation>
+        <translation> 은(는) 다음 파티션과 호환되지 않은 파티션 번호를 갖고 있습니다.대상 파티션 </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3867"/>
@@ -812,7 +812,7 @@ See debug log for details</oldsource>
         <location filename="mainwindow.cpp" line="4551"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
-        <translation>은(는) 사용할 수 없습니다.
+        <translation> 은(는) 사용할 수 없습니다.
 로컬 이미지를 제공하거나 인터넷에 연결하여 주십시요.</translation>
     </message>
     <message>
@@ -904,7 +904,7 @@ See debug log for details</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="1413"/>
         <source>OS(es) Installed Successfully</source>
-        <translation>운영체제를 설치하였습니다.</translation>
+        <translation>운영체제를 설치하였습니다</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1415"/>
@@ -944,7 +944,7 @@ See debug log for details</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="1543"/>
         <source>Reboot in %1 secs</source>
-        <translation>%1초 내에 재부팅합니다.</translation>
+        <translation>%1초 내에 재부팅합니다</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1580"/>
@@ -969,7 +969,7 @@ See debug log for details</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="1661"/>
         <source>Display Mode Changed</source>
-        <translation>디스플레이 모드가 변경되었습니다.</translation>
+        <translation>디스플레이 모드가 변경되었습니다</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1662"/>
@@ -991,7 +991,7 @@ Would you like to make this setting permanent?</source>
     <message>
         <location filename="mainwindow.cpp" line="1864"/>
         <source>Drive Wiped!</source>
-        <translation>드라이브 초기화 완료</translation>
+        <translation>드라이브 초기화 완료!</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1865"/>
@@ -1035,12 +1035,12 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="mainwindow.cpp" line="2140"/>
         <source>Error parsing repolist.json downloaded from server</source>
-        <translation>서버에서 가져온 repolist.json의 내용을 분석하는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>서버에서 가져온 repolist.json의 내용을 분석하는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2280"/>
         <source>Error parsing list.json downloaded from server</source>
-        <translation>서버에서 가져온 list.json의 내용을 분석하는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>서버에서 가져온 list.json의 내용을 분석하는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2547"/>
@@ -1057,12 +1057,12 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="mainwindow.cpp" line="2760"/>
         <source>Error downloading meta file: </source>
-        <translation>메타파일을 가져오는 과정에서 오류가 발생하였습니다. URL:</translation>
+        <translation>메타파일을 가져오는 과정에서 오류가 발생하였습니다. URL: </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2774"/>
         <source>Error downloading meta file</source>
-        <translation>메타파일을 가져오는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>메타파일을 가져오는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2785"/>
@@ -1073,7 +1073,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="mainwindow.cpp" line="2897"/>
         <source>filesize error checking </source>
-        <translation>파일 크기 오류를 확인합니다. URL: </translation>
+        <translation>파일 크기 오류를 확인합니다 </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3111"/>
@@ -1100,14 +1100,14 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="mainwindow.cpp" line="3373"/>
         <source> MB of backup space, but only </source>
-        <translation>MB를 백업 공간으로 이용합니다. 그러나 남은 용량이 </translation>
+        <translation> MB를 백업 공간으로 이용합니다. 그러나 남은 용량이 </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3375"/>
         <source> MB is available. This is only an estimate. If you continue, the backup may not complete successfully.
 
 Do you want to continue?</source>
-        <translation>MB이므로 사용할 수 없습니다. 이 용량 계산은 정확하지 않을 수 있습니다. 계속할 경우, 백업 과정을 정상 완료하지 않을 수 있습니다.
+        <translation> MB이므로 사용할 수 없습니다. 이 용량 계산은 정확하지 않을 수 있습니다. 계속할 경우, 백업 과정을 정상 완료하지 않을 수 있습니다.
 
 계속하시겠습니까?</translation>
     </message>
@@ -1124,7 +1124,7 @@ Do you want to continue?</source>
     <message>
         <location filename="mainwindow.cpp" line="3383"/>
         <source>Always test your backups before relying on them</source>
-        <translation>이 백업을 신뢰하기 전에 정상 여부를 항상 확인하십시요.</translation>
+        <translation>이 백업을 신뢰하기 전에 정상 여부를 항상 확인하십시요</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3433"/>
@@ -1139,12 +1139,12 @@ Do you want to continue?</source>
     <message>
         <location filename="mainwindow.cpp" line="3767"/>
         <source>Reformat drive?</source>
-        <translation>드라이브 초기화 확인</translation>
+        <translation>드라이브 초기화 확인?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3768"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
-        <translation>&apos;%1&apos; 드라이브를 정말 다시 초기화하시겠습니까? 초기화를 완료하면 이 드라이브 안에 있는 모든 데이터는 완전히 삭제됩니다. 초기화 후 PINN이 이 드라이브를 이용합니다.</translation>
+        <translation>&apos;%1&apos; 드라이브를 정말 다시 초기화하시겠습니까? 초기화를 완료하면 이 드라이브 안에 있는 모든 데이터는 완전히 삭제됩니다. 초기화 후 PINN이 이 드라이브를 이용합니다!</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4108"/>
@@ -1174,12 +1174,12 @@ Do you want to continue?</source>
     <message>
         <location filename="mainwindow.cpp" line="4143"/>
         <source>Clone Completed Successfully</source>
-        <translation>복제를 완료하였습니다.</translation>
+        <translation>복제를 완료하였습니다</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4255"/>
         <source>Error downloading update file</source>
-        <translation>업데이트한 파일을 다운로드 하는 과정에 오류가 발생하였습니다.</translation>
+        <translation>업데이트한 파일을 다운로드 하는 과정에 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4262"/>
@@ -1190,12 +1190,12 @@ Do you want to continue?</source>
     <message>
         <location filename="mainwindow.cpp" line="4262"/>
         <source>Error contacting update server</source>
-        <translation>업데이트 서버에 연결할 수 없습니다.</translation>
+        <translation>업데이트 서버에 연결할 수 없습니다</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4357"/>
         <source>No updates available</source>
-        <translation>새로운 업데이트가 없습니다.</translation>
+        <translation>새로운 업데이트가 없습니다</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4366"/>
@@ -1205,7 +1205,7 @@ Do you want to continue?</source>
     <message>
         <location filename="mainwindow.cpp" line="4367"/>
         <source>A new version of PINN is available</source>
-        <translation>새 버전의 PINN 을 사용할 수 있습니다.</translation>
+        <translation>새 버전의 PINN 을 사용할 수 있습니다</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4368"/>
@@ -1220,7 +1220,7 @@ Do you want to continue?</source>
     <message>
         <location filename="mainwindow.cpp" line="4400"/>
         <source>Press ESC to cancel</source>
-        <translation>취소하려면 ESC 를 누르십시요.</translation>
+        <translation>취소하려면 ESC 를 누르십시요</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4533"/>
@@ -1252,12 +1252,12 @@ Do you want to continue?</source>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="58"/>
         <source>Finish writing (sync)</source>
-        <translation>(동기화) 기록을 완료하였습니다.</translation>
+        <translation>(동기화) 기록을 완료하였습니다</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="89"/>
         <source>File &apos;%1&apos; does not need downloading</source>
-        <translation>&apos;%1&apos; 파일은 다운로드할 필요가 없습니다.</translation>
+        <translation>&apos;%1&apos; 파일은 다운로드할 필요가 없습니다</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="100"/>
@@ -1282,7 +1282,7 @@ Do you want to continue?</source>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="194"/>
         <source>Finished downloading %1</source>
-        <translation>%1을(를) 다운로드 하였습니다.</translation>
+        <translation>%1을(를) 다운로드 하였습니다</translation>
     </message>
 </context>
 <context>
@@ -1325,7 +1325,7 @@ Do you want to continue?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="181"/>
         <source>Not enough disk space. Need %1 MB, got %2 MB</source>
-        <translation>디스크 공간이 부족합니다. 필요한 공간은 %1 MB이며, 남은 공간은 %2 MB입니다.</translation>
+        <translation>디스크 공간이 부족합니다. 필요한 공간은 %1 MB이며, 남은 공간은 %2 MB입니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="261"/>
@@ -1351,12 +1351,12 @@ Do you want to continue?</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="210"/>
         <source>Cannot boot partitions &gt; 62. Reduce the number of OSes</source>
-        <translation>이 파티션으로 부팅 불가 &gt; 62. 운영체제 수를 줄이십시요.</translation>
+        <translation>이 파티션으로 부팅 불가 &gt; 62. 운영체제 수를 줄이십시요</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="232"/>
         <source>Cannot boot partitions &gt; #62. Reduce the number of OSes</source>
-        <translation>이 파티션으로 부팅 불가 &gt; #62. 운영체제 수를 줄이십시요.</translation>
+        <translation>이 파티션으로 부팅 불가 &gt; #62. 운영체제 수를 줄이십시요</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="387"/>
@@ -1368,7 +1368,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="387"/>
         <source>Cannot Reinstall/Replace </source>
-        <translation>다시 설치/교체를 할 수 없음</translation>
+        <translation>다시 설치/교체를 할 수 없음 </translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="433"/>
@@ -1378,7 +1378,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="439"/>
         <source>Finish writing (sync)</source>
-        <translation>(동기화) 기록을 완료합니다.</translation>
+        <translation>(동기화) 기록을 완료합니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="460"/>
@@ -1393,28 +1393,28 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="695"/>
         <source>File &apos;%1&apos; does not exist</source>
-        <translation>파일 &apos;%1&apos; 이 없습니다.</translation>
+        <translation>파일 &apos;%1&apos; 이 없습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="723"/>
         <source>OS: &apos;%1&apos; needs a partition label of &apos;%2&apos; which is not available</source>
-        <translation>OS: &apos;%1&apos;에 파티션 레이블 &apos;%2&apos;이 필요하지만 지정할 수 없습니다.</translation>
+        <translation>OS: &apos;%1&apos;에 파티션 레이블 &apos;%2&apos;이 필요하지만 지정할 수 없습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="735"/>
         <location filename="multiimagewritethread.cpp" line="742"/>
         <source>%1: Writing OS image</source>
-        <translation>%1: 운영체제 이미지 파일을 기록하고 있습니다.</translation>
+        <translation>%1: 운영체제 이미지 파일을 기록하고 있습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="749"/>
         <source>%1: Creating filesystem (%2)</source>
-        <translation>%1: (%2) 파일시스템을 만들고 있습니다.</translation>
+        <translation>%1: (%2) 파일시스템을 만들고 있습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="758"/>
         <source>%1: Mounting file system</source>
-        <translation>%1: 파일 시스템을 마운트하고 있습니다.</translation>
+        <translation>%1: 파일 시스템을 마운트하고 있습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="761"/>
@@ -1422,17 +1422,17 @@ Partition not big enough for new image.</source>
         <location filename="multiimagewritethread.cpp" line="949"/>
         <location filename="multiimagewritethread.cpp" line="1089"/>
         <source>%1: Error mounting file system</source>
-        <translation>%1: 파일 시스템을 마운트하는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>%1: 파일 시스템을 마운트하는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="766"/>
         <source>%1: Downloading and extracting filesystem</source>
-        <translation>%1: 파일 시스템을 다운로드 및 압축 해제하고 있습니다.</translation>
+        <translation>%1: 파일 시스템을 다운로드 및 압축 해제하고 있습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="768"/>
         <source>%1: Extracting filesystem</source>
-        <translation>%1: 파일 시스템을 추출하고 있습니다.</translation>
+        <translation>%1: 파일 시스템을 추출하고 있습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="774"/>
@@ -1443,17 +1443,17 @@ Partition not big enough for new image.</source>
         <location filename="multiimagewritethread.cpp" line="792"/>
         <location filename="multiimagewritethread.cpp" line="945"/>
         <source>%1: Mounting FAT partition</source>
-        <translation>%1: FAT 파티션을 마운트하고 있습니다.</translation>
+        <translation>%1: FAT 파티션을 마운트하고 있습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="799"/>
         <source>%1: Creating os_config.json</source>
-        <translation>%1: os_config.json을 만들고 있습니다.</translation>
+        <translation>%1: os_config.json을 만들고 있습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="832"/>
         <source>%1: Saving display mode to config.txt</source>
-        <translation>%1: 디스플레이 모드를 config.txt에 저장하고 있습니다.</translation>
+        <translation>%1: 디스플레이 모드를 config.txt에 저장하고 있습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="853"/>
@@ -1463,47 +1463,47 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="860"/>
         <source>%1: Running partition setup script</source>
-        <translation>%1: 파티션 설치 스크립트를 실행하고 있습니다.</translation>
+        <translation>%1: 파티션 설치 스크립트를 실행하고 있습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="915"/>
         <source>%1: Error executing partition setup script</source>
-        <translation>%1: 파티션 설치 스크립트를 실행하는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>%1: 파티션 설치 스크립트를 실행하는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="932"/>
         <source>%1: Configuring flavour</source>
         <translatorcomment>flavour 를 구성으로 번역하고 있음. https://developer.android.com/studio/build/build-variants.html?hl=ko#flavor-dimensions</translatorcomment>
-        <translation>%1: 구성을 설정하고 있습니다.</translation>
+        <translation>%1: 구성을 설정하고 있습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="922"/>
         <location filename="multiimagewritethread.cpp" line="983"/>
         <source>%1: Unmounting FAT partition</source>
-        <translation>%1: FAT 파티션을 마운트 해제하고 있습니다.</translation>
+        <translation>%1: FAT 파티션을 마운트 해제하고 있습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="925"/>
         <location filename="multiimagewritethread.cpp" line="986"/>
         <source>%1: Error unmounting</source>
-        <translation>%1: 마운트 해제하는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>%1: 마운트 해제하는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="955"/>
         <source>%1: Checking firmware update</source>
-        <translation>%1: 펌웨어 업데이트를 확인하고 있습니다.</translation>
+        <translation>%1: 펌웨어 업데이트를 확인하고 있습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1372"/>
         <source>Error creating file system</source>
-        <translation>파일 시스템을 만드는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>파일 시스템을 만드는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1444"/>
         <location filename="multiimagewritethread.cpp" line="1554"/>
         <location filename="multiimagewritethread.cpp" line="1647"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
-        <translation>압축 파일의 형식을 알아낼 수 없었습니다. .lzo 또는 .gz, .xz, .bz2, .zip 형식을 지원합니다.</translation>
+        <translation>압축 파일의 형식을 알아낼 수 없었습니다. .lzo 또는 .gz, .xz, .bz2, .zip 형식을 지원합니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1484"/>
@@ -1667,7 +1667,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="240"/>
         <source>Allows a single or multiple OSes to be installed automatically, useful during headless installs. </source>
-        <translation>하나 이상의 OS를 자동으로 설치합니다. 헤드리스 설치를 할 때 유용합니다.</translation>
+        <translation>하나 이상의 OS를 자동으로 설치합니다. 헤드리스 설치를 할 때 유용합니다. </translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="263"/>
@@ -1746,7 +1746,7 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="428"/>
         <source>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</source>
         <oldsource>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</oldsource>
-        <translation>부팅할 때 Shift 키를 눌러 복구 모드로 진입하는 것을 방지합니다. 부팅할 때마다 키보드가 매번 복구 모드를 불러오는 문제를 일으킬 때 이용하십시요.</translation>
+        <translation>부팅할 때 Shift 키를 눌러 복구 모드로 진입하는 것을 방지합니다. 부팅할 때마다 키보드가 매번 복구 모드를 불러오는 문제를 일으킬 때 이용하십시요</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="455"/>
@@ -1810,13 +1810,13 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="569"/>
         <location filename="optionsdialog.ui" line="640"/>
         <source>Changes the style of the windows</source>
-        <translation>창의 모양을 바꿉니다.</translation>
+        <translation>창의 모양을 바꿉니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="582"/>
         <location filename="optionsdialog.ui" line="667"/>
         <source>Changes the default timeout allowed before an OS is booted without any selection. </source>
-        <translation>아무 OS도 선택하지 않아 자동으로 특정 OS를 부팅할 때까지 대기할 시간을 변경합니다.</translation>
+        <translation>아무 OS도 선택하지 않아 자동으로 특정 OS를 부팅할 때까지 대기할 시간을 변경합니다. </translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="595"/>
@@ -2298,7 +2298,7 @@ Are you sure?</source>
     <message>
         <location filename="termsdialog.ui" line="27"/>
         <source>Please accept these T&amp;Cs to continue.</source>
-        <translation>계속하려면 이 조항에 동의하십시오. (&amp;C)</translation>
+        <translation>계속하려면 이 조항에 동의하십시오 (&amp;C).</translation>
     </message>
 </context>
 <context>
@@ -2445,12 +2445,12 @@ Are you sure?</source>
     <message>
         <location filename="piclonethread.cpp" line="274"/>
         <source>Copying partition %d of %d...</source>
-        <translation>파티션을 복사하고 있습니다... ( %d / %d )</translation>
+        <translation>파티션을 복사하고 있습니다  %d / %d ...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="345"/>
         <source>Copying %1 MB of %2 MB</source>
-        <translation>%2 MB 중 %1 MB 를 복사하고 있습니다.</translation>
+        <translation>%2 MB 중 %1 MB 를 복사하고 있습니다</translation>
     </message>
 </context>
 <context>
@@ -2516,7 +2516,7 @@ Are you sure?</source>
     <message>
         <location filename="rerunsetup.cpp" line="27"/>
         <source>No OSes to check</source>
-        <translation>점검할 OS가 없습니다.</translation>
+        <translation>점검할 OS가 없습니다</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="31"/>
@@ -2526,12 +2526,12 @@ Are you sure?</source>
     <message>
         <location filename="rerunsetup.cpp" line="57"/>
         <source>Cannot find setup script for </source>
-        <translation>다음 운영체제를 위한 설치 스크립트 파일을 찾을 수 없습니다. 대상 운영체제: </translation>
+        <translation>다음 운영체제를 위한 설치 스크립트 파일을 찾을 수 없습니다. 대상 운영체제 </translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="58"/>
         <source>Maybe insert source USB stick</source>
-        <translation>원본 USB 저장소에 존재할 수 있습니다.</translation>
+        <translation>원본 USB 저장소에 존재할 수 있습니다</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="63"/>
@@ -2541,7 +2541,7 @@ Are you sure?</source>
     <message>
         <location filename="rerunsetup.cpp" line="72"/>
         <source> setup script needs to be updated.</source>
-        <translation>은(는) 설치 스크립트를 업데이트해야 합니다.</translation>
+        <translation> 은(는) 설치 스크립트를 업데이트해야 합니다.</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="89"/>
@@ -2556,19 +2556,21 @@ Are you sure?</source>
     <message>
         <location filename="rerunsetup.cpp" line="152"/>
         <source>%1: Error executing partition setup script</source>
-        <translation>%1: 파티션 설치 스크립트를 실행하는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>%1: 파티션 설치 스크립트를 실행하는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="157"/>
         <source> partions_setup.sh script error
 </source>
-        <translation> partions_setup.sh 스크립트 오류</translation>
+        <translation> partions_setup.sh 스크립트 오류
+</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="159"/>
         <source> partition_setup.sh script OK
 </source>
-        <translation> partions_setup.sh 스크립트 확인 완료</translation>
+        <translation> partions_setup.sh 스크립트 확인 완료
+</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="166"/>
