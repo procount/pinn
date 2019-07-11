@@ -46,7 +46,7 @@
     <message>
         <location filename="backupthread.cpp" line="206"/>
         <source>%1: Checksumming (%2)</source>
-        <translation>&quot;%1: 체크섬을 확인하고 있습니다 (%2)</translation>
+        <translation type="unfinished">%1: 체크섬을 확인하고 있습니다 (%2)</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="244"/>
@@ -1692,26 +1692,26 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="301"/>
         <source>Shows all available installable OSes, whether they are suitable for the current model of Pi or not. Useful for preparing SD cards to be used in other RPis.</source>
-        <translation type="unfinished">설치 가능한 모든 OS를 봅니다. 현재 Pi 모델에 맞지 않는 모델도 표시됩니다. 다는 Raspberry Pi를 위한 SD 카드를 준비하는 데 유용합니다.</translation>
+        <translation>설치 가능한 모든 OS를 봅니다. 현재 Pi 모델에 맞지 않는 모델도 표시됩니다. 다는 Raspberry Pi를 위한 SD 카드를 준비하는 데 유용합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="311"/>
         <location filename="optionsdialog.ui" line="337"/>
         <source>Provides the URL of a repo_list.json file that contains a list of URLs to other os-list_v3.json files. This allows easy remote management of Internet repositories.</source>
-        <translation type="unfinished">다른 os-list_v3.json 파일 목록을 포함한 repo_list.json 파일이 있는 URL을 지정할 수 있습니다. 이 옵션은 인터넷 원격 저장소를 원격에서 관리하기 쉽게 해 줍니다.</translation>
+        <translation>다른 os-list_v3.json 파일 목록을 포함한 repo_list.json 파일이 있는 URL을 지정할 수 있습니다. 이 옵션은 인터넷 원격 저장소를 원격에서 관리하기 쉽게 해 줍니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="324"/>
         <location filename="optionsdialog.ui" line="357"/>
         <source>Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
         <oldsource> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>alt_image_source 옵션과 비슷하지만 공백으로 구분 된 따옴표로 감싼 문자열로 추가 저장소 목록를 지정하는 NOOBS 방식으로 입력해야 합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="344"/>
         <location filename="optionsdialog.ui" line="364"/>
         <source>: Provides the URL of an additional os_list_v3.json file indicating the location of other OSes that can be downloaded from the Internet. Multiple instances of this option can be used.</source>
-        <translation type="unfinished"></translation>
+        <translation>: 인터넷에서 다운로드할 수 있는 OS 경로를 제공하는 추가 os_list_v3.json file 를 다운로드할 수 있는 URL을 지정할 수 있습니다.이 옵션은 계속 추가할 수 있습니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="374"/>
@@ -1723,30 +1723,30 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="438"/>
         <source>When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
         <oldsource> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>forcetrigger 옵션과 결합하여 사용할 때 부팅 선택 창과 자동으로 OS를 선택하는 과정으로 진행하기 전에 복구 메뉴를 얼마나 오래 띄울 것인지 초 단위로 지정할 수 있습니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="395"/>
         <source>Forces the PINN interface to be entered on startup (as if the shift key had been pressed). This is very useful when using a VNC connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>시작할 때 Shift  키를 누르고 있으면 PINN 인터페이스를 강제로 지정할 수 있습니다.VNC 연결을 사용해야 할 때 매우 유용합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="405"/>
         <source>Forces Recovery Mode to be entered on boot if GPIO pin 3 on header P1 is connected to GND (pin 25).</source>
-        <translation type="unfinished"></translation>
+        <translation>헤더 P1에 있는 GPIO 3번 핀과 GND(25번 핀)이 연결되어 있다면, 부팅할 때 강제로 복구 모드에 진입합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="415"/>
         <location filename="optionsdialog.ui" line="445"/>
         <source>This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</source>
         <oldsource> This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>이 설정은 네트워크 연결 허용시간을 초 단위로 지정할 수 있습니다. 특히 네트워크 연결에 시간이 많이 결리는 경우에 지정할 필요가 있습니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="428"/>
         <source>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</source>
         <oldsource>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>부팅할 때 Shift 키를 눌러 복구 모드로 진입하는 것을 방지합니다. 부팅할 때마다 키보드가 매번 복구 모드를 불러오는 문제를 일으킬 때 이용하십시요.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="455"/>
@@ -1756,138 +1756,138 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="466"/>
         <source>Uses a VNC network connection to control PINN instead of any locally attached keyboard, mouse and display. When this is used, any local display will remain blank.</source>
-        <translation type="unfinished"></translation>
+        <translation>로컬 환경에서 연결한 키보드나 마우스, 디스플레이 장치 없이 PINN을 VNC 네트워크 연결로 제어할 경우 사용합니다. 이 옵션을 활성화하면 모든 로컬 디스플레이 장치에서 화면을 출력하지 않습니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="476"/>
         <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
         <oldsource>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>PINN을 VNC 네트워크 연결로 제어할 경우 사용합니다. vncinstall과는 다르게 로컬 환경에서 연결한 키보드나 마우스, 디스플레이 장치가 동일하게 동작합니다. 로컬 환경에서의 화면과 VNC 연결에서의 화면은 복제 모드로 동작합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="486"/>
         <source>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions.</source>
         <oldsource>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>PINN의 복구 shell을 SSH 연결로 접근할 수 있는 기능을 활성화합니다. 이 기능은 PINN을 제어할 수는 없지만 SD 카드 파티션을 원격에서 관리할 목적으로 사용하는 데 유용합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="496"/>
         <source>This option causes a local command shell to be opened when PINN is booted. When the shell is exited, PINN will then be booted as normal.</source>
-        <translation type="unfinished"></translation>
+        <translation>이 옵션은 PINN을 부팅할 때 로컬 명령 쉘을 열게 합니다. 이 쉘을 종료하면 PINN은 정상 부팅 과정을 진행합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="506"/>
         <source>Prevents safemode being entered if you have external hardware that pulls pin 5 low.</source>
-        <translation type="unfinished"></translation>
+        <translation>외부 하드웨어 장치가 5번 핀이 내려가서 안전 모드로 진입하지 않도록 합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="516"/>
         <source>A special boot feature to swap the priority of the DSI and HDMI video outputs, allowing an OS to give priority to a HDMI screen if attached.</source>
-        <translation type="unfinished"></translation>
+        <translation>DSI 및 HDMI 비디오 출력 우선 순위를 바꾸는 특수 부팅 기능입니다. HDMI에 화면을 연결할 때 OS에 우선권을 주는 것을 허용합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="526"/>
         <source>Prevents the list of OSes from being grouped into categories.</source>
-        <translation type="unfinished"></translation>
+        <translation>OS 목록을 카테고리로 묶지 않습니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="536"/>
         <source>Prevents the cursor from being shown on the boot selection dialog (requested for touchscreen devices)</source>
-        <translation type="unfinished"></translation>
+        <translation>부팅 선택 창에서 커서를 보이지 않게 합니다, 터치스크린 장비일 때 필요할 수 있습니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="546"/>
         <source>Causes a customised wallpaper.jpg or wallpaper.png file to be resized to fill the entire desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>개인 설정된 wallpaper.jpg 또는 wallpaper.png 파일을 데스크톱 전체 화면에 채웁니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="556"/>
         <location filename="optionsdialog.ui" line="608"/>
         <source>Sets one of 4 simple display modes: 0=HDMI preferred, 1=HDMI safe, 2= PAL 4:3, 3=NTSC  4:3</source>
-        <translation type="unfinished"></translation>
+        <translation>4가지 디스플레이 모드 중 하나를 선택합니다.  0=HDMI preferred, 1=HDMI safe, 2= PAL 4:3, 3=NTSC  4:3</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="569"/>
         <location filename="optionsdialog.ui" line="640"/>
         <source>Changes the style of the windows</source>
-        <translation type="unfinished"></translation>
+        <translation>창의 모양을 바꿉니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="582"/>
         <location filename="optionsdialog.ui" line="667"/>
         <source>Changes the default timeout allowed before an OS is booted without any selection. </source>
-        <translation type="unfinished"></translation>
+        <translation>아무 OS도 선택하지 않아 자동으로 특정 OS를 부팅할 때까지 대기할 시간을 변경합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="595"/>
         <location filename="optionsdialog.ui" line="674"/>
         <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
-        <translation type="unfinished"></translation>
+        <translation>화면과 창 대부분의 배경색을 변경하려면 적,녹,청 순으로 입력하십시오. 0,0,0은 겸정이며, 255,255,255는 백색입니다. 127 이상의 숫자값을 지정할 것을 제안합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="69"/>
         <source>&amp;configpath=</source>
-        <translation type="unfinished">configpath= (&amp;C)</translation>
+        <translation>configpath= (&amp;C)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="96"/>
         <source>&amp;runinstaller</source>
-        <translation type="unfinished">runinstaller (&amp;U)</translation>
+        <translation>runinstaller (&amp;U)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="106"/>
         <source>no_&amp;update</source>
-        <translation type="unfinished">no_update (&amp;U)</translation>
+        <translation>no_update (&amp;U)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="116"/>
         <source>&amp;forceupdatepinn</source>
-        <translation type="unfinished">forceupdatepinn (&amp;F)</translation>
+        <translation>forceupdatepinn (&amp;F)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="126"/>
         <source>nofirm&amp;ware</source>
-        <translation type="unfinished">nofirmware (&amp;W)</translation>
+        <translation>nofirmware (&amp;W)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="136"/>
         <source>&amp;allsd</source>
-        <translation type="unfinished">allsd (&amp;A)</translation>
+        <translation>allsd (&amp;A)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="146"/>
         <source>all&amp;usb</source>
-        <translation type="unfinished">alliusb (&amp;U)</translation>
+        <translation>alliusb (&amp;U)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="156"/>
         <source>all&amp;network</source>
-        <translation type="unfinished">allnetwork (&amp;N)</translation>
+        <translation>allnetwork (&amp;N)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="166"/>
         <source>all&amp;installed</source>
-        <translation type="unfinished">allinstalled (&amp;I)</translation>
+        <translation>allinstalled (&amp;I)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="176"/>
         <source>&amp;waitsd</source>
-        <translation type="unfinished">waitsd (&amp;W)</translation>
+        <translation>waitsd (&amp;W)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="186"/>
         <source>waitus&amp;b</source>
-        <translation type="unfinished">waitusb (&amp;B)</translation>
+        <translation>waitusb (&amp;B)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="196"/>
         <source>waitnetwor&amp;k</source>
-        <translation type="unfinished">waitnetwork (&amp;K)</translation>
+        <translation>waitnetwork (&amp;K)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="206"/>
         <source>waita&amp;ll</source>
-        <translation type="unfinished">waitall (&amp;L)</translation>
+        <translation>waitall (&amp;L)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="233"/>
@@ -1897,72 +1897,72 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="243"/>
         <source>&amp;silentinstall</source>
-        <translation type="unfinished">silentinstall (&amp;S)</translation>
+        <translation>silentinstall (&amp;S)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="250"/>
         <source>selec&amp;t=</source>
-        <translation>select= (&amp;T)</translation>
+        <translation>선택 (&amp;T)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="274"/>
         <source>no_&amp;default_source</source>
-        <translation type="unfinished">기본 원본 위치 사용 안함 (&amp;D)</translation>
+        <translation>기본 원본 위치 사용 안함 (&amp;D)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="284"/>
         <source>disable&amp;usbimages</source>
-        <translation type="unfinished">USB 드라이브에 있는 이미지 사용 안함 (&amp;U)</translation>
+        <translation>USB 드라이브에 있는 이미지 사용 안함 (&amp;U)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="294"/>
         <source>disable&amp;sdimages</source>
-        <translation type="unfinished">SD 카드에 있는 이미지 사용 안함 (&amp;S)</translation>
+        <translation>SD 카드에 있는 이미지 사용 안함 (&amp;S)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="304"/>
         <source>&amp;showall</source>
-        <translation type="unfinished">모든 이미지 보기 (&amp;S)</translation>
+        <translation>모든 이미지 보기 (&amp;S)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="314"/>
         <source>repo_&amp;list=</source>
-        <translation type="unfinished">repo_list= (&amp;I)</translation>
+        <translation>repo_list= (&amp;I)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="327"/>
         <source>&amp;repo=</source>
-        <translation type="unfinished">repo= (&amp;R)</translation>
+        <translation>repo= (&amp;R)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="347"/>
         <source>alt_&amp;image_source=</source>
-        <translation type="unfinished">alt_image_source= (&amp;I)</translation>
+        <translation>alt_image_source= (&amp;I)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="385"/>
         <source>&amp;remotetimeout=&lt;secs&gt;</source>
-        <translation type="unfinished">remotetimeout=&lt;초&gt; (&amp;R)</translation>
+        <translation>remotetimeout=&lt;초&gt; (&amp;R)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="398"/>
         <source>&amp;forcetrigger</source>
-        <translation type="unfinished">forcetrigger (&amp;F)</translation>
+        <translation>forcetrigger (&amp;F)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="408"/>
         <source>&amp;gpiotriggerenable</source>
-        <translation type="unfinished">gpiotriggerenable (&amp;G)</translation>
+        <translation>gpiotriggerenable (&amp;G)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="418"/>
         <source>&amp;networktimeout=&lt;secs&gt;</source>
-        <translation type="unfinished">networktimeout=&lt;secs&gt; (&amp;N)</translation>
+        <translation>networktimeout=&lt;초&gt; (&amp;N)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="431"/>
         <source>&amp;keyboardtriggerenable</source>
-        <translation type="unfinished">keyboardtriggerenable (&amp;K)</translation>
+        <translation>keyboardtriggerenable (&amp;K)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="469"/>
@@ -2017,12 +2017,12 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="572"/>
         <source>s&amp;tyle=</source>
-        <translation>style (&amp;T)</translation>
+        <translation>스타일 (&amp;T)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="585"/>
         <source>b&amp;ootmenutimeout=&lt;secs&gt;</source>
-        <translation type="unfinished">bootmenutimeout=&lt;초&gt; (&amp;O)</translation>
+        <translation>bootmenutimeout=&lt;초&gt; (&amp;O)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="598"/>
