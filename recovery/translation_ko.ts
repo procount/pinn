@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ko" sourcelanguage="en">
+<TS version="2.1" language="ko" sourcelanguage="en">
 <context>
     <name>BackupThread</name>
     <message>
@@ -46,7 +46,7 @@
     <message>
         <location filename="backupthread.cpp" line="206"/>
         <source>%1: Checksumming (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;%1: 체크섬을 확인하고 있습니다 (%2)</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="244"/>
@@ -71,22 +71,22 @@
         <location filename="bootselectiondialog.ui" line="45"/>
         <source>&amp;Up</source>
         <oldsource>Up</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>위로 (&amp;U)</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="52"/>
         <source>U</source>
-        <translation type="unfinished"></translation>
+        <translation>U</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="59"/>
         <source>&amp;Down</source>
-        <translation type="unfinished"></translation>
+        <translation>아래로 (&amp;D)</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="66"/>
         <source>D</source>
-        <translation type="unfinished">D</translation>
+        <translation>D</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="95"/>
@@ -135,7 +135,7 @@
         <location filename="confeditdialog.ui" line="36"/>
         <source>&amp;Edit Options</source>
         <oldsource>Edit Options</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>편집 옵션 (&amp;E)</translation>
     </message>
     <message>
         <location filename="confeditdialog.cpp" line="95"/>
@@ -280,7 +280,7 @@
 WARNING: This will erase all data on your SD card.</source>
         <oldsource>Would you like PINN to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
-        <translation type="unfinished">PINN으로 작업을 시작하시겠습니까?
+        <translation>PINN으로 생성을 시작하시겠습니까?
 경고: SD 카드의 모든 데이터를 지웁니다.</translation>
     </message>
     <message>
@@ -648,17 +648,17 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="714"/>
         <source>Alias (a)</source>
-        <translation type="unfinished"></translation>
+        <translation>별칭 (A)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="717"/>
         <source>Rename an OS with an alias</source>
-        <translation type="unfinished"></translation>
+        <translation>이 OS의 별칭을 지정하거나 바꿉니다</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="720"/>
         <source>A</source>
-        <translation type="unfinished"></translation>
+        <translation>A</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="597"/>
@@ -754,7 +754,8 @@ WARNING: This will erase all data on your SD card</oldsource>
 See debug log for details.</source>
         <oldsource>OS(es) Installed with errors.
 See debug log for details</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>선택한 OS를 다운로드하였으나 오류가 있습니다.
+디버그 로그에서 자세한 내용을 확인하세요.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1545"/>
@@ -829,32 +830,32 @@ Please provide it locally or connect to the internet.</source>
     <message>
         <location filename="mainwindow.cpp" line="1146"/>
         <source>install</source>
-        <translation type="unfinished"></translation>
+        <translation>설치</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1149"/>
         <source>reinstall</source>
-        <translation type="unfinished"></translation>
+        <translation>재설치</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1152"/>
         <source>replace</source>
-        <translation type="unfinished"></translation>
+        <translation>교체</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1160"/>
         <source>USB drive</source>
-        <translation type="unfinished"></translation>
+        <translation>USB 드라이브</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1162"/>
         <source>Warning: this will %1 the selected Operating System(s) to %2. All existing data on the %3 will be deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>경고: 선택한 운영 체제l %1을(를) %2로 바꿉니다. %3에 저장된 모든 데이터를 삭제합니다.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1242"/>
         <source>The %1 process will begin shortly.</source>
-        <translation type="unfinished"></translation>
+        <translation>곧 %1 작업을 시작합니다.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1265"/>
@@ -872,7 +873,7 @@ Please provide it locally or connect to the internet.</source>
 See debug log for details.</source>
         <oldsource>OS(es) Downloaded with errors.
 See debug log for details</oldsource>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1386"/>
@@ -885,7 +886,7 @@ See debug log for details</oldsource>
 See debug log for details.</source>
         <oldsource>OS(es) Backed up with errors.
 See debug log for details</oldsource>
-        <translation type="unfinished">선택한 OS에 대한 백업 과정에 오류가 있었습니다.
+        <translation>선택한 OS에 대한 백업 과정에 오류가 있었습니다.
 자세한 정보는 디버깅 로그를 참조해 주십시요.</translation>
     </message>
     <message>
@@ -907,7 +908,7 @@ See debug log for details</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="1415"/>
         <source>Installation complete</source>
-        <translation type="unfinished"></translation>
+        <translation>설치 완료</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1451"/>
@@ -922,22 +923,22 @@ See debug log for details</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="1516"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>중단</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1517"/>
         <source>Discard</source>
-        <translation type="unfinished"></translation>
+        <translation>버림</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1518"/>
         <source>Retry</source>
-        <translation type="unfinished"></translation>
+        <translation>다시 시도</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1519"/>
         <source>Keep</source>
-        <translation type="unfinished"></translation>
+        <translation>유지</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1543"/>
@@ -1083,12 +1084,12 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="mainwindow.cpp" line="3156"/>
         <source>Resume partial downloads?</source>
-        <translation type="unfinished"></translation>
+        <translation>부분 다운로드를 다시 시작하시겠습니까?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3157"/>
         <source>Normally select NO, unless your last download was not successful, in which case select YES</source>
-        <translation type="unfinished"></translation>
+        <translation>마지막 다운로드에 문제가 없었다면 &quot;예&quot;를, 문제가 있었다면 &quot;아니요&quot;를 선택하십시요</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3371"/>
@@ -1261,17 +1262,17 @@ Do you want to continue?</source>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="100"/>
         <source>Downloading %1:%2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1을(를) 다운로드 중:%2</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="138"/>
         <source>Checking %1:%2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1을(를) 확인 중:%2</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="148"/>
         <source>Error in checksum</source>
-        <translation type="unfinished"></translation>
+        <translation>체크섬 확인 오류</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="156"/>
@@ -1367,12 +1368,12 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="387"/>
         <source>Cannot Reinstall/Replace </source>
-        <translation type="unfinished"></translation>
+        <translation>다시 설치/교체를 할 수 없음</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="433"/>
         <source>Operation cancelled by user</source>
-        <translation type="unfinished"></translation>
+        <translation>사용자가 작업을 취소함</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="439"/>
@@ -1397,7 +1398,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="723"/>
         <source>OS: &apos;%1&apos; needs a partition label of &apos;%2&apos; which is not available</source>
-        <translation type="unfinished"></translation>
+        <translation>OS: &apos;%1&apos;에 파티션 레이블 &apos;%2&apos;이 필요하지만 지정할 수 없습니다.</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="735"/>
@@ -1436,7 +1437,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="774"/>
         <source>Syncing Filesystem</source>
-        <translation type="unfinished"></translation>
+        <translation>파일 시스템을 동기화하고 있습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="792"/>
@@ -1457,7 +1458,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="853"/>
         <source>Error in checksum for partition_setup.sh</source>
-        <translation type="unfinished"></translation>
+        <translation>partition_setup.sh 체크섬 확인에 오류가 있습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="860"/>
@@ -1509,24 +1510,24 @@ Partition not big enough for new image.</source>
         <location filename="multiimagewritethread.cpp" line="1585"/>
         <location filename="multiimagewritethread.cpp" line="1678"/>
         <source>An incorrect file checksum has been detected in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1에서 올바르지 않은 파일 체크섬을 확인하였습니다</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1485"/>
         <location filename="multiimagewritethread.cpp" line="1589"/>
         <location filename="multiimagewritethread.cpp" line="1682"/>
         <source>Checksum error</source>
-        <translation type="unfinished"></translation>
+        <translation>체크섬 오류</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1495"/>
         <source>Checksum OK</source>
-        <translation type="unfinished"></translation>
+        <translation>체크섬 확인 완료</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1498"/>
         <source>Finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>다운로드 완료</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1599"/>
@@ -1540,164 +1541,164 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="14"/>
         <source>PINN Options</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN 옵션</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="35"/>
         <source>Installation</source>
-        <translation type="unfinished"></translation>
+        <translation>설치</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="43"/>
         <source>PREVENTS any noobsconfig customisations from being applied to an OS on installation</source>
-        <translation type="unfinished"></translation>
+        <translation>OS 설치 과정에서 적용된 noobsconfig 개인 설정을 유지합니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="46"/>
         <source>noobs&amp;config</source>
         <oldsource>noobsconfig</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>noobsconfig (&amp;C)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="53"/>
         <source>Reserve some space on PINN&apos;s partition (MB)</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN 파티션의 특정 공간을 예약합니다 (MB)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="56"/>
         <source>re&amp;serve=</source>
         <oldsource>reserve=</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>공간 예약 (&amp;S)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="66"/>
         <location filename="optionsdialog.ui" line="79"/>
         <source>Specifies a path or URL where the noobsconfig customisation files can be found (rather than being in /os/&amp;lt;distro&amp;gt;/)</source>
-        <translation type="unfinished"></translation>
+        <translation>noobsconfig 개인 설정 파일이 있는 경로나 URL을 지정합니다 (/os/&amp;lt;distro&amp;gt;/ 를 포함한 경로는 지정하지 마십시오)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="86"/>
         <source>Amount of space to reserve (MB) on PINN&apos;s partition</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN 파티션으로 예약할 공간 크기 (MB)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="93"/>
         <source>Selecting this will erase all of your OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>이 옵션을 선택하면 모든 OS를 지웁니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="103"/>
         <source>Prevents PINN from checking for self updates</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN이 스스로 업데이트를 체크하지 않도록 합니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="113"/>
         <source>Force PINN to self-update whenever a new version is detected</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN이 새 버전을 찾더라도 스스로 업데이트하지 않도록 합니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="123"/>
         <source>DO not update the firmware of old OSes on installation</source>
-        <translation type="unfinished"></translation>
+        <translation>설치 중에 오래된 OS의 펌웨어를 업데이트하지 않습니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="133"/>
         <source>Selects all OSes where the most recent one is on the SD card</source>
-        <translation type="unfinished"></translation>
+        <translation>최신 버전이 SD 카드에 있는 있는 모든 OS를 선택합니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="143"/>
         <source>Selects all OSes where the most recent one is on a local USB drive</source>
         <oldsource> Selects all OSes where the most recent one is on a local USB drive</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>최신 버전이 로컬 USB 드라이브에 있는 있는 모든 OS를 선택합니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="153"/>
         <source>Selects all OSes where the most recent one is on remote repositories.</source>
-        <translation type="unfinished"></translation>
+        <translation>최신 버전이 원격 저장소에 있는 있는 모든 OS를 선택합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="163"/>
         <source>Ensures all installed OSes are selected again.</source>
-        <translation type="unfinished"></translation>
+        <translation>설치되어있는 모든 OS를 다시 선택합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="173"/>
         <source>Waits for all OSes on the SD card to be listed</source>
-        <translation type="unfinished"></translation>
+        <translation>SD 카드에 있는 모든 OS가 표시될 때까지 기다립니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="183"/>
         <source>Waits for all OSes on local USBs to be listed</source>
         <oldsource> Waits for all OSes on local USBs to be listed</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>로컬 USB에 있는 모든 OS가 표시될 때까지 기다립니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="193"/>
         <source>Waits for all OS lists to be downloaded from the internet before checking the list of OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>인터넷에서 OS 목록을 다운로드하여 OS 목록이 표시될 때까지 기다립니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="203"/>
         <source>Waits for OSes from all sources to be listed</source>
         <oldsource> Waits for OSes from all sources to be listed</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>모든 OS 원본을 나열할 때까지 기다립니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="213"/>
         <source>The list of OSes that will be selected at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>시작할 때 이 OS 목록을 선택합니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="220"/>
         <source>Reserve an ADDITIONAL amount of space</source>
-        <translation type="unfinished"></translation>
+        <translation>추가로 비워둘 공간의 양을 예약합니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="223"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation>+</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="230"/>
         <source>Automatically reinstalls any selected OSes if newer versions exist</source>
-        <translation type="unfinished"></translation>
+        <translation>선택한 OS의 새 버전을 발견하면 자동으로 다시 설치합니다</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="240"/>
         <source>Allows a single or multiple OSes to be installed automatically, useful during headless installs. </source>
-        <translation type="unfinished"></translation>
+        <translation>하나 이상의 OS를 자동으로 설치합니다. 헤드리스 설치를 할 때 유용합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="263"/>
         <source>Source</source>
-        <translation type="unfinished"></translation>
+        <translation>원본</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="271"/>
         <source>Prevents the default RaspberryPi Foundation repository from being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>기본 RaspberryPi 재단의 저장소를 사용하지 않도록 합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="281"/>
         <source>Prevents OSes stored on local USB memory devices from being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>로컬 USB 메모리 저장장치에 저장된 OS를 사용하지 않도록 합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="291"/>
         <source>Prevent OSes stored on the SD card from being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>SD카드에 저장된 OS를 사용하지 않도록 합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="301"/>
         <source>Shows all available installable OSes, whether they are suitable for the current model of Pi or not. Useful for preparing SD cards to be used in other RPis.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">설치 가능한 모든 OS를 봅니다. 현재 Pi 모델에 맞지 않는 모델도 표시됩니다. 다는 Raspberry Pi를 위한 SD 카드를 준비하는 데 유용합니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="311"/>
         <location filename="optionsdialog.ui" line="337"/>
         <source>Provides the URL of a repo_list.json file that contains a list of URLs to other os-list_v3.json files. This allows easy remote management of Internet repositories.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">다른 os-list_v3.json 파일 목록을 포함한 repo_list.json 파일이 있는 URL을 지정할 수 있습니다. 이 옵션은 인터넷 원격 저장소를 원격에서 관리하기 쉽게 해 줍니다.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="324"/>
@@ -1715,7 +1716,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="374"/>
         <source>Booting</source>
-        <translation type="unfinished"></translation>
+        <translation>부팅</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="382"/>
@@ -1750,7 +1751,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="455"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>인터페이스</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="466"/>
@@ -1826,260 +1827,262 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="69"/>
         <source>&amp;configpath=</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">configpath= (&amp;C)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="96"/>
         <source>&amp;runinstaller</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">runinstaller (&amp;U)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="106"/>
         <source>no_&amp;update</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">no_update (&amp;U)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="116"/>
         <source>&amp;forceupdatepinn</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">forceupdatepinn (&amp;F)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="126"/>
         <source>nofirm&amp;ware</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">nofirmware (&amp;W)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="136"/>
         <source>&amp;allsd</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">allsd (&amp;A)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="146"/>
         <source>all&amp;usb</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">alliusb (&amp;U)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="156"/>
         <source>all&amp;network</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">allnetwork (&amp;N)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="166"/>
         <source>all&amp;installed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">allinstalled (&amp;I)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="176"/>
         <source>&amp;waitsd</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">waitsd (&amp;W)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="186"/>
         <source>waitus&amp;b</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">waitusb (&amp;B)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="196"/>
         <source>waitnetwor&amp;k</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">waitnetwork (&amp;K)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="206"/>
         <source>waita&amp;ll</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">waitall (&amp;L)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="233"/>
         <source>sil&amp;entreinstallnewer</source>
-        <translation type="unfinished"></translation>
+        <translation>silentreinstallnewer (&amp;E)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="243"/>
         <source>&amp;silentinstall</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">silentinstall (&amp;S)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="250"/>
         <source>selec&amp;t=</source>
-        <translation type="unfinished"></translation>
+        <translation>select= (&amp;T)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="274"/>
         <source>no_&amp;default_source</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">기본 원본 위치 사용 안함 (&amp;D)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="284"/>
         <source>disable&amp;usbimages</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">USB 드라이브에 있는 이미지 사용 안함 (&amp;U)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="294"/>
         <source>disable&amp;sdimages</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">SD 카드에 있는 이미지 사용 안함 (&amp;S)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="304"/>
         <source>&amp;showall</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">모든 이미지 보기 (&amp;S)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="314"/>
         <source>repo_&amp;list=</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">repo_list= (&amp;I)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="327"/>
         <source>&amp;repo=</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">repo= (&amp;R)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="347"/>
         <source>alt_&amp;image_source=</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">alt_image_source= (&amp;I)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="385"/>
         <source>&amp;remotetimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">remotetimeout=&lt;초&gt; (&amp;R)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="398"/>
         <source>&amp;forcetrigger</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">forcetrigger (&amp;F)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="408"/>
         <source>&amp;gpiotriggerenable</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">gpiotriggerenable (&amp;G)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="418"/>
         <source>&amp;networktimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">networktimeout=&lt;secs&gt; (&amp;N)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="431"/>
         <source>&amp;keyboardtriggerenable</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">keyboardtriggerenable (&amp;K)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="469"/>
         <source>v&amp;ncinstall</source>
-        <translation type="unfinished"></translation>
+        <translation>vncinstall (&amp;N)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="479"/>
         <source>&amp;vncshare</source>
-        <translation type="unfinished"></translation>
+        <translation>vncshare (&amp;V)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="489"/>
         <source>&amp;ssh</source>
-        <translation type="unfinished"></translation>
+        <translation>ssh (&amp;S)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="499"/>
         <source>&amp;rescueshell</source>
-        <translation type="unfinished"></translation>
+        <translation>rescueshell (&amp;R)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="509"/>
         <source>disablesafe&amp;mode</source>
-        <translation type="unfinished"></translation>
+        <translation>disablesafemode (&amp;M)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="519"/>
         <source>&amp;dsi</source>
-        <translation type="unfinished"></translation>
+        <translation>dsl (&amp;D)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="529"/>
         <source>no_&amp;group</source>
-        <translation type="unfinished"></translation>
+        <translation>no_group (&amp;G)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="539"/>
         <source>no_&amp;cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>no_cursor (&amp;C)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="549"/>
         <source>&amp;wallpaper_resize</source>
-        <translation type="unfinished"></translation>
+        <translation>wallpaper_resize (&amp;W)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="559"/>
         <source>dis&amp;play=</source>
-        <translation type="unfinished"></translation>
+        <translation>display= (&amp;P)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="572"/>
         <source>s&amp;tyle=</source>
-        <translation type="unfinished"></translation>
+        <translation>style (&amp;T)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="585"/>
         <source>b&amp;ootmenutimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">bootmenutimeout=&lt;초&gt; (&amp;O)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="598"/>
         <source>&amp;background=&lt;r,g,b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>background=&lt;r,g,b&gt; (&amp;B)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="612"/>
         <location filename="optionsdialog.ui" line="644"/>
         <source>none</source>
-        <translation type="unfinished"></translation>
+        <translation>없음</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="617"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="622"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="627"/>
         <source>2</source>
-        <translation type="unfinished"></translation>
+        <translation>2</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="632"/>
         <source>3</source>
-        <translation type="unfinished"></translation>
+        <translation>3</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="649"/>
         <source>windows</source>
-        <translation type="unfinished"></translation>
+        <translation>windows</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="654"/>
         <source>motif</source>
-        <translation type="unfinished"></translation>
+        <translation>motif</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="659"/>
         <source>platinum</source>
-        <translation type="unfinished"></translation>
+        <translation>platinum</translation>
     </message>
     <message>
         <location filename="optionsdialog.cpp" line="278"/>
         <source>WARNING</source>
-        <translation type="unfinished"></translation>
+        <translation>경고</translation>
     </message>
     <message>
         <location filename="optionsdialog.cpp" line="279"/>
         <source>Warning: You have chosen the &apos;runinstaller&apos; option.
 This will erase all your OSes on next boot.
 Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>경고: &apos;runinstaller&apos; 옵션을 선택하였습니다.
+다음 번 부팅 때 모든 운영체제를 지웁니다.
+이 작업을 진행하시겠습니까?</translation>
     </message>
 </context>
 <context>
@@ -2290,12 +2293,12 @@ Are you sure?</source>
     <message>
         <location filename="termsdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>조항 확인</translation>
     </message>
     <message>
         <location filename="termsdialog.ui" line="27"/>
         <source>Please accept these T&amp;Cs to continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>계속하려면 이 조항에 동의하십시오. (&amp;C)</translation>
     </message>
 </context>
 <context>
@@ -2479,17 +2482,17 @@ Are you sure?</source>
         <location filename="renamedialog.ui" line="14"/>
         <location filename="renamedialog.ui" line="61"/>
         <source>Alias</source>
-        <translation type="unfinished"></translation>
+        <translation>별칭</translation>
     </message>
     <message>
         <location filename="renamedialog.ui" line="77"/>
         <source>OS name</source>
-        <translation type="unfinished">OS 이름</translation>
+        <translation>OS 이름</translation>
     </message>
     <message>
         <location filename="renamedialog.ui" line="122"/>
         <source>Description</source>
-        <translation type="unfinished">설명</translation>
+        <translation>설명</translation>
     </message>
 </context>
 <context>
@@ -2543,12 +2546,12 @@ Are you sure?</source>
     <message>
         <location filename="rerunsetup.cpp" line="89"/>
         <source>Error in checksum for partition_setup.sh</source>
-        <translation type="unfinished"></translation>
+        <translation>partition_setup.sh 체크섬 확인에 오류가 있습니다</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="90"/>
         <source>Expected csum= %1 Calculated= %2</source>
-        <translation type="unfinished"></translation>
+        <translation>지정된 체크섬= %1 계산 결과= %2</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="152"/>
@@ -2559,28 +2562,28 @@ Are you sure?</source>
         <location filename="rerunsetup.cpp" line="157"/>
         <source> partions_setup.sh script error
 </source>
-        <translation type="unfinished"></translation>
+        <translation> partions_setup.sh 스크립트 오류</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="159"/>
         <source> partition_setup.sh script OK
 </source>
-        <translation type="unfinished"></translation>
+        <translation> partions_setup.sh 스크립트 확인 완료</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="166"/>
         <source>DONE - some setup script errors detected</source>
-        <translation type="unfinished"></translation>
+        <translation>작업 완료 - 설치 스크립트 오류 발견됨</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="168"/>
         <source>DONE - SUCCESSFUL setup scripts exeuted</source>
-        <translation type="unfinished"></translation>
+        <translation>작업 완료 - 설치 스크립트 실행에 성공함</translation>
     </message>
     <message>
         <location filename="rerunsetup.ui" line="14"/>
         <source>re-run partition_setup</source>
-        <translation type="unfinished"></translation>
+        <translation>파티선 설정 다시 시도</translation>
     </message>
 </context>
 </TS>
