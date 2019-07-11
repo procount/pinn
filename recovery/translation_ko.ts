@@ -46,7 +46,7 @@
     <message>
         <location filename="backupthread.cpp" line="206"/>
         <source>%1: Checksumming (%2)</source>
-        <translation type="unfinished">%1: 체크섬을 확인하고 있습니다 (%2)</translation>
+        <translation>%1: 체크섬을 확인하고 있습니다 (%2)</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="244"/>
@@ -101,7 +101,7 @@
     <message>
         <location filename="bootselectiondialog.cpp" line="69"/>
         <source>Error mounting settings partition</source>
-        <translation>설정 파티선을 마운트하는 과정에서 오류가 발생하였습니다</translation>
+        <translation>설정 파티션을 마운트하는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.cpp" line="318"/>
@@ -343,7 +343,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="initdrivethread.cpp" line="303"/>
         <source>Error creating extended partition</source>
-        <translation>확장 파티선을 만드는 과정에서 오류가 발생하였습니다.</translation>
+        <translation>확장 파티션을 만드는 과정에서 오류가 발생하였습니다.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="377"/>
@@ -2583,7 +2583,7 @@ Are you sure?</source>
     <message>
         <location filename="rerunsetup.ui" line="14"/>
         <source>re-run partition_setup</source>
-        <translation>파티선 설정 다시 시도</translation>
+        <translation>파티션 설정 다시 시도</translation>
     </message>
 </context>
 </TS>
