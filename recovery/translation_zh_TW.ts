@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BackupThread</name>
     <message>
@@ -280,8 +280,8 @@
 WARNING: This will erase all data on your SD card.</source>
         <oldsource>Would you like PINN to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
-        <translation type="unfinished">您想要讓 PINN 為您建立一個嗎？
-警告：這將會抹除您 SD 記憶卡上所有的資料</translation>
+        <translation>您想要讓 PINN 為您建立一個嗎？
+警告：這將會抹除您 SD 記憶卡上所有的資料。</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="188"/>
@@ -849,8 +849,8 @@ WARNING: This will erase all data on your SD card</oldsource>
 See debug log for details.</source>
         <oldsource>OS(es) Backed up with errors.
 See debug log for details</oldsource>
-        <translation type="unfinished">作業系統備份時發生錯誤。
-檢視除錯紀錄檔以取得更多資訊</translation>
+        <translation>作業系統備份時發生錯誤。
+檢視除錯紀錄檔以取得更多資訊。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1402"/>
@@ -1119,8 +1119,8 @@ Please provide it locally or connect to the internet.</source>
 See debug log for details.</source>
         <oldsource>OS(es) Downloaded with errors.
 See debug log for details</oldsource>
-        <translation type="unfinished">作業系統下載時發生錯誤。
-檢視除錯紀錄以取得更多資訊</translation>
+        <translation>作業系統下載時發生錯誤。
+檢視除錯紀錄以取得更多資訊。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1383"/>
@@ -1133,8 +1133,8 @@ See debug log for details</oldsource>
 See debug log for details.</source>
         <oldsource>OS(es) Installed with errors.
 See debug log for details</oldsource>
-        <translation type="unfinished">作業系統安裝時發生錯誤。
-檢視除錯紀錄以取得更多資訊</translation>
+        <translation>作業系統安裝時發生錯誤。
+檢視除錯紀錄以取得更多資訊。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1545"/>
@@ -1613,7 +1613,7 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="143"/>
         <source>Selects all OSes where the most recent one is on a local USB drive</source>
         <oldsource> Selects all OSes where the most recent one is on a local USB drive</oldsource>
-        <translation type="unfinished"> 選取所有作業系統，最新的在 USB 磁碟上</translation>
+        <translation>選取所有作業系統，最新的在 USB 磁碟上</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="153"/>
@@ -1634,7 +1634,7 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="183"/>
         <source>Waits for all OSes on local USBs to be listed</source>
         <oldsource> Waits for all OSes on local USBs to be listed</oldsource>
-        <translation type="unfinished">等待所有在本機 USB 磁碟上的作業系統被列出</translation>
+        <translation>等待所有在本機 USB 磁碟上的作業系統被列出</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="193"/>
@@ -1645,7 +1645,7 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="203"/>
         <source>Waits for OSes from all sources to be listed</source>
         <oldsource> Waits for OSes from all sources to be listed</oldsource>
-        <translation type="unfinished"> 等待所有來源的作業系統都被列出</translation>
+        <translation>等待所有來源的作業系統都被列出</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="213"/>
@@ -1708,7 +1708,7 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="357"/>
         <source>Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
         <oldsource> Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</oldsource>
-        <translation type="unfinished"> 類似於 alt_image_source 但其與指定其他額外儲存庫的 NOOBS 方法相符合，為以空格分隔的有引號字串。</translation>
+        <translation>類似於 alt_image_source 但其與指定其他額外儲存庫的 NOOBS 方法相符合，為以空格分隔的有引號字串。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="344"/>
@@ -1725,8 +1725,8 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="382"/>
         <location filename="optionsdialog.ui" line="438"/>
         <source>When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
-        <oldsource> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
-        <translation type="unfinished"> 當與 forcetrigger 一起使用時，它會設定一個最大逾時（以秒為單位），以便在繼續開機選取對話框前顯示復原選單，並可以選取要開機的預設作業系統。</translation>
+        <oldsource> When used in conjunction with forcetrigger&#xa0;it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
+        <translation>當與 forcetrigger 一起使用時，它會設定一個最大逾時（以秒為單位），以便在繼續開機選取對話框前顯示復原選單，並可以選取要開機的預設作業系統。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="395"/>
@@ -1743,7 +1743,7 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="445"/>
         <source>This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</source>
         <oldsource> This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</oldsource>
-        <translation type="unfinished"> 這個設定讓網路逾時可使用秒指定，對需要較長時間辨識的網路尤為有用。</translation>
+        <translation>這個設定讓網路逾時可使用秒指定，對需要較長時間辨識的網路尤為有用。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="428"/>
@@ -1763,14 +1763,14 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="476"/>
         <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
-        <oldsource>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</oldsource>
+        <oldsource>Uses a VNC network connection to control PINN. However, unlike&#xa0;vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</oldsource>
         <translation>使用 VNC 網路連線控制 PINN。但不像 vncinstall，任何本機連線的鍵盤與滑鼠都還是可以使用，而顯示畫面也會在本機螢幕與 VNC 連線上同步顯示。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="486"/>
         <source>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions.</source>
         <oldsource>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
-        <translation type="unfinished">啟用到 PINN 中的緊急殼層的 SSH 連線。這對控制 PINN 沒什麼用，但在執行對任何 SD 記憶卡分割區的遠端維護時相當有用</translation>
+        <translation>啟用到 PINN 中的緊急殼層的 SSH 連線。這對控制 PINN 沒什麼用，但在執行對任何 SD 記憶卡分割區的遠端維護時相當有用。</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="496"/>
