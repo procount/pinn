@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>452</width>
     <height>300</height>
    </rect>
   </property>
@@ -24,7 +24,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Please accept these T&amp;Cs to continue.</string>
+          <string>Please accept these T &amp; Cs to continue.</string>
          </property>
         </widget>
        </item>

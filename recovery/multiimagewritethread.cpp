@@ -1441,7 +1441,7 @@ QMessageBox::ButtonRole  MultiImageWriteThread::untar(const QString &tarball, co
     }
     else
     {
-        emit error(tr("Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip"));
+        emit error(tr("Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip."));
         return QMessageBox::RejectRole ;
     }
 
@@ -1551,7 +1551,7 @@ QMessageBox::ButtonRole MultiImageWriteThread::dd(const QString &imagePath, cons
     }
     else
     {
-        emit error(tr("Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip"));
+        emit error(tr("Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip."));
         return QMessageBox::RejectRole;
     }
 
@@ -1644,7 +1644,7 @@ QMessageBox::ButtonRole MultiImageWriteThread::partclone_restore(const QString &
     }
     else
     {
-        emit error(tr("Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip"));
+        emit error(tr("Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip."));
         return QMessageBox::RejectRole;
     }
 

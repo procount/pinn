@@ -1505,7 +1505,8 @@ Partition not big enough for new image.</source>
         <location filename="multiimagewritethread.cpp" line="1444"/>
         <location filename="multiimagewritethread.cpp" line="1554"/>
         <location filename="multiimagewritethread.cpp" line="1647"/>
-        <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
+        <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip.</source>
+        <oldsource>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</oldsource>
         <translation>未知的壓縮格式副檔名。預期為：.lzo、.gz、.xz、.bz2 或是 .zip</translation>
     </message>
     <message>
@@ -1725,7 +1726,7 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="382"/>
         <location filename="optionsdialog.ui" line="438"/>
         <source>When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
-        <oldsource> When used in conjunction with forcetrigger&#xa0;it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
+        <oldsource> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
         <translation>當與 forcetrigger 一起使用時，它會設定一個最大逾時（以秒為單位），以便在繼續開機選取對話框前顯示復原選單，並可以選取要開機的預設作業系統。</translation>
     </message>
     <message>
@@ -1763,7 +1764,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="476"/>
         <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
-        <oldsource>Uses a VNC network connection to control PINN. However, unlike&#xa0;vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</oldsource>
+        <oldsource>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</oldsource>
         <translation>使用 VNC 網路連線控制 PINN。但不像 vncinstall，任何本機連線的鍵盤與滑鼠都還是可以使用，而顯示畫面也會在本機螢幕與 VNC 連線上同步顯示。</translation>
     </message>
     <message>
@@ -2299,7 +2300,8 @@ Are you sure?</source>
     </message>
     <message>
         <location filename="termsdialog.ui" line="27"/>
-        <source>Please accept these T&amp;Cs to continue.</source>
+        <source>Please accept these T &amp; Cs to continue.</source>
+        <oldsource>Please accept these T&amp;Cs to continue.</oldsource>
         <translation>請接受這些條款與細則以繼續。</translation>
     </message>
 </context>

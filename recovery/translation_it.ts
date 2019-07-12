@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it" sourcelanguage="en">
+<TS version="2.1" language="it" sourcelanguage="en">
 <context>
     <name>BackupThread</name>
     <message>
@@ -1520,8 +1520,9 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
         <location filename="multiimagewritethread.cpp" line="1444"/>
         <location filename="multiimagewritethread.cpp" line="1554"/>
         <location filename="multiimagewritethread.cpp" line="1647"/>
-        <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
-        <translation>Estensione file tipo compressione sconosciuta. Attesi: .lzo, .gz, .xz, .bz2,o .zip</translation>
+        <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip.</source>
+        <oldsource>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</oldsource>
+        <translation>Estensione file tipo compressione sconosciuta. Attesi: .lzo, .gz, .xz, .bz2,o .zip.</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1484"/>
@@ -2324,8 +2325,9 @@ Vuoi proseguire?</translation>
     </message>
     <message>
         <location filename="termsdialog.ui" line="27"/>
-        <source>Please accept these T&amp;Cs to continue.</source>
-        <translation>Per continuare accetta i Termini e &amp;condidizoni.</translation>
+        <source>Please accept these T &amp; Cs to continue.</source>
+        <oldsource>Please accept these T&amp;Cs to continue.</oldsource>
+        <translation>Per continuare accetta i Termini e condidizoni.</translation>
     </message>
 </context>
 <context>

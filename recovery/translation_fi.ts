@@ -1501,7 +1501,8 @@ Partition not big enough for new image.</source>
         <location filename="multiimagewritethread.cpp" line="1444"/>
         <location filename="multiimagewritethread.cpp" line="1554"/>
         <location filename="multiimagewritethread.cpp" line="1647"/>
-        <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</source>
+        <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip.</source>
+        <oldsource>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2294,7 +2295,8 @@ Are you sure?</source>
     </message>
     <message>
         <location filename="termsdialog.ui" line="27"/>
-        <source>Please accept these T&amp;Cs to continue.</source>
+        <source>Please accept these T &amp; Cs to continue.</source>
+        <oldsource>Please accept these T&amp;Cs to continue.</oldsource>
         <translation type="unfinished"></translation>
     </message>
 </context>
