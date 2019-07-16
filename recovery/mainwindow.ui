@@ -573,7 +573,7 @@
      <normaloff>:/icons/arrow_refresh.png</normaloff>:/icons/arrow_refresh.png</iconset>
    </property>
    <property name="text">
-    <string>Replace (l)</string>
+    <string>Replace (c)</string>
    </property>
    <property name="shortcut">
     <string>L</string>
