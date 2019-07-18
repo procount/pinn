@@ -1641,7 +1641,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="193"/>
         <source>Waits for all OS lists to be downloaded from the internet before checking the list of OSes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">a</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="203"/>
