@@ -202,7 +202,7 @@
     <message>
         <location filename="fullfatthread.cpp" line="127"/>
         <source>Error resizing existing FAT partition</source>
-        <translation type="unfinished">Fehler bei Größenanpassung der bestehenden FAT-Partition</translation>
+        <translation>Fehler bei Größenanpassung der bestehenden FAT-Partition</translation>
     </message>
 </context>
 <context>
