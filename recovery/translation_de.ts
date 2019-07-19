@@ -101,7 +101,7 @@
         <location filename="bootselectiondialog.ui" line="45"/>
         <source>&amp;Up</source>
         <oldsource>Up</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>&amp; Hoch</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="52"/>
