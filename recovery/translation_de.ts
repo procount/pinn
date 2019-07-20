@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de" sourcelanguage="en">
+<TS version="2.1" language="de" sourcelanguage="en">
 <context>
     <name>BackupThread</name>
     <message>
@@ -11,7 +11,7 @@
     <message>
         <location filename="backupthread.cpp" line="113"/>
         <source>Cannot backup </source>
-        <translation>Backup kann nicht erstellt werden</translation>
+        <translation>Backup kann nicht erstellt werden </translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="113"/>
@@ -36,7 +36,7 @@
     <message>
         <location filename="backupthread.cpp" line="192"/>
         <source>Error writing </source>
-        <translation>Fehler beim Schreiben</translation>
+        <translation>Fehler beim Schreiben </translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="192"/>
@@ -46,7 +46,7 @@
     <message>
         <location filename="backupthread.cpp" line="206"/>
         <source>%1: Checksumming (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="244"/>
@@ -95,28 +95,28 @@
     <message>
         <location filename="bootselectiondialog.ui" line="38"/>
         <source>Sticky default</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="45"/>
         <source>&amp;Up</source>
         <oldsource>Up</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hoch</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="52"/>
         <source>U</source>
-        <translation type="unfinished"></translation>
+        <translation>U</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="59"/>
         <source>&amp;Down</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Runter</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="66"/>
         <source>D</source>
-        <translation type="unfinished">D</translation>
+        <translation>D</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="95"/>
@@ -135,7 +135,7 @@
         <location filename="confeditdialog.ui" line="36"/>
         <source>&amp;Edit Options</source>
         <oldsource>Edit Options</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Optionen bearbeiten</translation>
     </message>
     <message>
         <location filename="confeditdialog.cpp" line="95"/>
@@ -153,12 +153,12 @@
     <message>
         <location filename="datetimedialog.ui" line="14"/>
         <source>Set Date &amp; Time</source>
-        <translation type="unfinished">Lege Datum und Uhrzeit fest</translation>
+        <translation>Datum und Uhrzeit festlegen</translation>
     </message>
     <message>
         <location filename="datetimedialog.ui" line="52"/>
         <source>Please set the correct date and time below.</source>
-        <translation>Bitte lege Datum und Uhrzeit fest</translation>
+        <translation>Bitte lege Datum und Uhrzeit fest.</translation>
     </message>
 </context>
 <context>
@@ -167,42 +167,42 @@
         <location filename="fullfatthread.cpp" line="39"/>
         <location filename="fullfatthread.cpp" line="47"/>
         <source>Mounting FAT partition</source>
-        <translation type="unfinished">FAT-Partition wird eingebunden</translation>
+        <translation>FAT-Partition wird eingebunden</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="50"/>
         <source>Error mounting system partition.</source>
-        <translation type="unfinished">Fehler beim Einbinden der Systempartition</translation>
+        <translation>Fehler beim Einbinden der Systempartition.</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="62"/>
         <source>Error opening %1</source>
-        <translation type="unfinished">Fehler beim Öffnen von %1</translation>
+        <translation>Fehler beim Öffnen von %1</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="72"/>
         <source>Finish writing to disk (sync)</source>
-        <translation type="unfinished">Schließe Schreibvorgang ab (sync)</translation>
+        <translation>Schließe Schreibvorgang ab (sync)</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="85"/>
         <source>Error unmounting system partition.</source>
-        <translation type="unfinished">Fehler beim Aushängen der Systempartition.</translation>
+        <translation>Fehler beim Aushängen der Systempartition.</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="89"/>
         <source>Removing partitions 2,3,4</source>
-        <translation type="unfinished">Entferne Partitionen 2,3,4</translation>
+        <translation>Entferne Partitionen 2,3,4</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="103"/>
         <source>Resizing FAT partition</source>
-        <translation type="unfinished">Passe Größe der FAT-Partition an</translation>
+        <translation>Passe Größe der FAT-Partition an</translation>
     </message>
     <message>
         <location filename="fullfatthread.cpp" line="127"/>
         <source>Error resizing existing FAT partition</source>
-        <translation type="unfinished">Fehler bei Größenanpassung der bestehenden FAT-Partition</translation>
+        <translation>Fehler bei Größenanpassung der bestehenden FAT-Partition</translation>
     </message>
 </context>
 <context>
@@ -247,8 +247,8 @@
 WARNING: This will erase all data on your SD card.</source>
         <oldsource>Would you like PINN to create one for you?
 WARNING: This will erase all data on your SD card</oldsource>
-        <translation type="unfinished">Soll PINN eine für Sie erstellen?
-Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
+        <translation>Soll PINN eine für Sie erstellen?
+ACHTUNG: Dies löscht alle Ihre Daten auf der SD-Karte.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="188"/>
@@ -269,7 +269,7 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
         <location filename="initdrivethread.cpp" line="217"/>
         <source>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</source>
         <oldsource>SD card has now been formatted ready for NOOBS installation. Please re-copy the NOOBS files onto the card and reboot</oldsource>
-        <translation type="unfinished">Die SD-Karte wurde für die Installation von PINN formatiert. Bitte kopieren Sie die PINN-Dateien erneut auf die SD-Karte und starten Sie neu</translation>
+        <translation>Die SD-Karte wurde für die Installation von PINN formatiert. Bitte kopieren Sie die PINN-Dateien erneut auf die SD-Karte und starten Sie neu</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="222"/>
@@ -314,12 +314,12 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
     <message>
         <location filename="initdrivethread.cpp" line="396"/>
         <source>Creating partitions</source>
-        <translation>Partitionen werden erstellt.</translation>
+        <translation>Partitionen werden erstellt</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="400"/>
         <source>Error partitioning</source>
-        <translation>Fehler beim Partitionieren.</translation>
+        <translation>Fehler beim Partitionieren</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="404"/>
@@ -334,17 +334,17 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
     <message>
         <location filename="initdrivethread.cpp" line="411"/>
         <source>Copying boot files to storage</source>
-        <translation>Boot-Dateien werden auf den Speicher kopiert.</translation>
+        <translation>Boot-Dateien werden auf den Speicher kopiert</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="503"/>
         <source>Setting disk volume ID</source>
-        <translation>Disk-Volume-ID wird gesetzt.</translation>
+        <translation>Disk-Volume-ID wird gesetzt</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="86"/>
         <source>Error mounting system partition.</source>
-        <translation>Fehler beim Einbinden der Systempartition</translation>
+        <translation>Fehler beim Einbinden der Systempartition.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="91"/>
@@ -406,7 +406,7 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
         <location filename="mainwindow.ui" line="74"/>
         <location filename="mainwindow.ui" line="175"/>
         <source>Destination drive:</source>
-        <translation>Ziellaufwerk</translation>
+        <translation>Ziellaufwerk:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="103"/>
@@ -418,7 +418,7 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
         <location filename="mainwindow.ui" line="122"/>
         <source>Model</source>
         <oldsource>model</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Modell</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="132"/>
@@ -445,7 +445,7 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
     <message>
         <location filename="mainwindow.ui" line="390"/>
         <source>Installs the selected operating system image onto this SD card.</source>
-        <translation>Installiert das ausgewählte Betriebssystem-Image auf die SD-Karte</translation>
+        <translation>Installiert das ausgewählte Betriebssystem-Image auf die SD-Karte.</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="393"/>
@@ -485,7 +485,7 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
     <message>
         <location filename="mainwindow.ui" line="522"/>
         <source>Downloads the selected operating system image to USB for local installation</source>
-        <translation>Lädt die ausgewählten Betreibssystem-Images auf den USB-Stick zur späteren lokalen Installation.</translation>
+        <translation>Lädt die ausgewählten Betreibssystem-Images auf den USB-Stick zur späteren lokalen Installation</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="525"/>
@@ -537,12 +537,12 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
     <message>
         <location filename="mainwindow.ui" line="684"/>
         <source>Clear (c)</source>
-        <translation type="unfinished"></translation>
+        <translation>Löschen (c)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="687"/>
         <source>Clear selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Auswahl löschen</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="699"/>
@@ -567,7 +567,7 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
     <message>
         <location filename="mainwindow.ui" line="717"/>
         <source>Rename an OS with an alias</source>
-        <translation>Bennene ein Betriebsystem in einen Alias um.</translation>
+        <translation>Bennene ein Betriebsystem m,it einem Alias um</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="720"/>
@@ -607,7 +607,7 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
     <message>
         <location filename="mainwindow.ui" line="543"/>
         <source>B</source>
-        <translation type="unfinished">B</translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="594"/>
@@ -743,12 +743,13 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
         <location filename="mainwindow.cpp" line="4551"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
-        <translation>ist nicht verfügbar. Bitte stelle es lokal zur Verfügung oder verbinde dich mit dem Internet</translation>
+        <translation> ist nicht verfügbar.
+ Bitte stelle es lokal zur Verfügung oder verbinde dich mit dem Internet.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1383"/>
         <source>OS(es) Downloaded Successfully.</source>
-        <translation>Download erfolgreich</translation>
+        <translation>Betriebssystem(e) erfolgreich heruntergeladen.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1451"/>
@@ -793,12 +794,12 @@ Please provide it locally or connect to the internet.</source>
     <message>
         <location filename="mainwindow.cpp" line="672"/>
         <source>Archival</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivierung</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="673"/>
         <source>Maintenance</source>
-        <translation type="unfinished"></translation>
+        <translation>Wartung</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1053"/>
@@ -843,7 +844,7 @@ Please provide it locally or connect to the internet.</source>
     <message>
         <location filename="mainwindow.cpp" line="1338"/>
         <source>The download process will begin shortly.</source>
-        <translation>Der Download beginnt in Kürze</translation>
+        <translation>Der Download-Prozess beginnt in Kürze.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1386"/>
@@ -856,12 +857,13 @@ Please provide it locally or connect to the internet.</source>
 See debug log for details.</source>
         <oldsource>OS(es) Backed up with errors.
 See debug log for details</oldsource>
-        <translation type="unfinished">Betriebssystem(e) nicht fehlerfrei gesichtert. Schaue in das Debug-Log</translation>
+        <translation>Betriebssystem(e) nicht fehlerfrei gesichtert.
+Schaue in das Debug-Log für Details.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1402"/>
         <source>OS(es) Backed up Successfully.</source>
-        <translation>Betriebssystem(e) erfolgreich gesichtert</translation>
+        <translation>Betriebssystem(e) erfolgreich gesichtert.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1404"/>
@@ -878,32 +880,32 @@ See debug log for details</oldsource>
     <message>
         <location filename="mainwindow.cpp" line="1415"/>
         <source>Installation complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Installation erfolgreich</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1516"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1517"/>
         <source>Discard</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwerfen</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1518"/>
         <source>Retry</source>
-        <translation type="unfinished"></translation>
+        <translation>Erneut versuchen</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1519"/>
         <source>Keep</source>
-        <translation type="unfinished"></translation>
+        <translation>Fortsetzen</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1543"/>
         <source>Reboot in %1 secs</source>
-        <translation>Neustart in %1 Sekunde(n).</translation>
+        <translation>Neustart in %1 Sekunde(n)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1584"/>
@@ -930,13 +932,13 @@ Wollen Sie diese Einstellung dauerhaft speichern?</translation>
     <message>
         <location filename="mainwindow.cpp" line="1833"/>
         <source>Wiping SD card</source>
-        <translation>SD-Karte wird zurückgesetzt.</translation>
+        <translation>SD-Karte wird zurückgesetzt</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1859"/>
         <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will restore your SD card to its initial state. All existing data on the SD card except PINN will be overwritten, including any OSes that are already installed.</oldsource>
-        <translation>Warnung: Dies wird dein PINN-Laufwerk in seinen Anfangszustand zurücksetzen. Alle existierenden Dateien, inklusive installierten Betriebssystemen, werden gelöscht</translation>
+        <translation>Warnung: Dies wird dein PINN-Laufwerk in seinen Anfangszustand zurücksetzen. Alle existierenden Dateien, inklusive installierten Betriebssystemen, werden gelöscht.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1864"/>
@@ -964,12 +966,12 @@ Wollen Sie diese Einstellung dauerhaft speichern?</translation>
     <message>
         <location filename="mainwindow.cpp" line="2140"/>
         <source>Error parsing repolist.json downloaded from server</source>
-        <translation type="unfinished">Fehler beim Verarbeiten von repolist.json vom Server.</translation>
+        <translation>Fehler beim Verarbeiten von repolist.json vom Server</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2760"/>
         <source>Error downloading meta file: </source>
-        <translation>Fehler beim Download einer Meta-Datei:</translation>
+        <translation>Fehler beim Download einer Meta-Datei: </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3111"/>
@@ -981,29 +983,30 @@ Wollen Sie diese Einstellung dauerhaft speichern?</translation>
     <message>
         <location filename="mainwindow.cpp" line="3156"/>
         <source>Resume partial downloads?</source>
-        <translation type="unfinished"></translation>
+        <translation>Unvollständige Downloads neu starten?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3157"/>
         <source>Normally select NO, unless your last download was not successful, in which case select YES</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle im Normalfall NEIN aus, außer der letzte Download war nicht erfolgreich, dann wähle JA</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3371"/>
         <source>This backup may require </source>
-        <translation>Dieses Backup braucht vielleicht</translation>
+        <translation>Dieses Backup braucht vielleicht </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3373"/>
         <source> MB of backup space, but only </source>
-        <translation>MB Backup-Speicher, aber nur</translation>
+        <translation> MB Backup-Speicher, aber nur </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3375"/>
         <source> MB is available. This is only an estimate. If you continue, the backup may not complete successfully.
 
 Do you want to continue?</source>
-        <translation>MB sind verfügbar. Dies ist nur eine Einschätzung. Wenn du fortfährst wird das Backup eventuell nicht erfolgreich fertiggestellt.</translation>
+        <translation> MB sind verfügbar. Dies ist nur eine Einschätzung. Wenn du fortfährst wird das Backup eventuell nicht erfolgreich fertiggestellt.
+Möchtest du fortfahren?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3376"/>
@@ -1018,7 +1021,7 @@ Do you want to continue?</source>
     <message>
         <location filename="mainwindow.cpp" line="3383"/>
         <source>Always test your backups before relying on them</source>
-        <translation>Teste deine Backups immer, bevor du dich auf sie verlässt.</translation>
+        <translation>Teste deine Backups immer, bevor du dich auf sie verlässt</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3433"/>
@@ -1115,23 +1118,25 @@ Do you want to continue?</source>
         <location filename="mainwindow.cpp" line="4533"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler: Kein Betriebssystem ausgewählt
+(Wähle nicht RISC OS oder PINN)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4561"/>
         <source>Warning: No OSes selected
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Warnung: Kein Betriebssystem ausgewählt
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4658"/>
         <source>Warning: this will backup the selected Operating System(s).</source>
-        <translation type="unfinished"></translation>
+        <translation>Warnung: Dies erstellt ein Backup der ausgewählten Betriebssysteme.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4702"/>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2280"/>
@@ -1141,32 +1146,33 @@ Do you want to continue?</source>
     <message>
         <location filename="mainwindow.cpp" line="1146"/>
         <source>install</source>
-        <translation type="unfinished"></translation>
+        <translation>Installieren</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1149"/>
         <source>reinstall</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Neu installieren</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1152"/>
         <source>replace</source>
-        <translation type="unfinished"></translation>
+        <translation>Ersetzen</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1160"/>
         <source>USB drive</source>
-        <translation type="unfinished"></translation>
+        <translation>USB-Laufwerk</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1162"/>
         <source>Warning: this will %1 the selected Operating System(s) to %2. All existing data on the %3 will be deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Warnung: Dies %1 das ausgewählte Betriebssystem/die ausgewählten Betriebssysteme nach %2. Alle vorhandenen Daten auf dem %3 werden gelöscht.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1242"/>
         <source>The %1 process will begin shortly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der %1 Prozess beginnt in Kürze.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1381"/>
@@ -1174,7 +1180,8 @@ Do you want to continue?</source>
 See debug log for details.</source>
         <oldsource>OS(es) Downloaded with errors.
 See debug log for details</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Betriebssysteme nicht fehlerfrei heruntergeaden.
+Schaue in die Debug-Logdateien für Details.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1411"/>
@@ -1182,14 +1189,17 @@ See debug log for details</oldsource>
 See debug log for details.</source>
         <oldsource>OS(es) Installed with errors.
 See debug log for details</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Betriebssysteme nicht fehlerfrei installiert.
+Schaue in die Debug-Logdateien für Details.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1865"/>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
-        <translation type="unfinished"></translation>
+        <translation>Warnung: Alle installierten Betriebssysteme wurden gelöscht und das aufwerk auf die Originalgröße zurückgesetzt.
+Installlieren und herunterladen werden nicht mehr funktionieren bis dieses Laufwerk neu gestartet wurde.
+Dieses Laufwerk wieder zu starten setzt PINNs Partitionsstruktur wieder instand.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2547"/>
@@ -1217,17 +1227,17 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="mainwindow.cpp" line="2897"/>
         <source>filesize error checking </source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Überprüfen der Dateigröße </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3112"/>
         <source> has an incompatible number of partitions with </source>
-        <translation type="unfinished"></translation>
+        <translation> hat eine inkompatible Anzahl an Partitionen mit </translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3767"/>
         <source>Reformat drive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Laufwerk neu formatieren?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1878"/>
@@ -1257,22 +1267,22 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     <message>
         <location filename="multiimagedownloadthread.cpp" line="100"/>
         <source>Downloading %1:%2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1:%2 wird heruntergeladen</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="138"/>
         <source>Checking %1:%2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1:%2 wird überprüft</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="148"/>
         <source>Error in checksum</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler in der Prüfsumme</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="156"/>
         <source>Error downloading or extracting tarball</source>
-        <translation type="unfinished">Fehler beim Herunterladen oder Extrahieren des TAR-Archivs</translation>
+        <translation>Fehler beim Herunterladen oder Extrahieren des TAR-Archivs</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="194"/>
@@ -1508,7 +1518,7 @@ Partition not big enough for new image.</source>
         <location filename="multiimagewritethread.cpp" line="1647"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip.</source>
         <oldsource>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</oldsource>
-        <translation type="unfinished">Unbekanntes Kompressionsformat in Dateierweiterung. Erwarte .lzo, .gz, .xz, .bz2 oder .zip</translation>
+        <translation>Unbekanntes Kompressionsformat in Dateierweiterung. Erwartet wurde: .lzo, .gz, .xz, .bz2 oder .zip.</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1484"/>
@@ -2398,22 +2408,22 @@ Are you sure?</source>
     <message>
         <location filename="backupdialog.ui" line="14"/>
         <source>Set Backup Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Backupname festlegen</translation>
     </message>
     <message>
         <location filename="backupdialog.ui" line="61"/>
         <source>ID (date/time)</source>
-        <translation type="unfinished"></translation>
+        <translation>ID (Datum/Uhrzeit)</translation>
     </message>
     <message>
         <location filename="backupdialog.ui" line="77"/>
         <source>OS name</source>
-        <translation type="unfinished"></translation>
+        <translation>OS-Name</translation>
     </message>
     <message>
         <location filename="backupdialog.ui" line="122"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -2421,7 +2431,7 @@ Are you sure?</source>
     <message>
         <location filename="fscheck.ui" line="14"/>
         <source>File System Check</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateisystemscheck</translation>
     </message>
 </context>
 <context>
