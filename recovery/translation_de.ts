@@ -1257,12 +1257,12 @@ Dieses Laufwerk wieder zu starten setzt PINNs Partitionsstruktur wieder instand.
     <message>
         <location filename="multiimagedownloadthread.cpp" line="58"/>
         <source>Finish writing (sync)</source>
-        <translation type="unfinished">Schließe Schreibvorgang ab (sync)</translation>
+        <translation>Schließe Schreibvorgang ab (sync)</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="89"/>
         <source>File &apos;%1&apos; does not need downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei %1 muss nicht heruntergeladen werden</translation>
     </message>
     <message>
         <location filename="multiimagedownloadthread.cpp" line="100"/>
@@ -1287,7 +1287,7 @@ Dieses Laufwerk wieder zu starten setzt PINNs Partitionsstruktur wieder instand.
     <message>
         <location filename="multiimagedownloadthread.cpp" line="194"/>
         <source>Finished downloading %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Herunterladen von %1 abgeschlossen</translation>
     </message>
 </context>
 <context>
@@ -1556,12 +1556,12 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="14"/>
         <source>PINN Options</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN-Optionen</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="35"/>
         <source>Installation</source>
-        <translation type="unfinished"></translation>
+        <translation>Installation</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="43"/>
@@ -1572,7 +1572,7 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="46"/>
         <source>noobs&amp;config</source>
         <oldsource>noobsconfig</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>noobs&amp;config</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="53"/>
@@ -1672,7 +1672,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="223"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation>+</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="230"/>
@@ -1682,7 +1682,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="240"/>
         <source>Allows a single or multiple OSes to be installed automatically, useful during headless installs. </source>
-        <translation type="unfinished"></translation>
+        <translation>Erlaubt einem einzelnen oder mehreren Betriebssystem(en) automatisch installiert zu werden, nützlich bei headless-Installationen. </translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="263"/>
@@ -1726,12 +1726,12 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="344"/>
         <location filename="optionsdialog.ui" line="364"/>
         <source>: Provides the URL of an additional os_list_v3.json file indicating the location of other OSes that can be downloaded from the Internet. Multiple instances of this option can be used.</source>
-        <translation type="unfinished"></translation>
+        <translation>: gibt die URL einer weiteren os_list_v3.json an, welche angibt, wo andere Betriebssysteme aus dem Internet heruntergeladen werdenkönnen. Kann mehrmals genutzt werden.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="374"/>
         <source>Booting</source>
-        <translation type="unfinished"></translation>
+        <translation>Booten</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="382"/>
@@ -1766,7 +1766,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="455"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Oberfläsche</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="466"/>
@@ -1798,7 +1798,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="516"/>
         <source>A special boot feature to swap the priority of the DSI and HDMI video outputs, allowing an OS to give priority to a HDMI screen if attached.</source>
-        <translation type="unfinished"></translation>
+        <translation>Eine spezielle Boot-Funktion, um die Priorität von von DSI und HDMI zu vertauschen, erlaubt einem Betriebssystem einem verbundenen HDMI-Display Priorität zu geben.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="526"/>
@@ -1867,32 +1867,32 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="136"/>
         <source>&amp;allsd</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;allsd</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="146"/>
         <source>all&amp;usb</source>
-        <translation type="unfinished"></translation>
+        <translation>all&amp;usb</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="156"/>
         <source>all&amp;network</source>
-        <translation type="unfinished"></translation>
+        <translation>all&amp;network</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="166"/>
         <source>all&amp;installed</source>
-        <translation type="unfinished"></translation>
+        <translation>all&amp;installed</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="176"/>
         <source>&amp;waitsd</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;waitsd</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="186"/>
         <source>waitus&amp;b</source>
-        <translation type="unfinished"></translation>
+        <translation>waitus&amp;b</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="196"/>
@@ -1952,7 +1952,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="347"/>
         <source>alt_&amp;image_source=</source>
-        <translation type="unfinished"></translation>
+        <translation>alt_&amp;image_source=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="385"/>
@@ -1992,7 +1992,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="489"/>
         <source>&amp;ssh</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;ssh</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="499"/>
@@ -2027,12 +2027,12 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="559"/>
         <source>dis&amp;play=</source>
-        <translation type="unfinished"></translation>
+        <translation>dis&amp;play=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="572"/>
         <source>s&amp;tyle=</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">s&amp;tyle</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="585"/>
@@ -2048,27 +2048,27 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="612"/>
         <location filename="optionsdialog.ui" line="644"/>
         <source>none</source>
-        <translation type="unfinished"></translation>
+        <translation>kein</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="617"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="622"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="627"/>
         <source>2</source>
-        <translation type="unfinished"></translation>
+        <translation>2</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="632"/>
         <source>3</source>
-        <translation type="unfinished"></translation>
+        <translation>3</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="649"/>
@@ -2083,7 +2083,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="659"/>
         <source>platinum</source>
-        <translation type="unfinished"></translation>
+        <translation>platinum</translation>
     </message>
     <message>
         <location filename="optionsdialog.cpp" line="278"/>
@@ -2103,58 +2103,58 @@ Are you sure?</source>
     <message>
         <location filename="osgroup.cpp" line="13"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="14"/>
         <source>Media</source>
-        <translation type="unfinished"></translation>
+        <translation>Medien</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="15"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Spiele</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="16"/>
         <source>Minimal</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimal</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="17"/>
         <source>Education</source>
-        <translation type="unfinished"></translation>
+        <translation>Bildung</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="18"/>
         <source>Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>Installiert</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="19"/>
         <source>Utility</source>
-        <translation type="unfinished"></translation>
+        <translation>Tools</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="342"/>
         <source>RECOMMENDED</source>
-        <translation type="unfinished">EMPFOHLEN</translation>
+        <translation>EMPFOHLEN</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="347"/>
         <source>NEW VERSION</source>
-        <translation type="unfinished"></translation>
+        <translation>NEUE VERSION</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="348"/>
         <source>UPDATE</source>
-        <translation type="unfinished"></translation>
+        <translation>UPDATE</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="352"/>
         <location filename="osgroup.cpp" line="353"/>
         <source>INSTALLED</source>
-        <translation type="unfinished">INSTALLIERT</translation>
+        <translation>INSTALLIERT</translation>
     </message>
 </context>
 <context>
@@ -2472,22 +2472,22 @@ Are you sure?</source>
     <message>
         <location filename="piclonedialog.ui" line="14"/>
         <source>Clone SD Card</source>
-        <translation type="unfinished">Klone die SD-Karte</translation>
+        <translation>Klone die SD-Karte</translation>
     </message>
     <message>
         <location filename="piclonedialog.ui" line="42"/>
         <source>Copy From Device:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Von Gerät kopieren:</translation>
     </message>
     <message>
         <location filename="piclonedialog.ui" line="75"/>
         <source>Copy To Device:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Auf Gerät kopieren:</translation>
     </message>
     <message>
         <location filename="piclonedialog.ui" line="88"/>
         <source>Resize Last Partition</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"> Größe der Letzten Partitionen ändern</translation>
     </message>
 </context>
 <context>
