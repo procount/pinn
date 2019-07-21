@@ -90,7 +90,7 @@
         <location filename="bootselectiondialog.ui" line="25"/>
         <location filename="bootselectiondialog.cpp" line="370"/>
         <source>PINN - Select OS to boot</source>
-        <translation>Wähle ein Betriebsystem zum starten aus</translation>
+        <translation type="unfinished">Wähle ein Betriebsystem zum Starten aus</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="38"/>
