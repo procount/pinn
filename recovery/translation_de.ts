@@ -1310,7 +1310,7 @@ Dieses Laufwerk wieder zu starten setzt PINNs Partitionsstruktur wieder instand.
     <message>
         <location filename="multiimagewritethread.cpp" line="153"/>
         <source>Operating system cannot claim both primary partitions 2 and 4</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Betriebssystem kann nicht beide primären partitionen 2 und 4 erhalten</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="181"/>
@@ -1372,12 +1372,12 @@ Dieses Laufwerk wieder zu starten setzt PINNs Partitionsstruktur wieder instand.
     <message>
         <location filename="multiimagewritethread.cpp" line="210"/>
         <source>Cannot boot partitions &gt; 62. Reduce the number of OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>Kann keine Partitionen &gt; 62 booten. Reduziere die Anzahl der Betriebssysteme</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="232"/>
         <source>Cannot boot partitions &gt; #62. Reduce the number of OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>Kann keine Partitionen &gt; #62 booten. Reduziere die Anzahl der Betriebssysteme</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="261"/>
@@ -1392,7 +1392,7 @@ Dieses Laufwerk wieder zu starten setzt PINNs Partitionsstruktur wieder instand.
     <message>
         <location filename="multiimagewritethread.cpp" line="336"/>
         <source>Writing boot partition table</source>
-        <translation type="unfinished"></translation>
+        <translation>Boot Partitionstabelle wird geschrieben</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="326"/>
@@ -1404,17 +1404,18 @@ Dieses Laufwerk wieder zu starten setzt PINNs Partitionsstruktur wieder instand.
         <location filename="multiimagewritethread.cpp" line="387"/>
         <source>.
 Partition not big enough for new image.</source>
-        <translation type="unfinished"></translation>
+        <translation>.
+Die Partition ist nicht grooß genug für ein neues Image.</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="387"/>
         <source>Cannot Reinstall/Replace </source>
-        <translation type="unfinished"></translation>
+        <translation>Kann nicht neu installiert/ersetzt werden </translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="433"/>
         <source>Operation cancelled by user</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorgang vom Benutzer abgebrochen</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="460"/>
@@ -1429,7 +1430,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="723"/>
         <source>OS: &apos;%1&apos; needs a partition label of &apos;%2&apos; which is not available</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Betriebssystem %1 benötigt eine Partition namens &apos;%2&apos;, welche aber nicht verfügbar ist</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="766"/>
@@ -1445,7 +1446,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="774"/>
         <source>Syncing Filesystem</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateisystem wird synchronisiert</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="792"/>
@@ -1469,7 +1470,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="853"/>
         <source>Error in checksum for partition_setup.sh</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler in der Prüfsumme von partition_setup.sh</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="860"/>
@@ -1486,7 +1487,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="932"/>
         <source>%1: Configuring flavour</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: Flavour wird konfiguriert</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="922"/>
@@ -1505,7 +1506,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="955"/>
         <source>%1: Checking firmware update</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: Auf Firmware-Updates wird überprüft</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1372"/>
@@ -1525,24 +1526,24 @@ Partition not big enough for new image.</source>
         <location filename="multiimagewritethread.cpp" line="1585"/>
         <location filename="multiimagewritethread.cpp" line="1678"/>
         <source>An incorrect file checksum has been detected in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Eine inkorrekte Prüfsumme wurde in %1 gefunden</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1485"/>
         <location filename="multiimagewritethread.cpp" line="1589"/>
         <location filename="multiimagewritethread.cpp" line="1682"/>
         <source>Checksum error</source>
-        <translation type="unfinished"></translation>
+        <translation>Prüfsummenfehler</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1495"/>
         <source>Checksum OK</source>
-        <translation type="unfinished"></translation>
+        <translation>Prüfsumme OK</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1498"/>
         <source>Finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Herunterladen abgeschlossen</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1599"/>
@@ -1566,7 +1567,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="43"/>
         <source>PREVENTS any noobsconfig customisations from being applied to an OS on installation</source>
-        <translation type="unfinished"></translation>
+        <translation>Verhindert, dass noobsconfig-Anpassungen auf ein Betriebssystem angewendet werden</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="46"/>
@@ -1577,65 +1578,65 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="53"/>
         <source>Reserve some space on PINN&apos;s partition (MB)</source>
-        <translation type="unfinished"></translation>
+        <translation>Reserviert Speicherplatz auf PINNs Partition (MB)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="56"/>
         <source>re&amp;serve=</source>
         <oldsource>reserve=</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>re&amp;serve</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="66"/>
         <location filename="optionsdialog.ui" line="79"/>
         <source>Specifies a path or URL where the noobsconfig customisation files can be found (rather than being in /os/&amp;lt;distro&amp;gt;/)</source>
-        <translation type="unfinished"></translation>
+        <translation>Gibt den Pfad oder die URL an, wo sich noobsconfig-Anpassungsdateien befinden (statt in /os/&amp;lt;distro&amp;gt;/)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="86"/>
         <source>Amount of space to reserve (MB) on PINN&apos;s partition</source>
-        <translation type="unfinished"></translation>
+        <translation>Speicherplatz, der auf PINNs Partition reserviert werden soll, in MB</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="93"/>
         <source>Selecting this will erase all of your OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>Das auswählen dieser Option löscht alle ihrer Betriebssysteme</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="103"/>
         <source>Prevents PINN from checking for self updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Verhindert, dass PINN selbstständig Updates installiert</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="113"/>
         <source>Force PINN to self-update whenever a new version is detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Zwingt PINN zum Selbst-Update wenn eine neue Version erkannt wird</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="123"/>
         <source>DO not update the firmware of old OSes on installation</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisiere NICHT die Firmware älterer Betriebssysteme bei der Installation</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="133"/>
         <source>Selects all OSes where the most recent one is on the SD card</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählt alle Betriebssysteme aus, bei denen das neuste auf der SD-Karte ist</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="143"/>
         <source>Selects all OSes where the most recent one is on a local USB drive</source>
         <oldsource> Selects all OSes where the most recent one is on a local USB drive</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Wählt alle Betriebssysteme aus, bei denen das neuste auf einem lokalen USB-Stick ist</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="153"/>
         <source>Selects all OSes where the most recent one is on remote repositories.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählt alle Betriebssysteme aus, bei denen das neuste in einem entfernten Repository ist.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="163"/>
         <source>Ensures all installed OSes are selected again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Stellt sicher, dass alle installierten Betriebssysteme erneut ausgewählt sind.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="173"/>
@@ -1687,7 +1688,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="263"/>
         <source>Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Quellen</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="271"/>
@@ -1862,7 +1863,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="126"/>
         <source>nofirm&amp;ware</source>
-        <translation type="unfinished"></translation>
+        <translation>nofirm&amp;ware</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="136"/>
@@ -2032,7 +2033,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="572"/>
         <source>s&amp;tyle=</source>
-        <translation type="unfinished">s&amp;tyle</translation>
+        <translation>s&amp;tyle</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="585"/>
@@ -2073,12 +2074,12 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="649"/>
         <source>windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Windows</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="654"/>
         <source>motif</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">motif</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="659"/>
@@ -2088,7 +2089,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.cpp" line="278"/>
         <source>WARNING</source>
-        <translation type="unfinished"></translation>
+        <translation>WARNUNG</translation>
     </message>
     <message>
         <location filename="optionsdialog.cpp" line="279"/>
@@ -2162,62 +2163,62 @@ Are you sure?</source>
     <message>
         <location filename="passwd.ui" line="14"/>
         <source>Reset Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Passwort zurücksetzen</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="45"/>
         <source>Username</source>
-        <translation type="unfinished">Benutzername</translation>
+        <translation>Benutzername</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="71"/>
         <source>Password</source>
-        <translation type="unfinished">Passwort</translation>
+        <translation>Passwort</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="110"/>
         <source>Retype Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Passwort erneut eingeben</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="123"/>
         <source>Strength</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="158"/>
         <source>Show Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Passwort zeigen</translation>
     </message>
     <message>
         <location filename="passwd.ui" line="171"/>
         <source>Use Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="226"/>
         <source>Very Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>Sehr schwach</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="227"/>
         <source>Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwack</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="228"/>
         <source>Good</source>
-        <translation type="unfinished"></translation>
+        <translation>Gut</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="229"/>
         <source>Strong</source>
-        <translation type="unfinished"></translation>
+        <translation>Stark</translation>
     </message>
     <message>
         <location filename="passwd.cpp" line="230"/>
         <source>Very Strong</source>
-        <translation type="unfinished"></translation>
+        <translation>Sehr star</translation>
     </message>
 </context>
 <context>
@@ -2225,17 +2226,17 @@ Are you sure?</source>
     <message>
         <location filename="progressslideshowdialog.cpp" line="245"/>
         <source>%1 MB of %2 MB read (%3 MB/sec) Remaining: %4:%5:%6</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 von %2 MB gelesen (%3 MB/sec) Verbleibend: %4:%5:%6</translation>
     </message>
     <message>
         <location filename="progressslideshowdialog.cpp" line="247"/>
         <source>%1 MB of %2 MB written (%3 MB/sec) Remaining: %4:%5:%6</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 von %2 MB geschrieben (%3 MB/sec) Verbleibend: %4:%5:%6</translation>
     </message>
     <message>
         <location filename="progressslideshowdialog.cpp" line="278"/>
         <source>%1 MB read (%2 MB/sec)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MB gelesen (%2 MB/sec)</translation>
     </message>
     <message>
         <location filename="progressslideshowdialog.cpp" line="280"/>
@@ -2283,17 +2284,17 @@ Are you sure?</source>
     <message>
         <location filename="languagedialog.cpp" line="34"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorieren</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="35"/>
         <source>Show Details...</source>
-        <translation type="unfinished"></translation>
+        <translation>Detals zeigen...</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="36"/>
         <source>Hide Details...</source>
-        <translation type="unfinished"></translation>
+        <translation>Details ausblenden...</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="27"/>
@@ -2306,13 +2307,13 @@ Are you sure?</source>
     <message>
         <location filename="termsdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="termsdialog.ui" line="27"/>
         <source>Please accept these T &amp; Cs to continue.</source>
         <oldsource>Please accept these T&amp;Cs to continue.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Bitte akzeptiere diese Lizenzbedingungen zum fortfahren.</translation>
     </message>
 </context>
 <context>
@@ -2325,7 +2326,7 @@ Are you sure?</source>
     <message>
         <location filename="wifisettingsdialog.cpp" line="44"/>
         <source>No wifi interfaces</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Netzwerk</translation>
     </message>
     <message>
         <location filename="wifisettingsdialog.cpp" line="228"/>
@@ -2400,7 +2401,7 @@ Are you sure?</source>
     <message>
         <location filename="wifisettingsdialog.ui" line="124"/>
         <source>Show Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Passwort zeigen</translation>
     </message>
 </context>
 <context>
@@ -2439,32 +2440,32 @@ Are you sure?</source>
     <message>
         <location filename="piclonethread.cpp" line="87"/>
         <source>Preparing target...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ziel vorbereiten...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="116"/>
         <source>Reading Partitions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Partitionen werden gelesen...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="161"/>
         <source>Preparing Partitions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Partitionen werden vorbereitet...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="168"/>
         <source>Creating partition %1 of %2 </source>
-        <translation type="unfinished"></translation>
+        <translation>Partition %1 von %2 wird erstellt </translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="274"/>
         <source>Copying partition %d of %d...</source>
-        <translation type="unfinished"></translation>
+        <translation>Partition %d von %d wird kopiert...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="345"/>
         <source>Copying %1 MB of %2 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MB von %2 MB kopiert</translation>
     </message>
 </context>
 <context>
@@ -2477,17 +2478,17 @@ Are you sure?</source>
     <message>
         <location filename="piclonedialog.ui" line="42"/>
         <source>Copy From Device:</source>
-        <translation type="unfinished">Von Gerät kopieren:</translation>
+        <translation>Von Gerät kopieren:</translation>
     </message>
     <message>
         <location filename="piclonedialog.ui" line="75"/>
         <source>Copy To Device:</source>
-        <translation type="unfinished">Auf Gerät kopieren:</translation>
+        <translation>Auf Gerät kopieren:</translation>
     </message>
     <message>
         <location filename="piclonedialog.ui" line="88"/>
         <source>Resize Last Partition</source>
-        <translation type="unfinished"> Größe der Letzten Partitionen ändern</translation>
+        <translation>Größe der Letzten Partitionen ändern</translation>
     </message>
 </context>
 <context>
@@ -2496,17 +2497,17 @@ Are you sure?</source>
         <location filename="renamedialog.ui" line="14"/>
         <location filename="renamedialog.ui" line="61"/>
         <source>Alias</source>
-        <translation type="unfinished"></translation>
+        <translation>Alias</translation>
     </message>
     <message>
         <location filename="renamedialog.ui" line="77"/>
         <source>OS name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="renamedialog.ui" line="122"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -2514,7 +2515,7 @@ Are you sure?</source>
     <message>
         <location filename="repair.ui" line="14"/>
         <source>Repair OS</source>
-        <translation type="unfinished"></translation>
+        <translation>Betriebssystem reparieren</translation>
     </message>
 </context>
 <context>
@@ -2522,7 +2523,7 @@ Are you sure?</source>
     <message>
         <location filename="replace.ui" line="14"/>
         <source>Replace Installed OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>Installiertes Betriebssystem ersetzen</translation>
     </message>
 </context>
 <context>
@@ -2530,12 +2531,12 @@ Are you sure?</source>
     <message>
         <location filename="rerunsetup.cpp" line="27"/>
         <source>No OSes to check</source>
-        <translation type="unfinished"></translation>
+        <translation>Keinen Betriebssysteme zum Überprüfen</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="31"/>
         <source>Checking for partition_setup.sh scripts...</source>
-        <translation type="unfinished"></translation>
+        <translation>Auf partition_setup.sh Skripte wird überprüft...</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="57"/>
@@ -2545,7 +2546,7 @@ Are you sure?</source>
     <message>
         <location filename="rerunsetup.cpp" line="58"/>
         <source>Maybe insert source USB stick</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stecke vielleicht einen Quell-USB-Stick ein</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="63"/>
@@ -2570,7 +2571,7 @@ Are you sure?</source>
     <message>
         <location filename="rerunsetup.cpp" line="152"/>
         <source>%1: Error executing partition setup script</source>
-        <translation type="unfinished">%1: Fehler beim Ausführen des Skripts für Partionserstellung</translation>
+        <translation>%1: Fehler beim Ausführen des Skripts für Partionserstellung</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="157"/>
@@ -2597,7 +2598,7 @@ Are you sure?</source>
     <message>
         <location filename="rerunsetup.ui" line="14"/>
         <source>re-run partition_setup</source>
-        <translation type="unfinished"></translation>
+        <translation>partition_setup erneut ausführen</translation>
     </message>
 </context>
 </TS>
