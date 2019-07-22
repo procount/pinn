@@ -112,7 +112,7 @@ function select_kernelconfig {
     sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$VERSION\2/" "$CONFIG_FILE"
 }
 
-cd buildroot
+cd buildroot-new
 
 # WARNING: don't try changing these - you'll break buildroot
 BUILD_DIR="output/build"
