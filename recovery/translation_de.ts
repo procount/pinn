@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="de" sourcelanguage="en">
+<TS version="2.0" language="de" sourcelanguage="en">
 <context>
     <name>BackupThread</name>
     <message>
@@ -46,7 +46,7 @@
     <message>
         <location filename="backupthread.cpp" line="206"/>
         <source>%1: Checksumming (%2)</source>
-        <translation></translation>
+        <translation>%1: Prüfsumme wird erstellt (%2)</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="244"/>
@@ -90,7 +90,7 @@
         <location filename="bootselectiondialog.ui" line="25"/>
         <location filename="bootselectiondialog.cpp" line="370"/>
         <source>PINN - Select OS to boot</source>
-        <translation type="unfinished">Wähle ein Betriebsystem zum Starten aus</translation>
+        <translation>Wähle ein Betriebsystem zum Starten aus</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="38"/>
@@ -2546,7 +2546,7 @@ Are you sure?</source>
     <message>
         <location filename="rerunsetup.cpp" line="58"/>
         <source>Maybe insert source USB stick</source>
-        <translation type="unfinished">Stecke vielleicht einen Quell-USB-Stick ein</translation>
+        <translation>Stecke vielleicht einen Quell-USB-Stick ein</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="63"/>
