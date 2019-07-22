@@ -1142,9 +1142,15 @@ cd libarchive-3.3.1
 ./configure
 make
 make install
-
-if make install doesn't work (Raspbian), just copy bsdtar to /usr/bin.
 ```
+if make install doesn't work (Raspbian), just copy bsdtar to /usr/bin.
+
+
+On Ubuntu 19.04+, Debian/Raspbian 10+ you can install bsdtar with
+```
+sudo apt install bsdtar
+```
+
 
 ## Run Build Script
 
