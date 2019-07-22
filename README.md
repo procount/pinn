@@ -44,6 +44,9 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 
 ## Change History
+### V3.4
+
+-**Build**       - Modified to build better on Ubuntu 18.10 'cosmic'
 
 ### V3.3a
 
