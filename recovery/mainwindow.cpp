@@ -3260,12 +3260,21 @@ void MainWindow::startImageDownload()
     _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, this); //_osdrive
     _qpssd->setWindowTitle("Downloading Images");
     connect(imageDownloadThread, SIGNAL(parsedImagesize(qint64)), _qpssd, SLOT(setMaximum(qint64)));
-    connect(imageDownloadThread, SIGNAL(newDrive(const QString&,eProgressMode)), _qpssd , SLOT(setDriveMode(const QString&,eProgressMode)), Qt::BlockingQueuedConnection);
     connect(imageDownloadThread, SIGNAL(completed()), this, SLOT(onCompleted()));
     connect(imageDownloadThread, SIGNAL(error(QString)), this, SLOT(onError(QString)));
     connect(imageDownloadThread, SIGNAL(errorContinue(QString)), this, SLOT(onErrorContinue(QString)), Qt::BlockingQueuedConnection);
     connect(imageDownloadThread, SIGNAL(statusUpdate(QString)), _qpssd, SLOT(setLabelText(QString)));
     connect(imageDownloadThread, SIGNAL(imageWritten(QString)), this, SLOT(newImage(QString)));
+
+    connect(imageDownloadThread, SIGNAL(newDrive(const QString&,eProgressMode)), _qpssd , SLOT(setDriveMode(const QString&,eProgressMode)), Qt::BlockingQueuedConnection);
+    connect(imageDownloadThread, SIGNAL(startAccounting()), _qpssd, SLOT(startAccounting()), Qt::BlockingQueuedConnection);
+    connect(imageDownloadThread, SIGNAL(stopAccounting()), _qpssd , SLOT(stopAccounting()), Qt::BlockingQueuedConnection);
+    connect(imageDownloadThread, SIGNAL(idle()), _qpssd , SLOT(idle()));
+    connect(imageDownloadThread, SIGNAL(cont()), _qpssd , SLOT(cont()));
+    connect(imageDownloadThread, SIGNAL(consolidate()), _qpssd , SLOT(consolidate()));
+    connect(imageDownloadThread, SIGNAL(finish()), _qpssd , SLOT(finish()));
+
+
     imageDownloadThread->start();
     hide();
     _qpssd->exec();
