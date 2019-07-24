@@ -31,7 +31,7 @@ The default mapping looks like this:
             "Key_P":        "CEC_User_Control_Number2",
             "Key_F":        "CEC_User_Control_Number3",
             "Key_R":        "CEC_User_Control_Number4",
-            "Key_L":        "CEC_User_Control_Number5",
+            "Key_C":        "CEC_User_Control_Number5",
             "Key_N":        "CEC_User_Control_Number6"
         },
         "any": {

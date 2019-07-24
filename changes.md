@@ -544,3 +544,10 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 
 -**Tidy up** - Development moved to Ubuntu 18.04 prompting a tidy up
 
+### V3.3c
+
+-**Translations** - Updated a few translations (it, zh_TW, ko, de)
+-**HDMI Pi4**     - Removed hdmi_force_hotplug
+-**Downloads**    - Fixed download progressbar
+-**Replace**      - Changed accelerator key from L to C
+

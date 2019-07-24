@@ -45,6 +45,13 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V3.3c
+
+-**Translations** - Updated a few translations (it, zh_TW, ko, de)
+-**HDMI Pi4**     - Removed hdmi_force_hotplug
+-**Downloads**    - Fixed download progressbar
+-**Replace**      - Changed accelerator key from L to C
+
 ### V3.3a
 
 -**Tidy up** - Development moved to Ubuntu 18.04 prompting a tidy up
