@@ -141,6 +141,11 @@ for i in $*; do
         update_github_kernel_version raspberrypi/linux rpi-$KERNEL.y
     fi
 
+    # Update LibreELEC/brcmfmac_sdio-firmware-rpi master HEAD version in package/rpi-wifi-firmware/rpi-wifi-firmware.mk to latest
+    if [ $i = "update-wifi-firmware" ]; then
+        update_github_package_version rpi-wifi-firmware LibreELEC/brcmfmac_sdio-firmware-rpi master
+    fi
+    
     # Update language TS files
     if [ $i = "update-ts" ]; then
         UPDATE_TS=1
