@@ -5,7 +5,6 @@
         <file>icons/door_in.png</file>
         <file>icons/page_white_edit.png</file>
         <file>icons/setting_tools.png</file>
-        <file>wallpaper.png</file>
         <file>icons/download.png</file>
         <file>icons/hdd.png</file>
         <file>icons/keyboard.png</file>
@@ -64,5 +63,6 @@
         <file>icons/network-wireless-connected-100.png</file>
         <file>icons/tick.png</file>
         <file>icons/hdd_usb_unmount.png</file>
+        <file>wallpaper.jpg</file>
     </qresource>
 </RCC>

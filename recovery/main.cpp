@@ -208,7 +208,7 @@ int main(int argc, char *argv[])
 #ifdef Q_WS_QWS
     QWSServer::setBackground(BACKGROUND_COLOR);
 #endif
-    QSplashScreen *splash = new QSplashScreen(QPixmap(":/wallpaper.png"));
+    QSplashScreen *splash = new QSplashScreen(QPixmap(":/wallpaper.jpg"));
     splash->show();
     QApplication::processEvents();
 

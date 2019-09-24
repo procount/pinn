@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 /* Version number displayed in the title bar */
-#define VERSION_NUMBER "3.0"
+#define VERSION_NUMBER "3.0mcn1"
 
 /* Color of the background */
 // #define BACKGROUND_COLOR  Qt::white
@@ -22,7 +22,7 @@
 
 /* Location to download the list of available distributions from
  * Multiple lists can be specified by space separating the URLs */
-#define DEFAULT_REPO_SERVER  "http://downloads.raspberrypi.org/os_list_v3.json"
+#define DEFAULT_REPO_SERVER  "http://raw.githubusercontent.com/procount/pinn-os/master/os/os_retro.json"
 
 /* Size of recovery FAT partition in MB when using reformat drive initialization method. */
 #define RESCUE_PARTITION_SIZE  63

@@ -703,7 +703,7 @@ void MainWindow::on_list_currentRowChanged()
 
 void MainWindow::update_window_title()
 {
-    setWindowTitle(QString(tr("NOOBS v%1 - Built: %2")).arg(VERSION_NUMBER, QString::fromLocal8Bit(__DATE__)));
+    setWindowTitle(QString(tr(Micro Center Arcade Installer v%1 - Built: %2")).arg(VERSION_NUMBER, QString::fromLocal8Bit(__DATE__)));
 }
 
 void MainWindow::changeEvent(QEvent* event)
