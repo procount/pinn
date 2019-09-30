@@ -102,6 +102,7 @@ protected slots:
     void hideDialogIfNoNetwork();
     void pollForNewDisks();
     void onKeyPress(int key);
+    void onJoyPress(int joy_code, int value);
 
 private slots:
     /* UI events */

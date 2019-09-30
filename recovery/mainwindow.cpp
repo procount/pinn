@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "multiimagewritethread.h"
 #include "initdrivethread.h"
+#include "joystick.h"
 #include "ceclistener.h"
 #include "confeditdialog.h"
 #include "progressslideshowdialog.h"
@@ -57,6 +58,7 @@ extern "C" {
 #endif
 
 extern CecListener * cec;
+extern joystick * joy;
 
 
 /* Main window
@@ -105,6 +107,13 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
         cec->setWindow("mainwindow");
         cec->setMenu("Main Menu");
         connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+    }
+
+    if (joy)
+    {
+        joy->setWindow("mainwindow");
+        joy->setMenu("Main Menu");
+        connect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
     }
 
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
@@ -1931,4 +1940,11 @@ void MainWindow::filterList()
 void MainWindow::onKeyPress(int cec_code)
 {
     cec->process_cec(cec_code);
+}
+
+/* joystick pressed */
+void MainWindow::onJoyPress(int joy_code, int value)
+{
+    //TRACE
+    joy->process_joy(joy_code,value);
 }

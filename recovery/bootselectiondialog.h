@@ -34,6 +34,7 @@ protected slots:
     void countdown();
     void bootPartition();
     void onKeyPress(int);
+    void onJoyPress(int cec_code, int value);
 
 private slots:
     void on_list_activated(const QModelIndex &index);

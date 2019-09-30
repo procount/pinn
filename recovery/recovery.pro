@@ -49,7 +49,8 @@ SOURCES += \
     osinfo.cpp \
     partitioninfo.cpp \
     longpresshandler.cpp \
-    ceclistener.cpp
+    ceclistener.cpp \
+    joystick.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -77,7 +78,8 @@ HEADERS  += \
     osinfo.h \
     partitioninfo.h \
     longpresshandler.h \
-    ceclistener.h
+    ceclistener.h \
+    joystick.h
 
 FORMS    += \
     mainwindow.ui \

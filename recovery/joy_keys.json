@@ -1,0 +1,42 @@
+{
+    "calibration": [
+        {
+            "threshold": 1,
+            "step": 1
+        },
+        {
+            "threshold": 10000,
+            "step": 10
+        },
+        {
+            "threshold": 20000,
+            "step": 100
+        }
+    ],
+
+    "any": {
+        "any": {
+            "mouse_left":   "LAnalogLeft",
+            "mouse_right":  "LAnalogRight",
+            "mouse_up":     "LAnalogUp",
+            "mouse_down":   "LAnalogDown",
+
+            "joy_left":     "RAnalogLeft",
+            "joy_right":    "RAnalogRight",
+            "joy_up":       "RAnalogUp",
+            "joy_down":     "RAnalogDown",
+
+            "Key_Left":     "D-padLeft",
+            "Key_Right":    "D-padRight",
+            "Key_Up":       "D-padUp",
+            "Key_Down":     "D-padDown",
+
+            "mouse_lclick": "A",
+            "Key_space":    "B",
+            "Key_Escape":   "X",
+            "Key_M":        "Y",
+            "Key_Enter":    "Start"
+        }
+    }
+}
+

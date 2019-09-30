@@ -9,6 +9,7 @@
 #include "util.h"
 #include "bootselectiondialog.h"
 #include "ceclistener.h"
+#include "joystick.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -40,6 +41,7 @@
 
 CecListener *cec = NULL;
 CecListener *enableCEC(QObject *parent=0);
+joystick *joy = NULL;
 
 void showBootMenu(const QString &drive, const QString &defaultPartition, bool setDisplayMode)
 {
@@ -255,6 +257,7 @@ int main(int argc, char *argv[])
     qDebug() << "NOOBS drive:" << drive;
 
     cec->loadCECmap("/mnt/cec_keys.json");
+    joy->loadJOYmap("/mnt/joy_keys.json");
 
     // If -runinstaller is not specified, only continue if SHIFT is pressed, GPIO is triggered,
     // or no OS is installed (/settings/installed_os.json does not exist)
@@ -282,6 +285,12 @@ int main(int argc, char *argv[])
                 qDebug() << "cec key detected";
                 break;
             }
+            if (joy->hasKeyPressed())
+            {
+                bailout = false;
+                qDebug() << "joy key detected";
+                break;
+            }
             if (hasTouchScreen && QApplication::mouseButtons().testFlag(Qt::LeftButton))
             {
                 bailout = false;
@@ -292,6 +301,7 @@ int main(int argc, char *argv[])
     }
 
     cec->clearKeyPressed();
+    joy->clearKeyPressed();
 
     if (bailout)
     {
@@ -333,6 +343,9 @@ CecListener *enableCEC(QObject *parent)
         cec = new CecListener(parent);
         cec->start();
     }
+
+    joy = new joystick(parent);
+    joy->start();
 
     return(cec);
 }
