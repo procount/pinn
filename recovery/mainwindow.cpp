@@ -6,6 +6,7 @@
 #include "ceclistener.h"
 #include "confeditdialog.h"
 #include "progressslideshowdialog.h"
+#include "custom.h"
 #include "config.h"
 #include "languagedialog.h"
 #include "json.h"
@@ -188,6 +189,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     _model = getFileContents("/proc/device-tree/model");
     QString cmdline = getFileContents("/proc/cmdline");
 
+#ifndef MC
     if (QFile::exists("/mnt/os_list_v3.json"))
     {
         /* We have a local os_list_v3.json for testing purposes */
@@ -232,6 +234,14 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     }
 
     _usbimages = !cmdline.contains("disableusbimages");
+
+#else
+    _repo = custom::read("url"); //DEFAULT_REPO_SERVER;
+    qDebug() <<" Using URL of "<< _repo;
+    _usbimages = false;
+#endif
+
+
 
     if (cmdline.contains("showall"))
     {

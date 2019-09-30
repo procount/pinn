@@ -4,6 +4,8 @@
 /* Version number displayed in the title bar */
 #define VERSION_NUMBER "3.0mcn1"
 
+#define MC 1
+
 /* Color of the background */
 // #define BACKGROUND_COLOR  Qt::white
 #define BACKGROUND_COLOR  QColor(0xde, 0xde, 0xde)
