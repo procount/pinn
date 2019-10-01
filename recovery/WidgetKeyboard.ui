@@ -17,7 +17,16 @@
    <property name="spacing">
     <number>2</number>
    </property>
-   <property name="margin">
+   <property name="leftMargin">
+    <number>2</number>
+   </property>
+   <property name="topMargin">
+    <number>2</number>
+   </property>
+   <property name="rightMargin">
+    <number>2</number>
+   </property>
+   <property name="bottomMargin">
     <number>2</number>
    </property>
    <item>
@@ -40,7 +49,7 @@
            <pointsize>8</pointsize>
           </font>
          </property>
-         <property name="objectName">
+         <property name="whatsThis">
           <string>0x01000000</string>
          </property>
          <property name="accessibleDescription">
@@ -85,7 +94,7 @@
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000030</string>
            </property>
            <property name="text">
@@ -109,7 +118,7 @@
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000031</string>
            </property>
            <property name="text">
@@ -133,7 +142,7 @@
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000032</string>
            </property>
            <property name="text">
@@ -157,7 +166,7 @@
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000033</string>
            </property>
            <property name="text">
@@ -201,7 +210,7 @@
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000034</string>
            </property>
            <property name="text">
@@ -225,7 +234,7 @@
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000035</string>
            </property>
            <property name="text">
@@ -249,7 +258,7 @@
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string notr="true">0x01000036</string>
            </property>
            <property name="text">
@@ -273,7 +282,7 @@
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000037</string>
            </property>
            <property name="text">
@@ -317,7 +326,7 @@
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000038</string>
            </property>
            <property name="text">
@@ -341,7 +350,7 @@
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000039</string>
            </property>
            <property name="text">
@@ -365,7 +374,7 @@
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x0100003a</string>
            </property>
            <property name="text">
@@ -389,7 +398,7 @@
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x0100003b</string>
            </property>
            <property name="text">
@@ -425,7 +434,7 @@
            <pointsize>6</pointsize>
           </font>
          </property>
-         <property name="objectName">
+         <property name="whatsThis">
           <string>0x01000009</string>
          </property>
          <property name="text">
@@ -453,7 +462,7 @@ Screen</string>
            <pointsize>6</pointsize>
           </font>
          </property>
-         <property name="objectName">
+         <property name="whatsThis">
           <string>0x01000026</string>
          </property>
          <property name="text">
@@ -481,7 +490,7 @@ Lock</string>
            <pointsize>6</pointsize>
           </font>
          </property>
-         <property name="objectName">
+         <property name="whatsThis">
           <string>0x01000008</string>
          </property>
          <property name="text">
@@ -518,7 +527,7 @@ Break</string>
              <pointsize>6</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000006</string>
            </property>
            <property name="text">
@@ -545,7 +554,7 @@ Break</string>
              <pointsize>6</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000010</string>
            </property>
            <property name="text">
@@ -569,7 +578,7 @@ Break</string>
              <pointsize>6</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000016</string>
            </property>
            <property name="text">
@@ -593,7 +602,7 @@ Break</string>
              <pointsize>6</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000007</string>
            </property>
            <property name="text">
@@ -617,7 +626,7 @@ Break</string>
              <pointsize>6</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000011</string>
            </property>
            <property name="text">
@@ -641,7 +650,7 @@ Break</string>
              <pointsize>6</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000017</string>
            </property>
            <property name="text">
@@ -692,15 +701,15 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000013</string>
            </property>
            <property name="text">
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="widgetkeyboard.qrc">
-             <normaloff>:/myresources/upIcon</normaloff>:/myresources/upIcon</iconset>
+            <iconset resource="icons.qrc">
+             <normaloff>:/icons/up.JPG</normaloff>:/icons/up.JPG</iconset>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -720,15 +729,15 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000012</string>
            </property>
            <property name="text">
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="widgetkeyboard.qrc">
-             <normaloff>:/myresources/leftIcon</normaloff>:/myresources/leftIcon</iconset>
+            <iconset resource="icons.qrc">
+             <normaloff>:/icons/left.JPG</normaloff>:/icons/left.JPG</iconset>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -748,15 +757,15 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000015</string>
            </property>
            <property name="text">
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="widgetkeyboard.qrc">
-             <normaloff>:/myresources/downIcon</normaloff>:/myresources/downIcon</iconset>
+            <iconset resource="icons.qrc">
+             <normaloff>:/icons/down.JPG</normaloff>:/icons/down.JPG</iconset>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -776,15 +785,15 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000014</string>
            </property>
            <property name="text">
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="widgetkeyboard.qrc">
-             <normaloff>:/myresources/rightIcon</normaloff>:/myresources/rightIcon</iconset>
+            <iconset resource="icons.qrc">
+             <normaloff>:/icons/right.JPG</normaloff>:/icons/right.JPG</iconset>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -818,7 +827,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x60</string>
            </property>
            <property name="text">
@@ -842,7 +851,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x31</string>
            </property>
            <property name="text">
@@ -866,7 +875,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x32</string>
            </property>
            <property name="text">
@@ -890,7 +899,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x33</string>
            </property>
            <property name="text">
@@ -914,7 +923,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x34</string>
            </property>
            <property name="text">
@@ -938,7 +947,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x35</string>
            </property>
            <property name="text">
@@ -962,7 +971,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x36</string>
            </property>
            <property name="text">
@@ -986,7 +995,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x37</string>
            </property>
            <property name="text">
@@ -1010,7 +1019,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x38</string>
            </property>
            <property name="text">
@@ -1034,7 +1043,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x39</string>
            </property>
            <property name="text">
@@ -1058,7 +1067,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x30</string>
            </property>
            <property name="text">
@@ -1082,7 +1091,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x2d</string>
            </property>
            <property name="text">
@@ -1106,7 +1115,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>13</string>
            </property>
            <property name="text">
@@ -1130,7 +1139,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000003</string>
            </property>
            <property name="text">
@@ -1161,7 +1170,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000024</string>
            </property>
            <property name="text">
@@ -1188,7 +1197,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x41</string>
            </property>
            <property name="text">
@@ -1212,7 +1221,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x53</string>
            </property>
            <property name="text">
@@ -1236,7 +1245,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x44</string>
            </property>
            <property name="text">
@@ -1260,7 +1269,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x46</string>
            </property>
            <property name="text">
@@ -1284,7 +1293,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x47</string>
            </property>
            <property name="text">
@@ -1308,7 +1317,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x48</string>
            </property>
            <property name="text">
@@ -1332,7 +1341,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x4a</string>
            </property>
            <property name="text">
@@ -1356,7 +1365,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x4b</string>
            </property>
            <property name="text">
@@ -1380,7 +1389,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x4c</string>
            </property>
            <property name="text">
@@ -1404,7 +1413,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x3b</string>
            </property>
            <property name="text">
@@ -1428,7 +1437,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x27</string>
            </property>
            <property name="text">
@@ -1452,7 +1461,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000004</string>
            </property>
            <property name="text">
@@ -1483,7 +1492,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000020</string>
            </property>
            <property name="text">
@@ -1510,7 +1519,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x5a</string>
            </property>
            <property name="text">
@@ -1534,7 +1543,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x58</string>
            </property>
            <property name="text">
@@ -1558,7 +1567,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x43</string>
            </property>
            <property name="text">
@@ -1582,7 +1591,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x56</string>
            </property>
            <property name="text">
@@ -1606,7 +1615,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x42</string>
            </property>
            <property name="text">
@@ -1630,7 +1639,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x4e</string>
            </property>
            <property name="text">
@@ -1654,7 +1663,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x4d</string>
            </property>
            <property name="text">
@@ -1678,7 +1687,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x2c</string>
            </property>
            <property name="text">
@@ -1702,7 +1711,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x2e</string>
            </property>
            <property name="text">
@@ -1726,7 +1735,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x2f</string>
            </property>
            <property name="text">
@@ -1750,7 +1759,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000020</string>
            </property>
            <property name="text">
@@ -1784,7 +1793,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000021</string>
            </property>
            <property name="text">
@@ -1811,7 +1820,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000023</string>
            </property>
            <property name="text">
@@ -1838,7 +1847,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x20</string>
            </property>
            <property name="text">
@@ -1885,7 +1894,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x01000001</string>
            </property>
            <property name="text">
@@ -1909,7 +1918,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x51</string>
            </property>
            <property name="text">
@@ -1933,7 +1942,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x57</string>
            </property>
            <property name="text">
@@ -1957,7 +1966,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x45</string>
            </property>
            <property name="text">
@@ -1981,7 +1990,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x52</string>
            </property>
            <property name="text">
@@ -2005,7 +2014,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x54</string>
            </property>
            <property name="text">
@@ -2029,7 +2038,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x59</string>
            </property>
            <property name="text">
@@ -2053,7 +2062,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x55</string>
            </property>
            <property name="text">
@@ -2077,7 +2086,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x49</string>
            </property>
            <property name="text">
@@ -2101,7 +2110,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x4f</string>
            </property>
            <property name="text">
@@ -2125,7 +2134,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x50</string>
            </property>
            <property name="text">
@@ -2149,7 +2158,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x5b</string>
            </property>
            <property name="text">
@@ -2173,7 +2182,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x5d</string>
            </property>
            <property name="text">
@@ -2197,7 +2206,7 @@ Break</string>
              <pointsize>8</pointsize>
             </font>
            </property>
-           <property name="objectName">
+           <property name="whatsThis">
             <string>0x5c</string>
            </property>
            <property name="text">
@@ -2240,7 +2249,7 @@ Break</string>
             <pointsize>8</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x2f</string>
           </property>
           <property name="text">
@@ -2264,7 +2273,7 @@ Break</string>
             <pointsize>8</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x2a</string>
           </property>
           <property name="text">
@@ -2288,7 +2297,7 @@ Break</string>
             <pointsize>8</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x2d</string>
           </property>
           <property name="text">
@@ -2312,7 +2321,7 @@ Break</string>
             <pointsize>8</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x37</string>
           </property>
           <property name="text">
@@ -2336,7 +2345,7 @@ Break</string>
             <pointsize>8</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x38</string>
           </property>
           <property name="text">
@@ -2360,7 +2369,7 @@ Break</string>
             <pointsize>8</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x39</string>
           </property>
           <property name="text">
@@ -2384,7 +2393,7 @@ Break</string>
             <pointsize>8</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x34</string>
           </property>
           <property name="text">
@@ -2408,7 +2417,7 @@ Break</string>
             <pointsize>8</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x35</string>
           </property>
           <property name="text">
@@ -2432,7 +2441,7 @@ Break</string>
             <pointsize>8</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x36</string>
           </property>
           <property name="text">
@@ -2456,7 +2465,7 @@ Break</string>
             <pointsize>8</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x2b</string>
           </property>
           <property name="text">
@@ -2480,7 +2489,7 @@ Break</string>
             <pointsize>8</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x31</string>
           </property>
           <property name="text">
@@ -2504,7 +2513,7 @@ Break</string>
             <pointsize>8</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x32</string>
           </property>
           <property name="text">
@@ -2528,7 +2537,7 @@ Break</string>
             <pointsize>8</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x33</string>
           </property>
           <property name="text">
@@ -2552,7 +2561,7 @@ Break</string>
             <pointsize>8</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x30</string>
           </property>
           <property name="text">
@@ -2576,7 +2585,7 @@ Break</string>
             <pointsize>8</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x2e</string>
           </property>
           <property name="text">
@@ -2600,7 +2609,7 @@ Break</string>
             <pointsize>6</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x01000005</string>
           </property>
           <property name="text">
@@ -2627,7 +2636,7 @@ Break</string>
             <pointsize>6</pointsize>
            </font>
           </property>
-          <property name="objectName">
+          <property name="whatsThis">
            <string>0x01000025</string>
           </property>
           <property name="text">
@@ -2647,7 +2656,7 @@ Lock</string>
   </layout>
  </widget>
  <resources>
-  <include location="widgetkeyboard.qrc"/>
+  <include location="icons.qrc"/>
  </resources>
  <connections/>
 </ui>

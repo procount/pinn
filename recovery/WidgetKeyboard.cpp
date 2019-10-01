@@ -58,7 +58,7 @@ void WidgetKeyboard::on_btn_clicked(int btn)
 	if(! soundFilePath.isEmpty())
 		QSound::play(soundFilePath);
 	QString strKeyId;
-    strKeyId = allButtons.at(btn)->objectName();
+    strKeyId = allButtons.at(btn)->whatsThis();
     bool isOk;
     int keyId = strKeyId.toInt(&isOk, 16);
     if (strKeyId.isEmpty() || !isOk) {
