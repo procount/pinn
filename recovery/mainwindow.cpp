@@ -273,9 +273,6 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     connect(&_piDrivePollTimer, SIGNAL(timeout()), SLOT(pollForNewDisks()));
     _piDrivePollTimer.start(100);
 
-
-    sim->test();
-
 }
 
 MainWindow::~MainWindow()

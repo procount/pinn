@@ -27,6 +27,8 @@ WifiSettingsDialog::WifiSettingsDialog(const QString &preferredInterface, QWidge
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     connect(ui->passwordEdit, SIGNAL(textChanged(QString)), this, SLOT(checkSettings()));
 
+    virtualKeyBoard = new WidgetKeyboard(this);
+
     FiW1Wpa_supplicant1Interface *wpa = WpaFactory::createWpaSupplicantProxy(this);
     _ifpath = wpa->GetInterface(preferredInterface).value();
 
@@ -89,6 +91,8 @@ WifiSettingsDialog::WifiSettingsDialog(const QString &preferredInterface, QWidge
 
 WifiSettingsDialog::~WifiSettingsDialog()
 {
+    virtualKeyBoard->hide();
+    delete virtualKeyBoard;
     delete ui;
 }
 
@@ -386,4 +390,12 @@ QString WifiSettingsDialog::removeQuotes(QString str)
         str = str.mid(1, str.length()-2);
 
     return str;
+}
+
+void WifiSettingsDialog::on_vkeyboard_toggled(bool checked)
+{
+    if (checked)
+        virtualKeyBoard->show();
+    else
+        virtualKeyBoard->hide();
 }

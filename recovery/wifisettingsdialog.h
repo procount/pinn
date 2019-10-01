@@ -10,6 +10,7 @@
  * See LICENSE.txt for license details
  */
 
+#include "WidgetKeyboard.h"
 #include <QDialog>
 #include <QDBusObjectPath>
 #include <QVariantMap>
@@ -43,6 +44,9 @@ protected:
     void msleep(int msec);
     QString removeQuotes(QString str);
 
+private:
+    WidgetKeyboard *virtualKeyBoard;
+
 protected slots:
     virtual void accept();
     void onBSSAdded(const QDBusObjectPath &path);
@@ -52,6 +56,7 @@ protected slots:
 private slots:
     void on_passwordRadio_toggled(bool checked);
     void on_list_currentItemChanged(QListWidgetItem *current);
+    void on_vkeyboard_toggled(bool checked);
 };
 
 #endif // WIFISETTINGSDIALOG_H
