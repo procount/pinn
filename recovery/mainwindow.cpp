@@ -1487,6 +1487,8 @@ void MainWindow::downloadListRedirectCheck()
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
 
+    setTime(reply);
+
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
         qDebug() << "Redirection - Re-trying download from" << redirectionurl;
@@ -1958,4 +1960,47 @@ void MainWindow::onJoyPress(int joy_code, int value)
 {
     //TRACE
     joy->process_joy(joy_code,value);
+}
+
+#if 0
+void MainWindow::UpdateTime()
+{
+    if (QDate::currentDate().year() < 2019)
+    {
+        qDebug() << "Requesting current time";
+        QUrl url(BUILD_URL);
+        QNetworkRequest request(url);
+        request.setRawHeader("User-Agent", AGENT);
+        QNetworkReply *reply = _netaccess->head(request);
+        connect(reply, SIGNAL(finished()), this, SLOT(checkUpdateTime()));
+    }
+}
+#endif
+
+void MainWindow::checkUpdateTime()
+{
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+
+    setTime(reply);
+}
+
+void MainWindow::setTime(QNetworkReply *reply)
+{
+    /* Set our clock to server time if we currently have a date before 2019 */
+    QByteArray dateStr = reply->rawHeader("Date");
+    if (!dateStr.isEmpty() && QDate::currentDate().year() < 2019)
+    {
+        // Qt 4 does not have a standard function for parsing the Date header, but it does
+        // have one for parsing a Last-Modified header that uses the same date/time format, so just use that
+        QNetworkRequest dummyReq;
+        dummyReq.setRawHeader("Last-Modified", dateStr);
+        QDateTime parsedDate = dummyReq.header(dummyReq.LastModifiedHeader).toDateTime();
+
+        struct timeval tv;
+        tv.tv_sec = parsedDate.toTime_t();
+        tv.tv_usec = 0;
+        settimeofday(&tv, NULL);
+
+        qDebug() << "Time set to: " << parsedDate;
+    }
 }

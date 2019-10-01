@@ -58,4 +58,6 @@
 /* Maximum number of partitions */
 #define MAXIMUM_PARTITIONS  32
 
+#define AGENT "Wget/1.15 (linux-gnu)"
+
 #endif // CONFIG_H

@@ -17,6 +17,7 @@
 #include <QMessageBox>
 #include <QTimer>
 #include <QTime>
+#include <QNetworkReply>
 
 namespace Ui {
 class MainWindow;
@@ -80,6 +81,8 @@ protected:
     void addImagesFromUSB(const QString &device);
     void filterList();
     void copyWpa();
+    void UpdateTime();
+    void setTime(QNetworkReply *reply);
 
 protected slots:
     void populate();
@@ -103,6 +106,7 @@ protected slots:
     void pollForNewDisks();
     void onKeyPress(int key);
     void onJoyPress(int joy_code, int value);
+    void checkUpdateTime();
 
 private slots:
     /* UI events */
