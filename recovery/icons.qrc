@@ -67,5 +67,9 @@
         <file>cec_keys.json</file>
         <file>joy_keys.json</file>
         <file>custom.json</file>
+        <file>icons/down.JPG</file>
+        <file>icons/left.JPG</file>
+        <file>icons/right.JPG</file>
+        <file>icons/up.JPG</file>
     </qresource>
 </RCC>

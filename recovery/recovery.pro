@@ -52,7 +52,8 @@ SOURCES += \
     ceclistener.cpp \
     joystick.cpp \
     custom.cpp \
-    simulate.cpp
+    simulate.cpp \
+    WidgetKeyboard.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -83,7 +84,8 @@ HEADERS  += \
     ceclistener.h \
     joystick.h \
     custom.h \
-    simulate.h
+    simulate.h \
+    WidgetKeyboard.h
 
 FORMS    += \
     mainwindow.ui \
@@ -91,7 +93,8 @@ FORMS    += \
     progressslideshowdialog.ui \
     confeditdialog.ui \
     bootselectiondialog.ui \
-    wifisettingsdialog.ui
+    wifisettingsdialog.ui \
+    WidgetKeyboard.ui
 
 RESOURCES += \
     icons.qrc
