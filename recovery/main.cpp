@@ -10,6 +10,7 @@
 #include "bootselectiondialog.h"
 #include "ceclistener.h"
 #include "joystick.h"
+#include "simulate.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -42,6 +43,7 @@
 CecListener *cec = NULL;
 CecListener *enableCEC(QObject *parent=0);
 joystick *joy = NULL;
+simulate *sim = NULL;
 
 void showBootMenu(const QString &drive, const QString &defaultPartition, bool setDisplayMode)
 {
@@ -346,6 +348,8 @@ CecListener *enableCEC(QObject *parent)
 
     joy = new joystick(parent);
     joy->start();
+
+    sim = new simulate();
 
     return(cec);
 }

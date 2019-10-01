@@ -37,6 +37,7 @@
 #include <QtNetwork/QNetworkConfigurationManager>
 #include <QtDBus/QDBusConnection>
 #include <QHostInfo>
+#include "simulate.h"
 
 #include <unistd.h>
 #include <sys/types.h>
@@ -60,7 +61,7 @@ extern "C" {
 
 extern CecListener * cec;
 extern joystick * joy;
-
+extern simulate * sim;
 
 /* Main window
  *
@@ -237,7 +238,6 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
 
 #else
     _repo = custom::read("url"); //DEFAULT_REPO_SERVER;
-    qDebug() <<" Using URL of "<< _repo;
     _usbimages = false;
 #endif
 
@@ -272,6 +272,10 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSpl
     ui->targetCombo->setHidden(true);
     connect(&_piDrivePollTimer, SIGNAL(timeout()), SLOT(pollForNewDisks()));
     _piDrivePollTimer.start(100);
+
+
+    sim->test();
+
 }
 
 MainWindow::~MainWindow()

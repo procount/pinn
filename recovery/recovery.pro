@@ -51,7 +51,8 @@ SOURCES += \
     longpresshandler.cpp \
     ceclistener.cpp \
     joystick.cpp \
-    custom.cpp
+    custom.cpp \
+    simulate.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -81,7 +82,8 @@ HEADERS  += \
     longpresshandler.h \
     ceclistener.h \
     joystick.h \
-    custom.h
+    custom.h \
+    simulate.h
 
 FORMS    += \
     mainwindow.ui \
