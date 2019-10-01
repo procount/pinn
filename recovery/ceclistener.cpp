@@ -184,7 +184,7 @@ void CecListener::run()
     }
 
     vc_vchi_cec_init(vchiq, &conn, 1);
-    vc_cec_set_osd_name("PINN");
+    vc_cec_set_osd_name("ARCADE");
     vc_cec_register_callback(_cec_callback, this);
 
     qDebug() << "CecListener done initializing";
