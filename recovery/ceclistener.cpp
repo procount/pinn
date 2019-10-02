@@ -273,16 +273,19 @@ void CecListener::cec_callback(uint32_t reason, uint32_t param1, uint32_t param2
     Q_UNUSED(param3);
     Q_UNUSED(param4);
 #ifdef RASPBERRY_CEC_SUPPORT
+    int cec_buttoncode = CEC_CB_OPERAND1(param1);
     if (CEC_CB_REASON(reason) == VC_CEC_BUTTON_PRESSED)
     {
-        int cec_buttoncode = CEC_CB_OPERAND1(param1);
         keyPressed=1;
         emit keyPress(cec_buttoncode);
         qDebug() << "CEC key: " << cec_buttoncode << " " << decode_key(cec_map, cec_buttoncode);
     }
+    else if (CEC_CB_REASON(reason) == VC_CEC_BUTTON_RELEASE)
+    {
+        qDebug() << "CEC key RELEASED: " << cec_buttoncode << " " << decode_key(cec_map, cec_buttoncode);
+    }
     else if (CEC_CB_REASON(reason) == VC_CEC_REMOTE_PRESSED)
     {
-        int cec_buttoncode = CEC_CB_OPERAND1(param1);
         qDebug() << "Vendor key: " << cec_buttoncode;
     }
 
