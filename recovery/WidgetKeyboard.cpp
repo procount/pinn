@@ -364,20 +364,3 @@ void WidgetKeyboard::setSoundEnabled(QString soundPath)
 	soundFilePath = soundPath;
 }
 
-void WidgetKeyboard::on_checkBoxShowNumPad_stateChanged(int state)
-{
-	QList<QWidget *> children = frameNumPad->findChildren<QWidget *>();
-	if(state==Qt::Checked)
-	{
-		frameNumPad->show();
-		/*for each(QWidget *child in children)
-			child->show();*/
-	}
-	else
-	{
-		frameNumPad->hide();
-		/*for each(QWidget *child in children)
-			child->hide();*/
-	}
-	update();
-}

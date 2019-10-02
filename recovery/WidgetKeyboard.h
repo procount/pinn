@@ -52,7 +52,6 @@ class WidgetKeyboard : public QWidget, public Ui::WidgetKeyboard
 		void changeTextShift(bool isShift);
 		void changeTextCaps(bool isCaps);
 		bool checkNotTextKey(int keyId);
-		void on_checkBoxShowNumPad_stateChanged(int state);
 
     public:
 		WidgetKeyboard(QWidget *parent = NULL);
