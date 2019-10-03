@@ -25,6 +25,21 @@
 #include <QClipboard>
 #include <QList>
 
+#define KBDROWS 6
+#define KBDCOLS 18
+
+const char * keyboard_layout[KBDROWS][KBDCOLS]=
+{
+    {"btnEsc","btnF1","btnF2","btnF3","btnF4","btnF5","btnF6","btnF7","btnF8","btnF9","btnF10","btnF11","btnF12","0","0","btnPrint","btnHome_2","btnPgU_2"},
+    {"btnTilt","btn1","btn2","btn3","btn4","btn5","btn6","btn7","btn8","btn9","btn0","btnHiphen","btnAssign","btnBackSpace","0","btnIns","btnHome","btnPgU"},
+    {"btnTab","btnQ","btnW","btnE","btnR","btnT","btnY","btnU","btnI","btnO","btnP","btnStartSquare","btnCloseSquare","btnFwdSlash","0","btnDel","btnEnd","btnPgD"},
+    {"btnCaps","btnA","btnS","btnD","btnF","btnG","btnH","btnJ","btnK","btnL","btnSemiColon","btnSp","btnReturn","0","0","0","0","0"},
+    {"btnShiftLeft","btnZ","btnX","btnC","btnV","btnB","btnN","btnM","btnComma","btnPeriod","btnBcwdSlash","btnShiftRight","0","0","0","0","btnArrowU","0"},
+    {"btnCtrlLeft","btnAltLeft","btnSpace","0","0","0","0","0","0","0","0","0","0","0","0","btnArrowL","btnArrowD","btnArrowR"}
+};
+
+
+
 WidgetKeyboard::WidgetKeyboard(QWidget *parent) : QWidget(0)
 {
     setupUi(this);
@@ -37,6 +52,8 @@ WidgetKeyboard::WidgetKeyboard(QWidget *parent) : QWidget(0)
     isCtrl = false;
     isAlt = false;
 	isIns = false;
+    currentRow=0;
+    currentCol=0;
     changeTextCaps(false);
     signalMapper = new QSignalMapper(this);
     sliderOpacity->setRange(20,100);
@@ -46,6 +63,7 @@ WidgetKeyboard::WidgetKeyboard(QWidget *parent) : QWidget(0)
         signalMapper->setMapping(allButtons.at(i), i);
     }
     connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(on_btn_clicked(int)));
+    HighlightKey();
 }
 
 WidgetKeyboard::~WidgetKeyboard()
@@ -362,5 +380,59 @@ Qt for Embedded Linux : A built-in mixing sound server is used, accessing /dev/d
 void WidgetKeyboard::setSoundEnabled(QString soundPath)
 {
 	soundFilePath = soundPath;
+}
+
+void WidgetKeyboard::HighlightKey()
+{
+    QString currentKey = keyboard_layout[currentRow][currentCol];
+    QToolButton * currentButton = findChild<QToolButton *>(currentKey);
+    currentButton->setStyleSheet("background-colour: red");
+}
+
+void WidgetKeyboard::LowlightKey()
+{
+    QString currentKey = keyboard_layout[currentRow][currentCol];
+    QToolButton * currentButton = findChild<QToolButton *>(currentKey);
+    currentButton->setStyleSheet("background-colour: white");
+}
+
+void WidgetKeyboard::MoveKey(int direction)
+{
+    QString currentKey;
+
+    LowlightKey();
+    switch (direction)
+    {
+    case 0: //Up
+        if (currentRow>0)
+        {
+            currentRow--;
+        }
+        break;
+    case 1: //left
+        if (currentCol>0)
+        {
+            currentCol--;
+        }
+        break;
+    case 2: //right
+        if (currentCol<KBDCOLS-1)
+        {
+            currentCol++;
+        }
+        break;
+    case 3: //down
+        if (currentRow<KBDROWS-1)
+        {
+            currentRow++;
+        }
+        break;
+
+    }
+    while (((currentKey = keyboard_layout[currentRow][currentCol])=="0") && (currentCol>0))
+    {
+        currentCol--;
+    }
+    HighlightKey();
 }
 

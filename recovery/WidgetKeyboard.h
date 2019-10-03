@@ -38,6 +38,8 @@ class WidgetKeyboard : public QWidget, public Ui::WidgetKeyboard
 		QSignalMapper *signalMapper;
 		QList<QToolButton *> allButtons;
 		QString soundFilePath;
+        int currentRow;
+        int currentCol;
         
     private slots:
 		void on_btn_clicked(int btn);
@@ -60,5 +62,9 @@ class WidgetKeyboard : public QWidget, public Ui::WidgetKeyboard
 		int getOpacity();
 		void setSoundDisabled();
 		void setSoundEnabled(QString soundPath);
+        void HighlightKey();
+        void LowlightKey();
+        void MoveKey(int direction);
+
 };
 #endif /*__WIDGETKEYBOARD_H_*/
