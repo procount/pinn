@@ -61,6 +61,8 @@ WidgetKeyboard::WidgetKeyboard(QWidget *parent) : QWidget(0)
     for (int i=0;i<allButtons.count();i++) {
         connect(allButtons.at(i), SIGNAL(clicked()), signalMapper, SLOT(map()));
         signalMapper->setMapping(allButtons.at(i), i);
+        allButtons.at(i)->installEventFilter(this);
+
     }
     connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(on_btn_clicked(int)));
     HighlightKey();
@@ -386,14 +388,15 @@ void WidgetKeyboard::HighlightKey()
 {
     QString currentKey = keyboard_layout[currentRow][currentCol];
     QToolButton * currentButton = findChild<QToolButton *>(currentKey);
-    currentButton->setStyleSheet("background-colour: red");
+    currentButton->setStyleSheet("background-color: red");
 }
 
 void WidgetKeyboard::LowlightKey()
 {
     QString currentKey = keyboard_layout[currentRow][currentCol];
     QToolButton * currentButton = findChild<QToolButton *>(currentKey);
-    currentButton->setStyleSheet("background-colour: white");
+    currentButton->setStyleSheet("background-color: white");
+    currentButton->setFocus();
 }
 
 void WidgetKeyboard::MoveKey(int direction)
@@ -433,6 +436,68 @@ void WidgetKeyboard::MoveKey(int direction)
     {
         currentCol--;
     }
+ //   QToolButton * currentButton = findChild<QToolButton *>(currentKey);
     HighlightKey();
 }
 
+#if 1
+bool WidgetKeyboard::eventFilter(QObject *, QEvent *event)
+{
+    if (event->type() == QEvent::KeyPress)
+    {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+
+        // Let user find the best display mode for their display
+        // experimentally by using keys 1-4. NOOBS will default to using HDMI preferred mode.
+
+        if (keyEvent->key() == Qt::Key_Up)
+        {
+            MoveKey(0);
+        }
+        else if (keyEvent->key() == Qt::Key_Left)
+        {
+            MoveKey(1);
+        }
+        else if (keyEvent->key() == Qt::Key_Right)
+        {
+            MoveKey(2);
+        }
+        else if (keyEvent->key() == Qt::Key_Down)
+        {
+            MoveKey(3);
+        }
+        else
+            QWidget::keyPressEvent(keyEvent);
+    }
+
+    return false;
+}
+#endif
+
+void WidgetKeyboard::keyPressEvent(QKeyEvent *keyEvent)
+{
+    if (keyEvent->key() == Qt::Key_Up)
+    {
+        MoveKey(0);
+    }
+    else if (keyEvent->key() == Qt::Key_Left)
+    {
+        MoveKey(1);
+    }
+    else if (keyEvent->key() == Qt::Key_Right)
+    {
+        MoveKey(2);
+    }
+    else if (keyEvent->key() == Qt::Key_Down)
+    {
+        MoveKey(3);
+    }
+    else if (keyEvent->key() == Qt::Key_Space)
+    {
+        QString currentKey = keyboard_layout[currentRow][currentCol];
+        QToolButton * currentButton = findChild<QToolButton *>(currentKey);
+        currentButton->click();
+    }
+    else
+        QWidget::keyPressEvent(keyEvent);
+}

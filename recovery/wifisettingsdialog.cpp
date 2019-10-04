@@ -395,7 +395,10 @@ QString WifiSettingsDialog::removeQuotes(QString str)
 void WifiSettingsDialog::on_vkeyboard_toggled(bool checked)
 {
     if (checked)
+    {
         virtualKeyBoard->show();
+        ui->passwordEdit->setFocus();
+    }
     else
         virtualKeyBoard->hide();
 }

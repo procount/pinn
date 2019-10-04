@@ -66,5 +66,9 @@ class WidgetKeyboard : public QWidget, public Ui::WidgetKeyboard
         void LowlightKey();
         void MoveKey(int direction);
 
+    protected:
+        virtual bool eventFilter(QObject *obj, QEvent *event);
+        virtual void keyPressEvent(QKeyEvent *evt);
+
 };
 #endif /*__WIDGETKEYBOARD_H_*/
