@@ -63,7 +63,6 @@
         <file>icons/network-wireless-connected-100.png</file>
         <file>icons/tick.png</file>
         <file>icons/hdd_usb_unmount.png</file>
-        <file>wallpaper.jpg</file>
         <file>cec_keys.json</file>
         <file>joy_keys.json</file>
         <file>custom.json</file>
@@ -71,5 +70,6 @@
         <file>icons/left.JPG</file>
         <file>icons/right.JPG</file>
         <file>icons/up.JPG</file>
+        <file>wallpaper.jpg</file>
     </qresource>
 </RCC>

@@ -10,10 +10,10 @@
  *
  */
 
+#include "splash.h"
 #include "languagedialog.h"
 #include <QMainWindow>
 #include <QModelIndex>
-#include <QSplashScreen>
 #include <QMessageBox>
 #include <QTimer>
 #include <QTime>
@@ -33,7 +33,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(const QString &drive, const QString &defaultDisplay, QSplashScreen *splash, QWidget *parent = 0);
+    explicit MainWindow(const QString &drive, const QString &defaultDisplay, KSplash *splash, QWidget *parent = 0);
     ~MainWindow();
 
 protected:
@@ -45,7 +45,7 @@ protected:
     bool _silent, _allowSilent, _showAll, _fixate, _usbimages;
     static bool _partInited;
     static int _currentMode;
-    QSplashScreen *_splash;
+    KSplash *_splash;
     QSettings *_settings;
     bool _hasWifi;
     int _numInstalledOS, _devlistcount;

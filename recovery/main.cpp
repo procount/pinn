@@ -11,6 +11,7 @@
 #include "ceclistener.h"
 #include "joystick.h"
 #include "simulate.h"
+#include "splash.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -19,7 +20,6 @@
 #include <QApplication>
 #include <QStyle>
 #include <QDesktopWidget>
-#include <QSplashScreen>
 #include <QFile>
 #include <QIcon>
 #include <QProcess>
@@ -150,6 +150,7 @@ int main(int argc, char *argv[])
     bool gpio_trigger = false;
     bool keyboard_trigger = true;
     bool force_trigger = false;
+    bool wallpaper_resize = false;
 
     QString defaultLang = "en";
     QString defaultKeyboard = "gb";
@@ -162,6 +163,8 @@ int main(int argc, char *argv[])
         // Flag to indicate first boot
         if (strcmp(argv[i], "-runinstaller") == 0)
             runinstaller = true;
+        if (strcmp(argv[i], "-wallpaper_resize") == 0)
+            wallpaper_resize = true;
         // Enables use of GPIO 3 to force NOOBS to launch by pulling low
         else if (strcmp(argv[i], "-gpiotriggerenable") == 0)
             gpio_trigger = true;
@@ -218,8 +221,42 @@ int main(int argc, char *argv[])
 #ifdef Q_WS_QWS
     QWSServer::setBackground(BACKGROUND_COLOR);
 #endif
-    QSplashScreen *splash = new QSplashScreen(QPixmap(":/wallpaper.jpg"));
+
+    QPixmap pixmap;
+    QString wallpaperName = ":/wallpaper.jpg";
+
+    if (QFile::exists(wallpaperName))
+    {
+        QPixmap temp;
+        temp.load(wallpaperName);
+        QRect screen= a.desktop()->availableGeometry();
+        QRect area = temp.rect();
+        if (!wallpaper_resize)
+        {   //Crop the centre of the image out to fit the screen else showMessage is off screen
+            if (area.width()>screen.width())
+            {
+                area.setLeft( (area.width() - screen.width())/2 );
+                area.setWidth( screen.width() );
+            }
+            if (area.height()>screen.height())
+            {
+                area.setTop( (area.height() - screen.height())/2 );
+                area.setHeight( screen.height() );
+            }
+        }
+        pixmap=temp.copy(area);
+    }
+    else
+    {
+        pixmap.load(":/wallpaper.jpg");
+        wallpaper_resize = false; //We don't want the standard logo resized - it looks really bad
+    }
+
+    //QSplashScreen *splash = new QSplashScreen(QPixmap(":/wallpaper.jpg"));
+    KSplash *splash = new KSplash(pixmap,0,wallpaper_resize);
     splash->show();
+    splash->resize();
+    splash->showMessage("For recovery mode, hold SHIFT...");
     QApplication::processEvents();
 
     // Wait for drive device to show up

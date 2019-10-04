@@ -13,6 +13,8 @@
 #include "util.h"
 #include "twoiconsdelegate.h"
 #include "wifisettingsdialog.h"
+#include "splash.h"
+
 #include <QMessageBox>
 #include <QProgressDialog>
 #include <QMap>
@@ -26,7 +28,6 @@
 #include <QKeyEvent>
 #include <QApplication>
 #include <QScreen>
-#include <QSplashScreen>
 #include <QDesktopWidget>
 #include <QSettings>
 #include <QtNetwork/QNetworkAccessManager>
@@ -83,7 +84,7 @@ bool MainWindow::_partInited = false;
 /* Flag to keep track of current display mode. */
 int MainWindow::_currentMode = 0;
 
-MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, QSplashScreen *splash, QWidget *parent) :
+MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSplash *splash, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     _qpd(NULL), _kcpos(0), _defaultDisplay(defaultDisplay),
@@ -662,7 +663,7 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
             foreach (QListWidgetItem *item, selected)
             {
                 QVariantMap entry = item->data(Qt::UserRole).toMap();
-
+                qDebug() <<entry;
                 if (!entry.contains("folder"))
                 {
                     QDir d;
@@ -824,7 +825,9 @@ void MainWindow::displayMode(int modenr, bool silent)
         resize(575, 450);
 
     // Update UI item locations
-    _splash->setPixmap(QPixmap(":/wallpaper.png"));
+    _splash->resize();
+    _splash->setPixmap(_splash->pixmap()); //reposition, keeping same image.
+
     LanguageDialog *ld = LanguageDialog::instance("en", "gb");
     ld->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignHCenter | Qt::AlignBottom, ld->size(), qApp->desktop()->availableGeometry()));
     this->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, this->size(), qApp->desktop()->availableGeometry()));
@@ -1241,6 +1244,9 @@ void MainWindow::processJson(QVariant json)
                     QString description = flavour.value("description").toString();
                     QString iconurl     = flavour.value("icon").toString();
 
+                    if ( iconurl.isEmpty() )
+                        iconurl = os.value("icon").toString();
+
                     item.insert("name", name);
                     item.insert("description", description);
                     item.insert("icon", iconurl);
@@ -1338,6 +1344,7 @@ void MainWindow::downloadIcon(const QString &urlstring, const QString &originalu
     QUrl url(urlstring);
     QNetworkRequest request(url);
     request.setAttribute(QNetworkRequest::User, originalurl);
+    request.setRawHeader("User-Agent", AGENT);
     QNetworkReply *reply = _netaccess->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(downloadIconRedirectCheck()));
 }
@@ -1477,6 +1484,7 @@ void MainWindow::downloadMetaFile(const QString &urlstring, const QString &saveA
     QUrl url(urlstring);
     QNetworkRequest request(url);
     request.setAttribute(QNetworkRequest::User, saveAs);
+    request.setRawHeader("User-Agent", AGENT);
     QNetworkReply *reply = _netaccess->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(downloadMetaRedirectCheck()));
 }
