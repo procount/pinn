@@ -55,10 +55,27 @@ WidgetKeyboard::WidgetKeyboard(QWidget *parent) : QWidget(0)
     currentRow=0;
     currentCol=0;
     changeTextCaps(false);
+
+    QRect rect;
+    rect.setSize( QApplication::desktop()->screenGeometry(-1).size() );
+    QFont font;
+    font.setFamily("Arial");
+    //font.setBold(true);
+    int points=8;
+    if (rect.width()>=800)
+        points=10;
+    if (rect.width()>1200)
+        points=12;
+    if (rect.width()>1600)
+        points=16;
+    font.setPixelSize(points);
+    //font.setStretch(125);
+
     signalMapper = new QSignalMapper(this);
     sliderOpacity->setRange(20,100);
     allButtons = findChildren<QToolButton *>();
     for (int i=0;i<allButtons.count();i++) {
+        allButtons.at(i)->setFont(font);
         connect(allButtons.at(i), SIGNAL(clicked()), signalMapper, SLOT(map()));
         signalMapper->setMapping(allButtons.at(i), i);
         allButtons.at(i)->installEventFilter(this);
