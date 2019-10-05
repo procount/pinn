@@ -2,6 +2,7 @@
 
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QPainter>
 
 KSplash::KSplash(const QPixmap &pixmap, Qt::WindowFlags f, bool bresize)
     : QSplashScreen(pixmap, f)
@@ -42,6 +43,25 @@ void KSplash::resize()
     }
 }
 
+void KSplash::drawContents(QPainter *painter)
+{
+    QPixmap textPix = QSplashScreen::pixmap();
+    painter->setPen(this->color);
+    painter->drawText(this->rect, this->alignement, this->message);
+}
+
+void KSplash::showStatusMessage(const QString &message, const QColor &color)
+{
+    this->message = message;
+    this->color = color;
+    this->showMessage(this->message, this->alignement, this->color);
+}
+
+void KSplash::setMessageRect(QRect rect, int alignement)
+{
+    this->rect = rect;
+    this->alignement = alignement;
+}
 
 #if 0
 Snippet how to create a splashscreen with opacity and dynamic text.

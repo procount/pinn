@@ -252,11 +252,25 @@ int main(int argc, char *argv[])
         wallpaper_resize = false; //We don't want the standard logo resized - it looks really bad
     }
 
+
+
     //QSplashScreen *splash = new QSplashScreen(QPixmap(":/wallpaper.jpg"));
     KSplash *splash = new KSplash(pixmap,0,wallpaper_resize);
+
+    QFont splashFont;
+    splashFont.setFamily("Arial");
+    splashFont.setBold(true);
+    splashFont.setPixelSize(24);
+    splashFont.setStretch(125);
+    splash->setFont(splashFont);
+
+    QRect rect(0,0,0,0);
+    rect.setSize( QApplication::desktop()->screenGeometry(-1).size() );
+    splash->setMessageRect(rect, Qt::AlignCenter); // Setting the message position.
+
     splash->show();
     splash->resize();
-    splash->showMessage("For recovery mode, hold SHIFT...");
+    splash->showStatusMessage("For recovery mode, hold SHIFT...");
     QApplication::processEvents();
 
     // Wait for drive device to show up
@@ -309,8 +323,10 @@ int main(int argc, char *argv[])
     {
         t.start();
 
-        while (t.elapsed() < 2000)
+        while (t.elapsed() < 4000)
         {
+            splash->showStatusMessage("For recovery mode, hold SHIFT...", (t.elapsed()%1000 < 500)?Qt::black : Qt::white);
+
             QApplication::processEvents(QEventLoop::WaitForMoreEvents, 10);
             if (QApplication::queryKeyboardModifiers().testFlag(Qt::ShiftModifier))
             {
@@ -338,6 +354,8 @@ int main(int argc, char *argv[])
             }
         }
     }
+
+    splash->showStatusMessage("");
 
     cec->clearKeyPressed();
     joy->clearKeyPressed();

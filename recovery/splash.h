@@ -9,6 +9,9 @@ class KSplash : public QSplashScreen
 public:
     explicit KSplash(const QPixmap &pixmap = QPixmap(), Qt::WindowFlags f = 0, bool bresize=false);
     KSplash(QWidget *parent, const QPixmap &pixmap = QPixmap(), Qt::WindowFlags f = 0, bool bresize=false);
+    virtual void drawContents(QPainter *painter);
+    void showStatusMessage(const QString &message, const QColor &color = Qt::black);
+    void setMessageRect(QRect rect, int alignment = Qt::AlignLeft);
 
 protected:
     void mousePressEvent(QMouseEvent *);
@@ -20,6 +23,10 @@ public slots:
 private:
     QPixmap original_pixmap;
     bool _resize;
+    QString message;
+    int alignement;
+    QColor color;
+    QRect rect;
 
 };
 

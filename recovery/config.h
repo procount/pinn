@@ -10,7 +10,8 @@
 
 /* Color of the background */
 // #define BACKGROUND_COLOR  Qt::white
-#define BACKGROUND_COLOR  QColor(0xde, 0xde, 0xde)
+//#define BACKGROUND_COLOR  QColor(0xde, 0xde, 0xde)
+#define BACKGROUND_COLOR  Qt::black
 
 /* Highlight color of installed OS */
 #define INSTALLED_OS_BACKGROUND_COLOR  QColor(0xef,0xff,0xef)
@@ -22,7 +23,7 @@
 #define ENABLE_LANGUAGE_CHOOSER
 
 /* Website launched when launching Arora */
-#define HOMEPAGE  "http://www.raspberrypi.org/help/"
+#define HOMEPAGE  "https://www.microcenter.com/site/content/tech-support.aspx"
 
 /* Location to download the list of available distributions from
  * Multiple lists can be specified by space separating the URLs */
