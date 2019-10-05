@@ -396,8 +396,8 @@ void WifiSettingsDialog::on_vkeyboard_toggled(bool checked)
 {
     if (checked)
     {
-        virtualKeyBoard->show();
         ui->passwordEdit->setFocus();
+        virtualKeyBoard->show();
     }
     else
         virtualKeyBoard->hide();
