@@ -135,6 +135,11 @@ simulate::simulate()
         errexit("error: ioctl(fd, UI_SET_EVBIT, EV_KEY)");
     if(ioctl(fd, UI_SET_KEYBIT, BTN_LEFT) < 0)
         errexit("error: ioctl(fd, UI_SET_KEYBIT, BTN_LEFT)");
+    for (int i=0; i<256; i++)
+    {
+        if(ioctl(fd, UI_SET_KEYBIT, i) < 0)
+            errexit("error: ioctl(fd, UI_SET_KEYBIT, i)");
+    }
 
     if(ioctl(fd, UI_SET_EVBIT, EV_REL) < 0)
         errexit("error: ioctl(fd, UI_SET_EVBIT, EV_REL)");
@@ -157,6 +162,22 @@ simulate::simulate()
         errexit("error: ioctl UI_DEV_CREATE");
     ok=true;
     qDebug()<< "Simulate OK";
+}
+
+void simulate::inject(int type, int code, int value)
+{
+    struct input_event key_input_event;
+
+    memset(&key_input_event, 0, sizeof(input_event));
+
+    // key release event for 'a'
+    key_input_event.type = type;
+    key_input_event.code = code;
+    key_input_event.value = value;
+
+    // now write to the file descriptor
+    if(write(fd, &key_input_event, sizeof(input_event)) < 0)
+        errexit("error: write evt");
 }
 
 simulate::~simulate()
@@ -198,24 +219,9 @@ void simulate::test()
             break;
         }
 
-        memset(&ev, 0, sizeof(struct input_event));
-        ev.type = EV_REL;
-        ev.code = REL_X;
-        ev.value = dx;
-        if(write(fd, &ev, sizeof(struct input_event)) < 0)
-            errexit("error: write");
-
-        memset(&ev, 0, sizeof(struct input_event));
-        ev.type = EV_REL;
-        ev.code = REL_Y;
-        ev.value = dy;
-        if(write(fd, &ev, sizeof(struct input_event)) < 0)
-            errexit("error: write");
-
-        memset(&ev, 0, sizeof(struct input_event));
-        ev.type = EV_SYN;
-        if(write(fd, &ev, sizeof(struct input_event)) < 0)
-            errexit("error: write");
+        inject(EV_REL, REL_X, dx);
+        inject(EV_REL, REL_Y, dy);
+        inject(EV_SYN, SYN_REPORT, 0);
 
         QApplication::processEvents();
         usleep(800000);

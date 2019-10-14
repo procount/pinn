@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 /* Version number displayed in the title bar */
-#define VERSION_NUMBER "3.0mcn2"
+#define VERSION_NUMBER "3.0mcn3"
 
 #define MC 1
 #define SOCKSERVER "/tmp/server"

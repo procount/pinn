@@ -7,6 +7,7 @@ public:
     simulate();
     ~simulate();
     void test();
+    void inject(int type, int code, int value);
 
 private:
     int fd;

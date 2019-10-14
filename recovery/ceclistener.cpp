@@ -27,6 +27,10 @@
 
 #include "ceclistener.h"
 #include "json.h"
+#include "simulate.h"
+
+#include <linux/input.h>
+#include <linux/uinput.h>
 
 #include <QApplication>
 #include <QDebug>
@@ -362,30 +366,40 @@ void CecListener::process_cec(int cec_code)
 void inject_key(int key)
 {
     Qt::KeyboardModifiers modifiers = Qt::NoModifier;
-    QPoint p = QCursor::pos();
+    //QPoint p = QCursor::pos();
+    extern simulate * sim;
 
     switch (key)
     {
     /* MOUSE SIMULATION */
     case mouse_left:
-        p.rx()-=10;
-        QCursor::setPos(p);
+        //p.rx()-=10;
+        //QCursor::setPos(p);
+        sim->inject(EV_REL, REL_X, -10);
+        sim->inject(EV_SYN, SYN_REPORT, 0);
         break;
     case mouse_right:
-        p.rx()+=10;
-        QCursor::setPos(p);
+        //p.rx()+=10;
+        //QCursor::setPos(p);
+        sim->inject(EV_REL, REL_X, 10);
+        sim->inject(EV_SYN, SYN_REPORT, 0);
         break;
     case mouse_up:
-        p.ry()-=10;
-        QCursor::setPos(p);
+        //p.ry()-=10;
+        //QCursor::setPos(p);
+        sim->inject(EV_REL, REL_Y, -10);
+        sim->inject(EV_SYN, SYN_REPORT, 0);
         break;
     case mouse_down:
-        p.ry()+=10;
-        QCursor::setPos(p);
+        //p.ry()+=10;
+        //QCursor::setPos(p);
+        sim->inject(EV_REL, REL_Y, 10);
+        sim->inject(EV_SYN, SYN_REPORT, 0);
         break;
     case mouse_lclick:
         { //Click!
-            QWidget* widget = dynamic_cast<QWidget*>(QApplication::widgetAt(QCursor::pos()));
+/*
+ *             QWidget* widget = dynamic_cast<QWidget*>(QApplication::widgetAt(QCursor::pos()));
             if (widget)
             {
                 QPoint pos = QCursor::pos();
@@ -395,12 +409,21 @@ void inject_key(int key)
                 QCoreApplication::sendEvent(widget,event1);
                 qApp->processEvents();
             }
+*/
+            sim->inject(EV_KEY, BTN_LEFT, 1);
+            sim->inject(EV_SYN, SYN_REPORT, 0);
+            sim->inject(EV_KEY, BTN_LEFT, 0);
+            sim->inject(EV_SYN, SYN_REPORT, 0);
         }
         break;
     default:
         // key press
+        //sim->inject(EV_KEY, key, 1);
+        //sim->inject(EV_SYN, SYN_REPORT, 0);
         QWSServer::sendKeyEvent(0, key, modifiers, true, false);
         // key release
+        //sim->inject(EV_KEY, key, 0);
+        //sim->inject(EV_SYN, SYN_REPORT, 0);
         QWSServer::sendKeyEvent(0, key, modifiers, false, false);
         break;
     }

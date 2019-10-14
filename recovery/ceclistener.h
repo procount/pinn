@@ -172,6 +172,8 @@ public:
     void setWindow(const QString &wnd)  { _wnd = wnd; }
     void setMenu(const QString &menu)   { _menu = menu; }
     void process_cec(int cec_code);
+    QString getWindow() { return _wnd; }
+    QString getMenu() { return _menu; }
 
 signals:
     void keyPress(int key);
