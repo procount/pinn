@@ -47,30 +47,30 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ### V3.3a
 
--**Tidy up** - Development moved to Ubuntu 18.04 prompting a tidy up
+- **Tidy up** - Development moved to Ubuntu 18.04 prompting a tidy up
 
 ### V3.3
 
--**PI4 support**  - Added support for the new RPi4. Includes Raspbian Buster in full version.
+- **PI4 support**  - Added support for the new RPi4. Includes Raspbian Buster in full version.
 
 ### V3.2.4c
 
--**Hyperpixel**   - Fixed hyperpixel 4 overlay file
+- **Hyperpixel**   - Fixed hyperpixel 4 overlay file
 
 ### V3.2.4b
 
--**Wifi Drivers** - Re-added Realtek rtl8188eu and rtl8192cu modular wifi drivers.
+- **Wifi Drivers** - Re-added Realtek rtl8188eu and rtl8192cu modular wifi drivers.
 
 ### V3.2.4a
 
--**Build**       - Modified to build on Ubuntu 18.10 'cosmic'
--**Progress**    - Experimental modification to measure installation progress more accurately
--**Wifi dialog** - Removed focus for better use by keyboard
--**Zipfles**     - Use bsdtar to unzip inline for checksums
--**Esc**         - Esc key exits all menus
--**Firmware**    - Don't automatically downgrade firmware
--**Options**     - Added shortcuts for better keyboard use
--**GPIO**        - Allows gpiochannel and gpiochannelValue to be specified to trigger the recovery menu
+- **Build**       - Modified to build on Ubuntu 18.10 'cosmic'
+- **Progress**    - Experimental modification to measure installation progress more accurately
+- **Wifi dialog** - Removed focus for better use by keyboard
+- **Zipfles**     - Use bsdtar to unzip inline for checksums
+- **Esc**         - Esc key exits all menus
+- **Firmware**    - Don't automatically downgrade firmware
+- **Options**     - Added shortcuts for better keyboard use
+- **GPIO**        - Allows gpiochannel and gpiochannelValue to be specified to trigger the recovery menu
 
 ### V3.2.3
 
