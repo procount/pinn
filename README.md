@@ -132,7 +132,7 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 - **Backup/Download**   - Removed the need to reboot after a download or backup.
 - **Wallpapers**        - removed wallpapers folder & Allowed JPEGs
-- **Default wallpaper   - Changed default to wallpaper.jpg
+- **Default wallpaper**   - Changed default to wallpaper.jpg
 
 ### V3.0
 
