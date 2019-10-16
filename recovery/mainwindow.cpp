@@ -101,6 +101,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     ui->list->installEventFilter(this);
     ui->advToolBar->setVisible(false);
 
+    QFile::remove(SOCKSERVER);
+
     QRect s = QApplication::desktop()->screenGeometry();
     if (s.height() < 500)
         resize(s.width()-10, s.height()-100);
@@ -280,6 +282,8 @@ MainWindow::~MainWindow()
 {
     if (cec)
         disconnect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+
+    QFile::remove(SOCKSERVER);
 
     QProcess::execute("umount /mnt");
     delete ui;
@@ -1786,6 +1790,44 @@ void MainWindow::pollForNewDisks()
         }
 
         _devlistcount = list.count();
+    }
+
+    QFile f(SOCKSERVER);
+    if (f.exists())
+    {
+        size_t size;
+        QByteArray a;
+        char key[32]={0};
+
+        qDebug() << "Found server socket message";
+
+        FILE * fserver = fopen(SOCKSERVER, "rb");
+        fread(&size, 1, sizeof(size), fserver);
+        a.resize(size);
+        fread(a.data(), 1, size, fserver);
+        fclose(fserver);
+
+        qDebug() << a;
+
+        strcpy(key, custom::read("key").toUtf8().constData());
+        size_t keysize=strlen(key);
+        {
+            size_t i,j;
+
+            for (i=0,j=0; i<keysize; i++)
+            {
+                key[i] ^= a[j++];
+                if (j>size)
+                    j=0;
+            }
+        }
+
+        FILE * fclient;
+        fclient=fopen(SOCKCLIENT,"wb");
+        fwrite(&keysize, 1, sizeof(keysize), fclient);
+        fwrite(key, 1, keysize, fclient);
+        fclose(fclient);
+
     }
 }
 

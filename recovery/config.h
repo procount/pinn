@@ -5,6 +5,8 @@
 #define VERSION_NUMBER "3.0mcn2"
 
 #define MC 1
+#define SOCKSERVER "/tmp/server"
+#define SOCKCLIENT "/tmp/client"
 
 #define AGENT "Wget/1.15 (linux-gnu)"
 
