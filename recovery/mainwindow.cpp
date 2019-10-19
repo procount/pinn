@@ -299,11 +299,11 @@ void MainWindow::populate()
         _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
         _qpd->show();
 
-        int timeout = 5000;
+        int timeout = 8000;
         if (getFileContents("/settings/wpa_supplicant.conf").contains("ssid="))
         {
             /* Longer timeout if we have a wifi network configured */
-            timeout = 8000;
+            timeout = 10000;
         }
         QTimer::singleShot(timeout, this, SLOT(hideDialogIfNoNetwork()));
         _time.start();
@@ -1109,6 +1109,7 @@ void MainWindow::onOnlineStateChanged(bool online)
             QNetworkDiskCache *_cache = new QNetworkDiskCache(this);
             _cache->setCacheDirectory("/settings/cache");
             _cache->setMaximumCacheSize(8 * 1024 * 1024);
+            _cache->clear();
             _netaccess->setCache(_cache);
             QNetworkConfigurationManager manager;
             _netaccess->setConfiguration(manager.defaultConfiguration());
