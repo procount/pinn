@@ -44,8 +44,8 @@ WidgetKeyboard::WidgetKeyboard(QWidget *parent) : QWidget(0)
 {
     setupUi(this);
     resize(0,0);
-    //this->setWindowFlags(Qt::Tool);
-    this->setWindowFlags(Qt::Dialog);
+    this->setWindowFlags(Qt::Tool);
+    //this->setWindowFlags(Qt::Dialog);
     m_pParent = parent;
     isCaps = false;
     isShift = false;
