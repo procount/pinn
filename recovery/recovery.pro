@@ -54,7 +54,8 @@ SOURCES += \
     custom.cpp \
     simulate.cpp \
     WidgetKeyboard.cpp \
-    splash.cpp
+    splash.cpp \
+    input.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -87,7 +88,8 @@ HEADERS  += \
     custom.h \
     simulate.h \
     WidgetKeyboard.h \
-    splash.h
+    splash.h \
+    input.h
 
 FORMS    += \
     mainwindow.ui \
