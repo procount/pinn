@@ -1,6 +1,8 @@
 #ifndef JOYSTICK_H
 #define JOYSTICK_H
 
+#include "input.h"
+
 //#include <QObject>
 #include <QThread>
 #include <QFile>
@@ -25,7 +27,7 @@ struct joymap_str {
 
 int scale_joystick(int value);
 
-class joystick : public QThread
+class joystick : public Kinput
 {
     Q_OBJECT
 public:
@@ -34,24 +36,16 @@ public:
 
     void print_device_info();
     void process_event(struct js_event jse);
-    static int hasKeyPressed() {return(keyPressed);}
-    static void clearKeyPressed() {keyPressed=0;}
-    void setWindow(const QString &wnd)  { _wnd = wnd; }
-    void setMenu(const QString &menu)   { _menu = menu; }
     int map_joy(QVariant joy);
     int convert_event2joy(struct js_event jse);
-    void loadJOYmap(QString);
-    int map_key(QString key);
+    void loadMap(QString filename) { Kinput::loadMap(filename, ":/joy_keys.json"); }
     void process_joy(int joy_code, int value);
+    const char * decode_joy(int code);
 
 protected:
     virtual void run();
 
     int fd;
-    static int keyPressed;
-    mapwnd_t _JOYmap;
-    QString _wnd;
-    QString _menu;
 
 signals:
     void joyPress(int key, int value);

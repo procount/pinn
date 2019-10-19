@@ -1,6 +1,5 @@
 #include "joystick.h"
 #include "json.h"
-#include "ceclistener.h"
 
 #include <QApplication>
 #include <QRect>
@@ -25,14 +24,6 @@
 
 #define sgn(x) ((x < 0) ? -1 : (x > 0))
 
-struct scale_t
-{
-    int threshold;
-    int step;
-};
-
-#define MAXSTEPS 10
-struct scale_t scale_map[MAXSTEPS] = {-1,-1};
 
 #define TEST 0
 
@@ -67,10 +58,8 @@ struct joymap_str joymap[] =
     {"RAnalog_click ", 25,   1,  1,  10}
 };
 
-int joystick::keyPressed = 0;
-
 joystick::joystick(QObject *parent) :
-    QThread(parent)
+    Kinput(parent)
 {
     keyPressed=0;
 }
@@ -87,7 +76,6 @@ int joystick::map_joy(QVariant joy)
     int result=0;
     if (joy.type() == QVariant::String)
     {
-        //result = map_joy(cec_map, cec.toString());
         QString str = joy.toString();
         struct joymap_str * map = joymap;
         while ((map->string) && (!result))
@@ -102,19 +90,6 @@ int joystick::map_joy(QVariant joy)
     return (result);
 }
 
-
-int joystick::map_key(QString key)
-{
-    //TRACE
-    struct keymap_str *map = key_map;
-    while (map->string)
-    {
-        if (map->string == key)
-            return(map->code);
-        map++;
-    }
-    return(0);
-}
 
 int joystick::convert_event2joy(struct js_event jse)
 {
@@ -144,97 +119,6 @@ int joystick::convert_event2joy(struct js_event jse)
     return (result);
 }
 
-#if TEST
-struct js_event find_joy_event(QString name)
-{
-    TRACE
-    int result=0;
-    struct js_event jse;
-
-
-    struct joymap_str *map = joymap;
-    while ((map->string) && (!result))
-    {
-        if (map->string == name)
-        {
-            jse.number = map->number;
-            jse.type   = map->type;
-            jse.value  = map->value;
-            result=1;
-        }
-        map++;
-    }
-
-    return (jse);
-}
-#endif
-
-void joystick::loadJOYmap(QString filename)
-{
-    //TRACE
-    QString fname = filename;
-    if (!QFile::exists(fname))
-        fname=":/joy_keys.json"; //Use default mapping
-
-    if (QFile::exists(fname))
-    {
-        qDebug() << "Loading Joystick mappings from " << fname;
-        _JOYmap.clear();
-
-        //Get the map of windows (& calibration)
-        QVariantMap mapWnd = Json::loadFromFile(fname).toMap();
-
-        for(QVariantMap::const_iterator iWnd = mapWnd.begin(); iWnd != mapWnd.end(); ++iWnd)
-        {   //For each window, get the map of menus
-            QVariantMap mapMenu = iWnd.value().toMap();
-
-            if (iWnd.key() == "calibration")
-            {
-                mapkeys_t k; //My own map of keys
-                QVariantList cal_list = iWnd.value().toList();
-                int i=0;
-                foreach (QVariant v, cal_list)
-                {
-                    QVariantMap  step = v.toMap();
-                    if (i<MAXSTEPS-1)
-                    {
-                        scale_map[i].threshold=step.value("threshold").toInt();
-                        scale_map[i].step=step.value("step").toInt();
-                        //DBG2 << "Step "<<i<< " threshold: "<<scale_map[i].threshold<<" step: "<<scale_map[i].step;
-                        i++;
-                        //Mark end of table
-                        scale_map[i].threshold=-1;
-                        scale_map[i].step=-1;
-                    }
-                }
-            }
-
-            else
-            {
-                mapmenu_t m; //My own map of menus
-                for(QVariantMap::const_iterator iMenu = mapMenu.begin(); iMenu != mapMenu.end(); ++iMenu)
-                {   //For each menu, get the map of keys
-                    QVariantMap mapKeys = iMenu.value().toMap();
-
-                    mapkeys_t k; //My own map of keys
-                    for(QVariantMap::const_iterator iKey = mapKeys.begin(); iKey != mapKeys.end(); ++iKey)
-                    {   //For each key
-                        int joy_code = map_joy(iKey.value());   //Convert the CEC code (string or int)
-                        int key_code = map_key(iKey.key());     //Convert the KEY code to press (string)
-                        if (joy_code !=-1)                      //Use CEC code of -1 to ignore that key
-                            k[joy_code] = key_code;             //Map the CEC code to the key to be pressed
-                    }
-                    //Add key mapping to my menu
-                    m[iMenu.key()] = k;
-                }
-                //Add my menu to my window map
-                _JOYmap[iWnd.key()] = m;
-            }
-        }
-    }
-}
-
-
 
 void joystick::print_device_info()
 {
@@ -252,104 +136,11 @@ void joystick::print_device_info()
 void joystick::process_event(struct js_event jse)
 {
 
-/*
- * 	struct js_event {
-        __u32 time;     // event timestamp in milliseconds
-        __s16 value;    // value
-        __u8 type;      // event type
-        __u8 number;    // axis/button number
-    };
-
-The possible values of ``type'' are
-
-    #define JS_EVENT_BUTTON         0x01    // button pressed/released
-    #define JS_EVENT_AXIS           0x02    // joystick moved
-    #define JS_EVENT_INIT           0x80    // initial state of device
-
-The values of ``number'' correspond to the axis or button that
-generated the event. Note that they carry separate numeration (that
-is, you have both an axis 0 and a button 0). Generally,
-
-            number
-    1st Axis X	0
-    1st Axis Y	1
-    2nd Axis X	2
-    2nd Axis Y	3
-    ...and so on
-
-For an axis, ``value'' is a signed integer between -32767 and +32767
-representing the position of the joystick along that axis. If you
-don't read a 0 when the joystick is `dead', or if it doesn't span the
-full range, you should recalibrate it (with, for example, jscal).
-
-For a button, ``value'' for a press button event is 1 and for a release
-button event is 0.
-
-Implementation:
-
-    if ((js_event.type & ~JS_EVENT_INIT) == JS_EVENT_BUTTON) {
-        if (js_event.value)
-            buttons_state |= (1 << js_event.number);
-        else
-            buttons_state &= ~(1 << js_event.number);
-    }
-
-
- */
     //TRACE
     int key=convert_event2joy(jse);
     emit joyPress(key,jse.value);
 }
 
-#if TEST
-void joystick::run()
-{
-    //TRACE
-    int i;
-    struct js_event jse;
-
-    while (1)
-    {
-        sleep (30);
-
-        for (i=0; i<3; i++)
-        {
-            jse = find_joy_event("RAnalogLeft");
-            jse.value *= scale_map[i].threshold;
-            process_event(jse);
-            sleep(1);
-        }
-        sleep (5);
-
-        for (i=0; i<3; i++)
-        {
-            jse = find_joy_event("RAnalogUp");
-            jse.value *= scale_map[i].threshold;
-            process_event(jse);
-            sleep(1);
-        }
-        sleep (5);
-
-        for (i=0; i<3; i++)
-        {
-            jse = find_joy_event("RAnalogRight");
-            jse.value *= scale_map[i].threshold;
-            process_event(jse);
-            sleep(1);
-        }
-        sleep (5);
-
-        for (i=0; i<3; i++)
-        {
-            jse = find_joy_event("RAnalogDown");
-            jse.value *= scale_map[i].threshold;
-            process_event(jse);
-            sleep(1);
-        }
-        sleep (5);
-    }
-}
-#else
 void joystick::run()
 {
     //TRACE
@@ -374,12 +165,12 @@ void joystick::run()
         }
     }
 }
-#endif
 
 
-const char * decode_joy(struct joymap_str *map, int code)
+const char * joystick::decode_joy( int code)
 {
     //TRACE
+    struct joymap_str *map = joymap;
     while (map->string)
     {
         if (map->id == code)
@@ -423,9 +214,9 @@ void joystick::process_joy(int joy_code, int value)
     wnd=_wnd;
     do
     {
-        if (_JOYmap.contains(wnd))
+        if (_map.contains(wnd))
         {
-            mapmenu_t m = _JOYmap.value(wnd);
+            mapmenu_t m = _map.value(wnd);
 
             menu = _menu;
             do {
@@ -435,7 +226,7 @@ void joystick::process_joy(int joy_code, int value)
                     if (k.contains(joy_code))
                     {
                         key = k.value(joy_code);
-                        qDebug() << "found joy " << joy_code << " ("<< decode_joy(joymap, joy_code) <<  ") in "<<wnd<<" : "<<menu<<" as "<<key<< " ("<<decode_key(key_map,key)<<")";
+                        qDebug() << "found joy " << joy_code << " ("<< decode_joy(joy_code) <<  ") in "<<wnd<<" : "<<menu<<" as "<<key<< " ("<<decode_key(key_map,key)<<")";
                         found = 1;
                         done = 1;
                     }

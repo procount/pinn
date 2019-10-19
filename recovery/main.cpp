@@ -328,8 +328,8 @@ int main(int argc, char *argv[])
     }
     qDebug() << "NOOBS drive:" << drive;
 
-    cec->loadCECmap("/mnt/cec_keys.json");
-    joy->loadJOYmap("/mnt/joy_keys.json");
+    cec->loadMap("/mnt/cec_keys.json");
+    joy->loadMap("/mnt/joy_keys.json");
 
 
     QPropertyAnimation *animation1 = new QPropertyAnimation(&logo1,"geometry");
