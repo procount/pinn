@@ -104,7 +104,7 @@ protected slots:
     void onQuery(const QString &msg, const QString &title, QMessageBox::StandardButton* answer);
     void hideDialogIfNoNetwork();
     void pollForNewDisks();
-    void onKeyPress(int key);
+    void onKeyPress(int key, int value);
     void onJoyPress(int joy_code, int value);
     void checkUpdateTime();
 

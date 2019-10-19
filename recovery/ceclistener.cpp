@@ -169,11 +169,12 @@ void CecListener::cec_callback(uint32_t reason, uint32_t param1, uint32_t param2
     if (CEC_CB_REASON(reason) == VC_CEC_BUTTON_PRESSED)
     {
         keyPressed=1;
-        emit keyPress(cec_buttoncode);
+        emit keyPress(cec_buttoncode,1);
         qDebug() << "CEC key: " << cec_buttoncode << " " << decode_key(cec_map, cec_buttoncode);
     }
     else if (CEC_CB_REASON(reason) == VC_CEC_BUTTON_RELEASE)
     {
+        emit keyPress(cec_buttoncode,0);
         qDebug() << "CEC key RELEASED: " << cec_buttoncode << " " << decode_key(cec_map, cec_buttoncode);
     }
     else if (CEC_CB_REASON(reason) == VC_CEC_REMOTE_PRESSED)
@@ -187,7 +188,7 @@ void CecListener::cec_callback(uint32_t reason, uint32_t param1, uint32_t param2
 }
 
 
-void CecListener::process_cec(int cec_code)
+void CecListener::process_cec(int cec_code, int value)
 {
     int found=0;
     int key=-1;
@@ -238,6 +239,6 @@ void CecListener::process_cec(int cec_code)
     if (key == -1)
         return;
 
-    inject_key(key);
+    inject_key(key,value);
 }
 

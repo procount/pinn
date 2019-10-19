@@ -161,7 +161,7 @@ const char * decode_key(struct keymap_str *map, int code)
     return("Unknown");
 }
 
-void inject_key(int key)
+void inject_key(int key, int value)
 {
     Qt::KeyboardModifiers modifiers = Qt::NoModifier;
     //QPoint p = QCursor::pos();

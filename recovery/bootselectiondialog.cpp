@@ -64,7 +64,7 @@ BootSelectionDialog::BootSelectionDialog(const QString &drive, const QString &de
 
     cec->setWindow("bootSelection");
     cec->setMenu("any");
-    connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+    connect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
 
     joy->setWindow("bootSelection");
     joy->setMenu("any");
@@ -320,9 +320,9 @@ void BootSelectionDialog::countdown()
 }
 
 /* Key on TV remote pressed */
-void BootSelectionDialog::onKeyPress(int cec_code)
+void BootSelectionDialog::onKeyPress(int cec_code, int value)
 {
-    cec->process_cec(cec_code);
+    cec->process_cec(cec_code,value);
 }
 
 void BootSelectionDialog::onJoyPress(int cec_code,int value)

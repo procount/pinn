@@ -257,48 +257,7 @@ void joystick::process_joy(int joy_code, int value)
     int step = scale_joystick(value);
     int sign = sgn(step);
     int negstep = step*sign*-1;
+    value = negstep;
 
-    QRect s = QApplication::desktop()->screenGeometry();
-    QPoint p = QCursor::pos();
-
-    switch (key)
-    {
-    /* JOYSTICK SCALED SIMULATION */
-    case joy_left:
-        //DBG2 <<"joy_left";
-        p.rx()+=step;
-        if (s.contains(p,true))
-        {
-            QCursor::setPos(p);
-        }
-        break;
-    case joy_right:
-        //DBG2 <<"joy_right";
-        p.rx()+=step;
-        if (s.contains(p,true))
-        {
-            QCursor::setPos(p);
-        }
-        break;
-    case joy_up:
-        //DBG2 <<"joy_up";
-        p.ry()+=step;
-        if (s.contains(p,true))
-        {
-            QCursor::setPos(p);
-        }
-        break;
-    case joy_down:
-        //DBG2 <<"joy_down";
-        p.ry()+=step;
-        if (s.contains(p,true))
-        {
-            QCursor::setPos(p);
-        }
-        break;
-    default:
-        //DBG2 <<"Inject_key";
-        inject_key(key);
-        break;
-    }
+    inject_key(key,value);
 }

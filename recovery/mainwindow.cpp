@@ -111,7 +111,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     {
         cec->setWindow("mainwindow");
         cec->setMenu("Main Menu");
-        connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+        connect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
     }
 
     if (joy)
@@ -281,7 +281,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
 MainWindow::~MainWindow()
 {
     if (cec)
-        disconnect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+        disconnect(cec, SIGNAL(keyPress(int, int)), this, SLOT(onKeyPress(int, int)));
 
     QFile::remove(SOCKSERVER);
 
@@ -2001,9 +2001,9 @@ void MainWindow::filterList()
 }
 
 /* Key on TV remote pressed */
-void MainWindow::onKeyPress(int cec_code)
+void MainWindow::onKeyPress(int cec_code, int value)
 {
-    cec->process_cec(cec_code);
+    cec->process_cec(cec_code,value);
 }
 
 /* joystick pressed */

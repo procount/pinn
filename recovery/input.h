@@ -40,7 +40,7 @@ struct keymap_str {
 
 extern keymap_str key_map[];
 
-extern void inject_key(int key);
+extern void inject_key(int key,int value);
 const char * decode_key(struct keymap_str *map, int code);
 
 class Kinput : public QThread

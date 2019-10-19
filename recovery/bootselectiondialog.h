@@ -33,7 +33,7 @@ public:
 protected slots:
     void countdown();
     void bootPartition();
-    void onKeyPress(int);
+    void onKeyPress(int,int);
     void onJoyPress(int cec_code, int value);
 
 private slots:

@@ -147,10 +147,10 @@ public:
     virtual ~CecListener();
     void loadMap(QString filename) { Kinput::loadMap(filename, ":/cec_keys.json"); }
 
-    void process_cec(int cec_code);
+    void process_cec(int cec_code, int value);
 
 signals:
-    void keyPress(int key);
+    void keyPress(int key,int value);
 public slots:
 
 protected:
