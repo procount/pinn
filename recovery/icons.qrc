@@ -70,6 +70,8 @@
         <file>icons/left.JPG</file>
         <file>icons/right.JPG</file>
         <file>icons/up.JPG</file>
-        <file>wallpaper.jpg</file>
+        <file>icons/atari_logo1_trans.png</file>
+        <file>icons/atari_mc2.png</file>
+        <file>icons/wallpaper.jpg</file>
     </qresource>
 </RCC>

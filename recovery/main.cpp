@@ -26,6 +26,9 @@
 #include <QDir>
 #include <QDebug>
 #include <QTime>
+#include <QLabel>
+#include <QPropertyAnimation>
+#include <QSequentialAnimationGroup>
 
 #ifdef Q_WS_QWS
 #include <QWSServer>
@@ -222,37 +225,40 @@ int main(int argc, char *argv[])
     QWSServer::setBackground(BACKGROUND_COLOR);
 #endif
 
+    int y1=1080;
+    int y2=700;
+    int x2=1600;
+
     QPixmap pixmap;
-    QString wallpaperName = ":/wallpaper.jpg";
+    QString wallpaperName = ":/icons/wallpaper.jpg";
 
-    if (QFile::exists(wallpaperName))
-    {
-        QPixmap temp;
-        temp.load(wallpaperName);
-        QRect screen= a.desktop()->availableGeometry();
-        QRect area = temp.rect();
-        if (!wallpaper_resize)
-        {   //Crop the centre of the image out to fit the screen else showMessage is off screen
-            if (area.width()>screen.width())
-            {
-                area.setLeft( (area.width() - screen.width())/2 );
-                area.setWidth( screen.width() );
-            }
-            if (area.height()>screen.height())
-            {
-                area.setTop( (area.height() - screen.height())/2 );
-                area.setHeight( screen.height() );
-            }
+    QPixmap temp;
+    temp.load(wallpaperName);
+    QRect screen= a.desktop()->availableGeometry();
+    QRect pixsize = temp.rect();
+    QRect crop = pixsize;
+
+    if (!wallpaper_resize)
+    {   //Crop the centre of the image out to fit the screen else showMessage is off screen
+        if (crop.width()>screen.width())
+        {
+            crop.setLeft( (crop.width() - screen.width())/2 );
+            crop.setWidth( screen.width() );
         }
-        pixmap=temp.copy(area);
+        if (crop.height()>screen.height())
+        {
+            crop.setTop( (crop.height() - screen.height())/2 );
+            crop.setHeight( screen.height() );
+        }
     }
-    else
+    pixmap=temp.copy(crop);
+
+    if (wallpaper_resize)
     {
-        pixmap.load(":/wallpaper.jpg");
-        wallpaper_resize = false; //We don't want the standard logo resized - it looks really bad
+        y1 = (y1 * screen.height()) / pixsize.height();
+        y2 = (y2 * screen.height()) / pixsize.height();
+        x2 = (x2 * screen.width()) / pixsize.width();
     }
-
-
 
     //QSplashScreen *splash = new QSplashScreen(QPixmap(":/wallpaper.jpg"));
     KSplash *splash = new KSplash(pixmap,0,wallpaper_resize);
@@ -272,6 +278,19 @@ int main(int argc, char *argv[])
     splash->resize();
     splash->showStatusMessage("For recovery mode, hold SHIFT...");
     QApplication::processEvents();
+
+    temp.load(":/icons/atari_logo1_trans.png");
+    QLabel logo1(splash);
+    logo1.setPixmap(temp.scaled( (temp.width() * screen.width()) / pixsize.width(), (temp.height() * screen.height()) / pixsize.height() ));
+    logo1.move(0,y1);
+    logo1.show();
+
+    temp.load(":/icons/atari_mc2.png");
+    QLabel logo2(splash);
+    logo2.setPixmap(temp.scaled( (temp.width() * screen.width()) / pixsize.width(), (temp.height() * screen.height()) / pixsize.height() ));
+    logo2.move( -3* logo2.width() ,y2);
+    logo2.show();
+
 
     // Wait for drive device to show up
     QString drive;
@@ -312,6 +331,27 @@ int main(int argc, char *argv[])
     cec->loadCECmap("/mnt/cec_keys.json");
     joy->loadJOYmap("/mnt/joy_keys.json");
 
+
+    QPropertyAnimation *animation1 = new QPropertyAnimation(&logo1,"geometry");
+    animation1->setDuration(2000);
+    animation1->setStartValue(QRect(0, y1, logo1.width(), logo1.height()));
+    animation1->setEndValue(QRect(0,0, logo1.width(), logo1.height()));
+    animation1->setEasingCurve(QEasingCurve::OutQuad);
+    //animation1->start();
+
+    QPropertyAnimation *animation2 = new QPropertyAnimation(&logo2,"geometry");
+    animation2->setDuration(2000);
+    animation2->setStartValue( QRect(0, y2, logo2.width(), logo2.height()));
+    animation2->setEndValue(QRect(x2,y2, logo2.width(), logo2.height()));
+    animation2->setEasingCurve(QEasingCurve::OutBounce);
+
+    QSequentialAnimationGroup *group = new QSequentialAnimationGroup;
+    group->addAnimation(animation1);
+    //group->addAnimation(animation0);
+    group->addAnimation(animation2);
+    group->start();
+
+
     // If -runinstaller is not specified, only continue if SHIFT is pressed, GPIO is triggered,
     // or no OS is installed (/settings/installed_os.json does not exist)
     bool bailout = !runinstaller
@@ -323,7 +363,7 @@ int main(int argc, char *argv[])
     {
         t.start();
 
-        while (t.elapsed() < 4000)
+        while (t.elapsed() < 8000)
         {
             splash->showStatusMessage("For recovery mode, hold SHIFT...", (t.elapsed()%1000 < 500)?Qt::black : Qt::white);
 
@@ -356,6 +396,8 @@ int main(int argc, char *argv[])
     }
 
     splash->showStatusMessage("");
+    while (group->currentTime()<group->totalDuration())
+        QApplication::processEvents();
 
     cec->clearKeyPressed();
     joy->clearKeyPressed();
