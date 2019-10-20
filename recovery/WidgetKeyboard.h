@@ -65,6 +65,7 @@ class WidgetKeyboard : public QWidget, public Ui::WidgetKeyboard
         void HighlightKey();
         void LowlightKey();
         void MoveKey(int direction);
+        void findRowCol(QToolButton* button, int * row, int * col);
 
     protected:
         virtual bool eventFilter(QObject *obj, QEvent *event);

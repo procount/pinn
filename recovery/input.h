@@ -5,6 +5,7 @@
 #include <QMap>
 #include <QFile>
 #include <QDebug>
+#include <QObject>
 #include "json.h"
 #include "simulate.h"
 
@@ -51,16 +52,18 @@ public:
     explicit Kinput(QObject *parent = 0);
     int hasKeyPressed() {return(keyPressed);}
     void clearKeyPressed() {keyPressed=0;}
-    void setWindow(const QString &wnd)  { _wnd = wnd; }
-    void setMenu(const QString &menu)   { _menu = menu; }
-    QString getWindow() { return _wnd; }
-    QString getMenu() { return _menu; }
+    static void setWindow(const QString &wnd)  { _wnd = wnd; qDebug() << "setWindow "<<wnd;}
+    static void setMenu(const QString &menu)   { _menu = menu; qDebug() << "setMenu "<<menu;}
+    static void setGrabWindow(QObject * window) {_grab = window; }
+    static QObject *  grabWindow() {return (_grab); }
+    static QString getWindow() { return _wnd; }
+    static QString getMenu() { return _menu; }
     void loadMap(QString filename, QString defName);
 
 protected:
     int keyPressed;
-    QString _wnd;
-    QString _menu;
+    static QString _wnd;
+    static QString _menu;
     int map_string(struct keymap_str *map, QString str);
     int map_key(QString cec);
     mapwnd_t _map;
@@ -79,6 +82,7 @@ private:
     int mouse_input;
     int step;
     int count;
+    static QObject * _grab;
 };
 
 #endif // INPUT_H

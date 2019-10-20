@@ -107,17 +107,19 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     if (s.height() < 500)
         resize(s.width()-10, s.height()-100);
 
+    Kinput::setWindow("mainwindow");
+    Kinput::setMenu("Main Menu");
     if (cec)
     {
-        cec->setWindow("mainwindow");
-        cec->setMenu("Main Menu");
+        //cec->setWindow("mainwindow");
+        //cec->setMenu("Main Menu");
         connect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
     }
 
     if (joy)
     {
-        joy->setWindow("mainwindow");
-        joy->setMenu("Main Menu");
+        //joy->setWindow("mainwindow");
+        //joy->setMenu("Main Menu");
         connect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
     }
 
@@ -2003,7 +2005,7 @@ void MainWindow::filterList()
 /* Key on TV remote pressed */
 void MainWindow::onKeyPress(int cec_code, int value)
 {
-    qDebug() << "Processing CEC " << cec_code << ", " << value;
+    //qDebug() << "Processing CEC " << cec_code << ", " << value;
     cec->process_cec(cec_code,value);
 }
 
@@ -2011,7 +2013,7 @@ void MainWindow::onKeyPress(int cec_code, int value)
 void MainWindow::onJoyPress(int joy_code, int value)
 {
     //TRACE
-    qDebug() << "Processing Joy "<<joy_code <<", " << value;
+    //qDebug() << "Processing Joy "<<joy_code <<", " << value;
     joy->process_joy(joy_code,value);
 }
 

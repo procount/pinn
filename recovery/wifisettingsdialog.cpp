@@ -11,6 +11,8 @@
 #include "ui_wifisettingsdialog.h"
 #include "wpa_supplicant/wpafactory.h"
 #include "twoiconsdelegate.h"
+#include "input.h"
+
 #include <QMessageBox>
 #include <QPushButton>
 #include <QProgressDialog>
@@ -398,7 +400,17 @@ void WifiSettingsDialog::on_vkeyboard_toggled(bool checked)
     {
         ui->passwordEdit->setFocus();
         virtualKeyBoard->show();
+        _lastWindow = Kinput::getWindow();
+        _lastMenu = Kinput::getMenu();
+        Kinput::setWindow("VKeyboard");
+        Kinput::setMenu("any");
+        Kinput::setGrabWindow(virtualKeyBoard);
     }
     else
+    {
         virtualKeyBoard->hide();
+        Kinput::setWindow(_lastWindow);
+        Kinput::setMenu(_lastMenu);
+        Kinput::setGrabWindow(NULL);
+    }
 }

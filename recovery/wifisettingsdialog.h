@@ -14,7 +14,7 @@
 #include <QDialog>
 #include <QDBusObjectPath>
 #include <QVariantMap>
-
+#include "input.h"
 namespace Ui {
 class WifiSettingsDialog;
 }
@@ -46,6 +46,8 @@ protected:
 
 private:
     WidgetKeyboard *virtualKeyBoard;
+    QString _lastWindow;
+    QString _lastMenu;
 
 protected slots:
     virtual void accept();

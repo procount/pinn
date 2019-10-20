@@ -233,7 +233,7 @@ void joystick::process_joy(int joy_code, int value)
                     if (k.contains(joy_code))
                     {
                         key = k.value(joy_code);
-                        //qDebug() << "found joy " << joy_code << " ("<< decode_joy(joy_code) <<  ") in "<<wnd<<" : "<<menu<<" as "<<key<< " ("<<decode_key(key_map,key)<<")";
+                        qDebug() << "found joy " << joy_code << " ("<< decode_joy(joy_code) <<  ") in "<<wnd<<" : "<<menu<<" as "<<key<< " ("<<decode_key(key_map,key)<<")";
                         found = 1;
                         done = 1;
                     }

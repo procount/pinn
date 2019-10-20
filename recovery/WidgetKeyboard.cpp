@@ -103,6 +103,11 @@ void WidgetKeyboard::on_btn_clicked(int btn)
         return;
     }
     
+    LowlightKey();
+    findRowCol( allButtons.at(btn), &currentRow, &currentCol);
+    HighlightKey();
+
+
     //Keys to be handled separately
 	if (keyId==Qt::Key_Shift
 		|| keyId==Qt::Key_Control
@@ -399,6 +404,25 @@ Qt for Embedded Linux : A built-in mixing sound server is used, accessing /dev/d
 void WidgetKeyboard::setSoundEnabled(QString soundPath)
 {
 	soundFilePath = soundPath;
+}
+
+void WidgetKeyboard::findRowCol(QToolButton* button, int * row, int * col)
+{
+    QString currentKey = button->objectName();
+    int r,c;
+    int done=0;
+    for (r=0; r<KBDROWS && !done; r++)
+    {
+        for (c=0; c<KBDCOLS && !done; c++)
+        {
+            if (keyboard_layout[r][c] == currentKey)
+            {
+                *row =r;
+                *col =c;
+                done=1;
+            }
+        }
+    }
 }
 
 void WidgetKeyboard::HighlightKey()

@@ -14,6 +14,16 @@
         }
     ],
 
+    "VKeyboard": {
+        "any": {
+            "Key_Left":     "Y",
+            "Key_Right":    "RB",
+            "Key_Up":       "LB",
+            "Key_Down":     "B",
+            "Key_Space":    "Back"
+        }
+    },
+
     "any": {
         "any": {
             "mouse_left":   "LAnalogLeft",
@@ -38,5 +48,6 @@
             "Key_Enter":    "Start"
         }
     }
+
 }
 
