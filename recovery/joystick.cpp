@@ -70,7 +70,7 @@ joystick::~joystick()
 }
 
 
-int joystick::map_joy(QVariant joy)
+int joystick::map_button(QVariant joy)
 {
     //TRACE
     int result=0;

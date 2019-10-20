@@ -2003,6 +2003,7 @@ void MainWindow::filterList()
 /* Key on TV remote pressed */
 void MainWindow::onKeyPress(int cec_code, int value)
 {
+    qDebug() << "Processing CEC " << cec_code << ", " << value;
     cec->process_cec(cec_code,value);
 }
 
@@ -2010,6 +2011,7 @@ void MainWindow::onKeyPress(int cec_code, int value)
 void MainWindow::onJoyPress(int joy_code, int value)
 {
     //TRACE
+    qDebug() << "Processing Joy "<<joy_code <<", " << value;
     joy->process_joy(joy_code,value);
 }
 

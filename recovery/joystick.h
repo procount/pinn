@@ -36,7 +36,7 @@ public:
 
     void print_device_info();
     void process_event(struct js_event jse);
-    int map_joy(QVariant joy);
+    virtual int map_button(QVariant joy);
     int convert_event2joy(struct js_event jse);
     void loadMap(QString filename) { Kinput::loadMap(filename, ":/joy_keys.json"); }
     void process_joy(int joy_code, int value);

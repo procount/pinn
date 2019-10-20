@@ -157,7 +157,7 @@ protected:
     virtual void run();
     static void _cec_callback(void *userptr, uint32_t reason, uint32_t param1, uint32_t param2, uint32_t param3, uint32_t param4);
     void cec_callback(uint32_t reason, uint32_t param1, uint32_t param2, uint32_t param3, uint32_t param4);
-    int map_cec(QVariant cec);
+    int map_button(QVariant cec);
 
     QWaitCondition _waitcond;
 

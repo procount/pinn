@@ -142,7 +142,7 @@ void CecListener::run()
 #endif
 }
 
-int CecListener::map_cec(QVariant cec)
+int CecListener::map_button(QVariant cec)
 {
     int result=0;
     if (cec.type() == QVariant::String)
@@ -195,16 +195,19 @@ void CecListener::process_cec(int cec_code, int value)
     QString menu;
     QString wnd;
 
+    qDebug() << "Proces_CEC:  code: "<<cec_code<<" Value: "<<value<<" wnd: "<<_wnd<<" Menu: "<<_menu;
     int done=0;
     wnd=_wnd;
     do
     {
+        qDebug()<<"Searching for "<<wnd;
         if (_map.contains(wnd))
         {
             mapmenu_t m = _map.value(wnd);
 
             menu = _menu;
             do {
+                qDebug()<<"Searching for "<<menu;
                 if (m.contains(menu))
                 {
                     mapkeys_t k = m.value(menu);
