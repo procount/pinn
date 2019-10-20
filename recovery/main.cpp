@@ -147,7 +147,10 @@ int main(int argc, char *argv[])
     RightButtonFilter rbf;
     LongPressHandler lph;
     GpioInput gpio(gpioChannel);
+
     cec = enableCEC();
+    Kinput::setWindow("mainwindow");
+    Kinput::setMenu("Main Menu");
 
     bool runinstaller = false;
     bool gpio_trigger = false;
@@ -276,7 +279,7 @@ int main(int argc, char *argv[])
 
     splash->show();
     splash->resize();
-    splash->showStatusMessage("For recovery mode, hold SHIFT...");
+    //splash->showStatusMessage("For recovery mode, hold SHIFT...");
     QApplication::processEvents();
 
     temp.load(":/icons/atari_logo1_trans.png");
@@ -351,6 +354,8 @@ int main(int argc, char *argv[])
     group->addAnimation(animation2);
     group->start();
 
+    joy->clearKeyPressed();
+    cec->clearKeyPressed();
 
     // If -runinstaller is not specified, only continue if SHIFT is pressed, GPIO is triggered,
     // or no OS is installed (/settings/installed_os.json does not exist)

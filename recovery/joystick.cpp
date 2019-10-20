@@ -138,6 +138,7 @@ void joystick::process_event(struct js_event jse)
 
     //TRACE
     int key=convert_event2joy(jse);
+    keyPressed=1;
     emit joyPress(key,jse.value);
     if ((jse.value==0) && (jse.type==2))
     {
@@ -170,6 +171,7 @@ void joystick::run()
             else
                 process_event(jse);
         }
+        clearKeyPressed();
     }
 }
 
