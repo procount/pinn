@@ -94,6 +94,9 @@ WifiSettingsDialog::WifiSettingsDialog(const QString &preferredInterface, QWidge
 WifiSettingsDialog::~WifiSettingsDialog()
 {
     virtualKeyBoard->hide();
+    Kinput::setWindow(_lastWindow);
+    Kinput::setMenu(_lastMenu);
+    Kinput::setGrabWindow(NULL);
     delete virtualKeyBoard;
     delete ui;
 }
