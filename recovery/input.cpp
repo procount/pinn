@@ -81,6 +81,7 @@ int Kinput::map_key(QString key)
 
 int Kinput::map_button(QVariant joy)
 {
+    Q_UNUSED(joy);
     return(0);
 }
 
@@ -148,7 +149,88 @@ void Kinput::loadMap(QString filename, QString defName)
         }
     }
 }
+void Kinput::inject_key(int key, int value)
+{
+    if (key & mouse_any)
+        mouse_simulate(key,value);
+    else
+        key_simulate(key,value);
 
+}
+
+void Kinput::mouse_simulate(int key, int value)
+{
+    qDebug() << "Inject Mouse Code: "<<key<<" Value: " <<value;
+    extern simulate * sim;
+
+    switch (key)
+    {
+    /* MOUSE SIMULATION */
+    case mouse_left:
+        //p.rx()-=10;
+        //QCursor::setPos(p);
+        sim->inject(EV_REL, REL_X, -10);
+        sim->inject(EV_SYN, SYN_REPORT, 0);
+        break;
+    case mouse_right:
+        //p.rx()+=10;
+        //QCursor::setPos(p);
+        sim->inject(EV_REL, REL_X, 10);
+        sim->inject(EV_SYN, SYN_REPORT, 0);
+        break;
+    case mouse_up:
+        //p.ry()-=10;
+        //QCursor::setPos(p);
+        sim->inject(EV_REL, REL_Y, -10);
+        sim->inject(EV_SYN, SYN_REPORT, 0);
+        break;
+    case mouse_down:
+        //p.ry()+=10;
+        //QCursor::setPos(p);
+        sim->inject(EV_REL, REL_Y, 10);
+        sim->inject(EV_SYN, SYN_REPORT, 0);
+        break;
+    case mouse_lclick:
+        { //Click!
+    /*
+    *             QWidget* widget = dynamic_cast<QWidget*>(QApplication::widgetAt(QCursor::pos()));
+            if (widget)
+            {
+                QPoint pos = QCursor::pos();
+                QMouseEvent *event = new QMouseEvent(QEvent::MouseButtonPress,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
+                QCoreApplication::sendEvent(widget,event);
+                QMouseEvent *event1 = new QMouseEvent(QEvent::MouseButtonRelease,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
+                QCoreApplication::sendEvent(widget,event1);
+                qApp->processEvents();
+            }
+    */
+            sim->inject(EV_KEY, BTN_LEFT, 1);
+            sim->inject(EV_SYN, SYN_REPORT, 0);
+            sim->inject(EV_KEY, BTN_LEFT, 0);
+            sim->inject(EV_SYN, SYN_REPORT, 0);
+        }
+        break;
+    }
+}
+
+void Kinput::key_simulate(int key, int value)
+{
+    Qt::KeyboardModifiers modifiers = Qt::NoModifier;
+    //QPoint p = QCursor::pos();
+//    extern simulate * sim;
+
+    qDebug() << "Inject Key Code: "<<key<<" Value: " <<value;
+
+    // key press
+    //sim->inject(EV_KEY, key, 1);
+    //sim->inject(EV_SYN, SYN_REPORT, 0);
+    QWSServer::sendKeyEvent(0, key, modifiers, true, false);
+    // key release
+    //sim->inject(EV_KEY, key, 0);
+    //sim->inject(EV_SYN, SYN_REPORT, 0);
+    QWSServer::sendKeyEvent(0, key, modifiers, false, false);
+
+}
 
 
 const char * decode_key(struct keymap_str *map, int code)
@@ -162,75 +244,6 @@ const char * decode_key(struct keymap_str *map, int code)
     return("Unknown");
 }
 
-void inject_key(int key, int value)
-{
 
-    Qt::KeyboardModifiers modifiers = Qt::NoModifier;
-    //QPoint p = QCursor::pos();
-    extern simulate * sim;
-
-    qDebug() << "Inject Key Code: "<<key<<" Value: " <<value;
-    //if (value)
-    {
-        switch (key)
-        {
-        /* MOUSE SIMULATION */
-        case mouse_left:
-            //p.rx()-=10;
-            //QCursor::setPos(p);
-            sim->inject(EV_REL, REL_X, -10);
-            sim->inject(EV_SYN, SYN_REPORT, 0);
-            break;
-        case mouse_right:
-            //p.rx()+=10;
-            //QCursor::setPos(p);
-            sim->inject(EV_REL, REL_X, 10);
-            sim->inject(EV_SYN, SYN_REPORT, 0);
-            break;
-        case mouse_up:
-            //p.ry()-=10;
-            //QCursor::setPos(p);
-            sim->inject(EV_REL, REL_Y, -10);
-            sim->inject(EV_SYN, SYN_REPORT, 0);
-            break;
-        case mouse_down:
-            //p.ry()+=10;
-            //QCursor::setPos(p);
-            sim->inject(EV_REL, REL_Y, 10);
-            sim->inject(EV_SYN, SYN_REPORT, 0);
-            break;
-        case mouse_lclick:
-            { //Click!
-        /*
-        *             QWidget* widget = dynamic_cast<QWidget*>(QApplication::widgetAt(QCursor::pos()));
-                if (widget)
-                {
-                    QPoint pos = QCursor::pos();
-                    QMouseEvent *event = new QMouseEvent(QEvent::MouseButtonPress,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
-                    QCoreApplication::sendEvent(widget,event);
-                    QMouseEvent *event1 = new QMouseEvent(QEvent::MouseButtonRelease,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
-                    QCoreApplication::sendEvent(widget,event1);
-                    qApp->processEvents();
-                }
-        */
-                sim->inject(EV_KEY, BTN_LEFT, 1);
-                sim->inject(EV_SYN, SYN_REPORT, 0);
-                sim->inject(EV_KEY, BTN_LEFT, 0);
-                sim->inject(EV_SYN, SYN_REPORT, 0);
-            }
-            break;
-        default:
-            // key press
-            //sim->inject(EV_KEY, key, 1);
-            //sim->inject(EV_SYN, SYN_REPORT, 0);
-            QWSServer::sendKeyEvent(0, key, modifiers, true, false);
-            // key release
-            //sim->inject(EV_KEY, key, 0);
-            //sim->inject(EV_SYN, SYN_REPORT, 0);
-            QWSServer::sendKeyEvent(0, key, modifiers, false, false);
-            break;
-        }
-    }
-}
 
 

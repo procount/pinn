@@ -41,7 +41,7 @@ struct keymap_str {
 
 extern keymap_str key_map[];
 
-extern void inject_key(int key,int value);
+
 const char * decode_key(struct keymap_str *map, int code);
 
 class Kinput : public QThread
@@ -65,6 +65,9 @@ protected:
     int map_key(QString cec);
     mapwnd_t _map;
     virtual int map_button(QVariant joy);
+    void inject_key(int key,int value);
+    void key_simulate(int key, int value);
+    void mouse_simulate(int key, int value);
 
 signals:
 
