@@ -97,7 +97,7 @@ int joystick::convert_event2joy(struct js_event jse)
     int result=0;
 
     //DBG2 ("Searching for Type " << jse.type << " Number "<<jse.number << " Value " << jse.value;)
-    qDebug() << "Searching for Type " << jse.type << " Number "<<jse.number << " Value " << jse.value;
+    //qDebug() << "Searching for Type " << jse.type << " Number "<<jse.number << " Value " << jse.value;
 
     struct joymap_str *map = joymap;
     while ((map->string) && (!result))
@@ -107,11 +107,11 @@ int joystick::convert_event2joy(struct js_event jse)
         {
             value = sgn(value);
         }
-        if ((map->type == (jse.type & ~JS_EVENT_INIT)) && (map->value == value) && (map->number == jse.number))
+        if ((map->type == (jse.type & ~JS_EVENT_INIT)) && ((map->value == value) || (!value)) && (map->number == jse.number))
         {
             result = map->id;
             //DBG2 << "Found "<< map->id << ":" <<map->string;
-            qDebug() << "Found "<< map->id << ":" <<map->string;
+            //qDebug() << "Found "<< map->id << ":" <<map->string;
         }
         map++;
     }
@@ -139,6 +139,13 @@ void joystick::process_event(struct js_event jse)
     //TRACE
     int key=convert_event2joy(jse);
     emit joyPress(key,jse.value);
+    if ((jse.value==0) && (jse.type==2))
+    {
+        if (key==1)
+            emit joyPress(2,jse.value);
+        if (key==3)
+            emit joyPress(4,jse.value);
+    }
 }
 
 void joystick::run()
@@ -226,7 +233,7 @@ void joystick::process_joy(int joy_code, int value)
                     if (k.contains(joy_code))
                     {
                         key = k.value(joy_code);
-                        qDebug() << "found joy " << joy_code << " ("<< decode_joy(joy_code) <<  ") in "<<wnd<<" : "<<menu<<" as "<<key<< " ("<<decode_key(key_map,key)<<")";
+                        //qDebug() << "found joy " << joy_code << " ("<< decode_joy(joy_code) <<  ") in "<<wnd<<" : "<<menu<<" as "<<key<< " ("<<decode_key(key_map,key)<<")";
                         found = 1;
                         done = 1;
                     }

@@ -5,6 +5,9 @@
 #include <linux/uinput.h>
 
 #include <QWSServer>
+#include <QTimer>
+#include <QApplication>
+#include <QDesktopWidget>
 
 struct scale_t scale_map[MAXSTEPS] = {-1,-1};
 
@@ -61,6 +64,9 @@ Kinput::Kinput(QObject *parent) :
     QThread(parent)
 {
     keyPressed=0;
+    mouse_input=0;
+    for (int i=0; i<6; i++)
+        mouse_state[i]=0;
 }
 
 int Kinput::map_string(struct keymap_str *map, QString str)
@@ -160,56 +166,131 @@ void Kinput::inject_key(int key, int value)
 
 void Kinput::mouse_simulate(int key, int value)
 {
-    qDebug() << "Inject Mouse Code: "<<key<<" Value: " <<value;
-    extern simulate * sim;
+//    qDebug() << "Inject Mouse Code: "<<key<<" Value: " <<value;
 
-    switch (key)
+    mouse_state[key & 0x07]= (value ? 1 : 0);
+
+    if (value)
     {
-    /* MOUSE SIMULATION */
-    case mouse_left:
-        //p.rx()-=10;
-        //QCursor::setPos(p);
-        sim->inject(EV_REL, REL_X, -10);
-        sim->inject(EV_SYN, SYN_REPORT, 0);
-        break;
-    case mouse_right:
-        //p.rx()+=10;
-        //QCursor::setPos(p);
-        sim->inject(EV_REL, REL_X, 10);
-        sim->inject(EV_SYN, SYN_REPORT, 0);
-        break;
-    case mouse_up:
-        //p.ry()-=10;
-        //QCursor::setPos(p);
-        sim->inject(EV_REL, REL_Y, -10);
-        sim->inject(EV_SYN, SYN_REPORT, 0);
-        break;
-    case mouse_down:
-        //p.ry()+=10;
-        //QCursor::setPos(p);
-        sim->inject(EV_REL, REL_Y, 10);
-        sim->inject(EV_SYN, SYN_REPORT, 0);
-        break;
-    case mouse_lclick:
-        { //Click!
-    /*
-    *             QWidget* widget = dynamic_cast<QWidget*>(QApplication::widgetAt(QCursor::pos()));
-            if (widget)
-            {
-                QPoint pos = QCursor::pos();
-                QMouseEvent *event = new QMouseEvent(QEvent::MouseButtonPress,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
-                QCoreApplication::sendEvent(widget,event);
-                QMouseEvent *event1 = new QMouseEvent(QEvent::MouseButtonRelease,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
-                QCoreApplication::sendEvent(widget,event1);
-                qApp->processEvents();
-            }
-    */
-            sim->inject(EV_KEY, BTN_LEFT, 1);
-            sim->inject(EV_SYN, SYN_REPORT, 0);
-            sim->inject(EV_KEY, BTN_LEFT, 0);
-            sim->inject(EV_SYN, SYN_REPORT, 0);
+        if (!mouse_input)
+        {
+            mouse_input=1;
+            step=1;
+            count=0;
+            mouse_repeat(); //Do it now
         }
-        break;
+    }
+    else
+    {
+        int down=0;
+        for (int i=0; i<6; i++)
+        {
+            if (mouse_state[i])
+                down++;
+        }
+        if (!down)
+            mouse_input=0;
+    }
+
+
+//    qDebug()<<"Mouse input=" << mouse_input;
+//    for (int i=0; i<6; i++)
+//        qDebug() << mouse_state[i];
+
+}
+
+void Kinput::mouse_repeat()
+{
+    extern simulate * sim;
+    int down=0;
+    QPoint p = QCursor::pos();
+    QSize screen = QApplication::desktop()->screenGeometry(-1).size();
+
+    for (int i=0; i<6; i++)
+    {
+
+        switch (i | mouse_any)
+        {
+        /* MOUSE SIMULATION */
+        case mouse_left:
+            if (mouse_state[i])
+            {
+                //qDebug()<<"MouseLeft";
+                down++;
+                if (p.x()>0)
+                    sim->inject(EV_REL, REL_X, -step);
+            }
+            break;
+        case mouse_right:
+            if (mouse_state[i])
+            {
+                //qDebug()<<"MouseRight";
+                down++;
+                //p.rx()+=10;
+                //QCursor::setPos(p);
+                if (p.x()<screen.width())
+                    sim->inject(EV_REL, REL_X, step);
+            }
+            break;
+        case mouse_up:
+            if (mouse_state[i])
+            {
+                //qDebug()<<"MouseUp";
+                down++;
+                //p.ry()-=10;
+                //QCursor::setPos(p);
+                if (p.y()>0)
+                    sim->inject(EV_REL, REL_Y, -step);
+            }
+            break;
+        case mouse_down:
+            if (mouse_state[i])
+            {
+                //qDebug()<<"MouseDown";
+                down++;
+                //p.ry()+=10;
+                //QCursor::setPos(p);
+                if (p.y()<screen.height())
+                sim->inject(EV_REL, REL_Y, step);
+            }
+            break;
+        case mouse_lclick:
+            { //Click!
+        /*
+        *             QWidget* widget = dynamic_cast<QWidget*>(QApplication::widgetAt(QCursor::pos()));
+                if (widget)
+                {
+                    QPoint pos = QCursor::pos();
+                    QMouseEvent *event = new QMouseEvent(QEvent::MouseButtonPress,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
+                    QCoreApplication::sendEvent(widget,event);
+                    QMouseEvent *event1 = new QMouseEvent(QEvent::MouseButtonRelease,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
+                    QCoreApplication::sendEvent(widget,event1);
+                    qApp->processEvents();
+                }
+        */
+                sim->inject(EV_KEY, BTN_LEFT, 1);
+                sim->inject(EV_SYN, SYN_REPORT, 0);
+                sim->inject(EV_KEY, BTN_LEFT, 0);
+                sim->inject(EV_SYN, SYN_REPORT, 0);
+            }
+            break;
+        }
+        sim->inject(EV_SYN, SYN_REPORT, 0);
+        if (down==0) {
+            count=0;
+            step=1;
+            mouse_input=0;
+        }
+        else {
+            count++;
+            if (count==40)
+                step=2;
+            if (count==80)
+                step=5;
+            if (count==200)
+                step=10;
+            QTimer::singleShot(100, this, SLOT(mouse_repeat()));
+        }
     }
 }
 

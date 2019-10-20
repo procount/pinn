@@ -72,9 +72,13 @@ protected:
 signals:
 
 public slots:
+    void mouse_repeat();
 
 private:
-
+    int mouse_state[6];
+    int mouse_input;
+    int step;
+    int count;
 };
 
 #endif // INPUT_H
