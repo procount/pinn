@@ -97,6 +97,8 @@ Kinput::Kinput(QObject *parent) :
 {
     _grab=NULL;
     keyPressed=0;
+    keyState=0;
+    currentKey=0;
     mouse_input=0;
     for (int i=0; i<6; i++)
         mouse_state[i]=0;
@@ -398,7 +400,7 @@ void Kinput::key_repeat()
             //sim->inject(EV_SYN, SYN_REPORT, 0);
             QWSServer::sendKeyEvent(0, currentKey, modifiers, true, false);
         }
-        QTimer::singleShot( (keyState==1) ? 200 : 100, this, SLOT(key_repeat()));
+        QTimer::singleShot( (keyState==1) ? 400 : 100, this, SLOT(key_repeat()));
         keyState=2;
     }
     else

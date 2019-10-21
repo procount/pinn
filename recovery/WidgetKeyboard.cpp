@@ -473,10 +473,26 @@ void WidgetKeyboard::MoveKey(int direction)
         break;
 
     }
-    while (((currentKey = keyboard_layout[currentRow][currentCol])=="0") && (currentCol>0))
+    if (direction==2)
     {
-        currentCol--;
+        while (((currentKey = keyboard_layout[currentRow][currentCol])=="0") && (currentCol<KBDCOLS-1))
+        {
+            currentCol++;
+        }
+        while (((currentKey = keyboard_layout[currentRow][currentCol])=="0") && (currentCol>0))
+        {
+            currentCol--;
+        }
+
     }
+    else
+    {
+        while (((currentKey = keyboard_layout[currentRow][currentCol])=="0") && (currentCol>0))
+        {
+            currentCol--;
+        }
+    }
+
  //   QToolButton * currentButton = findChild<QToolButton *>(currentKey);
     HighlightKey();
 }
