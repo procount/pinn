@@ -32,6 +32,8 @@
 #include <QFile>
 #include <QDebug>
 #include <QObject>
+#include <QTimer>
+
 #include "json.h"
 #include "simulate.h"
 
@@ -112,6 +114,8 @@ private:
     static QObject * _grab;
     int currentKey;
     int keyState;
+    QTimer keytimer;
+    QTimer mousetimer;
 };
 
 #endif // INPUT_H

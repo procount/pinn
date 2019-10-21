@@ -102,7 +102,13 @@ Kinput::Kinput(QObject *parent) :
     mouse_input=0;
     for (int i=0; i<6; i++)
         mouse_state[i]=0;
+
+    mousetimer.setSingleShot(true);
+    connect (&mousetimer, SIGNAL(timeout()), this, SLOT(mouse_repeat()) );
+    keytimer.setSingleShot(true);
+    connect(&keytimer, SIGNAL(timeout()), this, SLOT(key_repeat()));
 }
+
 
 int Kinput::map_string(struct keymap_str *map, QString str)
 {
@@ -334,7 +340,9 @@ void Kinput::mouse_repeat()
             step=8;
         if (count>50)
             step=10;
-        QTimer::singleShot(40, this, SLOT(mouse_repeat()));
+//        QTimer::singleShot(40, this, SLOT(mouse_repeat()));
+        mousetimer.start( 40 );
+
     }
 }
 
@@ -380,6 +388,7 @@ void Kinput::key_simulate(int key, int value)
     else
     {
         keyState=0;
+        keytimer.start( 20 );
     }
 }
 
@@ -400,7 +409,8 @@ void Kinput::key_repeat()
             //sim->inject(EV_SYN, SYN_REPORT, 0);
             QWSServer::sendKeyEvent(0, currentKey, modifiers, true, false);
         }
-        QTimer::singleShot( (keyState==1) ? 400 : 100, this, SLOT(key_repeat()));
+        //QTimer::singleShot( (keyState==1) ? 400 : 100, this, SLOT(key_repeat()));
+        keytimer.start( (keyState==1) ? 400:100);
         keyState=2;
     }
     else

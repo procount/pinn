@@ -59,6 +59,7 @@ private slots:
     void on_passwordRadio_toggled(bool checked);
     void on_list_currentItemChanged(QListWidgetItem *current);
     void on_vkeyboard_toggled(bool checked);
+    void on_checkBox_stateChanged(int arg1);
 };
 
 #endif // WIFISETTINGSDIALOG_H
