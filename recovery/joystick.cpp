@@ -164,10 +164,12 @@ void joystick::process_event(struct js_event jse)
 
     //TRACE
     int key=convert_event2joy(jse);
-    keyPressed=1;
+    if (value)
+        keyPressed=1;
     emit joyPress(key,jse.value);
     if ((jse.value==0) && (jse.type==2))
-    {
+    {   //If a directional axis goes to zero, we should release the previous direction.
+        //But to avoid remembering, just release both opposite directions
         if (key==1)
             emit joyPress(2,jse.value);
         if (key==3)
@@ -215,6 +217,8 @@ const char * joystick::decode_joy( int code)
     return("Unknown");
 }
 
+
+//Only required for analog joysticks to give some sort of proportional mouse speed
 int scale_joystick(int value)
 {
     int step=0;
