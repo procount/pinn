@@ -1,3 +1,12 @@
+/* Main window
+ *
+ * Initial author: Floris Bos
+ * Maintained by Raspberry Pi
+ * Modified by @procount (c) 2019
+ * See LICENSE.txt for license details
+ *
+ */
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "multiimagewritethread.h"
@@ -63,15 +72,6 @@ extern "C" {
 extern CecListener * cec;
 extern joystick * joy;
 extern simulate * sim;
-
-/* Main window
- *
- * Initial author: Floris Bos
- * Maintained by Raspberry Pi
- *
- * See LICENSE.txt for license details
- *
- */
 
 /* To keep track of where the different OSes get 'installed' from */
 #define SOURCE_SDCARD "sdcard"

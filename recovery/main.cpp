@@ -1,3 +1,13 @@
+/*
+ *
+ * Initial author: Floris Bos
+ * Maintained by Raspberry Pi
+ * Modified by @procount (c) 2019
+ *
+ * See LICENSE.txt for license details
+ *
+ */
+
 #include "mainwindow.h"
 #include "languagedialog.h"
 #include "config.h"
@@ -33,15 +43,6 @@
 #ifdef Q_WS_QWS
 #include <QWSServer>
 #endif
-
-/*
- *
- * Initial author: Floris Bos
- * Maintained by Raspberry Pi
- *
- * See LICENSE.txt for license details
- *
- */
 
 CecListener *cec = NULL;
 CecListener *enableCEC(QObject *parent=0);
