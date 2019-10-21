@@ -326,7 +326,7 @@ bool MultiImageWriteThread::writePartitionTable(const QString &drive, const QMap
 {
     /* Write partition table using sfdisk */
 
-    /* Fixed NOOBS partition */
+    /* Fixed recovery partition */
     uint startP1 = getFileContents(sysclassblock(drive, 1)+"/start").trimmed().toUInt();
     uint sizeP1  = getFileContents(sysclassblock(drive, 1)+"/size").trimmed().toUInt();
     /* Fixed start of extended partition. End is not fixed, as it depends on primary partition 3 & 4 */
@@ -1011,7 +1011,7 @@ void MultiImageWriteThread::patchConfigTxt()
 
         QFile f("/mnt2/config.txt");
         f.open(f.Append);
-        f.write("\r\n# NOOBS Auto-generated Settings:\r\n"+dispOptions);
+        f.write("\r\n# Arcade Installer Auto-generated Settings:\r\n"+dispOptions);
         f.close();
 
 }
