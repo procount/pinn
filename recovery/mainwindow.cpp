@@ -1,3 +1,12 @@
+/* Main window
+ *
+ * Initial author: Floris Bos
+ * Maintained by Raspberry Pi
+ * Modified by @procount (c) 2019
+ * See LICENSE.txt for license details
+ *
+ */
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "multiimagewritethread.h"
@@ -63,15 +72,6 @@ extern "C" {
 extern CecListener * cec;
 extern joystick * joy;
 extern simulate * sim;
-
-/* Main window
- *
- * Initial author: Floris Bos
- * Maintained by Raspberry Pi
- *
- * See LICENSE.txt for license details
- *
- */
 
 /* To keep track of where the different OSes get 'installed' from */
 #define SOURCE_SDCARD "sdcard"
@@ -297,7 +297,7 @@ void MainWindow::populate()
     /* Ask user to wait while list is populated */
     if (!_allowSilent)
     {
-        _qpd = new QProgressDialog(tr("Please wait while NOOBS initialises"), QString(), 0, 0, this);
+        _qpd = new QProgressDialog(tr("Please wait while ARCADE Installer initialises"), QString(), 0, 0, this);
         _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
         _qpd->show();
 
@@ -889,7 +889,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
 
         // Let user find the best display mode for their display
-        // experimentally by using keys 1-4. NOOBS will default to using HDMI preferred mode.
+        // experimentally by using keys 1-4. recovery will default to using HDMI preferred mode.
 
         // HDMI preferred mode
         if (keyEvent->key() == Qt::Key_1 && _currentMode != 0)
@@ -1027,7 +1027,7 @@ void MainWindow::copyWpa()
         f.setPermissions( QFile::WriteUser | QFile::ReadGroup | QFile::ReadOther | QFile::ReadUser );
 
 	/* rename the user file to indicate that it has been copied (and prevent it being re-copied next time, 
-           which could potentially overwrite any SSIDs created in the NOOBS GUI) */
+           which could potentially overwrite any SSIDs created in the recovery GUI) */
 	backupFile("/mnt/wpa_supplicant.conf");
 
         QProcess::execute("sync");
@@ -1686,7 +1686,7 @@ void MainWindow::hideDialogIfNoNetwork()
                 {
                     QMessageBox::critical(this,
                                           tr("No network access"),
-                                          tr("Network access is required to use NOOBS without local images. Please select your wifi network in the next screen."),
+                                          tr("Network access is required to use Arcade installer. Please select your wifi network in the next screen."),
                                           QMessageBox::Close);
                     on_actionWifi_triggered();
                 }
@@ -1694,7 +1694,7 @@ void MainWindow::hideDialogIfNoNetwork()
                 {
                     QMessageBox::critical(this,
                                           tr("No network access"),
-                                          tr("Wired network access is required to use NOOBS without local images. Please insert a network cable into the network port."),
+                                          tr("Wired network access is required to use Arcade Installer. Please insert a network cable into the network port."),
                                           QMessageBox::Close);
                 }
             }
@@ -1847,7 +1847,7 @@ void MainWindow::on_targetCombo_currentIndexChanged(int index)
         {
             if (QMessageBox::question(this,
                                       tr("Reformat drive?"),
-                                      tr("Are you sure you want to reformat the drive '%1' for use with NOOBS? All existing data on the drive will be deleted!").arg(devname),
+                                      tr("Are you sure you want to reformat the drive '%1' for use with Arcade Installer? All existing data on the drive will be deleted!").arg(devname),
                                       QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
             {
                 InitDriveThread idt("/dev/"+devname);

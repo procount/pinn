@@ -1,3 +1,13 @@
+/*
+ *
+ * Initial author: Floris Bos
+ * Maintained by Raspberry Pi
+ * Modified by @procount (c) 2019
+ *
+ * See LICENSE.txt for license details
+ *
+ */
+
 #include "mainwindow.h"
 #include "languagedialog.h"
 #include "config.h"
@@ -33,15 +43,6 @@
 #ifdef Q_WS_QWS
 #include <QWSServer>
 #endif
-
-/*
- *
- * Initial author: Floris Bos
- * Maintained by Raspberry Pi
- *
- * See LICENSE.txt for license details
- *
- */
 
 CecListener *cec = NULL;
 CecListener *enableCEC(QObject *parent=0);
@@ -171,7 +172,7 @@ int main(int argc, char *argv[])
             runinstaller = true;
         if (strcmp(argv[i], "-wallpaper_resize") == 0)
             wallpaper_resize = true;
-        // Enables use of GPIO 3 to force NOOBS to launch by pulling low
+        // Enables use of GPIO 3 to force recovery to launch by pulling low
         else if (strcmp(argv[i], "-gpiotriggerenable") == 0)
             gpio_trigger = true;
         // Disables use of keyboard to trigger recovery GUI
@@ -326,10 +327,10 @@ int main(int argc, char *argv[])
     }
     if (!driveReady)
     {
-        QMessageBox::critical(NULL, "Files not found", QString("Cannot find the drive with NOOBS files %1").arg(drive), QMessageBox::Close);
+        QMessageBox::critical(NULL, "Files not found", QString("Cannot find the drive with installer files %1").arg(drive), QMessageBox::Close);
         return 1;
     }
-    qDebug() << "NOOBS drive:" << drive;
+    qDebug() << "INSTALL drive:" << drive;
 
     cec->loadMap("/mnt/cec_keys.json");
     joy->loadMap("/mnt/joy_keys.json");

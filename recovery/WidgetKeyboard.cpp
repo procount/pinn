@@ -488,9 +488,6 @@ bool WidgetKeyboard::eventFilter(QObject *, QEvent *event)
     {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
 
-        // Let user find the best display mode for their display
-        // experimentally by using keys 1-4. NOOBS will default to using HDMI preferred mode.
-
         if (keyEvent->key() == Qt::Key_Up)
         {
             MoveKey(0);

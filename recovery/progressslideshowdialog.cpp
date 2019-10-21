@@ -1,3 +1,13 @@
+/* Progress dialog with slideshow
+ *
+ * Initial author: Floris Bos
+ * Maintained by Raspberry Pi
+ * Modified by @procount (c) 2019
+ * See LICENSE.txt for license details
+ *
+ */
+
+
 #include "progressslideshowdialog.h"
 #include "ui_progressslideshowdialog.h"
 #include "util.h"
@@ -7,15 +17,6 @@
 #include <QPixmap>
 #include <QDesktopWidget>
 #include <QDebug>
-
-/* Progress dialog with slideshow
- *
- * Initial author: Floris Bos
- * Maintained by Raspberry Pi
- *
- * See LICENSE.txt for license details
- *
- */
 
 ProgressSlideshowDialog::ProgressSlideshowDialog(const QStringList &slidesDirectories, const QString &statusMsg, int changeInterval, const QString &drive, QWidget *parent) :
     QDialog(parent),
