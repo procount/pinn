@@ -310,6 +310,7 @@ void Kinput::mouse_repeat()
     }
 }
 
+#if 0
 void Kinput::key_simulate(int key, int value)
 {
     Qt::KeyboardModifiers modifiers = Qt::NoModifier;
@@ -335,7 +336,65 @@ void Kinput::key_simulate(int key, int value)
         QWSServer::sendKeyEvent(0, key, modifiers, false, false);
     }
 }
+#endif
 
+void Kinput::key_simulate(int key, int value)
+{
+    if (value)
+    {
+        if ((keyState==0) && currentKey==0)
+        {
+            keyState=1;
+            currentKey=key;
+            key_repeat(); //Do it now
+        }
+    }
+    else
+    {
+        keyState=0;
+    }
+}
+
+void Kinput::key_repeat()
+{
+    Qt::KeyboardModifiers modifiers = Qt::NoModifier;
+
+    if (keyState)
+    {
+        if (_grab) {
+            QKeyEvent *event=new QKeyEvent(QEvent::KeyPress, currentKey, modifiers);
+            QCoreApplication::sendEvent(_grab, event);
+        }
+        else
+        {
+            // key press
+            //sim->inject(EV_KEY, key, 1);
+            //sim->inject(EV_SYN, SYN_REPORT, 0);
+            QWSServer::sendKeyEvent(0, currentKey, modifiers, true, false);
+        }
+        QTimer::singleShot( (keyState==1) ? 200 : 100, this, SLOT(key_repeat()));
+        keyState=2;
+    }
+    else
+    {
+        if (currentKey)
+        {
+            //send release event
+            if (_grab) {
+                QKeyEvent *event=new QKeyEvent( QEvent::KeyRelease, currentKey, modifiers);
+                QCoreApplication::sendEvent(_grab, event);
+            }
+            else
+            {
+                // key release
+                //sim->inject(EV_KEY, key, 0);
+                //sim->inject(EV_SYN, SYN_REPORT, 0);
+                QWSServer::sendKeyEvent(0, currentKey, modifiers, false, false);
+            }
+            currentKey=0;
+        }
+    }
+}
 
 const char * decode_key(struct keymap_str *map, int code)
 {

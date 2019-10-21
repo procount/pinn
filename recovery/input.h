@@ -76,6 +76,7 @@ signals:
 
 public slots:
     void mouse_repeat();
+    void key_repeat();
 
 private:
     int mouse_state[6];
@@ -83,6 +84,8 @@ private:
     int step;
     int count;
     static QObject * _grab;
+    int currentKey;
+    int keyState;
 };
 
 #endif // INPUT_H
