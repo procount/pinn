@@ -74,7 +74,7 @@
     <message>
         <location filename="initdrivethread.cpp" line="66"/>
         <source>Error formatting settings partition</source>
-        <translation>Error al formatear la partició de opciones.</translation>
+        <translation>Error al formatear la partició de opciones</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="73"/>
@@ -199,42 +199,48 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
     <message>
         <location filename="initdrivethread.cpp" line="342"/>
         <source>Saving boot files to memory</source>
-        <translation type="unfinished"></translation>
+        <translation>
+27/5000
+Guardar archivos de arranque en la memoria</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="345"/>
         <source>Error saving boot files to memory. SD card may be damaged.</source>
-        <translation type="unfinished"></translation>
+        <translation>Error al guardar los archivos de arranque en la memoria. La tarjeta SD puede estar dañada.</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="361"/>
         <source>Creating partitions</source>
-        <translation type="unfinished"></translation>
+        <translation>Crear particiones</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="365"/>
         <source>Error partitioning</source>
-        <translation type="unfinished"></translation>
+        <translation>Error al particionar</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="369"/>
         <source>Formatting boot partition (fat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Formateo de partición de arranque (FAT)</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="372"/>
         <source>Error formatting boot partition (fat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Error al formatear la partición de arranque (FAT)</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="376"/>
         <source>Copying boot files to storage</source>
-        <translation type="unfinished"></translation>
+        <translation>
+29/5000
+Copiar archivos de arranque al almacenamiento</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="452"/>
         <source>Setting disk volume ID</source>
-        <translation type="unfinished"></translation>
+        <translation>
+22/5000
+Establecer la identificación del volumen del disco</translation>
     </message>
 </context>
 <context>
@@ -260,7 +266,7 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
     <message>
         <location filename="mainwindow.ui" line="65"/>
         <source>Destination drive:</source>
-        <translation type="unfinished"></translation>
+        <translation>Unidad de destino:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="88"/>
@@ -295,7 +301,7 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
     <message>
         <location filename="mainwindow.ui" line="176"/>
         <source>Exits and boots the installed operating system.</source>
-        <translation>Salir y arrancar el sistema operativo seleccionado</translation>
+        <translation>Salir y arrancar el sistema operativo seleccionado.</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="191"/>
@@ -310,7 +316,7 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
     <message>
         <location filename="mainwindow.ui" line="206"/>
         <source>Opens the config.txt and cmdline.txt for the installed OS in a text editor.</source>
-        <translation>Abre config.txt y cmdline.txt para el sistema operativo instalado en un editor de textos</translation>
+        <translation>Abre config.txt y cmdline.txt para el sistema operativo instalado en un editor de textos.</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="218"/>
@@ -330,7 +336,7 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
     <message>
         <location filename="mainwindow.ui" line="239"/>
         <source>Select a wifi network to connect to</source>
-        <translation>Selecciona una red wifi a la que conectarte:</translation>
+        <translation>Selecciona una red wifi a la que conectarte</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="242"/>
@@ -403,12 +409,12 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
     <message>
         <location filename="mainwindow.cpp" line="590"/>
         <source>SD card</source>
-        <translation type="unfinished"></translation>
+        <translation>tarjeta SD</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="590"/>
         <source>drive</source>
-        <translation type="unfinished"></translation>
+        <translation>disco</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="613"/>
@@ -500,7 +506,7 @@ Te gustaría que este cambio fuera permanente?</translation>
     <message>
         <location filename="mainwindow.cpp" line="1178"/>
         <source>Error parsing list.json downloaded from server</source>
-        <translation type="unfinished"></translation>
+        <translation>Error al analizar list.json descargado del servidor</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1398"/>
@@ -535,12 +541,12 @@ Te gustaría que este cambio fuera permanente?</translation>
     <message>
         <location filename="mainwindow.cpp" line="1754"/>
         <source>Reformat drive?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Reformatear el disco?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1755"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with NOOBS? All existing data on the drive will be deleted!</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Está seguro de que desea volver a formatear la unidad &apos;% 1&apos; para usar con Arcade Installer? ¡Todos los datos existentes en la unidad serán eliminados!</translation>
     </message>
 </context>
 <context>
@@ -588,17 +594,17 @@ Te gustaría que este cambio fuera permanente?</translation>
     <message>
         <location filename="multiimagewritethread.cpp" line="111"/>
         <source>Operating system cannot require a system partition (1,5)</source>
-        <translation type="unfinished">El sistema operativo no puede requerir una partició de sistema (1,2,5) {1,5)?}</translation>
+        <translation>El sistema operativo no puede requerir una partició de sistema {1,5)</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="116"/>
         <source>Operating system cannot claim both primary partitions 2 and 4</source>
-        <translation type="unfinished"></translation>
+        <translation>El sistema operativo no puede reclamar ambas particiones primarias 2 y 4</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="290"/>
         <source>Writing boot partition table</source>
-        <translation type="unfinished"></translation>
+        <translation>Escribir tabla de partición de arranque</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="280"/>
@@ -818,7 +824,7 @@ Te gustaría que este cambio fuera permanente?</translation>
     <message>
         <location filename="wifisettingsdialog.cpp" line="44"/>
         <source>No wifi interfaces available</source>
-        <translation type="unfinished"></translation>
+        <translation>No hay interfaces wifi disponibles</translation>
     </message>
     <message>
         <location filename="wifisettingsdialog.cpp" line="227"/>
