@@ -280,7 +280,6 @@ int main(int argc, char *argv[])
 
     splash->show();
     splash->resize();
-    //splash->showStatusMessage("For recovery mode, hold SHIFT...");
     QApplication::processEvents();
 
     temp.load(":/icons/atari_logo1_trans.png");
@@ -401,9 +400,11 @@ int main(int argc, char *argv[])
         }
     }
 
-    splash->showStatusMessage("");
+    splash->showStatusMessage("Please wait",Qt::white);
+    //splash->showStatusMessage("");
     while (group->currentTime()<group->totalDuration())
         QApplication::processEvents();
+    splash->showStatusMessage("", Qt::black);
 
     cec->clearKeyPressed();
     joy->clearKeyPressed();
