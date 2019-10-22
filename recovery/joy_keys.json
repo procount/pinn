@@ -36,16 +36,16 @@
             "joy_up":       "RAnalogUp",
             "joy_down":     "RAnalogDown",
 
-            "Key_Left":     "D-padLeft",
-            "Key_Right":    "D-padRight",
-            "Key_Up":       "D-padUp",
-            "Key_Down":     "D-padDown",
+            "Key_Left":     "Y",
+            "Key_Right":    "RB",
+            "Key_Up":       "LB",
+            "Key_Down":     "B",
+            "Key_space":    "Start",
 
             "mouse_lclick": "A",
-            "Key_space":    "B",
             "Key_Escape":   "X",
-            "Key_M":        "Y",
             "Key_Enter":    "Start"
+
         }
     }
 
