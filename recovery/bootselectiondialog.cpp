@@ -431,11 +431,16 @@ void BootSelectionDialog::updateConfig4dsi(QByteArray partition)
 }
 
 /* Key on TV remote pressed */
-void BootSelectionDialog::onKeyPress(int cec_code)
+void BootSelectionDialog::onKeyPress(int cec_code, int value)
 {
-    cec->process_cec(cec_code);
+    cec->process_cec(cec_code,value);
 }
-
+#if 0
+void BootSelectionDialog::onJoyPress(int cec_code,int value)
+{
+    joy->process_joy(cec_code,value);
+}
+#endif
 void BootSelectionDialog::on_list_itemChanged(QListWidgetItem *item)
 {
     //Make the checkboxes act like radio boxes - only 1 can be set

@@ -9,6 +9,8 @@
 #include "util.h"
 #include "bootselectiondialog.h"
 #include "ceclistener.h"
+#include "joystick.h"
+#include "simulate.h"
 
 #define DBG_LOCAL 1
 #define LOCAL_DO_DBG 0
@@ -49,6 +51,8 @@ bool g_nofirmware=false;
 bool dsi=false;
 CecListener *cec = NULL;
 CecListener *enableCEC(QObject *parent=0);
+joystick *joy = NULL;
+simulate *sim = NULL;
 
 QStringList downloadRepoUrls;
 QString repoList;
@@ -351,7 +355,7 @@ int main(int argc, char *argv[])
     qDebug() << "PINN drive:" << drive;
 
     QProcess::execute("mount -o ro -t vfat "+partdev(drive, 1)+" /mnt");
-    cec->loadCECmap("/mnt/cec_keys.json");
+    cec->loadMap("/mnt/cec_keys.json");
 
 #if 0
     qDebug() << "Starting dbus";
@@ -566,5 +570,10 @@ CecListener *enableCEC(QObject *parent)
         cec = new CecListener(parent);
         cec->start();
     }
+
+    joy = new joystick(parent);
+    joy->start();
+
+    sim = new simulate();
     return(cec);
 }

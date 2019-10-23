@@ -19,6 +19,7 @@
 #include "piclonethread.h"
 #include "builddata.h"
 #include "ceclistener.h"
+#include "joystick.h"
 #include "osgroup.h"
 #include "fscheck.h"
 #include "repair.h"
@@ -29,6 +30,7 @@
 #include "datetimedialog.h"
 #include "iconcache.h"
 #include "termsdialog.h"
+#include "simulate.h"
 
 #define DBG_LOCAL 0
 #define LOCAL_DO_DBG 0
@@ -84,6 +86,8 @@ extern "C" {
 #endif
 
 extern CecListener * cec;
+extern simulate * sim;
+extern joystick * joy;
 
 extern QStringList downloadRepoUrls;
 extern QString repoList;
@@ -4427,11 +4431,21 @@ void MainWindow::on_newVersion()
 }
 
 /* Key on TV remote pressed */
-void MainWindow::onKeyPress(int cec_code)
+void MainWindow::onKeyPress(int cec_code, int value)
 {
-    TRACE
-    cec->process_cec(cec_code);
+    //qDebug() << "Processing CEC " << cec_code << ", " << value;
+    cec->process_cec(cec_code,value);
 }
+
+#if 0
+/* joystick pressed */
+void MainWindow::onJoyPress(int joy_code, int value)
+{
+    //TRACE
+    //qDebug() << "Processing Joy "<<joy_code <<", " << value;
+    joy->process_joy(joy_code,value);
+}
+#endif
 
 void MainWindow::on_actionInfo_triggered()
 {

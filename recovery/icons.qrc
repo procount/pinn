@@ -76,5 +76,9 @@
         <file>icons/drive_edit.png</file>
         <file>icons/down.png</file>
         <file>icons/up.png</file>
+        <file>icons/down.JPG</file>
+        <file>icons/left.JPG</file>
+        <file>icons/right.JPG</file>
+        <file>icons/up.JPG</file>
     </qresource>
 </RCC>
