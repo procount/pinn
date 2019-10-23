@@ -9,6 +9,8 @@
 #include "util.h"
 #include "bootselectiondialog.h"
 #include "ceclistener.h"
+#include "joystick.h"
+#include "simulate.h"
 
 #define DBG_LOCAL 1
 #define LOCAL_DO_DBG 0
@@ -49,6 +51,8 @@ bool g_nofirmware=false;
 bool dsi=false;
 CecListener *cec = NULL;
 CecListener *enableCEC(QObject *parent=0);
+joystick *joy = NULL;
+simulate *sim = NULL;
 
 QStringList downloadRepoUrls;
 QString repoList;
@@ -59,6 +63,7 @@ QColor backgroundColour = BACKGROUND_COLOR;
 bool timedReboot=false;
 
 MainWindow * gMW=NULL;
+QApplication * gApp=NULL;
 
 void runCustomScript(const QString &driveDev, int partNr, const QString &cmd, bool inBackground=false )
 {
@@ -200,6 +205,8 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     a.setQuitOnLastWindowClosed(false);
+
+    gApp = &a;
 
     RightButtonFilter rbf;
     LongPressHandler lph;
@@ -351,7 +358,8 @@ int main(int argc, char *argv[])
     qDebug() << "PINN drive:" << drive;
 
     QProcess::execute("mount -o ro -t vfat "+partdev(drive, 1)+" /mnt");
-    cec->loadCECmap("/mnt/cec_keys.json");
+    cec->loadMap("/mnt/cec_keys.json");
+    joy->loadMap("/mnt/joy_keys.json");
 
 #if 0
     qDebug() << "Starting dbus";
@@ -566,5 +574,10 @@ CecListener *enableCEC(QObject *parent)
         cec = new CecListener(parent);
         cec->start();
     }
+
+    joy = new joystick(parent);
+    joy->start();
+
+    sim = new simulate();
     return(cec);
 }

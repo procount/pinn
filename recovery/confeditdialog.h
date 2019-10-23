@@ -10,6 +10,8 @@
  *
  */
 
+#include "WidgetKeyboard.h"
+
 #include <QDialog>
 #include <QList>
 #include <QVariantMap>
@@ -33,12 +35,19 @@ public slots:
 
 private slots:
     void on_pbEdit_clicked();
+    void on_cbvk_toggled(bool checked);
+    void my_focusChanged(QWidget * old, QWidget* nw);
+    void options_finished(int result);
 
 private:
     Ui::ConfEditDialog *ui;
     QList<ConfEditDialogTab *> _tabs;
     QVariantMap _map;
     QString _partition;
+    WidgetKeyboard *virtualKeyBoard;
+    QString _lastWindow;
+    QString _lastMenu;
+    QWidget * _lastWidgetFocus;
 };
 
 #endif // CONFEDITDIALOG_H

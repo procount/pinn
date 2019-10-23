@@ -1,5 +1,7 @@
 #ifndef SLEEPSIMULATOR_H
 #define SLEEPSIMULATOR_H
+#include <QMutex>
+#include <QWaitCondition>
 
 /* From https://stackoverflow.com/questions/3752742/how-do-i-create-a-pause-wait-function-using-qt?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
  *

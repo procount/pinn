@@ -19,6 +19,7 @@
 #include "piclonethread.h"
 #include "builddata.h"
 #include "ceclistener.h"
+#include "joystick.h"
 #include "osgroup.h"
 #include "fscheck.h"
 #include "repair.h"
@@ -29,6 +30,7 @@
 #include "datetimedialog.h"
 #include "iconcache.h"
 #include "termsdialog.h"
+#include "simulate.h"
 
 #define DBG_LOCAL 0
 #define LOCAL_DO_DBG 0
@@ -84,6 +86,8 @@ extern "C" {
 #endif
 
 extern CecListener * cec;
+extern simulate * sim;
+extern joystick * joy;
 
 extern QStringList downloadRepoUrls;
 extern QString repoList;
@@ -270,11 +274,15 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     h =qMin(h,600);
     resize(w,h);
 
+    Kinput::setWindow("mainwindow");
+    Kinput::setMenu("Main Menu");
     if (cec)
     {
-        cec->setWindow("mainwindow");
-        cec->setMenu("Main Menu");
-        connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+        connect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
+    }
+    if (joy)
+    {
+        connect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
     }
 
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
@@ -526,7 +534,9 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
 MainWindow::~MainWindow()
 {
     if (cec)
-        disconnect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+        disconnect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
+    if (joy)
+        disconnect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
 
     QProcess::execute("umount /mnt");
     delete ui;
@@ -535,7 +545,9 @@ MainWindow::~MainWindow()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     if (cec)
-        disconnect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+        disconnect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
+    if (joy)
+        disconnect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
     event->accept();
 }
 
@@ -1814,7 +1826,7 @@ void MainWindow::on_actionEdit_config_triggered()
         if (!l.isEmpty())
         {
             QString partition = l.first().toString();
-            ConfEditDialog d(m, partition);
+            ConfEditDialog d(m, partition, this);
             d.exec();
         }
     }
@@ -2264,12 +2276,12 @@ void MainWindow::downloadListComplete()
 
     ug->setFocus();
 
-    reply->deleteLater();
     if (_numListsToDownload==0)
     {
         _availableImages |= ALLNETWORK;
         _processedImages |= ALLNETWORK;
     }
+    reply->deleteLater();
 }
 
 void MainWindow::processJson(QVariant json)
@@ -2687,6 +2699,7 @@ void MainWindow::downloadListRedirectCheck()
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
+        _numListsToDownload--;
         downloadList(redirectionurl);
     }
     else
@@ -4427,11 +4440,21 @@ void MainWindow::on_newVersion()
 }
 
 /* Key on TV remote pressed */
-void MainWindow::onKeyPress(int cec_code)
+void MainWindow::onKeyPress(int cec_code, int value)
 {
-    TRACE
-    cec->process_cec(cec_code);
+    //qDebug() << "Processing CEC " << cec_code << ", " << value;
+    cec->process_cec(cec_code,value);
 }
+
+#if 1
+/* joystick pressed */
+void MainWindow::onJoyPress(int joy_code, int value)
+{
+    //TRACE
+    //qDebug() << "Processing Joy "<<joy_code <<", " << value;
+    joy->process_joy(joy_code,value);
+}
+#endif
 
 void MainWindow::on_actionInfo_triggered()
 {

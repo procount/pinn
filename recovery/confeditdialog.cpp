@@ -11,12 +11,16 @@
 #include "ui_confeditdialog.h"
 #include "config.h"
 #include "optionsdialog.h"
+#include "input.h"
+
 #include <QDir>
 #include <QFile>
 #include <QtGui/QPlainTextEdit>
 #include <QProcess>
 #include <QMessageBox>
 #include <unistd.h>
+
+extern QApplication * gApp;
 
 /* Private class - For each configuration file there is a tab class */
 class ConfEditDialogTab : public QWidget
@@ -75,6 +79,7 @@ ConfEditDialog::ConfEditDialog(const QVariantMap &map, const QString &partition,
     ui->setupUi(this);
     ui->tabWidget->clear();
 
+    virtualKeyBoard = new WidgetKeyboard(this);
 
     if (_map.value("name") =="PINN")
     {  //This is the PINN reference
@@ -101,17 +106,27 @@ ConfEditDialog::ConfEditDialog(const QVariantMap &map, const QString &partition,
         _tabs.append(new ConfEditDialogTab("cmdline.txt", "/boot/cmdline.txt", false, ui->tabWidget));
         ui->pbEdit->hide();
     }
+
+    _lastWidgetFocus=NULL;
+    connect(gApp, SIGNAL(focusChanged(QWidget*,QWidget*)), this, SLOT( my_focusChanged(QWidget*,QWidget*)));
+
 }
 
 ConfEditDialog::~ConfEditDialog()
 {
-    delete ui;
     if (_map.value("name") =="PINN")
     {  //This is the PINN reference
         QProcess::execute("mount -o remount,ro /mnt");
     }
     else
         QProcess::execute("umount /boot");
+
+    virtualKeyBoard->hide();
+    Kinput::setWindow(_lastWindow);
+    Kinput::setMenu(_lastMenu);
+    Kinput::setGrabWindow(NULL);
+    delete virtualKeyBoard;
+    delete ui;
 }
 
 void ConfEditDialog::accept()
@@ -132,12 +147,53 @@ void ConfEditDialog::on_pbEdit_clicked()
     }
     sync();
 
+    OptionsDialog dlg(this);
+    dlg.setWindowModality(Qt::WindowModal);
 
-    OptionsDialog dlg;
+    //Hide virtual keyboard so as not to confuse
+    if (virtualKeyBoard->isVisible())
+    {
+        ui->cbvk->setChecked(false);
+        on_cbvk_toggled(false);
+    }
+    connect(&dlg, SIGNAL(finished(int)), this, SLOT(options_finished(int)));
+
     dlg.exec();
 
+}
+
+void ConfEditDialog::options_finished(int result)
+{
     ui->tabWidget->removeTab(_tabs.count()-1);
     _tabs.removeLast();
     _tabs.append(new ConfEditDialogTab("recovery.cmdline", "/mnt/recovery.cmdline", false, ui->tabWidget));
 }
 
+void ConfEditDialog::on_cbvk_toggled(bool checked)
+{
+    if (checked)
+    {
+        if (_lastWidgetFocus)
+            _lastWidgetFocus->setFocus();
+
+        virtualKeyBoard->show();
+        _lastWindow = Kinput::getWindow();
+        _lastMenu = Kinput::getMenu();
+        Kinput::setWindow("VKeyboard");
+        Kinput::setMenu("any");
+        Kinput::setGrabWindow(virtualKeyBoard);
+    }
+    else
+    {
+        virtualKeyBoard->hide();
+        Kinput::setWindow(_lastWindow);
+        Kinput::setMenu(_lastMenu);
+        Kinput::setGrabWindow(NULL);
+    }
+}
+
+void ConfEditDialog::my_focusChanged(QWidget * old, QWidget* nw)
+{
+    if (nw == ui->cbvk)
+        _lastWidgetFocus = old;
+}

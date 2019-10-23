@@ -45,6 +45,12 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V3.3.2
+
+-**Joystick**        - Added support for USB Joysticks/Gamepads (Xbox-style)
+-**Silentinstall**   - Fixed a bug when silent-installing from the network
+-**VirtualKeyboard** - Added a Virtual Keyboard for wifi and option dialogs
+
 ### V3.3c
 
 -**Translations** - Updated a few translations (it, zh_TW, ko, de)

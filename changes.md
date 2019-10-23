@@ -551,3 +551,8 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 -**Downloads**    - Fixed download progressbar
 -**Replace**      - Changed accelerator key from L to C
 
+### V3.3.2
+
+-**Joystick**        - Added support for USB Joysticks/Gamepads (Xbox-style)
+-**Silentinstall**   - Fixed a bug when silent-installing from the network
+-**VirtualKeyboard** - Added a Virtual Keyboard for wifi and option dialogs

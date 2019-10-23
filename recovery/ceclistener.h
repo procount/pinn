@@ -25,7 +25,12 @@
  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * Modified by @procount (c) 2019
+ *
  */
+
+#include "input.h"
 
 #include <QThread>
 #include <QWaitCondition>
@@ -135,53 +140,29 @@ play 68
 stop 69
 */
 
-#define mouse_left      0x1001
-#define mouse_right     0x1002
-#define mouse_up        0x1003
-#define mouse_down      0x1004
-#define mouse_lclick    0x1005
 
-typedef QMap<int,int> mapkeys_t;
-typedef QMap<QString, mapkeys_t> mapmenu_t;
-typedef QMap<QString, mapmenu_t> mapwnd_t;
 
-struct keymap_str {
-    const char * string;
-    int code;
-};
-
-class CecListener : public QThread
+class CecListener : public Kinput
 {
     Q_OBJECT
 public:
     explicit CecListener(QObject *parent = 0);
     virtual ~CecListener();
-    void loadCECmap(QString filename);
+    void loadMap(QString filename) { Kinput::loadMap(filename, ":/cec_keys.json"); }
 
-    static int hasKeyPressed() {return(keyPressed);}
-    static void clearKeyPressed() {keyPressed=0;}
-    void setWindow(const QString &wnd)  { _wnd = wnd; }
-    void setMenu(const QString &menu)   { _menu = menu; }
-    void process_cec(int cec_code);
+    void process_cec(int cec_code, int value);
 
 signals:
-    void keyPress(int key);
+    void keyPress(int key,int value);
 public slots:
 
 protected:
     virtual void run();
     static void _cec_callback(void *userptr, uint32_t reason, uint32_t param1, uint32_t param2, uint32_t param3, uint32_t param4);
     void cec_callback(uint32_t reason, uint32_t param1, uint32_t param2, uint32_t param3, uint32_t param4);
-    int map_string(struct keymap_str *map, QString str);
-    int map_cec(QVariant cec);
-    int map_key(QString cec);
-    const char * decode_key(struct keymap_str *map, int code);
+    int map_button(QVariant cec);
 
     QWaitCondition _waitcond;
-    static int keyPressed;
-    mapwnd_t _CECmap;
-    QString _wnd;
-    QString _menu;
 
 };
 
