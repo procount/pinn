@@ -3,6 +3,7 @@
  *
  * Initial author: Floris Bos
  * Maintained by Raspberry Pi
+ * Modified by @procount (c) 2019
  *
  * See LICENSE.txt for license details
  */
@@ -11,6 +12,8 @@
 #include "ui_wifisettingsdialog.h"
 #include "wpa_supplicant/wpafactory.h"
 #include "twoiconsdelegate.h"
+#include "input.h"
+
 #include <QMessageBox>
 #include <QPushButton>
 #include <QProgressDialog>
@@ -26,6 +29,8 @@ WifiSettingsDialog::WifiSettingsDialog(const QString &preferredInterface, QWidge
     ui->list->setItemDelegate(new TwoIconsDelegate(this));
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     connect(ui->passwordEdit, SIGNAL(textChanged(QString)), this, SLOT(checkSettings()));
+
+    virtualKeyBoard = new WidgetKeyboard(this);
 
     FiW1Wpa_supplicant1Interface *wpa = WpaFactory::createWpaSupplicantProxy(this);
     _ifpath = wpa->GetInterface(preferredInterface).value();
@@ -89,6 +94,11 @@ WifiSettingsDialog::WifiSettingsDialog(const QString &preferredInterface, QWidge
 
 WifiSettingsDialog::~WifiSettingsDialog()
 {
+    virtualKeyBoard->hide();
+    Kinput::setWindow(_lastWindow);
+    Kinput::setMenu(_lastMenu);
+    Kinput::setGrabWindow(NULL);
+    delete virtualKeyBoard;
     delete ui;
 }
 
@@ -192,8 +202,7 @@ void WifiSettingsDialog::on_list_currentItemChanged(QListWidgetItem *current)
                 ui->userEdit->setFocus();
             else
                 ui->passwordEdit->setFocus();
-        }
-*/
+        } */
     }
     else
     {
@@ -388,6 +397,28 @@ QString WifiSettingsDialog::removeQuotes(QString str)
 
     return str;
 }
+
+void WifiSettingsDialog::on_vkeyboard_toggled(bool checked)
+{
+    if (checked)
+    {
+        ui->passwordEdit->setFocus();
+        virtualKeyBoard->show();
+        _lastWindow = Kinput::getWindow();
+        _lastMenu = Kinput::getMenu();
+        Kinput::setWindow("VKeyboard");
+        Kinput::setMenu("any");
+        Kinput::setGrabWindow(virtualKeyBoard);
+    }
+    else
+    {
+        virtualKeyBoard->hide();
+        Kinput::setWindow(_lastWindow);
+        Kinput::setMenu(_lastMenu);
+        Kinput::setGrabWindow(NULL);
+    }
+}
+
 
 void WifiSettingsDialog::on_checkBox_stateChanged(int arg1)
 {
