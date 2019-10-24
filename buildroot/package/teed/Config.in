@@ -1,0 +1,7 @@
+config BR2_PACKAGE_TEED
+        bool "teed"
+    ### build dependencies
+    ### runtime dependencies
+        help
+          teed filter
+

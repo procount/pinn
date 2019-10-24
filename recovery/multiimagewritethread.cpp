@@ -833,7 +833,7 @@ bool MultiImageWriteThread::untar(const QString &tarball)
         cmd += " "+tarball;
     }
 
-    //cmd += " | cipher | bsdtar -xf - -C /mnt2 ";
+    //cmd += " | teed | bsdtar -xf - -C /mnt2 ";
     cmd += " | bsdtar -xf - -C /mnt2 ";
 
     struct statfs st;

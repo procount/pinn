@@ -1,7 +1,0 @@
-config BR2_PACKAGE_CIPHER
-        bool "cipher"
-    ### build dependencies
-    ### runtime dependencies
-        help
-          Create PINN Cipher executable
-

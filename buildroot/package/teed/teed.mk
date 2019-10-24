@@ -1,0 +1,26 @@
+#############################################################
+#
+# teed package
+#
+#############################################################
+
+
+
+TEED_VERSION = 1.0
+TEED_SITE = $(TOPDIR)/../teed
+TEED_SITE_METHOD = local
+TEED_LICENSE = BSD-3c
+TEED_LICENSE_FILES = LICENSE.txt
+TEED_INSTALL_STAGING = NO
+
+define TEED_BUILD_CMDS
+	cd $(@D) 
+	$(MAKE) -C $(@D) all
+	$(TARGET_STRIP) $(@D)/teed
+endef
+
+define TEED_INSTALL_TARGET_CMDS
+	$(INSTALL) -m 0755 $(@D)/teed $(TARGET_DIR)/usr/bin/teed
+endef
+
+$(eval $(generic-package))
