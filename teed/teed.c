@@ -14,17 +14,22 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#define SOCKSERVER "/tmp/server"
-#define SOCKCLIENT "/tmp/client"
+#define CIPHER 1
 
-#define MAXMSG  32
-char out[MAXMSG]={0};
-char in[MAXMSG]={0};
-size_t outsize=0;
-size_t insize=0;
-size_t progress=0;
-size_t keysize=0;
-char key[MAXMSG]={0};
+#if CIPHER
+ #define MAXMSG  32
+ char out[MAXMSG]={0};
+ char in[MAXMSG]={0};
+ size_t outsize=0;
+ size_t insize=0;
+ size_t progress=0;
+ size_t keysize=0;
+ const char SOCKSERVER[]= "z!8%z69<0;!";
+ char key[MAXMSG]={0};
+ char sockserver[12];
+ char sockclient[12];
+ const char SOCKCLIENT[]= "z!8%z&0'#0'";
+#endif
 
 void error(const char *msg)
 {
@@ -32,6 +37,7 @@ void error(const char *msg)
     exit(0);
 }
 
+#if CIPHER
 void process_key()
 {
     int i,j;
@@ -48,23 +54,49 @@ void process_key()
 int decrypt(int ch)
 {
     ch ^= key[progress];
-    progress = (progress+1)%keysize;
+    if (keysize)
+        progress = (progress+1)%keysize;
 
     return(ch);
+}
+#endif
+
+void unhidepaths()
+{
+    const char *s = SOCKCLIENT;
+    char *d = sockclient;
+    int i;
+    keysize=1;
+    key[0]=0x55;
+    for (i=0; i<11; i++)
+    {
+        sockclient[i] = decrypt(SOCKCLIENT[i]);
+    }
+
+    s = SOCKSERVER;
+    d = sockserver;
+    for (i=0; i<11; i++)
+    {
+        sockserver[i] = decrypt(SOCKSERVER[i]);
+    }
 }
 
 int main()
 {
     int ch;
+#if CIPHER
     FILE * fserver;
     FILE * fclient;
 
-    unlink(SOCKCLIENT);
-    unlink(SOCKSERVER);
+    unhidepaths();
 
+    unlink(sockclient);
+    unlink(sockserver);
+
+#if CIPHER==1
     strcpy(out, "Hello");
     outsize=strlen(out)+1;
-    fserver = fopen(SOCKSERVER,"wb");
+    fserver = fopen(sockserver,"wb");
     if (fserver)
     {
         fwrite(&outsize, 1, sizeof(outsize), fserver);
@@ -73,35 +105,41 @@ int main()
 
         sleep(2);
         int elapsed=0;
-        while ( (elapsed <3) && (access( SOCKCLIENT, F_OK ) == -1) )
+        while ( (elapsed <3) && (access( sockclient, F_OK ) == -1) )
         {
             sleep(1);
             elapsed++;
         }
         sleep(1);
 
-        fclient = fopen(SOCKCLIENT,"rb");
+        fclient = fopen(sockclient,"rb");
         if (fclient)
         {
             fread(&insize, 1, sizeof(insize), fclient);
             fread(in, 1, insize, fclient);
             fclose (fclient);
         }
-        unlink(SOCKCLIENT);
     }
 
     /* Do our copying */
     process_key();
-
+#else
+    keysize=1;
+    key[0]=0x55;
     progress=0;
+#endif
+    unlink(sockclient);
+    unlink(sockserver);
+#endif
+
     while(1)
     {
     	fread(&ch, 1, 1, stdin);
         if (feof(stdin))
             break;
-
+#if CIPHER
         ch = decrypt(ch);
-
+#endif
         fwrite(&ch, 1, 1, stdout);
     }
     return 0;
