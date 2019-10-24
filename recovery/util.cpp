@@ -33,6 +33,26 @@ QByteArray getFileContents(const QString &filename)
     return r;
 }
 
+QByteArray getRemoteFile(const QString &url)
+{
+    QProcess p;
+    QString cmd;
+    QByteArray result;
+    cmd = "wget --no-verbose --tries=inf -O- "+url;
+
+    //p.setProcessChannelMode(p.MergedChannels);
+    p.start(cmd);
+    p.closeWriteChannel();
+    p.waitForFinished(-1);
+
+    if (p.exitCode() != 0)
+        result="";
+    else
+        result =p.readAllStandardOutput();
+    return(result);
+}
+
+
 void putFileContents(const QString &filename, const QByteArray &data)
 {
     QFile f(filename);
@@ -244,4 +264,29 @@ QByteArray getPartUUID(const QString &devpart)
     }
 
     return r;
+}
+
+
+QString getCsumType(const QVariantMap &partition)
+{
+    QStringList options;
+    options << "sha512sum" <<"sha256sum" <<"sha1sum"<<"md5sum";
+
+    foreach (QString csumType, options)
+    {
+        if (partition.contains(csumType))
+            return(csumType);
+    }
+    return("");
+}
+
+QString getCsum(const QVariantMap &partition, const QString &csumType)
+{
+    QString csum     = partition.value(csumType, "").toString();
+
+    if (csum.startsWith("http"))
+    {
+        csum = QString(getRemoteFile(csum)).split(" ").first();
+    }
+    return(csum);
 }

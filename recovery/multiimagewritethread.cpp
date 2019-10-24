@@ -19,6 +19,9 @@
 #include <sys/ioctl.h>
 #include <QtEndian>
 
+#include <sys/types.h>
+#include <sys/stat.h>
+
 MultiImageWriteThread::MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive, QObject *parent) :
     QThread(parent), _drive(rootdrive), _bootdrive(bootdrive), _extraSpacePerPartition(0), _part(5)
 {
@@ -797,10 +800,19 @@ bool MultiImageWriteThread::isLabelAvailable(const QByteArray &label)
 
 bool MultiImageWriteThread::untar(const QString &tarball)
 {
+    QString csumType = "sha512sum"; //TBD param
+
+    QFile f("/tmp/fifo");
+    if (f.exists())
+        f.remove();
+    mkfifo("/tmp/fifo", S_IRUSR | S_IWUSR);
+
     QString cmd = "sh -o pipefail -c \"";
 
     if (isURL(tarball))
-        cmd += "wget --no-verbose --tries=inf -O- "+tarball+" | ";
+        cmd += "wget --no-verbose --tries=inf -O- "+tarball;
+
+    cmd += " | tee /tmp/fifo | ";
 
     if (tarball.endsWith(".gz"))
     {
@@ -843,6 +855,8 @@ bool MultiImageWriteThread::untar(const QString &tarball)
         cmd += " --no-same-owner ";
     }
 
+    cmd += " | "+ csumType +" /tmp/fifo > /tmp/sha1.out.txt";
+
     cmd += "\"";
 
     QTime t1;
@@ -854,6 +868,8 @@ bool MultiImageWriteThread::untar(const QString &tarball)
     p.start(cmd);
     p.closeWriteChannel();
     p.waitForFinished(-1);
+
+    f.remove(); //rm /tmp/fifo";
 
     if (p.exitCode() != 0)
     {

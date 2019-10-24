@@ -5,6 +5,12 @@
 #include <QByteArray>
 #include <QVariant>
 
+#include <sys/syscall.h>
+#include <linux/reboot.h>
+
+
+
+
 /*
  * Convenience functions
  *
@@ -16,6 +22,7 @@
 
 QByteArray getFileContents(const QString &filename);
 void putFileContents(const QString &filename, const QByteArray &data);
+QByteArray getRemoteFile(const QString &url);
 bool backupFile(const QString &filename, const QString &ext="bak");
 void getOverscan(int &top, int &bottom, int &left, int &right);
 bool nameMatchesRiscOS(const QString &name);
@@ -29,5 +36,7 @@ QByteArray getLabel(const QString part);
 QByteArray getUUID(const QString part);
 QByteArray getDiskId(const QString &device);
 QByteArray getPartUUID(const QString &devpart);
+QString getCsumType(const QVariantMap &partition);
+QString getCsum(const QVariantMap &partition, const QString &csumType);
 
 #endif // UTIL_H
