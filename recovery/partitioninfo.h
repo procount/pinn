@@ -119,9 +119,29 @@ public:
         return (_fstype == "fat" || _fstype == "FAT");
     }
 
+    inline QString csumType()
+    {
+        return (_csumType);
+    }
+
+    inline void setCsumType(const QString & type)
+    {
+        _csumType = type;
+    }
+
+    inline QString csum()
+    {
+        return (_csum);
+    }
+
+    inline void setCsum(const QString & csum)
+    {
+        _csum = csum;
+    }
+
 protected:
     QByteArray _fstype, _mkfsOptions, _label, _partitionDevice, _partitionType;
-    QString _tarball;
+    QString _tarball, _csum, _csumType;
     int _requiresPartitionNumber;
     uint _partitionSizeNominal, _offset, _uncompressedTarballSize, _partitionSizeSectors;
     bool _emptyFS, _wantMaximised, _active;

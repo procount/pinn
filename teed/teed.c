@@ -202,6 +202,7 @@ int main(int argc, char **argv)
             memcpy(key, &tv, 4);
             decryptblock(in,insize);
             memcpy(key, in, insize);
+            keysize=insize;
         }
         else
         {

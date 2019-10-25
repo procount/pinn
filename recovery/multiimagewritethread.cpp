@@ -438,6 +438,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
     qDebug() << "Processing OS:" << os_name;
 
     QList<PartitionInfo *> *partitions = image->partitions();
+    _checksumError = 0;
 
     foreach (PartitionInfo *p, *partitions)
     {
@@ -446,6 +447,11 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
         QByteArray label = p->label();
         QString tarball  = p->tarball();
         bool emptyfs     = p->emptyFS();
+        QString csumType = p->csumType();
+        QString csum     = p->csum();
+
+        if (csumType=="")
+            csumType="sha512sum";
 
         if (!emptyfs && tarball.isEmpty())
         {
@@ -504,7 +510,7 @@ bool MultiImageWriteThread::processImage(OsInfo *image)
                 else
                     emit statusUpdate(tr("%1: Extracting filesystem").arg(os_name));
 
-                bool result = untar(tarball);
+                bool result = untar(tarball,csumType, csum);
 
                 QProcess::execute("umount /mnt2");
 
@@ -798,10 +804,8 @@ bool MultiImageWriteThread::isLabelAvailable(const QByteArray &label)
     return (QProcess::execute("/sbin/findfs LABEL="+label) != 0);
 }
 
-bool MultiImageWriteThread::untar(const QString &tarball)
+bool MultiImageWriteThread::untar(const QString &tarball, const QString &csumType, const QString &csum, bool bSuppressError)
 {
-    QString csumType = "sha512sum"; //TBD param
-
     QFile f("/tmp/fifo");
     if (f.exists())
         f.remove();
@@ -870,6 +874,25 @@ bool MultiImageWriteThread::untar(const QString &tarball)
     p.waitForFinished(-1);
 
     f.remove(); //rm /tmp/fifo";
+
+    if (p.exitCode() == 0)
+    { //download was ok
+        QString csum_download = getFileContents("/tmp/sha1.out.txt");
+        csum_download=csum_download.split(" ").first();
+        qDebug() << "Calculated Checksum="<<csum_download;
+        if (csum != "")
+        {
+            qDebug()<< "Expected csum= "<<csum;
+            if (csum_download != csum)
+            {
+                QString msg = tr("An incorrect file checksum has been detected in %1").arg(tarball);
+                QString title = tr("Checksum error");
+                qDebug() << msg;
+                _checksumError++;
+                return false;
+            }
+        }
+    }
 
     if (p.exitCode() != 0)
     {

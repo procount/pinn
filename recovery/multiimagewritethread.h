@@ -25,7 +25,8 @@ protected:
     bool mkfs(const QByteArray &device, const QByteArray &fstype = "ext4", const QByteArray &label = "", const QByteArray &mkfsopt = "");
     bool dd(const QString &imagePath, const QString &device);
     bool partclone_restore(const QString &imagePath, const QString &device);
-    bool untar(const QString &tarball);
+    bool untar(const QString &tarball, const QString &csumType, const QString &csum, bool bSuppressError=false);
+
     bool isLabelAvailable(const QByteArray &label);
     void patchConfigTxt();
     QString getDescription(const QString &folder, const QString &flavour);
@@ -40,7 +41,8 @@ protected:
     int _extraSpacePerPartition, _sectorOffset, _part;
     QVariantList installed_os;
     bool _multiDrives;
-    
+    int _checksumError;
+
 signals:
     void error(const QString &msg);
     void statusUpdate(const QString &msg);
