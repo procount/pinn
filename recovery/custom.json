@@ -1,4 +1,8 @@
 {
-    "url": "http://raw.githubusercontent.com/procount/pinn-os/master/os/os_retro.json",
-    "key": "aaaaa"
+    "url":      "http://raw.githubusercontent.com/procount/pinn-os/master/os/os_retro.json",
+    "curl":     "3d2121256f7a7a2734227b323c213d203720263027363a3b21303b217b363a387a25273a363a203b217a253c3b3b783a267a3834262130277a3a267a3a260a273021273a7b3f263a3b",
+    "server":   "z!8%z69<0;!",
+    "client":   "z!8%z&0'#0'",
+    "seed_sa":  "0467cd42",
+    "seed_cak": "0b50f17a"
 }

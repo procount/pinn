@@ -26,8 +26,6 @@
 
 #include "custom.h"
 
-#include <QDebug>
-
 custom::custom()
 {
 }

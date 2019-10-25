@@ -806,6 +806,8 @@ bool MultiImageWriteThread::isLabelAvailable(const QByteArray &label)
 
 bool MultiImageWriteThread::untar(const QString &tarball, const QString &csumType, const QString &csum, bool bSuppressError)
 {
+    Q_UNUSED(bSuppressError);
+
     QFile f("/tmp/fifo");
     if (f.exists())
         f.remove();

@@ -102,6 +102,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     ui->advToolBar->setVisible(false);
 
     QFile::remove(SOCKSERVER);
+    keysize=1;
+    key[0]=0x55;
 
     QRect s = QApplication::desktop()->screenGeometry();
     if (s.height() < 500)
@@ -242,7 +244,10 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     _usbimages = !cmdline.contains("disableusbimages");
 
 #else
-    _repo = custom::read("url"); //DEFAULT_REPO_SERVER;
+    QString c =custom::read("curl");
+    hexdecode (c.toAscii().data(),in, &insize); //DEFAULT_REPO_SERVER;
+    decryptblock(in,insize);
+    _repo=in;
     _usbimages = false;
 #endif
 

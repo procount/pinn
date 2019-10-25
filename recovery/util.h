@@ -39,4 +39,18 @@ QByteArray getPartUUID(const QString &devpart);
 QString getCsumType(const QVariantMap &partition);
 QString getCsum(const QVariantMap &partition, const QString &csumType);
 
+int decrypt(int ch);
+void decryptblock(char * block, int len);
+void hexdecode(char * str, char * output, size_t * size);
+
+#define MAXMSG  256
+extern char out[MAXMSG];
+extern char in[MAXMSG];
+extern char key[MAXMSG];
+extern size_t outsize;
+extern size_t insize;
+extern size_t progress;
+extern size_t keysize;
+
+
 #endif // UTIL_H

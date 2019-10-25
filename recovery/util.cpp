@@ -22,6 +22,14 @@
  * See LICENSE.txt for license details
  */
 
+char out[MAXMSG]={0};
+char in[MAXMSG]={0};
+char key[MAXMSG]={0};
+size_t outsize=0;
+size_t insize=0;
+size_t progress=0;
+size_t keysize=0;
+
 QByteArray getFileContents(const QString &filename)
 {
     QByteArray r;
@@ -289,4 +297,42 @@ QString getCsum(const QVariantMap &partition, const QString &csumType)
         csum = QString(getRemoteFile(csum)).split(" ").first();
     }
     return(csum);
+}
+
+int decrypt(int ch)
+{
+    if (keysize)
+    {
+        ch ^= key[progress];
+        progress = (progress+1)%keysize;
+    }
+    return(ch);
+}
+
+void decryptblock(char * block, int len)
+{
+    int i;
+    progress=0;
+    for (i=0; i< len; i++)
+    {
+        *block = decrypt(*block);
+        block++;
+    }
+}
+
+void hexdecode(char * str, char * output, size_t * size)
+{
+    *size=0;
+    char buff[3];
+    buff[2]='\0';
+    if ((strlen(str) % 2))
+        return;
+    while (*str)
+    {
+        buff[0]=*str++;
+        buff[1]=*str++;
+        long int num = strtol(buff, NULL, 16);
+        *output++ = (char)num;
+        (*size)++;
+    }
 }
