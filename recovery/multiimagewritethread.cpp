@@ -818,7 +818,7 @@ bool MultiImageWriteThread::untar(const QString &tarball, const QString &csumTyp
     if (isURL(tarball))
         cmd += "wget --no-verbose --tries=inf -O- "+tarball;
 
-    cmd += " | tee /tmp/fifo | ";
+    cmd += " | teed /tmp/fifo | ";
 
     if (tarball.endsWith(".gz"))
     {

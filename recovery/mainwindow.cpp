@@ -2052,7 +2052,6 @@ void MainWindow::manage_request()
     if (fserver)
     {
         struct stat fstatus;
-        qDebug() << 1;
         int elapsed=0;
         do
         {
@@ -2063,7 +2062,6 @@ void MainWindow::manage_request()
         if (elapsed==30)
             goto abort;
         fread(&insize, 1, sizeof(insize), fserver);
-        qDebug() << 2;
 
         elapsed=0;
         do
@@ -2077,7 +2075,6 @@ void MainWindow::manage_request()
             fclose (fserver);
             goto abort;
         }
-        qDebug() << 3;
 
         if (insize < MAXMSG)
             fread(in, 1, insize, fserver);
@@ -2086,7 +2083,6 @@ void MainWindow::manage_request()
             fclose(fserver);
             goto abort;
         }
-        qDebug() << 4;
 
         fclose(fserver);
         fserver=NULL;
@@ -2096,31 +2092,22 @@ void MainWindow::manage_request()
         //process();
         custom::readhex("seed_sa",key, &keysize);
         decryptblock(in,insize);
-        qDebug() << 5;
 
         memcpy(key,in,insize);
         keysize=insize;
 
-        qDebug() << 6;
-
         custom::readhex("seed_cak",in, &insize);
-        qDebug() << 7;
 
         decryptblock(in,insize);
-        qDebug() << 8;
 
         /* Output the response */
         FILE * fclient;
         fclient = fopen(_sockclient.toAscii().data(),"wb");
         if (fclient)
         {
-            qDebug() << 9;
-
             fwrite(&insize, 1, sizeof(insize), fclient);
             fwrite(in,1, insize, fclient);
             fclose(fclient);
-            qDebug() << 10;
-
         }
 abort:
         unlink(_sockserver.toAscii().data());
