@@ -52,7 +52,6 @@ ProgressSlideshowDialog::ProgressSlideshowDialog(const QStringList &slidesDirect
             }
         }
     }
-    qDebug() << "Available slides" << _slides;
 
     if (_slides.isEmpty())
     {
@@ -74,14 +73,6 @@ ProgressSlideshowDialog::ProgressSlideshowDialog(const QStringList &slidesDirect
 
         _maxwidth = _maxwidth * screen.width() / pixsize.width();
         _maxheight = _maxheight * screen.height() / pixsize.height();
-#if 0
-        foreach (QString slide, _slides)
-        {   //Get largest slide dimension
-            QPixmap pix(slide);
-            _maxwidth = qMax(_maxwidth, pix.width());
-            _maxheight = qMax(_maxheight, pix.height());
-        }
-#endif
 
         _maxheight += ui->frame->height(); //89 for lower progress bar
         //Ensure it is smaller than physical screen

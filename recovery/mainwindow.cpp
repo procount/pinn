@@ -686,7 +686,7 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
             foreach (QListWidgetItem *item, selected)
             {
                 QVariantMap entry = item->data(Qt::UserRole).toMap();
-                qDebug() <<entry;
+                //qDebug() <<entry;
                 if (!entry.contains("folder"))
                 {
                     QDir d;
@@ -1503,7 +1503,7 @@ void MainWindow::on_list_itemChanged(QListWidgetItem *)
 
 void MainWindow::downloadMetaFile(const QString &urlstring, const QString &saveAs)
 {
-    qDebug() << "Downloading" << urlstring << "to" << saveAs;
+    qDebug() << "Downloading" << urlstring.right( urlstring.length() - urlstring.lastIndexOf('/')-1 ) << "to" << saveAs;
     _numMetaFilesToDownload++;
     QUrl url(urlstring);
     QNetworkRequest request(url);
@@ -1523,7 +1523,7 @@ void MainWindow::downloadListRedirectCheck()
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
-        qDebug() << "Redirection - Re-trying download from" << redirectionurl;
+        qDebug() << "Redirection - Re-trying download from" << redirectionurl.right( redirectionurl.length() - redirectionurl.lastIndexOf('/')-1 );
         downloadList(redirectionurl);
     }
     else
@@ -1539,7 +1539,7 @@ void MainWindow::downloadIconRedirectCheck()
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
-        qDebug() << "Redirection - Re-trying download from" << redirectionurl;
+        qDebug() << "Redirection - Re-trying download from" << redirectionurl.right( redirectionurl.length() - redirectionurl.lastIndexOf('/')-1 );
         downloadIcon(redirectionurl, originalurl);
     }
     else
@@ -1555,7 +1555,7 @@ void MainWindow::downloadMetaRedirectCheck()
 
     if (httpstatuscode > 300 && httpstatuscode < 400)
     {
-        qDebug() << "Redirection - Re-trying download from" << redirectionurl;
+        qDebug() << "Redirection - Re-trying download from" << redirectionurl.right( redirectionurl.length() - redirectionurl.lastIndexOf('/')-1 );
         _numMetaFilesToDownload--;
         downloadMetaFile(redirectionurl, saveAs);
     }

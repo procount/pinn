@@ -867,7 +867,7 @@ bool MultiImageWriteThread::untar(const QString &tarball, const QString &csumTyp
 
     QTime t1;
     t1.start();
-    qDebug() << "Executing:" << cmd;
+    qDebug() << "Executing untar";
 
     QProcess p;
     p.setProcessChannelMode(p.MergedChannels);
@@ -949,7 +949,7 @@ bool MultiImageWriteThread::dd(const QString &imagePath, const QString &device)
 
     QTime t1;
     t1.start();
-    qDebug() << "Executing:" << cmd;
+    qDebug() << "Executing dd";
 
     QProcess p;
     p.setProcessChannelMode(p.MergedChannels);
@@ -1008,7 +1008,7 @@ bool MultiImageWriteThread::partclone_restore(const QString &imagePath, const QS
 
     QTime t1;
     t1.start();
-    qDebug() << "Executing:" << cmd;
+    qDebug() << "Executing upartclone";
 
     QProcess p;
     p.setProcessChannelMode(p.MergedChannels);
