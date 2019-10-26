@@ -309,9 +309,9 @@ int decrypt(int ch)
     return(ch);
 }
 
-void decryptblock(char * block, int len)
+void decryptblock(char * block, size_t len)
 {
-    int i;
+    size_t i;
     progress=0;
     for (i=0; i< len; i++)
     {
@@ -320,13 +320,13 @@ void decryptblock(char * block, int len)
     }
 }
 
-void hexdecode(char * str, char * output, size_t * size)
+int hexdecode(const char * str, char * output, size_t * size)
 {
     *size=0;
     char buff[3];
     buff[2]='\0';
     if ((strlen(str) % 2))
-        return;
+        return -1;
     while (*str)
     {
         buff[0]=*str++;
@@ -335,4 +335,13 @@ void hexdecode(char * str, char * output, size_t * size)
         *output++ = (char)num;
         (*size)++;
     }
+    return 0;
+}
+
+int setkeyhex(const char * k)
+{
+    if (strlen(k) % 2)
+        return (-1);
+    hexdecode(k, key, &keysize);
+    return(0);
 }

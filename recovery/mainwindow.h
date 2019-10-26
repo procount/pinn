@@ -56,7 +56,7 @@ protected:
     QTimer _networkStatusPollTimer, _piDrivePollTimer;
     QTime _time;
     QString _model, _repo, _drive, _bootdrive;
-
+    QString _sockserver, _sockclient;
     QMap<QString,QVariantMap> listImages(const QString &folder = "/mnt/os", bool includeInstalled = true);
     virtual void changeEvent(QEvent * event);
     virtual bool eventFilter(QObject *obj, QEvent *event);
@@ -83,6 +83,7 @@ protected:
     void copyWpa();
     void UpdateTime();
     void setTime(QNetworkReply *reply);
+    void manage_request();
 
 protected slots:
     void populate();

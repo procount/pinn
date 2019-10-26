@@ -139,6 +139,21 @@ void process(void)
     outsize=insize;
 }
 
+int setkey(const char * k)
+{
+    keysize = strlen(k);
+    strcpy(key, k);
+    return(0);
+}
+
+int setkeyhex(const char * k)
+{
+    if (strlen(k) % 2) 
+        return (-1);
+    hexdecode(k, key, &keysize);
+    return(0);
+}
+
 int main(int argc, char**argv) 
 {
     int arg=1;
@@ -151,17 +166,11 @@ int main(int argc, char**argv)
     if ( strcmp(argv[arg],"-s") ==0)
     {
         arg++;
-        keysize = strlen(argv[arg]);
-        strcpy(key, argv[arg]);
+        setkey(argv[arg];
     }
     else
     {    
-        if (strlen(argv[arg]) % 2) 
-        {
-            printf("Invalid hex key string length - must be even number of bytes");
-            exit(EXIT_FAILURE);
-        }
-        hexdecode(argv[arg], key, &keysize);
+        setkeyhex(argv[arg]);
     }
     arg++;
 

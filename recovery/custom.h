@@ -28,6 +28,7 @@
 
 
 #include "json.h"
+#include "util.h"
 
 #include <QString>
 #include <QVariantMap>
@@ -37,6 +38,8 @@ class custom
 public:
     custom();
     static QString read(const char * key);
+    static int readhex(const char * key, char * out, size_t * len);
+
 };
 
 #endif // CUSTOM_H

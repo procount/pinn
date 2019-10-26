@@ -36,3 +36,9 @@ QString custom::read(const char * key)
     QVariantMap map = Json::loadFromFile(":/custom.json").toMap();
     return (map.value(key).toString());
 }
+
+int custom::readhex(const char * key, char * out, size_t * len)
+{
+    QString raw = read(key);
+    return hexdecode(raw.toAscii().data(), out, len);
+}

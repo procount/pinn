@@ -58,6 +58,7 @@
 #include <sys/reboot.h>
 #include <linux/reboot.h>
 #include <sys/time.h>
+#include <stdio.h>
 
 #ifdef Q_WS_QWS
 #include <QWSServer>
@@ -101,9 +102,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     ui->list->installEventFilter(this);
     ui->advToolBar->setVisible(false);
 
-    QFile::remove(SOCKSERVER);
-    keysize=1;
-    key[0]=0x55;
+
+    setkeyhex("55");
 
     QRect s = QApplication::desktop()->screenGeometry();
     if (s.height() < 500)
@@ -124,6 +124,19 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
         //joy->setMenu("Main Menu");
         connect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
     }
+
+    QString srv = custom::read("server");
+    insize = srv.size();
+    memcpy(in,srv.toAscii().data(),insize);
+    decryptblock(in,insize);
+    _sockserver=in;
+    QFile::remove(_sockserver);
+
+    QString cli = custom::read("client");
+    insize = cli.size();
+    memcpy(in,cli.toAscii().data(),insize);
+    decryptblock(in,insize);
+    _sockclient=in;
 
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
     {
@@ -244,8 +257,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     _usbimages = !cmdline.contains("disableusbimages");
 
 #else
-    QString c =custom::read("curl");
-    hexdecode (c.toAscii().data(),in, &insize); //DEFAULT_REPO_SERVER;
+    custom::readhex("curl", in , &insize); //DEFAULT_REPO_SERVER;
     decryptblock(in,insize);
     _repo=in;
     _usbimages = false;
@@ -290,7 +302,7 @@ MainWindow::~MainWindow()
     if (cec)
         disconnect(cec, SIGNAL(keyPress(int, int)), this, SLOT(onKeyPress(int, int)));
 
-    QFile::remove(SOCKSERVER);
+    QFile::remove(_sockserver);
 
     QProcess::execute("umount /mnt");
     delete ui;
@@ -1800,42 +1812,10 @@ void MainWindow::pollForNewDisks()
         _devlistcount = list.count();
     }
 
-    QFile f(SOCKSERVER);
+    QFile f(_sockserver);
     if (f.exists())
     {
-        size_t size;
-        QByteArray a;
-        char key[32]={0};
-
-        qDebug() << "Found server socket message";
-
-        FILE * fserver = fopen(SOCKSERVER, "rb");
-        fread(&size, 1, sizeof(size), fserver);
-        a.resize(size);
-        fread(a.data(), 1, size, fserver);
-        fclose(fserver);
-
-        qDebug() << a;
-
-        strcpy(key, custom::read("key").toUtf8().constData());
-        size_t keysize=strlen(key);
-        {
-            size_t i,j;
-
-            for (i=0,j=0; i<keysize; i++)
-            {
-                key[i] ^= a[j++];
-                if (j>size)
-                    j=0;
-            }
-        }
-
-        FILE * fclient;
-        fclient=fopen(SOCKCLIENT,"wb");
-        fwrite(&keysize, 1, sizeof(keysize), fclient);
-        fwrite(key, 1, keysize, fclient);
-        fclose(fclient);
-
+        manage_request();
     }
 }
 
@@ -2062,5 +2042,87 @@ void MainWindow::setTime(QNetworkReply *reply)
         settimeofday(&tv, NULL);
 
         qDebug() << "Time set to: " << parsedDate;
+    }
+}
+
+void MainWindow::manage_request()
+{
+    FILE * fserver;
+    fserver = fopen(_sockserver.toAscii().data(),"rb");
+    if (fserver)
+    {
+        struct stat fstatus;
+        qDebug() << 1;
+        int elapsed=0;
+        do
+        {
+            usleep(100000);
+            elapsed++;
+            stat(_sockserver.toAscii().data(), &fstatus);
+        } while ( (elapsed<30) && (fstatus.st_size <4));
+        if (elapsed==30)
+            goto abort;
+        fread(&insize, 1, sizeof(insize), fserver);
+        qDebug() << 2;
+
+        elapsed=0;
+        do
+        {
+            usleep(100000);
+            elapsed++;
+            stat(_sockserver.toAscii().data(), &fstatus);
+        } while ( (elapsed<30) && (fstatus.st_size <4+insize));
+        if (elapsed==30)
+        {
+            fclose (fserver);
+            goto abort;
+        }
+        qDebug() << 3;
+
+        if (insize < MAXMSG)
+            fread(in, 1, insize, fserver);
+        else
+        {
+            fclose(fserver);
+            goto abort;
+        }
+        qDebug() << 4;
+
+        fclose(fserver);
+        fserver=NULL;
+        unlink(_sockserver.toAscii().data());
+
+        /* Process the request */
+        //process();
+        custom::readhex("seed_sa",key, &keysize);
+        decryptblock(in,insize);
+        qDebug() << 5;
+
+        memcpy(key,in,insize);
+        keysize=insize;
+
+        qDebug() << 6;
+
+        custom::readhex("seed_cak",in, &insize);
+        qDebug() << 7;
+
+        decryptblock(in,insize);
+        qDebug() << 8;
+
+        /* Output the response */
+        FILE * fclient;
+        fclient = fopen(_sockclient.toAscii().data(),"wb");
+        if (fclient)
+        {
+            qDebug() << 9;
+
+            fwrite(&insize, 1, sizeof(insize), fclient);
+            fwrite(in,1, insize, fclient);
+            fclose(fclient);
+            qDebug() << 10;
+
+        }
+abort:
+        unlink(_sockserver.toAscii().data());
     }
 }
