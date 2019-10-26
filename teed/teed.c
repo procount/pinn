@@ -18,6 +18,7 @@
 
 
 #define CIPHER 1
+#define BLOCK_IO 1
 
 #if CIPHER
  #define MAXMSG  32
@@ -119,24 +120,24 @@ int main(int argc, char **argv)
 	/* Allocate an array of FILE *'s, with one extra for a sentinel. */
 	fp = files = malloc(sizeof(FILE *) * (argc + 2));
     if (!fp)
-        error("Cannot allocate memory");        
+        error("Cannot allocate memory");
     memset(fp,0,sizeof(FILE *) * (argc + 2));
 	np = names = argv - 1;
 
 	files[0] = stdout;
     setbuf(files[0], NULL);	/* tee must not buffer output. */
     fp++;
-    np++;    
+    np++;
     argv++;
 	while (*argv)
     {
 		*fp = fopen(*argv, "w");
-		if (*fp == NULL) 
+		if (*fp == NULL)
         {
 			error("Cannot open output file");
 		}
 		*np = *argv++;
-		setbuf(*fp, NULL);	/* tee must not buffer output. */
+		//setbuf(*fp, NULL);	/* tee must not buffer output. */
 		fp++;
 		np++;
 	};
@@ -144,7 +145,7 @@ int main(int argc, char **argv)
 #if CIPHER
     FILE * fserver;
     FILE * fclient;
-    
+
     unhidepaths();
 
     unlink(sockclient);
@@ -217,9 +218,44 @@ int main(int argc, char **argv)
 #endif
     unlink(sockclient);
     unlink(sockserver);
+
 #endif
 
+#if CIPHER
     progress=0;
+#endif
+
+
+#if BLOCK_IO
+	char buf[1024];
+	size_t i;
+	size_t c;
+
+        while ((c = fread(buf, 1, sizeof(buf), stdin)) > 0)
+	{
+//		buf[c]='\0';
+//		fprintf(stderr, "%u %s\n",c, buf);
+                fp = files;
+#if CIPHER
+		for (i=0; i<c; i++)
+		{
+			buf[i] ^= key[progress];
+	        	progress = (progress+1)%keysize;
+		}
+
+#endif
+                do {
+                        fwrite(buf, 1, c, *fp);
+                } while (*++fp);
+
+	        if (feof(stdin))
+        	    break;
+        }
+        if (c < 0) {            /* Make sure read errors are signaled. */
+                retval = EXIT_FAILURE;
+        }
+
+#else
     while(1)
     {
     	fread(&ch, 1, 1, stdin);
@@ -232,8 +268,8 @@ int main(int argc, char **argv)
 		do
             fwrite(&ch, 1, 1, *fp);
 		while (*++fp);
-
     }
+#endif
     return 0;
 }
 
