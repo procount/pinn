@@ -66,24 +66,33 @@ ProgressSlideshowDialog::ProgressSlideshowDialog(const QStringList &slidesDirect
     else
     {
         /* Resize window to size of largest image in slide directory */
-        int maxwidth=0;
-        int maxheight=0;
+        _maxwidth=960;
+        _maxheight=640;
+
+        QRect screen  = QApplication::desktop()->availableGeometry();
+        QSize pixsize = QPixmap(":/icons/wallpaper.jpg").size();
+
+        _maxwidth = _maxwidth * screen.width() / pixsize.width();
+        _maxheight = _maxheight * screen.height() / pixsize.height();
+#if 0
         foreach (QString slide, _slides)
         {   //Get largest slide dimension
             QPixmap pix(slide);
-            maxwidth = qMax(maxwidth, pix.width());
-            maxheight = qMax(maxheight, pix.height());
+            _maxwidth = qMax(_maxwidth, pix.width());
+            _maxheight = qMax(_maxheight, pix.height());
         }
-        maxheight += ui->frame->height(); //89 for lower progress bar
+#endif
+
+        _maxheight += ui->frame->height(); //89 for lower progress bar
         //Ensure it is smaller than physical screen
-        maxwidth = qMin(maxwidth, s.width()-10);
-        maxheight = qMin(maxheight, s.height()-100);
+        _maxwidth = qMin(_maxwidth, s.width()-10);
+        _maxheight = qMin(_maxheight, s.height()-100);
         //Resize dialog box. imagesize will exapnd to fit
-        resize(maxwidth, maxheight);
+        resize(_maxwidth, _maxheight);
 
         QPixmap pixmap(_slides.first());
 
-        ui->imagespace->setPixmap(pixmap);
+        ui->imagespace->setPixmap(pixmap.scaled(_maxwidth,_maxheight));
 
         connect(&_timer, SIGNAL(timeout()), this, SLOT(nextSlide()));
         _timer.start(changeInterval * 1000);
@@ -112,7 +121,7 @@ void ProgressSlideshowDialog::nextSlide()
 
     QString newSlide = _slides.at(_pos);
     if (QFile::exists(newSlide))
-        ui->imagespace->setPixmap(QPixmap(newSlide));
+        ui->imagespace->setPixmap(QPixmap(newSlide).scaled(_maxwidth,_maxheight));
 }
 
 /* IO accounting functionality for analyzing SD card write speed / showing progress */

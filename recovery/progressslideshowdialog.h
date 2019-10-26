@@ -44,6 +44,8 @@ protected:
     uint _sectorsStart, _maxSectors, _pausedAt;
     QTimer _timer, _iotimer;
     QTime _t1;
+    int _maxwidth;
+    int _maxheight;
 
     uint sectorsWritten();
 
