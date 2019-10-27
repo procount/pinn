@@ -93,17 +93,8 @@ function select_kernelconfig {
     CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE
     VAR_PREFIX=kernelconfig-recovery
     sed -ri "s/(^$CONFIG_VAR=\"$VAR_PREFIX\.).+(\")$/\1$ARCH\2/" "$CONFIG_FILE"
-
-    if [ "$ARCH" == "armv6" ]; then
-        REPO="git:\/\/github.com\/raspberrypi\/linux.git";
-        VERSION="71d47f4c4bd7fd395b87c474498187b2f9be8751";
-    elif [ "$ARCH" == "armv7" ]; then
-        REPO="git:\/\/github.com\/raspberrypi\/linux.git";
-        VERSION="71d47f4c4bd7fd395b87c474498187b2f9be8751";
-    elif [ "$ARCH" == "armv7l" ]; then
         REPO="git:\/\/github.com\/raspberrypi\/linux.git"
         VERSION="71d47f4c4bd7fd395b87c474498187b2f9be8751";
-    fi
     CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_REPO_URL
     sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$REPO\2/" "$CONFIG_FILE"
     CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_REPO_VERSION
