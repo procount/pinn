@@ -1150,7 +1150,7 @@ On Ubuntu 19.04+, Debian/Raspbian 10+ you can install bsdtar with
 ```
 sudo apt install bsdtar
 ```
-
+**Warning:** Don't use the apt method on an older OS, the installed bsdtar is too old
 
 ## Run Build Script
 
