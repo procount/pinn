@@ -29,12 +29,8 @@
 
 #include "input.h"
 
-//#include <QObject>
 #include <QThread>
 #include <QFile>
-//#include <QWaitCondition>
-//#include <QMutex>
-//#include <stdint.h>
 #include <QVariantMap>
 
 typedef QMap<int,int> mapkeys_t;

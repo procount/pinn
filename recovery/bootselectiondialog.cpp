@@ -65,16 +65,11 @@ BootSelectionDialog::BootSelectionDialog(const QString &drive, const QString &de
 
     Kinput::setWindow("bootSelection");
     Kinput::setMenu("any");
-//    cec->setWindow("bootSelection");
-//    cec->setMenu("any");
     connect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
 
-//    joy->setWindow("bootSelection");
-//    joy->setMenu("any");
     connect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
 
     /* Also mount /dev/mmcblk0p1 as it may contain icons we need */
-    //if (QProcess::execute("mount -t vfat -o ro "+partdev(drive, 1)+" /mnt") != 0)
     if (QProcess::execute("mount -t vfat -o ro /dev/mmcblk0p1 /mnt") != 0)
     {
         /* Not fatal if this fails */

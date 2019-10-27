@@ -112,18 +112,10 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     Kinput::setWindow("mainwindow");
     Kinput::setMenu("Main Menu");
     if (cec)
-    {
-        //cec->setWindow("mainwindow");
-        //cec->setMenu("Main Menu");
         connect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
-    }
 
     if (joy)
-    {
-        //joy->setWindow("mainwindow");
-        //joy->setMenu("Main Menu");
         connect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
-    }
 
     QString srv = custom::read("server");
     insize = srv.size();
@@ -1655,11 +1647,6 @@ void MainWindow::startImageWrite()
         }
 
         slidesFolder.clear();
-        //QRect s = QApplication::desktop()->screenGeometry();
-        //if (s.width() > 640 && QFile::exists(folder+"/slides"))
-        //{
-        //    slidesFolder = folder+"/slides";
-        //}
         if (QFile::exists(folder+"/slides_vga"))
         {
             slidesFolder = folder+"/slides_vga";

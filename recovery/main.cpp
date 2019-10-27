@@ -340,7 +340,6 @@ int main(int argc, char *argv[])
     animation1->setStartValue(QRect(0, y1, logo1.width(), logo1.height()));
     animation1->setEndValue(QRect(0,0, logo1.width(), logo1.height()));
     animation1->setEasingCurve(QEasingCurve::OutQuad);
-    //animation1->start();
 
     QPropertyAnimation *animation2 = new QPropertyAnimation(&logo2,"geometry");
     animation2->setDuration(2000);
@@ -350,7 +349,6 @@ int main(int argc, char *argv[])
 
     QSequentialAnimationGroup *group = new QSequentialAnimationGroup;
     group->addAnimation(animation1);
-    //group->addAnimation(animation0);
     group->addAnimation(animation2);
     group->start();
 
@@ -368,7 +366,7 @@ int main(int argc, char *argv[])
     {
         t.start();
 
-        while (t.elapsed() < 8000)
+        while (t.elapsed() < 4000)
         {
             splash->showStatusMessage("For recovery mode, hold SHIFT...", (t.elapsed()%1000 < 500)?Qt::black : Qt::white);
 
@@ -401,9 +399,8 @@ int main(int argc, char *argv[])
     }
 
     splash->showStatusMessage("Please wait",Qt::white);
-    //splash->showStatusMessage("");
-    while (group->currentTime()<group->totalDuration())
-        QApplication::processEvents();
+//    while (group->currentTime()<group->totalDuration())
+//        QApplication::processEvents();
     splash->showStatusMessage("", Qt::black);
 
     cec->clearKeyPressed();

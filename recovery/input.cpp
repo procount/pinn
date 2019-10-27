@@ -134,7 +134,6 @@ int Kinput::map_button(QVariant joy)
 
 void Kinput::loadMap(QString filename, QString defName)
 {
-    //TRACE
     QString fname = filename;
     if (!QFile::exists(fname))
         fname=defName; //Use default mapping
@@ -163,7 +162,6 @@ void Kinput::loadMap(QString filename, QString defName)
                     {
                         scale_map[i].threshold=step.value("threshold").toInt();
                         scale_map[i].step=step.value("step").toInt();
-                        //DBG2 << "Step "<<i<< " threshold: "<<scale_map[i].threshold<<" step: "<<scale_map[i].step;
                         i++;
                         //Mark end of table
                         scale_map[i].threshold=-1;
@@ -196,6 +194,7 @@ void Kinput::loadMap(QString filename, QString defName)
         }
     }
 }
+
 void Kinput::inject_key(int key, int value)
 {
     if (key & mouse_any)
@@ -207,7 +206,6 @@ void Kinput::inject_key(int key, int value)
 
 void Kinput::mouse_simulate(int key, int value)
 {
-//    qDebug() << "Inject Mouse Code: "<<key<<" Value: " <<value;
 
     mouse_state[key & 0x07]= (value ? 1 : 0);
 
@@ -232,12 +230,6 @@ void Kinput::mouse_simulate(int key, int value)
         if (!down)
             mouse_input=0;
     }
-
-
-//    qDebug()<<"Mouse input=" << mouse_input;
-//    for (int i=0; i<6; i++)
-//        qDebug() << mouse_state[i];
-
 }
 
 void Kinput::mouse_repeat()
@@ -256,7 +248,6 @@ void Kinput::mouse_repeat()
         case mouse_left:
             if (mouse_state[i])
             {
-                //qDebug()<<"MouseLeft";
                 down++;
                 if (p.x()>0)
                     sim->inject(EV_REL, REL_X, -step);
@@ -267,10 +258,7 @@ void Kinput::mouse_repeat()
         case mouse_right:
             if (mouse_state[i])
             {
-                //qDebug()<<"MouseRight";
                 down++;
-                //p.rx()+=10;
-                //QCursor::setPos(p);
                 if (p.x()<screen.width())
                     sim->inject(EV_REL, REL_X, step);
                 else
@@ -280,10 +268,7 @@ void Kinput::mouse_repeat()
         case mouse_up:
             if (mouse_state[i])
             {
-                //qDebug()<<"MouseUp";
                 down++;
-                //p.ry()-=10;
-                //QCursor::setPos(p);
                 if (p.y()>0)
                     sim->inject(EV_REL, REL_Y, -step);
                 else
@@ -293,10 +278,7 @@ void Kinput::mouse_repeat()
         case mouse_down:
             if (mouse_state[i])
             {
-                //qDebug()<<"MouseDown";
                 down++;
-                //p.ry()+=10;
-                //QCursor::setPos(p);
                 if (p.y()<screen.height())
                    sim->inject(EV_REL, REL_Y, step);
                 else
@@ -306,18 +288,6 @@ void Kinput::mouse_repeat()
         case mouse_lclick:
             if (mouse_state[i])
             { //Click!
-        /*
-        *             QWidget* widget = dynamic_cast<QWidget*>(QApplication::widgetAt(QCursor::pos()));
-                if (widget)
-                {
-                    QPoint pos = QCursor::pos();
-                    QMouseEvent *event = new QMouseEvent(QEvent::MouseButtonPress,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
-                    QCoreApplication::sendEvent(widget,event);
-                    QMouseEvent *event1 = new QMouseEvent(QEvent::MouseButtonRelease,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
-                    QCoreApplication::sendEvent(widget,event1);
-                    qApp->processEvents();
-                }
-        */
                 sim->inject(EV_KEY, BTN_LEFT, 1);
                 sim->inject(EV_SYN, SYN_REPORT, 0);
                 sim->inject(EV_KEY, BTN_LEFT, 0);
@@ -340,39 +310,11 @@ void Kinput::mouse_repeat()
             step=8;
         if (count>50)
             step=10;
-//        QTimer::singleShot(40, this, SLOT(mouse_repeat()));
         mousetimer.start( 40 );
 
     }
 }
 
-#if 0
-void Kinput::key_simulate(int key, int value)
-{
-    Qt::KeyboardModifiers modifiers = Qt::NoModifier;
-    //QPoint p = QCursor::pos();
-//    extern simulate * sim;
-
-    qDebug() << "Inject Key Code: "<<key<<" Value: " <<value;
-
-    if (_grab) {
-        enum QEvent::Type type = (value ? QEvent::KeyPress : QEvent::KeyRelease);
-        QKeyEvent *event=new QKeyEvent(type, key, modifiers);
-        QCoreApplication::sendEvent(_grab, event);
-    }
-    else
-    {
-        // key press
-        //sim->inject(EV_KEY, key, 1);
-        //sim->inject(EV_SYN, SYN_REPORT, 0);
-        QWSServer::sendKeyEvent(0, key, modifiers, true, false);
-        // key release
-        //sim->inject(EV_KEY, key, 0);
-        //sim->inject(EV_SYN, SYN_REPORT, 0);
-        QWSServer::sendKeyEvent(0, key, modifiers, false, false);
-    }
-}
-#endif
 
 void Kinput::key_simulate(int key, int value)
 {
@@ -404,12 +346,8 @@ void Kinput::key_repeat()
         }
         else
         {
-            // key press
-            //sim->inject(EV_KEY, key, 1);
-            //sim->inject(EV_SYN, SYN_REPORT, 0);
             QWSServer::sendKeyEvent(0, currentKey, modifiers, true, false);
         }
-        //QTimer::singleShot( (keyState==1) ? 400 : 100, this, SLOT(key_repeat()));
         keytimer.start( (keyState==1) ? 400:100);
         keyState=2;
     }
@@ -425,8 +363,6 @@ void Kinput::key_repeat()
             else
             {
                 // key release
-                //sim->inject(EV_KEY, key, 0);
-                //sim->inject(EV_SYN, SYN_REPORT, 0);
                 QWSServer::sendKeyEvent(0, currentKey, modifiers, false, false);
             }
             currentKey=0;
