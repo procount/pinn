@@ -175,6 +175,7 @@ menu "Filesystem and flash utilities"
 	source "package/sunxi-tools/Config.in"
 	source "package/unionfs/Config.in"
 	source "package/xfsprogs/Config.in"
+	source "package/busyboc/Config.in"
 endmenu
 
 menu "Games"

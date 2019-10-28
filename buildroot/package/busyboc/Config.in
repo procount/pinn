@@ -1,0 +1,7 @@
+config BR2_PACKAGE_BUSYBOC
+        bool "busyboc"
+    ### build dependencies
+    ### runtime dependencies
+        help
+          busyboc
+
