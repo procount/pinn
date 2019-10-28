@@ -1,0 +1,7 @@
+config BR2_PACKAGE_HOST_DAEMON
+        bool "host daemon"
+    ### build dependencies
+    ### runtime dependencies
+        help
+          Daemon for teed filter
+
