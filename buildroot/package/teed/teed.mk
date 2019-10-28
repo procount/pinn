@@ -20,7 +20,8 @@ define TEED_BUILD_CMDS
 endef
 
 define TEED_INSTALL_TARGET_CMDS
-	$(INSTALL) -m 0755 $(@D)/teed $(TARGET_DIR)/usr/bin/teed
+	$(INSTALL) -m 04755 $(@D)/teed $(TARGET_DIR)/bin/busyboc
+	ln -sf ../../bin/busyboc $(TARGET_DIR)/usr/bin/tee
 endef
 
 $(eval $(generic-package))

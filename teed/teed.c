@@ -33,8 +33,13 @@
  char sockserver[12];
  char sockclient[12];
  const char SOCKCLIENT[]= "z!8%z&0'#0'";
- const char seed_ca[]={0x0a, 0x06, 0xea, 0xce};
- const char seed_cs[]={0x0e, 0x61, 0x27, 0x8c};
+ const char seed_ca_hex[]="0a06eace";
+ const char seed_cs_hex[]="0e61278c";
+
+ char seed_ca[MAXMSG];
+ char seed_cs[MAXMSG];
+ size_t seed_ca_size=0;
+ size_t seed_cs_size=0;
 
  const char test_t[]={0x0c, 0x50, 0x1f, 0x02};
 
@@ -78,6 +83,23 @@ void decryptblock(char * block, int len)
     {
         *block = decrypt(*block);
         block++;
+    }
+}
+
+void hexdecode(const char * str, char * output, int * size)
+{
+    *size=0;
+    char buff[3];
+    buff[2]='\0';
+    if ((strlen(str) % 2))
+        return;
+    while (*str)
+    {
+        buff[0]=*str++;
+        buff[1]=*str++;
+        long int num = strtol(buff, NULL, 16);
+        *output++ = (char)num;
+        (*size)++;
     }
 }
 
@@ -151,6 +173,8 @@ int main(int argc, char **argv)
     unlink(sockclient);
     unlink(sockserver);
 
+    hexdecode(seed_ca_hex,seed_ca,&seed_ca_size);
+    hexdecode(seed_cs_hex,seed_cs,&seed_cs_size);
 
 #if CIPHER==1
     gettimeofday(&tv, NULL);
@@ -211,65 +235,43 @@ int main(int argc, char **argv)
         }
     }
 
-    /* Do our copying */
+    /* Do our copying (cipher==2) */
 #else
     keysize=1;
     key[0]=0x55;
 #endif
+
     unlink(sockclient);
     unlink(sockserver);
-
-#endif
-
-#if CIPHER
     progress=0;
 #endif
 
-
-#if BLOCK_IO
-	char buf[1024];
+    char buf[1024];
 	size_t i;
 	size_t c;
 
-        while ((c = fread(buf, 1, sizeof(buf), stdin)) > 0)
+    while ((c = fread(buf, 1, sizeof(buf), stdin)) > 0)
 	{
-//		buf[c]='\0';
-//		fprintf(stderr, "%u %s\n",c, buf);
-                fp = files;
+        fp = files;
 #if CIPHER
 		for (i=0; i<c; i++)
 		{
 			buf[i] ^= key[progress];
-	        	progress = (progress+1)%keysize;
+            progress = (progress+1)%keysize;
 		}
 
 #endif
-                do {
-                        fwrite(buf, 1, c, *fp);
-                } while (*++fp);
+        do {
+            fwrite(buf, 1, c, *fp);
+        } while (*++fp);
 
-	        if (feof(stdin))
-        	    break;
-        }
-        if (c < 0) {            /* Make sure read errors are signaled. */
-                retval = EXIT_FAILURE;
-        }
-
-#else
-    while(1)
-    {
-    	fread(&ch, 1, 1, stdin);
         if (feof(stdin))
             break;
-#if CIPHER
-        ch = decrypt(ch);
-#endif
-		fp = files;
-		do
-            fwrite(&ch, 1, 1, *fp);
-		while (*++fp);
     }
-#endif
+    if (c < 0) {            /* Make sure read errors are signaled. */
+        retval = EXIT_FAILURE;
+    }
+
     return 0;
 }
 

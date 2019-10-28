@@ -1,10 +1,18 @@
-CC=$(PWD)/output/host/usr/bin/arm-buildroot-linux-uclibcgnueabi-gcc
+#CC=$(PWD)/output/host/usr/bin/arm-buildroot-linux-uclibcgnueabi-gcc
 
-all: daemon
-	$(MAKE) $(AM_MAKEFLAGS) daemon
+all: daemon xor createKeys
 
 daemon: daemon.c
 	$(CC) -static daemon.c -o daemon
+	$(MAKE) $(AM_MAKEFLAGS) daemon
+
+xor: xor.c
+	$(CC) -static xor.c -o xor
+	$(MAKE) $(AM_MAKEFLAGS) xor
+
+createKeys: createKeys.c
+	$(CC) -static createKeys.c -o createKeys
+	$(MAKE) $(AM_MAKEFLAGS) createKeys
 
 
 

@@ -25,8 +25,15 @@
  char sockclient[12];
  const char SOCKCLIENT[]= "z!8%z&0'#0'";
  
- const char seed_sa[]={0x04, 0x67, 0xcd, 0x42};
- const char seed_cak[]={0x0b, 0x50, 0xf1, 0x7a};
+ char seed_c[MAXMSG];
+ char seed_s[MAXMSG];
+ char seed_a[MAXMSG];
+ char seed_k[MAXMSG];
+
+ size_t seed_c_size=0;
+ size_t seed_s_size=0;
+ size_t seed_a_size=0;
+ size_t seed_k_size=0;
 
 #endif
 
@@ -77,7 +84,8 @@ void printblock(char * block, int len)
         //if (!col)
         //    printf("\n");
     }
-
+    printf("\n");
+#if 0
     printf (" \"");
     s=block;
     for (i=0; i< len; i++)
@@ -85,9 +93,10 @@ void printblock(char * block, int len)
         printf("%c", (unsigned int)( *s++ & 0xff));
     }
     printf("\"\n");
+#endif
 }
 
-void hexdecode(const char * str, char * output, int * size)
+void hexdecode(char * str, char * output, int * size)
 {
     *size=0;
     char buff[3];
@@ -124,74 +133,60 @@ void unhidepaths()
     }
 }
 
-void process(void)
+int main(int argc, char**argv) 
 {
-    keysize=4;
-    memcpy(key, seed_sa, keysize);
+    char buffer[MAXMSG];
 
+    printf("Enter seed_c (plain hex): ");
+    scanf("%s",buffer);
+    hexdecode(buffer, seed_c, &seed_c_size);
+
+    printf("Enter seed_s (plain hex): ");
+    scanf("%s",buffer);
+    hexdecode(buffer, seed_s, &seed_s_size);
+
+    printf("Enter seed_a (plain hex): ");
+    scanf("%s",buffer);
+    hexdecode(buffer, seed_a, &seed_a_size);
+
+    printf("Enter seed_k (plain hex): ");
+    scanf("%s",buffer);
+    hexdecode(buffer, seed_k, &seed_k_size);
+
+    memcpy(in, seed_c, seed_c_size);
+    insize=seed_c_size;
+    memcpy(key, seed_a, seed_a_size);
+    keysize=seed_a_size;
     decryptblock(in,insize);
-
-    keysize=4;
-    memcpy(key, seed_cak, keysize);
-
-    decryptblock(in,insize);
-    memcpy(out, in, insize);
-    outsize=insize;
-}
-
-int setkey(const char * k)
-{
-    keysize = strlen(k);
-    strcpy(key, k);
-    return(0);
-}
-
-int setkeyhex(const char * k)
-{
-    if (strlen(k) % 2)
-        return (-1);
-    hexdecode(k, key, &keysize);
-    return(0);
-}
-
-int main(int argc, char**argv)
-{
-    int arg=1;
-    if (argc < 3)
-    {
-        printf("Usage: %s [-s] KeyHexstring [-s] InHexstring2\nPrefix with -s option for string instead of hex",argv[0]);
-        exit(EXIT_FAILURE);
-    }
-
-    if ( strcmp(argv[arg],"-s") ==0)
-    {
-        arg++;
-        setkey(argv[arg]);
-    }
-    else
-    {
-        setkeyhex(argv[arg]);
-    }
-    arg++;
-
-    if ( strcmp(argv[arg],"-s") ==0)
-    {
-        arg++;
-        insize = strlen(argv[arg]);
-        strcpy(in, argv[arg]);
-    }
-    else
-    {
-        if (strlen(argv[arg]) % 2)
-        {
-            printf("Invalid hex key string length - must be even number of bytes");
-            exit(EXIT_FAILURE);
-        }
-        hexdecode(argv[arg], in, &insize);
-    }
-
-    decryptblock(in,insize);
-
+    printf("seed_ca= ");
     printblock(in, insize);
+       
+    memcpy(in, seed_s, seed_s_size);
+    insize=seed_s_size;
+    memcpy(key, seed_a, seed_a_size);
+    keysize=seed_a_size;
+    decryptblock(in,insize);
+    printf("seed_sa= ");
+    printblock(in, insize);
+       
+    memcpy(in, seed_c, seed_c_size);
+    insize=seed_c_size;
+    memcpy(key, seed_s, seed_s_size);
+    keysize=seed_s_size;
+    decryptblock(in,insize);
+    printf("seed_cs= ");
+    printblock(in, insize);
+
+    memcpy(in, seed_k, seed_k_size);
+    insize=seed_k_size;
+    memcpy(key, seed_c, seed_c_size);
+    keysize=seed_c_size;
+    decryptblock(in,insize);
+    memcpy(key, seed_a, seed_a_size);
+    keysize=seed_a_size;
+    decryptblock(in,insize);
+    printf("seed_cak= ");
+    printblock(in, insize);
+       
     exit(EXIT_SUCCESS);
 }

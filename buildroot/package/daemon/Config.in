@@ -1,7 +1,0 @@
-config BR2_PACKAGE_DAEMON
-        bool "daemon"
-    ### build dependencies
-    ### runtime dependencies
-        help
-          Daemon for teed filter
-

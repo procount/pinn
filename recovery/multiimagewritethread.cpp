@@ -818,7 +818,7 @@ bool MultiImageWriteThread::untar(const QString &tarball, const QString &csumTyp
     if (isURL(tarball))
         cmd += "wget --no-verbose --tries=inf -O- "+tarball;
 
-    cmd += " | teed /tmp/fifo | ";
+    cmd += " | tee /tmp/fifo | ";
 
     if (tarball.endsWith(".gz"))
     {
@@ -851,7 +851,6 @@ bool MultiImageWriteThread::untar(const QString &tarball, const QString &csumTyp
         cmd += " "+tarball;
     }
 
-    //cmd += " | teed | bsdtar -xf - -C /mnt2 ";
     cmd += " | bsdtar -xf - -C /mnt2 ";
 
     struct statfs st;
