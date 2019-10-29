@@ -19,6 +19,7 @@
 
 #define CIPHER 1
 #define BLOCK_IO 1
+#define KEYSIZE 20
 
 #if CIPHER
  #define MAXMSG  32
@@ -33,15 +34,8 @@
  char sockserver[12];
  char sockclient[12];
  const char SOCKCLIENT[]= "z!8%z&0'#0'";
- const char seed_ca_hex[]="0a06eace";
- const char seed_cs_hex[]="0e61278c";
-
- char seed_ca[MAXMSG];
- char seed_cs[MAXMSG];
- size_t seed_ca_size=0;
- size_t seed_cs_size=0;
-
- const char test_t[]={0x0c, 0x50, 0x1f, 0x02};
+ const char seed_ca[KEYSIZE]= {0x46,0x3a,0x90,0xd4,0xaf,0x4a,0xaa,0x37,0x92,0x02,0xeb,0x80,0xfb,0xa0,0x9f,0x44,0xec,0xc8,0x7f,0x82};
+ const char seed_cs[KEYSIZE]= {0x94,0x80,0xde,0x94,0xf7,0x35,0xc7,0x53,0x88,0x6a,0x40,0xd4,0xae,0x21,0x21,0x66,0xb3,0x1b,0xff,0xd3};
 
 #endif
 
@@ -86,23 +80,6 @@ void decryptblock(char * block, int len)
     }
 }
 
-void hexdecode(const char * str, char * output, int * size)
-{
-    *size=0;
-    char buff[3];
-    buff[2]='\0';
-    if ((strlen(str) % 2))
-        return;
-    while (*str)
-    {
-        buff[0]=*str++;
-        buff[1]=*str++;
-        long int num = strtol(buff, NULL, 16);
-        *output++ = (char)num;
-        (*size)++;
-    }
-}
-
 void unhidepaths()
 {
     const char *s = SOCKCLIENT;
@@ -127,42 +104,52 @@ void unhidepaths()
 int main(int argc, char **argv)
 {
     int ch;
-	FILE **files;
-	FILE **fp;
-	char **names;
-	char **np;
-	char retval;
-    struct timeval tv;
+    FILE **files;
+    FILE **fp;
+    char **names;
+    char **np;
+    char retval;
+    struct timeval tv[4];
     struct stat fstatus;
 
-	/* gnu tee ignores SIGPIPE in case one of the output files is a pipe
-	 * that doesn't consume all its input.  Good idea... */
-	signal(SIGPIPE, SIG_IGN);
+    gettimeofday(&tv[0], NULL);
 
-	/* Allocate an array of FILE *'s, with one extra for a sentinel. */
-	fp = files = malloc(sizeof(FILE *) * (argc + 2));
+    if (4*sizeof(struct timeval) < KEYSIZE)
+    {
+        printf("tv size is not big enough\n");
+        exit(EXIT_FAILURE);
+    }
+    /* gnu tee ignores SIGPIPE in case one of the output files is a pipe
+     * that doesn't consume all its input.  Good idea... */
+    signal(SIGPIPE, SIG_IGN);
+
+    /* Allocate an array of FILE *'s, with one extra for a sentinel. */
+    fp = files = malloc(sizeof(FILE *) * (argc + 2));
     if (!fp)
         error("Cannot allocate memory");
     memset(fp,0,sizeof(FILE *) * (argc + 2));
-	np = names = argv - 1;
+    np = names = argv - 1;
 
-	files[0] = stdout;
+    gettimeofday(&tv[2], NULL);
+
+    files[0] = stdout;
     setbuf(files[0], NULL);	/* tee must not buffer output. */
     fp++;
     np++;
     argv++;
-	while (*argv)
+    while (*argv)
     {
-		*fp = fopen(*argv, "w");
-		if (*fp == NULL)
+        *fp = fopen(*argv, "w");
+        if (*fp == NULL)
         {
-			error("Cannot open output file");
-		}
-		*np = *argv++;
-		//setbuf(*fp, NULL);	/* tee must not buffer output. */
-		fp++;
-		np++;
-	};
+            error("Cannot open output file");
+        }
+        *np = *argv++;
+        //setbuf(*fp, NULL);	/* tee must not buffer output. */
+        fp++;
+        np++;
+    };
+    gettimeofday(&tv[1], NULL);
 
 #if CIPHER
     FILE * fserver;
@@ -173,17 +160,14 @@ int main(int argc, char **argv)
     unlink(sockclient);
     unlink(sockserver);
 
-    hexdecode(seed_ca_hex,seed_ca,&seed_ca_size);
-    hexdecode(seed_cs_hex,seed_cs,&seed_cs_size);
 
 #if CIPHER==1
-    gettimeofday(&tv, NULL);
+    gettimeofday(&tv[3], NULL);
 
-    outsize=4;
+    outsize=KEYSIZE;
+    memcpy(out,&tv[0],outsize);
 
-    memcpy(out,&tv,outsize);
-
-    keysize=4;
+    keysize=KEYSIZE;
     memcpy(key, seed_ca,keysize);
     decryptblock(out,outsize);
 
@@ -219,12 +203,12 @@ int main(int argc, char **argv)
 
             fclose (fclient);
 
-            keysize=4;
+            keysize=KEYSIZE;
             memcpy(key, seed_ca, keysize);
             decryptblock(in,insize);
             memcpy(key, seed_cs, keysize);
             decryptblock(in,insize);
-            memcpy(key, &tv, 4);
+            memcpy(key, &tv, KEYSIZE);
             decryptblock(in,insize);
             memcpy(key, in, insize);
             keysize=insize;
@@ -235,41 +219,43 @@ int main(int argc, char **argv)
         }
     }
 
-    /* Do our copying (cipher==2) */
-#else
+    /* Do our copying */
+#else   //CIPHER==2
     keysize=1;
     key[0]=0x55;
 #endif
-
     unlink(sockclient);
     unlink(sockserver);
+
     progress=0;
 #endif
 
     char buf[1024];
-	size_t i;
-	size_t c;
+    size_t i;
+    size_t c;
 
     while ((c = fread(buf, 1, sizeof(buf), stdin)) > 0)
-	{
+    {
         fp = files;
 #if CIPHER
-		for (i=0; i<c; i++)
-		{
-			buf[i] ^= key[progress];
-            progress = (progress+1)%keysize;
-		}
-
+        if (keysize)
+        {
+            for (i=0; i<c; i++)
+            {
+                buf[i] ^= key[progress];
+                progress = (progress+1)%keysize;
+            }
+        }
 #endif
         do {
             fwrite(buf, 1, c, *fp);
         } while (*++fp);
 
         if (feof(stdin))
-            break;
+    	    break;
     }
     if (c < 0) {            /* Make sure read errors are signaled. */
-        retval = EXIT_FAILURE;
+        return(EXIT_FAILURE);
     }
 
     return 0;

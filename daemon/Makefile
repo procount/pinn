@@ -1,4 +1,5 @@
 #CC=$(PWD)/output/host/usr/bin/arm-buildroot-linux-uclibcgnueabi-gcc
+#These are normally built on the HOST PC
 
 all: daemon xor createKeys
 

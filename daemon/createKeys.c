@@ -74,26 +74,23 @@ void decryptblock(char * block, int len)
 void printblock(char * block, int len)
 {
     int i;
-    int col=0;
     char * s=block;
     progress=0;
+    printf("\"");
     for (i=0; i< len; i++)
     {
         printf("%02x", (unsigned int)( *s++ & 0xff));
-        //col = (col+1)%16;
-        //if (!col)
-        //    printf("\n");
     }
-    printf("\n");
-#if 0
-    printf (" \"");
+    printf("\";");
+
+    printf (" {");
     s=block;
     for (i=0; i< len; i++)
     {
-        printf("%c", (unsigned int)( *s++ & 0xff));
+        printf("0x%02x", (unsigned int)( *s++ & 0xff));
+        if (i<len-1) printf(",");
     }
-    printf("\"\n");
-#endif
+    printf("};\n");
 }
 
 void hexdecode(char * str, char * output, int * size)
@@ -158,7 +155,7 @@ int main(int argc, char**argv)
     memcpy(key, seed_a, seed_a_size);
     keysize=seed_a_size;
     decryptblock(in,insize);
-    printf("seed_ca= ");
+    printf("const char seed_ca[]= ");
     printblock(in, insize);
        
     memcpy(in, seed_s, seed_s_size);
@@ -166,7 +163,7 @@ int main(int argc, char**argv)
     memcpy(key, seed_a, seed_a_size);
     keysize=seed_a_size;
     decryptblock(in,insize);
-    printf("seed_sa= ");
+    printf("const char seed_sa[]= ");
     printblock(in, insize);
        
     memcpy(in, seed_c, seed_c_size);
@@ -174,7 +171,7 @@ int main(int argc, char**argv)
     memcpy(key, seed_s, seed_s_size);
     keysize=seed_s_size;
     decryptblock(in,insize);
-    printf("seed_cs= ");
+    printf("const char seed_cs[]= ");
     printblock(in, insize);
 
     memcpy(in, seed_k, seed_k_size);
@@ -185,7 +182,7 @@ int main(int argc, char**argv)
     memcpy(key, seed_a, seed_a_size);
     keysize=seed_a_size;
     decryptblock(in,insize);
-    printf("seed_cak= ");
+    printf("const char seed_cak[]= ");
     printblock(in, insize);
        
     exit(EXIT_SUCCESS);

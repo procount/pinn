@@ -25,7 +25,7 @@
  */
 
 #include "custom.h"
-
+#define KEYSIZE 20
 custom::custom()
 {
 }
@@ -36,9 +36,23 @@ QString custom::read(const char * key)
     QVariantMap map = Json::loadFromFile(":/custom.json").toMap();
     return (map.value(key).toString());
 }
+const char seed_sa[KEYSIZE]= {0xd2,0xba,0x4e,0x40,0x58,0x7f,0x6d,0x64,0x1a,0x68,0xab,0x54,0x55,0x81,0xbe,0x22,0x5f,0xd3,0x80,0x51};
+const char seed_cak[KEYSIZE]={0x0a,0x4d,0x23,0x23,0x95,0xbc,0x2a,0x36,0xce,0x27,0x18,0x91,0x52,0x09,0xdb,0x28,0x04,0xd5,0x0e,0x9c};
 
 int custom::readhex(const char * key, char * out, size_t * len)
 {
     QString raw = read(key);
-    return hexdecode(raw.toAscii().data(), out, len);
+    if (raw=="seed_sa")
+    {
+        memcpy(out,seed_sa, KEYSIZE);
+        *len = KEYSIZE;
+    }
+    else if (raw=="seed_cak")
+    {
+        memcpy(out,seed_sa, KEYSIZE);
+        *len = KEYSIZE;
+    }
+    else
+        return hexdecode(raw.toAscii().data(), out, len);
+    return(0);
 }

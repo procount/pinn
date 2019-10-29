@@ -1,0 +1,7 @@
+config BR2_PACKAGE_HOST_TEED
+        bool "host teed"
+    ### build dependencies
+    ### runtime dependencies
+        help
+          teed filter tool
+
