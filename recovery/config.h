@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 /* Version number displayed in the title bar */
-#define VERSION_NUMBER "3.0mcn3"
+#define VERSION_NUMBER "3.0mcn4"
 
 #define MC 1
 #define SOCKSERVER "/tmp/server"
@@ -25,11 +25,11 @@
 #define ENABLE_LANGUAGE_CHOOSER
 
 /* Website launched when launching Arora */
-#define HOMEPAGE  "https://www.microcenter.com/site/content/tech-support.aspx"
+#define HOMEPAGE  "http://www.microcenter.com/arcadehelp"
 
 /* Location to download the list of available distributions from
  * Multiple lists can be specified by space separating the URLs */
-#define DEFAULT_REPO_SERVER  "http://raw.githubusercontent.com/procount/pinn-os/master/os/os_retro.json"
+#define DEFAULT_REPO_SERVER  "http://downloads.raspberrypi.org/os_list_v3.json"
 
 /* Size of recovery FAT partition in MB when using reformat drive initialization method. */
 #define RESCUE_PARTITION_SIZE  63
