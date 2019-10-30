@@ -1,22 +1,22 @@
 ################################################################################
 #
-# custom
+# mccustom
 #
 ################################################################################
 
-CUSTOM_VERSION = 1.0
-CUSTOM_SITE = $(TOPDIR)/../custom
-CUSTOM_SITE_METHOD = local
-CUSTOM_LICENSE = Proprietary
+MCCUSTOM_VERSION = 1.0
+MCCUSTOM_SITE = $(TOPDIR)/../mccustom
+MCCUSTOM_SITE_METHOD = local
+MCCUSTOM_LICENSE = Proprietary
 #CUSTOM_LICENSE_FILES = 
 
-define CUSTOM_BUILD_CMDS
+define MCCUSTOM_BUILD_CMDS
         cd $(@D)
         $(MAKE) -C $(@D) all
         $(TARGET_STRIP) $(@D)/custom
 endef
 
-define CUSTOM_INSTALL_TARGET_CMDS
+define MCCUSTOM_INSTALL_TARGET_CMDS
 	$(INSTALL) -D -m 0755 $(@D)/custom $(TARGET_DIR)/usr/bin/custom
 endef
 

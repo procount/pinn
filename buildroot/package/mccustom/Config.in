@@ -1,0 +1,7 @@
+config BR2_PACKAGE_MCCUSTOM
+        bool "mccustom"
+    ### build dependencies
+    ### runtime dependencies
+        help
+          mccustom url provider
+
