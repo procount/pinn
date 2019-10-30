@@ -71,26 +71,34 @@ void decryptblock(char * block, int len)
     }
 }
 
-void printblock(char * block, int len)
+void printinput(FILE * fp, char * block, int len)
 {
     int i;
     char * s=block;
     progress=0;
-    printf("\"");
     for (i=0; i< len; i++)
     {
-        printf("%02x", (unsigned int)( *s++ & 0xff));
+        fprintf(fp,"%02x", (unsigned int)( *s++ & 0xff));
     }
-    printf("\";");
+    fprintf(fp,"\n");
 
-    printf (" {");
+}
+
+
+void printblock(FILE * fp, char * block, int len)
+{
+    int i;
+    char * s=block;
+    progress=0;
+
+    fprintf (fp," {");
     s=block;
     for (i=0; i< len; i++)
     {
-        printf("0x%02x", (unsigned int)( *s++ & 0xff));
-        if (i<len-1) printf(",");
+        fprintf(fp,"0x%02x", (unsigned int)( *s++ & 0xff));
+        if (i<len-1) fprintf(fp,",");
     }
-    printf("};\n");
+    fprintf(fp,"};\n");
 }
 
 void hexdecode(char * str, char * output, int * size)
@@ -133,6 +141,8 @@ void unhidepaths()
 int main(int argc, char**argv) 
 {
     char buffer[MAXMSG];
+    FILE * fp;
+    File * finput;
 
     printf("Enter seed_c (plain hex): ");
     scanf("%s",buffer);
@@ -150,29 +160,38 @@ int main(int argc, char**argv)
     scanf("%s",buffer);
     hexdecode(buffer, seed_k, &seed_k_size);
 
+    fp = fopen("busyboc.h", "wb");
+
     memcpy(in, seed_c, seed_c_size);
     insize=seed_c_size;
     memcpy(key, seed_a, seed_a_size);
     keysize=seed_a_size;
     decryptblock(in,insize);
-    printf("const char seed_ca[]= ");
-    printblock(in, insize);
-       
-    memcpy(in, seed_s, seed_s_size);
-    insize=seed_s_size;
-    memcpy(key, seed_a, seed_a_size);
-    keysize=seed_a_size;
-    decryptblock(in,insize);
-    printf("const char seed_sa[]= ");
-    printblock(in, insize);
-       
+    fprintf(fp,"const char seed_ca[KEYSIZE]= ");
+    printblock(fp, in, insize);
+
     memcpy(in, seed_c, seed_c_size);
     insize=seed_c_size;
     memcpy(key, seed_s, seed_s_size);
     keysize=seed_s_size;
     decryptblock(in,insize);
-    printf("const char seed_cs[]= ");
-    printblock(in, insize);
+    fprintf(fp,"const char seed_cs[KEYSIZE]= ");
+    printblock(fp, in, insize);
+
+    fclose (fp);
+
+    fp = fopen("daemon.h", "wb");
+    finput = fopen("input", "wb");
+
+    memcpy(in, seed_s, seed_s_size);
+    insize=seed_s_size;
+    memcpy(key, seed_a, seed_a_size);
+    keysize=seed_a_size;
+    decryptblock(in,insize);
+    fprintf(fp,"const char seed_sa[KEYSIZE]= ");
+
+    printblock(fp, in, insize);
+    printinput(finput, in, insize);
 
     memcpy(in, seed_k, seed_k_size);
     insize=seed_k_size;
@@ -182,8 +201,12 @@ int main(int argc, char**argv)
     memcpy(key, seed_a, seed_a_size);
     keysize=seed_a_size;
     decryptblock(in,insize);
-    printf("const char seed_cak[]= ");
-    printblock(in, insize);
-       
+    fprintf(fp, "const char seed_cak[KEYSIZE]= ");
+ 
+    printblock(fp, in, insize);
+    printinput(finput, in, insize);
+
+    fclose (input);
+    fclose (fp);
     exit(EXIT_SUCCESS);
 }
