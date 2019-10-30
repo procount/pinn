@@ -27,5 +27,6 @@ menu "Host utilities"
 	source "package/util-linux/Config.in.host"
 	source "package/mctools/Config.in.host"
 	source "package/busybocdev/Config.in.host"
+	source "package/mccustom/Config.in.host"
 
 endmenu

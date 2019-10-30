@@ -20,9 +20,25 @@ define MCCUSTOM_BUILD_CMDS
         $(TARGET_STRIP) $(@D)/custom
 endef
 
+
+#define HOST_MCCUSTOM_BUILD_CMDS
+        cd $(@D)
+        $(HOST_MAKE_ENV) $(MAKE) \
+                CC="$(HOSTCC)" \
+                EXTRA_CFLAGS="$(HOST_CFLAGS)"   \
+                EXTRA_LDFLAGS="$(HOST_LDFLAGS)" \
+                -C $(@D) all \
+        $(HOST_STRIP) $(@D)/custom
+#endef
+
 define MCCUSTOM_INSTALL_TARGET_CMDS
 	$(INSTALL) -D -m 0755 $(@D)/custom $(TARGET_DIR)/usr/bin/custom
 endef
+
+define HOST_MCCUSTOM_INSTALL_TARGET_CMDS
+        $(INSTALL) -D -m 0755 $(@D)/custom $(HOST_DIR)/usr/bin/custom
+endef
+
 
 $(eval $(generic-package))
 
