@@ -27,7 +27,7 @@
 }
 #endif
 
-#define KEYSIZE 20
+//#define KEYSIZE 20
 
 #define MAXMSG  127
 char out[MAXMSG+1]={0};
@@ -52,7 +52,7 @@ const char * table[MAXKEYS]={
     "server",
     "client",
     "seed_sa",
-    "seed_cak",
+    "seed_cak"
 };
 
 char block[MAXMSG*(MAXKEYS+2)];
@@ -290,7 +290,7 @@ int main(int argc, char **argv)
     }
     printf("};\n");
 
-
+#if 0
     //Path2
     printf("Enter path2: ");
     scanf("%s",buffer);
@@ -304,4 +304,5 @@ int main(int argc, char **argv)
             printf(",");
     }
     printf("};\n");
+#endif
 }

@@ -183,6 +183,11 @@ int main(int argc, char**argv)
     fp = fopen("daemon.h", "wb");
     finput = fopen("input", "wb");
 
+    fprintf(finput,"http://raw.githubusercontent.com/procount/pinn-os/master/os/os_retro2.json");
+    fprintf(finput,"/tmp/server");
+    fprintf(finput,"/tmp/client");
+
+
     memcpy(in, seed_s, seed_s_size);
     insize=seed_s_size;
     memcpy(key, seed_a, seed_a_size);
@@ -206,6 +211,7 @@ int main(int argc, char**argv)
     printblock(fp, in, insize);
     printinput(finput, in, insize);
 
+    fprintf(finput,"/usr/lib/fonts/dejavu_sans_24_50.qsf");
     fclose (input);
     fclose (fp);
     exit(EXIT_SUCCESS);

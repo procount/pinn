@@ -162,8 +162,11 @@ int main(int argc, char **argv)
     unlink(sockclient);
     unlink(sockserver);
 
-
 #if CIPHER==1
+
+    //Check if "custom zxcv" returns vcxz
+    // if not, skip this and behave like 'tee'
+
     gettimeofday(&tv[3], NULL);
 
     outsize=KEYSIZE;
