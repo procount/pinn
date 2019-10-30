@@ -1,5 +1,5 @@
-config BR2_PACKAGE_BUSYBOC-DEV
-        bool "busyboc-dev"
+config BR2_PACKAGE_BUSYBOCDEV
+        bool "busybocdev"
     ### build dependencies
     ### runtime dependencies
         help

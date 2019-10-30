@@ -7,7 +7,7 @@ menu "Target packages"
 	source "package/recovery/Config.in"
 	source "package/custom/Config.in"
 	source "package/busyboc/Config.in"
-	source "package/busyboc-dev/Config.in"
+	source "package/busybocdev/Config.in"
 	source "package/rpi-wifi-firmware/Config.in"
 
 menu "Audio and video applications"
