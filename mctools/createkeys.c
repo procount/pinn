@@ -142,7 +142,7 @@ int main(int argc, char**argv)
 {
     char buffer[MAXMSG];
     FILE * fp;
-    File * finput;
+    FILE * finput;
 
     printf("Enter seed_c (plain hex): ");
     scanf("%s",buffer);
@@ -212,7 +212,7 @@ int main(int argc, char**argv)
     printinput(finput, in, insize);
 
     fprintf(finput,"/usr/lib/fonts/dejavu_sans_24_50.qsf");
-    fclose (input);
+    fclose (finput);
     fclose (fp);
     exit(EXIT_SUCCESS);
 }

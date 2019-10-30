@@ -11,34 +11,37 @@ MCCUSTOM_LICENSE = Proprietary
 #CUSTOM_LICENSE_FILES = 
 
 define MCCUSTOM_BUILD_CMDS
-        cd $(@D)
-        $(TARGET_MAKE_ENV) $(MAKE)    \
-                CC="$(TARGET_CC)"           \
-                EXTRA_CFLAGS="$(TARGET_CFLAGS)"   \
-                EXTRA_LDFLAGS="$(TARGET_LDFLAGS)" \
-		-C $(@D) all \
-        $(TARGET_STRIP) $(@D)/custom
+	cd $(@D) 
+	$(TARGET_MAKE_ENV) $(MAKE)    \
+		CC="$(TARGET_CC)"           \
+		EXTRA_CFLAGS="$(TARGET_CFLAGS)"   \
+		EXTRA_LDFLAGS="$(TARGET_LDFLAGS)" \
+		-C $(@D) all 
+	$(TARGET_STRIP) $(@D)/custom
 endef
-
-
-#define HOST_MCCUSTOM_BUILD_CMDS
-        cd $(@D)
-        $(HOST_MAKE_ENV) $(MAKE) \
-                CC="$(HOSTCC)" \
-                EXTRA_CFLAGS="$(HOST_CFLAGS)"   \
-                EXTRA_LDFLAGS="$(HOST_LDFLAGS)" \
-                -C $(@D) all \
-        $(HOST_STRIP) $(@D)/custom
-#endef
 
 define MCCUSTOM_INSTALL_TARGET_CMDS
 	$(INSTALL) -D -m 0755 $(@D)/custom $(TARGET_DIR)/usr/bin/custom
+	$(INSTALL) -D -m 0755 $(@D)/dejavu_sans_24_50.qsf $(TARGET_DIR)/usr/lib/fonts/dejavu_sans_24_50.qsf
 endef
 
-define HOST_MCCUSTOM_INSTALL_TARGET_CMDS
-        $(INSTALL) -D -m 0755 $(@D)/custom $(HOST_DIR)/usr/bin/custom
+
+define HOST_MCCUSTOM_BUILD_CMDS
+	cd $(@D) 
+	$(HOST_MAKE_ENV) $(MAKE) \
+		CC="$(HOSTCC)" \
+		EXTRA_CFLAGS="$(HOST_CFLAGS)"   \
+		EXTRA_LDFLAGS="$(HOST_LDFLAGS)" \
+		-C $(@D) all 
+#	$(HOST_STRIP) $(@D)/custom
+endef
+
+
+define HOST_MCCUSTOM_INSTALL_CMDS
+	$(INSTALL) -D -m 0755 $(@D)/custom $(HOST_DIR)/usr/bin/custom
+	$(INSTALL) -D -m 0755 $(@D)/dejavu_sans_24_50.qsf $(HOST_DIR)/usr/lib/fonts/dejavu_sans_24_50.qsf
 endef
 
 
 $(eval $(generic-package))
-
+$(eval $(host-generic-package))

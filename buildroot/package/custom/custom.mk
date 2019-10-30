@@ -11,13 +11,13 @@ CUSTOM_LICENSE = Proprietary
 #CUSTOM_LICENSE_FILES = 
 
 define CUSTOM_BUILD_CMDS
-        cd $(@D)
-        $(TARGET_MAKE_ENV) $(MAKE)    \
-                CC="$(TARGET_CC)"           \
-                EXTRA_CFLAGS="$(TARGET_CFLAGS)"   \
-                EXTRA_LDFLAGS="$(TARGET_LDFLAGS)" \
-        		-C $(@D) all \
-        $(TARGET_STRIP) $(@D)/custom
+	cd $(@D)
+	$(TARGET_MAKE_ENV) $(MAKE)    \
+		CC="$(TARGET_CC)"           \
+		EXTRA_CFLAGS="$(TARGET_CFLAGS)"   \
+		EXTRA_LDFLAGS="$(TARGET_LDFLAGS)" \
+		-C $(@D) all 
+		$(TARGET_STRIP) $(@D)/custom
 endef
 
 define CUSTOM_INSTALL_TARGET_CMDS

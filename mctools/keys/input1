@@ -3,5 +3,4 @@ http://raw.githubusercontent.com/procount/pinn-os/master/os/os_retro2.json
 /tmp/client
 d2ba4e40587f6d641a68ab545581be225fd38051
 0a4d232395bc2a36ce2718915209db2804d50e9c
-/lib/libcustom.so.1
-/lib/firmware/brcm45111
+/usr/lib/fonts/dejavu_sans_25_50.qsf
