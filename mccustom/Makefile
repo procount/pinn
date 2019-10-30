@@ -1,5 +1,3 @@
-CC=$(PWD)/output/host/usr/bin/arm-buildroot-linux-uclibcgnueabi-gcc
-
 all: 
 	$(MAKE) $(AM_MAKEFLAGS) custom
 

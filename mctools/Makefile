@@ -1,4 +1,3 @@
-#CC=$(PWD)/output/host/usr/bin/arm-buildroot-linux-uclibcgnueabi-gcc
 #These are normally built on the HOST PC
 
 all: daemon xor createkeys makeblock
@@ -17,6 +16,6 @@ createkeys: createkeys.c
 
 makeblock: makeblock.c
 	$(CC) -static makeblock.c -o makeblock
-
+	$(MAKE) $(AM_MAKEFLAGS) makeblock
 
 

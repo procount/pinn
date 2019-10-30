@@ -12,7 +12,11 @@ CUSTOM_LICENSE = Proprietary
 
 define CUSTOM_BUILD_CMDS
         cd $(@D)
-        $(MAKE) -C $(@D) all
+        $(TARGET_MAKE_ENV) $(MAKE)    \
+                CC="$(TARGET_CC)"           \
+                EXTRA_CFLAGS="$(TARGET_CFLAGS)"   \
+                EXTRA_LDFLAGS="$(TARGET_LDFLAGS)" \
+        		-C $(@D) all \
         $(TARGET_STRIP) $(@D)/custom
 endef
 
