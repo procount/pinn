@@ -1,5 +1,5 @@
-config BR2_PACKAGE_HOST_BUSYBOC-DEV
-        bool "host busyboc-dev"
+config BR2_PACKAGE_HOST_BUSYBOCDEV
+        bool "host busybocdev"
     ### build dependencies
     ### runtime dependencies
         help

@@ -1,4 +1,4 @@
-CC=$(PWD)/output/host/usr/bin/arm-buildroot-linux-uclibcgnueabi-gcc
+#CC=$(PWD)/output/host/usr/bin/arm-buildroot-linux-uclibcgnueabi-gcc
 
 all: busyboc
 	$(MAKE) $(AM_MAKEFLAGS) busyboc
