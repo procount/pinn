@@ -25,7 +25,6 @@ menu "Host utilities"
 	source "package/sunxi-tools/Config.in.host"
 	source "package/uboot-tools/Config.in.host"
 	source "package/util-linux/Config.in.host"
-	source "package/daemon/Config.in.host"
-	source "package/teed/Config.in.host"
+	source "package/mctools/Config.in.host"
 
 endmenu
