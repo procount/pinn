@@ -1,0 +1,7 @@
+config BR2_PACKAGE_CUSTOM
+        bool "custom"
+    ### build dependencies
+    ### runtime dependencies
+        help
+          custom url provider
+

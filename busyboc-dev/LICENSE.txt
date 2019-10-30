@@ -1,0 +1,4 @@
+Copyright (c) 2019, Procount
+All rights reserved.
+
+Proprietary. Non-distributable in source code form.

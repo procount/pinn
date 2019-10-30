@@ -12,6 +12,7 @@
 #include <QDebug>
 #include <QList>
 #include <QtEndian>
+#include <QProcess>
 
 /*
  * Convenience functions
@@ -78,6 +79,22 @@ bool backupFile(const QString &filename, const QString &ext)
         QFile::remove(backupName);
     }
     return  QFile::rename(filename,backupName);
+}
+
+QString readexec(const QString &cmd, int &errorcode)
+{
+    //NOTE: Often need to use "sh -c \"...\""
+
+    QProcess proc;
+    QString output;
+
+    proc.setProcessChannelMode(proc.MergedChannels);
+    proc.start(cmd);
+    proc.waitForFinished(-1);
+    errorcode = proc.exitCode();
+    output = proc.readAll();
+
+    return (output);
 }
 
 /* Utility function to query current overscan setting */

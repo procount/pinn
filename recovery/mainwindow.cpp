@@ -117,16 +117,20 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     if (joy)
         connect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
 
-    QString srv = custom::read("server");
-    insize = srv.size();
-    memcpy(in,srv.toAscii().data(),insize);
+    //QString srv = custom::read("server");
+    //insize = srv.size();
+    //memcpy(in,srv.toAscii().data(),insize);
+    custom::readhex("server", in, &insize);
+
     decryptblock(in,insize);
     _sockserver=in;
     QFile::remove(_sockserver);
 
-    QString cli = custom::read("client");
-    insize = cli.size();
-    memcpy(in,cli.toAscii().data(),insize);
+    //QString cli = custom::read("client");
+    //insize = cli.size();
+    //memcpy(in,cli.toAscii().data(),insize);
+    custom::readhex("client", in, &insize);
+
     decryptblock(in,insize);
     _sockclient=in;
 

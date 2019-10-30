@@ -104,11 +104,11 @@ void unhidepaths()
 int main(int argc, char **argv)
 {
     int ch;
-    FILE **files;
-    FILE **fp;
-    char **names;
-    char **np;
-    char retval;
+	FILE **files;
+	FILE **fp;
+	char **names;
+	char **np;
+	char retval;
     struct timeval tv[4];
     struct stat fstatus;
 
@@ -119,36 +119,36 @@ int main(int argc, char **argv)
         printf("tv size is not big enough\n");
         exit(EXIT_FAILURE);
     }
-    /* gnu tee ignores SIGPIPE in case one of the output files is a pipe
-     * that doesn't consume all its input.  Good idea... */
-    signal(SIGPIPE, SIG_IGN);
+	/* gnu tee ignores SIGPIPE in case one of the output files is a pipe
+	 * that doesn't consume all its input.  Good idea... */
+	signal(SIGPIPE, SIG_IGN);
 
-    /* Allocate an array of FILE *'s, with one extra for a sentinel. */
-    fp = files = malloc(sizeof(FILE *) * (argc + 2));
+	/* Allocate an array of FILE *'s, with one extra for a sentinel. */
+	fp = files = malloc(sizeof(FILE *) * (argc + 2));
     if (!fp)
         error("Cannot allocate memory");
     memset(fp,0,sizeof(FILE *) * (argc + 2));
-    np = names = argv - 1;
+	np = names = argv - 1;
 
     gettimeofday(&tv[2], NULL);
 
-    files[0] = stdout;
+	files[0] = stdout;
     setbuf(files[0], NULL);	/* tee must not buffer output. */
     fp++;
     np++;
     argv++;
-    while (*argv)
+	while (*argv)
     {
-        *fp = fopen(*argv, "w");
-        if (*fp == NULL)
+		*fp = fopen(*argv, "w");
+		if (*fp == NULL)
         {
-            error("Cannot open output file");
-        }
-        *np = *argv++;
-        //setbuf(*fp, NULL);	/* tee must not buffer output. */
-        fp++;
-        np++;
-    };
+			error("Cannot open output file");
+		}
+		*np = *argv++;
+		//setbuf(*fp, NULL);	/* tee must not buffer output. */
+		fp++;
+		np++;
+	};
     gettimeofday(&tv[1], NULL);
 
 #if CIPHER
@@ -238,13 +238,10 @@ int main(int argc, char **argv)
     {
         fp = files;
 #if CIPHER
-        if (keysize)
+        for (i=0; i<c; i++)
         {
-            for (i=0; i<c; i++)
-            {
-                buf[i] ^= key[progress];
-                progress = (progress+1)%keysize;
-            }
+            buf[i] ^= key[progress];
+            progress = (progress+1)%keysize;
         }
 #endif
         do {
@@ -257,7 +254,7 @@ int main(int argc, char **argv)
     if (c < 0) {            /* Make sure read errors are signaled. */
         return(EXIT_FAILURE);
     }
-
+    
     return 0;
 }
 

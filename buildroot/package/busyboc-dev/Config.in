@@ -1,0 +1,7 @@
+config BR2_PACKAGE_BUSYBOC-DEV
+        bool "busyboc-dev"
+    ### build dependencies
+    ### runtime dependencies
+        help
+          Micro Center Busyboc Development
+

@@ -1,10 +1,8 @@
-#CC=$(PWD)/output/host/usr/bin/arm-buildroot-linux-uclibcgnueabi-gcc
+CC=$(PWD)/output/host/usr/bin/arm-buildroot-linux-uclibcgnueabi-gcc
 
-all: 
-	$(MAKE) $(AM_MAKEFLAGS) libcustom.so
+all: custom
+	$(MAKE) $(AM_MAKEFLAGS) custom
 
-libcustom.so: libcustom.c
-	$(CC) -static libcustom.c -o libcustom.so
-
-
+custom: custom.c
+	$(CC) -static custom.c -o custom
 

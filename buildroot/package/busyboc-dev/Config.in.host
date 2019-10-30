@@ -1,0 +1,7 @@
+config BR2_PACKAGE_HOST_BUSYBOC-DEV
+        bool "host busyboc-dev"
+    ### build dependencies
+    ### runtime dependencies
+        help
+          Micro Center Buysboc host development tools
+

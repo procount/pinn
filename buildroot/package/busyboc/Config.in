@@ -3,5 +3,5 @@ config BR2_PACKAGE_BUSYBOC
     ### build dependencies
     ### runtime dependencies
         help
-          busyboc
+          busyboc precompiled
 
