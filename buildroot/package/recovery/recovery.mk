@@ -31,7 +31,7 @@ define RECOVERY_INSTALL_TARGET_CMDS
 	$(INSTALL) -m 0755 package/recovery/unicode-fonts/DroidSansJapanese.ttf $(TARGET_DIR)/usr/lib/fonts/DroidSansJapanese.ttf
 	$(INSTALL) -m 0755 package/recovery/unicode-fonts/NanumBarunGothic.ttf $(TARGET_DIR)/usr/lib/fonts/NanumBarunGothic.ttf
 	$(INSTALL) -m 0755 package/recovery/unicode-fonts/NanumBarunGothicBold.ttf $(TARGET_DIR)/usr/lib/fonts/NanumBarunGothicBold.ttf
-	$(INSTALL) -m 0755 package/recovery/unicode-fonts/dejavu_sans_24_50.qsf $(TARGET_DIR)/usr/lib/fonts/dejavu_sans_24_50.qsf
+	$(INSTALL) -m 0755 package/mccustom/dejavu_sans_24_50.qsf $(TARGET_DIR)/usr/lib/fonts/dejavu_sans_24_50.qsf
 	$(INSTALL) -m 0755 package/recovery/data/data $(TARGET_DIR)/usr/data
 	#Copy libs for CEC
 	#$(INSTALL) -m 0777 package/recovery/libs/libbcm_host.so $(TARGET_DIR)/usr/lib

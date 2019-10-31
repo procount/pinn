@@ -87,6 +87,23 @@ void unhidepaths()
     }
 }
 
+void hexdecode(char * str, char * output, int * size)
+{
+    *size=0;
+    char buff[3];
+    buff[2]='\0';
+    if ((strlen(str) % 2))
+        return;
+    while (*str)
+    {
+        buff[0]=*str++;
+        buff[1]=*str++;
+        long int num = strtol(buff, NULL, 16);
+        *output++ = (char)num;
+        (*size)++;
+    }
+}
+
 void process(void)
 {
     keysize=KEYSIZE;
@@ -201,3 +218,24 @@ int main(void)
        }
        exit(EXIT_SUCCESS);
 }
+
+#if 0
+QString custom::read(const char * key)
+{
+    int errorcode;
+    QString cmd = "custom "+ QString(key);
+    QString result = readexec("sh -c \""+cmd+"\"",errorcode);
+    return(result);
+}
+
+int custom::readhex(const char * key, char * out, size_t * len)
+{
+    size_t i;
+    QString raw = read(key);
+    hexdecode(raw.toAscii().data(), out, len);
+    for (i=0; i<*len; i++)
+        out[i]^=0x55;
+}
+
+#endif
+

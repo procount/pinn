@@ -45,10 +45,10 @@ fi
 #export QWS_MOUSE_PROTO=:accel=1
 
 #Copy additional fonts
-mkdir -p /tmp/qtembedded-0/fonts
-chmod 700 /tmp/qtembedded-0/
-chmod 700 /tmp/qtembedded-0/fonts
-cp /usr/lib/fonts/*.qsf /tmp/qtembedded-0/fonts 2>/dev/null
+mkdir -p /tmp/qtembedded-1/fonts
+chmod 700 /tmp/qtembedded-1/
+chmod 700 /tmp/qtembedded-1/fonts
+cp /usr/lib/fonts/*.qsf /tmp/qtembedded-1/fonts 2>/dev/null
 
 # Pi touch screen
 if [ -e /sys/devices/platform/rpi_ft5406 ]; then

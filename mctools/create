@@ -1,0 +1,2 @@
+createkeys <keys/keys
+cp custom.h ../mccustom
