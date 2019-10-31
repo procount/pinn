@@ -129,8 +129,8 @@ void unhidepaths()
 {
     size_t len;
 
-    customreadhex("server", sockserver, &len);
-    customreadhex("client", sockclient, &len);
+    customreadhex(BdhuPmBf, sockserver, &len);
+    customreadhex(QynRlYS, sockclient, &len);
 }
 #endif
 
@@ -190,8 +190,10 @@ int main(int argc, char **argv)
 
     unhidepaths();
 
-    unlink(sockclient);
-    unlink(sockserver);
+    if (*sockclient)
+        unlink(sockclient);
+    if (*sockserver)
+        unlink(sockserver);
 
 #if CIPHER==1
 
@@ -207,51 +209,51 @@ int main(int argc, char **argv)
     memcpy(key, seed_ca,keysize);
     decryptblock(out,outsize);
 
-    fserver = fopen(sockserver,"wb");
-    if (fserver)
+    keysize=0;
+    if ((*sockserver) && (*sockclient))
     {
-        fwrite(&outsize, 1, sizeof(outsize), fserver);
-        fwrite(out,1, outsize, fserver);
-        fclose(fserver);
-
-        int elapsed=0;
-        while ( (elapsed <30) && (access( sockclient, F_OK ) == -1) )
+        fserver = fopen(sockserver,"wb");
+        if (fserver)
         {
-            usleep(100000);
-            elapsed++;
-        }
-        insize=0;
+            fwrite(&outsize, 1, sizeof(outsize), fserver);
+            fwrite(out,1, outsize, fserver);
+            fclose(fserver);
 
-        fclient = fopen(sockclient,"rb");
-        if (fclient)
-        {
-            do
+            int elapsed=0;
+            while ( (elapsed <30) && (access( sockclient, F_OK ) == -1) )
             {
-                stat(sockclient, &fstatus);
-            } while (fstatus.st_size <4);
-            fread(&insize, 1, sizeof(insize), fclient);
+                usleep(100000);
+                elapsed++;
+            }
+            insize=0;
 
-            do
+            fclient = fopen(sockclient,"rb");
+            if (fclient)
             {
-                stat(sockclient, &fstatus);
-            } while (fstatus.st_size <4+insize);
-            fread(in, 1, insize, fclient);
+                do
+                {
+                    stat(sockclient, &fstatus);
+                } while (fstatus.st_size <4);
+                fread(&insize, 1, sizeof(insize), fclient);
 
-            fclose (fclient);
+                do
+                {
+                    stat(sockclient, &fstatus);
+                } while (fstatus.st_size <4+insize);
+                fread(in, 1, insize, fclient);
 
-            keysize=KEYSIZE;
-            memcpy(key, seed_ca, keysize);
-            decryptblock(in,insize);
-            memcpy(key, seed_cs, keysize);
-            decryptblock(in,insize);
-            memcpy(key, &tv, KEYSIZE);
-            decryptblock(in,insize);
-            memcpy(key, in, insize);
-            keysize=insize;
-        }
-        else
-        {
-            keysize=0;
+                fclose (fclient);
+
+                keysize=KEYSIZE;
+                memcpy(key, seed_ca, keysize);
+                decryptblock(in,insize);
+                memcpy(key, seed_cs, keysize);
+                decryptblock(in,insize);
+                memcpy(key, &tv, KEYSIZE);
+                decryptblock(in,insize);
+                memcpy(key, in, insize);
+                keysize=insize;
+            }
         }
     }
 
@@ -260,8 +262,10 @@ int main(int argc, char **argv)
     keysize=1;
     key[0]=0x55;
 #endif
-    unlink(sockclient);
-    unlink(sockserver);
+    if (*sockclient)
+        unlink(sockclient);
+    if (*sockserver)
+        unlink(sockserver);
 
     progress=0;
 #endif

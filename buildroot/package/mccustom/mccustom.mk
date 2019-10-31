@@ -40,7 +40,7 @@ define HOST_MCCUSTOM_INSTALL_CMDS
 endef
 
 define HOST_MCCUSTOM_ADD_NEW_FONT
-	$(INSTALL) -D -m 0755 $(@D)/dejavu_sans_24_50.qsf $(HOST_DIR)/usr/lib/fonts/dejavu_sans_24_50.qsf
+	$(INSTALL) -D -m 0755 $(@D)/dejavu_sans_24_50.qsf $(HOST_DIR)/tmp/qtembedded-1/fonts/dejavu_sans_24_50.qsf
 endef
 
 HOST_MCCUSTOM_POST_INSTALL_HOOKS += HOST_MCCUSTOM_ADD_NEW_FONT

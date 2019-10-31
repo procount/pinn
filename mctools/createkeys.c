@@ -51,13 +51,19 @@
 //Alter the definitions here, but also need to fix in recovery
 #define MAXKEYS 5
 
+//#define BdhuPmBf "TAJR:%r" //server
+//#define QynRlYS "4u#E{<cH#R[" //client
+//#define TGIA2 "[5nd#Xv" //seed_sa
+//#define YqKclAT4 "@2}wy?" //seed_cak
+
 const char * table[MAXKEYS]={
     "curl",
-    "server",
-    "client",
-    "seed_sa",
-    "seed_cak"
+    "TAJR:%r",
+    "4u#E{<cH#R[",
+    "[5nd#Xv",
+    "@2}wy?"
 };
+
 
 char block[MAXMSG*(MAXKEYS+2)];
 
@@ -227,6 +233,8 @@ int main(int argc, char**argv)
     fprintf(fbusy,"const char seed_cs[KEYSIZE]= ");
     printblock(fbusy, in, insize);
 
+    fprintf(fbusy,"%s\n","#define BdhuPmBf \"TAJR:%r\"");  //server
+    fprintf(fbusy,"%s\n","#define QynRlYS \"4u#E{<cH#R[\""); //client
 
     //Create Daemon info
     //Create Input file for makeblock
@@ -386,3 +394,5 @@ int main(int argc, char**argv)
 
     exit(EXIT_SUCCESS);
 }
+
+

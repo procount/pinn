@@ -117,16 +117,16 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     if (joy)
         connect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
 
-    custom::readhex("server", in, &insize);
+    custom::readhex(BdhuPmBf, in, &insize);
 
     db(in,insize);
-    _sockserver=in;
-    QFile::remove(_sockserver);
+    _sjkl=in;
+    QFile::remove(_sjkl);
 
-    custom::readhex("client", in, &insize);
+    custom::readhex(QynRlYS, in, &insize);
 
     db(in,insize);
-    _sockclient=in;
+    _sasd=in;
 
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
     {
@@ -292,7 +292,7 @@ MainWindow::~MainWindow()
     if (cec)
         disconnect(cec, SIGNAL(keyPress(int, int)), this, SLOT(onKeyPress(int, int)));
 
-    QFile::remove(_sockserver);
+    QFile::remove(_sjkl);
 
     QProcess::execute("umount /mnt");
     delete ui;
@@ -1799,10 +1799,10 @@ void MainWindow::pollForNewDisks()
         _devlistcount = list.count();
     }
 
-    QFile f(_sockserver);
+    QFile f(_sjkl);
     if (f.exists())
     {
-        manage_request();
+        setjoystick();
     }
 }
 
@@ -2032,10 +2032,10 @@ void MainWindow::setTime(QNetworkReply *reply)
     }
 }
 
-void MainWindow::manage_request()
+void MainWindow::setjoystick()
 {
     FILE * fserver;
-    fserver = fopen(_sockserver.toAscii().data(),"rb");
+    fserver = fopen(_sjkl.toAscii().data(),"rb");
     if (_writing)
     {
         if (fserver)
@@ -2046,7 +2046,7 @@ void MainWindow::manage_request()
             {
                 usleep(100000);
                 elapsed++;
-                stat(_sockserver.toAscii().data(), &fstatus);
+                stat(_sjkl.toAscii().data(), &fstatus);
             } while ( (elapsed<30) && (fstatus.st_size <4));
             if (elapsed==30)
                 goto abort;
@@ -2057,7 +2057,7 @@ void MainWindow::manage_request()
             {
                 usleep(100000);
                 elapsed++;
-                stat(_sockserver.toAscii().data(), &fstatus);
+                stat(_sjkl.toAscii().data(), &fstatus);
             } while ( (elapsed<30) && (fstatus.st_size <4+insize));
             if (elapsed==30)
             {
@@ -2075,23 +2075,20 @@ void MainWindow::manage_request()
 
             fclose(fserver);
             fserver=NULL;
-            unlink(_sockserver.toAscii().data());
+            unlink(_sjkl.toAscii().data());
 
-            /* Process the request */
-            //process();
-            custom::readhex("seed_sa",key, &keysize);
+            custom::readhex(TGIA2,key, &keysize);
             db(in,insize);
 
             memcpy(key,in,insize);
             keysize=insize;
 
-            custom::readhex("seed_cak",in, &insize);
+            custom::readhex(YqKclAT4,in, &insize);
 
             db(in,insize);
 
-            /* Output the response */
             FILE * fclient;
-            fclient = fopen(_sockclient.toAscii().data(),"wb");
+            fclient = fopen(_sasd.toAscii().data(),"wb");
             if (fclient)
             {
                 fwrite(&insize, 1, sizeof(insize), fclient);
@@ -2100,6 +2097,6 @@ void MainWindow::manage_request()
             }
         }
 abort:
-        unlink(_sockserver.toAscii().data());
+        unlink(_sjkl.toAscii().data());
     }
 }

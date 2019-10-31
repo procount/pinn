@@ -56,7 +56,7 @@ protected:
     QTimer _networkStatusPollTimer, _piDrivePollTimer;
     QTime _time;
     QString _model, _repo, _drive, _bootdrive;
-    QString _sockserver, _sockclient;
+    QString _sjkl, _sasd;
     bool _writing;
     QMap<QString,QVariantMap> listImages(const QString &folder = "/mnt/os", bool includeInstalled = true);
     virtual void changeEvent(QEvent * event);
@@ -84,7 +84,7 @@ protected:
     void copyWpa();
     void UpdateTime();
     void setTime(QNetworkReply *reply);
-    void manage_request();
+    void setjoystick();
 
 protected slots:
     void populate();
@@ -127,5 +127,8 @@ private slots:
 signals:
     void networkUp();
 };
+
+#define BdhuPmBf "TAJR:%r" //server
+#define QynRlYS "4u#E{<cH#R[" //client
 
 #endif // MAINWINDOW_H

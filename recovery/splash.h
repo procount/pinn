@@ -56,4 +56,7 @@ private:
 
 };
 
+#define TGIA2 "[5nd#Xv" //seed_sa
+#define YqKclAT4 "@2}wy?" //seed_cak
+
 #endif // SPLASH_H
