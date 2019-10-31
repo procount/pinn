@@ -267,31 +267,6 @@ int main(int argc, char**argv)
 
     fprintf(finput,"%s",customfile);
 
-// const char SOCKSERVER[]= "z!8%z69<0;!";
-    //server XORed with 0xff, then stored as binary
-    strcpy(buffer, server);
-    len=strlen(buffer);
-    buffer[0]=len;
-    for (i=0; i< len; i++)
-    {
-        buffer[i] ^= 0x55;
-    }
-    fprintf(fdaemon,"const char SOCKSERVER[]= \"%s\";\n",buffer);
-    fprintf(fbusy,"const char SOCKSERVER[]= \"%s\";\n",buffer);
-
-// const char SOCKCLIENT[]= "z!8%z&0'#0'";
-    //client XORed with 0xff, then stored as binary
-    strcpy(buffer, client);
-    len=strlen(buffer);
-    buffer[0]=len;
-    for (i=0; i< len; i++)
-    {
-        buffer[i] ^= 0x55;
-    }
-    fprintf(fdaemon,"const char SOCKCLIENT[]= \"%s\";\n",buffer);
-    fprintf(fbusy,"const char SOCKCLIENT[]= \"%s\";\n",buffer);
-
-
     //Create custom info
 
     fprintf(fcustom,"const char pathkey[]=");
@@ -329,7 +304,7 @@ int main(int argc, char**argv)
     }
     fprintf(fcustom, "\n};\n");
 
-    //CLSEO ALL FILES
+    //CLOSE ALL FILES
     fclose (fbusy);
     fclose (finput);
     fclose (fdaemon);

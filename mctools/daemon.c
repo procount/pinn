@@ -9,7 +9,7 @@
 #include <string.h>
 
 #define CIPHER 1
-#define DAEMON 0
+#define DAEMON 1
 
 #define KEYSIZE 20
 #if CIPHER
@@ -21,16 +21,10 @@
  size_t progress=0;
  size_t keysize=0;
  char key[MAXMSG]={0};
- char sockserver[12];
- char sockclient[12];
+ char sockserver[127];
+ char sockclient[127];
  
 #include "daemon.h"
-
-// const char SOCKSERVER[]= "z!8%z69<0;!";
-// const char SOCKCLIENT[]= "z!8%z&0'#0'";
-
-// const char seed_sa[KEYSIZE]= {0xd2,0xba,0x4e,0x40,0x58,0x7f,0x6d,0x64,0x1a,0x68,0xab,0x54,0x55,0x81,0xbe,0x22,0x5f,0xd3,0x80,0x51};
-// const char seed_cak[KEYSIZE]={0x0a,0x4d,0x23,0x23,0x95,0xbc,0x2a,0x36,0xce,0x27,0x18,0x91,0x52,0x09,0xdb,0x28,0x04,0xd5,0x0e,0x9c};
 
 #endif
 
@@ -68,25 +62,6 @@ void decryptblock(char * block, int len)
     }
 }
 
-void unhidepaths()
-{
-    const char *s = SOCKCLIENT;
-    char *d = sockclient;
-    int i;
-    keysize=1;
-    key[0]=0x55;
-    for (i=0; i<11; i++)
-    {
-        sockclient[i] = decrypt(SOCKCLIENT[i]);
-    }
-
-    s = SOCKSERVER;
-    d = sockserver;
-    for (i=0; i<11; i++)
-    {
-        sockserver[i] = decrypt(SOCKSERVER[i]);
-    }
-}
 
 void hexdecode(char * str, char * output, int * size)
 {
@@ -133,9 +108,15 @@ void customreadhex(const char * key, char * out, size_t * len)
     for (i=0; i<*len; i++)
         out[i]^=0x55;
     out[i]='\0';
-    printf("%s\n",out);
 }
 
+void unhidepaths()
+{
+    size_t len;
+
+    customreadhex("server", sockserver, &len);
+    customreadhex("client", sockclient, &len);
+}
 
 void process(void)
 {

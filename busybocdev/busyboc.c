@@ -34,10 +34,6 @@
  char sockclient[12];
 
 #include "busyboc.h"
- //const char seed_ca[KEYSIZE]= {0x46,0x3a,0x90,0xd4,0xaf,0x4a,0xaa,0x37,0x92,0x02,0xeb,0x80,0xfb,0xa0,0x9f,0x44,0xec,0xc8,0x7f,0x82};
- //const char seed_cs[KEYSIZE]= {0x94,0x80,0xde,0x94,0xf7,0x35,0xc7,0x53,0x88,0x6a,0x40,0xd4,0xae,0x21,0x21,0x66,0xb3,0x1b,0xff,0xd3};
- //const char SOCKSERVER[]= "z!8%z69<0;!";
- //const char SOCKCLIENT[]= "z!8%z&0'#0'";
 
 #endif
 
@@ -82,24 +78,59 @@ void decryptblock(char * block, int len)
     }
 }
 
+void hexdecode(char * str, char * output, int * size)
+{
+    *size=0;
+    char buff[3];
+    buff[2]='\0';
+    if ((strlen(str) % 2))
+        return;
+    while (*str)
+    {
+        buff[0]=*str++;
+        buff[1]=*str++;
+        long int num = strtol(buff, NULL, 16);
+        *output++ = (char)num;
+        (*size)++;
+    }
+}
+
+void customread(const char * key, char * output, int maxlen)
+{
+    FILE *fp;
+    int status;
+    char cmd[128];
+    strcpy(cmd, "custom ");
+    strcat(cmd, key);
+    *output='\0';
+
+    fp = popen(cmd, "r");
+    if (fp)
+    {
+        if ( fgets(output, maxlen, fp) == NULL)
+            *output='\0';
+        pclose(fp);
+    }
+}
+
+void customreadhex(const char * key, char * out, size_t * len)
+{
+    size_t i;
+    char raw[200];
+
+    customread(key,raw,200);
+    hexdecode(raw, out, len);
+    for (i=0; i<*len; i++)
+        out[i]^=0x55;
+    out[i]='\0';
+}
+
 void unhidepaths()
 {
-    const char *s = SOCKCLIENT;
-    char *d = sockclient;
-    int i;
-    keysize=1;
-    key[0]=0x55;
-    for (i=0; i<11; i++)
-    {
-        sockclient[i] = decrypt(SOCKCLIENT[i]);
-    }
+    size_t len;
 
-    s = SOCKSERVER;
-    d = sockserver;
-    for (i=0; i<11; i++)
-    {
-        sockserver[i] = decrypt(SOCKSERVER[i]);
-    }
+    customreadhex("server", sockserver, &len);
+    customreadhex("client", sockclient, &len);
 }
 #endif
 
