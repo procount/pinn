@@ -9,7 +9,7 @@
 #include <string.h>
 
 #define CIPHER 1
-#define DAEMON 1
+#define DAEMON 0
 
 #define KEYSIZE 20
 #if CIPHER
@@ -105,6 +105,38 @@ void hexdecode(char * str, char * output, int * size)
     }
 }
 
+void customread(const char * key, char * output, int maxlen)
+{
+    FILE *fp;
+    int status;
+    char cmd[128];
+    strcpy(cmd, "custom ");
+    strcat(cmd, key);
+    *output='\0';
+
+    fp = popen(cmd, "r");
+    if (fp)
+    {
+        if ( fgets(output, maxlen, fp) == NULL)
+            *output='\0';
+        pclose(fp);
+    }
+}
+
+void customreadhex(const char * key, char * out, size_t * len)
+{
+    size_t i;
+    char raw[200];
+
+    customread(key,raw,200);
+    hexdecode(raw, out, len);
+    for (i=0; i<*len; i++)
+        out[i]^=0x55;
+    out[i]='\0';
+    printf("%s\n",out);
+}
+
+
 void process(void)
 {
     keysize=KEYSIZE;
@@ -123,7 +155,14 @@ void process(void)
 int main(void) 
 {
         struct stat fstatus;
+        char out[200];
+        int len = 0;
 
+        customreadhex("curl", out, &len);
+        customreadhex("server", out, &len);
+        customreadhex("client", out, &len);
+        customreadhex("seed_sa", out, &len);
+        customreadhex("seed_cak", out, &len);
 #if DAEMON
         /* Our process ID and Session ID */
         pid_t pid, sid;
@@ -220,23 +259,4 @@ int main(void)
        exit(EXIT_SUCCESS);
 }
 
-#if 0
-QString custom::read(const char * key)
-{
-    int errorcode;
-    QString cmd = "custom "+ QString(key);
-    QString result = readexec("sh -c \""+cmd+"\"",errorcode);
-    return(result);
-}
-
-int custom::readhex(const char * key, char * out, size_t * len)
-{
-    size_t i;
-    QString raw = read(key);
-    hexdecode(raw.toAscii().data(), out, len);
-    for (i=0; i<*len; i++)
-        out[i]^=0x55;
-}
-
-#endif
 
