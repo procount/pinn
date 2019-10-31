@@ -22,9 +22,7 @@ endef
 
 define MCCUSTOM_INSTALL_TARGET_CMDS
 	$(INSTALL) -D -m 0755 $(@D)/custom $(TARGET_DIR)/usr/bin/custom
-	$(INSTALL) -D -m 0755 $(@D)/dejavu_sans_24_50.qsf $(TARGET_DIR)/usr/lib/fonts/dejavu_sans_24_50.qsf
 endef
-
 
 define HOST_MCCUSTOM_BUILD_CMDS
 	cd $(@D) 
@@ -39,9 +37,15 @@ endef
 
 define HOST_MCCUSTOM_INSTALL_CMDS
 	$(INSTALL) -D -m 0755 $(@D)/custom $(HOST_DIR)/usr/bin/custom
+endef
+
+define HOST_MCCUSTOM_ADD_NEW_FONT
 	$(INSTALL) -D -m 0755 $(@D)/dejavu_sans_24_50.qsf $(HOST_DIR)/usr/lib/fonts/dejavu_sans_24_50.qsf
 endef
 
+HOST_MCCUSTOM_POST_INSTALL_HOOKS += HOST_MCCUSTOM_ADD_NEW_FONT
 
 $(eval $(generic-package))
 $(eval $(host-generic-package))
+
+

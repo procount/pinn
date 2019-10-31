@@ -399,8 +399,11 @@ int main(int argc, char *argv[])
     }
 
     splash->showStatusMessage("Please wait",Qt::white);
-//    while (group->currentTime()<group->totalDuration())
-//        QApplication::processEvents();
+    if (runinstaller)
+    {
+        while (group->currentTime()<group->totalDuration())
+            QApplication::processEvents();
+    }
     splash->showStatusMessage("", Qt::black);
 
     cec->clearKeyPressed();
