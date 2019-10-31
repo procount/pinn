@@ -57,6 +57,7 @@ protected:
     QTime _time;
     QString _model, _repo, _drive, _bootdrive;
     QString _sockserver, _sockclient;
+    bool _writing;
     QMap<QString,QVariantMap> listImages(const QString &folder = "/mnt/os", bool includeInstalled = true);
     virtual void changeEvent(QEvent * event);
     virtual bool eventFilter(QObject *obj, QEvent *event);

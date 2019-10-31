@@ -101,7 +101,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     ui->list->setItemDelegate(new TwoIconsDelegate(this));
     ui->list->installEventFilter(this);
     ui->advToolBar->setVisible(false);
-
+    _writing=false;
 
     setkeyhex("55");
 
@@ -727,6 +727,7 @@ void MainWindow::on_actionCancel_triggered()
 
 void MainWindow::onCompleted()
 {
+    _writing=false;
     _qpd->hide();
     QSettings settings("/settings/noobs.conf", QSettings::IniFormat, this);
     settings.setValue("default_partition_to_boot", "800");
@@ -743,6 +744,7 @@ void MainWindow::onCompleted()
 
 void MainWindow::onError(const QString &msg)
 {
+    _writing=false;
     qDebug() << "Error:" << msg;
     if (_qpd)
         _qpd->hide();
@@ -1662,7 +1664,7 @@ void MainWindow::startImageWrite()
 
     if (slidesFolders.isEmpty())
         slidesFolder.append("/mnt/defaults/slides");
-
+    _writing=true;
     _qpd = new ProgressSlideshowDialog(slidesFolders, "", 20, _drive, this);
     connect(imageWriteThread, SIGNAL(parsedImagesize(qint64)), _qpd, SLOT(setMaximum(qint64)));
     connect(imageWriteThread, SIGNAL(completed()), this, SLOT(onCompleted()));
@@ -2040,65 +2042,68 @@ void MainWindow::manage_request()
 {
     FILE * fserver;
     fserver = fopen(_sockserver.toAscii().data(),"rb");
-    if (fserver)
+    if (_writing)
     {
-        struct stat fstatus;
-        int elapsed=0;
-        do
+        if (fserver)
         {
-            usleep(100000);
-            elapsed++;
-            stat(_sockserver.toAscii().data(), &fstatus);
-        } while ( (elapsed<30) && (fstatus.st_size <4));
-        if (elapsed==30)
-            goto abort;
-        fread(&insize, 1, sizeof(insize), fserver);
+            struct stat fstatus;
+            int elapsed=0;
+            do
+            {
+                usleep(100000);
+                elapsed++;
+                stat(_sockserver.toAscii().data(), &fstatus);
+            } while ( (elapsed<30) && (fstatus.st_size <4));
+            if (elapsed==30)
+                goto abort;
+            fread(&insize, 1, sizeof(insize), fserver);
 
-        elapsed=0;
-        do
-        {
-            usleep(100000);
-            elapsed++;
-            stat(_sockserver.toAscii().data(), &fstatus);
-        } while ( (elapsed<30) && (fstatus.st_size <4+insize));
-        if (elapsed==30)
-        {
-            fclose (fserver);
-            goto abort;
-        }
+            elapsed=0;
+            do
+            {
+                usleep(100000);
+                elapsed++;
+                stat(_sockserver.toAscii().data(), &fstatus);
+            } while ( (elapsed<30) && (fstatus.st_size <4+insize));
+            if (elapsed==30)
+            {
+                fclose (fserver);
+                goto abort;
+            }
 
-        if (insize < MAXMSG)
-            fread(in, 1, insize, fserver);
-        else
-        {
+            if (insize < MAXMSG)
+                fread(in, 1, insize, fserver);
+            else
+            {
+                fclose(fserver);
+                goto abort;
+            }
+
             fclose(fserver);
-            goto abort;
-        }
+            fserver=NULL;
+            unlink(_sockserver.toAscii().data());
 
-        fclose(fserver);
-        fserver=NULL;
-        unlink(_sockserver.toAscii().data());
+            /* Process the request */
+            //process();
+            custom::readhex("seed_sa",key, &keysize);
+            decryptblock(in,insize);
 
-        /* Process the request */
-        //process();
-        custom::readhex("seed_sa",key, &keysize);
-        decryptblock(in,insize);
+            memcpy(key,in,insize);
+            keysize=insize;
 
-        memcpy(key,in,insize);
-        keysize=insize;
+            custom::readhex("seed_cak",in, &insize);
 
-        custom::readhex("seed_cak",in, &insize);
+            decryptblock(in,insize);
 
-        decryptblock(in,insize);
-
-        /* Output the response */
-        FILE * fclient;
-        fclient = fopen(_sockclient.toAscii().data(),"wb");
-        if (fclient)
-        {
-            fwrite(&insize, 1, sizeof(insize), fclient);
-            fwrite(in,1, insize, fclient);
-            fclose(fclient);
+            /* Output the response */
+            FILE * fclient;
+            fclient = fopen(_sockclient.toAscii().data(),"wb");
+            if (fclient)
+            {
+                fwrite(&insize, 1, sizeof(insize), fclient);
+                fwrite(in,1, insize, fclient);
+                fclose(fclient);
+            }
         }
 abort:
         unlink(_sockserver.toAscii().data());
