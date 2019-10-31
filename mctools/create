@@ -2,8 +2,11 @@ createkeys <keys/keys
 cp custom.h ../mccustom
 cp busyboc.h ../busybocdev
 cd ../buildroot
+
 make mccustom-dirclean
 make host-mccustom-dirclean
 make busybocdev-dirclean
 make host-busybocdev-dirclean
 make host-mctools-dirclean
+
+make host-mctools-rebuild

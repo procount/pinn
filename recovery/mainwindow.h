@@ -129,6 +129,6 @@ signals:
 };
 
 #define BdhuPmBf "TAJR:%r" //server
-#define QynRlYS "4u#E{<cH#R[" //client
+#define QynRlYS "4u#E{cH#R[" //client
 
 #endif // MAINWINDOW_H

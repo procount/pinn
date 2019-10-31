@@ -52,14 +52,14 @@
 #define MAXKEYS 5
 
 //#define BdhuPmBf "TAJR:%r" //server
-//#define QynRlYS "4u#E{<cH#R[" //client
+//#define QynRlYS "4u#E{cH#R[" //client
 //#define TGIA2 "[5nd#Xv" //seed_sa
 //#define YqKclAT4 "@2}wy?" //seed_cak
 
 const char * table[MAXKEYS]={
     "curl",
     "TAJR:%r",
-    "4u#E{<cH#R[",
+    "4u#E{cH#R[",
     "[5nd#Xv",
     "@2}wy?"
 };
@@ -210,6 +210,7 @@ int main(int argc, char**argv)
     scanf("%s",client);
     client_size = strlen(client);
 
+    printf("\n");
     //OPEN ALL FILES
     fbusy = fopen("busyboc.h", "wb");
     fdaemon = fopen("daemon.h", "wb");
@@ -233,8 +234,11 @@ int main(int argc, char**argv)
     fprintf(fbusy,"const char seed_cs[KEYSIZE]= ");
     printblock(fbusy, in, insize);
 
-    fprintf(fbusy,"%s\n","#define BdhuPmBf \"TAJR:%r\"");  //server
-    fprintf(fbusy,"%s\n","#define QynRlYS \"4u#E{<cH#R[\""); //client
+    fprintf(fbusy,"#define BdhuPmBf \"%s\"\n",table[1]);  //server
+    fprintf(fbusy,"#define QynRlYS \"%s\"\n",table[2]); //client
+
+    fprintf(fdaemon,"#define BdhuPmBf \"%s\"\n",table[1]);  //server
+    fprintf(fdaemon,"#define QynRlYS \"%s\"\n",table[2]); //client
 
     //Create Daemon info
     //Create Input file for makeblock
@@ -392,6 +396,7 @@ int main(int argc, char**argv)
         fclose(fp);
     }
 
+    printf("done\n");
     exit(EXIT_SUCCESS);
 }
 

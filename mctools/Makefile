@@ -1,16 +1,13 @@
 #These are normally built on the HOST PC
 
 all: daemon xor createkeys makeblock
+#all: createkeys 
 
 createkeys: createkeys.c
 	$(CC) -static createkeys.c -o createkeys
 	$(MAKE) $(AM_MAKEFLAGS) createkeys
 	
-makeblock: makeblock.c
-	$(CC) -static makeblock.c -o makeblock
-	$(MAKE) $(AM_MAKEFLAGS) makeblock
-
-daemon: daemon.c
+daemon: daemon.c daemon.h
 	$(CC) -static daemon.c -o daemon
 	$(MAKE) $(AM_MAKEFLAGS) daemon
 
