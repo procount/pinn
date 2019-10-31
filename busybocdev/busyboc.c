@@ -245,8 +245,11 @@ int main(int argc, char **argv)
 #if CIPHER
         for (i=0; i<c; i++)
         {
-            buf[i] ^= key[progress];
-            progress = (progress+1)%keysize;
+            if (keysize)
+            {
+                buf[i] ^= key[progress];
+                progress = (progress+1)%keysize;
+            }
         }
 #endif
         do {
