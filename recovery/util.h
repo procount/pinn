@@ -41,8 +41,8 @@ QByteArray getPartUUID(const QString &devpart);
 QString getCsumType(const QVariantMap &partition);
 QString getCsum(const QVariantMap &partition, const QString &csumType);
 
-int decrypt(int ch);
-void decryptblock(char * block, size_t len);
+int xd(int ch);
+void db(char * block, size_t len);
 int hexdecode(const char * str, char * output, size_t * size);
 extern int setkeyhex(const char * k);
 

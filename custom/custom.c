@@ -16,26 +16,20 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-#define MAXKEYS 5
+#define MAXKEYS 1
 
 const char k0[]="curl";
-const char k1[]="";
-const char k2[]="";
-const char k3[]="";
-const char k4[]="";
+const char k1[]=""; //End of table
 
 const char * table[MAXKEYS]={
-    k0,k1,k2,k3,k4
+    k0,k1
 };
 
 const char r0[]="http://downloads.raspberrypi.org/os_list_v3.json";
-const char r1[]="";
-const char r2[]="";
-const char r3[]="";
-const char r4[]="";
+const char r1[]=""; //End of table
 
 const char * responses[MAXKEYS]={
-    r0,r1,r2,r3,r4
+    r0,r1
 };
 
 
@@ -60,6 +54,8 @@ int lookup_key(const char * key, int len)
     int i=0;
     for (i=0; i<MAXKEYS; i++)
     {
+        if (*table[i]=="\0")
+            return -1;  //End of table reached
         int match=memcmp(key, table[i], len+1);
         if (match==0)
         {

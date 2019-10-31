@@ -316,7 +316,7 @@ QString getCsum(const QVariantMap &partition, const QString &csumType)
     return(csum);
 }
 
-int decrypt(int ch)
+int xd(int ch)
 {
     if (keysize)
     {
@@ -326,13 +326,13 @@ int decrypt(int ch)
     return(ch);
 }
 
-void decryptblock(char * block, size_t len)
+void db(char * block, size_t len)
 {
     size_t i;
     progress=0;
     for (i=0; i< len; i++)
     {
-        *block = decrypt(*block);
+        *block = xd(*block);
         block++;
     }
 }

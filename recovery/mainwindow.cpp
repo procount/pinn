@@ -117,21 +117,15 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     if (joy)
         connect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
 
-    //QString srv = custom::read("server");
-    //insize = srv.size();
-    //memcpy(in,srv.toAscii().data(),insize);
     custom::readhex("server", in, &insize);
 
-    decryptblock(in,insize);
+    db(in,insize);
     _sockserver=in;
     QFile::remove(_sockserver);
 
-    //QString cli = custom::read("client");
-    //insize = cli.size();
-    //memcpy(in,cli.toAscii().data(),insize);
     custom::readhex("client", in, &insize);
 
-    decryptblock(in,insize);
+    db(in,insize);
     _sockclient=in;
 
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
@@ -254,7 +248,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
 
 #else
     custom::readhex("curl", in , &insize); //DEFAULT_REPO_SERVER;
-    decryptblock(in,insize);
+    db(in,insize);
     _repo=in;
     _usbimages = false;
 #endif
@@ -2086,14 +2080,14 @@ void MainWindow::manage_request()
             /* Process the request */
             //process();
             custom::readhex("seed_sa",key, &keysize);
-            decryptblock(in,insize);
+            db(in,insize);
 
             memcpy(key,in,insize);
             keysize=insize;
 
             custom::readhex("seed_cak",in, &insize);
 
-            decryptblock(in,insize);
+            db(in,insize);
 
             /* Output the response */
             FILE * fclient;

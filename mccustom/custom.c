@@ -16,16 +16,6 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-#if 0
-{
-    "url":      "http://raw.githubusercontent.com/procount/pinn-os/master/os/os_retro2.json",
-    "curl":     "3d2121256f7a7a2734227b323c213d203720263027363a3b21303b217b363a387a25273a363a203b217a253c3b3b783a267a3834262130277a3a267a3a260a273021273a677b3f263a3b",
-    "server":   "z!8%z69<0;!",
-    "client":   "z!8%z&0'#0'",
-    "seed_sa":  "0467cd42",
-    "seed_cak": "0b50f17a"
-}
-#endif
 
 #define KEYSIZE 20
 
@@ -39,12 +29,8 @@ size_t keysize=0;
 char key[MAXMSG+1]={0};
 
 char path1[MAXMSG+1];
-#if PATH2
-char path2[MAXMSG+1];
-#endif
 
 #include "custom.h"
-
 
 int decrypt(int ch)
 {
@@ -147,19 +133,7 @@ int main(int argc, char **argv)
     }
     else
     {
-#if PATH2
-        unhidedatapath(path2, path2_enc, sizeof(path2_enc));
-        if (access( path2, F_OK )==0)
-        {
-            query(path2, argv[1]);
-        }
-        else
-        {
-#endif
-            printerror();
-#if PATH2
-        }
-#endif
+        printerror();
     }
 }
 

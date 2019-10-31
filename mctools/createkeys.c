@@ -48,6 +48,7 @@
 #endif
 
 
+//Alter the definitions here, but also need to fix in recovery
 #define MAXKEYS 5
 
 const char * table[MAXKEYS]={
@@ -353,7 +354,7 @@ int main(int argc, char**argv)
     memcpy(&block[MAXMSG*blk++], buffer, MAXMSG);
  
     //seed_sa is stored in hex
-    pad (&buffer[1],MAXMSG);
+    pad (in,MAXMSG);
     strcpy(&buffer[1], seed_sa);
     hexdecode(&buffer[1],&in[1], &insize);
     in[0]=insize;
@@ -365,7 +366,7 @@ int main(int argc, char**argv)
     memcpy(&block[MAXMSG*blk++], in, MAXMSG);
 
     //seed_cak is stored in hex
-    pad (&buffer[1],MAXMSG);
+    pad (in,MAXMSG);
     strcpy(&buffer[1], seed_cak);
     hexdecode(&buffer[1],&in[1], &insize);
     in[0]=insize;
