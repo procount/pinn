@@ -9,7 +9,7 @@
 #include <string.h>
 
 #define CIPHER 1
-#define DAEMON 0
+#define DAEMON 1
 
 #define KEYSIZE 20
 #if CIPHER
