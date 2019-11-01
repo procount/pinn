@@ -9,7 +9,7 @@
 #include <string.h>
 
 #define CIPHER 1
-#define DAEMON 1
+#define DAEMON 0
 
 #define KEYSIZE 20
 #if CIPHER
@@ -136,7 +136,7 @@ void process(void)
 int main(void) 
 {
         struct stat fstatus;
-        char out[200];
+//        char out[200];
         int len = 0;
 
 #if DAEMON
@@ -209,13 +209,13 @@ int main(void)
                     stat(sockserver, &fstatus);
                 } while (fstatus.st_size <4);
                 fread(&insize, 1, sizeof(insize), fserver);
-                fprintf(stderr,"D got %u\n", insize);
 
                 do
                 {
                     stat(sockserver, &fstatus);
                 } while (fstatus.st_size <4+insize);
                 fread(in, 1, insize, fserver);
+                
                 fclose (fserver);
                 unlink(sockserver);
 

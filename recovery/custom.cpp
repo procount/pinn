@@ -43,6 +43,7 @@ int custom::readhex(const char * key, char * out, size_t * len)
 {
     size_t i;
     QString raw = read(key);
+    qDebug() << "custom::readhex "<<key;
     hexdecode(raw.toAscii().data(), out, len);
     for (i=0; i<*len; i++)
         out[i]^=0x55;

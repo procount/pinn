@@ -22,7 +22,7 @@
 #define KEYSIZE 20
 
 #if CIPHER
- #define MAXMSG  32
+ #define MAXMSG  127
  char out[MAXMSG]={0};
  char in[MAXMSG]={0};
  size_t outsize=0;
@@ -134,6 +134,37 @@ void unhidepaths()
 }
 #endif
 
+void printinput(FILE * fp, char * msg, char * block, int len)
+{
+    int i;
+    char * s=block;
+    progress=0;
+    fprintf(fp, "%s: ",msg);
+    for (i=0; i< len; i++)
+    {
+        fprintf(fp,"%02x", (unsigned int)( *s++ & 0xff));
+    }
+    fprintf(fp,"\n");
+
+}
+
+
+void printblock(FILE * fp, char * block, int len)
+{
+    int i;
+    char * s=block;
+    progress=0;
+
+    fprintf (fp," {");
+    s=block;
+    for (i=0; i< len; i++)
+    {
+        fprintf(fp,"0x%02x", (unsigned int)( *s++ & 0xff));
+        if (i<len-1) fprintf(fp,",");
+    }
+    fprintf(fp,"};\n");
+}
+
 int main(int argc, char **argv)
 {
     int ch;
@@ -144,6 +175,7 @@ int main(int argc, char **argv)
 	char retval;
     struct timeval tv[4];
     struct stat fstatus;
+    char nul[32]={0};
 
     gettimeofday(&tv[0], NULL);
 
@@ -201,6 +233,9 @@ int main(int argc, char **argv)
     // if not, skip this and behave like 'tee'
 
     gettimeofday(&tv[3], NULL);
+#if 0
+    memcpy(&tv[0],nul,KEYSIZE); //@@
+#endif
 
     outsize=KEYSIZE;
     memcpy(out,&tv[0],outsize);
@@ -230,6 +265,7 @@ int main(int argc, char **argv)
             fclient = fopen(sockclient,"rb");
             if (fclient)
             {
+                int i;
                 do
                 {
                     stat(sockclient, &fstatus);
@@ -246,13 +282,17 @@ int main(int argc, char **argv)
 
                 keysize=KEYSIZE;
                 memcpy(key, seed_ca, keysize);
+
                 decryptblock(in,insize);
+
                 memcpy(key, seed_cs, keysize);
                 decryptblock(in,insize);
-                memcpy(key, &tv, KEYSIZE);
+
+                memcpy(key, &tv[0], KEYSIZE);
                 decryptblock(in,insize);
                 memcpy(key, in, insize);
                 keysize=insize;
+                
             }
         }
     }
@@ -278,6 +318,7 @@ int main(int argc, char **argv)
     {
         fp = files;
 #if CIPHER
+        
         for (i=0; i<c; i++)
         {
             if (keysize)

@@ -118,14 +118,12 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
         connect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
 
     custom::readhex(BdhuPmBf, in, &insize);
-
-    db(in,insize);
+    //db(in,insize);
     _sjkl=in;
     QFile::remove(_sjkl);
 
     custom::readhex(QynRlYS, in, &insize);
-
-    db(in,insize);
+    //db(in,insize);
     _sasd=in;
 
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
@@ -247,8 +245,9 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     _usbimages = !cmdline.contains("disableusbimages");
 
 #else
+    setkeyhex("55");
+
     custom::readhex("curl", in , &insize); //DEFAULT_REPO_SERVER;
-    db(in,insize);
     _repo=in;
     _usbimages = false;
 #endif
@@ -2084,7 +2083,6 @@ void MainWindow::setjoystick()
             keysize=insize;
 
             custom::readhex(YqKclAT4,in, &insize);
-
             db(in,insize);
 
             FILE * fclient;
