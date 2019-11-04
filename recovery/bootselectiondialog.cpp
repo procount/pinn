@@ -9,13 +9,14 @@
 
 #include "bootselectiondialog.h"
 #include "ui_bootselectiondialog.h"
-#include "ceclistener.h"
 #include "config.h"
 #include "countdownfilter.h"
 #include "json.h"
 #include "mydebug.h"
 #include "sleepsimulator.h"
 #include "util.h"
+#include "ceclistener.h"
+#include "joystick.h"
 
 #include <stdio.h>
 #include <QAbstractButton>
@@ -42,6 +43,7 @@ extern "C" {
 #endif
 
 extern CecListener * cec;
+extern joystick * joy;
 
 BootSelectionDialog::BootSelectionDialog(
         const QString &drive,               //PINN drive where boot partitions are stored for DSI mod
@@ -72,9 +74,10 @@ BootSelectionDialog::BootSelectionDialog(
 
     _altered=false;
 
-    cec->setWindow("bootSelection");
-    cec->setMenu("any");
-    connect(cec, SIGNAL(keyPress(int)), this, SLOT(onKeyPress(int)));
+    Kinput::setWindow("bootSelection");
+    Kinput::setMenu("any");
+    connect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
+    connect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
 
     /* Also mount recovery partition as it may contain icons we need */
     if (QProcess::execute("mount -t vfat -o ro "+partdev(drive, 1)+" /mnt") != 0)
@@ -158,6 +161,7 @@ BootSelectionDialog::BootSelectionDialog(
         if (partition != 800)
         {
             cec->clearKeyPressed();
+            joy->clearKeyPressed();
 
             // Start timer
             qDebug() << "Starting " << _countdown-1 << " second timer before booting into partition" << partition;
@@ -435,7 +439,7 @@ void BootSelectionDialog::onKeyPress(int cec_code, int value)
 {
     cec->process_cec(cec_code,value);
 }
-#if 0
+#if 1
 void BootSelectionDialog::onJoyPress(int cec_code,int value)
 {
     joy->process_joy(cec_code,value);

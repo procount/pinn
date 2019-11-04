@@ -222,7 +222,7 @@ void simulate::test()
 
     sleep(1);
 
-    struct input_event ev;
+    //struct input_event ev;
     int i, dx, dy;
     for (i = 0; i < 20; i++)
     {

@@ -80,5 +80,6 @@
         <file>icons/left.JPG</file>
         <file>icons/right.JPG</file>
         <file>icons/up.JPG</file>
+        <file>joy_keys.json</file>
     </qresource>
 </RCC>

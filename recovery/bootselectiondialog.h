@@ -42,6 +42,7 @@ protected slots:
     void bootPartition();
     void onKeyPress(int,int);
     void countdownExpired();
+    void onJoyPress(int cec_code,int value);
 
 private slots:
     void on_list_itemChanged(QListWidgetItem *item);

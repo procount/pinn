@@ -356,6 +356,7 @@ int main(int argc, char *argv[])
 
     QProcess::execute("mount -o ro -t vfat "+partdev(drive, 1)+" /mnt");
     cec->loadMap("/mnt/cec_keys.json");
+    joy->loadMap("/mnt/joy_keys.json");
 
 #if 0
     qDebug() << "Starting dbus";

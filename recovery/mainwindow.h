@@ -202,6 +202,7 @@ protected slots:
     void onKeyPress(int key, int value);
     void closeEvent(QCloseEvent *event);
     void checkUpdateTime();
+    void onJoyPress(int joy_code, int value);
 
 private slots:
     /* UI events */
