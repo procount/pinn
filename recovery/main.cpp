@@ -150,9 +150,8 @@ QString findRecoveryDrive()
 
     foreach (QString devname, list)
     {
-        /* Only search first partition and partitionless devices. Skip virtual devices (such as ramdisk) */
-        if ((devname.right(1).at(0).isDigit() && !devname.endsWith("1"))
-                || QFile::symLinkTarget("/sys/class/block/"+devname).contains("/devices/virtual/"))
+        /* Skip virtual devices (such as ramdisk) */
+        if (QFile::symLinkTarget("/sys/class/block/"+devname).contains("/devices/virtual/"))
             continue;
 
         if (QProcess::execute("mount -t vfat -o ro /dev/"+devname+" /mnt") == 0)
@@ -357,7 +356,13 @@ int main(int argc, char *argv[])
     }
     qDebug() << "PINN drive:" << drive;
 
-    QProcess::execute("mount -o ro -t vfat "+partdev(drive, 1)+" /mnt");
+    if (!QProcess::execute("mount -o ro -t vfat "+partdev(drive, 1)+" /mnt"))
+    {
+        //Maybe there is no MBR
+        //and partition1 does not exist. But we found a drive, so assume it is mbr-less
+        QProcess::execute("mount -o ro -t vfat "+drive+" /mnt");
+    }
+
     cec->loadMap("/mnt/cec_keys.json");
     joy->loadMap("/mnt/joy_keys.json");
 
