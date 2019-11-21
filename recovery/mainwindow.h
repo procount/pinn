@@ -239,6 +239,8 @@ private slots:
     void on_actionTime_triggered();
     void doReinstall();
 
+    void on_actionReload_Repos_triggered();
+
 signals:
     void networkUp();
     void newVersion();

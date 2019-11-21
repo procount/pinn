@@ -5,7 +5,7 @@
 
 The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn-lite.zip) can be downloaded from [sourceforge](http://www.sourceforge.net/projects/pinn).
 
-This README relates to v3.3.2
+This README relates to v3.3.3
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -148,6 +148,7 @@ There are three toolbars:
   - **[Info](#info-on-os)**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
   - **[Firmware](#pinns-firmware-upgradedowngrade)**: Upgrades or downgrades PINN's firmware for use on RPI3B+ or other models.
   - **[Time](#set-time)**: Sets the current time.
+  - **[Reload Repos](reload-repos)**: Reload the OS distribution lists from the internet.
 - **[Maintenance](#maintenance-menu)**
   - **[Edit Config](#easy-config-file-editor)**: Opens a text editor, allowing the `cmdline` and `config` files for the selected installed OS to be edited.
   - **[Password](#how-to-recover-from-a-lost-password)**: Allows the password of an OS to be restored or replaced.
@@ -186,6 +187,7 @@ In addition to the toolbars, the following functionality is provided:
  - <b>Language Selection</b>: Allows you to select the language used for text display.
  - <b>Keyboard Layout Selection</b>: Allows you to select the keyboard layout to be used.
  - <b>Display Mode Selection</b>: By default, PINN will output over HDMI at your display's preferred resolution, even if no HDMI display is connected. If you do not see any output on your HDMI display or are using the composite output, press 1, 2, 3 or 4 on your keyboard to select HDMI preferred mode (1), HDMI safe mode (2), composite PAL mode (3), or composite NTSC mode (4), respectively.
+ - <b>Font size</b>: Some rudimentary adjustment of the font size can be made using the +/- keys. (This can cause text to overflow, but this will be addressed in a later version).
  - <b>Background colour</b>: To change the background colour for the screen and most windows, add `background=r,g,b` to recovery.cmdline, where 0,0,0 is black and 255,255,255 is white.
  - <b>style</b>: The style of the windows display can be modified  by adding `style=motif/windows/platinum` to recovery.cmdline
  - <b>Wallpaper</b>: The background wallpaper of PINN can be changed by adding your own `wallpaper.jpg` or `wallpaper.png` file to PINN's recovery partition.
@@ -891,6 +893,10 @@ _Note2: The clone function can also be used to copy any USB drive to any other U
 The Raspberry Pi has no real time clock, but it needs to know the correct time for https transfers and to timestamp any backups.
 The Pi's clock can be set automatically once it is connected to the internet, but this function can be used to set the clock manually if no internet connection is available.
 If a backup is attempted with no internet connection, this function will be called first to ensure the current time is set.
+
+## Reload Repos
+
+If PINN cannot access the internet when it starts, it will not be able to download the lists of repositories or the OS distribution lists. Normally it will retry when the internet connection is restored, but in some circumstances this will not happen. If this is the case, the lsit of repositories and OS distribution lists can be reloaded manually through this option.
 
 <!-- ## Wipe the Drive
 

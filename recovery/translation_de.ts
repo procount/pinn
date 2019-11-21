@@ -438,149 +438,160 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="254"/>
-        <location filename="mainwindow.ui" line="294"/>
+        <location filename="mainwindow.ui" line="295"/>
         <source>toolBar</source>
         <translation>Toolbar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="387"/>
+        <location filename="mainwindow.ui" line="391"/>
         <source>Install (i)</source>
         <translation>Installieren (i)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="390"/>
+        <location filename="mainwindow.ui" line="394"/>
         <source>Installs the selected operating system image onto this SD card.</source>
         <translation>Installiert das ausgewählte Betriebssystem-Image auf die SD-Karte</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="393"/>
+        <location filename="mainwindow.ui" line="397"/>
         <source>I</source>
         <translation>I</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="402"/>
+        <location filename="mainwindow.ui" line="406"/>
         <source>Exit (Esc)</source>
         <translation>Beenden (Esc)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="405"/>
+        <location filename="mainwindow.ui" line="409"/>
         <source>Exits and boots the installed operating system.</source>
         <translation>Beendet PINN und startet das ausgewählte Betriebssystem.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="420"/>
+        <location filename="mainwindow.ui" line="424"/>
         <source>More (m)</source>
         <translation>Mehr (m)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="423"/>
+        <location filename="mainwindow.ui" line="427"/>
         <source>More menus</source>
         <translation>Mehr Menüs</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="426"/>
+        <location filename="mainwindow.ui" line="430"/>
         <source>M</source>
         <translation>M</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="519"/>
+        <location filename="mainwindow.ui" line="523"/>
         <source>Download (d)</source>
         <translation>Download (d)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="522"/>
+        <location filename="mainwindow.ui" line="526"/>
         <source>Downloads the selected operating system image to USB for local installation</source>
         <translation>Lädt die ausgewählten Betreibssystem-Images auf den USB-Stick zur späteren lokalen Installation.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="525"/>
+        <location filename="mainwindow.ui" line="529"/>
         <source>D</source>
         <translation>D</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="558"/>
+        <location filename="mainwindow.ui" line="562"/>
         <source>Reinstall (r)</source>
         <oldsource>Refresh (r)</oldsource>
         <translation>Neu installieren (r)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="561"/>
+        <location filename="mainwindow.ui" line="565"/>
+        <location filename="mainwindow.ui" line="739"/>
         <source>R</source>
         <translation>R</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="576"/>
+        <location filename="mainwindow.ui" line="580"/>
         <source>Replace (c)</source>
         <oldsource>Replace (l)</oldsource>
         <translation type="unfinished">Ersetzen (1)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="579"/>
+        <location filename="mainwindow.ui" line="583"/>
         <source>L</source>
         <translation>L</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="630"/>
+        <location filename="mainwindow.ui" line="634"/>
         <source>Wipe (w)</source>
         <translation>Löschen (w)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="657"/>
+        <location filename="mainwindow.ui" line="661"/>
         <source>Information about the installed OS</source>
         <translation>Informationen über das installierte Betriebsystem</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="669"/>
+        <location filename="mainwindow.ui" line="673"/>
         <source>Firmware (f)</source>
         <translation>Firmware (f)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="672"/>
+        <location filename="mainwindow.ui" line="676"/>
         <source>Change Firmware</source>
         <translation>Ändere die Firmware</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="684"/>
+        <location filename="mainwindow.ui" line="688"/>
         <source>Clear (c)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="687"/>
+        <location filename="mainwindow.ui" line="691"/>
         <source>Clear selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="699"/>
+        <location filename="mainwindow.ui" line="703"/>
         <source>Time (t)</source>
         <translation>Zeit (t)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="702"/>
+        <location filename="mainwindow.ui" line="706"/>
         <source>Set Data &amp; Time</source>
         <translation>Uhrzeit &amp; Datum festlegen</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="705"/>
+        <location filename="mainwindow.ui" line="709"/>
         <source>T</source>
         <translation>T</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="714"/>
+        <location filename="mainwindow.ui" line="718"/>
         <source>Alias (a)</source>
         <translation>Alias (a)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="717"/>
+        <location filename="mainwindow.ui" line="721"/>
         <source>Rename an OS with an alias</source>
         <translation>Bennene ein Betriebsystem in einen Alias um.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="720"/>
+        <location filename="mainwindow.ui" line="724"/>
         <source>A</source>
         <translation>A</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="486"/>
+        <location filename="mainwindow.ui" line="733"/>
+        <source>Reload Repos (r)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="736"/>
+        <source>Scans Repositories and reloads lists of new OSes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="490"/>
         <source>Wifi (w)</source>
         <translation>Wifi (w)</translation>
     </message>
@@ -590,115 +601,115 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
         <translation>Installationsspeicherplatz</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="504"/>
+        <location filename="mainwindow.ui" line="508"/>
         <source>Password (p)</source>
         <translation>Passwort (p)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="507"/>
+        <location filename="mainwindow.ui" line="511"/>
         <source>Change password</source>
         <translation>Ändere das Passwort</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="510"/>
+        <location filename="mainwindow.ui" line="514"/>
         <source>P</source>
         <translation>P</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="540"/>
+        <location filename="mainwindow.ui" line="544"/>
         <source>Backup (b)</source>
         <translation>Backup erstellen (b)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="543"/>
+        <location filename="mainwindow.ui" line="547"/>
         <source>B</source>
         <translation type="unfinished">B</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="594"/>
+        <location filename="mainwindow.ui" line="598"/>
         <source>fsck (f)</source>
         <oldsource>fschk (f)</oldsource>
         <translation>fsck (f)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="597"/>
-        <location filename="mainwindow.ui" line="615"/>
-        <location filename="mainwindow.ui" line="675"/>
+        <location filename="mainwindow.ui" line="601"/>
+        <location filename="mainwindow.ui" line="619"/>
+        <location filename="mainwindow.ui" line="679"/>
         <source>F</source>
         <translation>F</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="612"/>
+        <location filename="mainwindow.ui" line="616"/>
         <source>Fix (f)</source>
         <translation>Reparieren (f)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="642"/>
+        <location filename="mainwindow.ui" line="646"/>
         <source>Clone (c)</source>
         <translation>Klonen (c)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="645"/>
-        <location filename="mainwindow.ui" line="690"/>
+        <location filename="mainwindow.ui" line="649"/>
+        <location filename="mainwindow.ui" line="694"/>
         <source>C</source>
         <translation>C</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="337"/>
+        <location filename="mainwindow.ui" line="338"/>
         <source>Advanced</source>
         <translation>Erweitert</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="438"/>
+        <location filename="mainwindow.ui" line="442"/>
         <source>Edit config (e)</source>
         <translation>Einstellungen bearbeiten (e)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="441"/>
+        <location filename="mainwindow.ui" line="445"/>
         <source>Opens the config.txt and cmdline.txt for the installed OS in a text editor.</source>
         <translation>Öffnet config.txt und cmdline.txt des installierten Betriebssystems im Texteditor.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="453"/>
+        <location filename="mainwindow.ui" line="457"/>
         <source>Online help (h)</source>
         <translation>Online-Hilfe (h)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="456"/>
+        <location filename="mainwindow.ui" line="460"/>
         <source>Opens a web browser displaying the Raspberry Pi Forum.</source>
         <translation>Öffnet das Raspberry Pi Forum in einem Browser.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="468"/>
-        <location filename="mainwindow.ui" line="654"/>
+        <location filename="mainwindow.ui" line="472"/>
+        <location filename="mainwindow.ui" line="658"/>
         <source>Info (n)</source>
         <translation>Info (n)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="471"/>
+        <location filename="mainwindow.ui" line="475"/>
         <source>Information about the selected OS</source>
         <translation>Informationen über das ausgewählte Betriebssystem</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="474"/>
-        <location filename="mainwindow.ui" line="660"/>
+        <location filename="mainwindow.ui" line="478"/>
+        <location filename="mainwindow.ui" line="664"/>
         <source>N</source>
         <translation>N</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="489"/>
+        <location filename="mainwindow.ui" line="493"/>
         <source>Select a wifi network to connect to</source>
         <translation>Auswahl eines WLANs, zu dem eine Verbindung hergestellt werden soll</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="492"/>
-        <location filename="mainwindow.ui" line="633"/>
+        <location filename="mainwindow.ui" line="496"/>
+        <location filename="mainwindow.ui" line="637"/>
         <source>W</source>
         <translation>W</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3889"/>
-        <location filename="mainwindow.cpp" line="3922"/>
+        <location filename="mainwindow.cpp" line="3917"/>
+        <location filename="mainwindow.cpp" line="3950"/>
         <source>RECOMMENDED</source>
         <translation>EMPFOHLEN</translation>
     </message>
@@ -707,9 +718,9 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
         <location filename="mainwindow.cpp" line="1177"/>
         <location filename="mainwindow.cpp" line="1276"/>
         <location filename="mainwindow.cpp" line="1286"/>
-        <location filename="mainwindow.cpp" line="1870"/>
-        <location filename="mainwindow.cpp" line="4689"/>
-        <location filename="mainwindow.cpp" line="4733"/>
+        <location filename="mainwindow.cpp" line="1890"/>
+        <location filename="mainwindow.cpp" line="4717"/>
+        <location filename="mainwindow.cpp" line="4761"/>
         <source>Confirm</source>
         <translation>Bestätigung</translation>
     </message>
@@ -745,7 +756,7 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1127"/>
-        <location filename="mainwindow.cpp" line="4583"/>
+        <location filename="mainwindow.cpp" line="4611"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation>ist nicht verfügbar. Bitte stelle es lokal zur Verfügung oder verbinde dich mit dem Internet</translation>
@@ -759,9 +770,9 @@ Please provide it locally or connect to the internet.</source>
         <location filename="mainwindow.cpp" line="1463"/>
         <location filename="mainwindow.cpp" line="1478"/>
         <location filename="mainwindow.cpp" line="1505"/>
-        <location filename="mainwindow.cpp" line="2152"/>
-        <location filename="mainwindow.cpp" line="2292"/>
-        <location filename="mainwindow.cpp" line="4178"/>
+        <location filename="mainwindow.cpp" line="2172"/>
+        <location filename="mainwindow.cpp" line="2312"/>
+        <location filename="mainwindow.cpp" line="4206"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
@@ -870,7 +881,7 @@ See debug log for details</oldsource>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1416"/>
-        <location filename="mainwindow.cpp" line="4834"/>
+        <location filename="mainwindow.cpp" line="4862"/>
         <source>Backup OSes</source>
         <translation>Sichere die Betriebssysteme</translation>
     </message>
@@ -933,213 +944,213 @@ Would you like to make this setting permanent?</source>
 Wollen Sie diese Einstellung dauerhaft speichern?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1845"/>
+        <location filename="mainwindow.cpp" line="1865"/>
         <source>Wiping SD card</source>
         <translation>SD-Karte wird zurückgesetzt.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1871"/>
+        <location filename="mainwindow.cpp" line="1891"/>
         <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will restore your SD card to its initial state. All existing data on the SD card except PINN will be overwritten, including any OSes that are already installed.</oldsource>
         <translation>Warnung: Dies wird dein PINN-Laufwerk in seinen Anfangszustand zurücksetzen. Alle existierenden Dateien, inklusive installierten Betriebssystemen, werden gelöscht</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1876"/>
+        <location filename="mainwindow.cpp" line="1896"/>
         <source>Drive Wiped!</source>
         <translation>Laufwerk zurückgesetzt!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2133"/>
-        <location filename="mainwindow.cpp" line="2268"/>
+        <location filename="mainwindow.cpp" line="2153"/>
+        <location filename="mainwindow.cpp" line="2288"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation>Fehler beim Herunterladen der Distributions-Liste aus dem Internet:
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2135"/>
-        <location filename="mainwindow.cpp" line="2270"/>
-        <location filename="mainwindow.cpp" line="2787"/>
-        <location filename="mainwindow.cpp" line="2798"/>
-        <location filename="mainwindow.cpp" line="4277"/>
-        <location filename="mainwindow.cpp" line="4299"/>
+        <location filename="mainwindow.cpp" line="2155"/>
+        <location filename="mainwindow.cpp" line="2290"/>
+        <location filename="mainwindow.cpp" line="2807"/>
+        <location filename="mainwindow.cpp" line="2818"/>
+        <location filename="mainwindow.cpp" line="4305"/>
+        <location filename="mainwindow.cpp" line="4327"/>
         <source>Download error</source>
         <translation>Download-Fehler</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2152"/>
+        <location filename="mainwindow.cpp" line="2172"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation type="unfinished">Fehler beim Verarbeiten von repolist.json vom Server.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2773"/>
+        <location filename="mainwindow.cpp" line="2793"/>
         <source>Error downloading meta file: </source>
         <translation>Fehler beim Download einer Meta-Datei:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3124"/>
-        <location filename="mainwindow.cpp" line="4564"/>
+        <location filename="mainwindow.cpp" line="3144"/>
         <location filename="mainwindow.cpp" line="4592"/>
+        <location filename="mainwindow.cpp" line="4620"/>
         <source>Replace OSes</source>
         <translation>Ersetze das Betriebssystem/die Betriebssysteme</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3169"/>
+        <location filename="mainwindow.cpp" line="3189"/>
         <source>Resume partial downloads?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3170"/>
+        <location filename="mainwindow.cpp" line="3190"/>
         <source>Normally select NO, unless your last download was not successful, in which case select YES</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3393"/>
+        <location filename="mainwindow.cpp" line="3413"/>
         <source>This backup may require </source>
         <translation>Dieses Backup braucht vielleicht</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3395"/>
+        <location filename="mainwindow.cpp" line="3415"/>
         <source> MB of backup space, but only </source>
         <translation>MB Backup-Speicher, aber nur</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3397"/>
+        <location filename="mainwindow.cpp" line="3417"/>
         <source> MB is available. This is only an estimate. If you continue, the backup may not complete successfully.
 
 Do you want to continue?</source>
         <translation>MB sind verfügbar. Dies ist nur eine Einschätzung. Wenn du fortfährst wird das Backup eventuell nicht erfolgreich fertiggestellt.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3398"/>
+        <location filename="mainwindow.cpp" line="3418"/>
         <source>WARNING: Backup Space</source>
         <translation>WARNUNG: Backup-Speicher</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3405"/>
+        <location filename="mainwindow.cpp" line="3425"/>
         <source>Backup Info</source>
         <translation>Backup-Info</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3405"/>
+        <location filename="mainwindow.cpp" line="3425"/>
         <source>Always test your backups before relying on them</source>
         <translation>Teste deine Backups immer, bevor du dich auf sie verlässt.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3455"/>
+        <location filename="mainwindow.cpp" line="3475"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>Internetzugriff wird benötigt, um PINN ohne lokalen Images zu benutzen. Bitte lege dein Wi-Fi Netzwerk auf dem nächsten Bildschirm fest.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3463"/>
+        <location filename="mainwindow.cpp" line="3483"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>Internetzugriff per Kabel wird benötigt, um PINN ohne lokalen Images zu benutzen. Bitte stecke ein Netzwerkkabel in den Netzwerkanschluss.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3790"/>
+        <location filename="mainwindow.cpp" line="3818"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>Bist du sicher, dass du das Laufwerk &apos;%1&apos; für die Benutzung mit PINN neu formatieren willst? Alle vorhanden Daten auf dem Laufwerk werden gelöscht!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4130"/>
+        <location filename="mainwindow.cpp" line="4158"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>Dies löscht alle Daten auf dem Laufwerk &apos;%s&apos;. Bist du sicher?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4132"/>
+        <location filename="mainwindow.cpp" line="4160"/>
         <source>Clone SD Card</source>
         <translation>Klone die SD-Karte</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4134"/>
+        <location filename="mainwindow.cpp" line="4162"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4135"/>
+        <location filename="mainwindow.cpp" line="4163"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4164"/>
+        <location filename="mainwindow.cpp" line="4192"/>
         <source>Clone Completed</source>
         <translation>Klonen abgeschlossen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4165"/>
+        <location filename="mainwindow.cpp" line="4193"/>
         <source>Clone Completed Successfully</source>
         <translation>Klonen erfolgreich abgeschlossen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4277"/>
+        <location filename="mainwindow.cpp" line="4305"/>
         <source>Error downloading update file</source>
         <translation>Fehler beim Herunterladen der Update-Datei</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4284"/>
-        <location filename="mainwindow.cpp" line="4379"/>
+        <location filename="mainwindow.cpp" line="4312"/>
+        <location filename="mainwindow.cpp" line="4407"/>
         <source>PINN Update Check</source>
         <translation>PINN Update-Check</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4284"/>
+        <location filename="mainwindow.cpp" line="4312"/>
         <source>Error contacting update server</source>
         <translation>Fehler beim Kontaktieren des Update-Servers</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4379"/>
+        <location filename="mainwindow.cpp" line="4407"/>
         <source>No updates available</source>
         <translation>Kein Update verfügbar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4388"/>
+        <location filename="mainwindow.cpp" line="4416"/>
         <source>PINN UPDATE</source>
         <translation>PINN UPDATE</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4389"/>
+        <location filename="mainwindow.cpp" line="4417"/>
         <source>A new version of PINN is available</source>
         <translation>Eine neue Version von PINN ist verfügba</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4390"/>
+        <location filename="mainwindow.cpp" line="4418"/>
         <source>Do you want to download this version?</source>
         <translation>Möchten Sie diese Version herunterladen?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4422"/>
+        <location filename="mainwindow.cpp" line="4450"/>
         <source>Downloading Update</source>
         <translation>Update wird heruntergeladen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4422"/>
+        <location filename="mainwindow.cpp" line="4450"/>
         <source>Press ESC to cancel</source>
         <translation>Drücken Sie zum Abbrechen die ESC-Taste</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4565"/>
+        <location filename="mainwindow.cpp" line="4593"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4593"/>
+        <location filename="mainwindow.cpp" line="4621"/>
         <source>Warning: No OSes selected
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4690"/>
+        <location filename="mainwindow.cpp" line="4718"/>
         <source>Warning: this will backup the selected Operating System(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4734"/>
+        <location filename="mainwindow.cpp" line="4762"/>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2292"/>
+        <location filename="mainwindow.cpp" line="2312"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>Fehler beim Einlesen der vom Server geladenen list.json</translation>
     </message>
@@ -1190,59 +1201,59 @@ See debug log for details</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1877"/>
+        <location filename="mainwindow.cpp" line="1897"/>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2559"/>
-        <location filename="mainwindow.cpp" line="2562"/>
+        <location filename="mainwindow.cpp" line="2579"/>
+        <location filename="mainwindow.cpp" line="2582"/>
         <source>Needed</source>
         <translation>Benötigt</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2560"/>
-        <location filename="mainwindow.cpp" line="2563"/>
+        <location filename="mainwindow.cpp" line="2580"/>
+        <location filename="mainwindow.cpp" line="2583"/>
         <source>Available</source>
         <translation>Verfügbar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2787"/>
+        <location filename="mainwindow.cpp" line="2807"/>
         <source>Error downloading meta file</source>
         <translation>Fehler beim Herunterladen der Meta-Datei</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2798"/>
-        <location filename="mainwindow.cpp" line="4299"/>
+        <location filename="mainwindow.cpp" line="2818"/>
+        <location filename="mainwindow.cpp" line="4327"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>Fehler beim Schreiben der heruntergeladenen Datei auf die SD-Karte. Die SD-Karte oder deren Dateisystem könnte fehlerhaft sein.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2910"/>
+        <location filename="mainwindow.cpp" line="2930"/>
         <source>filesize error checking </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3125"/>
+        <location filename="mainwindow.cpp" line="3145"/>
         <source> has an incompatible number of partitions with </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3789"/>
+        <location filename="mainwindow.cpp" line="3817"/>
         <source>Reformat drive?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1890"/>
-        <location filename="mainwindow.cpp" line="3454"/>
-        <location filename="mainwindow.cpp" line="3462"/>
+        <location filename="mainwindow.cpp" line="1910"/>
+        <location filename="mainwindow.cpp" line="3474"/>
+        <location filename="mainwindow.cpp" line="3482"/>
         <source>No network access</source>
         <translation>Kein Netzwerk gefunden</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1891"/>
+        <location filename="mainwindow.cpp" line="1911"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Für diese Funktion ist eine kabelgebundene Netzwerkverbindung erforderlich. Bitte stecken Sie ein Netzwerkkabel ein.</translation>
     </message>

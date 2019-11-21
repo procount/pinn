@@ -29,13 +29,11 @@
 
 #include "input.h"
 
-//#include <QObject>
 #include <QThread>
 #include <QFile>
-//#include <QWaitCondition>
-//#include <QMutex>
-//#include <stdint.h>
 #include <QVariantMap>
+
+#define MAXJOYTRIES 10
 
 typedef QMap<int,int> mapkeys_t;
 typedef QMap<QString, mapkeys_t> mapmenu_t;
@@ -67,6 +65,7 @@ public:
     void loadMap(QString filename) { Kinput::loadMap(filename, ":/joy_keys.json"); }
     void process_joy(int joy_code, int value);
     const char * decode_joy(int code);
+    int get_fd() { return fd; }
 
 protected:
     virtual void run();

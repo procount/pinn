@@ -200,17 +200,15 @@ This specifies the new user of the file e.g. `pi` or `root` etc.
 This specifies the new group of the file e.g. `root`
 
 ### TXT file controls
-@filename.tar - untarred 
-@filename.tar.xz - untarred
+
 In addition to the list of files to copy, TXT files can contain controls which are identified by the use of the '@' symbol in column 1 of each line. The following controls are defined:
 
-#### @filename.tar
-#### @filename.tar.xz
-.tar and and .tar.xz files preceded by th@filename.tar - untarred 
-@filename.tar.xz - untarrede '@' symbol are decompressed to the root folder of the target partition, rather than just being copied. 
+#### @filename.tar  
+#### @filename.tar.xz  
+
+.tar and and .tar.xz files preceded by the '@' symbol are decompressed to the root folder of the target partition, rather than just being copied.  
 NOTE: If you are already using a `(flavour)_(partitionName).tar(.xz)` file, you should NOT specify it in this text file as well, otherwise it would be installed twice.
-@filename.tar - untarred 
-@filename.tar.xz - untarred
+
 #### @filename.txt
 This is used to include another TXT control file and process it.
 

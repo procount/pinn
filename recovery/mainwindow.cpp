@@ -57,6 +57,7 @@
 //#include <QSplashScreen>
 #include <QDesktopWidget>
 #include <QSettings>
+#include <QShortcut>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkReply>
@@ -91,6 +92,8 @@ extern joystick * joy;
 
 extern QStringList downloadRepoUrls;
 extern QString repoList;
+
+int fontsize=11;
 
 /* Main window
  *
@@ -212,17 +215,14 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     ui->groupBoxUsb->setVisible(toolbar_index==TOOLBAR_ARCHIVAL);
 
     //====================
-    QAction *foo2 = new QAction(ui->toolBar_2);
-    foo2->setShortcut(Qt::Key_Escape);
-    connect(foo2, SIGNAL(triggered()), this, SLOT(on_actionCancel_triggered()));
-    ui->toolBar_2->addAction(foo2);
+    QShortcut *foo2 = new QShortcut(ui->toolBar_2);
+    foo2->setKey(Qt::Key_Escape);
+    connect(foo2, SIGNAL(activated()), this, SLOT(on_actionCancel_triggered()));
 
-    QAction *foo3 = new QAction(ui->toolBar_3);
-    foo3->setShortcut(Qt::Key_Escape);
-    connect(foo3, SIGNAL(triggered()), this, SLOT(on_actionCancel_triggered()));
-    ui->toolBar_3->addAction(foo3);
+    QShortcut *foo3 = new QShortcut(ui->toolBar_3);
+    foo3->setKey(Qt::Key_Escape);
+    connect(foo3, SIGNAL(activated()), this, SLOT(on_actionCancel_triggered()));
     //====================
-
 
     QString cmdline = getFileContents("/proc/cmdline");
 
@@ -1702,6 +1702,8 @@ void MainWindow::displayMode(int modenr, bool silent)
 
 bool MainWindow::eventFilter(QObject *, QEvent *event)
 {
+    extern QApplication * gApp;
+
     if (event->type() == QEvent::KeyPress)
     {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
@@ -1728,6 +1730,24 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         {
             displayMode(3);
         }
+
+        if (keyEvent->key() == Qt::Key_Plus && fontsize < 20)
+        {
+            fontsize++;
+            QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
+            gApp->setStyleSheet(stylesheet);
+            QWSServer::instance()->refresh();
+            //qDebug() << "Using fontsize "<<fontsize;
+        }
+        if (keyEvent->key() == Qt::Key_Minus && fontsize >11)
+        {
+            fontsize--;
+            QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
+            gApp->setStyleSheet(stylesheet);
+            QWSServer::instance()->refresh();
+            //qDebug() << "Using fontsize "<<fontsize;
+        }
+
         // Catch Return key to trigger OS boot
         if (keyEvent->key() == Qt::Key_Return)
         {
@@ -3489,6 +3509,7 @@ void MainWindow::pollForNewDisks()
     QString dirname = "/sys/class/block";
     QDir dir(dirname);
     QStringList list = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+    static int joytries=0;
 
     if (_infoDelay)
     {
@@ -3725,6 +3746,13 @@ void MainWindow::pollForNewDisks()
         }
 
         _devlistcount = list.count();
+    }
+
+    //Check for slow-starting joysticks...
+    if (joy && (joy->get_fd()<0) && (joytries<MAXJOYTRIES))
+    {
+        joytries++;
+        joy->start();
     }
 }
 
@@ -4948,4 +4976,9 @@ void MainWindow::setTime(QNetworkReply *reply)
 
         qDebug() << "Time set to: " << parsedDate;
     }
+}
+
+void MainWindow::on_actionReload_Repos_triggered()
+{
+    downloadRepoList(repoList);
 }

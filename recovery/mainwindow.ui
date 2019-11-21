@@ -285,6 +285,7 @@
    <addaction name="actionInfo"/>
    <addaction name="actionFirmware"/>
    <addaction name="actionTime"/>
+   <addaction name="actionReload_Repos"/>
   </widget>
   <widget class="QToolBar" name="toolBar_3">
    <property name="enabled">
@@ -366,6 +367,9 @@
    <addaction name="actionAdvanced"/>
   </widget>
   <widget class="QMenuBar" name="menuBar">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -380,7 +384,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/backups.png</normaloff>:/icons/backups.png</iconset>
    </property>
    <property name="text">
@@ -395,7 +399,7 @@
   </action>
   <action name="actionCancel">
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/door_in.png</normaloff>:/icons/door_in.png</iconset>
    </property>
    <property name="text">
@@ -413,7 +417,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/bullet_arrow_right.png</normaloff>:/icons/bullet_arrow_right.png</iconset>
    </property>
    <property name="text">
@@ -431,7 +435,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/page_white_edit.png</normaloff>:/icons/page_white_edit.png</iconset>
    </property>
    <property name="text">
@@ -446,7 +450,7 @@
   </action>
   <action name="actionBrowser">
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/world.png</normaloff>:/icons/world.png</iconset>
    </property>
    <property name="text">
@@ -461,7 +465,7 @@
   </action>
   <action name="actionInfo">
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/information.png</normaloff>:/icons/information.png</iconset>
    </property>
    <property name="text">
@@ -479,7 +483,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/network-wireless.png</normaloff>:/icons/network-wireless.png</iconset>
    </property>
    <property name="text">
@@ -497,7 +501,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/lock_edit.png</normaloff>:/icons/lock_edit.png</iconset>
    </property>
    <property name="text">
@@ -512,7 +516,7 @@
   </action>
   <action name="actionDownload">
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/download_cloud.png</normaloff>:/icons/download_cloud.png</iconset>
    </property>
    <property name="text">
@@ -551,7 +555,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/token_quantifier.png</normaloff>:/icons/token_quantifier.png</iconset>
    </property>
    <property name="text">
@@ -569,7 +573,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/arrow_refresh.png</normaloff>:/icons/arrow_refresh.png</iconset>
    </property>
    <property name="text">
@@ -587,7 +591,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/backup_wizard.png</normaloff>:/icons/backup_wizard.png</iconset>
    </property>
    <property name="text">
@@ -605,7 +609,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/backup_wizard.png</normaloff>:/icons/backup_wizard.png</iconset>
    </property>
    <property name="text">
@@ -623,7 +627,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/reject.png</normaloff>:/icons/reject.png</iconset>
    </property>
    <property name="text">
@@ -635,7 +639,7 @@
   </action>
   <action name="actionClone">
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/backups.png</normaloff>:/icons/backups.png</iconset>
    </property>
    <property name="text">
@@ -647,7 +651,7 @@
   </action>
   <action name="actionInfoInstalled">
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/information.png</normaloff>:/icons/information.png</iconset>
    </property>
    <property name="text">
@@ -662,7 +666,7 @@
   </action>
   <action name="actionFirmware">
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/arrow_down.png</normaloff>:/icons/arrow_down.png</iconset>
    </property>
    <property name="text">
@@ -707,7 +711,7 @@
   </action>
   <action name="actionRename">
    <property name="icon">
-    <iconset>
+    <iconset resource="icons.qrc">
      <normaloff>:/icons/drive_edit.png</normaloff>:/icons/drive_edit.png</iconset>
    </property>
    <property name="text">
@@ -720,8 +724,25 @@
     <string>A</string>
    </property>
   </action>
+  <action name="actionReload_Repos">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/token_quantifier.png</normaloff>:/icons/token_quantifier.png</iconset>
+   </property>
+   <property name="text">
+    <string>Reload Repos (r)</string>
+   </property>
+   <property name="toolTip">
+    <string>Scans Repositories and reloads lists of new OSes</string>
+   </property>
+   <property name="shortcut">
+    <string>R</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -88,6 +88,7 @@ joystick::joystick(QObject *parent) :
     Kinput(parent)
 {
     keyPressed=0;
+    fd=-1;
 }
 
 

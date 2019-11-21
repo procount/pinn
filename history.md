@@ -5,45 +5,52 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.3.3
+
+- **MBR fix**      - Better detection of non-MBR formatted SD cards.
+- **Joysticks**    - Better detection of joysticks that are slow to connect. 
+- **Reload Repos** - New button to reload the distribution list from internet.
+- **fontsize**     - Added rudimentary font size adjustment using +/- keys.
+
 ### V3.3.2
 
--**Joystick**        - Added support for USB Joysticks/Gamepads (Xbox-style)
--**Silentinstall**   - Fixed a bug when silent-installing from the network
--**VirtualKeyboard** - Added a Virtual Keyboard for wifi and option dialogs
+- **Joystick**        - Added support for USB Joysticks/Gamepads (Xbox-style)
+- **Silentinstall**   - Fixed a bug when silent-installing from the network
+- **VirtualKeyboard** - Added a Virtual Keyboard for wifi and option dialogs
 
 ### V3.3c
 
--**Translations** - Updated a few translations (it, zh_TW, ko, de)
--**HDMI Pi4**     - Removed hdmi_force_hotplug
--**Downloads**    - Fixed download progressbar
--**Replace**      - Changed accelerator key from L to C
+- **Translations** - Updated a few translations (it, zh_TW, ko, de)
+- **HDMI Pi4**     - Removed hdmi_force_hotplug
+- **Downloads**    - Fixed download progressbar
+- **Replace**      - Changed accelerator key from L to C
 
 ### V3.3a
 
--**Tidy up** - Development moved to Ubuntu 18.04 prompting a tidy up
+- **Tidy up** - Development moved to Ubuntu 18.04 prompting a tidy up
 
 ### V3.3
 
--**PI4 support**  - Added support for the new RPi4. Includes Raspbian Buster in full version.
+- **PI4 support**  - Added support for the new RPi4. Includes Raspbian Buster in full version.
 
 ### V3.2.4c
 
--**Hyperpixel**   - Fixed hyperpixel 4 overlay file
+- **Hyperpixel**   - Fixed hyperpixel 4 overlay file
 
 ### V3.2.4b
 
--**Wifi Drivers** - Re-added Realtek rtl8188eu and rtl8192cu modular wifi drivers.
+- **Wifi Drivers** - Re-added Realtek rtl8188eu and rtl8192cu modular wifi drivers.
 
 ### V3.2.4a
 
--**Build**       - Modified to build on Ubuntu 18.10 'cosmic'
--**Progress**    - Experimental modification to measure installation progress more accurately
--**Wifi dialog** - Removed focus for better use by keyboard
--**Zipfles**     - Use bsdtar to unzip inline for checksums
--**Esc**         - Esc key exits all menus
--**Firmware**    - Don't automatically downgrade firmware
--**Options**     - Added shortcuts for better keyboard use
--**GPIO**        - Allows gpiochannel and gpiochannelValue to be specified to trigger the recovery menu
+- **Build**       - Modified to build on Ubuntu 18.10 'cosmic'
+- **Progress**    - Experimental modification to measure installation progress more accurately
+- **Wifi dialog** - Removed focus for better use by keyboard
+- **Zipfles**     - Use bsdtar to unzip inline for checksums
+- **Esc**         - Esc key exits all menus
+- **Firmware**    - Don't automatically downgrade firmware
+- **Options**     - Added shortcuts for better keyboard use
+- **GPIO**        - Allows gpiochannel and gpiochannelValue to be specified to trigger the recovery menu
 
 ### V3.2.3
 

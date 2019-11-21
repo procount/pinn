@@ -45,45 +45,52 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V3.3.3
+
+- **MBR fix**      - Better detection of non-MBR formatted SD cards.
+- **Joysticks**    - Better detection of joysticks that are slow to connect. 
+- **Reload Repos** - New button to reload the distribution list from internet.
+- **fontsize**     - Added rudimentary font size adjustment using +/- keys.
+
 ### V3.3.2
 
--**Joystick**        - Added support for USB Joysticks/Gamepads (Xbox-style)
--**Silentinstall**   - Fixed a bug when silent-installing from the network
--**VirtualKeyboard** - Added a Virtual Keyboard for wifi and option dialogs
+- **Joystick**        - Added support for USB Joysticks/Gamepads (Xbox-style)
+- **Silentinstall**   - Fixed a bug when silent-installing from the network
+- **VirtualKeyboard** - Added a Virtual Keyboard for wifi and option dialogs 
 
 ### V3.3c
 
--**Translations** - Updated a few translations (it, zh_TW, ko, de)
--**HDMI Pi4**     - Removed hdmi_force_hotplug
--**Downloads**    - Fixed download progressbar
--**Replace**      - Changed accelerator key from L to C
+- **Translations** - Updated a few translations (it, zh_TW, ko, de)
+- **HDMI Pi4**     - Removed hdmi_force_hotplug
+- **Downloads**    - Fixed download progressbar
+- **Replace**      - Changed accelerator key from L to C
 
 ### V3.3a
 
--**Tidy up** - Development moved to Ubuntu 18.04 prompting a tidy up
+- **Tidy up** - Development moved to Ubuntu 18.04 prompting a tidy up
 
 ### V3.3
 
--**PI4 support**  - Added support for the new RPi4. Includes Raspbian Buster in full version.
+- **PI4 support**  - Added support for the new RPi4. Includes Raspbian Buster in full version.
 
 ### V3.2.4c
 
--**Hyperpixel**   - Fixed hyperpixel 4 overlay file
+- **Hyperpixel**   - Fixed hyperpixel 4 overlay file 
 
 ### V3.2.4b
 
--**Wifi Drivers** - Re-added Realtek rtl8188eu and rtl8192cu modular wifi drivers.
+- **Wifi Drivers** - Re-added Realtek rtl8188eu and rtl8192cu modular wifi drivers.
 
 ### V3.2.4a
 
--**Build**       - Modified to build on Ubuntu 18.10 'cosmic'
--**Progress**    - Experimental modification to measure installation progress more accurately
--**Wifi dialog** - Removed focus for better use by keyboard
--**Zipfles**     - Use bsdtar to unzip inline for checksums
--**Esc**         - Esc key exits all menus
--**Firmware**    - Don't automatically downgrade firmware
--**Options**     - Added shortcuts for better keyboard use
--**GPIO**        - Allows gpiochannel and gpiochannelValue to be specified to trigger the recovery menu
+- **Build**       - Modified to build on Ubuntu 18.10 'cosmic'
+- **Progress**    - Experimental modification to measure installation progress more accurately
+- **Wifi dialog** - Removed focus for better use by keyboard
+- **Zipfles**     - Use bsdtar to unzip inline for checksums
+- **Esc**         - Esc key exits all menus
+- **Firmware**    - Don't automatically downgrade firmware
+- **Options**     - Added shortcuts for better keyboard use
+- **GPIO**        - Allows gpiochannel and gpiochannelValue to be specified to trigger the recovery menu
 
 ### V3.2.3
 
@@ -118,8 +125,7 @@ Please note that in some cases it may extract the files into a folder, if this i
 - **menu**                  - Removed PageDown->nextmenu function because it conflicts
 - **Translations**          - Updated IT & zh_TW translations
 
-
-### V3.1
+## V3.1
 
 - **Nano**              - Added nano text editor
 - **Rename**            - Allows giving an OS an Alias name & change its description	
@@ -127,38 +133,38 @@ Please note that in some cases it may extract the files into a folder, if this i
 - **ScreenSwitch**      - Performs automatic screen switching at bootup
 - **dhcpcd**            - Now configurable
 
-### V3.0.4    
+## V3.0.4    
 
 - **forceupdatepinn**   - Add forceupdatepinn option
 - **OS Replace**        - Fixed problem replacing an OS when PINN is booted from USB
 
-### V3.0.3
+## V3.0.3
 
 - **Backup USB**        - Fix for multiple USB sticks.
 - **Translation**       - Ko & zh_tw.ts updated.
 
-### V3.0.2
+## V3.0.2
 
 - **Backup USB**        - Improved backup size calculation for USB installed OSes.
 
-### V3.0.1
+## V3.0.1
 
 - **Backup/Download**   - Removed the need to reboot after a download or backup.
 - **Wallpapers**        - removed wallpapers folder & Allowed JPEGs
 - **Default wallpaper   - Changed default to wallpaper.jpg
 
-### V3.0
+## V3.0
 
 - **Backup**                  - Backup an OS in PINN format
-- **Time**            	      - Added button to set date & time	
-- **Download**                - Fix Foldername of some OSes when downloaded
+- **Time**                    - Added button to set date & time	
+- **Download**                - Fixed foldername of some OSes when downloaded
 - **Iconcache**               - Cache icons when connected to internet to speedup startup
 
-### V2.8.5.8
+## V2.8.5.8
 
 - **RPi 3A+**                 - Supports RPi 3A+
 
-### V2.8.5.7
+## V2.8.5.7
 
 - **Firmware**                - Disabled firmware downgrade on 3B+
 - **Clear**                   - Added Clear button to clear all selections
@@ -167,34 +173,34 @@ Please note that in some cases it may extract the files into a folder, if this i
 - **SilentInstall**           - Fixed waiting for USB images
 - **networktimeout**          - 0 means wait indefinitely for network before silentinstall
 
-### V2.8.5.5
+## V2.8.5.5
 
 - **Boot menu**               - Sticky default now uses bootmenutimeout
 - **rebootp**                 - Added rebootp command to recovery shell
 
-### V2.8.5.4
+## V2.8.5.4
 
 - **Boot menu**               - Fixed focus and sticky default partuuid issues.
 - **wallpaper_resize**        - Customised wallpaper can now be resized to fill the screen
 
-### V2.8.5.3
+## V2.8.5.3
 
 - **Partuuid**                - Fixed an issue from v2.8 where partuuids were introduced to installed_os.json
-- **Wallpaper**               - Customised wallpaper is now available by writing your own `wallpaper.png` file to PINN's recovery partition## V2.8.5.1
+- **Wallpaper**               - Customised wallpaper is now available by writing your own `wallpaper.png` file to PINN's recovery partition
 
-### V2.8.5.2
+## V2.8.5.2
 
 - **VNCnotice**               - Displays a notice on the main screen when vncinstall is in use
 - **PINN update**             - Prevents crash on manual update when there is no network
 - **ae-ts**                   - tidy up of translations
 
-### V2.8.5.1
+## V2.8.5.1
 
 - **Reinstall**               - BUGFIX for Re-install.
 - **translations**            - Updated it and zh_TW translations.
 - **silentreinstallnewer**    - **USE WITH CAUTION**. With `select=` it will silently re-install any selected OSes that are newer than the installed version.
 
-### V2.8.5
+## V2.8.5
 
 - **Boot Cancel**             - Added a new cancel button to the bootselection dialog which will reboot back into PINN
 - **Swedish keyboard**        - Swedish keyboard fixed when language selected
@@ -272,6 +278,7 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 
 - **OS Firmware**   - Includes a better method of slipstreaming new Firmware
 - **BUG: Cmdline**  - Note that the recovery.cmdline is incorrect in this version
+
 ### V2.5.1
 
 - **firmware**      - New firmware for Rpi 3B+
@@ -279,7 +286,7 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **OS firmware**   - Latest firmware is slip streamed onto old OSes
 - **wifi drivers**  - Some wifi drivers temporarily removed until they can be upgraded
 - **Arora**         - Prevented multiple instances of Arora browser running
-
+ 
 ### V2.4.5f
 
 - **rtl8812 wifi**   - added wifi driver for rtl8812 5GHz dongles
@@ -288,10 +295,7 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 
 - **remotetimeout**  - Enable network for remote boot alteration.
 
-### V2.4.5b
-
-- **background**  - The background has now been fixed on the bootmenu
-- **reinstall**   - Reinstall should now use data from the NEW version rather than the OLD version
+This new option allows PINN to be used more easily in a remote headless environment.
 
 ### V2.4.5
 
@@ -302,7 +306,7 @@ This is a small maintenance release for some cosmetic changes and bugfixes mainl
 - **configpath**  - (partially) allow remote flavours to customise an OS
 - **dsi**         - Allows the HDMI/DSI switching option to work with OSes installed to USB
 
-### V2.4.4
+### V2.4.4c
 
 Finally, PINN can now re-install any installed OS WITHOUT affecting the other OSes, eliminating one of my NOOBS bugbears.
 
@@ -313,17 +317,18 @@ Finally, PINN can now re-install any installed OS WITHOUT affecting the other OS
 - **no_cursor**   - The no_cursor option now only affects the bootselection dialog
 - **Wipe**        - The Wipe Disk command has been temporarily removed
 - **Max OSes**    - The number of OSes has been restricted so that boot partitions numbers are &lt;63
+- **self-update** - Fixes broken self-update since v2.4.2h
 
 ### V2.4.3
 
 A major change to the User Interface in preparation for some new features.
 
-- **3 Toolbars**  - Main Menu, Archival and Maintenance.
-- **OS Groups**   - OS lists are grouped into General, Minimal, Educational, Media and Gaming.
-- **Download OS** - Download an OS to USB for local installation.
-- **Fsck**        - Check and fix your filesystems in case of error.
-- **Wipe Disk**   - delete all OSes and restore drive to full capacity.
-- **Info button** - Go directly to the webpage of each OS.
+- **3 Toolbars**      - Main Menu, Archival and Maintenance.
+- **OS Groups**       - OS lists are grouped into General, Minimal, Educational, Media and Gaming.
+- **Download OS**     - Download an OS to USB for local installation.
+- **Fsck**            - Check and fix your filesystems in case of error.
+- **Wipe Disk**       - delete all OSes and restore drive to full capacity.
+- **Info button**     - Go directly to the webpage of each OS.
 
 ### V2.4.2h
 
@@ -343,7 +348,7 @@ A major change to the User Interface in preparation for some new features.
 
 ### V2.4.1
 
-- **btrfs**           - Added support for btrfs file systems
+- **btrfs**           - Included support for btrfs file systems
 
 ### V2.4
 
@@ -353,7 +358,7 @@ A major change to the User Interface in preparation for some new features.
 
 ### V2.3
 
-- **PiZeroW**         - Further update to match NOOBS 2.3. Added regDB for channel 13 & missing DTBs
+- **PiZeroW**         - Further update to match NOOBS 2.3. Add wifi RegDB for channel 13. Add missing DTBs
 
 ### V2.2
 
@@ -364,29 +369,34 @@ A major change to the User Interface in preparation for some new features.
 - **IP address**      - Shown in window title
 - **CEC key mapping** - Replaced  0 button with PLAY button for greater applicability
 - **BOOT**            - Added BOOT button to boot selection dialog for use with limited TV remotes
-- **Tarball names**   - Allow local tarballs to have a different name to the partition labell
+- **Tarball names     - Allow local tarballs to have a different name to the partition labell
 - **SD Card**         - Recommend 8GB card minimum
 - **SD Card**         - Update SD card requirements
 - **Network**         - Do not continue polling for connectivity during installation
 - **Update**          - Bump kernel and firmware versions
 
+
 ### V2.1.3
 
 - **Translations**    - Added many translations from the community
 
-### V2.1.2
+### V2.1.2 
 
 - **Default Boot**    - A default OS can be set in a multi-boot setup for quicker boots.
 - **Bootmenutimout**  - The timeout of the boot selection dialog can be changed.
-- **SHIFT key**       - The PINN interface can be reached using the Left mouse button as well as shift.
+- **SHIFT key**       - The PINN interface can be reached using the Left mouse button or a CEC enabled TV remote key as well as the SHIFT key.
+
+#### Bugfixes
+
+- The build dependencies introduced in v2.1.1 have been fixed.
 
 ### V2.1.1
 
-- **CEC Support**     - Added CEC support to control PINN with a TV remote
+- **CEC Support**     - Added CEC support for controlling PINN with a TV remote
 
 ### V2.1
 
-- **IoTpHAT support** - Updated to match NOOBS v2.1 for IoTpHAT wifi
+- **IoTpHAT support** - Updated to match NOOBS v2.1 to include IoTpHAT wifi
 
 ### V2.0
 
@@ -445,3 +455,10 @@ A major change to the User Interface in preparation for some new features.
 - **NOOBSCONFIG support** - Allow customisation of an OS installation as it installs
 - **SSH support**     - SSH remotely into you PINN installation.
 - **Progress**        - View your installation progress via alternative means
+
+see  [github](https://github.com/procount/pinn) for full information
+
+
+
+
+
