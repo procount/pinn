@@ -544,3 +544,15 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 
 -**Tidy up** - Development moved to Ubuntu 18.04 prompting a tidy up
 
+### V3.3c
+
+-**Translations** - Updated a few translations (it, zh_TW, ko, de)
+-**HDMI Pi4**     - Removed hdmi_force_hotplug
+-**Downloads**    - Fixed download progressbar
+-**Replace**      - Changed accelerator key from L to C
+
+### V3.3.2
+
+-**Joystick**        - Added support for USB Joysticks/Gamepads (Xbox-style)
+-**Silentinstall**   - Fixed a bug when silent-installing from the network
+-**VirtualKeyboard** - Added a Virtual Keyboard for wifi and option dialogs

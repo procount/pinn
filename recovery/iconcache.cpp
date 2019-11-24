@@ -59,8 +59,8 @@ int iconcache::readPixmapFromCache(QUrl url, QPixmap &pix)
     if (_cachemap.contains(path))
     {
         QString pixname = _cachemap[path].toString();
-        pix.load(CACHEROOT+pixname);
-        return 1;
+        if (pix.load(CACHEROOT+pixname))
+            return 1;
     }
     return 0;
 }

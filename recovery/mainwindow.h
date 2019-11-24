@@ -199,9 +199,10 @@ protected slots:
     void onChecksumError(const QString &msg, const QString &title, QMessageBox::ButtonRole* answer);
     void hideDialogIfNoNetwork();
     void pollForNewDisks();
-    void onKeyPress(int key);
+    void onKeyPress(int key, int value);
     void closeEvent(QCloseEvent *event);
     void checkUpdateTime();
+    void onJoyPress(int joy_code, int value);
 
 private slots:
     /* UI events */

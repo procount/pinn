@@ -3,6 +3,7 @@
 #include "optionsdialog.h"
 #include "ui_optionsdialog.h"
 #include "util.h"
+#include "input.h"
 
 #include <QCheckBox>
 #include <QLineEdit>
@@ -16,13 +17,17 @@
 #include <QVariantMap>
 
 extern MainWindow * gMW;
+extern QApplication * gApp;
 
 OptionsDialog::OptionsDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::OptionsDialog)
 {
+    setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
     ui->setupUi(this);
     ui->lv_select->setSortingEnabled(true);
+
+    virtualKeyBoard = new WidgetKeyboard(this);
 
     //Add all the installable OSes
     QList<QListWidgetItem *> all = gMW->allItems();
@@ -52,12 +57,18 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
             ui->lv_select->addItem(witem);
         }
     }
-
+    _lastWidgetFocus=NULL;
+    connect(gApp, SIGNAL(focusChanged(QWidget*,QWidget*)), this, SLOT( my_focusChanged(QWidget*,QWidget*)));
     read();
 }
 
 OptionsDialog::~OptionsDialog()
 {
+    virtualKeyBoard->hide();
+    Kinput::setWindow(_lastWindow);
+    Kinput::setMenu(_lastMenu);
+    Kinput::setGrabWindow(NULL);
+    delete virtualKeyBoard;
     delete ui;
 }
 
@@ -389,4 +400,33 @@ bool OptionsDialog::recognise(const QString & key, const QString &value)
 void OptionsDialog::on_buttonBox_rejected()
 {
     QDialog::reject();
+}
+
+void OptionsDialog::on_cbvk_toggled(bool checked)
+{
+    if (checked)
+    {
+        if (_lastWidgetFocus)
+            _lastWidgetFocus->setFocus();
+
+        virtualKeyBoard->show();
+        Kinput::setGrabWindow(virtualKeyBoard);
+        _lastWindow = Kinput::getWindow();
+        _lastMenu = Kinput::getMenu();
+        Kinput::setWindow("VKeyboard");
+        Kinput::setMenu("any");
+    }
+    else
+    {
+        virtualKeyBoard->hide();
+        Kinput::setWindow(_lastWindow);
+        Kinput::setMenu(_lastMenu);
+        Kinput::setGrabWindow(NULL);
+    }
+}
+
+void OptionsDialog::my_focusChanged(QWidget * old, QWidget* nw)
+{
+    if (nw == ui->cbvk)
+        _lastWidgetFocus = old;
 }

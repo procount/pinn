@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>400</height>
+    <height>415</height>
    </rect>
   </property>
   <property name="font">
@@ -61,14 +61,14 @@
          <item>
           <widget class="QRadioButton" name="WpsRadio">
            <property name="text">
-            <string>Pressing the WPS button on my wifi router</string>
+            <string>Pressing the &amp;WPS button on my wifi router</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QRadioButton" name="passwordRadio">
            <property name="text">
-            <string>Password authentication</string>
+            <string>Password &amp;authentication</string>
            </property>
            <property name="checked">
             <bool>true</bool>
@@ -93,7 +93,10 @@
                <bool>false</bool>
               </property>
               <property name="text">
-               <string>Username</string>
+               <string>&amp;Username</string>
+              </property>
+              <property name="buddy">
+               <cstring>userEdit</cstring>
               </property>
              </widget>
             </item>
@@ -107,7 +110,10 @@
             <item row="1" column="0">
              <widget class="QLabel" name="label_3">
               <property name="text">
-               <string>Password</string>
+               <string>&amp;Password</string>
+              </property>
+              <property name="buddy">
+               <cstring>passwordEdit</cstring>
               </property>
              </widget>
             </item>
@@ -121,7 +127,7 @@
             <item row="2" column="0" colspan="2">
              <widget class="QCheckBox" name="checkBox">
               <property name="text">
-               <string>Show Password</string>
+               <string>&amp;Show Password</string>
               </property>
              </widget>
             </item>
@@ -132,6 +138,13 @@
        </widget>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="vkeyboard">
+     <property name="text">
+      <string>&amp;Virtual Keyboard</string>
+     </property>
     </widget>
    </item>
    <item>

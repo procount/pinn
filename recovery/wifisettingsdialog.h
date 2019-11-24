@@ -6,14 +6,15 @@
  *
  * Initial author: Floris Bos
  * Maintained by Raspberry Pi
- *
+ * Modified by @procount (c) 2019
  * See LICENSE.txt for license details
  */
 
+#include "WidgetKeyboard.h"
 #include <QDialog>
 #include <QDBusObjectPath>
 #include <QVariantMap>
-
+#include "input.h"
 namespace Ui {
 class WifiSettingsDialog;
 }
@@ -43,6 +44,11 @@ protected:
     void msleep(int msec);
     QString removeQuotes(QString str);
 
+private:
+    WidgetKeyboard *virtualKeyBoard;
+    QString _lastWindow;
+    QString _lastMenu;
+
 protected slots:
     virtual void accept();
     void onBSSAdded(const QDBusObjectPath &path);
@@ -52,6 +58,7 @@ protected slots:
 private slots:
     void on_passwordRadio_toggled(bool checked);
     void on_list_currentItemChanged(QListWidgetItem *current);
+    void on_vkeyboard_toggled(bool checked);
     void on_checkBox_stateChanged(int arg1);
 };
 

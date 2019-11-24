@@ -71,7 +71,11 @@ SOURCES += \
     iconcache.cpp \
     renamedialog.cpp \
     termsdialog.cpp \
-    optionsdialog.cpp
+    optionsdialog.cpp \
+    input.cpp \
+    joystick.cpp \
+    simulate.cpp \
+    WidgetKeyboard.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -122,7 +126,11 @@ HEADERS  += \
     iconcache.h \
     renamedialog.h \
     termsdialog.h \
-    optionsdialog.h
+    optionsdialog.h \
+    input.h \
+    joystick.h \
+    simulate.h \
+    WidgetKeyboard.h
 
 FORMS    += \
     mainwindow.ui \
@@ -141,7 +149,8 @@ FORMS    += \
     backupdialog.ui \
     renamedialog.ui \
     termsdialog.ui \
-    optionsdialog.ui
+    optionsdialog.ui \
+    WidgetKeyboard.ui
 
 RESOURCES += \
     icons.qrc

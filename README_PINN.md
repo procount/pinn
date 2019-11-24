@@ -5,7 +5,7 @@
 
 The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn-lite.zip) can be downloaded from [sourceforge](http://www.sourceforge.net/projects/pinn).
 
-This README relates to v3.3a
+This README relates to v3.3.2
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -197,7 +197,7 @@ Note that all user settings (language, keyboard layout, display mode) will persi
 
 ### Mouse & Keyboard
 
-If you are using the RPi locally, the majority of the program can be used with a mouse alone, although a keyboard can make it easier. A keyboard is required to enter the wifi credentials if you want to connect to a network that way. However, the wifi can be preconfigured to avoid even this use.
+If you are using the RPi locally, the majority of the program can be used with a mouse alone, although a keyboard can make it easier. A keyboard is required to enter the wifi credentials if you want to connect to a network that way. A virtual keyboard is now provided, however, the wifi can be preconfigured to avoid even this use.
 
 ### CEC Control
 
@@ -218,8 +218,6 @@ For quicker selection, the following keys may be easier if supported by your mod
 
 Any of the above remote keys can be used instead of the keyboard shift key on startup to access the main menu.
 
-There is no onscreen keyboard in PINN, so a local keyboard will be needed to enter wifi credentials, unless the wifi is preconfigured.
-
 **NOTE: CEC implementations vary between TV manufacturers. The above key mappings work on Samsung TVs supporting their Anynet+. Other TV brands may not work as well, but the mouse simulation is designed to work on most TVs.**
 
 It is possible to program your own set of key mappings for your particular remote. 
@@ -227,14 +225,39 @@ To do this you should create a `cec_keys.json` file.
 See the [cec_keys.md](cec_keys.md) document on how to do this.
 The default mappings are listed in the [wiki](https://github.com/procount/pinn/wiki/Default-CEC-Key-mappings-for-cec_keys.json).
 
+### Joystick Control
+
+PINN can be controlled with a USB Joystick or Gamepad that is compatibel with XBox style interfaces.
+The default buttons are mapped as follows:
+
+To simulate a mouse the following keys are used:
+- DPAD Up/Down/Left/Right - moves the mouse cursor in each direction
+- A - Left mouse click
+- X - Escape
+
+Any of the buttons can be used instead of the keyboard shift key on startup to access the main menu.
+
+Some other buttons are mapped to the cursor keys, primarily for use with the [virtual keyboard](#virtual-keyboard)
+
+It is possible to program your own set of key mappings for your particular remote. 
+To do this you should create a `joy_keys.json` file. 
+See the [joy_keys.md](joy_keys.md) document on how to do this.
+The default mappings are listed in the [wiki](https://github.com/procount/pinn/wiki/Default-JOY-Key-mappings-for-joy_keys.json).
+
+### Virtual Keyboard
+
+A virtual keyboard is available in certain dialogs that require keyboard input, like the wifi password, or the configuration settings. Where available, it can be made visible by clicking on the "Virtual Keyboard" checkbox. They keys can be pressed by clicking on them using the mouse, or any of the mouse simulation modes of the CEC remote, Joystick or gamepad. 
+
+Keyboard navigation can also be achieved by mapping joystick or CEC buttons to the cursor keys, and keys selected by mapping to the spacebar key.
+
+The virtual keyboard is not moveable, but it can be made transparent using the slide control to the right of the space-bar.
+
 ### How to use with the Raspberry Pi Touch Display
 
 If PINN detects you are using the [Raspberry Pi Touch Display](https://www.raspberrypi.org/products/raspberry-pi-touch-display/), it will enable the following functionality:
 - A tap on the touchscreen on the Raspberry logo (or holding down the shift key) can activate PINN.
 - A tap on the touchscreen will simulate a mouse click.
 - A long press on the touchscreen will simulate a mouse double-click.
-
-There is no onscreen keyboard in PINN, so a local keyboard will be needed to enter wifi credentials, unless the wifi is preconfigured.
 
 ### How to use with Gert's VGA666 DPI display screen
 
