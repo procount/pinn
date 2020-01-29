@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-RPI_FIRMWARE_VERSION = 64b5649a41b69d09bfe0ed05448d28a66be3edfd
-#fbad6408c4596d3d671736ee0571aae444f24e68
+
+RPI_FIRMWARE_VERSION = 149cd7f0487e08e148efe604f8d4d359541cecf4
 RPI_FIRMWARE_SITE = $(call github,raspberrypi,firmware,$(RPI_FIRMWARE_VERSION))
 RPI_FIRMWARE_LICENSE = BSD-3c
 RPI_FIRMWARE_LICENSE_FILES = boot/LICENCE.broadcom

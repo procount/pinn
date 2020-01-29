@@ -94,22 +94,23 @@ function select_kernelconfig {
     VAR_PREFIX=kernelconfig-recovery
     sed -ri "s/(^$CONFIG_VAR=\"$VAR_PREFIX\.).+(\")$/\1$ARCH\2/" "$CONFIG_FILE"
 
-    if [ "$ARCH" == "armv6" ]; then
-        REPO="git:\/\/github.com\/raspberrypi\/linux.git";
-        VERSION="71d47f4c4bd7fd395b87c474498187b2f9be8751";
-    elif [ "$ARCH" == "armv7" ]; then
-        REPO="git:\/\/github.com\/raspberrypi\/linux.git";
-        VERSION="71d47f4c4bd7fd395b87c474498187b2f9be8751";
-    elif [ "$ARCH" == "armv7l" ]; then
-        REPO="git:\/\/github.com\/raspberrypi\/linux.git"
-        VERSION="71d47f4c4bd7fd395b87c474498187b2f9be8751";
-    fi
-    CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_REPO_URL
-    sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$REPO\2/" "$CONFIG_FILE"
-    CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_REPO_VERSION
-    sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$VERSION\2/" "$CONFIG_FILE"
-    CONFIG_VAR=BR2_LINUX_KERNEL_VERSION
-    sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$VERSION\2/" "$CONFIG_FILE"
+#    if [ "$ARCH" == "armv6" ]; then
+#        REPO="git:\/\/github.com\/raspberrypi\/linux.git";
+#	VERSION="f16e91dad2af9d57aef477cc1f522040353849f5";
+#    elif [ "$ARCH" == "armv7" ]; then
+#        REPO="git:\/\/github.com\/raspberrypi\/linux.git";
+#	VERSION="f16e91dad2af9d57aef477cc1f522040353849f5";
+#    elif [ "$ARCH" == "armv7l" ]; then
+#        REPO="git:\/\/github.com\/raspberrypi\/linux.git"
+#	VERSION="f16e91dad2af9d57aef477cc1f522040353849f5";
+#    fi
+#    CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_REPO_URL
+#    sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$REPO\2/" "$CONFIG_FILE"
+#    CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_REPO_VERSION
+#    sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$VERSION\2/" "$CONFIG_FILE"
+#    CONFIG_VAR=BR2_LINUX_KERNEL_VERSION
+#    sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$VERSION\2/" "$CONFIG_FILE"
+
 }
 
 cd buildroot
@@ -272,11 +273,11 @@ bsdtar cvfz firmware.tar.gz firmware.*
 popd
 
 # HACK - Copy rpi_firmware from latest NOOBS e5b11a9d32cf4388b09097c33ab7bffbe1ca721c private repo because later firmware has display switching issues
-pushd "$FINAL_OUTPUT_DIR"
-cp ../noobs_firmware/bootcode.bin .
-cp ../noobs_firmware/recovery.elf .
-cp ../noobs_firmware/recover4.elf .
-popd
+#pushd "$FINAL_OUTPUT_DIR"
+#cp ../noobs_firmware/bootcode.bin .
+#cp ../noobs_firmware/recovery.elf .
+#cp ../noobs_firmware/recover4.elf .
+#popd
  
 # Create build-date timestamp file containing Git HEAD info for build
 BUILD_INFO="$FINAL_OUTPUT_DIR/BUILD-DATA"

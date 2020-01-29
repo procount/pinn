@@ -1,7 +1,7 @@
 {
     "calibration": [
         {
-            "threshold": 1,
+            "threshold": 3000,
             "step": 1
         },
         {

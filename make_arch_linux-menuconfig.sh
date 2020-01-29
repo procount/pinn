@@ -41,13 +41,13 @@ function select_kernelconfig {
 
     if [ "$ARCH" == "armv6" ]; then
         REPO="git:\/\/github.com\/raspberrypi\/linux.git"
-        VERSION="71d47f4c4bd7fd395b87c474498187b2f9be8751"
+	VERSION="c7eb400f2fca1ce06d1778c7b9adc9687aeed148"
     elif [ "$ARCH" == "armv7" ]; then
         REPO="git:\/\/github.com\/raspberrypi\/linux.git"
-        VERSION="71d47f4c4bd7fd395b87c474498187b2f9be8751"
+	VERSION="c7eb400f2fca1ce06d1778c7b9adc9687aeed148"
     elif [ "$ARCH" == "armv7l" ]; then
         REPO="git:\/\/github.com\/raspberrypi\/linux.git"
-        VERSION="71d47f4c4bd7fd395b87c474498187b2f9be8751"
+	VERSION="c7eb400f2fca1ce06d1778c7b9adc9687aeed148"
     fi
     CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_REPO_URL
     sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$REPO\2/" "$CONFIG_FILE"
