@@ -39,22 +39,22 @@ function select_kernelconfig {
     VAR_PREFIX=kernelconfig-recovery
     sed -ri "s/(^$CONFIG_VAR=\"$VAR_PREFIX\.).+(\")$/\1$ARCH\2/" "$CONFIG_FILE"
 
-    if [ "$ARCH" == "armv6" ]; then
-        REPO="git:\/\/github.com\/raspberrypi\/linux.git"
-	VERSION="c7eb400f2fca1ce06d1778c7b9adc9687aeed148"
-    elif [ "$ARCH" == "armv7" ]; then
-        REPO="git:\/\/github.com\/raspberrypi\/linux.git"
-	VERSION="c7eb400f2fca1ce06d1778c7b9adc9687aeed148"
-    elif [ "$ARCH" == "armv7l" ]; then
-        REPO="git:\/\/github.com\/raspberrypi\/linux.git"
-	VERSION="c7eb400f2fca1ce06d1778c7b9adc9687aeed148"
-    fi
-    CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_REPO_URL
-    sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$REPO\2/" "$CONFIG_FILE"
-    CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_REPO_VERSION
-    sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$VERSION\2/" "$CONFIG_FILE"
-    CONFIG_VAR=BR2_LINUX_KERNEL_VERSION
-    sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$VERSION\2/" "$CONFIG_FILE"
+#    if [ "$ARCH" == "armv6" ]; then
+#        REPO="git:\/\/github.com\/raspberrypi\/linux.git"
+#	VERSION="c7eb400f2fca1ce06d1778c7b9adc9687aeed148"
+#    elif [ "$ARCH" == "armv7" ]; then
+#        REPO="git:\/\/github.com\/raspberrypi\/linux.git"
+#	VERSION="c7eb400f2fca1ce06d1778c7b9adc9687aeed148"
+#    elif [ "$ARCH" == "armv7l" ]; then
+#        REPO="git:\/\/github.com\/raspberrypi\/linux.git"
+#	VERSION="c7eb400f2fca1ce06d1778c7b9adc9687aeed148"
+#    fi
+#    CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_REPO_URL
+#    sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$REPO\2/" "$CONFIG_FILE"
+#    CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_REPO_VERSION
+#    sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$VERSION\2/" "$CONFIG_FILE"
+#    CONFIG_VAR=BR2_LINUX_KERNEL_VERSION
+#    sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$VERSION\2/" "$CONFIG_FILE"
 }
 
 function get_kernelconfig {
