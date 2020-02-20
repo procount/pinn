@@ -145,6 +145,11 @@ bool operator<(const BuildData& l, const BuildData& r)
                     result=false;
                     break;
                 }
+                if (rs==".")
+                {   //A . means it is later than any other alpha/beta version
+                    result=true;
+                    break;
+                }
                 if (ls < rs)
                 {
                     //qDebug() << "L < R:" << ls <<","<<rs;
