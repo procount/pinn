@@ -570,7 +570,8 @@ bool MainWindow::isLegacyHardware()
     bool legacy = true;
 
     if ( _model.contains("Raspberry Pi 3 Model B Plus Rev", Qt::CaseInsensitive) ||
-         _model.contains("Raspberry Pi 3 Model A Plus Rev", Qt::CaseInsensitive) )
+         _model.contains("Raspberry Pi 3 Model A Plus Rev", Qt::CaseInsensitive) ||
+         _model.contains("Raspberry Pi 4", Qt::CaseInsensitive) )
         legacy=false;
     return legacy;
 }
