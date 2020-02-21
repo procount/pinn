@@ -580,7 +580,7 @@
     <string>Replace (c)</string>
    </property>
    <property name="shortcut">
-    <string>L</string>
+    <string>C</string>
    </property>
    <property name="visible">
     <bool>true</bool>
