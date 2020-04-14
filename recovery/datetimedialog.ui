@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>346</width>
+    <width>391</width>
     <height>113</height>
    </rect>
   </property>
@@ -42,14 +42,14 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>10</x>
      <y>10</y>
-     <width>301</width>
+     <width>371</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>Please set the correct date and time below.</string>
+    <string>Please set the correct UTC date and time below.</string>
    </property>
   </widget>
  </widget>
