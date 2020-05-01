@@ -1,7 +1,0 @@
-config BR2_PACKAGE_REBOOTP
-        bool "rebootp"
-    ### build dependencies
-    ### runtime dependencies
-        help
-          reboot PINN to a given partition
-

@@ -1,13 +1,18 @@
 config BR2_PACKAGE_SQUASHFS
 	bool "squashfs"
-	depends on BR2_LARGEFILE
 	depends on BR2_TOOLCHAIN_HAS_THREADS
 	depends on BR2_USE_MMU # fork()
-	select BR2_PACKAGE_SQUASHFS_GZIP if !(BR2_PACKAGE_SQUASHFS_LZMA || BR2_PACKAGE_SQUASHFS_LZO)
+	# ensure at least on compression backend (defaults to gzip)
+	select BR2_PACKAGE_SQUASHFS_GZIP if !( \
+	       BR2_PACKAGE_SQUASHFS_LZ4 || \
+	       BR2_PACKAGE_SQUASHFS_LZMA || \
+	       BR2_PACKAGE_SQUASHFS_LZO || \
+	       BR2_PACKAGE_SQUASHFS_XZ || \
+	       BR2_PACKAGE_SQUASHFS_ZSTD)
 	help
 	  Tools to generate SquashFS filesystems.
 
-	  http://squashfs.sourceforge.net/
+	  https://github.com/plougher/squashfs-tools
 
 if BR2_PACKAGE_SQUASHFS
 
@@ -42,8 +47,14 @@ config BR2_PACKAGE_SQUASHFS_XZ
 	help
 	  Support XZ compression algorithm
 
+config BR2_PACKAGE_SQUASHFS_ZSTD
+	bool "zstd support"
+	select BR2_PACKAGE_ZSTD
+	help
+	  Support ZSTD compression algorithm
+
 endif
 
-comment "squashfs needs a toolchain w/ largefile, threads"
-	depends on !BR2_LARGEFILE || !BR2_TOOLCHAIN_HAS_THREADS
+comment "squashfs needs a toolchain w/ threads"
+	depends on !BR2_TOOLCHAIN_HAS_THREADS
 	depends on BR2_USE_MMU

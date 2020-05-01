@@ -7,7 +7,7 @@
 FBV_VERSION = 1.0b
 FBV_SITE = http://s-tech.elsat.net.pl/fbv
 
-FBV_LICENSE = GPLv2
+FBV_LICENSE = GPL-2.0
 FBV_LICENSE_FILES = COPYING
 
 ### image format dependencies and configure options
@@ -18,7 +18,7 @@ FBV_DEPENDENCIES += libpng
 
 # libpng in turn depends on other libraries
 ifeq ($(BR2_STATIC_LIBS),y)
-FBV_CONFIGURE_OPTS += "--libs=$(shell $(PKG_CONFIG_HOST_BINARY) --libs libpng --static)"
+FBV_CONFIGURE_OPTS += "--libs=`$(PKG_CONFIG_HOST_BINARY) --libs libpng`"
 endif
 
 else

@@ -16,3 +16,6 @@ config BR2_PACKAGE_KMOD_TOOLS
 	  modinfo, modprobe, rmmod).
 
 endif
+
+comment "kmod needs a toolchain w/ dynamic library"
+	depends on BR2_STATIC_LIBS

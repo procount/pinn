@@ -4,28 +4,33 @@
 #
 ################################################################################
 
-PPPD_VERSION = 2.4.7
-PPPD_SOURCE = ppp-$(PPPD_VERSION).tar.gz
-PPPD_SITE = ftp://ftp.samba.org/pub/ppp
-PPPD_LICENSE = LGPLv2+ LGPL BSD-4c BSD-3c GPLv2+
+PPPD_VERSION = 2.4.8
+PPPD_SITE = $(call github,paulusmack,ppp,ppp-$(PPPD_VERSION))
+PPPD_LICENSE = LGPL-2.0+, LGPL, BSD-4-Clause, BSD-3-Clause, GPL-2.0+
 PPPD_LICENSE_FILES = \
 	pppd/tdb.c pppd/plugins/pppoatm/COPYING \
 	pppdump/bsd-comp.c pppd/ccp.c pppd/plugins/passprompt.c
+
+# 0001-pppd-Fix-bounds-check.patch
+PPPD_IGNORE_CVES += CVE-2020-8597
+
+PPPD_MAKE_OPTS = HAVE_INET6=y
+ifeq ($(BR2_TOOLCHAIN_USES_GLIBC),y)
+PPPD_DEPENDENCIES += openssl
+else
+PPPD_MAKE_OPTS += USE_CRYPT=y
+endif
 
 PPPD_INSTALL_STAGING = YES
 PPPD_TARGET_BINS = chat pppd pppdump pppstats
 PPPD_RADIUS_CONF = \
 	dictionary dictionary.ascend dictionary.compat \
 	dictionary.merit dictionary.microsoft \
-	issue port-id-map realms server radiusclient.conf
+	issue port-id-map realms servers radiusclient.conf
 
 ifeq ($(BR2_PACKAGE_PPPD_FILTER),y)
-	PPPD_DEPENDENCIES += libpcap
-	PPPD_MAKE_OPTS += FILTER=y
-endif
-
-ifeq ($(BR2_INET_IPV6),y)
-	PPPD_MAKE_OPTS += HAVE_INET6=y
+PPPD_DEPENDENCIES += libpcap
+PPPD_MAKE_OPTS += FILTER=y
 endif
 
 # pppd bundles some but not all of the needed kernel headers. The embedded
@@ -44,16 +49,18 @@ PPPD_POST_EXTRACT_HOOKS += PPPD_DROP_INTERNAL_IF_PPOL2TP_H
 define PPPD_SET_RESOLV_CONF
 	$(SED) 's,ppp/resolv.conf,resolv.conf,' $(@D)/pppd/pathnames.h
 endef
+ifeq ($(BR2_PACKAGE_PPPD_OVERWRITE_RESOLV_CONF),y)
 PPPD_POST_EXTRACT_HOOKS += PPPD_SET_RESOLV_CONF
+endif
 
 define PPPD_CONFIGURE_CMDS
 	$(SED) 's/FILTER=y/#FILTER=y/' $(PPPD_DIR)/pppd/Makefile.linux
 	$(SED) 's/ifneq ($$(wildcard \/usr\/include\/pcap-bpf.h),)/ifdef FILTER/' $(PPPD_DIR)/*/Makefile.linux
-	( cd $(@D); ./configure --prefix=/usr )
+	( cd $(@D); $(TARGET_MAKE_ENV) ./configure --prefix=/usr )
 endef
 
 define PPPD_BUILD_CMDS
-	$(MAKE) CC="$(TARGET_CC)" COPTS="$(TARGET_CFLAGS)" \
+	$(TARGET_MAKE_ENV) $(MAKE) CC="$(TARGET_CC)" COPTS="$(TARGET_CFLAGS)" \
 		-C $(@D) $(PPPD_MAKE_OPTS)
 endef
 
@@ -101,11 +108,13 @@ define PPPD_INSTALL_TARGET_CMDS
 		$(TARGET_DIR)/usr/lib/pppd/$(PPPD_VERSION)/openl2tp.so
 	$(INSTALL) -D $(PPPD_DIR)/pppd/plugins/pppol2tp/pppol2tp.so \
 		$(TARGET_DIR)/usr/lib/pppd/$(PPPD_VERSION)/pppol2tp.so
+	$(INSTALL) -D -m 0755 $(PPPD_DIR)/scripts/pon $(TARGET_DIR)/usr/bin/pon
+	$(INSTALL) -D -m 0755 $(PPPD_DIR)/scripts/poff $(TARGET_DIR)/usr/bin/poff
 	$(PPPD_INSTALL_RADIUS)
 endef
 
 define PPPD_INSTALL_STAGING_CMDS
-	$(MAKE) INSTROOT=$(STAGING_DIR)/ -C $(@D) $(PPPD_MAKE_OPTS) install-devel
+	$(TARGET_MAKE_ENV) $(MAKE) INSTROOT=$(STAGING_DIR)/ -C $(@D) $(PPPD_MAKE_OPTS) install-devel
 endef
 
 $(eval $(generic-package))

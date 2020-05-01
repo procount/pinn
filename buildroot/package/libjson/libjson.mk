@@ -8,7 +8,7 @@ LIBJSON_VERSION = 7.6.1
 LIBJSON_SITE = http://downloads.sourceforge.net/project/libjson
 LIBJSON_SOURCE = libjson_$(LIBJSON_VERSION).zip
 LIBJSON_INSTALL_STAGING = YES
-LIBJSON_LICENSE = BSD-2c
+LIBJSON_LICENSE = BSD-2-Clause
 LIBJSON_LICENSE_FILES = License.txt
 
 LIBJSON_CXXFLAGS = $(TARGET_CFLAGS) -DNDEBUG
@@ -23,7 +23,7 @@ endif
 LIBJSON_MAKE_OPTS += BUILD_TYPE= CXXFLAGS="$(LIBJSON_CXXFLAGS)"
 
 define LIBJSON_EXTRACT_CMDS
-	$(UNZIP) -d $(@D) $(DL_DIR)/$(LIBJSON_SOURCE)
+	$(UNZIP) -d $(@D) $(LIBJSON_DL_DIR)/$(LIBJSON_SOURCE)
 	mv $(@D)/libjson/* $(@D)
 	$(RM) -r $(@D)/libjson
 	$(SED) '/ldconfig/d' $(@D)/makefile

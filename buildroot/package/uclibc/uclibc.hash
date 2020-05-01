@@ -1,4 +1,4 @@
-# Locally calculated after checking pgp signature (vanilla)
-# Locally calculated (ARC)
-sha256	62333167b79afb0b25a843513288c67b59547acf653e8fbe62ee64e71ebd1587	uClibc-0.9.33.2.tar.xz
-sha256	0a9085a11615296cfe7783f16ff29073393eb330749947adece0eeddb31705a4	uClibc-arc-2014.08.tar.gz
+# From https://downloads.uclibc-ng.org/releases/1.0.32/uClibc-ng-1.0.32.tar.xz.sha256
+sha256  891b5e4573855e4c11e51d3a518f89a82e490d9aa73280c05ce3e4d7e739a370  uClibc-ng-1.0.32.tar.xz
+# Locally calculated
+sha256  6095e9ffa777dd22839f7801aa845b31c9ed07f3d6bf8a26dc5d2dec8ccc0ef3  COPYING.LIB

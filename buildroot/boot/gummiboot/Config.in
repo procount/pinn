@@ -1,11 +1,10 @@
 config BR2_TARGET_GUMMIBOOT
 	bool "gummiboot"
 	depends on BR2_i386 || BR2_x86_64
+	depends on BR2_PACKAGE_GNU_EFI_ARCH_SUPPORTS
 	select BR2_PACKAGE_GNU_EFI
 	select BR2_PACKAGE_UTIL_LINUX
 	select BR2_PACKAGE_UTIL_LINUX_LIBBLKID
-	depends on BR2_LARGEFILE # util-linux
-	depends on BR2_USE_WCHAR # util-linux
 	help
 	  gummiboot is a simple UEFI boot manager which executes
 	  configured EFI images. The default entry is selected by a
@@ -23,6 +22,3 @@ config BR2_TARGET_GUMMIBOOT
 	  files will be located in /loader/ inside the EFI partition.
 
 	  http://freedesktop.org/wiki/Software/gummiboot/
-
-comment "gummiboot needs a toolchain w/ largefile, wchar"
-	depends on !(BR2_LARGEFILE && BR2_USE_WCHAR)

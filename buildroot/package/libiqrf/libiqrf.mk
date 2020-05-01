@@ -4,10 +4,10 @@
 #
 ################################################################################
 
-LIBIQRF_VERSION = v0.1.2
-LIBIQRF_SITE = $(call github,nandra,libiqrf,$(LIBIQRF_VERSION))
+LIBIQRF_VERSION = 0.1.2
+LIBIQRF_SITE = $(call github,nandra,libiqrf,v$(LIBIQRF_VERSION))
 LIBIQRF_INSTALL_STAGING = YES
 LIBIQRF_DEPENDENCIES = libusb
-LIBIQRF_LICENSE = LGPLv2.1+
+LIBIQRF_LICENSE = LGPL-2.1+
 
 $(eval $(cmake-package))

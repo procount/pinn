@@ -6,7 +6,7 @@ config BR2_PACKAGE_LM_SENSORS
 	  temperature, voltage, and fan speed sensors. It
 	  works with most newer systems.
 
-	  http://www.lm-sensors.org/
+	  https://hwmon.wiki.kernel.org
 
 if BR2_PACKAGE_LM_SENSORS
 comment "lm-sensors tools"
@@ -25,12 +25,14 @@ config BR2_PACKAGE_LM_SENSORS_FANCONTROL
 
 config BR2_PACKAGE_LM_SENSORS_ISADUMP
 	bool "isadump"
+	depends on BR2_i386 || BR2_x86_64
 	help
 	  Isadump is a small helper program to examine registers
 	  visible through the ISA bus.
 
 config BR2_PACKAGE_LM_SENSORS_ISASET
 	bool "isaset"
+	depends on BR2_i386 || BR2_x86_64
 	help
 	  Isaset is a small helper program to set register visible
 	  through the ISA bus.
@@ -38,9 +40,9 @@ config BR2_PACKAGE_LM_SENSORS_ISASET
 config BR2_PACKAGE_LM_SENSORS_PWMCONFIG
 	bool "pwmconfig"
 	help
-	  Pwmconfig searches your sensors for pulse width modulation (PWM)
-	  controls, and tests each one to see if it controls a fan on
-	  your motherboard.
+	  Pwmconfig searches your sensors for pulse width modulation
+	  (PWM) controls, and tests each one to see if it controls a fan
+	  on your motherboard.
 
 config BR2_PACKAGE_LM_SENSORS_SENSORS_DETECT
 	bool "sensors-detect"

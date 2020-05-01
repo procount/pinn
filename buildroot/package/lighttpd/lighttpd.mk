@@ -5,22 +5,29 @@
 ################################################################################
 
 LIGHTTPD_VERSION_MAJOR = 1.4
-LIGHTTPD_VERSION = $(LIGHTTPD_VERSION_MAJOR).35
+LIGHTTPD_VERSION = $(LIGHTTPD_VERSION_MAJOR).55
 LIGHTTPD_SOURCE = lighttpd-$(LIGHTTPD_VERSION).tar.xz
 LIGHTTPD_SITE = http://download.lighttpd.net/lighttpd/releases-$(LIGHTTPD_VERSION_MAJOR).x
-LIGHTTPD_LICENSE = BSD-3c
+LIGHTTPD_LICENSE = BSD-3-Clause
 LIGHTTPD_LICENSE_FILES = COPYING
 LIGHTTPD_DEPENDENCIES = host-pkgconf
 LIGHTTPD_CONF_OPTS = \
+	--without-wolfssl \
 	--libdir=/usr/lib/lighttpd \
-	--libexecdir=/usr/lib \
-	$(if $(BR2_LARGEFILE),,--disable-lfs)
+	--libexecdir=/usr/lib
 
 ifeq ($(BR2_PACKAGE_LIGHTTPD_OPENSSL),y)
 LIGHTTPD_DEPENDENCIES += openssl
 LIGHTTPD_CONF_OPTS += --with-openssl
 else
 LIGHTTPD_CONF_OPTS += --without-openssl
+endif
+
+ifeq ($(BR2_PACKAGE_LIGHTTPD_PAM),y)
+LIGHTTPD_DEPENDENCIES += linux-pam
+LIGHTTPD_CONF_OPTS += --with-pam
+else
+LIGHTTPD_CONF_OPTS += --without-pam
 endif
 
 ifeq ($(BR2_PACKAGE_LIGHTTPD_ZLIB),y)
@@ -47,7 +54,13 @@ endif
 
 ifeq ($(BR2_PACKAGE_LIGHTTPD_WEBDAV),y)
 LIGHTTPD_DEPENDENCIES += libxml2 sqlite
-LIGHTTPD_CONF_OPTS += --with-webdav-props --with-webdav-locks
+LIGHTTPD_CONF_OPTS += --with-webdav-props
+ifeq ($(BR2_PACKAGE_UTIL_LINUX_LIBUUID),y)
+LIGHTTPD_CONF_OPTS += --with-webdav-locks
+LIGHTTPD_DEPENDENCIES += util-linux
+else
+LIGHTTPD_CONF_OPTS += --without-webdav-locks
+endif
 else
 LIGHTTPD_CONF_OPTS += --without-webdav-props --without-webdav-locks
 endif
@@ -84,13 +97,10 @@ define LIGHTTPD_INSTALL_INIT_SYSV
 endef
 
 define LIGHTTPD_INSTALL_INIT_SYSTEMD
-	$(INSTALL) -D -m 0644 package/lighttpd/lighttpd.service \
-		$(TARGET_DIR)/etc/systemd/system/lighttpd.service
-
-	mkdir -p $(TARGET_DIR)/etc/systemd/system/multi-user.target.wants
-
-	ln -fs ../lighttpd.service \
-		$(TARGET_DIR)/etc/systemd/system/multi-user.target.wants/lighttpd.service
+	$(INSTALL) -D -m 0644 $(@D)/doc/systemd/lighttpd.service \
+		$(TARGET_DIR)/usr/lib/systemd/system/lighttpd.service
+	$(INSTALL) -D -m 644 package/lighttpd/lighttpd_tmpfiles.conf \
+		$(TARGET_DIR)/usr/lib/tmpfiles.d/lighttpd.conf
 endef
 
 $(eval $(autotools-package))

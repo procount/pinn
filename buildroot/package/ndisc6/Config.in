@@ -1,14 +1,10 @@
-comment "ndisc6 needs a toolchain w/ IPv6"
-	depends on BR2_USE_MMU
-	depends on !BR2_INET_IPV6
-
 config BR2_PACKAGE_NDISC6
 	bool "ndisc6 tools"
-	depends on BR2_INET_IPV6
 	depends on BR2_USE_MMU # fork()
-	select BR2_PACKAGE_GETTEXT if BR2_NEEDS_GETTEXT_IF_LOCALE
+	depends on BR2_TOOLCHAIN_GCC_AT_LEAST_4_7 # c11
 	help
-	  NDisc6 is a small collection of useful tools for IPv6 networking
+	  NDisc6 is a small collection of useful tools for IPv6
+	  networking
 
 	  http://www.remlab.net/ndisc6/
 
@@ -50,3 +46,7 @@ config BR2_PACKAGE_NDISC6_TCPSPRAY
 	  TCP/IP bandwidth measurement tool (Discard and Echo client).
 
 endif
+
+comment "ndisc6 needs a toolchain w/ gcc >= 4.7"
+	depends on BR2_USE_MMU
+	depends on !BR2_TOOLCHAIN_GCC_AT_LEAST_4_7

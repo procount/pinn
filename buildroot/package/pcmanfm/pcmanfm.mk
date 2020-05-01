@@ -4,12 +4,20 @@
 #
 ################################################################################
 
-PCMANFM_VERSION = 0.3.5.9
-PCMANFM_SITE = http://downloads.sourceforge.net/project/pcmanfm/pcmanfm-legacy%20%28Old%200.5%20series%29/PCManFM%20$(PCMANFM_VERSION)
-PCMANFM_CONF_OPTS = --disable-hal
-PCMANFM_DEPENDENCIES = host-pkgconf libgtk2 gamin startup-notification xlib_libX11
-PCMANFM_AUTORECONF = YES
-PCMANFM_LICENSE = GPLv2+
+PCMANFM_VERSION = 1.3.1
+PCMANFM_SOURCE = pcmanfm-$(PCMANFM_VERSION).tar.xz
+PCMANFM_SITE = http://sourceforge.net/projects/pcmanfm/files
+PCMANFM_DEPENDENCIES = libglib2 menu-cache libfm $(TARGET_NLS_DEPENDENCIES)
+PCMANFM_LICENSE = GPL-2.0+
 PCMANFM_LICENSE_FILES = COPYING
+PCMANFM_CONF_ENV = LIBS=$(TARGET_NLS_LIBS)
+
+ifeq ($(BR2_PACKAGE_LIBGTK3_X11),y)
+PCMANFM_CONF_OPTS += --with-gtk=3
+PCMANFM_DEPENDENCIES += libgtk3
+else
+PCMANFM_CONF_OPTS += --with-gtk=2
+PCMANFM_DEPENDENCIES += libgtk2
+endif
 
 $(eval $(autotools-package))

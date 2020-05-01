@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-A10DISP_VERSION = a899cc6dcf909360aac00482ede5369f3656f226
-A10DISP_SITE = $(call github,hglm,a10disp,$(A10DISP_VERSION))
+A10DISP_VERSION = 0.6.1
+A10DISP_SITE = $(call github,hglm,a10disp,v$(A10DISP_VERSION))
 A10DISP_LICENSE = MIT
 
 A10DISP_DEPENDENCIES = linux

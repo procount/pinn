@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-ERLANG_REBAR_VERSION = 2.5.1
+ERLANG_REBAR_VERSION = 2.6.4
 
 # Upstream publishes a release, but we can not use it as it is a release of
 # a generated rebar script, when we want the sources. So we have to use the
@@ -13,8 +13,8 @@ ERLANG_REBAR_SITE = $(call github,rebar,rebar,$(ERLANG_REBAR_VERSION))
 
 # Although the file LICENSE state Apache-2.0, a lot (if not all) the files
 # in src/ bear the MIT licence.
-ERLANG_LICENSE = Apache-2.0, MIT
-ERLANG_LICENSE_FILES = LICENSE
+ERLANG_REBAR_LICENSE = Apache-2.0, MIT
+ERLANG_REBAR_LICENSE_FILES = LICENSE
 
 # We do not have a target variant, so just define the dependencies,
 # configure and build commands for the host variant.
@@ -25,7 +25,7 @@ define HOST_ERLANG_REBAR_BUILD_CMDS
 endef
 
 define HOST_ERLANG_REBAR_INSTALL_CMDS
-	$(INSTALL) -m 0755 -D $(@D)/rebar $(HOST_DIR)/usr/bin/rebar
+	$(INSTALL) -m 0755 -D $(@D)/rebar $(HOST_DIR)/bin/rebar
 endef
 
 $(eval $(host-generic-package))

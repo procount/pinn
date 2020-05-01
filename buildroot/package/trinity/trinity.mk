@@ -4,17 +4,14 @@
 #
 ################################################################################
 
-TRINITY_VERSION = 5d2dfe9727eb9c8dc44c31e95968e8d85284ffcc
-TRINITY_SITE = $(call github,kernelslacker,trinity,$(TRINITY_VERSION))
-TRINITY_LICENSE = GPLv2
+TRINITY_VERSION = 1.9
+TRINITY_SITE = http://codemonkey.org.uk/projects/trinity
+TRINITY_SOURCE = trinity-$(TRINITY_VERSION).tar.xz
+TRINITY_LICENSE = GPL-2.0
 TRINITY_LICENSE_FILES = COPYING
 
-ifeq ($(BR2_INET_IPV6),)
-TARGET_CONFIGURE_OPTS += IPV6=no
-endif
-
 define TRINITY_CONFIGURE_CMDS
-	(cd $(@D); $(TARGET_CONFIGURE_OPTS) ./configure.sh)
+	(cd $(@D); $(TARGET_CONFIGURE_OPTS) ./configure)
 endef
 
 define TRINITY_BUILD_CMDS

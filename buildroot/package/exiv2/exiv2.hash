@@ -1,4 +1,4 @@
-# From http://www.exiv2.org/download.html
-md5 b8a23dc56a98ede85c00718a97a8d6fc exiv2-0.24.tar.gz
 # Locally calculated
-sha256 f4a443e6c7fb9d9f5e787732f76969a64c72c4c04af69b10ed57f949c2dfef8e exiv2-0.24.tar.gz
+sha256 3dbcaf01fbc5b98d42f091d1ff0d4b6cd9750dc724de3d9c0d113948570b2934 exiv2-0.27.2.tar.gz
+sha256 a7ba75cb966aca374711e2af49e5f3aea6a4443a803440f5d93e73a5a1222f66 COPYING
+sha256 46cde7dc11e64c78d650b4851b88f6704b4665ff60f22a1caf68ceb15e217e5b COPYING-CMAKE-SCRIPTS

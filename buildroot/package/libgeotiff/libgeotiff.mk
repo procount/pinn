@@ -4,12 +4,13 @@
 #
 ################################################################################
 
-LIBGEOTIFF_VERSION = 1.4.0
+LIBGEOTIFF_VERSION = 1.5.1
 LIBGEOTIFF_SITE = http://download.osgeo.org/geotiff/libgeotiff
 LIBGEOTIFF_LICENSE = X11-style, public domain
 LIBGEOTIFF_LICENSE_FILES = LICENSE
-LIBGEOTIFF_DEPENDENCIES = tiff host-pkgconf
+LIBGEOTIFF_DEPENDENCIES = proj tiff host-pkgconf
 LIBGEOTIFF_INSTALL_STAGING = YES
+# We're patching configure.ac
 LIBGEOTIFF_AUTORECONF = YES
 
 ifeq ($(BR2_PACKAGE_ZLIB),y)

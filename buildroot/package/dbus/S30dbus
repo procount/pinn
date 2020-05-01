@@ -10,9 +10,6 @@
 # pidfile: /var/run/messagebus.pid
 #
 
-# Sanity checks.
-[ -x /usr/bin/dbus-daemon ] || exit 0
-
 # Create needed directories.
 [ -d /var/run/dbus ] || mkdir -p /var/run/dbus
 [ -d /var/lock/subsys ] || mkdir -p /var/lock/subsys
@@ -21,7 +18,7 @@
 RETVAL=0
 
 start() {
-    echo -n "Starting system message bus: "
+    printf "Starting system message bus: "
 
     dbus-uuidgen --ensure
     dbus-daemon --system
@@ -31,7 +28,7 @@ start() {
 }
 
 stop() {
-    echo -n "Stopping system message bus: "
+    printf "Stopping system message bus: "
 
     ## we don't want to kill all the per-user $processname, we want
     ## to use the pid file *only*; because we use the fake nonexistent 
@@ -53,10 +50,6 @@ case "$1" in
     stop)
         stop
         ;;
-    status)
-        status $processname
-        RETVAL=$?
-        ;;
     restart)
         stop
         start
@@ -72,7 +65,7 @@ case "$1" in
         RETVAL=$?
         ;;
     *)
-        echo "Usage: $0 {start|stop|status|restart|condrestart|reload}"
+        echo "Usage: $0 {start|stop|restart|condrestart|reload}"
         ;;
 esac
 exit $RETVAL

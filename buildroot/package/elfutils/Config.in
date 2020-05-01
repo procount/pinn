@@ -1,21 +1,16 @@
-comment "elfutils needs a toolchain w/ largefile, wchar, dynamic library"
-	depends on !BR2_avr32
-	depends on !BR2_bfin
-	depends on !BR2_LARGEFILE || !BR2_USE_WCHAR || BR2_STATIC_LIBS
+comment "elfutils needs a uClibc or glibc toolchain w/ wchar, dynamic library"
+	depends on !BR2_USE_WCHAR || BR2_STATIC_LIBS \
+		|| !(BR2_TOOLCHAIN_USES_UCLIBC || BR2_TOOLCHAIN_USES_GLIBC)
 
 config BR2_PACKAGE_ELFUTILS
 	bool "elfutils"
-	select BR2_PACKAGE_ARGP_STANDALONE if BR2_TOOLCHAIN_USES_UCLIBC
-	select BR2_PACKAGE_GETTEXT if BR2_NEEDS_GETTEXT
-	depends on BR2_LARGEFILE
 	depends on BR2_USE_WCHAR
 	depends on !BR2_STATIC_LIBS
-	# canonicalize_file_name() not available on uClibc 0.9.31, used
-	# only for AVR32
-	depends on !BR2_avr32
-	# build issue caused by the _ prefix used on blackfin for
-	# assembly symbols
-	depends on !BR2_bfin
+	# Only glibc and uClibc implement the myriad of required GNUisms
+	depends on BR2_TOOLCHAIN_USES_UCLIBC || BR2_TOOLCHAIN_USES_GLIBC
+	select BR2_PACKAGE_ZLIB
+	select BR2_PACKAGE_ARGP_STANDALONE if BR2_TOOLCHAIN_USES_UCLIBC
+	select BR2_PACKAGE_MUSL_FTS if !BR2_TOOLCHAIN_USES_GLIBC
 	help
 	  Libraries/utilities to handle ELF objects (drop in
 	  replacement for libelf).
@@ -23,7 +18,7 @@ config BR2_PACKAGE_ELFUTILS
 	  Note that this option only installs the libraries, and not
 	  the programs.
 
-	  https://fedorahosted.org/elfutils
+	  https://sourceware.org/elfutils/
 
 if BR2_PACKAGE_ELFUTILS
 

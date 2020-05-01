@@ -1,2 +1,4 @@
-# From http://www.lighttpd.net/
-sha256	113e9b72ccbd1da5deb0774bf93cf0ca15dc82aad2da0f04e5ab27d37d3f30a3	lighttpd-1.4.35.tar.xz
+# From https://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-1.4.55.sha256sum
+sha256 6a0b50e9c9d5cc3d9e48592315c25a2d645858f863e1ccd120507a30ce21e927  lighttpd-1.4.55.tar.xz
+# Locally calculated
+sha256 5c98cad2fbaf5c5e2562bcbab401a7c557c1bb1bac9914ecc63730925052fb13  COPYING

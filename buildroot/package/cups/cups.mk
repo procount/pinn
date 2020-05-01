@@ -4,59 +4,71 @@
 #
 ################################################################################
 
-CUPS_VERSION = 1.3.11
-CUPS_SOURCE = cups-$(CUPS_VERSION)-source.tar.bz2
-CUPS_SITE = http://www.cups.org/software/$(CUPS_VERSION)
-CUPS_LICENSE = GPLv2 LGPLv2
-CUPS_LICENSE_FILES = LICENSE.txt
+CUPS_VERSION = 2.3.1
+CUPS_SOURCE = cups-$(CUPS_VERSION)-source.tar.gz
+CUPS_SITE = https://github.com/apple/cups/releases/download/v$(CUPS_VERSION)
+CUPS_LICENSE = Apache-2.0 with GPL-2.0/LGPL-2.0 exception
+CUPS_LICENSE_FILES = LICENSE NOTICE
 CUPS_INSTALL_STAGING = YES
-CUPS_INSTALL_STAGING_OPTS = DESTDIR=$(STAGING_DIR) DSTROOT=$(STAGING_DIR) install
-CUPS_INSTALL_TARGET_OPTS = DESTDIR=$(TARGET_DIR) DSTROOT=$(TARGET_DIR) install
+
+# Using autoconf, not autoheader, so we cannot use AUTORECONF = YES.
+define CUPS_RUN_AUTOCONF
+	cd $(@D); $(AUTOCONF) -f
+endef
+CUPS_PRE_CONFIGURE_HOOKS += CUPS_RUN_AUTOCONF
+
 CUPS_CONF_OPTS = \
-	--without-perl \
-	--without-java \
-	--without-php \
-	--disable-gnutls \
+	--with-docdir=/usr/share/cups/doc-root \
 	--disable-gssapi \
+	--disable-pam \
 	--libdir=/usr/lib
 CUPS_CONFIG_SCRIPTS = cups-config
-
 CUPS_DEPENDENCIES = \
-	$(if $(BR2_PACKAGE_ZLIB),zlib) \
-	$(if $(BR2_PACKAGE_LIBPNG),libpng) \
-	$(if $(BR2_PACKAGE_JPEG),jpeg) \
-	$(if $(BR2_PACKAGE_TIFF),tiff)
+	host-autoconf \
+	host-pkgconf \
+	$(if $(BR2_PACKAGE_ZLIB),zlib)
+
+ifeq ($(BR2_PACKAGE_SYSTEMD),y)
+CUPS_CONF_OPTS += --with-systemd=/usr/lib/systemd/system \
+	--enable-systemd
+CUPS_DEPENDENCIES += systemd
+else
+CUPS_CONF_OPTS += --disable-systemd
+endif
 
 ifeq ($(BR2_PACKAGE_DBUS),y)
-	CUPS_CONF_OPTS += --enable-dbus
-	CUPS_DEPENDENCIES += dbus
+CUPS_CONF_OPTS += --enable-dbus
+CUPS_DEPENDENCIES += dbus
 else
-	CUPS_CONF_OPTS += --disable-dbus
+CUPS_CONF_OPTS += --disable-dbus
 endif
 
-ifeq ($(BR2_PACKAGE_XORG7),y)
-	CUPS_DEPENDENCIES += xlib_libX11
-endif
-
-ifeq ($(BR2_PACKAGE_PYTHON),y)
-	CUPS_CONF_OPTS += --with-python
-	CUPS_DEPENDENCIES += python
+ifeq ($(BR2_PACKAGE_GNUTLS),y)
+CUPS_CONF_OPTS += --enable-gnutls
+CUPS_DEPENDENCIES += gnutls
 else
-	CUPS_CONF_OPTS += --without-python
+CUPS_CONF_OPTS += --disable-gnutls
 endif
 
-ifeq ($(BR2_PACKAGE_CUPS_PDFTOPS),y)
-	CUPS_CONF_OPTS += --enable-pdftops
+ifeq ($(BR2_PACKAGE_LIBUSB),y)
+CUPS_CONF_OPTS += --enable-libusb
+CUPS_DEPENDENCIES += libusb
 else
-	CUPS_CONF_OPTS += --disable-pdftops
+CUPS_CONF_OPTS += --disable-libusb
 endif
 
-# standard autoreconf fails with autoheader failures
-define CUPS_FIXUP_AUTOCONF
-	cd $(@D) && $(AUTOCONF)
-endef
-CUPS_DEPENDENCIES += host-autoconf
+ifeq ($(BR2_PACKAGE_LIBPAPER),y)
+CUPS_CONF_OPTS += --enable-libpaper
+CUPS_DEPENDENCIES += libpaper
+else
+CUPS_CONF_OPTS += --disable-libpaper
+endif
 
-CUPS_PRE_CONFIGURE_HOOKS += CUPS_FIXUP_AUTOCONF
+ifeq ($(BR2_PACKAGE_AVAHI),y)
+CUPS_DEPENDENCIES += avahi
+CUPS_CONF_OPTS += --enable-avahi
+else
+CUPS_CONF_OPTS += --disable-avahi
+endif
 
 $(eval $(autotools-package))

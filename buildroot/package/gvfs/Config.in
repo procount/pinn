@@ -1,6 +1,5 @@
 config BR2_PACKAGE_GVFS
 	bool "gvfs"
-	depends on BR2_LARGEFILE
 	depends on BR2_USE_WCHAR # glib2
 	depends on BR2_USE_MMU # dbus, glib2
 	depends on BR2_TOOLCHAIN_HAS_THREADS # dbus, glib2
@@ -14,8 +13,8 @@ config BR2_PACKAGE_GVFS
 	  all applications using the gio API. It also supports exposing
 	  the gvfs mounts to non-gio applications using fuse.
 
-	  http://en.wikipedia.org/wiki/GVFS
+	  https://wiki.gnome.org/action/show/Projects/gvfs
 
-comment "gvfs needs a toolchain w/ largefile, wchar, threads"
+comment "gvfs needs a toolchain w/ wchar, threads"
 	depends on BR2_USE_MMU
-	depends on !BR2_LARGEFILE || !BR2_USE_WCHAR || !BR2_TOOLCHAIN_HAS_THREADS
+	depends on !BR2_USE_WCHAR || !BR2_TOOLCHAIN_HAS_THREADS

@@ -4,64 +4,79 @@
 #
 ################################################################################
 
-RUBY_VERSION_MAJOR = 2.1
-RUBY_VERSION = $(RUBY_VERSION_MAJOR).5
-RUBY_VERSION_EXT = 2.1.0
+RUBY_VERSION_MAJOR = 2.4
+RUBY_VERSION = $(RUBY_VERSION_MAJOR).9
+RUBY_VERSION_EXT = 2.4.0
 RUBY_SITE = http://cache.ruby-lang.org/pub/ruby/$(RUBY_VERSION_MAJOR)
+RUBY_SOURCE = ruby-$(RUBY_VERSION).tar.xz
 RUBY_DEPENDENCIES = host-pkgconf host-ruby
-HOST_RUBY_DEPENDENCIES = host-pkgconf
+HOST_RUBY_DEPENDENCIES = host-pkgconf host-openssl
 RUBY_MAKE_ENV = $(TARGET_MAKE_ENV)
-RUBY_MAKE = $(MAKE1)
 RUBY_CONF_OPTS = --disable-install-doc --disable-rpath --disable-rubygems
-HOST_RUBY_CONF_OPTS = --disable-install-doc \
-	--with-out-ext=curses,openssl,readline \
+HOST_RUBY_CONF_OPTS = \
+	--disable-install-doc \
+	--with-out-ext=curses,readline \
 	--without-gmp
-RUBY_LICENSE = Ruby or BSD-2c, BSD-3c, others
+RUBY_LICENSE = Ruby or BSD-2-Clause, BSD-3-Clause, others
 RUBY_LICENSE_FILES = LEGAL COPYING BSDL
 
 RUBY_CFLAGS = $(TARGET_CFLAGS)
 # With some SuperH toolchains (like Sourcery CodeBench 2012.09), ruby fails to
 # build with 'pcrel too far'. This seems to be caused by the -Os option we pass
 # by default. To fix the problem, use standard -O2 optimization instead.
-ifeq ($(BR2_sh)$(BR2_sh64),y)
+ifeq ($(BR2_sh),y)
 RUBY_CFLAGS += -O2
 endif
 RUBY_CONF_ENV = CFLAGS="$(RUBY_CFLAGS)"
 
-ifeq ($(BR2_bfin),y)
-RUBY_CONF_ENV = ac_cv_func_dl_iterate_phdr=no
-# Blackfin doesn't have FFI closure support, needed by the fiddle
-# extension.
-RUBY_CONF_OPTS += --with-out-ext=fiddle
+ifeq ($(BR2_TOOLCHAIN_USES_UCLIBC),y)
+# On uClibc, finite, isinf and isnan are not directly implemented as
+# functions.  Instead math.h #define's these to __finite, __isinf and
+# __isnan, confusing the Ruby configure script. Tell it that they
+# really are available.
+RUBY_CONF_ENV += \
+	ac_cv_func_finite=yes \
+	ac_cv_func_isinf=yes \
+	ac_cv_func_isnan=yes
+endif
+
+ifeq ($(BR2_TOOLCHAIN_HAS_SSP),)
+RUBY_CONF_ENV += stack_protector=no
 endif
 
 # Force optionals to build before we do
 ifeq ($(BR2_PACKAGE_BERKELEYDB),y)
-	RUBY_DEPENDENCIES += berkeleydb
+RUBY_DEPENDENCIES += berkeleydb
+endif
+ifeq ($(BR2_PACKAGE_LIBFFI),y)
+RUBY_DEPENDENCIES += libffi
+else
+# Disable fiddle to avoid a build failure with bundled-libffi on MIPS
+RUBY_CONF_OPTS += --with-out-ext=fiddle
 endif
 ifeq ($(BR2_PACKAGE_GDBM),y)
-	RUBY_DEPENDENCIES += gdbm
+RUBY_DEPENDENCIES += gdbm
 endif
 ifeq ($(BR2_PACKAGE_LIBYAML),y)
-	RUBY_DEPENDENCIES += libyaml
+RUBY_DEPENDENCIES += libyaml
 endif
 ifeq ($(BR2_PACKAGE_NCURSES),y)
-	RUBY_DEPENDENCIES += ncurses
+RUBY_DEPENDENCIES += ncurses
 endif
 ifeq ($(BR2_PACKAGE_OPENSSL),y)
-	RUBY_DEPENDENCIES += openssl
+RUBY_DEPENDENCIES += openssl
 endif
 ifeq ($(BR2_PACKAGE_READLINE),y)
-	RUBY_DEPENDENCIES += readline
+RUBY_DEPENDENCIES += readline
 endif
 ifeq ($(BR2_PACKAGE_ZLIB),y)
-	RUBY_DEPENDENCIES += zlib
+RUBY_DEPENDENCIES += zlib
 endif
 ifeq ($(BR2_PACKAGE_GMP),y)
-	RUBY_DEPENDENCIES += gmp
-	RUBY_CONF_OPTS += --with-gmp
+RUBY_DEPENDENCIES += gmp
+RUBY_CONF_OPTS += --with-gmp
 else
-	RUBY_CONF_OPTS += --without-gmp
+RUBY_CONF_OPTS += --without-gmp
 endif
 
 # workaround for amazing build failure, see

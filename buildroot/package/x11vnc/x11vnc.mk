@@ -4,20 +4,17 @@
 #
 ################################################################################
 
-X11VNC_VERSION = 0.9.13
-X11VNC_SITE = http://downloads.sourceforge.net/project/libvncserver/x11vnc/$(X11VNC_VERSION)
+X11VNC_VERSION = 0.9.16
+X11VNC_SITE = $(call github,LibVNC,x11vnc,$(X11VNC_VERSION))
 # sdl support is not used in x11vnc, but host include / library search paths
 # leak in if host has sdl-config
 X11VNC_CONF_OPTS = --without-sdl
-X11VNC_DEPENDENCIES = xlib_libXt xlib_libXext xlib_libXtst
-X11VNC_LICENSE = GPLv2+
+X11VNC_DEPENDENCIES = xlib_libXt xlib_libXext xlib_libXtst libvncserver
+X11VNC_LICENSE = GPL-2.0+
 X11VNC_LICENSE_FILES = COPYING
 
-ifneq ($(BR2_INET_IPV6),y)
-# configure option only used for libvncserver
-X11VNC_CONF_OPTS += --without-ipv6
-X11VNC_CONF_ENV += CFLAGS='$(TARGET_CFLAGS) -DX11VNC_IPV6=0'
-endif
+# Source coming from github, no configure included
+X11VNC_AUTORECONF = YES
 
 ifeq ($(BR2_PACKAGE_AVAHI_DAEMON)$(BR2_PACKAGE_DBUS),yy)
 X11VNC_DEPENDENCIES += avahi dbus
@@ -66,6 +63,5 @@ X11VNC_DEPENDENCIES += zlib
 else
 X11VNC_CONF_OPTS += --without-zlib
 endif
-
 
 $(eval $(autotools-package))

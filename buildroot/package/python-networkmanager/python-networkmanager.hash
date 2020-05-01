@@ -1,3 +1,5 @@
-# md5 from https://pypi.python.org/pypi?:action=show_md5&digest=2cd400a7ca4dcd1ea98c864007032494, sha256 locally computed
-md5	2cd400a7ca4dcd1ea98c864007032494  python-networkmanager-0.9.12.tar.gz
-sha256	a4c7bbae8a1ee3cf370ff0cd2ba2e0f1fb7f8e8f99f8f48a1df624c19a11166f  python-networkmanager-0.9.12.tar.gz
+# md5 and sha256 from https://pypi.python.org/pypi/python-networkmanager/json
+md5	f638d854a3639fb37c0e06d1092a771e  python-networkmanager-2.1.tar.gz
+sha256	aef1e34d98d7bec7cc368e0ca0f2e97493f9b5ebe6d7103f8f6460cfca3dc6fc  python-networkmanager-2.1.tar.gz
+# Locally computed
+sha256  be40f44d54bb5e0f0eee28e957ad020a00a6e3adb0290262e92129eba1c044cf  COPYING

@@ -4,15 +4,15 @@
 #
 ################################################################################
 
-FILEMQ_VERSION = 482797b8aa30fcc9ea1377aabdf2b0769f9f698e
+FILEMQ_VERSION = 8940f34e0f1c8f25c1c693ed8db069f58fbc5ad0
 FILEMQ_SITE = $(call github,zeromq,filemq,$(FILEMQ_VERSION))
 
 FILEMQ_AUTORECONF = YES
-FILEMQ_CONF_ENV = fmq_have_asciidoc=no
+FILEMQ_CONF_ENV = filemq_have_asciidoc=no
 FILEMQ_INSTALL_STAGING = YES
 FILEMQ_DEPENDENCIES = czmq openssl zeromq
-FILEMQ_LICENSE = LGPLv3+ with exceptions
-FILEMQ_LICENSE_FILES = COPYING COPYING.LESSER
+FILEMQ_LICENSE = MPL-2.0
+FILEMQ_LICENSE_FILES = LICENSE
 
 define FILEMQ_CREATE_CONFIG_DIR
 	mkdir -p $(@D)/config

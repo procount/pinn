@@ -4,11 +4,10 @@
 #
 ################################################################################
 
-# Revision 791:
-CANFESTIVAL_VERSION = 7740ac6fdedc
-CANFESTIVAL_SOURCE = $(CANFESTIVAL_VERSION).tar.bz2
-CANFESTIVAL_SITE = http://dev.automforge.net/CanFestival-3/archive
-CANFESTIVAL_LICENSE = LGPLv2.1+
+CANFESTIVAL_VERSION = 7740ac6fdedc23e1ed6908d3d7db54833c88572b
+CANFESTIVAL_SITE = http://dev.automforge.net/CanFestival-3
+CANFESTIVAL_SITE_METHOD = hg
+CANFESTIVAL_LICENSE = LGPL-2.1+
 CANFESTIVAL_LICENSE_FILES = COPYING LICENCE
 CANFESTIVAL_INSTALL_STAGING = YES
 CANFESTIVAL_INSTALLED-y = src drivers
@@ -37,22 +36,22 @@ define CANFESTIVAL_CONFIGURE_CMDS
 endef
 
 define CANFESTIVAL_BUILD_CMDS
-	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D) all \
-		PYTHON=$(HOST_DIR)/usr/bin/python2
+	$(TARGET_MAKE_ENV) $(MAKE1) -C $(@D) all \
+		PYTHON=$(HOST_DIR)/bin/python2
 endef
 
 define CANFESTIVAL_INSTALL_TARGET_CMDS
 	for d in $(CANFESTIVAL_INSTALLED-y) ; do \
-		$(TARGET_MAKE_ENV) $(MAKE) -C $(@D)/$$d install \
-			PYTHON=$(HOST_DIR)/usr/bin/python2 \
+		$(TARGET_MAKE_ENV) $(MAKE1) -C $(@D)/$$d install \
+			PYTHON=$(HOST_DIR)/bin/python2 \
 			DESTDIR=$(TARGET_DIR) || exit 1 ; \
 	done
 endef
 
 define CANFESTIVAL_INSTALL_STAGING_CMDS
 	for d in $(CANFESTIVAL_INSTALLED-y) ; do \
-		$(TARGET_MAKE_ENV) $(MAKE) -C $(@D)/$$d install \
-			PYTHON=$(HOST_DIR)/usr/bin/python2 \
+		$(TARGET_MAKE_ENV) $(MAKE1) -C $(@D)/$$d install \
+			PYTHON=$(HOST_DIR)/bin/python2 \
 			DESTDIR=$(STAGING_DIR) || exit 1 ; \
 	done
 endef

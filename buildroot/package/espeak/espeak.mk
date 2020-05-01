@@ -8,8 +8,8 @@ ESPEAK_VERSION_MAJOR = 1.48
 ESPEAK_VERSION = $(ESPEAK_VERSION_MAJOR).04
 ESPEAK_SOURCE = espeak-$(ESPEAK_VERSION)-source.zip
 ESPEAK_SITE = http://downloads.sourceforge.net/project/espeak/espeak/espeak-$(ESPEAK_VERSION_MAJOR)
-ESPEAK_LICENSE = GPLv3+
-ESPEAK_LICENSE_FILES = Licence.txt
+ESPEAK_LICENSE = GPL-3.0+
+ESPEAK_LICENSE_FILES = License.txt
 
 ifeq ($(BR2_PACKAGE_ESPEAK_AUDIO_BACKEND_ALSA),y)
 ESPEAK_AUDIO_BACKEND = portaudio
@@ -21,7 +21,7 @@ ESPEAK_DEPENDENCIES = pulseaudio
 endif
 
 define ESPEAK_EXTRACT_CMDS
-	$(UNZIP) -d $(@D) $(DL_DIR)/$(ESPEAK_SOURCE)
+	$(UNZIP) -d $(@D) $(ESPEAK_DL_DIR)/$(ESPEAK_SOURCE)
 	mv $(@D)/espeak-$(ESPEAK_VERSION)-source/* $(@D)
 	$(RM) -r $(@D)/espeak-$(ESPEAK_VERSION)-source
 endef
@@ -32,12 +32,12 @@ define ESPEAK_CONFIGURE_CMDS
 endef
 
 define ESPEAK_BUILD_CMDS
-	$(MAKE) -C $(@D)/src  $(TARGET_CONFIGURE_OPTS) \
+	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D)/src  $(TARGET_CONFIGURE_OPTS) \
 		AUDIO="$(ESPEAK_AUDIO_BACKEND)" all
 endef
 
 define ESPEAK_INSTALL_TARGET_CMDS
-	$(MAKE) -C $(@D)/src DESTDIR="$(TARGET_DIR)" install
+	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D)/src DESTDIR="$(TARGET_DIR)" install
 endef
 
 $(eval $(generic-package))

@@ -4,60 +4,58 @@
 #
 ################################################################################
 
-SPICE_VERSION = 0.12.4
+SPICE_VERSION = 0.14.2
 SPICE_SOURCE = spice-$(SPICE_VERSION).tar.bz2
-SPICE_SITE = http://www.spice-space.org/download/releases
-SPICE_LICENSE = LGPLv2.1+
+SPICE_SITE = http://www.spice-space.org/download/releases/spice-server
+SPICE_LICENSE = LGPL-2.1+
 SPICE_LICENSE_FILES = COPYING
 SPICE_INSTALL_STAGING = YES
-SPICE_DEPENDENCIES =        \
-	alsa-lib            \
-	celt051             \
-	jpeg                \
-	openssl             \
-	pixman              \
-	python-pyparsing    \
-	spice-protocol      \
+SPICE_DEPENDENCIES = \
+	host-pkgconf \
+	jpeg \
+	libglib2 \
+	openssl \
+	pixman \
+	spice-protocol
+# We're patching subprojects/spice-common/configure.ac
+SPICE_AUTORECONF = YES
 
 # We disable everything for now, because the dependency tree can become
 # quite deep if we try to enable some features, and I have not tested that.
-SPICE_CONF_OPTS =                 \
-	--disable-opengl          \
-	--disable-smartcard       \
-	--disable-automated-tests \
-	--without-sasl            \
+SPICE_CONF_OPTS = \
+	--disable-gstreamer \
+	--disable-opengl \
+	--disable-smartcard \
+	--without-sasl \
+	--disable-manual \
+	--disable-tests
 
 SPICE_DEPENDENCIES += host-pkgconf
 
-ifeq ($(BR2_PACKAGE_SPICE_CLIENT),y)
-SPICE_CONF_OPTS += --enable-client
-SPICE_DEPENDENCIES += xlib_libXfixes xlib_libXrandr
+ifeq ($(BR2_PACKAGE_LZ4),y)
+SPICE_CONF_OPTS += --enable-lz4
+SPICE_DEPENDENCIES += lz4
 else
-SPICE_CONF_OPTS += --disable-client
+SPICE_CONF_OPTS += --disable-lz4
 endif
 
-ifeq ($(BR2_PACKAGE_SPICE_GUI),y)
-SPICE_CONF_OPTS += --enable-gui
-SPICE_DEPENDENCIES += cegui06
+ifeq ($(BR2_PACKAGE_OPUS),y)
+SPICE_CONF_OPTS += --enable-opus
+SPICE_DEPENDENCIES += opus
 else
-SPICE_CONF_OPTS += --disable-gui
+SPICE_CONF_OPTS += --disable-opus
 endif
 
-ifeq ($(BR2_PACKAGE_SPICE_TUNNEL),y)
-SPICE_CONF_OPTS += --enable-tunnel
-SPICE_DEPENDENCIES += slirp
-else
-SPICE_CONF_OPTS += --disable-tunnel
+# no enable/disable, detected using pkg-config
+ifeq ($(BR2_PACKAGE_OPUS),y)
+SPICE_DEPENDENCIES += opus
 endif
-
-SPICE_CONF_ENV = PYTHONPATH=$(TARGET_DIR)/usr/lib/python$(PYTHON_VERSION_MAJOR)/site-packages
-SPICE_MAKE_ENV = PYTHONPATH=$(TARGET_DIR)/usr/lib/python$(PYTHON_VERSION_MAJOR)/site-packages
 
 # We need to tweak spice.pc because it /forgets/ (for static linking) that
 # it should link against libz and libjpeg. libz is pkg-config-aware, while
 # libjpeg isn't, hence the two-line tweak
 define SPICE_POST_INSTALL_STAGING_FIX_PC
-	$(SED) 's/^\(Requires.private:.*\)$$/\1 zlib/; s/^\(Libs.private:.*\)$$/\1 -ljpeg/;'    \
+	$(SED) 's/^\(Requires.private:.*\)$$/\1 zlib/; s/^\(Libs.private:.*\)$$/\1 -ljpeg/;' \
 		"$(STAGING_DIR)/usr/lib/pkgconfig/spice-server.pc"
 endef
 SPICE_POST_INSTALL_STAGING_HOOKS += SPICE_POST_INSTALL_STAGING_FIX_PC

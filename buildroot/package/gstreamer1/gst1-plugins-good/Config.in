@@ -5,8 +5,8 @@ menuconfig BR2_PACKAGE_GST1_PLUGINS_GOOD
 	select BR2_PACKAGE_XLIB_LIBXEXT if BR2_PACKAGE_XORG7
 	select BR2_PACKAGE_XLIB_LIBXV if BR2_PACKAGE_XORG7
 	help
-	  A set of well-supported plug-ins for GStreamer under the preferred
-	  license.
+	  A set of well-supported plug-ins for GStreamer under the
+	  preferred license.
 
 	  http://gstreamer.freedesktop.org/
 
@@ -31,14 +31,6 @@ config BR2_PACKAGE_GST1_PLUGINS_GOOD_BZ2
 	help
 	  Enable bz2 support for the following plugins:
 	  matroska
-
-config BR2_PACKAGE_GST1_PLUGINS_GOOD_ZLIB
-	bool "zlib support"
-	depends on BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_QTDEMUX || BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_ID3DEMUX || BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_MATROSKA
-	select BR2_PACKAGE_ZLIB
-	help
-	  Enable zlib support for the following plugins:
-	  id3demux, qtdemux, matroska
 
 comment "dependency-less plugins"
 
@@ -70,7 +62,8 @@ config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_AUPARSE
 config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_AUTODETECT
 	bool "autodetect"
 	help
-	  Plugin contains auto-detection plugins for video/audio in- and outputs
+	  Plugin contains auto-detection plugins for video/audio in-
+	  and outputs
 
 config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_AVI
 	bool "avi (*.avi video)"
@@ -260,6 +253,18 @@ config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_Y4M
 
 comment "plugins with external dependencies"
 
+config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_LAME
+	bool "lame (*.mp3 audio encoder)"
+	select BR2_PACKAGE_LAME
+	help
+	  Encode MP3s with LAME
+
+config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_MPG123
+	bool "mpg123 (*.mp3 audio)"
+	select BR2_PACKAGE_MPG123
+	help
+	  mp3 decoding based on the mpg123 library
+
 config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_OSS
 	bool "ossaudio (OSS audio)"
 	help
@@ -270,18 +275,48 @@ config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_OSS4
 	help
 	  Open Sound System (OSS) version 4 support for GStreamer
 
+config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_QMLGL
+	bool "qmlgl (qt5)"
+	depends on BR2_PACKAGE_QT5
+	depends on BR2_PACKAGE_QT5_JSCORE_AVAILABLE # qt5declarative
+	depends on BR2_PACKAGE_QT5_GL_AVAILABLE || BR2_PACKAGE_QT5_VERSION_LATEST # qt5declarative-quick
+	select BR2_PACKAGE_QT5BASE_WIDGETS
+	select BR2_PACKAGE_QT5DECLARATIVE
+	select BR2_PACKAGE_QT5DECLARATIVE_QUICK
+	select BR2_PACKAGE_QT5X11EXTRAS if BR2_PACKAGE_QT5BASE_XCB
+	help
+	  QT5 plugin which includes elements qmlglsrc and qmlglsink
+
+comment "qmlgl (qt5) plugin needs an OpenGL-capable Qt5 backend"
+	depends on BR2_PACKAGE_QT5
+	depends on BR2_PACKAGE_QT5_JSCORE_AVAILABLE
+	depends on !BR2_PACKAGE_QT5_GL_AVAILABLE && !BR2_PACKAGE_QT5_VERSION_LATEST
+
+config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_SHOUT2
+	bool "shout2"
+	select BR2_PACKAGE_LIBSHOUT
+	help
+	  Elements to send data to an icecast server using libshout2
+
 config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_V4L2
 	bool "v4l2"
 	depends on BR2_TOOLCHAIN_HEADERS_AT_LEAST_3_0 # multi planar api
 	help
 	  elements for Video 4 Linux
 
-comment "v4l2 needs toolchain w/ headers >= 3.0"
+comment "v4l2 needs a toolchain w/ headers >= 3.0"
 	depends on !BR2_TOOLCHAIN_HEADERS_AT_LEAST_3_0
+
+config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_V4L2_PROBE
+	bool "v4l2-probe (m2m)"
+	depends on BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_V4L2
+	help
+	  Enables the V4L2 probe at plugin load time. This enables
+	  support for v4l2 transform devices, such as m2m
+	  devices. These plugins are registered as v4l2videoNconvert
 
 config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_CAIRO
 	bool "cairo"
-	depends on BR2_ARCH_HAS_ATOMICS # cairo
 	select BR2_PACKAGE_CAIRO
 	select BR2_PACKAGE_CAIRO_PNG
 	help
@@ -299,29 +334,43 @@ comment "flac needs a toolchain w/ wchar"
 
 config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_GDKPIXBUF
 	bool "gdkpixbuf"
-	select BR2_PACKAGE_GDK_PIXBUF
 	depends on BR2_USE_WCHAR # gdk-pixbuf -> libglib2
 	depends on BR2_TOOLCHAIN_HAS_THREADS # gdk-pixbuf -> libglib2
+	select BR2_PACKAGE_GDK_PIXBUF
 	help
 	  GdkPixbuf-based image decoder, overlay and sink
 
 comment "gdkpixbuf needs a toolchain w/ wchar, threads"
 	depends on !BR2_USE_WCHAR || !BR2_TOOLCHAIN_HAS_THREADS
 
+config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_JACK
+	bool "jack"
+	depends on BR2_INSTALL_LIBSTDCPP
+	depends on !BR2_STATIC_LIBS
+	depends on BR2_TOOLCHAIN_HAS_SYNC_4
+	select BR2_PACKAGE_JACK2
+	help
+	  JACK audio source/sink plugin
+
+comment "jack needs a toolchain w/ C++, dynamic library"
+	depends on BR2_TOOLCHAIN_HAS_SYNC_4
+	depends on !BR2_INSTALL_LIBSTDCPP || BR2_STATIC_LIBS
+
 config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_PULSE
-	depends on BR2_TOOLCHAIN_HAS_THREADS # pulseaudio
-	depends on BR2_LARGEFILE # pulseaudio -> libsndfile
-	depends on BR2_USE_MMU # pulseaudio
-	depends on BR2_ARCH_HAS_ATOMICS # pulseaudio
-	select BR2_PACKAGE_PULSEAUDIO
 	bool "pulseaudio"
+	depends on BR2_TOOLCHAIN_HAS_THREADS # pulseaudio
+	depends on BR2_USE_MMU # pulseaudio
+	depends on !BR2_STATIC_LIBS # pulseaudio
+	depends on BR2_USE_WCHAR # pulseaudio
+	depends on BR2_PACKAGE_PULSEAUDIO_HAS_ATOMIC # pulseaudio
+	select BR2_PACKAGE_PULSEAUDIO
 	help
 	  PulseAudio plugin library
 
-comment "pulseaudio support needs a toolchain w/ largefile, threads"
+comment "pulseaudio support needs a toolchain w/ threads, wchar, dynamic library"
 	depends on BR2_USE_MMU
-	depends on BR2_ARCH_HAS_ATOMICS
-	depends on !BR2_LARGEFILE || !BR2_TOOLCHAIN_HAS_THREADS
+	depends on BR2_PACKAGE_PULSEAUDIO_HAS_ATOMIC
+	depends on !BR2_TOOLCHAIN_HAS_THREADS || BR2_STATIC_LIBS || !BR2_USE_WCHAR
 
 config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_SOUPHTTPSRC
 	bool "souphttpsrc (http client)"
@@ -351,10 +400,16 @@ config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_TAGLIB
 comment "taglib needs a toolchain w/ C++, wchar"
 	depends on !BR2_INSTALL_LIBSTDCPP || !BR2_USE_WCHAR
 
+config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_TWOLAME
+	bool "twolame"
+	select BR2_PACKAGE_TWOLAME
+	help
+	  twolame mp2 audio encoder plugin
+
 config BR2_PACKAGE_GST1_PLUGINS_GOOD_PLUGIN_VPX
 	bool "vpx (webm)"
-	select BR2_PACKAGE_LIBVPX
 	depends on BR2_TOOLCHAIN_HAS_THREADS # libvpx
+	select BR2_PACKAGE_LIBVPX
 	help
 	  VP8 plugin
 

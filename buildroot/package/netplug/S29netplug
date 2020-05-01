@@ -11,6 +11,9 @@
 
 # Copyright 2003 Key Research, Inc.
 
+# Create needed directories
+mkdir -p /var/lock/subsys
+
 # Source function library.
 if [ -f /etc/init.d/functions ]; then
 	. /etc/init.d/functions
@@ -19,36 +22,34 @@ elif [ -f /etc/rc.d/init.d/functions ]; then
 fi
 
 # Source networking configuration.
-if [ -f /etc/sysconfig/network ]; then
-	. /etc/sysconfig/network
+if [ -f /etc/default/network ]; then
+	. /etc/default/network
 
 	# Check that networking is up.
-	[ ${NETWORKING} = "no" ] && exit 0
+	[ "${NETWORKING}" = "no" ] && exit 0
 elif [ ! -f /etc/network/interfaces ]; then
 	# No network support
 	exit 0
 fi
 
-[ -x /sbin/netplugd ] || exit 0
-
-if [ -f /etc/sysconfig/netplugd ]; then
-    . /etc/sysconfig/netplugd
+if [ -f /etc/default/netplugd ]; then
+    . /etc/default/netplugd
 fi
 
 # See how we were called.
 case "$1" in
   start)
 	# Start daemon.
-	echo -n "Starting network plug daemon: "
-	start-stop-daemon -S -q -p /var/run/netplugd.pid -x /sbin/netplugd ${NETPLUGDARGS}
+	printf "Starting network plug daemon: "
+	start-stop-daemon -S -q -x /sbin/netplugd -- -p /var/run/netplugd.pid ${NETPLUGDARGS}
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/netplugd
 	;;
   stop)
 	# Stop daemon.
-	echo -n "Shutting down network plug daemon: "
-	start-stop-daemon -K -n netplugd
+	printf "Shutting down network plug daemon: "
+	start-stop-daemon -K -q -p /var/run/netplugd.pid
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/netplugd

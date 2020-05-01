@@ -1,2 +1,4 @@
-# From https://ssl.icu-project.org/files/icu4c/54.1/icu4c-src-54_1.md5
-md5	e844caed8f2ca24c088505b0d6271bc0	icu4c-54_1-src.tgz
+# From https://github.com/unicode-org/icu/releases/download/release-65-1/SHASUM512.txt
+sha512 8f1ef33e1f4abc9a8ee870331c59f01b473d6da1251a19ce403f822f3e3871096f0791855d39c8f20c612fc49cda2c62c06864aa32ddab2dbd186d2b21ce9139  icu4c-65_1-src.tgz
+# Locally computed
+sha256 6a18c5fac70d7860b57f5b72b4e2c9a1ba6b3d2741eef7ff9767c5379364f10d  LICENSE

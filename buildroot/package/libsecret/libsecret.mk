@@ -4,13 +4,20 @@
 #
 ################################################################################
 
-LIBSECRET_VERSION = 0.18
-LIBSECRET_SITE = http://ftp.gnome.org/pub/GNOME/sources/libsecret/$(LIBSECRET_VERSION)
+LIBSECRET_VERSION_MAJOR = 0.18
+LIBSECRET_VERSION = $(LIBSECRET_VERSION_MAJOR).8
+LIBSECRET_SITE = http://ftp.gnome.org/pub/GNOME/sources/libsecret/$(LIBSECRET_VERSION_MAJOR)
 LIBSECRET_SOURCE = libsecret-$(LIBSECRET_VERSION).tar.xz
 LIBSECRET_INSTALL_STAGING = YES
-LIBSECRET_DEPENDENCIES = libglib2 host-intltool
-LIBSECRET_CONF_OPTS = --disable-manpages --disable-strict --disable-coverage --enable-vala=no
-LIBSECRET_LICENSE = LGPLv2.1+
+LIBSECRET_DEPENDENCIES = libglib2 $(TARGET_NLS_DEPENDENCIES)
+LIBSECRET_CONF_ENV = LIBS=$(TARGET_NLS_LIBS)
+LIBSECRET_CONF_OPTS = \
+	--disable-manpages \
+	--disable-strict \
+	--disable-coverage \
+	--enable-introspection=no \
+	--enable-vala=no
+LIBSECRET_LICENSE = LGPL-2.1+
 LIBSECRET_LICENSE_FILES = COPYING
 
 ifeq ($(BR2_PACKAGE_LIBGCRYPT),y)

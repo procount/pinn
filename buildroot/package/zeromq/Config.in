@@ -1,13 +1,9 @@
-comment "zeromq needs a toolchain w/ C++, IPv6, largefile, wchar, threads"
-	depends on !(BR2_INSTALL_LIBSTDCPP && BR2_INET_IPV6 && BR2_LARGEFILE \
-		&& BR2_USE_WCHAR && BR2_TOOLCHAIN_HAS_THREADS)
+comment "zeromq needs a toolchain w/ C++, threads"
+	depends on !(BR2_INSTALL_LIBSTDCPP && BR2_TOOLCHAIN_HAS_THREADS)
 
 config BR2_PACKAGE_ZEROMQ
 	bool "zeromq"
 	depends on BR2_INSTALL_LIBSTDCPP
-	depends on BR2_INET_IPV6
-	depends on BR2_LARGEFILE # util-linux
-	depends on BR2_USE_WCHAR # util-linux
 	depends on BR2_TOOLCHAIN_HAS_THREADS
 	select BR2_PACKAGE_UTIL_LINUX
 	select BR2_PACKAGE_UTIL_LINUX_LIBUUID
@@ -17,7 +13,7 @@ config BR2_PACKAGE_ZEROMQ
 	  sockets that carry whole messages across various transports
 	  like in-process, inter- process, TCP, and multicast. You can
 	  connect sockets N-to-N with patterns like fanout, pub-sub,
-	  task distribution, and request-reply.  It's fast enough to
+	  task distribution, and request-reply. It's fast enough to
 	  be the fabric for clustered products. Its asynchronous I/O
 	  model gives you scalable multicore applications, built as
 	  asynchronous message-processing tasks. It has a score of
@@ -29,15 +25,38 @@ config BR2_PACKAGE_ZEROMQ
 
 if BR2_PACKAGE_ZEROMQ
 
+comment "norm support needs a toolchain w/ dynamic library"
+	depends on BR2_STATIC_LIBS
+
+config BR2_PACKAGE_ZEROMQ_NORM
+	bool "NORM support"
+	depends on !BR2_STATIC_LIBS
+	select BR2_PACKAGE_NORM
+	help
+	  Add support for NACK-Oriented Reliable Multicast (RFC 5740)
+	  protocol.
+
+comment "PGM/EPGM support needs a toolchain w/ wchar"
+	depends on BR2_TOOLCHAIN_HAS_SYNC_2
+	depends on BR2_TOOLCHAIN_HAS_SYNC_4
+	depends on !BR2_USE_WCHAR
+
 config BR2_PACKAGE_ZEROMQ_PGM
 	bool "PGM/EPGM support"
-	depends on !BR2_avr32 # openpgm
-	depends on !BR2_TOOLCHAIN_EXTERNAL_BLACKFIN_UCLINUX_2013R1 # openpgm
-	depends on !BR2_TOOLCHAIN_EXTERNAL_BLACKFIN_UCLINUX_2012R2 # openpgm
+	depends on BR2_TOOLCHAIN_HAS_SYNC_2
+	depends on BR2_TOOLCHAIN_HAS_SYNC_4
+	depends on BR2_USE_WCHAR # openpgm
 	select BR2_PACKAGE_OPENPGM
 	help
-	  Add support for Pragmatic General Multicast protocol (RFC 3208)
-	  implemented either over raw IP packets or UDP datagrams
-	  (encapsulated PGM). This requires OpenPGM library.
+	  Add support for Pragmatic General Multicast protocol (RFC
+	  3208) implemented either over raw IP packets or UDP
+	  datagrams (encapsulated PGM).
+
+config BR2_PACKAGE_ZEROMQ_DRAFTS
+	bool "Draft APIs support"
+	help
+	  Enable unstable draft ZeroMQ APIs
+
+	  https://pyzmq.readthedocs.io/en/latest/draft.html
 
 endif
