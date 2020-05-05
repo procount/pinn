@@ -1204,7 +1204,7 @@ To add extra packages: `cd buildroot; make menuconfig`
 
 Recovery software packaging is in: `buildroot/package/recovery`
 
-Kernel configuration used: `buildroot/kernelconfig-recovery.armv6` and `kernelconfig-recovery.armv7`
+Kernel configuration used: `buildroot/kernelconfig-recovery.armv6`, `kernelconfig-recovery.armv7` and `kernelconfig-recovery.armv7l`
 
 Main differences with `bcmrpi_defconfig`:
 - `CONFIG_BLK_DEV_INITRD=y` - initramfs support

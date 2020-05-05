@@ -162,7 +162,9 @@ endif
 # going to be installed in the target filesystem.
 LINUX_VERSION_PROBED = `$(MAKE) $(LINUX_MAKE_FLAGS) -C $(LINUX_DIR) --no-print-directory -s kernelrelease 2>/dev/null`
 
-LINUX_DTS_NAME += $(call qstrip,$(BR2_LINUX_KERNEL_INTREE_DTS_NAME))
+ifeq ($(BR2_LINUX_KERNEL_DTB_IS_SELF_BUILT),)
+	LINUX_DTS_NAME += $(call qstrip,$(BR2_LINUX_KERNEL_INTREE_DTS_NAME))
+endif
 
 # We keep only the .dts files, so that the user can specify both .dts
 # and .dtsi files in BR2_LINUX_KERNEL_CUSTOM_DTS_PATH. Both will be
@@ -430,6 +432,16 @@ define LINUX_INSTALL_DTB
 endef
 endif # BR2_LINUX_KERNEL_APPENDED_DTB
 endif # BR2_LINUX_KERNEL_DTB_IS_SELF_BUILT
+ifeq ($(BR_LINUX_KERNEL_RPI),y)
+define LINUX_INSTALL_DTB
+ 	cp $(LINUX_ARCH_PATH)/boot/dts/bcm27*.dtb \
+  		$(1)/
+ 	mkdir -p $(1)/overlays/
+ 	cp $(LINUX_ARCH_PATH)/boot/dts/overlays/*.dtbo \
+ 		$(LINUX_ARCH_PATH)/boot/dts/overlays/README \
+ 		$(1)/overlays/
+endef
+endif
 endif # BR2_LINUX_KERNEL_DTS_SUPPORT
 
 ifeq ($(BR2_LINUX_KERNEL_APPENDED_DTB),y)
@@ -596,8 +608,10 @@ endif
 endif
 
 ifeq ($(BR2_LINUX_KERNEL_DTS_SUPPORT):$(strip $(LINUX_DTS_NAME)),y:)
+ifeq ($(BR2_LINUX_KERNEL_DTB_IS_SELF_BUILT),)
 $(error No kernel device tree source specified, check your \
 	BR2_LINUX_KERNEL_INTREE_DTS_NAME / BR2_LINUX_KERNEL_CUSTOM_DTS_PATH settings)
+endif
 endif
 
 endif # BR_BUILDING

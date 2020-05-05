@@ -4,11 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network dbus
+QT       += core gui network dbus widgets multimedia
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+lessThan(QT_MAJOR_VERSION,5): error(This project requires at least QT 5)
 
-RPI_USERLAND_DIR=../../staging/usr
+RPI_USERLAND_DIR=../../host/arm-buildroot-linux-uclibcgnueabi/sysroot/usr
 exists($${RPI_USERLAND_DIR}/include/interface/vmcs_host/vc_cecservice.h) {
     INCLUDEPATH += $${RPI_USERLAND_DIR}/include $${RPI_USERLAND_DIR}/include/interface/vcos/pthreads
     LIBS += -lbcm_host -lvcos -lvchiq_arm -lvchostif -L$${RPI_USERLAND_DIR}/lib -lrt -ldl
@@ -20,7 +20,7 @@ exists($${RPI_USERLAND_DIR}/include/interface/vmcs_host/vc_cecservice.h) {
 
 TARGET = recovery
 TEMPLATE = app
-LIBS += -lqjson 
+LIBS += -lqjson-qt5
 
 system(sh updateqm.sh 2>/dev/null)
 
@@ -183,3 +183,5 @@ OTHER_FILES += \
     wpa_supplicant/wpa_supplicant.xml \
     ../buildroot/package/recovery/init \
     recalbox_os_list.json
+    
+QMAKE_CXXFLAGS += -w

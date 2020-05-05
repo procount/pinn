@@ -7,7 +7,7 @@ KERNEL="4.19"
 
 # Final directory where NOOBS files will be copied to
 NOOBS_OUTPUT_DIR="output"
-export QT_SELECT=4
+export QT_SELECT=5
 
 function get_package_version {
   PACKAGE=$1
@@ -112,7 +112,7 @@ function select_kernelconfig {
 #    sed -ri "s/(^$CONFIG_VAR=\").+(\")$/\1$VERSION\2/" "$CONFIG_FILE"
 
 }
-
+clear
 cd buildroot
 
 # WARNING: don't try changing these - you'll break buildroot
@@ -125,25 +125,33 @@ SKIP_KERNEL_7=0
 SKIP_KERNEL_7L=0
 SKIP_RECOVERY_REBUILD=0
 UPDATE_TS=0
+SKIP_BUILD=0
+CLEAN_BUILD=0
+HOST_ARCH=$(uname -m)
 
 for i in $*; do
+    # Update LibreELEC/brcmfmac_sdio-firmware-rpi master HEAD version in package/rpi-wifi-firmware/rpi-wifi-firmware.mk to latest
+    if [ $i = "update-wifi-firmware" ] || [ $i = "update-all" ]; then
+        update_github_package_version rpi-wifi-firmware LibreELEC/brcmfmac_sdio-firmware-rpi master
+    fi
+    
     # Update raspberrypi/firmware master HEAD version in package/rpi-firmware/rpi-firmware.mk to latest
-    if [ $i = "update-firmware" ]; then
+    if [ $i = "update-firmware" ] || [ $i = "update-all" ]; then
         update_github_package_version rpi-firmware raspberrypi/firmware stable
     fi
-
+    
     # Update raspberrypi/userland master HEAD version in package/rpi-userland/rpi-userland.mk to latest
-    if [ $i = "update-userland" ]; then
+    if [ $i = "update-userland" ] || [ $i = "update-all" ]; then
         update_github_package_version rpi-userland raspberrypi/userland master
     fi
 
     # Update raspberrypi/linux rpi-$KERNEL.y HEAD version in buildroot/.config to latest
-    if [ $i = "update-kernel" ]; then
+    if [ $i = "update-kernel" ] || [ $i = "update-all" ]; then
         update_github_kernel_version raspberrypi/linux rpi-$KERNEL.y
     fi
 
     # Update language TS files
-    if [ $i = "update-ts" ]; then
+    if [ $i = "update-ts" ] || [ $i = "update-all" ]; then
         UPDATE_TS=1
     fi
 
@@ -166,14 +174,18 @@ for i in $*; do
         SKIP_KERNEL_7L=1
     fi
 
-    # Option to build just recovery without completely rebuilding both kernels
+    # Option to skip building recovery again if it's already built
     if [ $i = "skip-recovery-rebuild" ]; then
         SKIP_RECOVERY_REBUILD=1
     fi
 
+    if [ $i = "cleanbuild" ]; then
+        CLEAN_BUILD=1
+    fi
+    
     # Early-exit (in case we want to just update config files without doing a build)
     if [ $i = "nobuild" ]; then
-        exit
+        SKIP_BUILD=1
     fi
 
     if [ $i = "help" ]; then
@@ -182,15 +194,28 @@ for i in $*; do
 	echo "update-userland"
 	echo "update-kernel"
 	echo "update-ts"
+	echo "update-all"
 	echo "skip-kernel-rebuild"
 	echo "skip-kernel-6"
 	echo "skip-kernel-7"
 	echo "skip-kernel-7l"
 	echo "skip-recovery-rebuild"
+	echo "cleanbuild"
 	echo "nobuild"
 	exit
     fi
 done
+
+if [ $CLEAN_BUILD -eq 1 ]; then
+    # Clean buildroot/output directory
+    echo "Cleaning buildroot/output directory..."
+    make clean
+fi
+
+if [ $SKIP_BUILD -eq 1 ]; then
+    # exit here to allow nobuild to be any of the options, not just the last one
+    exit
+fi
 
 if [ $SKIP_RECOVERY_REBUILD -ne 1 ]; then
     # Delete buildroot build directory to force rebuild
@@ -199,8 +224,14 @@ if [ $SKIP_RECOVERY_REBUILD -ne 1 ]; then
     fi
 fi
 
+if [ $HOST_ARCH = arm* ]; then
+    # buildroot can't run on arm, aarch64 works fine
+    echo "Building on ARM isn't supported."
+    exit
+fi
 
 # Let buildroot build everything
+echo "Please wait while buildroot builds everything..."
 make
 
 # copy any updated translation files
@@ -285,7 +316,7 @@ echo "Build-date: $(date +"%Y-%m-%d")" > "$BUILD_INFO"
 echo "PINN Version: $(sed -n 's|.*VERSION_NUMBER.*\"\(.*\)\"|v\1|p' ../recovery/config.h)" >> "$BUILD_INFO"
 echo "PINN Git HEAD @ $(git rev-parse --verify HEAD)" >> "$BUILD_INFO"
 echo "rpi-userland Git master @ $(get_package_version rpi-userland)" >> "$BUILD_INFO"
-echo "rpi-firmware Git master @ $(get_package_version rpi-firmware)" >> "$BUILD_INFO"
+echo "rpi-firmware Git stable @ $(get_package_version rpi-firmware)" >> "$BUILD_INFO"
 echo "rpi-linux Git rpi-$KERNEL.y @ $(get_kernel_version)" >> "$BUILD_INFO"
 
 cd ..

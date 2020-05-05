@@ -1,0 +1,5 @@
+config BR2_PACKAGE_SCSIFIX
+        bool "scsi header fix"
+        help
+            fixes missing headers for parted
+    

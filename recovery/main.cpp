@@ -571,7 +571,6 @@ int main(int argc, char *argv[])
     // Main window in the middle of screen
     MainWindow mw(drive, defaultDisplay, splash, noobsconfig);
     gMW = &mw;  //Make it available globally.
-
     mw.setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, mw.size(), a.desktop()->availableGeometry()));
     mw.show();
 

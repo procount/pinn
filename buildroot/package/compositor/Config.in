@@ -1,0 +1,5 @@
+config BR2_PACKAGE_COMPOSITOR
+        bool "PINN compositor"
+        help
+          A wayland compositor
+

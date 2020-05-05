@@ -6,5 +6,3 @@ all: rebootp
 rebootp: rebootp.c
 	$(CC) -static rebootp.c -o rebootp
 
-
-

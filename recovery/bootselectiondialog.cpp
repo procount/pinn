@@ -31,7 +31,9 @@
 #include <QSettings>
 #include <QDesktopWidget>
 #include <QScreen>
+#ifdef Q_WS_QWS
 #include <QWSServer>
+#endif
 #include <QRegExp>
 #include <QDebug>
 #include <QMouseEvent>
@@ -56,7 +58,7 @@ BootSelectionDialog::BootSelectionDialog(
     _dsi(dsi),
     ui(new Ui::BootSelectionDialog),
     _inSelection(false),
-    _drive(drive.toAscii())
+    _drive(drive.toLatin1())
 {
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
     ui->setupUi(this);
@@ -391,7 +393,7 @@ void BootSelectionDialog::updateConfig4dsi(QByteArray partition)
     update->setProcessChannelMode(QProcess::MergedChannels);
     bool bHDMI=true;
     QString status = update->readAll();
-    QByteArray qba = status.toAscii();
+    QByteArray qba = status.toLatin1();
     const char * result= qba.constData();
 
     if (status.length())

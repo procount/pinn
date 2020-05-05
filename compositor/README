@@ -1,0 +1,8 @@
+A minimal example showing what is required to get a C++ based compositor up
+and running. Input events are not delivered to clients, to avoid the logic
+for finding the correct window and map the coordinates. This example uses the
+IVI-application shell protocol, positioning windows based on the ivi_id.
+
+See the qwindow-compositor example for information on how to implement
+support for key and mouse events, and everything else a proper desktop
+compositor needs.

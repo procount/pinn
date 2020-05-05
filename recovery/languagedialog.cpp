@@ -16,8 +16,10 @@
 #include <QDir>
 #include <QLocale>
 #include <QKeyEvent>
+#ifdef Q_WS_QWS
 #include <QWSServer>
 #include <QKbdDriverFactory>
+#endif
 #include <QProcess>
 #include <QSettings>
 

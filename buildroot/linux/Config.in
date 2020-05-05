@@ -393,7 +393,15 @@ config BR2_LINUX_KERNEL_DTB_IS_SELF_BUILT
 config BR2_LINUX_KERNEL_APPENDED_DTB
 	bool
 
+config BR_LINUX_KERNEL_RPI
+	select BR2_LINUX_KERNEL_DTB_IS_SELF_BUILT
+	bool "Raspberry Pi kernel fixes"
+	help
+	  Fix install path of dtb files for the
+	  Raspberry Pi.
+
 config BR2_LINUX_KERNEL_INTREE_DTS_NAME
+	depends on !BR2_LINUX_KERNEL_DTB_IS_SELF_BUILT
 	string "In-tree Device Tree Source file names"
 	help
 	  Name of in-tree device tree source file, without
