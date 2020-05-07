@@ -14,6 +14,16 @@ start() {
 		--exec /usr/sbin/dropbear -- $DROPBEAR_ARGS
 	[ $? = 0 ] && echo "" || echo "Starting dropbear sshd: FAIL"
 }
+
+startpinn() {
+	DROPBEAR_ARGS="$DROPBEAR_ARGS -r /tmp/key.pub"
+
+	umask 077
+	start-stop-daemon -S -q -p /var/run/dropbear.pid \
+		--exec /usr/sbin/dropbear -- $DROPBEAR_ARGS
+	[ $? = 0 ] && echo "" || echo "Starting dropbear sshd: FAIL"
+}
+
 stop() {
 	start-stop-daemon -K -q -p /var/run/dropbear.pid
 	[ $? = 0 ] && echo "" || echo "Stopping dropbear sshd: FAIL"
@@ -27,6 +37,9 @@ case "$1" in
   start)
   	start
 	;;
+  startpinn)
+  	startpinn
+	;;
   stop)
   	stop
 	;;
@@ -34,7 +47,7 @@ case "$1" in
   	restart
 	;;
   *)
-	echo "Usage: $0 {start|stop|restart}"
+	echo "Usage: $0 {start|stop|restart|startpinn}"
 	exit 1
 esac
 

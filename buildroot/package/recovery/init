@@ -49,14 +49,6 @@ if grep -q vncshare /proc/cmdline; then
     export QWS_DISPLAY="VNC:LinuxFB:size=800x480:depth=32:0"
 fi
 
-if grep -q ssh /proc/cmdline; then
-    # SSH server mode. Mainly useful for debugging
-    /bin/mkdir -p /dev/pts
-    /bin/mount -t devpts devpts /dev/pts
-    . /etc/S50dropbear start &
-fi
-
-
 # Mouse acceleration
 #export QWS_MOUSE_PROTO=:accel=1
 
@@ -72,6 +64,7 @@ if [ "$?" == "0" ] ; then
 fi
 
 #Check for user init script
+# Also try to install a shh key if found
 pinndrive=
 mkdir -p /tmp/mnt
 cd /sys/class/block
@@ -93,6 +86,9 @@ do
             if [ -f "/tmp/mnt/pinn_init.sh" ]; then
               sh -c "/tmp/mnt/pinn_init.sh"
             fi
+            if [ -f "/tmp/mnt/sshkey.pub" ]; then
+              cp /tmp/mnt/sshkey.pub  /tmp/key.pub
+            fi
           fi
           umount /dev/$d >/dev/null
         fi
@@ -101,6 +97,17 @@ do
   fi
 done
 rmdir /tmp/mnt
+
+if grep -q ssh /proc/cmdline; then
+    # SSH server mode. Mainly useful for debugging
+    /bin/mkdir -p /dev/pts
+    /bin/mount -t devpts devpts /dev/pts
+    if [ -f "/tmp/key.pub" ]; then
+      . /etc/S50dropbear startpinn &
+      else
+      . /etc/S50dropbear start &
+    fi
+fi
 
 
 SAFE_MODE=`vcgencmd get_config safe_mode_gpio`
