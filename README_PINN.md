@@ -5,7 +5,7 @@
 
 The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn-lite.zip) can be downloaded from [sourceforge](http://www.sourceforge.net/projects/pinn).
 
-This README relates to v3.3.3
+This README relates to v3.3.4.1
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -882,11 +882,12 @@ it has now been ported into PINN so that it can clone the SD card offline, whils
 4. Select your internal SD card as the source (/dev/mmcblk0) and the SD card in the USB reader as the destination (usually `/dev/sda`).
 5. Select OK to clone your SD card.
 
-All partitions will be copied onto the second card whilst the last partition will be sized to fit the remainder of the SD card. 
+All partitions will be copied onto the second card whilst the last partition will be sized to fit the remainder of the SD card if that option is selected. 
 In this way, your existing data can be migrated to a smaller or larger SD card.
 
 _Note1: that if you have installed multiple OSes using PINN, only the last partition of the last OS on the SD card will be resized._
-_Note2: The clone function can also be used to copy any USB drive to any other USB drive - it doesn't have to incldue the SD card at all._
+_Note2: The clone function can also be used to copy any USB drive to any other USB drive - it doesn't have to include the SD card at all._
+_Note3: Be careful when choosing source and destinations drives not to overwrite any important drives._
 
 ## Set Time
 

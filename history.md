@@ -5,6 +5,14 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.3.4.1
+
+- **CloneSD**      - Remove drive restrictions on Clone SD
+- **Set Time**     - Added indication that time is in UTC
+- **Replace**      - Fixed shortcut for Replace OS
+- **Buildversions** - Made buildversions more intuitive (for me!)
+- **Legacy**       - Accounted for Pi4 when identifying legacy hardware
+
 ### V3.3.3
 
 - **MBR fix**      - Better detection of non-MBR formatted SD cards.

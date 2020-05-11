@@ -564,3 +564,11 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Reload Repos** - New button to reload the distribution list from internet.
 - **fontsize**     - Added rudimentary font size adjustment using +/- keys.
 
+### V3.3.4.1
+
+- **CloneSD**      - Remove drive restrictions on Clone SD
+- **Set Time**     - Added indication that time is in UTC
+- **Replace**      - Fixed shortcut for Replace OS
+- **Buildversions** - Made buildversions more intuitive (for me!)
+- **Legacy**       - Accounted for Pi4 when identifying legacy hardware
+

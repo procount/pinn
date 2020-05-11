@@ -70,10 +70,7 @@ void piclonedialog::checkDrives(void)
             if (fgets (device, sizeof (device) - 1, fp) == NULL)
                 break;
             qDebug() << device;
-            if (!strncmp (device + 5, "sd", 2) || !strncmp (device + 5, "mmcblk1", 7) )
-            {
-                n=n+1;
-            }
+            n=n+1;
         }
     }
     if (n != lastNumDrives)
@@ -117,7 +114,6 @@ void piclonedialog::on_drives_changed(void)
     dst_count=0;        
 
 	// populate the comboboxes
-    ui->from_cb->insertItem(0,"Internal SD card  (/dev/mmcblk0)");
 	src_count++;
 
     fp = popen ("parted -l | grep \"^Disk /dev/\" | cut -d ' ' -f 2 | cut -d ':' -f 1", "r");
@@ -128,12 +124,10 @@ void piclonedialog::on_drives_changed(void)
             if (fgets (device, sizeof (device) - 1, fp) == NULL)
                 break;
 
-	        if (!strncmp (device + 5, "sd", 2) || !strncmp (device + 5, "mmcblk1", 7) )
-	        {
-	            device[strlen (device) - 1] = 0;
-                drives << device;
-                qDebug() <<device;
-	        }
+            device[strlen (device) - 1] = 0;
+            drives << device;
+            qDebug() <<device;
+
 	    }
         pclose(fp);
 	}
