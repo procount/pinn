@@ -572,3 +572,9 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Buildversions** - Made buildversions more intuitive (for me!)
 - **Legacy**       - Accounted for Pi4 when identifying legacy hardware
 
+### V3.3.4.2
+
+- **Firmware**     - Update firmware 5.4.45 for usb-boot (beta)
+- **Name Change**  - Update recommended OS name
+- **KeybdTrigger** - Fix keyboard trigger option
+- **Translations** - Update Italian language

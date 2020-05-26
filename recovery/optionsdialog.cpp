@@ -246,7 +246,7 @@ void OptionsDialog::write()
 
     cb_entry(forcetrigger);
     cb_entry(gpiotriggerenable);
-    cb_entry(keyboardtriggerenable);
+    cb_entry(keyboardtriggerdisable);
     eb_entry(remotetimeout);
     eb_entry(networktimeout);
 
@@ -358,7 +358,7 @@ bool OptionsDialog::recognise(const QString & key, const QString &value)
 
     cb_entry(forcetrigger);
     cb_entry(gpiotriggerenable);
-    cb_entry(keyboardtriggerenable);
+    cb_entry(keyboardtriggerdisable);
     eb_entry(remotetimeout);
     eb_entry(networktimeout);
 

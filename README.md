@@ -43,6 +43,13 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V3.3.4.2
+
+- **Firmware**     - Update firmware 5.4.45 for usb-boot (beta)
+- **Name Change**  - Update recommended OS name
+- **KeybdTrigger** - Fix keyboard trigger option
+- **Translations** - Update Italian language
+
 ### V3.3.4.1
 
 - **CloneSD**      - Remove drive restrictions on Clone SD

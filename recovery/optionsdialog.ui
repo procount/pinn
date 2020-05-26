@@ -28,7 +28,7 @@
         <string/>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="installation">
         <attribute name="title">
@@ -423,12 +423,12 @@
             </widget>
            </item>
            <item row="0" column="2">
-            <widget class="QCheckBox" name="cb_keyboardtriggerenable">
+            <widget class="QCheckBox" name="cb_keyboardtriggerdisable">
              <property name="toolTip">
               <string>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</string>
              </property>
              <property name="text">
-              <string>&amp;keyboardtriggerenable</string>
+              <string>&amp;keyboardtriggerdisable</string>
              </property>
             </widget>
            </item>
