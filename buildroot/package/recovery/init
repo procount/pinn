@@ -1,0 +1,205 @@
+#!/bin/sh
+#
+# Recovery init script
+#
+
+# Standard busybox init
+/bin/mount -t proc proc /proc
+/bin/mount -o remount,rw,noatime /
+/bin/mount -t sysfs sysfs /sys
+/bin/mount -t devtmpfs dev /dev 2>/dev/null
+/bin/hostname -F /etc/hostname
+/bin/mount -t tmpfs tmpfs /tmp
+
+modprobe 8188eu
+modprobe 8192cu
+
+# Newer kernel versions can load firmware from /lib/firmware by themselves without help
+# However that can fail during boot due to our initrd ramdisk not being mounted in time
+# Retry any pending requests
+(cd /sys/class/firmware
+for F in *; do
+    if [ -d "$F" ]; then
+        echo 1 > "$F/loading"
+        cat "/lib/firmware/${F/!//}" > "$F/data"
+        echo 0 > "$F/loading"
+    fi
+done
+echo 1 > timeout)
+
+# Set up ACT LED to be triggered by mmc0
+echo mmc0 > /sys/class/leds/led0/trigger
+
+# Rescue shell available on tty2 and tty3
+echo 2 >/sys/module/vt/parameters/cur_default
+/sbin/getty -L tty2 0 vt100 &
+/sbin/getty -L tty3 0 vt100 &
+/sbin/getty -L ttyAMA0 115200 vt100 &
+
+# Enable syslog
+/etc/init.d/S01logging start > /dev/null
+
+if grep -q vncinstall /proc/cmdline; then
+    # VNC server mode. Mainly useful for making screenshots
+    export QWS_DISPLAY="VNC:size=800x480:depth=32:0"
+fi
+
+if grep -q vncshare /proc/cmdline; then
+    #VNC server AND framebuffer for screen sharing
+    export QWS_DISPLAY="VNC:LinuxFB:size=800x480:depth=32:0"
+fi
+
+if grep -q ssh /proc/cmdline; then
+    # SSH server mode. Mainly useful for debugging
+    /bin/mkdir -p /dev/pts
+    /bin/mount -t devpts devpts /dev/pts
+    . /etc/S50dropbear start &
+fi
+
+
+# Mouse acceleration
+#export QWS_MOUSE_PROTO=:accel=1
+
+# Pi touch screen
+if [ -e /sys/devices/platform/rpi_ft5406 ]; then
+    export QWS_MOUSE_PROTO="linuxinput:/dev/input/event0:grab=1 intellimouse:/dev/input/mice"
+fi
+
+# Hyperpixel touchscreen
+dmesg | grep "Using: pimhyp" >/dev/null
+if [ "$?" == "0" ] ; then
+    export QWS_MOUSE_PROTO="linuxinput:/dev/input/event0:grab=1 intellimouse:/dev/input/mice"
+fi
+
+#Check for user init script
+pinndrive=
+mkdir -p /tmp/mnt
+cd /sys/class/block
+for d in *1/;
+do
+  # remove trailing slash
+  d=${d%?}
+  if [ -h $d ]; then
+    cd $d
+    realpath=`pwd -P`
+    case $realpath in
+      *"devices/virtual"*)
+        ;;
+      *)
+        mount /dev/$d /tmp/mnt 2>/dev/null
+        if [ $? -eq 0 ]; then
+          if [ -f "/tmp/mnt/recovery.rfs" ]; then
+            pinndrive=/dev/$d
+            if [ -f "/tmp/mnt/pinn_init.sh" ]; then
+              sh -c "/tmp/mnt/pinn_init.sh"
+            fi
+          fi
+          umount /dev/$d >/dev/null
+        fi
+    esac
+    cd ..
+  fi
+done
+rmdir /tmp/mnt
+
+
+SAFE_MODE=`vcgencmd get_config safe_mode_gpio`
+
+if ( [ ${SAFE_MODE#*=} -eq 1 ] && ! grep -q disablesafemode /proc/cmdline ) || grep -q rescueshell /proc/cmdline; then
+    sleep 5
+    ifup eth0
+    sh
+fi
+
+    RUN_INSTALLER=
+    GPIO_TRIGGER=
+    KEYBOARD_NO_TRIGGER=
+    FORCE_TRIGGER=
+    DEFAULT_LANG=
+    DEFAULT_KBD=
+    DEFAULT_DISPLAY=
+    DEFAULT_PARTITION=
+    DEFAULT_NOCONFIG=
+    DEFAULT_DSI=
+    DEFAULT_REPOS=
+    EXTRA_REPOS=
+    REPO_LIST=
+    DEFAULT_STYLE=
+    DEFAULT_DRIVE=
+    DEFAULT_WALLPAPER_RESIZE=
+    GPIO_CHANNEL=
+    GPIO_CHANNEL_VALUE=
+
+    if grep -q runinstaller /proc/cmdline; then
+        RUN_INSTALLER=-runinstaller
+    fi
+    if grep -q wallpaper_resize /proc/cmdline; then
+        DEFAULT_WALLPAPER_RESIZE=-wallpaper_resize
+    fi
+    if grep -q gpiotriggerenable /proc/cmdline; then
+        GPIO_TRIGGER=-gpiotriggerenable
+    fi
+    if grep -q keyboardtriggerdisable /proc/cmdline; then
+        KEYBOARD_NO_TRIGGER=-keyboardtriggerdisable
+    fi
+    if grep -q forcetrigger /proc/cmdline; then
+        FORCE_TRIGGER=-forcetrigger
+    fi
+    if grep -q no_default_source /proc/cmdline; then
+        DEFAULT_REPOS=-no_default_source
+    fi
+    if grep -q noobsconfig /proc/cmdline; then
+        DEFAULT_NOCONFIG=-noconfig
+    fi
+    if grep -q dsi /proc/cmdline; then
+        DEFAULT_DSI=-dsi
+    fi
+    for p in `cat /proc/cmdline` ; do
+        if [ "${p%%=*}" == "lang" ] ; then
+            DEFAULT_LANG="-lang ${p#*=}";
+        fi
+        if [ "${p%%=*}" == "keyboard" ] ; then
+            DEFAULT_KBD="-kbdlayout ${p#*=}";
+        fi
+        if [ "${p%%=*}" == "display" ] ; then
+            DEFAULT_DISPLAY="-dispmode ${p#*=}"
+        fi
+        if [ "${p%%=*}" == "partition" ] ; then
+            DEFAULT_PARTITION="-partition ${p#*=}"
+        fi
+        if [ "${p%%=*}" == "alt_image_source" ] ; then
+            EXTRA_REPOS="-alt_image_source ${p#*=}"
+        fi
+        if [ "${p%%=*}" == "repo_list" ] ; then
+            REPO_LIST="-repo_list ${p#*=}"
+        fi
+        if [ "${p%%=*}" == "style" ] ; then
+            DEFAULT_STYLE="-style=${p#*=}"
+        fi
+        if [ -n "$pinndrive" ] ; then
+            DEFAULT_DRIVE="-pinndrive=$pinndrive"
+        fi
+        if [ "${p%%=*}" == "gpiochannel" ] ; then
+            GPIO_CHANNEL="-gpiochannel ${p#*=}"
+        fi
+        if [ "${p%%=*}" == "gpiochannelvalue" ] ; then
+            GPIO_CHANNEL_VALUE="-gpiochannelvalue ${p#*=}"
+        fi
+    done
+
+    if grep -q vncinstall /proc/cmdline; then
+        echo
+        echo "************************************************************************************"
+        echo "*** VNC is enabled on port 5900. Please connect using VNC to see the PINN screen ***"
+        echo "************************************************************************************"
+        echo
+    fi
+
+    /usr/bin/recovery $RUN_INSTALLER $GPIO_TRIGGER $KEYBOARD_NO_TRIGGER $FORCE_TRIGGER $DEFAULT_KBD $DEFAULT_LANG $DEFAULT_DISPLAY $DEFAULT_PARTITION $DEFAULT_NOCONFIG $DEFAULT_DSI $DEFAULT_REPOS $EXTRA_REPOS $REPO_LIST $DEFAULT_STYLE $DEFAULT_DRIVE $DEFAULT_WALLPAPER_RESIZE $GPIO_CHANNEL $GPIO_CHANNEL_VALUE -qws  2>/tmp/debug
+
+
+# Recovery should have rebooted
+
+echo Recovery application crashed
+echo Starting shell
+sh

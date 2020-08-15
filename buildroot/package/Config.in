@@ -2274,6 +2274,12 @@ comment "-------------------------------------------------------"
 	source "package/rpm/Config.in"
 endmenu
 
+menu "PINN packages"
+	source "package/arora/Config.in"
+	source "package/rebootp/Config.in"
+	source "package/recovery/Config.in"
+endmenu
+
 menu "Real-Time"
 	source "package/rtai/Config.in"
 	source "package/xenomai/Config.in"
