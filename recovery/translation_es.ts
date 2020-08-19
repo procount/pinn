@@ -673,13 +673,6 @@ ADVERTENCIA: Esto borrará todos los datos de tu tarjeta SD</translation>
         <translation>Clonar (c)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="583"/>
-        <location filename="mainwindow.ui" line="649"/>
-        <location filename="mainwindow.ui" line="694"/>
-        <source>C</source>
-        <translation>C</translation>
-    </message>
-    <message>
         <location filename="mainwindow.ui" line="338"/>
         <source>Advanced</source>
         <translation type="unfinished">Herramientas avanzadas</translation>

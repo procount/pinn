@@ -176,14 +176,14 @@ bool BackupThread::processImage(const QVariantMap & entry)
             //   dd/gzip image
             emit statusUpdate(tr("%1: Writing image (%2)").arg(os_name, QString(label)));
             targetFileName = backupFolder+"/"+label+".img.gz";
-            cmd = "sh -c \"dd if=" +dev+ " obs=4M | pigz > "+targetFileName+"\"";
+            cmd = "sh -c \"dd if=" +dev+ " obs=4M | pigz > '"+targetFileName+"'\"";
         }
         else
         {
             //   tar gzip
             emit statusUpdate(tr("%1: Archiving (%2)").arg(os_name, QString(label)));
             targetFileName = backupFolder+"/"+label+".tar.gz";
-            cmd = "sh -c \"cd /tmp/src; tar -c . | pigz > "+targetFileName+"\"";
+            cmd = "sh -c \"cd /tmp/src; tar -c . | pigz > '"+targetFileName+"'\"";
         }
 
         qDebug()<<cmd;

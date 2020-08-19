@@ -1219,7 +1219,7 @@ void MultiImageWriteThread::processEntry(const QString &srcFolder, const QString
         }
 
         QFileInfo fi(entry);
-        if (fi.completeSuffix() == "txt")
+        if (fi.suffix() == "txt")
         {   //Read file & process each line (no additional fields).
             QStringList lines;
             if (isURL(fi.filePath()))
@@ -1409,7 +1409,7 @@ QMessageBox::ButtonRole  MultiImageWriteThread::untar(const QString &tarball, co
         cmd += "wget  --retry-connrefused  --read-timeout=120 --tries=inf --no-verbose -O- "+tarball;
     }
     else
-        cmd += "cat "+tarball;
+        cmd += "cat '"+tarball+"'";
 
     cmd += " | tee /tmp/fifo";
 
@@ -1419,7 +1419,7 @@ QMessageBox::ButtonRole  MultiImageWriteThread::untar(const QString &tarball, co
     }
     else if (tarballPath.endsWith(".xz"))
     {
-        cmd += " | xz -dc";
+        cmd += " | xz -dcT 0";
     }
     else if (tarballPath.endsWith(".bz2"))
     {

@@ -653,13 +653,6 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation>Cloner (c)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="583"/>
-        <location filename="mainwindow.ui" line="649"/>
-        <location filename="mainwindow.ui" line="694"/>
-        <source>C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="mainwindow.ui" line="338"/>
         <source>Advanced</source>
         <translation>Avancé</translation>

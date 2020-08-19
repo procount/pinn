@@ -657,13 +657,6 @@ KONTUZ: Honek zure SD txarteleko datu guztiak ezabatuko ditu</translation>
         <translation>Klonatu (c)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="583"/>
-        <location filename="mainwindow.ui" line="649"/>
-        <location filename="mainwindow.ui" line="694"/>
-        <source>C</source>
-        <translation>C</translation>
-    </message>
-    <message>
         <location filename="mainwindow.ui" line="338"/>
         <source>Advanced</source>
         <translation>Aurreratua</translation>

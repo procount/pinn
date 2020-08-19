@@ -653,13 +653,6 @@ VARNING: Detta kommer radera all data på ditt SD-kort</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="583"/>
-        <location filename="mainwindow.ui" line="649"/>
-        <location filename="mainwindow.ui" line="694"/>
-        <source>C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="mainwindow.ui" line="338"/>
         <source>Advanced</source>
         <translation>Avancerat</translation>

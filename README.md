@@ -43,6 +43,12 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V3.3.4.3
+
+- **Backup**       - Fix backup of Raspberry Pi OS
+- **Install**      - Use multithreaded xz
+- **Flavours**     - Fix use of .txt files
+
 ### V3.3.4.2
 
 - **Firmware**     - Update firmware 5.4.45 for usb-boot (beta)

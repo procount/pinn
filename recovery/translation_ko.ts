@@ -703,13 +703,6 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation>복제 (C)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="583"/>
-        <location filename="mainwindow.ui" line="649"/>
-        <location filename="mainwindow.ui" line="694"/>
-        <source>C</source>
-        <translation>C</translation>
-    </message>
-    <message>
         <location filename="mainwindow.cpp" line="293"/>
         <source>Setting up SD card</source>
         <translation>SD 카드 설정</translation>

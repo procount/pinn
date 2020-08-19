@@ -578,3 +578,10 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Name Change**  - Update recommended OS name
 - **KeybdTrigger** - Fix keyboard trigger option
 - **Translations** - Update Italian language
+
+### V3.3.4.3
+
+- **Backup**       - Fix backup of Raspberry Pi OS
+- **Install**      - Use multithreaded xz
+- **Flavours**     - Fix use of .txt files
+

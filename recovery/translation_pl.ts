@@ -653,13 +653,6 @@ UWAGA: To usunie wszystkie dane zapisane na karcie SD</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="583"/>
-        <location filename="mainwindow.ui" line="649"/>
-        <location filename="mainwindow.ui" line="694"/>
-        <source>C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="mainwindow.ui" line="338"/>
         <source>Advanced</source>
         <translation>Zaawansowane</translation>
