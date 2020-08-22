@@ -584,4 +584,5 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Backup**       - Fix backup of Raspberry Pi OS
 - **Install**      - Use multithreaded xz
 - **Flavours**     - Fix use of .txt files
+- **bugfix**       - fix crash if no source (#414)
 

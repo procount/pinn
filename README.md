@@ -48,6 +48,7 @@ Please note that in some cases it may extract the files into a folder, if this i
 - **Backup**       - Fix backup of Raspberry Pi OS
 - **Install**      - Use multithreaded xz
 - **Flavours**     - Fix use of .txt files
+- **bugfix**       - fix crash if no source (#414)
 
 ### V3.3.4.2
 

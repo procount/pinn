@@ -2203,9 +2203,12 @@ void MainWindow::downloadLists()
     if (urls.isEmpty())
     {
         //No network lists to download, so remove the dialog.
-        _qpd->hide();
-        _qpd->deleteLater();
-        _qpd = NULL;
+        if (_qpd)
+        {
+            _qpd->hide();
+            _qpd->deleteLater();
+            _qpd = NULL;
+        }
     }
     else
     {
