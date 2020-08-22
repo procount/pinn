@@ -1,0 +1,36 @@
+From 4770af94884be5a603934b36e6804eed7d18d43c Mon Sep 17 00:00:00 2001
+From: Peter Seiderer <ps.report@gmx.net>
+Date: Fri, 3 Apr 2020 22:42:23 +0200
+Subject: [PATCH 2/3] brcm-egl: needs
+ wayland-scanner-client-wayland-protocol-include
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Fixes:
+
+  wayland-brcm-client-protocol.h: In function ‘wl_buffer* qt_brcm_create_buffer(qt_brcm*, int32_t, int32_t, wl_array*)’:
+  wayland-brcm-client-protocol.h:115:29: error: ‘wl_buffer_interface’ was not declared in this scope; did you mean ‘qt_brcm_interface’?
+    115 |     QT_BRCM_CREATE_BUFFER, &wl_buffer_interface, NULL, width, height, data);
+        |                             ^~~~~~~~~~~~~~~~~~~
+        |                             qt_brcm_interface
+
+Signed-off-by: Peter Seiderer <ps.report@gmx.net>
+---
+ src/hardwareintegration/client/brcm-egl/brcm-egl.pri | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/hardwareintegration/client/brcm-egl/brcm-egl.pri b/src/hardwareintegration/client/brcm-egl/brcm-egl.pri
+index f9f8d07..95eb86e 100644
+--- a/src/hardwareintegration/client/brcm-egl/brcm-egl.pri
++++ b/src/hardwareintegration/client/brcm-egl/brcm-egl.pri
+@@ -11,5 +11,5 @@ HEADERS += $$PWD/qwaylandbrcmeglintegration.h \
+            $$PWD/qwaylandbrcmglcontext.h \
+            $$PWD/qwaylandbrcmeglwindow.h
+ 
+-CONFIG += wayland-scanner
++CONFIG += wayland-scanner-client-wayland-protocol-include
+ WAYLANDCLIENTSOURCES += $$PWD/../../../extensions/brcm.xml
+-- 
+2.26.0
+

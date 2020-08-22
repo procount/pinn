@@ -1,0 +1,57 @@
+--- a/src/hardwareintegration/client/brcm-egl/qwaylandbrcmeglintegration.cpp
++++ b/src/hardwareintegration/client/brcm-egl/qwaylandbrcmeglintegration.cpp
+@@ -78,6 +78,7 @@
+ 
+ void QWaylandBrcmEglIntegration::initialize(QWaylandDisplay *waylandDisplay)
+ {
++    m_display = waylandDisplay;
+     m_waylandDisplay = waylandDisplay->wl_display();
+     waylandDisplay->addRegistryListener(wlDisplayHandleGlobal, this);
+     EGLint major,minor;
+@@ -111,7 +112,7 @@
+ 
+ QWaylandWindow *QWaylandBrcmEglIntegration::createEglWindow(QWindow *window)
+ {
+-    return new QWaylandBrcmEglWindow(window);
++    return new QWaylandBrcmEglWindow(window, m_display);
+ }
+ 
+ QPlatformOpenGLContext *QWaylandBrcmEglIntegration::createPlatformOpenGLContext(const QSurfaceFormat &glFormat, QPlatformOpenGLContext *share) const
+
+--- a/src/hardwareintegration/client/brcm-egl/qwaylandbrcmeglintegration.h
++++ b/src/hardwareintegration/client/brcm-egl/qwaylandbrcmeglintegration.h
+@@ -93,6 +93,8 @@
+     struct qt_brcm *m_waylandBrcm = nullptr;
+ 
+     EGLDisplay m_eglDisplay = EGL_NO_DISPLAY;
++    
++    QWaylandDisplay *m_display = nullptr;
+ };
+ 
+ }
+
+--- a/src/hardwareintegration/client/brcm-egl/qwaylandbrcmeglwindow.cpp
++++ b/src/hardwareintegration/client/brcm-egl/qwaylandbrcmeglwindow.cpp
+@@ -124,8 +124,8 @@
+     struct wl_event_queue *m_eventQueue = nullptr;
+ };
+ 
+-QWaylandBrcmEglWindow::QWaylandBrcmEglWindow(QWindow *window)
+-    : QWaylandWindow(window)
++QWaylandBrcmEglWindow::QWaylandBrcmEglWindow(QWindow *window, QWaylandDisplay *display)
++    : QWaylandWindow(window, display)
+     , m_eglIntegration(static_cast<QWaylandBrcmEglIntegration *>(mDisplay->clientBufferIntegration()))
+     , m_format(window->format())
+     , m_eventQueue(wl_display_create_queue(mDisplay->wl_display()))
+
+--- a/src/hardwareintegration/client/brcm-egl/qwaylandbrcmeglwindow.h
++++ b/src/hardwareintegration/client/brcm-egl/qwaylandbrcmeglwindow.h
+@@ -58,7 +58,7 @@
+ {
+     Q_OBJECT
+ public:
+-    QWaylandBrcmEglWindow(QWindow *window);
++    QWaylandBrcmEglWindow(QWindow *window, QWaylandDisplay *display);
+     ~QWaylandBrcmEglWindow();
+     WindowType windowType() const override;
+     void setGeometry(const QRect &rect) override;
