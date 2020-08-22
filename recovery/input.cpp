@@ -30,7 +30,7 @@
 #include <linux/input.h>
 #include <linux/uinput.h>
 
-#include <QWSServer>
+// #include <QWSServer>
 #include <QTimer>
 #include <QApplication>
 #include <QDesktopWidget>
@@ -407,7 +407,7 @@ void Kinput::key_repeat()
             // key press
             //sim->inject(EV_KEY, key, 1);
             //sim->inject(EV_SYN, SYN_REPORT, 0);
-            QWSServer::sendKeyEvent(0, currentKey, modifiers, true, false);
+            // QWSServer::sendKeyEvent(0, currentKey, modifiers, true, false);
         }
         //QTimer::singleShot( (keyState==1) ? 400 : 100, this, SLOT(key_repeat()));
         keytimer.start( (keyState==1) ? 400:100);
@@ -427,7 +427,7 @@ void Kinput::key_repeat()
                 // key release
                 //sim->inject(EV_KEY, key, 0);
                 //sim->inject(EV_SYN, SYN_REPORT, 0);
-                QWSServer::sendKeyEvent(0, currentKey, modifiers, false, false);
+                // QWSServer::sendKeyEvent(0, currentKey, modifiers, false, false);
             }
             currentKey=0;
         }

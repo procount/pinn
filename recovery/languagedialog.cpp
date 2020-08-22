@@ -16,8 +16,8 @@
 #include <QDir>
 #include <QLocale>
 #include <QKeyEvent>
-#include <QWSServer>
-#include <QKbdDriverFactory>
+// #include <QWSServer>
+// #include <QKbdDriverFactory>
 #include <QProcess>
 #include <QSettings>
 
