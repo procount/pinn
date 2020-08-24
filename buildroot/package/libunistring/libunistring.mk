@@ -4,17 +4,12 @@
 #
 ################################################################################
 
-LIBUNISTRING_VERSION = 0.9.4
+LIBUNISTRING_VERSION = 0.9.10
 LIBUNISTRING_SITE = $(BR2_GNU_MIRROR)/libunistring
+LIBUNISTRING_SOURCE = libunistring-$(LIBUNISTRING_VERSION).tar.xz
 LIBUNISTRING_INSTALL_STAGING = YES
-LIBUNISTRING_LICENSE = LGPLv3+
-LIBUNISTRING_LICENSE_FILES = COPYING.LIB
-
-ifeq ($(BR2_TOOLCHAIN_HAS_THREADS),y)
-LIBUNISTRING_CONF_OPTS += --enable-threads=posix
-else
-LIBUNISTRING_CONF_OPTS += --disable-threads
-endif
+LIBUNISTRING_LICENSE = LGPL-3.0+ or GPL-2.0
+LIBUNISTRING_LICENSE_FILES = COPYING COPYING.LIB
 
 $(eval $(autotools-package))
 $(eval $(host-autotools-package))

@@ -41,9 +41,14 @@ There you will find:
   +host-sources/+ subdirectories for target and host packages respectively.
   The source code for packages that set +<PKG>_REDISTRIBUTE = NO+ will not be
   saved.
-  Patches applied to some packages by Buildroot are distributed with the
-  Buildroot sources and are not duplicated in the +sources/+ and +host-sources/+
-  subdirectories.
+  Patches that were applied are also saved, along with a file named +series+
+  that lists the patches in the order they were applied. Patches are under the
+  same license as the files that they modify.
+  Note: Buildroot applies additional patches to Libtool scripts of
+  autotools-based packages. These patches can be found under
+  +support/libtool+ in the Buildroot source and, due to technical
+  limitations, are not saved with the package sources. You may need to
+  collect them manually.
 * A manifest file (one for host and one for target packages) listing the
   configured packages, their version, license and related information.
   Some of this information might not be defined in Buildroot; such items are
@@ -62,72 +67,28 @@ for packages released under BSD-like licenses, that you are not required to
 redistribute in source form.
 
 Moreover, due to technical limitations, Buildroot does not produce some
-material that you will or may need, such as the toolchain source code and the
-Buildroot source code itself (including patches to packages for which source
-distribution is required).
+material that you will or may need, such as the toolchain source code for
+some of the external toolchains and the Buildroot source code itself.
 When you run +make legal-info+, Buildroot produces warnings in the +README+
 file to inform you of relevant material that could not be saved.
 
-[[legal-info-list-licenses]]
-=== License abbreviations
+Finally, keep in mind that the output of +make legal-info+ is based on
+declarative statements in each of the packages recipes. The Buildroot
+developers try to do their best to keep those declarative statements as
+accurate as possible, to the best of their knowledge. However, it is very
+well possible that those declarative statements are not all fully accurate
+nor exhaustive. You (or your legal department) _have_ to check the output
+of +make legal-info+ before using it as your own compliance delivery. See
+the _NO WARRANTY_ clauses (clauses 11 and 12) in the +COPYING+ file at the
+root of the Buildroot distribution.
 
-Here is a list of the licenses that are most widely used by packages in
-Buildroot, with the name used in the manifest files:
-
-* `GPLv2`:
-  http://www.gnu.org/licenses/old-licenses/gpl-2.0.html[
-  GNU General Public License, version 2];
-* `GPLv2+`:
-  http://www.gnu.org/licenses/old-licenses/gpl-2.0.html[
-  GNU General Public License, version 2]
-  or (at your option) any later version;
-* `GPLv3`:
-  http://www.gnu.org/licenses/gpl.html[
-  GNU General Public License, version 3];
-* `GPLv3+`:
-  http://www.gnu.org/licenses/gpl.html[
-  GNU General Public License, version 3]
-  or (at your option) any later version;
-* `GPL`:
-  http://www.gnu.org/licenses/gpl.html[
-  GNU General Public License] (any version);
-* `LGPLv2`:
-  http://www.gnu.org/licenses/old-licenses/lgpl-2.0.html[
-  GNU Library General Public License, version 2];
-* `LGPLv2+`:
-  http://www.gnu.org/licenses/old-licenses/lgpl-2.0.html[
-  GNU Library General Public License, version 2]
-  or (at your option) any later version;
-* `LGPLv2.1`:
-  http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html[
-  GNU Lesser General Public License, version 2.1];
-* `LGPLv2.1+`:
-  http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html[
-  GNU Lesser General Public License, version 2.1]
-  or (at your option) any later version;
-* `LGPLv3`:
-  http://www.gnu.org/licenses/lgpl.html[
-  GNU Lesser General Public License, version 3];
-* `LGPLv3+`:
-  http://www.gnu.org/licenses/lgpl.html[
-  GNU Lesser General Public License, version 3]
-  or (at your option) any later version;
-* `LGPL`:
-  http://www.gnu.org/licenses/lgpl.html[
-  GNU Lesser General Public License] (any version);
-* `BSD-4c`: Original BSD 4-clause license;
-* `BSD-3c`: BSD 3-clause license;
-* `BSD-2c`: BSD 2-clause license;
-* `MIT`: MIT-style license.
-* `Apache-2.0`:
-  http://apache.org/licenses/LICENSE-2.0.html[
-  Apache License, version 2.0];
-
+[[legal-info-buildroot]]
 === Complying with the Buildroot license
 
 Buildroot itself is an open source software, released under the
-http://www.gnu.org/licenses/old-licenses/gpl-2.0.html[GNU General Public
-License, version 2] or (at your option) any later version.
+http://www.gnu.org/licenses/old-licenses/gpl-2.0.html[GNU General
+Public License, version 2] or (at your option) any later version, with
+the exception of the package patches detailed below.
 However, being a build system, it is not normally part of the end product:
 if you develop the root filesystem, kernel, bootloader or toolchain for a
 device, the code of Buildroot is only present on the development machine, not
@@ -148,3 +109,14 @@ material that must be redistributed.
 
 Keep in mind that this is only the Buildroot developers' opinion, and you
 should consult your legal department or lawyer in case of any doubt.
+
+==== Patches to packages
+
+Buildroot also bundles patch files, which are applied to the sources
+of the various packages. Those patches are not covered by the license
+of Buildroot. Instead, they are covered by the license of the software
+to which the patches are applied. When said software is available
+under multiple licenses, the Buildroot patches are only provided under
+the publicly accessible licenses.
+
+See xref:patch-policy[] for the technical details.

@@ -1,70 +1,50 @@
-From 4285205401faeb12b4ed7ebbc4658af9eae73eb4 Mon Sep 17 00:00:00 2001
-From: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
-Date: Sat, 23 Jun 2012 21:57:39 +0200
+From cb30579c9195ae29c82545c934e0bd9677262bce Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?J=C3=B6rg=20Krause?= <joerg.krause@embedded.rocks>
+Date: Fri, 20 Dec 2019 17:58:17 +0100
 Subject: [PATCH] Disable parts of TIRPC requiring NIS support
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 Signed-off-by: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
+[yann.morin.1998@free.fr: update for 0.3.1]
+Signed-off-by: "Yann E. MORIN" <yann.morin.1998@free.fr>
+[joerg.krause@embedded.rocks: update for 0.3.2]
+Signed-off-by: Jörg Krause <joerg.krause@embedded.rocks>
+[peda@axentia.se: update for 1.0.1]
+Signed-off-by: Peter Rosin <peda@axentia.se>
+[bernd.kuhls@t-online.de: update for 1.0.2]
+Signed-off-by: Bernd Kuhls <bernd.kuhls@t-online.de>
+[pvorel: update for 1.2.5]
+Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
 ---
- src/Makefile.am  | 3 +--
- src/rpc_soc.c    | 2 ++
- tirpc/rpc/auth.h | 3 +++
- 3 files changed, 6 insertions(+), 2 deletions(-)
+ src/Makefile.am | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/src/Makefile.am b/src/Makefile.am
-index 3029b78..b5db263 100644
+index b2d5436..864f984 100644
 --- a/src/Makefile.am
 +++ b/src/Makefile.am
-@@ -50,8 +50,7 @@ libtirpc_la_SOURCES = auth_none.c auth_unix.c authunix_prot.c bindresvport.c cln
-         pmap_prot.c pmap_prot2.c pmap_rmt.c rpc_prot.c rpc_commondata.c \
+@@ -24,7 +24,7 @@ libtirpc_la_SOURCES = auth_none.c auth_unix.c authunix_prot.c \
          rpc_callmsg.c rpc_generic.c rpc_soc.c rpcb_clnt.c rpcb_prot.c \
          rpcb_st_xdr.c svc.c svc_auth.c svc_dg.c svc_auth_unix.c svc_auth_none.c \
--        svc_generic.c svc_raw.c svc_run.c svc_simple.c svc_vc.c getpeereid.c \
--        auth_time.c auth_des.c authdes_prot.c
-+        svc_generic.c svc_raw.c svc_run.c svc_simple.c svc_vc.c getpeereid.c
+         svc_generic.c svc_raw.c svc_run.c svc_simple.c svc_vc.c getpeereid.c \
+-        auth_time.c debug.c 
++        debug.c
  
- ## XDR
- libtirpc_la_SOURCES += xdr.c xdr_rec.c xdr_array.c xdr_float.c xdr_mem.c xdr_reference.c xdr_stdio.c
-diff --git a/src/rpc_soc.c b/src/rpc_soc.c
-index 4213ca0..2603548 100644
---- a/src/rpc_soc.c
-+++ b/src/rpc_soc.c
-@@ -520,6 +520,7 @@ clnt_broadcast(prog, vers, proc, xargs, argsp, xresults, resultsp, eachresult)
- 	    (resultproc_t) rpc_wrap_bcast, "udp");
- }
+ if AUTHDES
+ libtirpc_la_SOURCES += auth_des.c  authdes_prot.c  des_crypt.c  des_impl.c  des_soft.c  svc_auth_des.c
+@@ -45,8 +45,8 @@ if GSS
+     libtirpc_la_CFLAGS = -DHAVE_RPCSEC_GSS $(GSSAPI_CFLAGS)
+ endif
  
-+#if 0
- /*
-  * Create the client des authentication object. Obsoleted by
-  * authdes_seccreate().
-@@ -551,6 +552,7 @@ fallback:
- 	dummy = authdes_seccreate(servername, window, NULL, ckey);
- 	return (dummy);
- }
-+#endif
+-libtirpc_la_SOURCES += key_call.c key_prot_xdr.c getpublickey.c
+-libtirpc_la_SOURCES += netname.c netnamer.c rpcdname.c rtime.c
++#libtirpc_la_SOURCES += key_call.c key_prot_xdr.c getpublickey.c
++#libtirpc_la_SOURCES += netname.c netnamer.c rpcdname.c rtime.c
  
- /*
-  * Create a client handle for a unix connection. Obsoleted by clnt_vc_create()
-diff --git a/tirpc/rpc/auth.h b/tirpc/rpc/auth.h
-index 4ce11f0..b894e44 100644
---- a/tirpc/rpc/auth.h
-+++ b/tirpc/rpc/auth.h
-@@ -305,6 +305,8 @@ extern AUTH *authunix_create(char *, uid_t, uid_t, int, uid_t *);
- extern AUTH *authunix_create_default(void);	/* takes no parameters */
- extern AUTH *authnone_create(void);		/* takes no parameters */
- __END_DECLS
-+
-+#if 0
- /*
-  * DES style authentication
-  * AUTH *authsecdes_create(servername, window, timehost, ckey)
-@@ -318,6 +320,7 @@ extern AUTH *authdes_create (char *, u_int, struct sockaddr *, des_block *);
- extern AUTH *authdes_seccreate (const char *, const u_int, const  char *,
-     const  des_block *);
- __END_DECLS
-+#endif
- 
- __BEGIN_DECLS
- extern bool_t xdr_opaque_auth		(XDR *, struct opaque_auth *);
+ CLEANFILES	       = cscope.* *~
+ DISTCLEANFILES	       = Makefile.in
 -- 
-2.0.0
+2.24.0
 

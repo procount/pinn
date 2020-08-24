@@ -1,2 +1,5 @@
-# From http://sebastien.godard.pagesperso-orange.fr/download.html
-md5	27d4ca66869dce132ace3194dd7d7539	sysstat-11.0.2.tar.xz
+# From: http://sebastien.godard.pagesperso-orange.fr/download.html
+sha1  4da5a48d0152eba5b34d94bf28dcb08fc48fb32b  sysstat-12.2.1.tar.xz
+# Locally calculated
+sha256  8edb0e19b514ac560a098a02933a4735b881296d61014db89bf80f05dd7a4732  sysstat-12.2.1.tar.xz
+sha256  db296f2f7f35bca3a174efb0eb392b3b17bd94b341851429a3dff411b1c2fc73  COPYING

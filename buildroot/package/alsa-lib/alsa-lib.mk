@@ -4,11 +4,11 @@
 #
 ################################################################################
 
-ALSA_LIB_VERSION = 1.0.28
+ALSA_LIB_VERSION = 1.2.3.2
 ALSA_LIB_SOURCE = alsa-lib-$(ALSA_LIB_VERSION).tar.bz2
-ALSA_LIB_SITE = ftp://ftp.alsa-project.org/pub/lib
-ALSA_LIB_LICENSE = LGPLv2.1+
-ALSA_LIB_LICENSE_FILES = COPYING
+ALSA_LIB_SITE = https://www.alsa-project.org/files/pub/lib
+ALSA_LIB_LICENSE = LGPL-2.1+ (library), GPL-2.0+ (aserver)
+ALSA_LIB_LICENSE_FILES = COPYING aserver/COPYING
 ALSA_LIB_INSTALL_STAGING = YES
 ALSA_LIB_CFLAGS = $(TARGET_CFLAGS)
 ALSA_LIB_AUTORECONF = YES
@@ -20,7 +20,9 @@ ALSA_LIB_CONF_OPTS = \
 
 # Can't build with static & shared at the same time (1.0.25+)
 ifeq ($(BR2_STATIC_LIBS),y)
-ALSA_LIB_CONF_OPTS += --enable-shared=no
+ALSA_LIB_CONF_OPTS += \
+	--enable-shared=no \
+	--without-libdl
 else
 ALSA_LIB_CONF_OPTS += --enable-static=no
 endif
@@ -43,15 +45,14 @@ endif
 ifneq ($(BR2_PACKAGE_ALSA_LIB_SEQ),y)
 ALSA_LIB_CONF_OPTS += --disable-seq
 endif
+ifneq ($(BR2_PACKAGE_ALSA_LIB_UCM),y)
+ALSA_LIB_CONF_OPTS += --disable-ucm
+endif
 ifneq ($(BR2_PACKAGE_ALSA_LIB_ALISP),y)
 ALSA_LIB_CONF_OPTS += --disable-alisp
 endif
 ifneq ($(BR2_PACKAGE_ALSA_LIB_OLD_SYMBOLS),y)
 ALSA_LIB_CONF_OPTS += --disable-old-symbols
-endif
-
-ifeq ($(BR2_avr32),y)
-ALSA_LIB_CFLAGS += -DAVR32_INLINE_BUG
 endif
 
 ifeq ($(BR2_PACKAGE_ALSA_LIB_PYTHON),y)
@@ -62,16 +63,6 @@ ALSA_LIB_CFLAGS += -I$(STAGING_DIR)/usr/include/python$(PYTHON_VERSION_MAJOR)
 ALSA_LIB_DEPENDENCIES = python
 else
 ALSA_LIB_CONF_OPTS += --disable-python
-endif
-
-ifeq ($(BR2_SOFT_FLOAT),y)
-ALSA_LIB_CONF_OPTS += --with-softfloat
-endif
-
-ifeq ($(BR2_bfin),y)
-# blackfin external toolchains don't have versionsort. Fake it using alphasort
-# instead
-ALSA_LIB_CFLAGS += -Dversionsort=alphasort
 endif
 
 ALSA_LIB_CONF_ENV = \

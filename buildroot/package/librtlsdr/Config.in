@@ -1,7 +1,7 @@
 config BR2_PACKAGE_LIBRTLSDR
 	bool "librtlsdr"
-	select BR2_PACKAGE_LIBUSB
 	depends on BR2_TOOLCHAIN_HAS_THREADS
+	select BR2_PACKAGE_LIBUSB
 	help
 	  Library and command line programs for accessing
 	  RTL2832U SDR dongles.
@@ -17,6 +17,14 @@ config BR2_PACKAGE_LIBRTLSDR_DETACH_DRIVER
 	  Enable this option if you would like librtlsdr to
 	  automatically detach any kernel driver associated to the
 	  RTL2832U USB device on startup if one is loaded.
+
+config BR2_PACKAGE_LIBRTLSDR_ZEROCOPY
+	bool "Enable usbfs zero-copy support"
+	default y
+	help
+	  This option allows to use kernel usbfs mmap instead
+	  of buffers in userspace. If you experiment crash with
+	  kernel < 5.6, disable this option.
 
 endif
 

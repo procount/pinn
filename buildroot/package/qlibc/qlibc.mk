@@ -4,13 +4,11 @@
 #
 ################################################################################
 
-QLIBC_VERSION = v2.1.6
-QLIBC_SITE = $(call github,wolkykim,qlibc,$(QLIBC_VERSION))
-QLIBC_LICENSE = BSD-2c
-QLIBC_LICENSE_FILES = COPYING
+QLIBC_VERSION = 2.4.5
+QLIBC_SITE = $(call github,wolkykim,qlibc,v$(QLIBC_VERSION))
+QLIBC_LICENSE = BSD-2-Clause
+QLIBC_LICENSE_FILES = LICENSE
 
-# We're patching configure.ac
-QLIBC_AUTORECONF = YES
 QLIBC_INSTALL_STAGING = YES
 QLIBC_DEPENDENCIES = $(if $(BR2_PACKAGE_LIBICONV),libiconv)
 

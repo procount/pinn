@@ -1,29 +1,31 @@
-comment "strongswan needs a toolchain w/ threads"
+comment "strongswan needs a toolchain w/ threads, dynamic library"
 	depends on BR2_USE_MMU
-	depends on !BR2_TOOLCHAIN_HAS_THREADS
+	depends on BR2_TOOLCHAIN_HAS_ATOMIC
+	depends on !BR2_TOOLCHAIN_HAS_THREADS || BR2_STATIC_LIBS
 
 menuconfig BR2_PACKAGE_STRONGSWAN
 	bool "strongswan"
 	depends on BR2_USE_MMU # fork()
 	depends on BR2_TOOLCHAIN_HAS_THREADS
+	depends on BR2_TOOLCHAIN_HAS_ATOMIC
+	depends on !BR2_STATIC_LIBS
 	help
 	  strongSwan is an OpenSource IPsec implementation for the
 	  Linux operating system. It is based on the discontinued
 	  FreeS/WAN project and the X.509 patch.
 
 	  The focus is on:
-	     - simplicity of configuration
-	     - strong encryption and authentication methods
-	     - powerful IPsec policies supporting large and complex VPN networks
+	   - simplicity of configuration
+	   - strong encryption and authentication methods
+	   - powerful IPsec policies supporting large and complex
+	     VPN networks
 
-	  strongSwan provide many plugins. Only a few are presented here.
+	  strongSwan provide many plugins. Only a few are presented
+	  here.
 
 	  http://www.strongswan.org/
 
 if BR2_PACKAGE_STRONGSWAN
-
-comment "kernel-netlink and socket-default options need a toolchain w/ IPv6"
-	depends on !BR2_INET_IPV6
 
 choice
 	prompt "Cryptographic backend"
@@ -35,6 +37,7 @@ config BR2_PACKAGE_STRONGSWAN_OPENSSL
 
 config BR2_PACKAGE_STRONGSWAN_GCRYPT
 	bool "libgcrypt"
+	depends on BR2_PACKAGE_LIBGPG_ERROR_ARCH_SUPPORTS # libgcrypt
 	select BR2_PACKAGE_LIBGCRYPT
 
 config BR2_PACKAGE_STRONGSWAN_GMP
@@ -119,12 +122,12 @@ config BR2_PACKAGE_STRONGSWAN_SCEP
 
 config BR2_PACKAGE_STRONGSWAN_SCRIPTS
 	bool "Enable additional utilities (found in scripts directory)"
-	depends on BR2_PACKAGE_STRONGSWAN_CHARON
 	default y
+	depends on BR2_PACKAGE_STRONGSWAN_CHARON
 
 config BR2_PACKAGE_STRONGSWAN_VICI
 	bool "Enable vici/swanctl"
-	depends on BR2_PACKAGE_STRONGSWAN_CHARON
 	default y
+	depends on BR2_PACKAGE_STRONGSWAN_CHARON
 
 endif

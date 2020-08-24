@@ -4,21 +4,21 @@
 #
 ################################################################################
 
-NGINX_VERSION = 1.6.2
+NGINX_VERSION = 1.17.9
 NGINX_SITE = http://nginx.org/download
-NGINX_LICENSE = BSD-2c
+NGINX_LICENSE = BSD-2-Clause
 NGINX_LICENSE_FILES = LICENSE
+NGINX_DEPENDENCIES = host-pkgconf
 
 NGINX_CONF_OPTS = \
 	--crossbuild=Linux::$(BR2_ARCH) \
 	--with-cc="$(TARGET_CC)" \
 	--with-cpp="$(TARGET_CC)" \
-	--with-cc-opt="$(TARGET_CFLAGS)" \
 	--with-ld-opt="$(TARGET_LDFLAGS)"
 
 # www-data user and group are used for nginx. Because these user and group
 # are already set by buildroot, it is not necessary to redefine them.
-# See system/skeleton/passwd
+# See system/skeleton/etc/passwd
 #   username: www-data    uid: 33
 #   groupname: www-data   gid: 33
 #
@@ -34,10 +34,9 @@ NGINX_CONF_ENV += \
 	ngx_force_c99_have_variadic_macros=yes \
 	ngx_force_gcc_have_variadic_macros=yes \
 	ngx_force_gcc_have_atomic=yes \
-	ngx_force_have_libatomic=no \
 	ngx_force_have_epoll=yes \
 	ngx_force_have_sendfile=yes \
-	ngx_force_have_sendfile64=$(if $(BR2_LARGEFILE),yes,no) \
+	ngx_force_have_sendfile64=yes \
 	ngx_force_have_pr_set_dumpable=yes \
 	ngx_force_have_timer_event=yes \
 	ngx_force_have_map_anon=yes \
@@ -64,7 +63,18 @@ NGINX_CONF_OPTS += \
 
 NGINX_CONF_OPTS += \
 	$(if $(BR2_PACKAGE_NGINX_FILE_AIO),--with-file-aio) \
-	$(if $(BR2_INET_IPV6),--with-ipv6)
+	$(if $(BR2_PACKAGE_NGINX_THREADS),--with-threads)
+
+ifeq ($(BR2_PACKAGE_LIBATOMIC_OPS),y)
+NGINX_DEPENDENCIES += libatomic_ops
+NGINX_CONF_OPTS += --with-libatomic
+NGINX_CONF_ENV += ngx_force_have_libatomic=yes
+ifeq ($(BR2_sparc_v8)$(BR2_sparc_leon3),y)
+NGINX_CFLAGS += "-DAO_NO_SPARC_V9"
+endif
+else
+NGINX_CONF_ENV += ngx_force_have_libatomic=no
+endif
 
 ifeq ($(BR2_PACKAGE_PCRE),y)
 NGINX_DEPENDENCIES += pcre
@@ -75,7 +85,6 @@ endif
 
 # modules disabled or not activated because of missing dependencies:
 # - google_perftools  (googleperftools)
-# - http_geoip_module (geoip)
 # - http_perl_module  (host-perl)
 # - pcre-jit          (want to rebuild pcre)
 
@@ -104,9 +113,9 @@ else
 NGINX_CONF_OPTS += --without-http-cache
 endif
 
-ifeq ($(BR2_PACKAGE_NGINX_HTTP_SPDY_MODULE),y)
+ifeq ($(BR2_PACKAGE_NGINX_HTTP_V2_MODULE),y)
 NGINX_DEPENDENCIES += zlib
-NGINX_CONF_OPTS += --with-http_spdy_module
+NGINX_CONF_OPTS += --with-http_v2_module
 endif
 
 ifeq ($(BR2_PACKAGE_NGINX_HTTP_SSL_MODULE),y)
@@ -117,13 +126,16 @@ endif
 ifeq ($(BR2_PACKAGE_NGINX_HTTP_XSLT_MODULE),y)
 NGINX_DEPENDENCIES += libxml2 libxslt
 NGINX_CONF_OPTS += --with-http_xslt_module
-NGINX_CONF_ENV += \
-	ngx_feature_path_libxslt=$(STAGING_DIR)/usr/include/libxml2
 endif
 
 ifeq ($(BR2_PACKAGE_NGINX_HTTP_IMAGE_FILTER_MODULE),y)
 NGINX_DEPENDENCIES += gd jpeg libpng
 NGINX_CONF_OPTS += --with-http_image_filter_module
+endif
+
+ifeq ($(BR2_PACKAGE_NGINX_HTTP_GEOIP_MODULE),y)
+NGINX_DEPENDENCIES += geoip
+NGINX_CONF_OPTS += --with-http_geoip_module
 endif
 
 ifeq ($(BR2_PACKAGE_NGINX_HTTP_GUNZIP_MODULE),y)
@@ -163,6 +175,7 @@ NGINX_CONF_OPTS += \
 	$(if $(BR2_PACKAGE_NGINX_HTTP_AUTH_REQUEST_MODULE),--with-http_auth_request_module) \
 	$(if $(BR2_PACKAGE_NGINX_HTTP_RANDOM_INDEX_MODULE),--with-http_random_index_module) \
 	$(if $(BR2_PACKAGE_NGINX_HTTP_DEGRADATION_MODULE),--with-http_degradation_module) \
+	$(if $(BR2_PACKAGE_NGINX_HTTP_SLICE_MODULE),--with-http_slice_module) \
 	$(if $(BR2_PACKAGE_NGINX_HTTP_STUB_STATUS_MODULE),--with-http_stub_status_module) \
 	$(if $(BR2_PACKAGE_NGINX_HTTP_CHARSET_MODULE),,--without-http_charset_module) \
 	$(if $(BR2_PACKAGE_NGINX_HTTP_SSI_MODULE),,--without-http_ssi_module) \
@@ -193,6 +206,7 @@ endif # BR2_PACKAGE_NGINX_HTTP
 
 # mail modules
 ifeq ($(BR2_PACKAGE_NGINX_MAIL),y)
+NGINX_CONF_OPTS += --with-mail
 
 ifeq ($(BR2_PACKAGE_NGINX_MAIL_SSL_MODULE),y)
 NGINX_DEPENDENCIES += openssl
@@ -206,6 +220,57 @@ NGINX_CONF_OPTS += \
 
 endif # BR2_PACKAGE_NGINX_MAIL
 
+# stream modules
+ifeq ($(BR2_PACKAGE_NGINX_STREAM),y)
+NGINX_CONF_OPTS += --with-stream
+
+ifeq ($(BR2_PACKAGE_NGINX_STREAM_SSL_MODULE),y)
+NGINX_DEPENDENCIES += openssl
+NGINX_CONF_OPTS += --with-stream_ssl_module
+endif
+
+ifeq ($(BR2_PACKAGE_NGINX_STREAM_GEOIP_MODULE),y)
+NGINX_DEPENDENCIES += geoip
+NGINX_CONF_OPTS += --with-stream_geoip_module
+endif
+
+NGINX_CONF_OPTS += \
+	$(if $(BR2_PACKAGE_NGINX_STREAM_LIMIT_CONN_MODULE),,--without-stream_limit_conn_module) \
+	$(if $(BR2_PACKAGE_NGINX_STREAM_ACCESS_MODULE),,--without-stream_access_module) \
+	$(if $(BR2_PACKAGE_NGINX_STREAM_GEO_MODULE),,--without-stream_geo_module) \
+	$(if $(BR2_PACKAGE_NGINX_STREAM_MAP_MODULE),,--without-stream_map_module) \
+	$(if $(BR2_PACKAGE_NGINX_STREAM_SPLIT_CLIENTS_MODULE),,--without-stream_split_clients_module) \
+	$(if $(BR2_PACKAGE_NGINX_STREAM_RETURN_MODULE),,--without-stream_return_module) \
+	$(if $(BR2_PACKAGE_NGINX_STREAM_UPSTREAM_HASH_MODULE),,--without-stream_upstream_hash_module) \
+	$(if $(BR2_PACKAGE_NGINX_STREAM_UPSTREAM_LEAST_CONN_MODULE),,--without-stream_upstream_least_conn_module) \
+	$(if $(BR2_PACKAGE_NGINX_STREAM_UPSTREAM_ZONE_MODULE),,--without-stream_upstream_zone_module)
+
+endif # BR2_PACKAGE_NGINX_STREAM
+
+# external modules
+ifeq ($(BR2_PACKAGE_NGINX_UPLOAD),y)
+NGINX_CONF_OPTS += $(addprefix --add-module=,$(NGINX_UPLOAD_DIR))
+NGINX_DEPENDENCIES += nginx-upload
+endif
+
+ifeq ($(BR2_PACKAGE_NGINX_DAV_EXT),y)
+NGINX_CONF_OPTS += --add-module=$(NGINX_DAV_EXT_DIR)
+NGINX_DEPENDENCIES += nginx-dav-ext
+endif
+
+ifeq ($(BR2_PACKAGE_NGINX_NAXSI),y)
+NGINX_DEPENDENCIES += nginx-naxsi
+NGINX_CONF_OPTS += --add-module=$(NGINX_NAXSI_DIR)/naxsi_src
+endif
+
+ifeq ($(BR2_PACKAGE_NGINX_MODSECURITY),y)
+NGINX_DEPENDENCIES += nginx-modsecurity
+NGINX_CONF_OPTS += --add-module=$(NGINX_MODSECURITY_DIR)
+endif
+
+# Debug logging
+NGINX_CONF_OPTS += $(if $(BR2_PACKAGE_NGINX_DEBUG),--with-debug)
+
 define NGINX_DISABLE_WERROR
 	$(SED) 's/-Werror//g' -i $(@D)/auto/cc/*
 endef
@@ -213,7 +278,10 @@ endef
 NGINX_PRE_CONFIGURE_HOOKS += NGINX_DISABLE_WERROR
 
 define NGINX_CONFIGURE_CMDS
-	cd $(@D) ; $(NGINX_CONF_ENV) ./configure $(NGINX_CONF_OPTS)
+	cd $(@D) ; $(NGINX_CONF_ENV) \
+		PKG_CONFIG="$(PKG_CONFIG_HOST_BINARY)" \
+		./configure $(NGINX_CONF_OPTS) \
+			--with-cc-opt="$(TARGET_CFLAGS) $(NGINX_CFLAGS)"
 endef
 
 define NGINX_BUILD_CMDS
@@ -222,7 +290,7 @@ endef
 
 define NGINX_INSTALL_TARGET_CMDS
 	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D) DESTDIR=$(TARGET_DIR) install
-	-$(RM) $(TARGET_DIR)/usr/bin/nginx.old
+	$(RM) $(TARGET_DIR)/usr/sbin/nginx.old
 	$(INSTALL) -D -m 0664 package/nginx/nginx.logrotate \
 		$(TARGET_DIR)/etc/logrotate.d/nginx
 endef

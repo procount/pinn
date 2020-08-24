@@ -4,17 +4,20 @@
 #
 ################################################################################
 
-OPENOCD_VERSION = 0.8.0
+OPENOCD_VERSION = 0.10.0
 OPENOCD_SOURCE = openocd-$(OPENOCD_VERSION).tar.bz2
-OPENOCD_SITE = http://downloads.sourceforge.net/project/openocd/openocd/$(OPENOCD_VERSION)
-
+OPENOCD_SITE = http://sourceforge.net/projects/openocd/files/openocd/$(OPENOCD_VERSION)
+OPENOCD_LICENSE = GPL-2.0+
+OPENOCD_LICENSE_FILES = COPYING
+# 0002-configure-enable-build-on-uclinux.patch patches configure.ac
+OPENOCD_AUTORECONF = YES
 OPENOCD_CONF_ENV = CFLAGS="$(TARGET_CFLAGS) -std=gnu99"
 
 OPENOCD_CONF_OPTS = \
 	--oldincludedir=$(STAGING_DIR)/usr/include \
 	--includedir=$(STAGING_DIR)/usr/include \
 	--disable-doxygen-html \
-	--with-jim-shared=no \
+	--disable-internal-jimtcl \
 	--disable-shared \
 	--enable-dummy \
 	--disable-werror
@@ -23,10 +26,13 @@ OPENOCD_CONF_OPTS = \
 # the dependencies they need.
 
 OPENOCD_DEPENDENCIES = \
-	$(if $(BR2_PACKAGE_LIBFTDI),libftdi) \
+	host-pkgconf \
+	jimtcl \
+	$(if $(BR2_PACKAGE_LIBFTDI1),libftdi1) \
 	$(if $(BR2_PACKAGE_LIBUSB),libusb) \
 	$(if $(BR2_PACKAGE_LIBUSB_COMPAT),libusb-compat) \
-	$(if $(BR2_PACKAGE_LIBHID),libhid)
+	$(if $(BR2_PACKAGE_LIBHID),libhid) \
+	$(if $(BR2_PACKAGE_HIDAPI),hidapi)
 
 # Adapters
 OPENOCD_CONF_OPTS += \
@@ -45,9 +51,8 @@ OPENOCD_CONF_OPTS += \
 	$(if $(BR2_PACKAGE_OPENOCD_ARMEW),--enable-armjtagew,--disable-armjtagew) \
 	$(if $(BR2_PACKAGE_OPENOCD_CMSIS_DAP),--enable-cmsis-dap,--disable-cmsis-dap) \
 	$(if $(BR2_PACKAGE_OPENOCD_PARPORT),--enable-parport,--disable-parport) \
-	$(if $(BR2_PACKAGE_OPENOCD_FT2XXX),--enable-legacy-ft2232_libftdi,--disable-legacy-ft2232_libftdi) \
 	$(if $(BR2_PACKAGE_OPENOCD_VPI),--enable-jtag_vpi,--disable-jtag_vpi) \
-	$(if $(BR2_PACKAGE_OPENOCD_UBLASTER),--enable-usb_blaster_libftdi,--disable-usb_blaster_libftdi) \
+	$(if $(BR2_PACKAGE_OPENOCD_UBLASTER),--enable-usb-blaster,--disable-usb-blaster) \
 	$(if $(BR2_PACKAGE_OPENOCD_AMTJT),--enable-amtjtagaccel,--disable-amjtagaccel) \
 	$(if $(BR2_PACKAGE_OPENOCD_ZY1000_MASTER),--enable-zy1000-master,--disable-zy1000-master) \
 	$(if $(BR2_PACKAGE_OPENOCD_ZY1000),--enable-zy1000,--disable-zy1000) \
@@ -55,8 +60,8 @@ OPENOCD_CONF_OPTS += \
 	$(if $(BR2_PACKAGE_OPENOCD_AT91RM),--enable-at91rm9200,--disable-at91rm9200) \
 	$(if $(BR2_PACKAGE_OPENOCD_BCM2835),--enable-bcm2835gpio,--disable-bcm2835gpio) \
 	$(if $(BR2_PACKAGE_OPENOCD_GW16012),--enable-gw16012,--disable-gw16012) \
-	$(if $(BR2_PACKAGE_OPENOCD_PRESTO),--enable-presto_libftdi,--disable-presto_libftdi) \
-	$(if $(BR2_PACKAGE_OPENOCD_OPENJTAG),--enable-openjtag_ftdi,--disable-openjtag_ftdi) \
+	$(if $(BR2_PACKAGE_OPENOCD_PRESTO),--enable-presto,--disable-presto) \
+	$(if $(BR2_PACKAGE_OPENOCD_OPENJTAG),--enable-openjtag,--disable-openjtag) \
 	$(if $(BR2_PACKAGE_OPENOCD_BUSPIRATE),--enable-buspirate,--disable-buspirate) \
 	$(if $(BR2_PACKAGE_OPENOCD_SYSFS),--enable-sysfsgpio,--disable-sysfsgpio)
 
@@ -82,22 +87,36 @@ HOST_OPENOCD_CONF_OPTS = \
 	--enable-armjtagew \
 	--enable-parport \
 	--enable-jtag_vpi \
-	--enable-usb_blaster_libftdi \
+	--enable-usb-blaster \
 	--enable-amtjtagaccel \
 	--enable-gw16012 \
-	--enable-presto_libftdi \
-	--enable-openjtag_ftdi \
+	--enable-presto \
+	--enable-openjtag \
 	--enable-buspirate \
 	--enable-sysfsgpio \
-	--oldincludedir=$(HOST_DIR)/usr/include \
-	--includedir=$(HOST_DIR)/usr/include \
+	--oldincludedir=$(HOST_DIR)/include \
+	--includedir=$(HOST_DIR)/include \
 	--disable-doxygen-html \
-	--with-jim-shared=no \
+	--disable-internal-jimtcl \
 	--disable-shared \
 	--enable-dummy \
 	--disable-werror
 
-HOST_OPENOCD_DEPENDENCIES = host-libftdi host-libusb host-libusb-compat
+HOST_OPENOCD_DEPENDENCIES = host-jimtcl host-libftdi host-libusb host-libusb-compat
+
+# Avoid documentation rebuild. On PowerPC64(le), we patch the
+# configure script. Due to this, the version.texi files gets
+# regenerated, and then since it has a newer date than openocd.info,
+# openocd build system rebuilds the documentation. Unfortunately, this
+# documentation rebuild fails on old machines. We work around this by
+# faking the date of the generated version.texi file, to make the
+# build system believe the documentation doesn't need to be
+# regenerated.
+define OPENOCD_FIX_VERSION_TEXI
+	touch -r $(@D)/doc/openocd.info $(@D)/doc/version.texi
+endef
+OPENOCD_POST_BUILD_HOOKS += OPENOCD_FIX_VERSION_TEXI
+HOST_OPENOCD_POST_BUILD_HOOKS += OPENOCD_FIX_VERSION_TEXI
 
 $(eval $(autotools-package))
 $(eval $(host-autotools-package))

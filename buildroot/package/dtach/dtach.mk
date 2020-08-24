@@ -4,9 +4,9 @@
 #
 ################################################################################
 
-DTACH_VERSION = 0.8
-DTACH_SITE = http://downloads.sourceforge.net/project/dtach/dtach/$(DTACH_VERSION)
-DTACH_LICENSE = GPLv2+
+DTACH_VERSION = 0.9
+DTACH_SITE = $(call github,crigler,dtach,v$(DTACH_VERSION))
+DTACH_LICENSE = GPL-2.0+
 DTACH_LICENSE_FILES = COPYING
 
 # The Makefile does not have an install target.

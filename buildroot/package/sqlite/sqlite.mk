@@ -4,25 +4,27 @@
 #
 ################################################################################
 
-SQLITE_VERSION = 3080801
+SQLITE_VERSION = 3320300
 SQLITE_SOURCE = sqlite-autoconf-$(SQLITE_VERSION).tar.gz
-SQLITE_SITE = http://www.sqlite.org/2015
+SQLITE_SITE = https://www.sqlite.org/2020
 SQLITE_LICENSE = Public domain
+SQLITE_LICENSE_FILES = tea/license.terms
 SQLITE_INSTALL_STAGING = YES
 
-ifneq ($(BR2_LARGEFILE),y)
-# the sqlite configure script fails to define SQLITE_DISABLE_LFS when
-# --disable-largefile is passed, breaking the build. Work around it by
-# simply adding it to CFLAGS for configure instead
-SQLITE_CFLAGS += -DSQLITE_DISABLE_LFS
+ifeq ($(BR2_PACKAGE_SQLITE_STAT4),y)
+SQLITE_CFLAGS += -DSQLITE_ENABLE_STAT4
 endif
 
-ifeq ($(BR2_PACKAGE_SQLITE_STAT3),y)
-SQLITE_CFLAGS += -DSQLITE_ENABLE_STAT3
+ifeq ($(BR2_PACKAGE_SQLITE_ENABLE_COLUMN_METADATA),y)
+SQLITE_CFLAGS += -DSQLITE_ENABLE_COLUMN_METADATA
 endif
 
 ifeq ($(BR2_PACKAGE_SQLITE_ENABLE_FTS3),y)
 SQLITE_CFLAGS += -DSQLITE_ENABLE_FTS3
+endif
+
+ifeq ($(BR2_PACKAGE_SQLITE_ENABLE_JSON1),y)
+SQLITE_CFLAGS += -DSQLITE_ENABLE_JSON1
 endif
 
 ifeq ($(BR2_PACKAGE_SQLITE_ENABLE_UNLOCK_NOTIFY),y)
@@ -37,23 +39,39 @@ ifeq ($(BR2_PACKAGE_SQLITE_NO_SYNC),y)
 SQLITE_CFLAGS += -DSQLITE_NO_SYNC
 endif
 
-SQLITE_CONF_ENV = CFLAGS="$(TARGET_CFLAGS) $(SQLITE_CFLAGS)"
+# Building with Microblaze Gcc 4.9 makes compiling to hang.
+# Work around using -O0
+ifeq ($(BR2_microblaze):$(BR2_TOOLCHAIN_GCC_AT_LEAST_5),y:)
+SQLITE_CFLAGS += $(TARGET_CFLAGS) -O0
+else
+# fallback to standard -O3 when -Ofast is present to avoid -ffast-math
+SQLITE_CFLAGS += $(subst -Ofast,-O3,$(TARGET_CFLAGS))
+endif
+
+SQLITE_CONF_ENV = CFLAGS="$(SQLITE_CFLAGS)"
 
 ifeq ($(BR2_STATIC_LIBS),y)
 SQLITE_CONF_OPTS += --enable-dynamic-extensions=no
+else
+SQLITE_CONF_OPTS += --disable-static-shell
 endif
 
 ifeq ($(BR2_TOOLCHAIN_HAS_THREADS),y)
 SQLITE_CONF_OPTS += --enable-threadsafe
 else
 SQLITE_CONF_OPTS += --disable-threadsafe
+SQLITE_CFLAGS += -DSQLITE_THREADSAFE=0
 endif
 
-ifeq ($(BR2_PACKAGE_SQLITE_READLINE),y)
+ifeq ($(BR2_PACKAGE_NCURSES)$(BR2_PACKAGE_READLINE),yy)
 SQLITE_DEPENDENCIES += ncurses readline
-SQLITE_CONF_OPTS += --with-readline-inc="-I$(STAGING_DIR)/usr/include"
+SQLITE_CONF_OPTS += --disable-editline --enable-readline
+else ifeq ($(BR2_PACKAGE_LIBEDIT),y)
+SQLITE_DEPENDENCIES += libedit
+SQLITE_CONF_OPTS += --enable-editline --disable-readline
 else
-SQLITE_CONF_OPTS += --disable-readline
+SQLITE_CONF_OPTS += --disable-editline --disable-readline
 endif
 
 $(eval $(autotools-package))
+$(eval $(host-autotools-package))

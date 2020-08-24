@@ -1,0 +1,4 @@
+# From https://downloads.es.net/pub/iperf/iperf-3.8.1.tar.gz.sha256
+sha256	e5b080f3273a8a715a4100f13826ac2ca31cc7b1315925631b2ecf64957ded96  iperf-3.8.1.tar.gz
+# Locally computed
+sha256	9ef73096bdd5209dd979bfa1fec70aeb42a7255d2df3aec423642aa92d5e9f40  LICENSE

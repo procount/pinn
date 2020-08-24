@@ -1,4 +1,10 @@
-# Hashes from: http://download.qt-project.org/official_releases/qt/5.3/5.3.2/submodules/qtscript-opensource-src-5.3.2.tar.xz.mirrorlist
-sha256 6e18002c8c993402c7d28b3c0705092e41c18769b6d3ff741e9a3b3ce9d6d7be qtscript-opensource-src-5.3.2.tar.xz
-sha1   a5c8167a4de3b5765d75692755009839a9f0c218                         qtscript-opensource-src-5.3.2.tar.xz
-md5    d0e70adf7c993f33bad27290dae778d5                                 qtscript-opensource-src-5.3.2.tar.xz
+# Hash from: https://download.qt.io/official_releases/qt/5.15/5.15.0/submodules/qtscript-everywhere-src-5.15.0.tar.xz.sha256
+sha256  02dc21b309621876a89671be27cea86a58e74a96aa28da65fe1b37a3aad29373  qtscript-everywhere-src-5.15.0.tar.xz
+
+# Hashes for license files:
+sha256 8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903 LICENSE.GPL3
+sha256 8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643 LICENSE.GPL2
+sha256 da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768 LICENSE.LGPL3
+sha256 ed8742a95cb9db653a09b050e27ccff5e67ba69c14aa2c3137f2a4e1892f6c0d LICENSE.FDL
+sha256 5094ecb9c9dcd0eadc34f3c11511d9b5535063032bc150164ecd1a5d5a445547 src/3rdparty/javascriptcore/JavaScriptCore/COPYING.LIB
+sha256 43b007cd3ac7b7ea5284b13e9580334028e6f42e859059605d57558f39374197 src/3rdparty/javascriptcore/JavaScriptCore/pcre/COPYING

@@ -4,21 +4,11 @@
 #
 ################################################################################
 
-EXFAT_UTILS_VERSION = 1.1.0
-EXFAT_UTILS_SITE = http://distfiles.gentoo.org/distfiles
-EXFAT_UTILS_DEPENDENCIES = host-scons
-EXFAT_UTILS_LICENSE = GPLv3+
+EXFAT_UTILS_VERSION = 1.3.0
+EXFAT_UTILS_SITE = https://github.com/relan/exfat/releases/download/v$(EXFAT_UTILS_VERSION)
+EXFAT_UTILS_LICENSE = GPL-3.0+
 EXFAT_UTILS_LICENSE_FILES = COPYING
 
-define EXFAT_UTILS_BUILD_CMDS
-	(cd $(@D); \
-		$(TARGET_CONFIGURE_OPTS) CCFLAGS="$(TARGET_CFLAGS) -std=c99" $(SCONS))
-endef
+EXFAT_UTILS_CONF_OPTS += --exec-prefix=/
 
-define EXFAT_UTILS_INSTALL_TARGET_CMDS
-	(cd $(@D); \
-		$(TARGET_CONFIGURE_OPTS) CCFLAGS="$(TARGET_CFLAGS) -std=c99" $(SCONS) \
-		DESTDIR=$(TARGET_DIR)/usr/bin install)
-endef
-
-$(eval $(generic-package))
+$(eval $(autotools-package))

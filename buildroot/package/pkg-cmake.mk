@@ -22,13 +22,17 @@
 
 # Set compiler variables.
 ifeq ($(BR2_CCACHE),y)
-CMAKE_HOST_C_COMPILER = $(HOST_DIR)/usr/bin/ccache
-CMAKE_HOST_CXX_COMPILER = $(HOST_DIR)/usr/bin/ccache
+CMAKE_HOST_C_COMPILER = $(HOST_DIR)/bin/ccache
+CMAKE_HOST_CXX_COMPILER = $(HOST_DIR)/bin/ccache
 CMAKE_HOST_C_COMPILER_ARG1 = $(HOSTCC_NOCCACHE)
 CMAKE_HOST_CXX_COMPILER_ARG1 = $(HOSTCXX_NOCCACHE)
 else
 CMAKE_HOST_C_COMPILER = $(HOSTCC)
 CMAKE_HOST_CXX_COMPILER = $(HOSTCXX)
+endif
+
+ifneq ($(QUIET),)
+CMAKE_QUIET = -DCMAKE_RULE_MESSAGES=OFF -DCMAKE_INSTALL_MESSAGE=NEVER
 endif
 
 ################################################################################
@@ -53,11 +57,17 @@ $(2)_MAKE			?= $$(MAKE)
 $(2)_MAKE_ENV			?=
 $(2)_MAKE_OPTS			?=
 $(2)_INSTALL_OPTS		?= install
-$(2)_INSTALL_STAGING_OPTS	?= DESTDIR=$$(STAGING_DIR) install
-$(2)_INSTALL_TARGET_OPTS		?= DESTDIR=$$(TARGET_DIR) install
+$(2)_INSTALL_STAGING_OPTS	?= DESTDIR=$$(STAGING_DIR) install/fast
+$(2)_INSTALL_TARGET_OPTS		?= DESTDIR=$$(TARGET_DIR) install/fast
 
-$(2)_SRCDIR			= $$($(2)_DIR)/$$($(2)_SUBDIR)
+$(3)_SUPPORTS_IN_SOURCE_BUILD ?= YES
+
+
+ifeq ($$($(3)_SUPPORTS_IN_SOURCE_BUILD),YES)
 $(2)_BUILDDIR			= $$($(2)_SRCDIR)
+else
+$(2)_BUILDDIR			= $$($(2)_SRCDIR)/buildroot-build
+endif
 
 #
 # Configure step. Only define it if not already defined by the package
@@ -68,13 +78,21 @@ ifndef $(2)_CONFIGURE_CMDS
 ifeq ($(4),target)
 
 # Configure package for target
+#
+# - We are passing BUILD_SHARED_LIBS because it is documented as a
+#   standard CMake variable to control the build of shared libraries
+#   (see https://cmake.org/cmake/help/v3.8/manual/cmake-variables.7.html#variables-that-change-behavior)
+# - We are not passing BUILD_STATIC_LIBS because it is *not*
+#   documented as a standard CMake variable. If a package supports it,
+#   it must handle it explicitly.
+#
 define $(2)_CONFIGURE_CMDS
-	(cd $$($$(PKG)_BUILDDIR) && \
+	(mkdir -p $$($$(PKG)_BUILDDIR) && \
+	cd $$($$(PKG)_BUILDDIR) && \
 	rm -f CMakeCache.txt && \
 	PATH=$$(BR_PATH) \
-	$$($$(PKG)_CONF_ENV) $$(HOST_DIR)/usr/bin/cmake $$($$(PKG)_SRCDIR) \
-		-DCMAKE_TOOLCHAIN_FILE="$$(HOST_DIR)/usr/share/buildroot/toolchainfile.cmake" \
-		-DCMAKE_BUILD_TYPE=$$(if $$(BR2_ENABLE_DEBUG),Debug,Release) \
+	$$($$(PKG)_CONF_ENV) $$(BR2_CMAKE) $$($$(PKG)_SRCDIR) \
+		-DCMAKE_TOOLCHAIN_FILE="$$(HOST_DIR)/share/buildroot/toolchainfile.cmake" \
 		-DCMAKE_INSTALL_PREFIX="/usr" \
 		-DCMAKE_COLOR_MAKEFILE=OFF \
 		-DBUILD_DOC=OFF \
@@ -85,7 +103,7 @@ define $(2)_CONFIGURE_CMDS
 		-DBUILD_TESTS=OFF \
 		-DBUILD_TESTING=OFF \
 		-DBUILD_SHARED_LIBS=$$(if $$(BR2_STATIC_LIBS),OFF,ON) \
-		-DUSE_CCACHE=$$(if $$(BR2_CCACHE),ON,OFF) \
+		$$(CMAKE_QUIET) \
 		$$($$(PKG)_CONF_OPTS) \
 	)
 endef
@@ -93,19 +111,26 @@ else
 
 # Configure package for host
 define $(2)_CONFIGURE_CMDS
-	(cd $$($$(PKG)_BUILDDIR) && \
+	(mkdir -p $$($$(PKG)_BUILDDIR) && \
+	cd $$($$(PKG)_BUILDDIR) && \
 	rm -f CMakeCache.txt && \
 	PATH=$$(BR_PATH) \
-	$$(HOST_DIR)/usr/bin/cmake $$($$(PKG)_SRCDIR) \
+	PKG_CONFIG="$$(PKG_CONFIG_HOST_BINARY)" \
+	PKG_CONFIG_SYSROOT_DIR="/" \
+	PKG_CONFIG_LIBDIR="$$(HOST_DIR)/lib/pkgconfig:$$(HOST_DIR)/share/pkgconfig" \
+	PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 \
+	PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 \
+	$$($$(PKG)_CONF_ENV) $$(BR2_CMAKE) $$($$(PKG)_SRCDIR) \
 		-DCMAKE_INSTALL_SO_NO_EXE=0 \
 		-DCMAKE_FIND_ROOT_PATH="$$(HOST_DIR)" \
 		-DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM="BOTH" \
 		-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY="BOTH" \
 		-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE="BOTH" \
-		-DCMAKE_INSTALL_PREFIX="$$(HOST_DIR)/usr" \
+		-DCMAKE_INSTALL_PREFIX="$$(HOST_DIR)" \
 		-DCMAKE_C_FLAGS="$$(HOST_CFLAGS)" \
 		-DCMAKE_CXX_FLAGS="$$(HOST_CXXFLAGS)" \
 		-DCMAKE_EXE_LINKER_FLAGS="$$(HOST_LDFLAGS)" \
+		-DCMAKE_SHARED_LINKER_FLAGS="$$(HOST_LDFLAGS)" \
 		-DCMAKE_ASM_COMPILER="$$(HOSTAS)" \
 		-DCMAKE_C_COMPILER="$$(CMAKE_HOST_C_COMPILER)" \
 		-DCMAKE_CXX_COMPILER="$$(CMAKE_HOST_CXX_COMPILER)" \
@@ -121,19 +146,18 @@ define $(2)_CONFIGURE_CMDS
 		-DBUILD_TEST=OFF \
 		-DBUILD_TESTS=OFF \
 		-DBUILD_TESTING=OFF \
+		$$(CMAKE_QUIET) \
 		$$($$(PKG)_CONF_OPTS) \
 	)
 endef
 endif
 endif
 
-# This must be repeated from inner-generic-package, otherwise we only get
-# host-cmake in _DEPENDENCIES because of the following line
-ifeq ($(4),host)
-$(2)_DEPENDENCIES ?= $$(filter-out host-toolchain $(1),$$(patsubst host-host-%,host-%,$$(addprefix host-,$$($(3)_DEPENDENCIES))))
-endif
+# Since some CMake modules (even upstream ones) use pgk_check_modules
+# primitives to find {C,LD}FLAGS, add it to the dependency list.
+$(2)_DEPENDENCIES += host-pkgconf
 
-$(2)_DEPENDENCIES += host-cmake
+$(2)_DEPENDENCIES += $(BR2_CMAKE_HOST_DEPENDENCY)
 
 #
 # Build step. Only define it if not already defined by the package .mk
@@ -207,29 +231,44 @@ else ifeq ($(BR2_ARM_CPU_ARMV6),y)
 CMAKE_SYSTEM_PROCESSOR_ARM_VARIANT = armv6
 else ifeq ($(BR2_ARM_CPU_ARMV7A),y)
 CMAKE_SYSTEM_PROCESSOR_ARM_VARIANT = armv7
+else ifeq ($(BR2_ARM_CPU_ARMV8A),y)
+CMAKE_SYSTEM_PROCESSOR_ARM_VARIANT = armv8
 endif
 
 ifeq ($(BR2_arm),y)
 CMAKE_SYSTEM_PROCESSOR = $(CMAKE_SYSTEM_PROCESSOR_ARM_VARIANT)l
 else ifeq ($(BR2_armeb),y)
-CMAKE_SYSTEM_PROCESSOR = $(CMAKE_SYSTEM_PROCESSORARM_VARIANT)b
+CMAKE_SYSTEM_PROCESSOR = $(CMAKE_SYSTEM_PROCESSOR_ARM_VARIANT)b
+else ifeq ($(call qstrip,$(BR2_ARCH)),powerpc64)
+CMAKE_SYSTEM_PROCESSOR = ppc64
+else ifeq ($(call qstrip,$(BR2_ARCH)),powerpc64le)
+CMAKE_SYSTEM_PROCESSOR = ppc64le
 else
 CMAKE_SYSTEM_PROCESSOR = $(BR2_ARCH)
 endif
 
 # In order to allow the toolchain to be relocated, we calculate the HOST_DIR
-# based on the toolchainfile.cmake file's location: $(HOST_DIR)/usr/share/buildroot
+# based on the toolchainfile.cmake file's location: $(HOST_DIR)/share/buildroot
 # In all the other variables, HOST_DIR will be replaced by RELOCATED_HOST_DIR,
 # so we have to strip "$(HOST_DIR)/" from the paths that contain it.
-$(HOST_DIR)/usr/share/buildroot/toolchainfile.cmake:
-	@mkdir -p $(@D)
+define TOOLCHAIN_CMAKE_INSTALL_FILES
+	@mkdir -p $(HOST_DIR)/share/buildroot
 	sed \
-		-e 's:@@STAGING_SUBDIR@@:$(call qstrip,$(STAGING_SUBDIR)):' \
-		-e 's:@@TARGET_CFLAGS@@:$(call qstrip,$(TARGET_CFLAGS)):' \
-		-e 's:@@TARGET_CXXFLAGS@@:$(call qstrip,$(TARGET_CXXFLAGS)):' \
-		-e 's:@@TARGET_LDFLAGS@@:$(call qstrip,$(TARGET_LDFLAGS)):' \
-		-e 's:@@TARGET_CC_NOCCACHE@@:$(subst $(HOST_DIR)/,,$(call qstrip,$(TARGET_CC_NOCCACHE))):' \
-		-e 's:@@TARGET_CXX_NOCCACHE@@:$(subst $(HOST_DIR)/,,$(call qstrip,$(TARGET_CXX_NOCCACHE))):' \
-		-e 's:@@CMAKE_SYSTEM_PROCESSOR@@:$(call qstrip,$(CMAKE_SYSTEM_PROCESSOR)):' \
+		-e 's#@@STAGING_SUBDIR@@#$(call qstrip,$(STAGING_SUBDIR))#' \
+		-e 's#@@TARGET_CFLAGS@@#$(call qstrip,$(TARGET_CFLAGS))#' \
+		-e 's#@@TARGET_CXXFLAGS@@#$(call qstrip,$(TARGET_CXXFLAGS))#' \
+		-e 's#@@TARGET_FCFLAGS@@#$(call qstrip,$(TARGET_FCFLAGS))#' \
+		-e 's#@@TARGET_LDFLAGS@@#$(call qstrip,$(TARGET_LDFLAGS))#' \
+		-e 's#@@TARGET_CC@@#$(subst $(HOST_DIR)/,,$(call qstrip,$(TARGET_CC)))#' \
+		-e 's#@@TARGET_CXX@@#$(subst $(HOST_DIR)/,,$(call qstrip,$(TARGET_CXX)))#' \
+		-e 's#@@TARGET_FC@@#$(subst $(HOST_DIR)/,,$(call qstrip,$(TARGET_FC)))#' \
+		-e 's#@@CMAKE_SYSTEM_PROCESSOR@@#$(call qstrip,$(CMAKE_SYSTEM_PROCESSOR))#' \
+		-e 's#@@TOOLCHAIN_HAS_FORTRAN@@#$(if $(BR2_TOOLCHAIN_HAS_FORTRAN),1,0)#' \
+		-e 's#@@CMAKE_BUILD_TYPE@@#$(if $(BR2_ENABLE_DEBUG),Debug,Release)#' \
 		$(TOPDIR)/support/misc/toolchainfile.cmake.in \
-		> $@
+		> $(HOST_DIR)/share/buildroot/toolchainfile.cmake
+	$(Q)$(INSTALL) -D -m 0644 support/misc/Buildroot.cmake \
+		$(HOST_DIR)/share/buildroot/Platform/Buildroot.cmake
+endef
+
+TOOLCHAIN_POST_INSTALL_STAGING_HOOKS += TOOLCHAIN_CMAKE_INSTALL_FILES

@@ -4,15 +4,13 @@
 #
 ################################################################################
 
-LIBCEC_VERSION = libcec-2.2.0-repack
-LIBCEC_SITE = $(call github,Pulse-Eight,libcec,$(LIBCEC_VERSION))
-LIBCEC_LICENSE = GPLv2+
+LIBCEC_VERSION = 4.0.7
+LIBCEC_SITE = $(call github,Pulse-Eight,libcec,libcec-$(LIBCEC_VERSION))
+LIBCEC_LICENSE = GPL-2.0+
 LIBCEC_LICENSE_FILES = COPYING
 
-# Autoreconf required due to being a dev tarball and not a release tarball.
-LIBCEC_AUTORECONF = YES
 LIBCEC_INSTALL_STAGING = YES
-LIBCEC_DEPENDENCIES = host-pkgconf
+LIBCEC_DEPENDENCIES = host-pkgconf libplatform
 
 ifeq ($(BR2_PACKAGE_LOCKDEV),y)
 LIBCEC_DEPENDENCIES += lockdev
@@ -22,13 +20,28 @@ ifeq ($(BR2_PACKAGE_HAS_UDEV),y)
 LIBCEC_DEPENDENCIES += udev
 endif
 
-ifeq ($(BR2_PACKAGE_RPI_USERLAND),y)
-LIBCEC_CONF_OPTS = --enable-rpi \
-	--with-rpi-include-path=$(STAGING_DIR)/usr/include
-LIBCEC_DEPENDENCIES += rpi-userland
-LIBCEC_CONF_ENV += LIBS="-lvcos -lvchostif"
-else
-LIBCEC_CONF_OPTS = --disable-rpi
+ifeq ($(BR2_PACKAGE_PYTHON)$(BR2_PACKAGE_PYTHON3),y)
+LIBCEC_DEPENDENCIES += host-swig $(if $(BR2_PACKAGE_PYTHON3),python3,python)
 endif
 
-$(eval $(autotools-package))
+ifeq ($(BR2_PACKAGE_RPI_USERLAND),y)
+LIBCEC_DEPENDENCIES += rpi-userland
+LIBCEC_CONF_OPTS += \
+	-DCMAKE_C_FLAGS="$(TARGET_CFLAGS) -lvcos -lvchiq_arm" \
+	-DCMAKE_CXX_FLAGS="$(TARGET_CXXFLAGS) \
+		-I$(STAGING_DIR)/usr/include/interface/vmcs_host/linux \
+		-I$(STAGING_DIR)/usr/include/interface/vcos/pthreads"
+endif
+
+ifeq ($(BR2_PACKAGE_XLIB_LIBXRANDR),y)
+LIBCEC_DEPENDENCIES += xlib_libXrandr
+endif
+
+# Disable information about how libCEC is compiled.
+LIBCEC_CONF_OPTS += -DHAVE_GIT_BIN="" \
+	-DHAVE_DATE_BIN="" \
+	-DHAVE_WHOAMI_BIN="" \
+	-DHAVE_HOSTNAME_BIN="" \
+	-DHAVE_UNAME_BIN=""
+
+$(eval $(cmake-package))

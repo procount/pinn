@@ -4,12 +4,18 @@
 #
 ################################################################################
 
-SOX_VERSION = 14.4.1
+SOX_VERSION = 14.4.2
 SOX_SITE = http://downloads.sourceforge.net/project/sox/sox/$(SOX_VERSION)
+SOX_SOURCE = sox-$(SOX_VERSION).tar.bz2
 SOX_DEPENDENCIES = host-pkgconf
-SOX_CONF_OPTS = --with-distro="Buildroot" --without-ffmpeg --disable-gomp
-SOX_LICENSE = GPLv2+ (sox binary), LGPLv2.1+ (libraries)
+SOX_LICENSE = GPL-2.0+ (sox binary), LGPL-2.1+ (libraries)
 SOX_LICENSE_FILES = LICENSE.GPL LICENSE.LGPL
+
+SOX_CONF_OPTS = \
+	--with-distro="Buildroot" \
+	--without-ffmpeg \
+	--disable-gomp \
+	--disable-stack-protector
 
 ifeq ($(BR2_PACKAGE_ALSA_LIB_PCM),y)
 SOX_DEPENDENCIES += alsa-lib
@@ -75,6 +81,12 @@ ifeq ($(BR2_PACKAGE_OPENCORE_AMR),y)
 SOX_DEPENDENCIES += opencore-amr
 else
 SOX_CONF_OPTS += --without-amrwb --without-amrnb
+endif
+
+ifeq ($(BR2_PACKAGE_OPUSFILE),y)
+SOX_DEPENDENCIES += opusfile
+else
+SOX_CONF_OPTS += --without-opus
 endif
 
 ifeq ($(BR2_PACKAGE_PULSEAUDIO),y)

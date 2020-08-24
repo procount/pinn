@@ -4,34 +4,52 @@
 #
 ################################################################################
 
-NFTABLES_VERSION = 0.4
+NFTABLES_VERSION = 0.9.6
 NFTABLES_SOURCE = nftables-$(NFTABLES_VERSION).tar.bz2
-NFTABLES_SITE = http://www.netfilter.org/projects/nftables/files
-NFTABLES_DEPENDENCIES = gmp libmnl libnftnl host-bison host-flex \
-	host-pkgconf $(if $(BR2_NEEDS_GETTEXT),gettext)
-NFTABLES_LICENSE = GPLv2
+NFTABLES_SITE = https://www.netfilter.org/projects/nftables/files
+NFTABLES_DEPENDENCIES = libmnl libnftnl host-pkgconf $(TARGET_NLS_DEPENDENCIES)
+NFTABLES_LICENSE = GPL-2.0
 NFTABLES_LICENSE_FILES = COPYING
+NFTABLES_CONF_OPTS = --disable-man-doc --disable-pdf-doc
+
+ifeq ($(BR2_PACKAGE_GMP),y)
+NFTABLES_DEPENDENCIES += gmp
+NFTABLES_CONF_OPTS += --without-mini-gmp
+else
+NFTABLES_CONF_OPTS += --with-mini-gmp
+endif
 
 ifeq ($(BR2_PACKAGE_READLINE),y)
 NFTABLES_DEPENDENCIES += readline
 NFTABLES_LIBS += -lncurses
 else
-NFTABLES_CONF_OPTS = --without-cli
+NFTABLES_CONF_OPTS += --without-cli
+endif
+
+ifeq ($(BR2_PACKAGE_JANSSON),y)
+NFTABLES_DEPENDENCIES += jansson
+NFTABLES_CONF_OPTS += --with-json
+else
+NFTABLES_CONF_OPTS += --without-json
+endif
+
+ifeq ($(BR2_PACKAGE_PYTHON)$(BR2_PACKAGE_PYTHON3),y)
+NFTABLES_CONF_OPTS += --enable-python
+NFTABLES_DEPENDENCIES += $(if $(BR2_PACKAGE_PYTHON),python,python3)
+else
+NFTABLES_CONF_OPTS += --disable-python
 endif
 
 ifeq ($(BR2_STATIC_LIBS)$(BR2_PACKAGE_LIBNFTNL_JSON),yy)
 NFTABLES_LIBS += -ljansson -lm
 endif
-ifeq ($(BR2_STATIC_LIBS)$(BR2_PACKAGE_LIBNFTNL_XML),yy)
-NFTABLES_LIBS += -lmxml -lpthread
-endif
 
-NFTABLES_CONF_ENV = \
-	ac_cv_prog_CONFIG_PDF=no \
-	LIBS="$(NFTABLES_LIBS)" \
-	DBLATEX=no \
-	DOCBOOK2X_MAN=no \
-	DOCBOOK2MAN=no \
-	DB2X_DOCBOOK2MAN=no
+NFTABLES_CONF_ENV = LIBS="$(NFTABLES_LIBS)"
+
+define NFTABLES_LINUX_CONFIG_FIXUPS
+	$(call KCONFIG_ENABLE_OPT,CONFIG_NETFILTER)
+	$(call KCONFIG_ENABLE_OPT,CONFIG_NF_TABLES)
+	$(call KCONFIG_ENABLE_OPT,CONFIG_NF_TABLES_INET)
+endef
 
 $(eval $(autotools-package))

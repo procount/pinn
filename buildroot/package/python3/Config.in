@@ -1,3 +1,7 @@
+comment "python3 needs a toolchain w/ wchar, threads, dynamic library"
+	depends on BR2_USE_MMU
+	depends on !BR2_USE_WCHAR || !BR2_TOOLCHAIN_HAS_THREADS || BR2_STATIC_LIBS
+
 config BR2_PACKAGE_PYTHON3
 	bool "python3"
 	depends on !BR2_PACKAGE_PYTHON
@@ -5,15 +9,13 @@ config BR2_PACKAGE_PYTHON3
 	# uses fork()
 	depends on BR2_USE_MMU
 	depends on BR2_TOOLCHAIN_HAS_THREADS # libffi
+	depends on !BR2_STATIC_LIBS
 	select BR2_PACKAGE_LIBFFI
+	select BR2_PACKAGE_BLUEZ5_UTILS_HEADERS if BR2_PACKAGE_BLUEZ5_UTILS
 	help
 	  The python language interpreter.
 
 	  http://www.python.org/
-
-comment "python3 needs a toolchain w/ wchar, threads"
-	depends on BR2_USE_MMU
-	depends on !BR2_USE_WCHAR || !BR2_TOOLCHAIN_HAS_THREADS
 
 if BR2_PACKAGE_PYTHON3
 
@@ -21,7 +23,8 @@ choice
 	prompt "python3 module format to install"
 	default BR2_PACKAGE_PYTHON3_PYC_ONLY
 	help
-	  Select Python module format to install on target (py, pyc or both)
+	  Select Python module format to install on target (py, pyc or
+	  both)
 
 config BR2_PACKAGE_PYTHON3_PY_ONLY
 	bool ".py sources only"
@@ -39,8 +42,8 @@ menu "core python3 modules"
 comment "The following modules are unusual or require extra libraries"
 
 config BR2_PACKAGE_PYTHON3_BZIP2
-	select BR2_PACKAGE_BZIP2
 	bool "bz2 module"
+	select BR2_PACKAGE_BZIP2
 	help
 	  bzip2 module for Python3
 
@@ -50,14 +53,14 @@ config BR2_PACKAGE_PYTHON3_CODECSCJK
 	  Chinese/Japanese/Korean codecs module for Python (large).
 
 config BR2_PACKAGE_PYTHON3_CURSES
-	select BR2_PACKAGE_NCURSES
 	bool "curses module"
+	select BR2_PACKAGE_NCURSES
 	help
 	  curses module for Python3.
 
 config BR2_PACKAGE_PYTHON3_DECIMAL
-	select BR2_PACKAGE_MPDECIMAL
 	bool "decimal module"
+	select BR2_PACKAGE_MPDECIMAL
 	help
 	  decimal module for Python3.
 
@@ -66,22 +69,16 @@ config BR2_PACKAGE_PYTHON3_OSSAUDIODEV
 	help
 	  ossaudiodev module for Python3.
 
-config BR2_PACKAGE_PYTHON3_PYEXPAT
-	select BR2_PACKAGE_EXPAT
-	bool "pyexpat"
-	help
-	  pyexpat module for Python3.
-
 config BR2_PACKAGE_PYTHON3_READLINE
-	select BR2_PACKAGE_READLINE
 	bool "readline"
+	select BR2_PACKAGE_READLINE
 	help
 	  readline module for Python3 (required for command-line
 	  editing in the Python shell).
 
 config BR2_PACKAGE_PYTHON3_SSL
-	select BR2_PACKAGE_OPENSSL
 	bool "ssl"
+	select BR2_PACKAGE_OPENSSL
 	help
 	  _ssl module for Python3 (required for https in urllib etc).
 
@@ -89,13 +86,26 @@ config BR2_PACKAGE_PYTHON3_UNICODEDATA
 	bool "unicodedata module"
 	default y
 	help
-	  Unicode character database (used by stringprep module) (large).
+	  Unicode character database (used by stringprep module)
+	  (large).
 
 config BR2_PACKAGE_PYTHON3_SQLITE
 	bool "sqlite module"
 	select BR2_PACKAGE_SQLITE
 	help
 	  SQLite database support
+
+config BR2_PACKAGE_PYTHON3_PYEXPAT
+	bool "xml module"
+	select BR2_PACKAGE_EXPAT
+	help
+	  pyexpat and xml libraries for Python3.
+
+config BR2_PACKAGE_PYTHON3_XZ
+	bool "xz module"
+	select BR2_PACKAGE_XZ
+	help
+	  xz (a.k.a lzma) module for Python3
 
 config BR2_PACKAGE_PYTHON3_ZLIB
 	bool "zlib module"

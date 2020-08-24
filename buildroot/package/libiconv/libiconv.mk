@@ -4,15 +4,19 @@
 #
 ################################################################################
 
-LIBICONV_VERSION = 1.14
+LIBICONV_VERSION = 1.15
 LIBICONV_SITE = $(BR2_GNU_MIRROR)/libiconv
 LIBICONV_INSTALL_STAGING = YES
-LIBICONV_LICENSE = GPLv3+ (iconv program), LGPLv2+ (library)
+LIBICONV_LICENSE = GPL-3.0+ (iconv program), LGPL-2.0+ (library)
 LIBICONV_LICENSE_FILES = COPYING COPYING.LIB
+
+ifeq ($(BR2_PACKAGE_LIBICONV_EXTRA_ENCODINGS),y)
+LIBICONV_CONF_OPTS = --enable-extra-encodings
+endif
 
 # Don't build the preloadable library, as we don't need it (it's only
 # for LD_PRELOAD to replace glibc's iconv, but we never build libiconv
-# when glibc is ued). And it causes problems for static only builds.
+# when glibc is used). And it causes problems for static only builds.
 define LIBICONV_DISABLE_PRELOAD
 	$(SED) '/preload/d' $(@D)/Makefile.in
 endef

@@ -5,22 +5,36 @@ set -e
 
 # Download helper for scp, to be called from the download wrapper script
 #
-# Call it as:
-#   .../scp [-q] OUT_FILE SRC_URL
+# Options:
+#   -q          Be quiet.
+#   -o FILE     Copy to local file FILE.
+#   -f FILE     Copy from remote file FILE.
+#   -u URI      Download file at URI.
 #
 # Environment:
 #   SCP       : the scp command to call
 
-verbose=-v
-while getopts :q OPT; do
+verbose=
+while getopts "${BR_BACKEND_DL_GETOPTS}" OPT; do
     case "${OPT}" in
     q)  verbose=-q;;
+    o)  output="${OPTARG}";;
+    f)  filename="${OPTARG}";;
+    u)  uri="${OPTARG}";;
+    :)  printf "option '%s' expects a mandatory argument\n" "${OPTARG}"; exit 1;;
     \?) printf "unknown option '%s'\n" "${OPTARG}" >&2; exit 1;;
     esac
 done
-shift $((OPTIND-1))
 
-output="${1}"
-url="${2}"
+shift $((OPTIND-1)) # Get rid of our options
 
-${SCP} ${verbose} "${url}" "${output}"
+# Caller needs to single-quote its arguments to prevent them from
+# being expanded a second time (in case there are spaces in them)
+_scp() {
+    eval ${SCP} "${@}"
+}
+
+# Remove any scheme prefix
+uri="${uri##scp://}"
+
+_scp ${verbose} "${@}" "'${uri}/${filename}'" "'${output}'"

@@ -4,12 +4,12 @@
 #
 ################################################################################
 
-LOCKDEV_MAJOR = 1
-LOCKDEV_VERSION = $(LOCKDEV_MAJOR).0.3
+LOCKDEV_VERSION_MAJOR = 1
+LOCKDEV_VERSION = $(LOCKDEV_VERSION_MAJOR).0.3
 LOCKDEV_SOURCE = lockdev_$(LOCKDEV_VERSION).orig.tar.gz
 LOCKDEV_PATCH = lockdev_$(LOCKDEV_VERSION)-1.6.diff.gz
 LOCKDEV_SITE = http://snapshot.debian.org/archive/debian/20141023T043132Z/pool/main/l/lockdev
-LOCKDEV_LICENSE = LGPLv2.1
+LOCKDEV_LICENSE = LGPL-2.1
 LOCKDEV_LICENSE_FILES = LICENSE
 LOCKDEV_INSTALL_STAGING = YES
 
@@ -24,14 +24,20 @@ LOCKDEV_BUILD_ARGS = shared
 LOCKDEV_INSTALL_ARGS = install_run
 endif
 
+# Make the code believe we are using a C library compatible with
+# glibc, which for the purpose of lockdev is actually true.
+ifeq ($(BR2_TOOLCHAIN_USES_MUSL),y)
+LOCKDEV_BUILD_ARGS += CFLAGS="$(TARGET_CFLAGS) -D__GNU_LIBRARY__"
+endif
+
 ifeq ($(BR2_SHARED_STATIC_LIBS)$(BR2_SHARED_LIBS),y)
 define LOCKDEV_CREATE_LINKS_STAGING
 	ln -sf liblockdev.$(LOCKDEV_VERSION).so $(STAGING_DIR)/usr/lib/liblockdev.so
-	ln -sf liblockdev.$(LOCKDEV_VERSION).so $(STAGING_DIR)/usr/lib/liblockdev.so.$(LOCKDEV_MAJOR)
+	ln -sf liblockdev.$(LOCKDEV_VERSION).so $(STAGING_DIR)/usr/lib/liblockdev.so.$(LOCKDEV_VERSION_MAJOR)
 endef
 
 define LOCKDEV_CREATE_LINKS_TARGET
-	ln -sf liblockdev.$(LOCKDEV_VERSION).so $(TARGET_DIR)/usr/lib/liblockdev.so.$(LOCKDEV_MAJOR)
+	ln -sf liblockdev.$(LOCKDEV_VERSION).so $(TARGET_DIR)/usr/lib/liblockdev.so.$(LOCKDEV_VERSION_MAJOR)
 endef
 endif
 

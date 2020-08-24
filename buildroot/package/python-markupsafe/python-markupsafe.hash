@@ -1,3 +1,4 @@
-# md5 from https://pypi.python.org/pypi?:action=show_md5&digest=f5ab3deee4c37cd6a922fb81e730da6e, sha256 locally computed
-md5	f5ab3deee4c37cd6a922fb81e730da6e  MarkupSafe-0.23.tar.gz
-sha256	a4ec1aff59b95a14b45eb2e23761a0179e98319da5a7eb76b56ea8cdc7b871c3  MarkupSafe-0.23.tar.gz
+# md5 from https://pypi.python.org/pypi/markupsafe/json, sha256 locally computed
+md5	43fd756864fe42063068e092e220c57b  MarkupSafe-1.1.1.tar.gz
+sha256	29872e92839765e546828bb7754a68c418d927cd064fd4708fab9fe9c8bb116b  MarkupSafe-1.1.1.tar.gz
+sha256	489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea  LICENSE.rst

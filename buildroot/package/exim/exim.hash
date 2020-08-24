@@ -1,2 +1,6 @@
-# From https://lists.exim.org/lurker/message/20150113.003827.4a5d30e4.en.html
-sha256	13211f2bbc5400d095a9b4be075eb1347e0d98676fdfe4be8a3b4d56281daaa4	exim-4.85.tar.bz2
+# From https://ftp.exim.org/pub/exim/exim4/00-sha256sums.txt
+sha256  f77ee8faf04f5db793243c3ae81c1f4e452cd6ad7dd515a80edf755c4b144bdb  exim-4.94.tar.xz
+# From https://ftp.exim.org/pub/exim/exim4/00-sha512sums.txt
+sha512  3bf95ade30902327403e7308089a3e423761da5b0745397dace7c7fd15ba3838d93e0ee418f1fed57606f79e57b793c7c7407e5c0d526146f0036126d5d95316  exim-4.94.tar.xz
+# Locally calculated
+sha256  49240db527b7e55b312a46fc59794fde5dd006422e422257f4f057bfd27b3c8f  LICENCE

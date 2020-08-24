@@ -1,3 +1,4 @@
-# From http://ftp.debian.org/debian/pool/main/d/dash/dash_0.5.8-1.dsc
-sha256	c6db3a237747b02d20382a761397563d813b306c020ae28ce25a1c3915fac60f	dash_0.5.8.orig.tar.gz
-sha256	d751769cc1ef8b825a177e782f1cd3e35bde7c268107fa4febf8d235e12c64d9	dash_0.5.8-1.diff.gz
+# From http://gondor.apana.org.au/~herbert/dash/files/dash-0.5.11.tar.gz.sha256sum
+sha256  4dd9a6ed5fe7546095157918fe5d784bb0b7887ae13de50e1e2d11e1b5a391cb  dash-0.5.11.tar.gz
+# Locally calculated
+sha256  254a7894923ff62e69184a991dcbccae97edee58a1105e8efbe78caf10595d72  COPYING

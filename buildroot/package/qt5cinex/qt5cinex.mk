@@ -5,25 +5,17 @@
 ################################################################################
 
 QT5CINEX_VERSION = 1.0
-QT5CINEX_SITE = http://quitcoding.com/download/
+QT5CINEX_SITE = http://quitcoding.com/download
 
 ifeq ($(BR2_PACKAGE_QT5CINEX_HD),y)
-QT5CINEX_HD = "rpi_"
+QT5CINEX_HD = rpi_
 endif
 
 QT5CINEX_SOURCE = Qt5_CinematicExperience_$(QT5CINEX_HD)$(QT5CINEX_VERSION).tgz
-QT5CINEX_DEPENDENCIES = qt5base qt5declarative
+QT5CINEX_DEPENDENCIES = qt5declarative
 
 QT5CINEX_LICENSE = CC-BY-3.0
-QT5CINEX_LICENSE_FILE = README
-
-define QT5CINEX_CONFIGURE_CMDS
-	cd $(@D); $(TARGET_MAKE_ENV) $(HOST_DIR)/usr/bin/qmake
-endef
-
-define QT5CINEX_BUILD_CMDS
-	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D)
-endef
+QT5CINEX_LICENSE_FILES = README
 
 # In addition to the Cinematic Experience itself, we also install a
 # wrapper shell script to /usr/bin: the Cinematic Experience binary
@@ -39,4 +31,4 @@ define QT5CINEX_INSTALL_TARGET_CMDS
 		$(TARGET_DIR)/usr/bin/CinematicExperience-demo
 endef
 
-$(eval $(generic-package))
+$(eval $(qmake-package))

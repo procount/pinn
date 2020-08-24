@@ -35,6 +35,10 @@ ifeq ($(BR2_ARM_INSTRUCTIONS_THUMB),y)
 DMALLOC_CFLAGS += -marm
 endif
 
+ifeq ($(BR2_TOOLCHAIN_HAS_GCC_BUG_63261),y)
+DMALLOC_CFLAGS += -O0
+endif
+
 DMALLOC_CONF_ENV = CFLAGS="$(DMALLOC_CFLAGS)"
 
 define DMALLOC_POST_PATCH
@@ -48,7 +52,7 @@ DMALLOC_POST_PATCH_HOOKS += DMALLOC_POST_PATCH
 
 # both DESTDIR and PREFIX are ignored..
 define DMALLOC_INSTALL_STAGING_CMDS
-	$(MAKE) includedir="$(STAGING_DIR)/usr/include" \
+	$(TARGET_MAKE_ENV) $(MAKE) includedir="$(STAGING_DIR)/usr/include" \
 		bindir="$(STAGING_DIR)/usr/bin" \
 		libdir="$(STAGING_DIR)/usr/lib" \
 		shlibdir="$(STAGING_DIR)/usr/lib" \
@@ -56,8 +60,14 @@ define DMALLOC_INSTALL_STAGING_CMDS
 		-C $(@D) install
 endef
 
-define DMALLOC_INSTALL_TARGET_CMDS
+ifeq ($(BR2_STATIC_LIBS),)
+define DMALLOC_INSTALL_SHARED_LIB
 	cp -dpf $(STAGING_DIR)/usr/lib/libdmalloc*.so $(TARGET_DIR)/usr/lib
+endef
+endif
+
+define DMALLOC_INSTALL_TARGET_CMDS
+	$(DMALLOC_INSTALL_SHARED_LIB)
 	cp -dpf $(STAGING_DIR)/usr/bin/dmalloc $(TARGET_DIR)/usr/bin/dmalloc
 endef
 

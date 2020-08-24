@@ -7,7 +7,7 @@
 # SDK 5_01_01_01 only support EABIhf so we downgrade to 5_01_00_01 if EABIhf is
 # not available.
 ifeq ($(BR2_ARM_EABIHF),y)
-TI_GFX_VERSION = 5_01_01_01
+TI_GFX_VERSION = 5_01_01_02
 TI_GFX_SOURCE = Graphics_SDK_setuplinux_hardfp_$(TI_GFX_VERSION).bin
 else
 TI_GFX_VERSION = 5_01_00_01
@@ -21,6 +21,7 @@ TI_GFX_LICENSE_FILES = TSPA.txt
 TI_GFX_INSTALL_STAGING = YES
 
 TI_GFX_DEPENDENCIES = linux
+
 TI_GFX_PROVIDES = libegl libgles powervr
 
 ifeq ($(BR2_PACKAGE_TI_GFX_ES3),y)
@@ -93,14 +94,14 @@ TI_GFX_HDR_DIRS = OGLES2/EGL OGLES2/EWS OGLES2/GLES2 OGLES2/KHR \
 	OGLES/GLES bufferclass_ti/ pvr2d/ wsegl/
 
 define TI_GFX_EXTRACT_CMDS
-	chmod +x $(DL_DIR)/$(TI_GFX_SOURCE)
-	printf "Y\nY\n qY\n\n" | $(DL_DIR)/$(TI_GFX_SOURCE) \
+	chmod +x $(TI_GFX_DL_DIR)/$(TI_GFX_SOURCE)
+	printf "Y\nY\n qY\n\n" | $(TI_GFX_DL_DIR)/$(TI_GFX_SOURCE) \
 		--prefix $(@D) \
 		--mode console
 endef
 
 define TI_GFX_BUILD_KM_CMDS
-	$(MAKE) $(TI_GFX_KM_MAKE_OPTS) -C $(@D)/GFX_Linux_KM all
+	$(TARGET_MAKE_ENV) $(MAKE) $(TI_GFX_KM_MAKE_OPTS) -C $(@D)/GFX_Linux_KM all
 endef
 
 ifeq ($(BR2_PACKAGE_TI_GFX_DEMOS),y)
@@ -155,7 +156,7 @@ define TI_GFX_INSTALL_STAGING_CMDS
 endef
 
 define TI_GFX_INSTALL_KM_CMDS
-	$(MAKE) $(TI_GFX_KM_MAKE_OPTS) -C $(@D)/GFX_Linux_KM install
+	$(TARGET_MAKE_ENV) $(MAKE) $(TI_GFX_KM_MAKE_OPTS) -C $(@D)/GFX_Linux_KM install
 endef
 
 define TI_GFX_INSTALL_BINS_CMDS
@@ -188,6 +189,13 @@ endif
 define TI_GFX_INSTALL_INIT_SYSV
 	$(INSTALL) -D -m 0755 package/ti-gfx/S80ti-gfx \
 		$(TARGET_DIR)/etc/init.d/S80ti-gfx
+endef
+
+define TI_GFX_INSTALL_INIT_SYSTEMD
+	$(INSTALL) -D -m 755 package/ti-gfx/S80ti-gfx \
+		$(TARGET_DIR)/usr/lib/systemd/scripts/ti-gfx
+	$(INSTALL) -D -m 644 package/ti-gfx/ti-gfx.service \
+		$(TARGET_DIR)/usr/lib/systemd/system/ti-gfx.service
 endef
 
 define TI_GFX_INSTALL_TARGET_CMDS

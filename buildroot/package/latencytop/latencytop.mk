@@ -7,7 +7,7 @@
 LATENCYTOP_VERSION = 0.5
 LATENCYTOP_SITE = http://www.latencytop.org/download
 LATENCYTOP_DEPENDENCIES = libglib2 ncurses
-LATENCYTOP_LICENSE = GPLv2
+LATENCYTOP_LICENSE = GPL-2.0
 LATENCYTOP_LICENSE_FILES = latencytop.c
 
 # NOTE: GTK is heavy weight, we intentionally build the text (ncurses)
@@ -17,7 +17,7 @@ define LATENCYTOP_BUILD_CMDS
 endef
 
 define LATENCYTOP_INSTALL_TARGET_CMDS
-	$(MAKE) install -C $(@D) DESTDIR=$(TARGET_DIR) HAS_GTK_GUI=
+	$(TARGET_CONFIGURE_OPTS) $(MAKE) install -C $(@D) DESTDIR=$(TARGET_DIR) HAS_GTK_GUI=
 endef
 
 $(eval $(generic-package))

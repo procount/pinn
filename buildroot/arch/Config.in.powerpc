@@ -71,12 +71,12 @@ config BR2_powerpc_740
 	depends on !BR2_ARCH_IS_64
 config BR2_powerpc_7400
 	bool "7400"
-	select BR2_POWERPC_CPU_HAS_ALTIVEC
 	depends on !BR2_ARCH_IS_64
+	select BR2_POWERPC_CPU_HAS_ALTIVEC
 config BR2_powerpc_7450
 	bool "7450"
-	select BR2_POWERPC_CPU_HAS_ALTIVEC
 	depends on !BR2_ARCH_IS_64
+	select BR2_POWERPC_CPU_HAS_ALTIVEC
 config BR2_powerpc_750
 	bool "750"
 	depends on !BR2_ARCH_IS_64
@@ -164,9 +164,6 @@ config BR2_ENDIAN
 	default "BIG"    if BR2_powerpc || BR2_powerpc64
 	default "LITTLE" if BR2_powerpc64le
 
-config BR2_ARCH_HAS_ATOMICS
-	default y
-
 config BR2_GCC_TARGET_CPU
 	default "401"		if BR2_powerpc_401
 	default "403"		if BR2_powerpc_403
@@ -200,16 +197,17 @@ config BR2_GCC_TARGET_CPU
 	default "e300c2"	if BR2_powerpc_e300c2
 	default "e300c3"	if BR2_powerpc_e300c3
 	default "e500mc"	if BR2_powerpc_e500mc
+	default "e5500"		if BR2_powerpc_e5500
+	default "e6500"		if BR2_powerpc_e6500
 	default "power4"	if BR2_powerpc_power4
 	default "power5"	if BR2_powerpc_power5
 	default "power6"	if BR2_powerpc_power6
 	default "power7"	if BR2_powerpc_power7
 	default "power8"	if BR2_powerpc_power8
 
-config BR2_GCC_TARGET_ABI
-	default "altivec"		if BR2_PPC_ABI_altivec
-	default "no-altivec"		if BR2_PPC_ABI_no-altivec
-	default "spe"			if BR2_PPC_ABI_spe
-	default "no-spe"		if BR2_PPC_ABI_no-spe
-	default "ibmlongdouble"		if BR2_PPC_ABI_ibmlongdouble
-	default "ieeelongdouble"	if BR2_PPC_ABI_ieeelongdouble
+config BR2_READELF_ARCH_NAME
+	default "PowerPC"	if BR2_powerpc
+	default "PowerPC64"	if BR2_powerpc64 || BR2_powerpc64le
+
+# vim: ft=kconfig
+# -*- mode:kconfig; -*-

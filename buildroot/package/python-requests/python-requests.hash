@@ -1,3 +1,5 @@
-# md5 from https://pypi.python.org/pypi?:action=show_md5&digest=02214b3a179e445545de4b7a98d3dd17, sha256 locally computed
-md5	02214b3a179e445545de4b7a98d3dd17  requests-2.4.3.tar.gz
-sha256	53c68313c5c6149b1a899234c000296e60a8900682accf73d6f0c6d608afc6b1  requests-2.4.3.tar.gz
+# md5, sha256 from https://pypi.org/pypi/requests/json
+md5  abfdc28db1065bbd0bc32592ac9d27a6  requests-2.23.0.tar.gz
+sha256  b3f43d496c6daba4493e7c431722aeb7dbc6288f52a6e04e7b6023b0247817e6  requests-2.23.0.tar.gz
+# Locally computed sha256 checksums
+sha256  8837a2f33a61bcee175c028ff16d1c160aba48a3aebe1495ace709be4e62636b  LICENSE

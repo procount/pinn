@@ -4,28 +4,14 @@
 #
 ################################################################################
 
-CZMQ_VERSION = v3.0.0
-CZMQ_SITE = $(call github,zeromq,czmq,$(CZMQ_VERSION))
+CZMQ_VERSION = 4.2.0
+CZMQ_SITE = https://github.com/zeromq/czmq/releases/download/v$(CZMQ_VERSION)
 
-# Autoreconf required as we use the git tree
-CZMQ_AUTORECONF = YES
 CZMQ_INSTALL_STAGING = YES
-CZMQ_DEPENDENCIES = zeromq
-CZMQ_LICENSE = MPLv2.0
+CZMQ_DEPENDENCIES = zeromq host-pkgconf
+CZMQ_LICENSE = MPL-2.0
 CZMQ_LICENSE_FILES = LICENSE
 
-# asciidoc is a python script that imports unicodedata, which is not in
-# host-python, so disable asciidoc entirely.
-CZMQ_CONF_ENV = ac_cv_prog_czmq_have_asciidoc=no
-
-ifeq ($(BR2_STATIC_LIBS),y)
-CZMQ_CONF_OPTS += LIBS="-lstdc++ -lm"
-endif
-
-define CZMQ_CREATE_CONFIG_DIR
-	mkdir -p $(@D)/config
-endef
-
-CZMQ_POST_PATCH_HOOKS += CZMQ_CREATE_CONFIG_DIR
+CZMQ_CONF_OPTS = --disable-Werror --without-docs
 
 $(eval $(autotools-package))

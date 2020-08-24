@@ -20,14 +20,20 @@
 #
 ################################################################################
 
+# basename does not evaluate if a file exists, so we must check to ensure
+# the _sysconfigdata__linux_*.py file exists. The "|| true" is added to return
+# an empty string if the file does not exist.
+PKG_PYTHON_SYSCONFIGDATA_PATH = $(PYTHON3_PATH)/_sysconfigdata__linux_*.py
+PKG_PYTHON_SYSCONFIGDATA_NAME = `{ [ -e $(PKG_PYTHON_SYSCONFIGDATA_PATH) ] && basename $(PKG_PYTHON_SYSCONFIGDATA_PATH) .py; } || true`
+
 # Target distutils-based packages
 PKG_PYTHON_DISTUTILS_ENV = \
 	PATH=$(BR_PATH) \
-	CC="$(TARGET_CC)" \
-	CFLAGS="$(TARGET_CFLAGS)" \
-	LDFLAGS="$(TARGET_LDFLAGS)" \
+	$(TARGET_CONFIGURE_OPTS) \
 	LDSHARED="$(TARGET_CROSS)gcc -shared" \
 	PYTHONPATH="$(if $(BR2_PACKAGE_PYTHON3),$(PYTHON3_PATH),$(PYTHON_PATH))" \
+	PYTHONNOUSERSITE=1 \
+	_PYTHON_SYSCONFIGDATA_NAME="$(PKG_PYTHON_SYSCONFIGDATA_NAME)" \
 	_python_sysroot=$(STAGING_DIR) \
 	_python_prefix=/usr \
 	_python_exec_prefix=/usr
@@ -36,44 +42,63 @@ PKG_PYTHON_DISTUTILS_BUILD_OPTS = \
 	--executable=/usr/bin/python
 
 PKG_PYTHON_DISTUTILS_INSTALL_TARGET_OPTS = \
-	--prefix=$(TARGET_DIR)/usr
+	--prefix=/usr \
+	--root=$(TARGET_DIR)
 
 PKG_PYTHON_DISTUTILS_INSTALL_STAGING_OPTS = \
-	--prefix=$(STAGING_DIR)/usr
+	--prefix=/usr \
+	--root=$(STAGING_DIR)
 
 # Host distutils-based packages
 HOST_PKG_PYTHON_DISTUTILS_ENV = \
-	PATH=$(BR_PATH)
+	PATH=$(BR_PATH) \
+	PYTHONNOUSERSITE=1 \
+	$(HOST_CONFIGURE_OPTS)
 
 HOST_PKG_PYTHON_DISTUTILS_INSTALL_OPTS = \
-	--prefix=$(HOST_DIR)/usr
+	--prefix=$(HOST_DIR)
 
 # Target setuptools-based packages
 PKG_PYTHON_SETUPTOOLS_ENV = \
+	_PYTHON_SYSCONFIGDATA_NAME="$(PKG_PYTHON_SYSCONFIGDATA_NAME)" \
 	PATH=$(BR_PATH) \
+	$(TARGET_CONFIGURE_OPTS) \
 	PYTHONPATH="$(if $(BR2_PACKAGE_PYTHON3),$(PYTHON3_PATH),$(PYTHON_PATH))" \
+	PYTHONNOUSERSITE=1 \
 	_python_sysroot=$(STAGING_DIR) \
 	_python_prefix=/usr \
 	_python_exec_prefix=/usr
 
 PKG_PYTHON_SETUPTOOLS_INSTALL_TARGET_OPTS = \
-	--prefix=$(TARGET_DIR)/usr \
+	--prefix=/usr \
 	--executable=/usr/bin/python \
 	--single-version-externally-managed \
-	--root=/
+	--root=$(TARGET_DIR)
 
 PKG_PYTHON_SETUPTOOLS_INSTALL_STAGING_OPTS = \
-	--prefix=$(STAGING_DIR)/usr \
+	--prefix=/usr \
 	--executable=/usr/bin/python \
 	--single-version-externally-managed \
-	--root=/
+	--root=$(STAGING_DIR)
 
 # Host setuptools-based packages
 HOST_PKG_PYTHON_SETUPTOOLS_ENV = \
-	PATH=$(BR_PATH)
+	PATH=$(BR_PATH) \
+	PYTHONNOUSERSITE=1 \
+	$(HOST_CONFIGURE_OPTS)
 
 HOST_PKG_PYTHON_SETUPTOOLS_INSTALL_OPTS = \
-	--prefix=$(HOST_DIR)/usr
+	--prefix=$(HOST_DIR) \
+	--root=/ \
+	--single-version-externally-managed
+
+ifeq ($(BR2_PER_PACKAGE_DIRECTORIES),y)
+define PKG_PYTHON_FIXUP_SYSCONFIGDATA
+	find $(HOST_DIR)/lib/python* $(STAGING_DIR)/usr/lib/python* \
+		-name "_sysconfigdata*.py" | xargs --no-run-if-empty \
+		$(SED) "s:$(PER_PACKAGE_DIR)/[^/]\+/:$(PER_PACKAGE_DIR)/$($(PKG)_NAME)/:g"
+endef
+endif
 
 ################################################################################
 # inner-python-package -- defines how the configuration, compilation
@@ -90,9 +115,6 @@ HOST_PKG_PYTHON_SETUPTOOLS_INSTALL_OPTS = \
 ################################################################################
 
 define inner-python-package
-
-$(2)_SRCDIR	= $$($(2)_DIR)/$$($(2)_SUBDIR)
-$(2)_BUILDDIR	= $$($(2)_SRCDIR)
 
 $(2)_ENV         ?=
 $(2)_BUILD_OPTS   ?=
@@ -138,21 +160,6 @@ else
 $$(error "Invalid $(2)_SETUP_TYPE. Valid options are 'distutils' or 'setuptools'")
 endif
 
-# The below statement intends to calculate the dependencies of host
-# packages by derivating them from the dependencies of the
-# corresponding target package, after adding the 'host-' prefix in
-# front of the dependencies.
-#
-# However it must be repeated from inner-generic-package, as we need
-# to exclude the python, host-python and host-python-setuptools
-# packages, which are added below in the list of dependencies
-# depending on the package characteristics, and shouldn't be derived
-# automatically from the dependencies of the corresponding target
-# package.
-ifeq ($(4),host)
-$(2)_DEPENDENCIES ?= $$(filter-out host-python host-python3 host-python-setuptools host-toolchain $(1),$$(patsubst host-host-%,host-%,$$(addprefix host-,$$($(3)_DEPENDENCIES))))
-endif
-
 # Target packages need both the python interpreter on the target (for
 # runtime) and the python interpreter on the host (for
 # compilation). However, host packages only need the python
@@ -183,16 +190,35 @@ endif
 endif # ($$($(2)_NEEDS_HOST_PYTHON),)
 endif # ($(4),target)
 
-# Setuptools based packages will need host-python-setuptools (both
-# host and target). We need to have a special exclusion for the
-# host-setuptools package itself: it is setuptools-based, but
-# shouldn't depend on host-setuptools (because it would otherwise
-# depend on itself!).
+# Setuptools based packages will need setuptools for the host Python
+# interpreter (both host and target).
+#
+# If we have a host package that says "I need Python 3", we install
+# setuptools for python3.
+#
+# If we have a host packge that says "I need Python 2", we install
+# setuptools for python2.
+#
+# If we have a target package, or a host package that doesn't have any
+# <pkg>_NEEDS_HOST_PYTHON, and BR2_PACKAGE_PYTHON3 is used, then
+# Python 3.x is the default Python interpreter, so we install
+# setuptools for python3.
+#
+# In all other cases, we install setuptools for python2. Those other
+# cases are: a target package or host package with
+# BR2_PACKAGE_PYTHON=y, or a host-package with neither
+# BR2_PACKAGE_PYTHON3=y or BR2_PACKAGE_PYTHON=y.
 ifeq ($$($(2)_SETUP_TYPE),setuptools)
-ifneq ($(2),HOST_PYTHON_SETUPTOOLS)
-$(2)_DEPENDENCIES += host-python-setuptools
+ifeq ($(4):$$($(2)_NEEDS_HOST_PYTHON),host:python3)
+$(2)_DEPENDENCIES += $$(if $$(filter host-python3-setuptools,$(1)),,host-python3-setuptools)
+else ifeq ($(4):$$($(2)_NEEDS_HOST_PYTHON),host:python2)
+$(2)_DEPENDENCIES += $$(if $$(filter host-python-setuptools,$(1)),,host-python-setuptools)
+else ifeq ($$(BR2_PACKAGE_PYTHON3),y)
+$(2)_DEPENDENCIES += $$(if $$(filter host-python3-setuptools,$(1)),,host-python3-setuptools)
+else
+$(2)_DEPENDENCIES += $$(if $$(filter host-python-setuptools,$(1)),,host-python-setuptools)
 endif
-endif
+endif # SETUP_TYPE
 
 # Python interpreter to use for building the package.
 #
@@ -209,14 +235,16 @@ endif
 #   - otherwise, we use the one requested by *_NEEDS_HOST_PYTHON.
 #
 ifeq ($(4),target)
-$(2)_PYTHON_INTERPRETER = $$(HOST_DIR)/usr/bin/python
+$(2)_PYTHON_INTERPRETER = $$(HOST_DIR)/bin/python
 else
 ifeq ($$($(2)_NEEDS_HOST_PYTHON),)
-$(2)_PYTHON_INTERPRETER = $$(HOST_DIR)/usr/bin/python
+$(2)_PYTHON_INTERPRETER = $$(HOST_DIR)/bin/python
 else
-$(2)_PYTHON_INTERPRETER = $$(HOST_DIR)/usr/bin/$$($(2)_NEEDS_HOST_PYTHON)
+$(2)_PYTHON_INTERPRETER = $$(HOST_DIR)/bin/$$($(2)_NEEDS_HOST_PYTHON)
 endif
 endif
+
+$(2)_PRE_CONFIGURE_HOOKS += PKG_PYTHON_FIXUP_SYSCONFIGDATA
 
 #
 # Build step. Only define it if not already defined by the package .mk
@@ -253,7 +281,7 @@ ifndef $(2)_INSTALL_TARGET_CMDS
 define $(2)_INSTALL_TARGET_CMDS
 	(cd $$($$(PKG)_BUILDDIR)/; \
 		$$($$(PKG)_BASE_ENV) $$($$(PKG)_ENV) \
-		$$($(2)_PYTHON_INTERPRETER) setup.py install \
+		$$($(2)_PYTHON_INTERPRETER) setup.py install --no-compile \
 		$$($$(PKG)_BASE_INSTALL_TARGET_OPTS) \
 		$$($$(PKG)_INSTALL_TARGET_OPTS))
 endef

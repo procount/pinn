@@ -19,9 +19,14 @@ global patch directory.
 ==== Downloaded
 
 If it is necessary to apply a patch that is available for download, then add it
-to the +<packagename>_PATCH+ variable. It is downloaded from the same site
-as the package itself. It can be a single patch, or a tarball containing a
-patch series.
+to the +<packagename>_PATCH+ variable. If an entry contains +://+,
+then Buildroot will assume it is a full URL and download the patch
+from this location. Otherwise, Buildroot will assume that the patch should be
+downloaded from +<packagename>_SITE+. It can be a single patch,
+or a tarball containing a patch series.
+
+Like for all downloads, a hash should be added to the +<packagename>.hash+
+file.
 
 This method is typically used for packages from Debian.
 
@@ -73,12 +78,12 @@ details.
 * If a +series+ file exists in the package directory, then patches are
   applied according to the +series+ file;
 +
-* Otherwise, patch files matching +<packagename>-*.patch+
-  are applied in alphabetical order.
+* Otherwise, patch files matching +*.patch+ are applied in alphabetical
+  order.
   So, to ensure they are applied in the right order, it is highly
   recommended to name the patch files like this:
-  +<packagename>-<number>-<description>.patch+, where +<number>+
-  refers to the 'apply order'.
+  +<number>-<description>.patch+, where +<number>+ refers to the
+  'apply order'.
 
 . If +BR2_GLOBAL_PATCH_DIR+ is defined, the directories will be
   enumerated in the order they are specified. The patches are applied
@@ -90,8 +95,8 @@ If something goes wrong in the steps _3_ or _4_, then the build fails.
 
 === Format and licensing of the package patches
 
-Patches are released under the same license as the software that is
-modified.
+Patches are released under the same license as the software they apply
+to (see xref:legal-info-buildroot[]).
 
 A message explaining what the patch does, and why it is needed, should
 be added in the header commentary of the patch.
@@ -105,6 +110,10 @@ upstream SCM software to generate the patch set.
 
 Otherwise, concatenate the header with the output of the
 +diff -purN package-version.orig/ package-version/+ command.
+
+If you update an existing patch (e.g. when bumping the package version),
+make sure the existing From header and Signed-off-by tags are not
+removed, but do update the rest of the patch comment when appropriate.
 
 At the end, the patch should look like:
 

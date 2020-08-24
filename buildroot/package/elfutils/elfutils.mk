@@ -4,31 +4,48 @@
 #
 ################################################################################
 
-ELFUTILS_VERSION = 0.161
+ELFUTILS_VERSION = 0.177
 ELFUTILS_SOURCE = elfutils-$(ELFUTILS_VERSION).tar.bz2
-ELFUTILS_SITE = https://fedorahosted.org/releases/e/l/elfutils/$(ELFUTILS_VERSION)
+ELFUTILS_SITE = https://sourceware.org/elfutils/ftp/$(ELFUTILS_VERSION)
 ELFUTILS_INSTALL_STAGING = YES
-ELFUTILS_LICENSE = GPLv3 GPLv2 LGPLv3
+ELFUTILS_LICENSE = GPL-2.0+ or LGPL-3.0+ (library)
 ELFUTILS_LICENSE_FILES = COPYING COPYING-GPLV2 COPYING-LGPLV3
-ELFUTILS_PATCH = elfutils-portability-0.161.patch
+ELFUTILS_DEPENDENCIES = zlib $(TARGET_NLS_DEPENDENCIES)
+HOST_ELFUTILS_DEPENDENCIES = host-zlib host-bzip2 host-xz
 
-# The tarball does not have a generated configure script
+# We patch configure.ac
 ELFUTILS_AUTORECONF = YES
-ELFUTILS_CONF_OPTS += --disable-werror
+HOST_ELFUTILS_AUTORECONF = YES
 
-ifeq ($(BR2_LARGEFILE),y)
+# Pass a custom program prefix to avoid a naming conflict between
+# elfutils binaries and binutils binaries.
+ELFUTILS_CONF_OPTS += \
+	--program-prefix="eu-"
+
+HOST_ELFUTILS_CONF_OPTS = \
+	--with-bzlib \
+	--with-lzma \
+	--disable-progs
+
 # elfutils gets confused when lfs mode is forced, so don't
-ELFUTILS_CONF_ENV += \
-	CFLAGS="$(filter-out -D_FILE_OFFSET_BITS=64,$(TARGET_CFLAGS))" \
-	CPPFLAGS="$(filter-out -D_FILE_OFFSET_BITS=64,$(TARGET_CPPFLAGS))"
+ELFUTILS_CFLAGS = $(filter-out -D_FILE_OFFSET_BITS=64,$(TARGET_CFLAGS))
+ELFUTILS_CPPFLAGS = $(filter-out -D_FILE_OFFSET_BITS=64,$(TARGET_CPPFLAGS))
+
+# sparc64 needs -fPIC instead of -fpic
+ifeq ($(BR2_sparc64),y)
+ELFUTILS_CFLAGS += -fPIC
 endif
 
-ELFUTILS_LDFLAGS = $(TARGET_LDFLAGS)
+ELFUTILS_CONF_ENV += \
+	CFLAGS="$(ELFUTILS_CFLAGS)" \
+	CPPFLAGS="$(ELFUTILS_CPPFLAGS)"
 
-# Unconditionnally requires gettext.
-ifeq ($(BR2_NEEDS_GETTEXT),y)
-ELFUTILS_DEPENDENCIES += gettext
-ELFUTILS_LDFLAGS += -lintl
+ELFUTILS_LDFLAGS = $(TARGET_LDFLAGS) \
+	$(TARGET_NLS_LIBS)
+
+ifeq ($(BR2_TOOLCHAIN_USES_GLIBC),)
+ELFUTILS_DEPENDENCIES += musl-fts
+ELFUTILS_LDFLAGS += -lfts
 endif
 
 ELFUTILS_CONF_ENV += \
@@ -36,13 +53,7 @@ ELFUTILS_CONF_ENV += \
 
 ifeq ($(BR2_TOOLCHAIN_USES_UCLIBC),y)
 ELFUTILS_DEPENDENCIES += argp-standalone
-endif
-
-ifeq ($(BR2_PACKAGE_ZLIB),y)
-ELFUTILS_DEPENDENCIES += zlib
-ELFUTILS_CONF_OPTS += --with-zlib
-else
-ELFUTILS_CONF_OPTS += --without-zlib
+ELFUTILS_CONF_OPTS += --disable-symbol-versioning
 endif
 
 ifeq ($(BR2_PACKAGE_BZIP2),y)
@@ -61,8 +72,11 @@ endif
 
 ifeq ($(BR2_PACKAGE_ELFUTILS_PROGS),y)
 ELFUTILS_CONF_OPTS += --enable-progs
+ELFUTILS_LICENSE += , GPL-3.0+ (programs)
+ELFUTILS_LICENSE_FILES += COPYING
 else
 ELFUTILS_CONF_OPTS += --disable-progs
 endif
 
 $(eval $(autotools-package))
+$(eval $(host-autotools-package))

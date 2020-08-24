@@ -10,8 +10,17 @@ config BR2_PACKAGE_PHP_EXT_FILEINFO
 	help
 	  File Information support
 
+config BR2_PACKAGE_PHP_EXT_OPCACHE
+	bool "OPcache"
+	help
+	  Enable the Zend OPcache accelerator.
+
+comment "Readline needs a toolchain w/ dynamic library"
+	depends on BR2_STATIC_LIBS
+
 config BR2_PACKAGE_PHP_EXT_READLINE
 	bool "Readline"
+	depends on !BR2_STATIC_LIBS
 	select BR2_PACKAGE_NCURSES
 	select BR2_PACKAGE_READLINE
 	help
@@ -36,28 +45,47 @@ config BR2_PACKAGE_PHP_EXT_PHAR
 	help
 	  PHP Archive support
 
+comment "zip needs a toolchain w/ dynamic library"
+	depends on BR2_STATIC_LIBS
+
 config BR2_PACKAGE_PHP_EXT_ZIP
 	bool "zip"
+	depends on !BR2_STATIC_LIBS # libzip
 	select BR2_PACKAGE_ZLIB
+	select BR2_PACKAGE_LIBZIP
 	help
 	  Zip read/write support
 
 config BR2_PACKAGE_PHP_EXT_ZLIB
 	bool "zlib"
-	select BR2_PACKAGE_ZLIB
 	default y
+	select BR2_PACKAGE_ZLIB
 	help
 	  zlib support
 
 comment "Cryptography extensions"
 
-config BR2_PACKAGE_PHP_EXT_HASH
-	bool "hash"
+comment "libargon2 needs a toolchain w/ dynamic library"
+	depends on BR2_USE_MMU
+	depends on BR2_STATIC_LIBS
+
+config BR2_PACKAGE_PHP_EXT_LIBARGON2
+	bool "libargon2"
+	depends on BR2_USE_MMU # libargon2
+	depends on !BR2_STATIC_LIBS # libargon2
+	select BR2_PACKAGE_LIBARGON2
 	help
-	  HASH message digest framework
+	  libargon2 support
+
+config BR2_PACKAGE_PHP_EXT_LIBSODIUM
+	bool "libsodium"
+	select BR2_PACKAGE_LIBSODIUM
+	help
+	  libsodium support
 
 config BR2_PACKAGE_PHP_EXT_MCRYPT
 	bool "mcrypt"
+	select BR2_PACKAGE_LIBMCRYPT
 	help
 	  mcrypt support
 
@@ -101,24 +129,29 @@ config BR2_PACKAGE_PHP_EXT_DBA_INI
 
 endif
 
-config BR2_PACKAGE_PHP_EXT_MYSQL
-	bool "Mysql"
-	depends on BR2_INSTALL_LIBSTDCPP
-	depends on BR2_USE_MMU # mysql
-	depends on BR2_TOOLCHAIN_HAS_THREADS # mysql
-	select BR2_PACKAGE_MYSQL
-	help
-	  MySQL support
-
 config BR2_PACKAGE_PHP_EXT_MYSQLI
 	bool "Mysqli"
-	depends on BR2_INSTALL_LIBSTDCPP
-	depends on BR2_USE_MMU # mysql
-	depends on BR2_TOOLCHAIN_HAS_THREADS # mysql
-	select BR2_PACKAGE_MYSQL
-	select BR2_PACKAGE_PHP_EXT_MYSQL
 	help
 	  MySQL Improved extension support
+
+config BR2_PACKAGE_PHP_EXT_PGSQL
+	bool "PostgreSQL"
+	depends on BR2_USE_MMU # postgresql
+	depends on !BR2_STATIC_LIBS
+	depends on BR2_USE_WCHAR # postgresql
+	select BR2_PACKAGE_POSTGRESQL
+	help
+	  PostgreSQL support
+
+comment "PostgreSQL extension needs a toolchain w/ dynamic library, wchar"
+	depends on BR2_USE_MMU
+	depends on BR2_STATIC_LIBS || !BR2_USE_WCHAR
+
+config BR2_PACKAGE_PHP_EXT_SQLITE
+	bool "SQLite3"
+	select BR2_PACKAGE_SQLITE
+	help
+	  SQLite3 support
 
 config BR2_PACKAGE_PHP_EXT_PDO
 	bool "PDO"
@@ -129,26 +162,21 @@ if BR2_PACKAGE_PHP_EXT_PDO
 
 config BR2_PACKAGE_PHP_EXT_PDO_MYSQL
 	bool "MySQL"
-	depends on BR2_INSTALL_LIBSTDCPP
-	depends on BR2_USE_MMU # mysql
-	depends on BR2_TOOLCHAIN_HAS_THREADS # mysql
-	select BR2_PACKAGE_MYSQL
 	help
 	  PDO driver for MySQL
 
-comment "MySQL drivers need a toolchain w/ C++"
-	depends on BR2_USE_MMU
-	depends on !BR2_INSTALL_LIBSTDCPP
-
 config BR2_PACKAGE_PHP_EXT_PDO_POSTGRESQL
 	bool "PostgreSQL"
-	depends on BR2_TOOLCHAIN_USES_GLIBC
+	depends on BR2_USE_MMU # postgresql
+	depends on !BR2_STATIC_LIBS
+	depends on BR2_USE_WCHAR # postgresql
 	select BR2_PACKAGE_POSTGRESQL
 	help
 	  PDO driver for PostgreSQL
 
-comment "PostgreSQL driver needs an (e)glibc toolchain"
-	depends on !BR2_TOOLCHAIN_USES_GLIBC
+comment "PostgreSQL drivers need a toolchain w/ wchar, dynamic library"
+	depends on BR2_USE_MMU
+	depends on BR2_STATIC_LIBS || !BR2_USE_WCHAR
 
 config BR2_PACKAGE_PHP_EXT_PDO_SQLITE
 	bool "SQLite3"
@@ -156,19 +184,28 @@ config BR2_PACKAGE_PHP_EXT_PDO_SQLITE
 	help
 	  SQLite3 driver for PDO
 
+config BR2_PACKAGE_PHP_EXT_PDO_UNIXODBC
+	bool "unixODBC"
+	depends on !BR2_STATIC_LIBS # unixodbc
+	select BR2_PACKAGE_UNIXODBC
+	help
+	  unixODBC driver for PDO
+
+comment "unixodbc driver needs a toolchain w/ dynamic library"
+	depends on BR2_STATIC_LIBS
+
 endif
 
 comment "Human language and character encoding support"
 
 config BR2_PACKAGE_PHP_EXT_GETTEXT
 	bool "Gettext"
-	select BR2_PACKAGE_GETTEXT if BR2_NEEDS_GETTEXT
-	depends on BR2_USE_WCHAR
+	depends on BR2_SYSTEM_ENABLE_NLS
 	help
 	  Gettext support
 
-comment "Gettext support needs a toolchain w/ wchar"
-	depends on !BR2_USE_WCHAR
+comment "Gettext support needs NLS enabled"
+	depends on !BR2_SYSTEM_ENABLE_NLS
 
 config BR2_PACKAGE_PHP_EXT_ICONV
 	bool "iconv"
@@ -178,22 +215,27 @@ config BR2_PACKAGE_PHP_EXT_ICONV
 
 config BR2_PACKAGE_PHP_EXT_INTL
 	bool "intl"
-	select BR2_PACKAGE_ICU
+	depends on BR2_HOST_GCC_AT_LEAST_4_9 # icu
 	depends on BR2_INSTALL_LIBSTDCPP
 	depends on BR2_USE_WCHAR
+	depends on BR2_TOOLCHAIN_GCC_AT_LEAST_4_9 # icu
 	depends on !BR2_BINFMT_FLAT # icu
 	depends on BR2_TOOLCHAIN_HAS_THREADS # icu
-	depends on BR2_ARCH_HAS_ATOMICS # icu
+	depends on !BR2_STATIC_LIBS
+	select BR2_PACKAGE_ICU
 	help
 	  Internationalization support
 
-comment "intl support needs a toolchain w/ C++, wchar, threads"
+comment "intl support needs a toolchain w/ C++, wchar, threads, dynamic library, gcc >= 4.9, host gcc >= 4.9"
 	depends on !BR2_BINFMT_FLAT
-	depends on BR2_ARCH_HAS_ATOMICS
-	depends on !BR2_INSTALL_LIBSTDCPP || !BR2_USE_WCHAR || !BR2_TOOLCHAIN_HAS_THREADS
+	depends on !BR2_INSTALL_LIBSTDCPP || !BR2_USE_WCHAR || \
+		!BR2_TOOLCHAIN_HAS_THREADS || BR2_STATIC_LIBS || \
+		!BR2_TOOLCHAIN_GCC_AT_LEAST_4_9 || \
+		!BR2_HOST_GCC_AT_LEAST_4_9
 
 config BR2_PACKAGE_PHP_EXT_MBSTRING
 	bool "mbstring"
+	select BR2_PACKAGE_ONIGURUMA
 	help
 	  multibyte string support
 
@@ -209,6 +251,7 @@ config BR2_PACKAGE_PHP_EXT_GD
 	select BR2_PACKAGE_FREETYPE
 	select BR2_PACKAGE_JPEG
 	select BR2_PACKAGE_LIBPNG
+	select BR2_PACKAGE_ZLIB
 	help
 	  GD support
 
@@ -260,12 +303,8 @@ config BR2_PACKAGE_PHP_EXT_SNMP
 
 config BR2_PACKAGE_PHP_EXT_SOCKETS
 	bool "sockets"
-	depends on BR2_INET_IPV6
 	help
 	  Sockets support
-
-comment "sockets support needs a toolchain w/ IPv6"
-	depends on !BR2_INET_IPV6
 
 comment "Process Control"
 
@@ -380,5 +419,16 @@ config BR2_PACKAGE_PHP_EXT_XSL
 	select BR2_PACKAGE_LIBXSLT
 	help
 	  XSL transformation support
+
+config BR2_PACKAGE_PHP_EXT_FFI
+	bool "FFI"
+	depends on !BR2_STATIC_LIBS
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	select BR2_PACKAGE_LIBFFI
+	help
+	  Foreign Function Interface support
+
+comment "PHP FFI extension needs a toolchain w/ threads, dynamic library"
+	depends on !BR2_TOOLCHAIN_HAS_THREADS || BR2_STATIC_LIBS
 
 endmenu

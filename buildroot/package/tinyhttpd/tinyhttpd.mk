@@ -10,7 +10,7 @@ TINYHTTPD_LICENSE = GPL
 TINYHTTPD_LICENSE_FILES = README
 
 define TINYHTTPD_BUILD_CMDS
-	$(MAKE) -C $(@D) CC="$(TARGET_CC)" CFLAGS="$(TARGET_CFLAGS)" \
+	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D) CC="$(TARGET_CC)" CFLAGS="$(TARGET_CFLAGS)" \
 		LDFLAGS="$(TARGET_LDFLAGS)"
 endef
 
@@ -22,6 +22,11 @@ endef
 define TINYHTTPD_INSTALL_INIT_SYSV
 	$(INSTALL) -m 0755 -D package/tinyhttpd/S85tinyhttpd \
 		$(TARGET_DIR)/etc/init.d/S85tinyhttpd
+endef
+
+define TINYHTTPD_INSTALL_INIT_SYSTEMD
+	$(INSTALL) -D -m 644 package/tinyhttpd/tinyhttpd.service \
+		$(TARGET_DIR)/usr/lib/systemd/system/tinyhttpd.service
 endef
 
 $(eval $(generic-package))

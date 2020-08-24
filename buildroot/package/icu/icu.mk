@@ -4,11 +4,15 @@
 #
 ################################################################################
 
-ICU_VERSION = 54.1
-ICU_SOURCE = icu4c-$(subst .,_,$(ICU_VERSION))-src.tgz
-ICU_SITE = http://download.icu-project.org/files/icu4c/$(ICU_VERSION)
+# Git tags (and therefore versions on release-monitoring.org) use the
+# XX-Y format, but the tarballs are named XX_Y and the containing
+# directories XX.Y.
+ICU_VERSION = 67-1
+ICU_SOURCE = icu4c-$(subst -,_,$(ICU_VERSION))-src.tgz
+ICU_SITE = \
+	https://github.com/unicode-org/icu/releases/download/release-$(ICU_VERSION)
 ICU_LICENSE = ICU License
-ICU_LICENSE_FILES = license.html
+ICU_LICENSE_FILES = LICENSE
 
 ICU_DEPENDENCIES = host-icu
 ICU_INSTALL_STAGING = YES
@@ -17,6 +21,19 @@ ICU_CONF_OPTS = \
 	--with-cross-build=$(HOST_ICU_DIR)/source \
 	--disable-samples \
 	--disable-tests
+
+# When available, icu prefers to use C++11 atomics, which rely on the
+# __atomic builtins. On certain architectures, this requires linking
+# with libatomic starting from gcc 4.8.
+ifeq ($(BR2_TOOLCHAIN_HAS_LIBATOMIC),y)
+ICU_CONF_ENV += LIBS="-latomic"
+endif
+
+# strtod_l() is not supported by musl; also xlocale.h is missing
+ifeq ($(BR2_TOOLCHAIN_USES_MUSL),y)
+ICU_CONF_ENV += ac_cv_func_strtod_l=no
+endif
+
 HOST_ICU_CONF_OPTS = \
 	--disable-samples \
 	--disable-tests \
@@ -24,7 +41,6 @@ HOST_ICU_CONF_OPTS = \
 	--disable-icuio \
 	--disable-layout \
 	--disable-renaming
-ICU_MAKE = $(MAKE1)
 ICU_SUBDIR = source
 HOST_ICU_SUBDIR = source
 
@@ -36,6 +52,13 @@ define ICU_COPY_CUSTOM_DATA
 endef
 ICU_POST_PATCH_HOOKS += ICU_COPY_CUSTOM_DATA
 endif
+
+define ICU_REMOVE_DEV_FILES
+	rm -f $(addprefix $(TARGET_DIR)/usr/bin/,derb genbrk gencfu gencnval gendict genrb icuinfo makeconv uconv)
+	rm -f $(addprefix $(TARGET_DIR)/usr/sbin/,genccode gencmn gennorm2 gensprep icupkg)
+	rm -rf $(TARGET_DIR)/usr/share/icu
+endef
+ICU_POST_INSTALL_TARGET_HOOKS += ICU_REMOVE_DEV_FILES
 
 $(eval $(autotools-package))
 $(eval $(host-autotools-package))

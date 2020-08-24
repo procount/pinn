@@ -1,30 +1,31 @@
-#############################################################
+################################################################################
 #
 # pigz
 #
-#############################################################
-PIGZ_VERSION = 2.4
-PIGZ_SOURCE = pigz-$(PIGZ_VERSION).tar.gz
-PIGZ_SITE = zlib.net/pigz
-#download.freenas.org/distfiles
-PIGZ_CAT = $(ZCAT)
-PIGZ_DIR = $(BUILD_DIR)/pigz-$(PIGZ_VERSION)
-PIGZ_BINARY = pigz
-PIGZ_DEPENDENCIES = zlib
+################################################################################
 
-define PIGZ_EXTRACT_CMDS
-	$(ZCAT) $(DL_DIR)/$(PIGZ_SOURCE) | tar -C $(BUILD_DIR) $(TAR_OPTIONS) -
-endef
+PIGZ_VERSION = 2.4
+PIGZ_SITE = $(call github,madler,pigz,v$(PIGZ_VERSION))
+PIGZ_DEPENDENCIES = zlib
+HOST_PIGZ_DEPENDENCIES = host-zlib
+PIGZ_LICENSE = Zlib
+PIGZ_LICENSE_FILES = README
 
 define PIGZ_BUILD_CMDS
-	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D) \
-		CFLAGS="$(TARGET_CFLAGS)" \
-		LDFLAGS="$(TARGET_LDFLAGS)"
+	$(TARGET_MAKE_ENV) $(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)
+endef
+
+define HOST_PIGZ_BUILD_CMDS
+	$(HOST_MAKE_ENV) $(MAKE) $(HOST_CONFIGURE_OPTS) -C $(@D)
 endef
 
 define PIGZ_INSTALL_TARGET_CMDS
 	$(INSTALL) -D -m 0755 $(@D)/pigz $(TARGET_DIR)/usr/bin/pigz
-	$(STRIPCMD) $(STRIP_STRIP_ALL) $(TARGET_DIR)/usr/bin/pigz
+endef
+
+define HOST_PIGZ_INSTALL_CMDS
+	$(INSTALL) -D -m 0755 $(@D)/pigz $(HOST_DIR)/bin/pigz
 endef
 
 $(eval $(generic-package))
+$(eval $(host-generic-package))

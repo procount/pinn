@@ -5,51 +5,76 @@
 ################################################################################
 
 NTP_VERSION_MAJOR = 4.2
-NTP_VERSION = $(NTP_VERSION_MAJOR).8
-NTP_SITE = http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-$(NTP_VERSION_MAJOR)
+NTP_VERSION = $(NTP_VERSION_MAJOR).8p15
+NTP_SITE = https://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-$(NTP_VERSION_MAJOR)
 NTP_DEPENDENCIES = host-pkgconf libevent
-# For 0001-fix-ntp-keygen-without-openssl.patch
-NTP_AUTORECONF = YES
-NTP_LICENSE = ntp license
+NTP_LICENSE = NTP
 NTP_LICENSE_FILES = COPYRIGHT
-NTP_CONF_ENV = ac_cv_lib_md5_MD5Init=no
+NTP_CONF_ENV = ac_cv_lib_md5_MD5Init=no POSIX_SHELL=/bin/sh
 NTP_CONF_OPTS = \
 	--with-shared \
 	--program-transform-name=s,,, \
 	--disable-tickadj \
+	--disable-debugging \
 	--with-yielding-select=yes \
 	--disable-local-libevent
 
-ifneq ($(BR2_INET_IPV6),y)
-	NTP_CONF_ENV += isc_cv_have_in6addr_any=no
-endif
+# 0002-ntp-syscalls-fallback.patch
+NTP_AUTORECONF = YES
 
 ifeq ($(BR2_PACKAGE_OPENSSL),y)
-	NTP_CONF_OPTS += --with-crypto
-	NTP_DEPENDENCIES += openssl
+NTP_CONF_OPTS += --with-crypto --enable-openssl-random
+NTP_DEPENDENCIES += openssl
 else
-	NTP_CONF_OPTS += --without-crypto --disable-openssl-random
+NTP_CONF_OPTS += --without-crypto --disable-openssl-random
+endif
+
+ifeq ($(BR2_TOOLCHAIN_HAS_SSP),y)
+NTP_CONF_OPTS += --with-hardenfile=linux
+else
+NTP_CONF_OPTS += --with-hardenfile=default
+endif
+
+ifeq ($(BR2_PACKAGE_LIBCAP),y)
+NTP_CONF_OPTS += --enable-linuxcaps
+NTP_DEPENDENCIES += libcap
+else
+NTP_CONF_OPTS += --disable-linuxcaps
+endif
+
+ifeq ($(BR2_PACKAGE_LIBEDIT),y)
+NTP_CONF_OPTS += --with-lineeditlibs=edit
+NTP_DEPENDENCIES += libedit
+else
+NTP_CONF_OPTS += --without-lineeditlibs
 endif
 
 ifeq ($(BR2_PACKAGE_NTP_NTPSNMPD),y)
-	NTP_CONF_OPTS += \
-		--with-net-snmp-config=$(STAGING_DIR)/usr/bin/net-snmp-config
-	NTP_DEPENDENCIES += netsnmp
+NTP_CONF_OPTS += \
+	--with-net-snmp-config=$(STAGING_DIR)/usr/bin/net-snmp-config
+NTP_DEPENDENCIES += netsnmp
 else
-	NTP_CONF_OPTS += --without-ntpsnmpd
+NTP_CONF_OPTS += --without-ntpsnmpd
 endif
 
 ifeq ($(BR2_PACKAGE_NTP_NTPD_ATOM_PPS),y)
-	NTP_CONF_OPTS += --enable-ATOM
-	NTP_DEPENDENCIES += pps-tools
+NTP_CONF_OPTS += --enable-ATOM
+NTP_DEPENDENCIES += pps-tools
 else
-	NTP_CONF_OPTS += --disable-ATOM
+NTP_CONF_OPTS += --disable-ATOM
 endif
 
-define NTP_PATCH_FIXUPS
-	$(SED) "s,^#if.*__GLIBC__.*_BSD_SOURCE.*$$,#if 0," $(@D)/ntpd/refclock_pcf.c
-	$(SED) '/[[:space:](]rindex[[:space:]]*(/s/[[:space:]]*rindex[[:space:]]*(/ strrchr(/g' $(@D)/ntpd/*.c
-endef
+ifeq ($(BR2_PACKAGE_NTP_NTP_SHM_CLK),y)
+NTP_CONF_OPTS += --enable-SHM
+else
+NTP_CONF_OPTS += --disable-SHM
+endif
+
+ifeq ($(BR2_PACKAGE_NTP_SNTP),y)
+NTP_CONF_OPTS += --with-sntp
+else
+NTP_CONF_OPTS += --without-sntp
+endif
 
 NTP_INSTALL_FILES_$(BR2_PACKAGE_NTP_NTP_KEYGEN) += util/ntp-keygen
 NTP_INSTALL_FILES_$(BR2_PACKAGE_NTP_NTP_WAIT) += scripts/ntp-wait/ntp-wait
@@ -57,6 +82,7 @@ NTP_INSTALL_FILES_$(BR2_PACKAGE_NTP_NTPDATE) += ntpdate/ntpdate
 NTP_INSTALL_FILES_$(BR2_PACKAGE_NTP_NTPDC) += ntpdc/ntpdc
 NTP_INSTALL_FILES_$(BR2_PACKAGE_NTP_NTPQ) += ntpq/ntpq
 NTP_INSTALL_FILES_$(BR2_PACKAGE_NTP_NTPSNMPD) += ntpsnmpd/ntpsnmpd
+NTP_INSTALL_FILES_$(BR2_PACKAGE_NTP_NTPTIME) += util/ntptime
 NTP_INSTALL_FILES_$(BR2_PACKAGE_NTP_NTPTRACE) += scripts/ntptrace/ntptrace
 NTP_INSTALL_FILES_$(BR2_PACKAGE_NTP_SNTP) += sntp/sntp
 NTP_INSTALL_FILES_$(BR2_PACKAGE_NTP_TICKADJ) += util/tickadj
@@ -67,18 +93,27 @@ define NTP_INSTALL_TARGET_CMDS
 	$(INSTALL) -m 644 package/ntp/ntpd.etc.conf $(TARGET_DIR)/etc/ntp.conf
 endef
 
+# This script will step the time if there is a large difference
+# before ntpd takes over the necessary slew adjustments
+ifeq ($(BR2_PACKAGE_NTP_SNTP),y)
+define NTP_INSTALL_INIT_SYSV_SNTP
+	$(INSTALL) -D -m 755 package/ntp/S48sntp $(TARGET_DIR)/etc/init.d/S48sntp
+endef
+endif
+
 ifeq ($(BR2_PACKAGE_NTP_NTPD),y)
-define NTP_INSTALL_INIT_SYSV
+define NTP_INSTALL_INIT_SYSV_NTPD
 	$(INSTALL) -D -m 755 package/ntp/S49ntp $(TARGET_DIR)/etc/init.d/S49ntp
 endef
 
 define NTP_INSTALL_INIT_SYSTEMD
-	$(INSTALL) -D -m 644 package/ntp/ntpd.service $(TARGET_DIR)/etc/systemd/system/ntpd.service
-	mkdir -p $(TARGET_DIR)/etc/systemd/system/multi-user.target.wants
-	ln -fs ../ntpd.service $(TARGET_DIR)/etc/systemd/system/multi-user.target.wants/ntpd.service
+	$(INSTALL) -D -m 644 package/ntp/ntpd.service $(TARGET_DIR)/usr/lib/systemd/system/ntpd.service
 endef
 endif
 
-NTP_POST_PATCH_HOOKS += NTP_PATCH_FIXUPS
+define NTP_INSTALL_INIT_SYSV
+	$(NTP_INSTALL_INIT_SYSV_NTPD)
+	$(NTP_INSTALL_INIT_SYSV_SNTP)
+endef
 
 $(eval $(autotools-package))

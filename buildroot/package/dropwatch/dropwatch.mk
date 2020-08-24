@@ -4,33 +4,15 @@
 #
 ################################################################################
 
-DROPWATCH_VERSION = 1.4
-DROPWATCH_SOURCE = dropwatch-$(DROPWATCH_VERSION).tar.xz
-DROPWATCH_SITE = https://git.fedorahosted.org/cgit/dropwatch.git/snapshot
-DROPWATCH_DEPENDENCIES = binutils libnl readline host-pkgconf
-DROPWATCH_LICENSE = GPLv2
+DROPWATCH_VERSION = 1.5.3
+DROPWATCH_SITE = $(call github,nhorman,dropwatch,v$(DROPWATCH_VERSION))
+DROPWATCH_DEPENDENCIES = libnl readline libpcap host-pkgconf $(TARGET_NLS_DEPENDENCIES)
+DROPWATCH_LICENSE = GPL-2.0+
 DROPWATCH_LICENSE_FILES = COPYING
+# From git
+DROPWATCH_AUTORECONF = YES
 
-# libbfd may be linked to libintl
-# Ugly... but LDFLAGS are hardcoded anyway
-#
-# Also: always need to add -liberty to hardcoded LDFLAGS for avr32
-DROPWATCH_LDFLAGS = \
-	$(TARGET_LDFLAGS) -lbfd -liberty -lreadline -lnl-3 -lnl-genl-3 \
-		-lpthread -lncurses -lm
+DROPWATCH_CONF_OPTS = --without-bfd
+DROPWATCH_MAKE_OPTS = LIBS=$(TARGET_NLS_LIBS)
 
-ifeq ($(BR2_NEEDS_GETTEXT_IF_LOCALE),y)
-DROPWATCH_LDFLAGS += -lintl
-endif
-
-define DROPWATCH_BUILD_CMDS
-	$(TARGET_CONFIGURE_OPTS) $(TARGET_MAKE_ENV) $(MAKE) -C $(@D) \
-		LDFLAGS="$(DROPWATCH_LDFLAGS)" build
-endef
-
-define DROPWATCH_INSTALL_TARGET_CMDS
-	$(INSTALL) -D -m 0755 $(@D)/src/dropwatch \
-		$(TARGET_DIR)/usr/bin/dropwatch
-endef
-
-$(eval $(generic-package))
+$(eval $(autotools-package))

@@ -1,0 +1,8 @@
+# Locally computed:
+md5    224b9b49bd1a568a9548590ade253dd6  prosody-0.11.5.tar.gz
+sha1   fbe27d3203671a6ecd5ba8233dc4c113fd76cd2e  prosody-0.11.5.tar.gz
+sha256 55f8bd65d5d2af61cc739bd6164e4207011e0d2d260cde583071c90d8d85408b  prosody-0.11.5.tar.gz
+sha512 43a9facee8d61b69e277e7e8a9091fbfa60be71d6141195dff991f6020c8afadacce26f356b869cb2d7edd9be285e9ce1bcd822f9628cc845d91757e818a0dff  prosody-0.11.5.tar.gz
+
+# Hash for license file:
+sha256 bbbdc1c5426e5944cf869fc0faeaf19d88a220cd2b39ea98b7b8e86b0e88a2ef  COPYING

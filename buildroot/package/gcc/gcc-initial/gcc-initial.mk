@@ -8,12 +8,18 @@ GCC_INITIAL_VERSION = $(GCC_VERSION)
 GCC_INITIAL_SITE = $(GCC_SITE)
 GCC_INITIAL_SOURCE = $(GCC_SOURCE)
 
+# We do not have a 'gcc' package per-se; we only have two incarnations,
+# gcc-initial and gcc-final. gcc-initial is just am internal step that
+# users should not care about, while gcc-final is the one they shall see.
+HOST_GCC_INITIAL_DL_SUBDIR = gcc
+
 HOST_GCC_INITIAL_DEPENDENCIES = $(HOST_GCC_COMMON_DEPENDENCIES)
 
-HOST_GCC_INITIAL_EXTRACT_CMDS = $(HOST_GCC_EXTRACT_CMDS)
+HOST_GCC_INITIAL_EXCLUDES = $(HOST_GCC_EXCLUDES)
 
-ifneq ($(call qstrip, $(BR2_XTENSA_CORE_NAME)),)
+ifneq ($(ARCH_XTENSA_OVERLAY_FILE),)
 HOST_GCC_INITIAL_POST_EXTRACT_HOOKS += HOST_GCC_XTENSA_OVERLAY_EXTRACT
+HOST_GCC_INITIAL_EXTRA_DOWNLOADS += $(ARCH_XTENSA_OVERLAY_URL)
 endif
 
 HOST_GCC_INITIAL_POST_PATCH_HOOKS += HOST_GCC_APPLY_PATCHES
@@ -24,18 +30,6 @@ HOST_GCC_INITIAL_SUBDIR = build
 
 HOST_GCC_INITIAL_PRE_CONFIGURE_HOOKS += HOST_GCC_CONFIGURE_SYMLINK
 
-# gcc on ARC has a bug: in its libgcc, even when no C library is
-# available (--with-newlib is passed, and therefore inhibit_libc is
-# defined), it tries to use the C library for the libgmon
-# library. Since it's not needed in gcc-initial, we disabled it here.
-ifeq ($(BR2_GCC_VERSION_4_8_ARC),y)
-define HOST_GCC_INITIAL_DISABLE_LIBGMON
-	$(SED) 's/crtbeginS.o libgmon.a crtg.o/crtbeginS.o crtg.o/' \
-		$(@D)/libgcc/config.host
-endef
-HOST_GCC_INITIAL_POST_PATCH_HOOKS += HOST_GCC_INITIAL_DISABLE_LIBGMON
-endif
-
 HOST_GCC_INITIAL_CONF_OPTS = \
 	$(HOST_GCC_COMMON_CONF_OPTS) \
 	--enable-languages=c \
@@ -44,21 +38,17 @@ HOST_GCC_INITIAL_CONF_OPTS = \
 	--disable-threads \
 	--with-newlib \
 	--disable-largefile \
-	--disable-nls \
 	$(call qstrip,$(BR2_EXTRA_GCC_CONFIG_OPTIONS))
 
 HOST_GCC_INITIAL_CONF_ENV = \
 	$(HOST_GCC_COMMON_CONF_ENV)
 
-# We need to tell gcc that the C library will be providing the ssp
-# support, as it can't guess it since the C library hasn't been built
-# yet (we're gcc-initial).
-HOST_GCC_INITIAL_MAKE_OPTS = $(if $(BR2_TOOLCHAIN_HAS_SSP),gcc_cv_libc_provides_ssp=yes) all-gcc
-HOST_GCC_INITIAL_INSTALL_OPTS = install-gcc
+HOST_GCC_INITIAL_MAKE_OPTS = $(HOST_GCC_COMMON_MAKE_OPTS) all-gcc all-target-libgcc
+HOST_GCC_INITIAL_INSTALL_OPTS = install-gcc install-target-libgcc
 
-ifeq ($(BR2_GCC_SUPPORTS_FINEGRAINEDMTUNE),y)
-HOST_GCC_INITIAL_MAKE_OPTS += all-target-libgcc
-HOST_GCC_INITIAL_INSTALL_OPTS += install-target-libgcc
-endif
+HOST_GCC_INITIAL_TOOLCHAIN_WRAPPER_ARGS += $(HOST_GCC_COMMON_TOOLCHAIN_WRAPPER_ARGS)
+HOST_GCC_INITIAL_POST_BUILD_HOOKS += TOOLCHAIN_WRAPPER_BUILD
+HOST_GCC_INITIAL_POST_INSTALL_HOOKS += TOOLCHAIN_WRAPPER_INSTALL
+HOST_GCC_INITIAL_POST_INSTALL_HOOKS += HOST_GCC_INSTALL_WRAPPER_AND_SIMPLE_SYMLINKS
 
 $(eval $(host-autotools-package))

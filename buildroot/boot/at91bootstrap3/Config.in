@@ -1,14 +1,60 @@
 config BR2_TARGET_AT91BOOTSTRAP3
-	depends on BR2_arm926t || BR2_cortex_a5
 	bool "AT91 Bootstrap 3"
+	depends on BR2_arm926t || BR2_cortex_a5 || BR2_cortex_a7
 	help
 	  AT91Bootstrap is a first level bootloader for the Atmel AT91
 	  devices. It integrates algorithms for:
-	  - Device initialization such as clock configuration, PIO settings...
+	  - Device initialization such as clock configuration, PIO
+	    settings...
 	  - Peripheral drivers such as PIO, PMC or SDRAMC...
-	  - Physical media algorithm such as DataFlash, NandFlash, NOR Flash...
+	  - Physical media algorithm such as DataFlash, NandFlash, NOR
+	    Flash...
+
+	  https://www.at91.com/linux4sam/bin/view/Linux4SAM/AT91Bootstrap
 
 if BR2_TARGET_AT91BOOTSTRAP3
+
+choice
+
+	prompt "AT91 Bootstrap 3 version"
+
+config BR2_TARGET_AT91BOOTSTRAP3_LATEST_VERSION
+	bool "3.9.2"
+
+config BR2_TARGET_AT91BOOTSTRAP3_CUSTOM_GIT
+	bool "Custom Git repository"
+	help
+	  This option allows Buildroot to get the AT91 Bootstrap 3
+	  source code from a Git repository.
+
+config BR2_TARGET_AT91BOOTSTRAP3_CUSTOM_TARBALL
+	bool "Custom tarball"
+
+endchoice
+
+config BR2_TARGET_AT91BOOTSTRAP3_CUSTOM_TARBALL_LOCATION
+	string "URL of custom AT91Bootstrap tarball"
+	depends on BR2_TARGET_AT91BOOTSTRAP3_CUSTOM_TARBALL
+
+if BR2_TARGET_AT91BOOTSTRAP3_CUSTOM_GIT
+
+config BR2_TARGET_AT91BOOTSTRAP3_CUSTOM_REPO_URL
+	string "URL of custom repository"
+
+config BR2_TARGET_AT91BOOTSTRAP3_CUSTOM_REPO_VERSION
+	string "Custom repository version"
+	help
+	  Revision to use in the typical format used by Git
+	  E.G. a sha id, a tag, branch, ..
+
+endif
+
+config BR2_TARGET_AT91BOOTSTRAP3_VERSION
+	string
+	default "v3.9.2" if BR2_TARGET_AT91BOOTSTRAP3_LATEST_VERSION
+	default BR2_TARGET_AT91BOOTSTRAP3_CUSTOM_REPO_VERSION \
+		if BR2_TARGET_AT91BOOTSTRAP3_CUSTOM_GIT
+	default "custom"	if BR2_TARGET_AT91BOOTSTRAP3_CUSTOM_TARBALL
 
 config BR2_TARGET_AT91BOOTSTRAP3_CUSTOM_PATCH_DIR
 	string "custom patch dir"

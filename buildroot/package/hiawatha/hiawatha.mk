@@ -4,26 +4,32 @@
 #
 ################################################################################
 
-HIAWATHA_VERSION = 9.2
-HIAWATHA_SITE = http://www.hiawatha-webserver.org/files
-HIAWATHA_LICENSE = GPLv2
+HIAWATHA_VERSION = 10.10
+HIAWATHA_SITE = https://www.hiawatha-webserver.org/files
+HIAWATHA_DEPENDENCIES = zlib
+HIAWATHA_LICENSE = GPL-2.0
 HIAWATHA_LICENSE_FILES = LICENSE
 
-ifeq ($(BR2_PACKAGE_HIAWATHA_SSL),y)
-HIAWATHA_CONF_OPTS += -DUSE_SYSTEM_POLARSSL=ON
-HIAWATHA_DEPENDENCIES += polarssl
-else
-HIAWATHA_CONF_OPTS += -DENABLE_SSL=OFF
-endif
-
-HIAWATHA_CONF_OPTS += \
-	$(if $(BR2_INET_IPV6),,-DENABLE_IPV6=OFF) \
+HIAWATHA_CONF_OPTS = \
 	-DENABLE_TOOLKIT=OFF \
-	-DENABLE_XSLT=OFF \
 	-DCONFIG_DIR=/etc/hiawatha \
 	-DLOG_DIR=/var/log \
 	-DPID_DIR=/var/run \
 	-DWEBROOT_DIR=/var/www/hiawatha \
 	-DWORK_DIR=/var/lib/hiawatha
+
+ifeq ($(BR2_PACKAGE_HIAWATHA_SSL),y)
+HIAWATHA_CONF_OPTS += -DUSE_SYSTEM_MBEDTLS=ON
+HIAWATHA_DEPENDENCIES += mbedtls
+else
+HIAWATHA_CONF_OPTS += -DENABLE_TLS=OFF
+endif
+
+ifeq ($(BR2_PACKAGE_LIBXSLT),y)
+HIAWATHA_CONF_OPTS += -DENABLE_XSLT=ON
+HIAWATHA_DEPENDENCIES += libxslt
+else
+HIAWATHA_CONF_OPTS += -DENABLE_XSLT=OFF
+endif
 
 $(eval $(cmake-package))

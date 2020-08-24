@@ -4,18 +4,18 @@
 #
 ################################################################################
 
-LIBLINEAR_VERSION = 1.96
-LIBLINEAR_SITE = http://www.csie.ntu.edu.tw/~cjlin/liblinear/$(LIBLINEAR_VERSION_MAJOR)
-LIBLINEAR_LICENSE = BSD-3c
-LIBLINEAR_LICENSE_FILES = COPYING
+LIBLINEAR_VERSION = 2.30
+LIBLINEAR_SITE = http://www.csie.ntu.edu.tw/~cjlin/liblinear
+LIBLINEAR_LICENSE = BSD-3-Clause
+LIBLINEAR_LICENSE_FILES = COPYRIGHT
 LIBLINEAR_INSTALL_STAGING = YES
 LIBLINEAR_CFLAGS = $(TARGET_CFLAGS)
 
 ifeq ($(BR2_SHARED_LIBS)$(BR2_SHARED_STATIC_LIBS),y)
 # $1: destination directory
 define LIBLINEAR_INSTALL_SHARED
-	$(INSTALL) -m 0644 -D $(@D)/liblinear.so.2 $(1)/usr/lib/liblinear.so.2
-	ln -sf liblinear.so.2 $(1)/usr/lib/liblinear.so
+	$(INSTALL) -m 0644 -D $(@D)/liblinear.so.3 $(1)/usr/lib/liblinear.so.3
+	ln -sf liblinear.so.3 $(1)/usr/lib/liblinear.so
 endef
 LIBLINEAR_CFLAGS += -fPIC
 endif

@@ -1,9 +1,11 @@
+config BR2_PACKAGE_LIBSIGSEGV_ARCH_SUPPORTS
+	bool
+	default y if BR2_TOOLCHAIN_HAS_UCONTEXT
+
 config BR2_PACKAGE_LIBSIGSEGV
 	bool "libsigsegv"
-	depends on !BR2_xtensa
-	depends on !BR2_arc # no ucontext_i.sym file
-	depends on !BR2_microblaze
+	depends on BR2_PACKAGE_LIBSIGSEGV_ARCH_SUPPORTS
 	help
 	  Library for handling page faults in user mode.
 
-	  http://libsigsegv.sourceforge.net/
+	  http://www.gnu.org/software/libsigsegv/

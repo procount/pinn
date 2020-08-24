@@ -1,11 +1,7 @@
-comment "openvpn needs a toolchain w/ IPv6"
-	depends on BR2_USE_MMU
-	depends on !BR2_INET_IPV6
-
 config BR2_PACKAGE_OPENVPN
 	bool "openvpn"
-	depends on BR2_INET_IPV6
 	depends on BR2_USE_MMU # fork()
+	select BR2_PACKAGE_OPENSSL
 	help
 	  OpenVPN is a full-featured SSL VPN solution which can
 	  accomodate a wide range of configurations, including road
@@ -17,6 +13,13 @@ config BR2_PACKAGE_OPENVPN
 	  http://openvpn.net/
 
 if BR2_PACKAGE_OPENVPN
+
+config BR2_PACKAGE_OPENVPN_LZ4
+	bool "LZ4 compression"
+	default y
+	select BR2_PACKAGE_LZ4
+	help
+	  Enable LZ4 compression.
 
 config BR2_PACKAGE_OPENVPN_LZO
 	bool "LZO compression"
@@ -31,25 +34,5 @@ config BR2_PACKAGE_OPENVPN_SMALL
 	  Make OpenVPN as small as possible.
 	  You loose eurephia, debugging info, help messages and more.
 	  It saves around 100 KiB in binary file size.
-
-choice
-	prompt "Crypto backend"
-	default BR2_PACKAGE_OPENVPN_CRYPTO_OPENSSL
-	help
-	  Select the cryptographic library to use.
-
-	config BR2_PACKAGE_OPENVPN_CRYPTO_OPENSSL
-	bool "OpenSSL"
-	select BR2_PACKAGE_OPENSSL
-	help
-	  Enable TLS-based key exchange and OpenSSL crypto support.
-
-	config BR2_PACKAGE_OPENVPN_CRYPTO_POLARSSL
-	bool "PolarSSL"
-	select BR2_PACKAGE_POLARSSL
-	help
-	  Enable TLS-based key exchange and PolarSSL crypto support.
-
-endchoice
 
 endif

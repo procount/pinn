@@ -4,12 +4,13 @@
 #
 ################################################################################
 
-CRAMFS_VERSION = 1.1
-CRAMFS_SITE = http://downloads.sourceforge.net/project/cramfs/cramfs/$(CRAMFS_VERSION)
-CRAMFS_LICENSE = GPLv2+
+CRAMFS_VERSION = 2.1
+CRAMFS_SITE = $(call github,npitre,cramfs-tools,v$(CRAMFS_VERSION))
+CRAMFS_LICENSE = GPL-2.0+
 CRAMFS_LICENSE_FILES = COPYING
 
 CRAMFS_DEPENDENCIES = zlib
+HOST_CRAMFS_DEPENDENCIES = host-zlib
 
 define CRAMFS_BUILD_CMDS
 	$(TARGET_MAKE_ENV) $(MAKE) CC="$(TARGET_CC)" CFLAGS="$(TARGET_CFLAGS)" LDFLAGS="$(TARGET_LDFLAGS)" -C $(@D)
@@ -25,8 +26,8 @@ define HOST_CRAMFS_BUILD_CMDS
 endef
 
 define HOST_CRAMFS_INSTALL_CMDS
-	$(INSTALL) -D -m 755 $(@D)/mkcramfs $(HOST_DIR)/usr/bin/mkcramfs
-	$(INSTALL) -D -m 755 $(@D)/cramfsck $(HOST_DIR)/usr/bin/cramfsck
+	$(INSTALL) -D -m 755 $(@D)/mkcramfs $(HOST_DIR)/bin/mkcramfs
+	$(INSTALL) -D -m 755 $(@D)/cramfsck $(HOST_DIR)/bin/cramfsck
 endef
 
 $(eval $(generic-package))

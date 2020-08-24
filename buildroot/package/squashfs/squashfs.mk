@@ -4,14 +4,11 @@
 #
 ################################################################################
 
-SQUASHFS_VERSION = 4.3
-SQUASHFS_SOURCE = squashfs$(SQUASHFS_VERSION).tar.gz
-SQUASHFS_SITE = http://downloads.sourceforge.net/project/squashfs/squashfs/squashfs$(SQUASHFS_VERSION)
-SQUASHFS_LICENSE = GPLv2+
+SQUASHFS_VERSION = 4.4
+SQUASHFS_SITE = $(call github,plougher,squashfs-tools,$(SQUASHFS_VERSION))
+SQUASHFS_LICENSE = GPL-2.0+
 SQUASHFS_LICENSE_FILES = COPYING
-
-# no libattr in BR
-SQUASHFS_MAKE_ARGS = XATTR_SUPPORT=0
+SQUASHFS_MAKE_ARGS = XATTR_SUPPORT=1
 
 ifeq ($(BR2_PACKAGE_SQUASHFS_LZ4),y)
 SQUASHFS_DEPENDENCIES += lz4
@@ -41,6 +38,13 @@ else
 SQUASHFS_MAKE_ARGS += LZO_SUPPORT=0
 endif
 
+ifeq ($(BR2_PACKAGE_SQUASHFS_ZSTD),y)
+SQUASHFS_DEPENDENCIES += zstd
+SQUASHFS_MAKE_ARGS += ZSTD_SUPPORT=1 COMP_DEFAULT=zstd
+else
+SQUASHFS_MAKE_ARGS += ZSTD_SUPPORT=0
+endif
+
 ifeq ($(BR2_PACKAGE_SQUASHFS_GZIP),y)
 SQUASHFS_DEPENDENCIES += zlib
 SQUASHFS_MAKE_ARGS += GZIP_SUPPORT=1 COMP_DEFAULT=gzip
@@ -48,21 +52,21 @@ else
 SQUASHFS_MAKE_ARGS += GZIP_SUPPORT=0
 endif
 
-HOST_SQUASHFS_DEPENDENCIES = host-zlib host-lz4 host-lzo host-xz
+HOST_SQUASHFS_DEPENDENCIES = host-zlib host-lz4 host-lzo host-xz host-zstd
 
-# no libattr/xz in BR
 HOST_SQUASHFS_MAKE_ARGS = \
-	XATTR_SUPPORT=0 \
-	XZ_SUPPORT=1    \
-	GZIP_SUPPORT=1  \
-	LZ4_SUPPORT=1	\
-	LZO_SUPPORT=1	\
-	LZMA_XZ_SUPPORT=1
+	XATTR_SUPPORT=1 \
+	XZ_SUPPORT=1 \
+	GZIP_SUPPORT=1 \
+	LZ4_SUPPORT=1 \
+	LZO_SUPPORT=1 \
+	LZMA_XZ_SUPPORT=1 \
+	ZSTD_SUPPORT=1
 
 define SQUASHFS_BUILD_CMDS
-	$(TARGET_MAKE_ENV) $(MAKE)    \
-		CC="$(TARGET_CC)"           \
-		EXTRA_CFLAGS="$(TARGET_CFLAGS)"   \
+	$(TARGET_MAKE_ENV) $(MAKE) \
+		CC="$(TARGET_CC)" \
+		EXTRA_CFLAGS="$(TARGET_CFLAGS) -fgnu89-inline" \
 		EXTRA_LDFLAGS="$(TARGET_LDFLAGS)" \
 		$(SQUASHFS_MAKE_ARGS) \
 		-C $(@D)/squashfs-tools/
@@ -76,7 +80,7 @@ endef
 define HOST_SQUASHFS_BUILD_CMDS
 	$(HOST_MAKE_ENV) $(MAKE) \
 		CC="$(HOSTCC)" \
-		EXTRA_CFLAGS="$(HOST_CFLAGS)"   \
+		EXTRA_CFLAGS="$(HOST_CFLAGS)" \
 		EXTRA_LDFLAGS="$(HOST_LDFLAGS)" \
 		$(HOST_SQUASHFS_MAKE_ARGS) \
 		-C $(@D)/squashfs-tools/
@@ -84,7 +88,7 @@ endef
 
 define HOST_SQUASHFS_INSTALL_CMDS
 	$(HOST_MAKE_ENV) $(MAKE) $(HOST_SQUASHFS_MAKE_ARGS) \
-		-C $(@D)/squashfs-tools/ INSTALL_DIR=$(HOST_DIR)/usr/bin install
+		-C $(@D)/squashfs-tools/ INSTALL_DIR=$(HOST_DIR)/bin install
 endef
 
 $(eval $(generic-package))

@@ -1,12 +1,20 @@
 config BR2_PACKAGE_TI_GFX
 	bool "ti-gfx"
+	depends on BR2_LINUX_KERNEL && BR2_TOOLCHAIN_USES_GLIBC && BR2_arm
+	depends on BR2_HOSTARCH = "x86_64" || BR2_HOSTARCH = "x86"
+	select BR2_HOSTARCH_NEEDS_IA32_LIBS
 	select BR2_PACKAGE_HAS_LIBEGL
 	select BR2_PACKAGE_HAS_LIBGLES
 	select BR2_PACKAGE_HAS_POWERVR
 	select BR2_PACKAGE_FBSET if !BR2_PACKAGE_BUSYBOX # Runtime dependency only
-	depends on BR2_LINUX_KERNEL && BR2_TOOLCHAIN_USES_GLIBC && BR2_arm
+	select BR2_LINUX_NEEDS_MODULES # not using kernel-module infra
 	help
-	  Graphics libraries for TI boards.
+	  Graphics libraries for TI boards using SGX acceleration.
+
+	  Supports OMAP35xx, DM37xx/AM37xx, DM816x, DM814x, AM335x and
+	  AM43xx.
+
+	  For newer CPUs or kernels use the ti-sgx-{km,um} packages.
 
 	  http://downloads.ti.com/dsps/dsps_public_sw/gfxsdk/
 
@@ -24,8 +32,9 @@ config BR2_PACKAGE_PROVIDES_POWERVR
 config BR2_PACKAGE_TI_GFX_DEBUG
 	bool "enable debug support"
 	help
-	  Turns on debugging in the kernel module, install libraries built with
-	  debugging enabled, installs various tests and installs esrev script.
+	  Turns on debugging in the kernel module, install libraries
+	  built with debugging enabled, installs various tests and
+	  installs esrev script.
 
 config BR2_PACKAGE_TI_GFX_DEMOS
 	bool "install demos"
@@ -42,8 +51,8 @@ choice
 	prompt "Target"
 	default BR2_PACKAGE_TI_GFX_ES3
 	help
-	  Select the SOC for which you would like to install drivers. Please use the
-	  chart at
+	  Select the SOC for which you would like to install
+	  drivers. Please use the chart at
 	  http://processors.wiki.ti.com/index.php/OMAP35x_Graphics_SDK_Getting_Started_Guide
 
 config BR2_PACKAGE_TI_GFX_ES3
@@ -70,6 +79,6 @@ endchoice
 
 endif
 
-comment "ti-gfx needs an (e)glibc toolchain and a Linux kernel to be built"
+comment "ti-gfx needs a glibc toolchain and a Linux kernel to be built"
 	depends on BR2_arm
 	depends on !(BR2_LINUX_KERNEL && BR2_TOOLCHAIN_USES_GLIBC)

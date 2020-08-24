@@ -4,12 +4,11 @@
 #
 ################################################################################
 
-PYTHON_MSGPACK_VERSION = 0.4.0
-PYTHON_MSGPACK_SOURCE = msgpack-python-$(PYTHON_MSGPACK_VERSION).tar.gz
-PYTHON_MSGPACK_SITE = https://pypi.python.org/packages/source/m/msgpack-python
+PYTHON_MSGPACK_VERSION = 1.0.0
+PYTHON_MSGPACK_SOURCE = msgpack-$(PYTHON_MSGPACK_VERSION).tar.gz
+PYTHON_MSGPACK_SITE = https://files.pythonhosted.org/packages/e4/4f/057549afbd12fdd5d9aae9df19a6773a3d91988afe7be45b277e8cee2f4d
 PYTHON_MSGPACK_LICENSE = Apache-2.0
 PYTHON_MSGPACK_LICENSE_FILES = COPYING
 PYTHON_MSGPACK_SETUP_TYPE = setuptools
-PYTHON_MSGPACK_DEPENDENCIES = msgpack
 
 $(eval $(python-package))

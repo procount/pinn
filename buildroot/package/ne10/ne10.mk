@@ -4,12 +4,15 @@
 #
 ################################################################################
 
-NE10_VERSION = v1.0.0
-NE10_SITE = $(call github,projectNe10,Ne10,$(NE10_VERSION))
-NE10_LICENSE = BSD-3c or Apache-2.0
+NE10_VERSION = 1.2.1
+NE10_SITE = $(call github,projectNe10,Ne10,v$(NE10_VERSION))
+NE10_LICENSE = BSD-3-Clause or Apache-2.0
 NE10_LICENSE_FILES = doc/LICENSE
+NE10_INSTALL_STAGING = YES
 
-NE10_CONF_OPTS = -DGNULINUX_PLATFORM=ON
+NE10_CONF_OPTS = \
+	-DGNULINUX_PLATFORM=ON \
+	-DNE10_LINUX_TARGET_ARCH=$(if $(BR2_aarch64),aarch64,armv7)
 
 ifeq ($(BR2_STATIC_LIBS),)
 NE10_CONF_OPTS += \
@@ -30,7 +33,6 @@ define NE10_INSTALL_STAGING_CMDS
 	cp -dpf $(@D)/modules/libNE10.a $(STAGING_DIR)/usr/lib/
 	$(NE10_INSTALL_STAGING_SHARED_LIB)
 endef
-
 
 define NE10_INSTALL_TARGET_CMDS
 	cp -dpf $(@D)/modules/libNE10*.so* $(TARGET_DIR)/usr/lib/

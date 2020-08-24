@@ -9,6 +9,18 @@ config BR2_PACKAGE_NETSNMP
 
 if BR2_PACKAGE_NETSNMP
 
+config BR2_PACKAGE_NETSNMP_SERVER
+	bool "server"
+	default y
+	help
+	  The snmpd server.
+
+config BR2_PACKAGE_NETSNMP_CLIENTS
+	bool "clients"
+	default y
+	help
+	  The net-snmp clients (snmpget, snmpwalk, etc).
+
 config BR2_PACKAGE_NETSNMP_ENABLE_MIBS
 	bool "Install MIB files on target and enable MIB loading code"
 	default y
@@ -19,7 +31,8 @@ config BR2_PACKAGE_NETSNMP_ENABLE_MIBS
 
 config BR2_PACKAGE_NETSNMP_WITH_MIB_MODULES
 	string "Build with these MIB modules"
-	default "host ucd-snmp/dlmod agentx"
+	default "host ucd-snmp/dlmod agentx" if !BR2_STATIC_LIBS
+	default "host agentx" if BR2_STATIC_LIBS
 	help
 	  Specify which MIB modules to include.
 
@@ -33,8 +46,15 @@ config BR2_PACKAGE_NETSNMP_ENABLE_DEBUGGING
 	bool "Enable debugging code"
 	help
 	  By default net-snmp is compiled without debugging support
-	  (--disable-debugging). Enable this options if you need debugging
-	  support, including the ability to log with DEBUGMSG(),
-	  DEBUGMSGTL() and companion macros.
+	  (--disable-debugging). Enable this options if you need
+	  debugging support, including the ability to log with
+	  DEBUGMSG(), DEBUGMSGTL() and companion macros.
+
+config BR2_PACKAGE_NETSNMP_OPENSSL_INTERNAL
+	bool "Enable minimal internal OpenSSL code"
+	depends on !BR2_PACKAGE_OPENSSL
+	help
+	  Enable a minimal internal copy of OpenSSL usable for USM
+	  security. It will not enable the usage of SNMP over (D)TLS.
 
 endif

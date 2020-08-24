@@ -1,2 +1,5 @@
 # Locally calculated after checking pgp signature
-sha256	c8535061bb703086b67fa540da162ad48d6ecd219ae74157111465adfdef5997  pv-1.5.7.tar.bz2
+sha256	608ef935f7a377e1439c181c4fc188d247da10d51a19ef79bcdee5043b0973f1  pv-1.6.6.tar.bz2
+
+# Hash for license file
+sha256  280e182171df3e9bb4a9b407326e88521151fcb8f4f8557255f26177d5900ccf  doc/COPYING

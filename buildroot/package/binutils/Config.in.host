@@ -1,44 +1,56 @@
 comment "Binutils Options"
 
+config BR2_PACKAGE_HOST_BINUTILS_SUPPORTS_CFI
+	bool
+	default y
+	depends on !BR2_microblaze
+
 choice
 	prompt "Binutils Version"
-	depends on !BR2_arc
-	default BR2_BINUTILS_VERSION_2_24
+	default BR2_BINUTILS_VERSION_2_33_X if !BR2_arc && !BR2_csky
+	default BR2_BINUTILS_VERSION_ARC if BR2_arc
+	default BR2_BINUTILS_VERSION_CSKY if BR2_csky
 	help
 	  Select the version of binutils you wish to use.
 
-	config BR2_BINUTILS_VERSION_2_18_AVR32_1_0_1
-		depends on BR2_avr32
-		bool "binutils 2.18-avr32-1.0.1"
+config BR2_BINUTILS_VERSION_2_32_X
+	bool "binutils 2.32"
+	depends on !BR2_csky
 
-	config BR2_BINUTILS_VERSION_2_22
-		depends on !BR2_avr32 && !BR2_aarch64 && !BR2_microblaze && !BR2_powerpc64le
-		bool "binutils 2.22"
+config BR2_BINUTILS_VERSION_2_33_X
+	bool "binutils 2.33.1"
+	depends on !BR2_csky
+	# https://github.com/uclinux-dev/elf2flt/pull/16
+	# https://github.com/uclinux-dev/elf2flt/issues/12
+	depends on !BR2_BINFMT_FLAT
 
-	# bfin disabled for newer binutils due to
-	# https://sourceware.org/bugzilla/show_bug.cgi?id=17334
-	config BR2_BINUTILS_VERSION_2_23_2
-		depends on !BR2_avr32 && !BR2_aarch64 && !BR2_bfin && !BR2_microblaze && !BR2_powerpc64le
-		bool "binutils 2.23.2"
+config BR2_BINUTILS_VERSION_2_34_X
+	bool "binutils 2.34"
+	depends on !BR2_csky
+	# https://github.com/uclinux-dev/elf2flt/pull/16
+	# https://github.com/uclinux-dev/elf2flt/issues/12
+	depends on !BR2_BINFMT_FLAT
 
-	config BR2_BINUTILS_VERSION_2_24
-		depends on !BR2_avr32 && !BR2_bfin
-		bool "binutils 2.24"
+config BR2_BINUTILS_VERSION_ARC
+	bool "binutils arc (2.31)"
+	depends on BR2_arc
 
-	config BR2_BINUTILS_VERSION_2_25
-		depends on !BR2_avr32 && !BR2_bfin
-		bool "binutils 2.25"
+config BR2_BINUTILS_VERSION_CSKY
+	bool "binutils csky"
+	depends on BR2_csky
 
 endchoice
 
 config BR2_BINUTILS_VERSION
 	string
-	default "2.18-avr32-1.0.1" if BR2_BINUTILS_VERSION_2_18_AVR32_1_0_1
-	default "arc-2014.08"	if BR2_arc
-	default "2.22"		if BR2_BINUTILS_VERSION_2_22
-	default "2.23.2"	if BR2_BINUTILS_VERSION_2_23_2
-	default "2.24"		if BR2_BINUTILS_VERSION_2_24
-	default "2.25"		if BR2_BINUTILS_VERSION_2_25
+	default "arc-2020.03-release"	if BR2_BINUTILS_VERSION_ARC
+	default "c66d8bbcebfddf713b2b436e1b135e6b125a55a5" if BR2_BINUTILS_VERSION_CSKY
+	default "2.32"		if BR2_BINUTILS_VERSION_2_32_X
+	default "2.33.1"	if BR2_BINUTILS_VERSION_2_33_X
+	default "2.34"		if BR2_BINUTILS_VERSION_2_34_X
+
+config BR2_BINUTILS_ENABLE_LTO
+	bool
 
 config BR2_BINUTILS_EXTRA_CONFIG_OPTIONS
 	string "Additional binutils options"
