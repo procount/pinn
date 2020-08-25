@@ -4,11 +4,11 @@
 #
 ################################################################################
 
-RSYSLOG_VERSION = 8.7.0
+RSYSLOG_VERSION = 8.2004.0
 RSYSLOG_SITE = http://rsyslog.com/files/download/rsyslog
-RSYSLOG_LICENSE = GPLv3 LGPLv3 Apache-2.0
+RSYSLOG_LICENSE = GPL-3.0, LGPL-3.0, Apache-2.0
 RSYSLOG_LICENSE_FILES = COPYING COPYING.LESSER COPYING.ASL20
-RSYSLOG_DEPENDENCIES = zlib libestr liblogging json-c host-pkgconf
+RSYSLOG_DEPENDENCIES = zlib libestr liblogging libfastjson host-pkgconf
 RSYSLOG_CONF_ENV = ac_cv_prog_cc_c99='-std=c99'
 RSYSLOG_PLUGINS = imdiag imfile impstats imptcp \
 	mmanon mmaudit mmfields mmjsonparse mmpstrucdata mmsequence mmutf8fix \
@@ -16,12 +16,21 @@ RSYSLOG_PLUGINS = imdiag imfile impstats imptcp \
 	pmaixforwardedfrom pmciscoios pmcisconames pmlastmsg pmsnare
 RSYSLOG_CONF_OPTS = --disable-generate-man-pages \
 	$(foreach x,$(call qstrip,$(RSYSLOG_PLUGINS)),--enable-$(x))
-# For mysql and pgsql support patches
-RSYSLOG_AUTORECONF = YES
 
-# Build after BusyBox
-ifeq ($(BR2_PACKAGE_BUSYBOX),y)
-RSYSLOG_DEPENDENCIES += busybox
+# Disable items requiring libcurl
+RSYSLOG_CONF_OPTS += --disable-elasticsearch \
+	--disable-clickhouse \
+	--disable-omhttp \
+	--disable-fmhttp \
+	--disable-imdocker \
+	--disable-omhttpfs \
+	--disable-mmkubernetes
+
+ifeq ($(BR2_PACKAGE_GNUTLS),y)
+RSYSLOG_DEPENDENCIES += gnutls
+RSYSLOG_CONF_OPTS += --enable-gnutls
+else
+RSYSLOG_CONF_OPTS += --disable-gnutls
 endif
 
 ifeq ($(BR2_PACKAGE_LIBEE),y)
@@ -59,17 +68,21 @@ else
 RSYSLOG_CONF_OPTS += --disable-uuid
 endif
 
-define RSYSLOG_INSTALL_INIT_SYSV
-	$(INSTALL) -m 0755 -D package/rsyslog/S01logging \
-		$(TARGET_DIR)/etc/init.d/S01logging
-endef
+ifeq ($(BR2_INIT_SYSTEMD),y)
+RSYSLOG_CONF_OPTS += \
+	--enable-imjournal \
+	--enable-omjournal \
+	--with-systemdsystemunitdir=/usr/lib/systemd/system
+RSYSLOG_DEPENDENCIES += systemd
+else
+RSYSLOG_CONF_OPTS += \
+	--disable-imjournal \
+	--disable-omjournal
+endif
 
-define RSYSLOG_INSTALL_INIT_SYSTEMD
-	ln -sf /lib/systemd/system/rsyslog.service \
-		$(TARGET_DIR)/etc/systemd/system/syslog.service
-	mkdir -p $(TARGET_DIR)/etc/systemd/system/multi-user.target.wants
-	ln -sf ../syslog.service \
-		$(TARGET_DIR)/etc/systemd/system/multi-user.target.wants/syslog.service
+define RSYSLOG_INSTALL_INIT_SYSV
+	$(INSTALL) -m 0755 -D package/rsyslog/S01rsyslogd \
+		$(TARGET_DIR)/etc/init.d/S01rsyslogd
 endef
 
 define RSYSLOG_INSTALL_CONF

@@ -1,14 +1,14 @@
 config BR2_PACKAGE_RECOVERY
         bool "recovery"
     ### build dependencies
-    select BR2_PACKAGE_QT
-    select BR2_PACKAGE_QT_QTPNG
-    select BR2_PACKAGE_QT_GFX_LINUXFB
-    select BR2_PACKAGE_QT_GFX_VNC
-    select BR2_PACKAGE_QT_QTFREETYPE
-    select BR2_PACKAGE_QT_SYSTEMZLIB
-    select BR2_PACKAGE_QT_MOUSE_PC
-    select BR2_PACKAGE_QT_KEYBOARD_TTY
+    select BR2_PACKAGE_QT5
+    select BR2_PACKAGE_QT5_QTPNG
+    select BR2_PACKAGE_QT5_GFX_LINUXFB
+    select BR2_PACKAGE_QT5_GFX_VNC
+    select BR2_PACKAGE_QT5_QTFREETYPE
+    select BR2_PACKAGE_QT5_SYSTEMZLIB
+    select BR2_PACKAGE_QT5_MOUSE_PC
+    select BR2_PACKAGE_QT5_KEYBOARD_TTY
     select BR2_PACKAGE_QJSON
     select BR2_PACKAGE_WPA_SUPPLICANT
     ### runtime dependencies

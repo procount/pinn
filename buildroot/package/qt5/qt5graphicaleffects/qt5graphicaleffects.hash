@@ -1,4 +1,9 @@
-# Hashes from: http://download.qt-project.org/official_releases/qt/5.3/5.3.2/submodules/qtgraphicaleffects-opensource-src-5.3.2.tar.xz.mirrorlist
-sha256 688f2658a13d2919487d3f5acacb037364ee5c8fe0319f524a7d0a4987ba7ffc qtgraphicaleffects-opensource-src-5.3.2.tar.xz
-sha1   08929b31a8c70e465d7f10f80e6004b29c275cc0                         qtgraphicaleffects-opensource-src-5.3.2.tar.xz
-md5    6dd8dd6906bbfb52a292cd25927bb9a8                                 qtgraphicaleffects-opensource-src-5.3.2.tar.xz
+# Hash from: https://download.qt.io/official_releases/qt/5.15/5.15.0/submodules/qtgraphicaleffects-everywhere-src-5.15.0.tar.xz.sha256
+sha256  0d2ea4bc73b9df13a4b739dcbc1e3c7b298c7e682f7f9252b232e3bde7b63eda  qtgraphicaleffects-everywhere-src-5.15.0.tar.xz
+
+# Hashes for license files:
+sha256 8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643 LICENSE.GPL2
+sha256 8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903 LICENSE.GPL3
+sha256 0dbe024961f6ab5c52689cbd036c977975d0d0f6a67ff97762d96cb819dd5652 LICENSE.GPL3-EXCEPT
+sha256 da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768 LICENSE.LGPL3
+sha256 ed8742a95cb9db653a09b050e27ccff5e67ba69c14aa2c3137f2a4e1892f6c0d LICENSE.FDL

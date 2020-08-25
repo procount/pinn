@@ -4,11 +4,10 @@
 #
 ################################################################################
 
-JIMTCL_VERSION = 0.75
-JIMTCL_SITE = http://snapshot.debian.org/archive/debian/20141023T043132Z/pool/main/j/jimtcl
-JIMTCL_SOURCE = jimtcl_$(JIMTCL_VERSION).orig.tar.xz
+JIMTCL_VERSION = 0.79
+JIMTCL_SITE = $(call github,msteveb,jimtcl,$(JIMTCL_VERSION))
 JIMTCL_INSTALL_STAGING = YES
-JIMTCL_LICENSE = BSD-2c
+JIMTCL_LICENSE = BSD-2-Clause
 JIMTCL_LICENSE_FILES = LICENSE
 
 JIMTCL_HEADERS_TO_INSTALL = \
@@ -17,7 +16,7 @@ JIMTCL_HEADERS_TO_INSTALL = \
 	jim-signal.h \
 	jim-subcmd.h \
 	jim-win32compat.h \
-	jim-config.h \
+	jim-config.h
 
 ifeq ($(BR2_PACKAGE_TCL),)
 define JIMTCL_LINK_TCLSH
@@ -26,42 +25,79 @@ endef
 endif
 
 ifeq ($(BR2_STATIC_LIBS),y)
-JIMTCL_SHARED =
-JIMTCL_LIB = a
-JIMTCL_INSTALL_LIB =
+define JIMTCL_INSTALL_LIB
+	$(INSTALL) -m 0644 -D $(@D)/libjim.a $(1)/usr/lib/libjim.a
+endef
 else
 JIMTCL_SHARED = --shared
-JIMTCL_LIB = so.$(JIMTCL_VERSION)
-JIMTCL_INSTALL_LIB = \
-	$(INSTALL) -D $(@D)/libjim.$(JIMTCL_LIB) \
-	$(TARGET_DIR)/usr/lib/libjim.$(JIMTCL_LIB); \
-	ln -s libjim.$(JIMTCL_LIB) $(TARGET_DIR)/usr/lib/libjim.so
+define JIMTCL_INSTALL_LIB
+	$(INSTALL) -m 0755 -D $(@D)/libjim.so.$(JIMTCL_VERSION) \
+		$(1)/usr/lib/libjim.so.$(JIMTCL_VERSION)
+	ln -sf libjim.so.$(JIMTCL_VERSION) $(1)/usr/lib/libjim.so
+endef
 endif
 
+# build system doesn't use autotools, but does use an old version of
+# gnuconfig which doesn't know all the architectures supported by
+# Buildroot, so update config.guess / config.sub like we do in
+# pkg-autotools.mk
+JIMTCL_POST_PATCH_HOOKS += UPDATE_CONFIG_HOOK
+HOST_JIMTCL_POST_PATCH_HOOKS += UPDATE_CONFIG_HOOK
+
+# jimtcl really wants to find a existing $CXX, so feed it false
+# when we do not have one.
 define JIMTCL_CONFIGURE_CMDS
 	(cd $(@D); \
-		$(TARGET_CONFIGURE_OPTS) CCACHE=none \
+		$(TARGET_CONFIGURE_OPTS) \
+		CCACHE=none \
+		$(if $(BR2_INSTALL_LIBSTDCPP),,CXX=false) \
 		./configure --prefix=/usr \
+		--host=$(GNU_TARGET_NAME) \
+		--build=$(GNU_HOST_NAME) \
 		$(JIMTCL_SHARED) \
 	)
 endef
 
+# -fPIC is mandatory to build shared libraries on certain architectures
+# (e.g. SPARC) and causes no harm or drawbacks on other architectures
 define JIMTCL_BUILD_CMDS
-	$(MAKE) -C $(@D)
+	SH_CFLAGS="-fPIC" \
+	SHOBJ_CFLAGS="-fPIC" \
+	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D)
 endef
 
 define JIMTCL_INSTALL_STAGING_CMDS
 	for i in $(JIMTCL_HEADERS_TO_INSTALL); do \
 		cp -a $(@D)/$$i $(STAGING_DIR)/usr/include/ || exit 1 ; \
 	done; \
-	$(INSTALL) -D $(@D)/libjim.$(JIMTCL_LIB) $(STAGING_DIR)/usr/lib/libjim.$(JIMTCL_LIB);
-	ln -s libjim.$(JIMTCL_LIB) $(STAGING_DIR)/usr/lib/libjim.so
+	$(call JIMTCL_INSTALL_LIB,$(STAGING_DIR))
 endef
 
 define JIMTCL_INSTALL_TARGET_CMDS
 	$(INSTALL) -D $(@D)/jimsh $(TARGET_DIR)/usr/bin/jimsh
-	$(JIMTCL_INSTALL_LIB)
+	$(call JIMTCL_INSTALL_LIB,$(TARGET_DIR))
 	$(JIMTCL_LINK_TCLSH)
 endef
 
+define HOST_JIMTCL_CONFIGURE_CMDS
+	cd $(@D) && \
+		$(HOST_CONFIGURE_OPTS) \
+		CCACHE=none \
+		./configure --prefix=$(HOST_DIR) --shared
+endef
+
+define HOST_JIMTCL_BUILD_CMDS
+	$(HOST_MAKE_ENV) $(MAKE) -C $(@D)
+endef
+
+define HOST_JIMTCL_INSTALL_CMDS
+	for i in $(JIMTCL_HEADERS_TO_INSTALL); do \
+		cp -a $(@D)/$$i $(HOST_DIR)/usr/include/ || exit 1 ; \
+	done;
+	$(INSTALL) -m 0755 -D $(@D)/libjim.so.$(JIMTCL_VERSION) \
+		$(HOST_DIR)/usr/lib/libjim.so.$(JIMTCL_VERSION)
+	ln -sf libjim.so.$(JIMTCL_VERSION) $(HOST_DIR)/usr/lib/libjim.so
+endef
+
 $(eval $(generic-package))
+$(eval $(host-generic-package))

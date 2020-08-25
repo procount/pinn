@@ -31,7 +31,7 @@ void Passwd::on_passwordEdit_textChanged(const QString &pass)
 
 QString Passwd::strReverse(QString str)
 {
-    QByteArray ba = str.toAscii();
+    QByteArray ba = str.toLatin1();
     char *d = ba.data();
     std::reverse(d, d+str.length());
     return QString(d);

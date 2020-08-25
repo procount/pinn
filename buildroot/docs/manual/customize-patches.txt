@@ -33,12 +33,11 @@ follows:
 * If a +series+ file exists in the package directory, then patches are
   applied according to the +series+ file;
 +
-* Otherwise, patch files matching +<packagename>-*.patch+
-  are applied in alphabetical order.
-  So, to ensure they are applied in the right order, it is highly
-  recommended to name the patch files like this:
-  +<packagename>-<number>-<description>.patch+, where +<number>+
-  refers to the 'apply order'.
+* Otherwise, patch files matching +*.patch+ are applied in
+  alphabetical order.  So, to ensure they are applied in the right
+  order, it is highly recommended to name the patch files like this:
+  +<number>-<description>.patch+, where +<number>+ refers to the
+  'apply order'.
 
 For information about how patches are applied for a package, see
 xref:patch-apply-order[]
@@ -54,7 +53,7 @@ directory.
 The exception to +BR2_GLOBAL_PATCH_DIR+ being the preferred method for
 specifying custom patches is +BR2_LINUX_KERNEL_PATCH+.
 +BR2_LINUX_KERNEL_PATCH+ should be used to specify kernel patches that
-are available at an URL. *Note:* +BR2_LINUX_KERNEL_PATCH+ specifies kernel
+are available at a URL. *Note:* +BR2_LINUX_KERNEL_PATCH+ specifies kernel
 patches that are applied after patches available in +BR2_GLOBAL_PATCH_DIR+,
 as it is done from a post-patch hook of the Linux package.
 

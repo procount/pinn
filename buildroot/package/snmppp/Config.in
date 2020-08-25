@@ -14,15 +14,20 @@ config BR2_PACKAGE_SNMPPP_LOGGING
 	bool "enable logging"
 	help
 	  Enable logging output for SNMP++.
-	  According to the SNMP++ documentation, disabling logging "increases
-	  performance drastically and minimizes memory consumption".
+	  According to the SNMP++ documentation, disabling logging
+	  "increases performance drastically and minimizes memory
+	  consumption".
 
 config BR2_PACKAGE_SNMPPP_SNMPV3
 	bool "enable SNMPv3"
 	default y
+	depends on BR2_TOOLCHAIN_GCC_AT_LEAST_4_8 # C++11
 	select BR2_PACKAGE_OPENSSL
 	help
 	  Enable optional support for SNMP++. This selects OpenSSL.
+
+comment "SNMPv3 needs a toolchain w/ gcc >= 4.8"
+	depends on !BR2_TOOLCHAIN_GCC_AT_LEAST_4_8
 
 endif
 

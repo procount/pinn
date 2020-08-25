@@ -4,12 +4,14 @@
 #
 ################################################################################
 
-LIBUV_VERSION = v1.0.2
-LIBUV_SITE = $(call github,libuv,libuv,$(LIBUV_VERSION))
+# When bumping libuv, check if a new version of uvw is available
+# and bump it too.
+LIBUV_VERSION = 1.38.0
+LIBUV_SITE = $(call github,libuv,libuv,v$(LIBUV_VERSION))
 LIBUV_DEPENDENCIES = host-pkgconf
 LIBUV_INSTALL_STAGING = YES
 LIBUV_AUTORECONF = YES
-LIBUV_LICENSE = BSD-2c, BSD-3c, ISC, MIT
+LIBUV_LICENSE = BSD-2-Clause, BSD-3-Clause, ISC, MIT
 LIBUV_LICENSE_FILES = LICENSE
 
 # Upstream needs tests to be run sequentially. This is the default in

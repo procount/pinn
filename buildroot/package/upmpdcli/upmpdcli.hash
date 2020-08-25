@@ -1,2 +1,5 @@
-# Hashes from: http://www.lesbonscomptes.com/upmpdcli/downloads/upmpdcli-0.8.6.tar.gz.sha256
-sha256 118d30d7c8ca9f9e94cebdec5cf8c7c619b71252a0dbac2afe30d5c9ff5bda87  upmpdcli-0.8.6.tar.gz
+# From http://www.lesbonscomptes.com/upmpdcli/downloads/upmpdcli-1.4.12.tar.gz.sha256:
+sha256  bffc78c140ad688987894ea5a1e162e6dcbc7dcae7d2cc322a894f5ea2a2f53b  upmpdcli-1.4.12.tar.gz
+
+# Hash for license file:
+sha256  dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551  COPYING

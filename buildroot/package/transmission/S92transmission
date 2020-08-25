@@ -24,9 +24,7 @@
 # by default, this is set to 'transmission'.
 # For the sake of security you shouldn't set a password
 # on this user
-#USERNAME=transmission
-USERNAME=default
-
+USERNAME=transmission
 
 
 # ----- *ADVANCED* CONFIGURATION -----
@@ -52,9 +50,6 @@ NAME=transmission-daemon
 DAEMON=$(which $NAME)
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
-
-# Exit if the package is not installed
-[ -x "$DAEMON" ] || exit 0
 
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME

@@ -4,19 +4,13 @@
 #
 ################################################################################
 
-LIBDVDNAV_VERSION = 4.2.1
-LIBDVDNAV_SOURCE = libdvdnav-$(LIBDVDNAV_VERSION).tar.xz
-LIBDVDNAV_SITE = http://dvdnav.mplayerhq.hu/releases
-# configure not shipped
-LIBDVDNAV_AUTORECONF = YES
+LIBDVDNAV_VERSION = 6.1.0
+LIBDVDNAV_SOURCE = libdvdnav-$(LIBDVDNAV_VERSION).tar.bz2
+LIBDVDNAV_SITE = http://www.videolan.org/pub/videolan/libdvdnav/$(LIBDVDNAV_VERSION)
 LIBDVDNAV_INSTALL_STAGING = YES
-LIBDVDNAV_CONFIG_SCRIPTS = dvdnav-config
+LIBDVDNAV_CONF_ENV = CFLAGS="$(TARGET_CFLAGS) -std=gnu99"
 LIBDVDNAV_DEPENDENCIES = libdvdread host-pkgconf
-LIBDVDNAV_LICENSE = GPLv2+
+LIBDVDNAV_LICENSE = GPL-2.0+
 LIBDVDNAV_LICENSE_FILES = COPYING
-
-# By default libdvdnav tries to find dvdread-config in $PATH. Because
-# of cross compilation, we prefer using pkg-config.
-LIBDVDNAV_CONF_OPTS = --with-dvdread-config="$(PKG_CONFIG_HOST_BINARY) dvdread"
 
 $(eval $(autotools-package))

@@ -8,15 +8,8 @@ TFTPD_VERSION = 5.2
 TFTPD_SOURCE = tftp-hpa-$(TFTPD_VERSION).tar.xz
 TFTPD_SITE = $(BR2_KERNEL_MIRROR)/software/network/tftp/tftp-hpa
 TFTPD_CONF_OPTS = --without-tcpwrappers
-
-ifneq ($(BR2_INET_IPV6),y)
-TFTPD_CONF_OPTS += --without-ipv6
-endif
-
-# Override BusyBox implementations if BusyBox is enabled.
-ifeq ($(BR2_PACKAGE_BUSYBOX),y)
-TFTPD_DEPENDENCIES += busybox
-endif
+TFTPD_LICENSE = BSD-4-Clause
+TFTPD_LICENSE_FILES = tftpd/tftpd.c
 
 define TFTPD_INSTALL_TARGET_CMDS
 	$(INSTALL) -D $(@D)/tftp/tftp $(TARGET_DIR)/usr/bin/tftp

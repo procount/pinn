@@ -1,2 +1,5 @@
+# From https://github.com/redis/redis-hashes/blob/master/README
+sha256  12ad49b163af5ef39466e8d2f7d212a58172116e5b441eebecb4e6ca22363d94  redis-6.0.6.tar.gz
+
 # Locally calculated
-sha256	29bb08abfc3d392b2f0c3e7f48ec46dd09ab1023f9a5575fc2a93546f4ca5145	redis-2.8.19.tar.gz
+sha256  97f0a15b7bbae580d2609dad2e11f1956ae167be296ab60f4691ab9c30ee9828  COPYING

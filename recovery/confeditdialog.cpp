@@ -15,7 +15,7 @@
 
 #include <QDir>
 #include <QFile>
-#include <QtGui/QPlainTextEdit>
+#include <QPlainTextEdit>
 #include <QProcess>
 #include <QMessageBox>
 #include <unistd.h>
@@ -48,7 +48,7 @@ public:
 
     void save()
     {
-        QByteArray txt = _textEdit->toPlainText().toAscii();
+        QByteArray txt = _textEdit->toPlainText().toLatin1();
 
         if (!_ro && txt != _origData)
         {

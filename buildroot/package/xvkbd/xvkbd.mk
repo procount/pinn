@@ -4,21 +4,10 @@
 #
 ################################################################################
 
-XVKBD_VERSION = 3.2
-XVKBD_SITE = http://homepage3.nifty.com/tsato/xvkbd
-XVKBD_LICENSE = GPLv2+
-XVKBD_LICENSE_FILES = README
-
-# Passing USRLIBDIR ensures that the stupid Makefile doesn't add
-# /usr/lib to the library search path.
-define XVKBD_BUILD_CMDS
-	$(MAKE) -C $(@D) $(TARGET_CONFIGURE_OPTS) \
-		USRLIBDIR="$(STAGING_DIR)/usr/lib"
-endef
-
-define XVKBD_INSTALL_TARGET_CMDS
-	$(MAKE) -C $(@D) DESTDIR=$(TARGET_DIR) install
-endef
+XVKBD_VERSION = 4.1
+XVKBD_SITE = http://t-sato.in.coocan.jp/xvkbd
+XVKBD_LICENSE = GPL-2.0+
+XVKBD_LICENSE_FILES = COPYING README
 
 XVKBD_DEPENDENCIES = \
 	xlib_libICE \
@@ -31,4 +20,4 @@ XVKBD_DEPENDENCIES = \
 	xlib_libXt \
 	xlib_libXtst
 
-$(eval $(generic-package))
+$(eval $(autotools-package))

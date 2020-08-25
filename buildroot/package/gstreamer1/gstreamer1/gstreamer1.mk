@@ -4,36 +4,44 @@
 #
 ################################################################################
 
-GSTREAMER1_VERSION = 1.4.5
+GSTREAMER1_VERSION = 1.16.2
 GSTREAMER1_SOURCE = gstreamer-$(GSTREAMER1_VERSION).tar.xz
-GSTREAMER1_SITE = http://gstreamer.freedesktop.org/src/gstreamer
+GSTREAMER1_SITE = https://gstreamer.freedesktop.org/src/gstreamer
 GSTREAMER1_INSTALL_STAGING = YES
 GSTREAMER1_LICENSE_FILES = COPYING
-GSTREAMER1_LICENSE = LGPLv2+ LGPLv2.1+
-
-# Checking if unaligned memory access works correctly cannot be done when cross
-# compiling. For the following architectures there is no information available
-# in the configure script.
-ifeq ($(BR2_arc)$(BR2_avr32)$(BR2_xtensa)$(BR2_microblaze),y)
-GSTREAMER1_CONF_ENV = as_cv_unaligned_access=no
-endif
-ifeq ($(BR2_aarch64),y)
-GSTREAMER1_CONF_ENV = as_cv_unaligned_access=yes
-endif
+GSTREAMER1_LICENSE = LGPL-2.0+, LGPL-2.1+
 
 GSTREAMER1_CONF_OPTS = \
-	--disable-examples \
-	--disable-tests \
-	--disable-failing-tests \
-	--disable-valgrind \
-	--disable-benchmarks \
-	--disable-check \
-	$(if $(BR2_PACKAGE_GSTREAMER1_TRACE),,--disable-trace) \
-	$(if $(BR2_PACKAGE_GSTREAMER1_PARSE),,--disable-parse) \
-	$(if $(BR2_PACKAGE_GSTREAMER1_GST_DEBUG),,--disable-gst-debug) \
-	$(if $(BR2_PACKAGE_GSTREAMER1_PLUGIN_REGISTRY),,--disable-registry) \
-	$(if $(BR2_PACKAGE_GSTREAMER1_INSTALL_TOOLS),,--disable-tools)
+	-Dexamples=disabled \
+	-Dtests=disabled \
+	-Dbenchmarks=disabled \
+	-Dgtk_doc=disabled \
+	-Dglib-asserts=disabled \
+	-Dglib-checks=disabled \
+	-Dgobject-cast-checks=disabled \
+	-Dcheck=$(if $(BR2_PACKAGE_GSTREAMER1_CHECK),enabled,disabled) \
+	-Dtracer_hooks=$(if $(BR2_PACKAGE_GSTREAMER1_TRACE),true,false) \
+	-Doption-parsing=$(if $(BR2_PACKAGE_GSTREAMER1_PARSE),true,false) \
+	-Dgst_debug=$(if $(BR2_PACKAGE_GSTREAMER1_GST_DEBUG),true,false) \
+	-Dregistry=$(if $(BR2_PACKAGE_GSTREAMER1_PLUGIN_REGISTRY),true,false) \
+	-Dtools=$(if $(BR2_PACKAGE_GSTREAMER1_INSTALL_TOOLS),enabled,disabled)
 
-GSTREAMER1_DEPENDENCIES = libglib2 host-pkgconf host-bison host-flex
+GSTREAMER1_DEPENDENCIES = \
+	host-bison \
+	host-flex \
+	host-pkgconf \
+	libglib2 \
+	$(if $(BR2_PACKAGE_LIBUNWIND),libunwind) \
+	$(if $(BR2_PACKAGE_VALGRIND),valgrind) \
+	$(TARGET_NLS_DEPENDENCIES)
 
-$(eval $(autotools-package))
+ifeq ($(BR2_PACKAGE_GOBJECT_INTROSPECTION),y)
+GSTREAMER1_CONF_OPTS += -Dintrospection=enabled
+GSTREAMER1_DEPENDENCIES += gobject-introspection
+else
+GSTREAMER1_CONF_OPTS += -Dintrospection=disabled
+endif
+
+GSTREAMER1_LDFLAGS = $(TARGET_LDFLAGS) $(TARGET_NLS_LIBS)
+
+$(eval $(meson-package))

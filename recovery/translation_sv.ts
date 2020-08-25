@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="sv" sourcelanguage="en">
+<TS version="2.1" language="sv" sourcelanguage="en">
 <context>
     <name>BackupThread</name>
     <message>
@@ -650,13 +650,6 @@ VARNING: Detta kommer radera all data på ditt SD-kort</translation>
     <message>
         <location filename="mainwindow.ui" line="646"/>
         <source>Clone (c)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="583"/>
-        <location filename="mainwindow.ui" line="649"/>
-        <location filename="mainwindow.ui" line="694"/>
-        <source>C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

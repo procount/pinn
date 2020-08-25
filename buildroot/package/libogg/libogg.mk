@@ -4,10 +4,10 @@
 #
 ################################################################################
 
-LIBOGG_VERSION = 1.3.2
+LIBOGG_VERSION = 1.3.4
 LIBOGG_SOURCE = libogg-$(LIBOGG_VERSION).tar.xz
 LIBOGG_SITE = http://downloads.xiph.org/releases/ogg
-LIBOGG_LICENSE = BSD-3c
+LIBOGG_LICENSE = BSD-3-Clause
 LIBOGG_LICENSE_FILES = COPYING
 
 LIBOGG_INSTALL_STAGING = YES

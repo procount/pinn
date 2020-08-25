@@ -4,16 +4,12 @@
 #
 ################################################################################
 
-PYTHON_KEYRING_VERSION = 3.0.5
-PYTHON_KEYRING_SOURCE = keyring-$(PYTHON_KEYRING_VERSION).zip
-PYTHON_KEYRING_SITE = http://pypi.python.org/packages/source/k/keyring
+PYTHON_KEYRING_VERSION = 19.2.0
+PYTHON_KEYRING_SOURCE = keyring-$(PYTHON_KEYRING_VERSION).tar.gz
+PYTHON_KEYRING_SITE = https://files.pythonhosted.org/packages/ee/46/77fdb7cd2b0f1f684afbc35a59b3d7ebb6961fe528f97b86900002968914
 PYTHON_KEYRING_SETUP_TYPE = setuptools
-PYTHON_KEYRING_LICENSE = python software foundation license
-
-define PYTHON_KEYRING_EXTRACT_CMDS
-	$(UNZIP) -d $(@D) $(DL_DIR)/$(PYTHON_KEYRING_SOURCE)
-	mv $(@D)/keyring-$(PYTHON_KEYRING_VERSION)/* $(@D)
-	$(RM) -r $(@D)/keyring-$(PYTHON_KEYRING_VERSION)
-endef
+PYTHON_KEYRING_LICENSE = MIT
+PYTHON_KEYRING_LICENSE_FILES = LICENSE
+PYTHON_KEYRING_DEPENDENCIES = host-python-setuptools-scm
 
 $(eval $(python-package))

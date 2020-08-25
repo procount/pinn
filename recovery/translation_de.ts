@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de" sourcelanguage="en">
+<TS version="2.1" language="de" sourcelanguage="en">
 <context>
     <name>BackupThread</name>
     <message>
@@ -651,13 +651,6 @@ Achtung: Dies löscht alle Ihre Daten auf der SD-Karte</translation>
         <location filename="mainwindow.ui" line="646"/>
         <source>Clone (c)</source>
         <translation>Klonen (c)</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="583"/>
-        <location filename="mainwindow.ui" line="649"/>
-        <location filename="mainwindow.ui" line="694"/>
-        <source>C</source>
-        <translation>C</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="338"/>

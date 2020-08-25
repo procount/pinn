@@ -4,14 +4,14 @@
 #
 ################################################################################
 
-FBGRAB_VERSION = 1.2
-FBGRAB_SITE = http://fbgrab.monells.se
+FBGRAB_VERSION = 1.3.3
+FBGRAB_SITE = $(call github,GunnarMonell,fbgrab,$(FBGRAB_VERSION))
 FBGRAB_DEPENDENCIES = libpng
-FBGRAB_LICENSE = GPLv2
+FBGRAB_LICENSE = GPL-2.0
 FBGRAB_LICENSE_FILES = COPYING
 
 define FBGRAB_BUILD_CMDS
-	$(TARGET_CONFIGURE_OPTS) $(MAKE) -C $(@D)
+	$(TARGET_CONFIGURE_OPTS) $(MAKE) -C $(@D) fbgrab
 endef
 
 define FBGRAB_INSTALL_TARGET_CMDS

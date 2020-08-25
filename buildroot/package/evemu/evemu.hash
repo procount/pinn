@@ -1,2 +1,4 @@
-# Hash from http://lists.freedesktop.org/archives/input-tools/2014-November/001125.html
-sha256 0c87360882751356e9f977ebf7438c00fe97deb232ac725dd86e5ba78203ee97 evemu-2.1.0.tar.xz
+# From https://lists.freedesktop.org/archives/input-tools/2017-September/001416.html
+sha256  78c9400d55eeeb5ab75161360543f9376438c4da4934cb34cdda5b46021ae379  evemu-2.7.0.tar.xz
+# locally computed
+sha256  da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768  COPYING

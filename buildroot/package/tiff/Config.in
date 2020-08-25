@@ -1,12 +1,11 @@
-config BR2_PACKAGE_TIFF
+menuconfig BR2_PACKAGE_TIFF
 	bool "tiff"
 	help
 	  Library for handling TIFF (Tag Image File Format) images.
 
-	  http://www.libtiff.org/
+	  http://simplesystems.org/libtiff/
 
 if BR2_PACKAGE_TIFF
-menu "tiff Options"
 
 config BR2_PACKAGE_TIFF_CCITT
 	bool "CCITT Group 3 & 4 support"
@@ -38,18 +37,22 @@ config BR2_PACKAGE_TIFF_MDI
 
 config BR2_PACKAGE_TIFF_ZLIB
 	bool "Zlib usage (required for Deflate compression)"
-	select BR2_PACKAGE_ZLIB
 	default y
+	select BR2_PACKAGE_ZLIB
+
+config BR2_PACKAGE_TIFF_XZ
+	bool "XZ compression"
+	select BR2_PACKAGE_XZ
 
 config BR2_PACKAGE_TIFF_PIXARLOG
 	bool "Pixar log-format algorithm (requires Zlib)"
-	select BR2_PACKAGE_TIFF_ZLIB
 	default y
+	select BR2_PACKAGE_TIFF_ZLIB
 
 config BR2_PACKAGE_TIFF_JPEG
 	bool "JPEG compression"
-	select BR2_PACKAGE_JPEG
 	default y
+	select BR2_PACKAGE_JPEG
 
 config BR2_PACKAGE_TIFF_OLD_JPEG
 	bool "Old JPEG decompression"
@@ -58,16 +61,10 @@ config BR2_PACKAGE_TIFF_OLD_JPEG
 config BR2_PACKAGE_TIFF_JBIG
 	bool "JBIG compression"
 	default y
-endmenu
 
-config BR2_PACKAGE_TIFF_TIFF2PDF
-	bool "tiff2pdf"
+config BR2_PACKAGE_TIFF_UTILITIES
+	bool "tiff utilities"
 	help
-	  tiff2pdf utility
-
-config BR2_PACKAGE_TIFF_TIFFCP
-	bool "tiffcp"
-	help
-	  tiffcp utility
+	  Install all tiff utilities.
 
 endif

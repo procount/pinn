@@ -41,21 +41,27 @@ $$(error No implementation selected for virtual package $(1). Configuration erro
 endif
 endif
 
-# A virtual package does not have any source associated
+# explicitly set these so we do not get confused by environment
+# variables with the same names.
+$(2)_VERSION =
 $(2)_SOURCE =
 
-# Fake a version string, so it looks nicer in the build log
-$(2)_VERSION = virtual
-
-# This must be repeated from inner-generic-package, otherwise we get an empty
-# _DEPENDENCIES
-ifeq ($(4),host)
-$(2)_DEPENDENCIES ?= $$(filter-out host-toolchain $(1),\
-	$$(patsubst host-host-%,host-%,$$(addprefix host-,$$($(3)_DEPENDENCIES))))
-endif
+$(2)_IS_VIRTUAL = YES
 
 # Add dependency against the provider
+# For a host package, there is no corresponding BR2_PACKAGE_PROVIDES_HOST_FOO,
+# so we need to compute it from the target variant.
+ifeq ($(4),target)
 $(2)_DEPENDENCIES += $$(call qstrip,$$(BR2_PACKAGE_PROVIDES_$(2)))
+else
+ifeq ($$(call qstrip,$$(BR2_PACKAGE_PROVIDES_$(2))),)
+# Inherit from target package BR2_PACKAGE_PROVIDES_FOO
+$(2)_DEPENDENCIES += host-$$(call qstrip,$$(BR2_PACKAGE_PROVIDES_$(3)))
+else
+# BR2_PACKAGE_PROVIDES_HOST_<pkg> is explicitly defined
+$(2)_DEPENDENCIES += $$(call qstrip,$$(BR2_PACKAGE_PROVIDES_$(2)))
+endif
+endif
 
 # Call the generic package infrastructure to generate the necessary
 # make targets

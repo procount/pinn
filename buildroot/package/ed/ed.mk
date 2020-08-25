@@ -4,28 +4,26 @@
 #
 ################################################################################
 
-ED_VERSION = 1.9
+ED_VERSION = 1.16
 ED_SITE = $(BR2_GNU_MIRROR)/ed
-ED_CONF_OPTS = \
-	CC="$(TARGET_CC)" CFLAGS="$(TARGET_CFLAGS)" \
-	LDFLAGS="$(TARGET_LDFLAGS)"
-ED_LICENSE = GPLv3+
+ED_SOURCE = ed-$(ED_VERSION).tar.lz
+ED_LICENSE = GPL-3.0+
 ED_LICENSE_FILES = COPYING
 
 define ED_CONFIGURE_CMDS
 	(cd $(@D); \
-		./configure \
+		$(TARGET_MAKE_ENV) ./configure \
 		--prefix=/usr \
 		$(TARGET_CONFIGURE_OPTS) \
 	)
 endef
 
 define ED_BUILD_CMDS
-	$(MAKE)	-C $(@D)
+	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D)
 endef
 
 define ED_INSTALL_TARGET_CMDS
-	$(MAKE) -C $(@D) DESTDIR="$(TARGET_DIR)" install
+	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D) DESTDIR="$(TARGET_DIR)" install
 endef
 
 $(eval $(generic-package))

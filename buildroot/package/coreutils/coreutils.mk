@@ -4,18 +4,21 @@
 #
 ################################################################################
 
-COREUTILS_VERSION = 8.23
+COREUTILS_VERSION = 8.32
 COREUTILS_SITE = $(BR2_GNU_MIRROR)/coreutils
 COREUTILS_SOURCE = coreutils-$(COREUTILS_VERSION).tar.xz
-COREUTILS_LICENSE = GPLv3+
+COREUTILS_LICENSE = GPL-3.0+
 COREUTILS_LICENSE_FILES = COPYING
 
-# coreutils-01-fix-for-dummy-man-usage.patch triggers autoreconf on build
-COREUTILS_AUTORECONF = YES
-COREUTILS_GETTEXTIZE = YES
-
-COREUTILS_CONF_OPTS = --disable-rpath --enable-single-binary=shebangs \
+COREUTILS_CONF_OPTS = --disable-rpath \
 	$(if $(BR2_TOOLCHAIN_USES_MUSL),--with-included-regex)
+
+ifeq ($(BR2_PACKAGE_COREUTILS_INDIVIDUAL_BINARIES),y)
+COREUTILS_CONF_OPTS += --disable-single-binary
+else
+COREUTILS_CONF_OPTS += --enable-single-binary=symlinks
+endif
+
 COREUTILS_CONF_ENV = ac_cv_c_restrict=no \
 	ac_cv_func_chown_works=yes \
 	ac_cv_func_euidaccess=no \
@@ -52,17 +55,12 @@ COREUTILS_CONF_ENV = ac_cv_c_restrict=no \
 	gl_cv_have_proc_uptime=yes \
 	utils_cv_localtime_cache=no \
 	PERL=missing \
-	MAKEINFO=true
+	MAKEINFO=true \
+	INSTALL_PROGRAM=$(INSTALL)
 
-COREUTILS_BIN_PROGS = cat chgrp chmod chown cp date dd df dir echo false \
-	ln ls mkdir mknod mv pwd rm rmdir vdir sleep stty sync touch true \
-	uname join
-
-# If both coreutils and busybox are selected, make certain coreutils
-# wins the fight over who gets to have their utils actually installed.
-ifeq ($(BR2_PACKAGE_BUSYBOX),y)
-COREUTILS_DEPENDENCIES = busybox
-endif
+COREUTILS_BIN_PROGS = base64 cat chgrp chmod chown cp date dd df dir echo false \
+	kill link ln ls mkdir mknod mktemp mv nice printenv pwd rm rmdir \
+	vdir sleep stty sync touch true uname join
 
 ifeq ($(BR2_PACKAGE_ACL),y)
 COREUTILS_DEPENDENCIES += acl
@@ -76,10 +74,11 @@ else
 COREUTILS_CONF_OPTS += --disable-xattr
 endif
 
+COREUTILS_DEPENDENCIES += $(TARGET_NLS_DEPENDENCIES)
+
 # It otherwise fails to link properly, not mandatory though
-ifeq ($(BR2_PACKAGE_GETTEXT),y)
+ifeq ($(BR2_PACKAGE_GETTEXT_PROVIDES_LIBINTL),y)
 COREUTILS_CONF_OPTS += --with-libintl-prefix=$(STAGING_DIR)/usr
-COREUTILS_DEPENDENCIES += gettext
 endif
 
 ifeq ($(BR2_PACKAGE_GMP),y)
@@ -99,20 +98,64 @@ COREUTILS_CONF_OPTS += --with-openssl=yes
 COREUTILS_DEPENDENCIES += openssl
 endif
 
-define COREUTILS_POST_INSTALL
-	# some things go in root rather than usr
-	for f in $(COREUTILS_BIN_PROGS); do \
-		mv -f $(TARGET_DIR)/usr/bin/$$f $(TARGET_DIR)/bin/$$f || exit 1; \
-	done
-	# link for archaic shells
-	ln -fs test $(TARGET_DIR)/usr/bin/[
-	# gnu thinks chroot is in bin, debian thinks it's in sbin
-	mv -f $(TARGET_DIR)/usr/bin/chroot $(TARGET_DIR)/usr/sbin/chroot
+ifeq ($(BR2_ROOTFS_MERGED_USR),)
+# We want to move a few binaries from /usr/bin to /bin. In the case of
+# coreutils being built as multi-call binary, we do so by re-creating
+# the corresponding symlinks. If coreutils is built with individual
+# binaries, we actually move the binaries.
+ifeq ($(BR2_PACKAGE_COREUTILS_INDIVIDUAL_BINARIES),y)
+define COREUTILS_FIX_BIN_LOCATION
+	$(foreach f,$(COREUTILS_BIN_PROGS), \
+		mv $(TARGET_DIR)/usr/bin/$(f) $(TARGET_DIR)/bin
+	)
 endef
+else
+define COREUTILS_FIX_BIN_LOCATION
+	# some things go in /bin rather than /usr/bin
+	$(foreach f,$(COREUTILS_BIN_PROGS), \
+		rm -f $(TARGET_DIR)/usr/bin/$(f) && \
+		ln -sf ../usr/bin/coreutils $(TARGET_DIR)/bin/$(f)
+	)
+endef
+endif
+COREUTILS_POST_INSTALL_TARGET_HOOKS += COREUTILS_FIX_BIN_LOCATION
+endif
 
-COREUTILS_POST_INSTALL_TARGET_HOOKS += COREUTILS_POST_INSTALL
+ifeq ($(BR2_STATIC_LIBS),y)
+COREUTILS_CONF_OPTS += --enable-no-install-program=stdbuf
+endif
 
-# If both coreutils and busybox are selected, the corresponding applets
-# may need to be reinstated by the clean targets.
+# link for archaic shells
+define COREUTILS_CREATE_TEST_SYMLINK
+	ln -fs test $(TARGET_DIR)/usr/bin/[
+endef
+COREUTILS_POST_INSTALL_TARGET_HOOKS += COREUTILS_CREATE_TEST_SYMLINK
+
+# gnu thinks chroot is in bin, debian thinks it's in sbin
+ifeq ($(BR2_PACKAGE_COREUTILS_INDIVIDUAL_BINARIES),y)
+define COREUTILS_FIX_CHROOT_LOCATION
+	mv $(TARGET_DIR)/usr/bin/chroot $(TARGET_DIR)/usr/sbin
+endef
+else
+define COREUTILS_FIX_CHROOT_LOCATION
+	rm -f $(TARGET_DIR)/usr/bin/chroot
+	ln -sf ../bin/coreutils $(TARGET_DIR)/usr/sbin/chroot
+endef
+endif
+COREUTILS_POST_INSTALL_TARGET_HOOKS += COREUTILS_FIX_CHROOT_LOCATION
+
+# Explicitly install ln and realpath, which we *are* insterested in.
+# A lot of other programs still get installed, however, but disabling
+# them does not gain much at build time, and is a loooong list that is
+# difficult to maintain...
+HOST_COREUTILS_CONF_OPTS = \
+	--disable-acl \
+	--disable-libcap \
+	--disable-rpath \
+	--disable-single-binary \
+	--disable-xattr \
+	--without-gmp \
+	--enable-install-program=ln,realpath
 
 $(eval $(autotools-package))
+$(eval $(host-autotools-package))

@@ -1,0 +1,65 @@
+Add options to enable/disable docs and demos
+
+Originally written by Anthony Viallard
+<viallard@syscom-instruments.com>.
+
+[Vincent: adapt patch to 5.0.5 version]
+
+Signed-off-by: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
+Signed-off-by: Vicente Olivert Riera <Vincent.Riera@imgtec.com>
+
+--- a/configure.ac	2019-11-27 23:52:29.000000000 +0100
++++ b/configure.ac	2020-02-13 10:24:50.801842269 +0100
+@@ -755,6 +755,16 @@ if test "$with_cwdrc" = yes; then
+                [ Define if you want to read .gnuplot from current directory (SECURITY RISK!).])
+ fi
+ 
++dnl Whether we want to build the doc files
++dnl Does nothing here, is passed on to the doc subdir
++AC_ARG_ENABLE(doc,dnl
++[  --disable-doc    do not build doc files])
++
++dnl Whether we want to build the demo files
++dnl Does nothing here, is passed on to the demo subdir
++AC_ARG_ENABLE(demo,dnl
++[  --disable-demo    do not build demo files])
++
+ dnl Disable experimental support for nonlinear axes
+ AC_ARG_WITH(nonlinear-axes,dnl
+ [  --without-nonlinear-axes     disable support for nonlinear axes])
+@@ -1236,6 +1246,24 @@ if test -n "${DIST_CONTACT}"; then
+   AC_DEFINE_UNQUOTED([DIST_CONTACT],["$DIST_CONTACT"],[Contact address for modified and binary distributed gnuplot versions])
+ fi
+ 
++dnl build doc files
++if test "$enable_doc" != no; then
++  AC_CONFIG_SUBDIRS(docs)
++  DOCSUBDIR=docs
++else
++  DOCSUBDIR=
++fi
++AC_SUBST(DOCSUBDIR)
++
++dnl build demo files
++if test "$enable_demo" != no; then
++  AC_CONFIG_SUBDIRS(demo)
++  DEMOSUBDIR=demo
++else
++  DEMOSUBDIR=
++fi
++AC_SUBST(DEMOSUBDIR)
++
+ dnl Substitute variables
+ AC_SUBST(PACKAGE)
+ AC_SUBST(VERSION_MAJOR)
+--- a/Makefile.am	2019-11-19 22:57:18.000000000 +0100
++++ b/Makefile.am	2020-02-13 10:17:55.753012739 +0100
+@@ -1,7 +1,7 @@
+ ## Process this file with automake to produce Makefile.in -*-Makefile-*-
+ AUTOMAKE_OPTIONS = foreign
+ 
+-SUBDIRS = config m4 term src docs man demo tutorial share
++SUBDIRS = config m4 term src $(DOCSUBDIR) man $(DEMOSUBDIR) tutorial share
+ 
+ EXTRA_DIST = BUGS Copyright FAQ.pdf GNUmakefile INSTALL INSTALL.gnu \
+ Makefile.maint PATCHLEVEL PGPKEYS README RELEASE_NOTES \

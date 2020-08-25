@@ -1,4 +1,8 @@
-# Hashes from: http://download.qt-project.org/official_releases/qt/5.3/5.3.2/submodules/qtsvg-opensource-src-5.3.2.tar.xz.mirrorlist
-sha256 1ec5c2f307ee55740cc8c82dc2ca4037dbc0ca398b4e32abbd967535e71ae30f qtsvg-opensource-src-5.3.2.tar.xz
-sha1   11740b39d22842214c7b4c555faee5a7da84575e                         qtsvg-opensource-src-5.3.2.tar.xz
-md5    f7972e80970ff26a908c43defb3d10e6                                 qtsvg-opensource-src-5.3.2.tar.xz
+# Hash from: https://download.qt.io/official_releases/qt/5.15/5.15.0/submodules/qtsvg-everywhere-src-5.15.0.tar.xz.sha256
+sha256  ee4d287e2e205ca8c08921b9cbe0fc58bf46be080b5359ad4d7fbdee44aeee0d  qtsvg-everywhere-src-5.15.0.tar.xz
+
+# Hashes for license files:
+sha256 8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643 LICENSE.GPL2
+sha256 245248009fd0af1725d183248380e476c1283383909358a13686606352bf2a17 LICENSE.GPLv3
+sha256 5ceb37d1c7c1d92878b82af3c0fd5558087f3d5a08a3a4d43850bad4ad265a52 LICENSE.LGPLv3
+sha256 ed8742a95cb9db653a09b050e27ccff5e67ba69c14aa2c3137f2a4e1892f6c0d LICENSE.FDL

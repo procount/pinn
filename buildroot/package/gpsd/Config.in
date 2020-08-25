@@ -1,24 +1,24 @@
-comment "gpsd needs a toolchain w/ threads"
+comment "gpsd needs a toolchain w/ threads, dynamic library"
 	depends on BR2_USE_MMU
-	depends on !BR2_TOOLCHAIN_HAS_THREADS
-	depends on !BR2_microblaze
+	depends on !BR2_TOOLCHAIN_HAS_THREADS || BR2_STATIC_LIBS
 
-config BR2_PACKAGE_GPSD
+menuconfig BR2_PACKAGE_GPSD
 	bool "gpsd"
 	# Uses fork()
 	depends on BR2_USE_MMU
 	depends on BR2_TOOLCHAIN_HAS_THREADS
-	# triggers gcc ice
-	depends on !BR2_microblaze
+	# Always tries to build a shared library
+	depends on !BR2_STATIC_LIBS
 	help
-	  gpsd is a service daemon that monitors one or more GPSes or AIS
-	  receivers attached to a host computer through serial or USB ports,
-	  making all data on the location/course/velocity of the sensors
-	  available to be queried on TCP port 2947 of the host computer.
+	  gpsd is a service daemon that monitors one or more GPSes or
+	  AIS receivers attached to a host computer through serial or
+	  USB ports, making all data on the location/course/velocity of
+	  the sensors available to be queried on TCP port 2947 of the
+	  host computer.
 
 	  The D-Bus interface is included if dbus-glib is enabled.
 
-	  http://www.catb.org/gpsd/
+	  https://gpsd.gitlab.io/gpsd
 
 if BR2_PACKAGE_GPSD
 
@@ -26,7 +26,7 @@ config BR2_PACKAGE_GPSD_DEVICES
 	string "Where to look for GPSes"
 	default "/dev/ttyS1"
 
-menu "Features"
+comment "Features"
 
 config BR2_PACKAGE_GPSD_CLIENT_DEBUG
 	bool "client debugging support"
@@ -38,49 +38,49 @@ config BR2_PACKAGE_GPSD_PROFILING
 	bool "profiling support"
 	depends on BR2_TOOLCHAIN_USES_GLIBC
 	depends on !BR2_aarch64
+	# Needs glibc for ARC arc-2018.03-eng007+ for correct __mcount linking
+	depends on !BR2_arc
 
 comment "profiling support not available with uClibc-based toolchain"
 	depends on !BR2_TOOLCHAIN_USES_GLIBC
 
-config BR2_PACKAGE_GPSD_NTP_SHM
-	bool "NTP time hinting support"
-
-config BR2_PACKAGE_GPSD_PPS
-	bool "PPS time syncing support"
-	select BR2_PACKAGE_GPSD_NTP_SHM
-
 config BR2_PACKAGE_GPSD_USER
 	bool "GPSD privilege revocation user"
+
 config BR2_PACKAGE_GPSD_USER_VALUE
-	string ""
+	string "user to run as"
 	default "nobody"
 	depends on BR2_PACKAGE_GPSD_USER
 
 config BR2_PACKAGE_GPSD_GROUP
 	bool "GPSD privilege revocation group"
+
 config BR2_PACKAGE_GPSD_GROUP_VALUE
-	string ""
+	string "group to run as"
 	default "nobody"
 	depends on BR2_PACKAGE_GPSD_GROUP
 
 config BR2_PACKAGE_GPSD_FIXED_PORT_SPEED
 	bool "compile with fixed serial port speed"
+
 config BR2_PACKAGE_GPSD_FIXED_PORT_SPEED_VALUE
-	string ""
+	int "serial port speed"
 	default "9600"
 	depends on BR2_PACKAGE_GPSD_FIXED_PORT_SPEED
 
 config BR2_PACKAGE_GPSD_MAX_CLIENT
 	bool "compile with limited maximum clients"
+
 config BR2_PACKAGE_GPSD_MAX_CLIENT_VALUE
-	string "compile with limited maximum clients"
+	int "maximum number of clients"
 	default "10"
 	depends on BR2_PACKAGE_GPSD_MAX_CLIENT
 
 config BR2_PACKAGE_GPSD_MAX_DEV
 	bool "compile with maximum allowed devices"
+
 config BR2_PACKAGE_GPSD_MAX_DEV_VALUE
-	string "compile with maximum allowed devices"
+	int "maximum allowed devices"
 	default "2"
 	depends on BR2_PACKAGE_GPSD_MAX_DEV
 
@@ -95,9 +95,7 @@ config BR2_PACKAGE_GPSD_CONTROLSEND
 config BR2_PACKAGE_GPSD_SQUELCH
 	bool "squelch gpsd_report and gpsd_hexdump to save cpu"
 
-endmenu
-
-menu "Protocols"
+comment "Protocols"
 
 config BR2_PACKAGE_GPSD_AIVDM
 	bool "Aivdm"
@@ -149,6 +147,16 @@ config BR2_PACKAGE_GPSD_GPSCLOCK
 	help
 	  GPSClock support
 
+config BR2_PACKAGE_GPSD_GREIS
+	bool "Greis"
+	help
+	  Greis support
+
+config BR2_PACKAGE_GPSD_ISYNC
+	bool "iSync"
+	help
+	  Spectratime iSync LNRClok/GRCLOK support
+
 config BR2_PACKAGE_GPSD_ITRAX
 	bool "iTrax"
 	help
@@ -174,9 +182,6 @@ config BR2_PACKAGE_GPSD_NMEA2000
 	bool "NMEA2000"
 	select BR2_PACKAGE_GPSD_NAVCOM
 	select BR2_PACKAGE_GPSD_AIVDM
-	# uClibc 0.9.31, used on AVR32, does not have the necessary
-	# CAN definitions.
-	depends on !BR2_avr32
 	help
 	  NMEA2000/CAN support
 
@@ -210,6 +215,11 @@ config BR2_PACKAGE_GPSD_SIRF
 	help
 	  SiRF binary support
 
+config BR2_PACKAGE_GPSD_SKYTRAQ
+	bool "Skytraq"
+	help
+	  Skytraq support
+
 config BR2_PACKAGE_GPSD_SUPERSTAR2
 	bool "SuperStarII"
 	help
@@ -234,7 +244,5 @@ config BR2_PACKAGE_GPSD_UBX
 	bool "UBX"
 	help
 	  uBlox UBX binary support
-
-endmenu
 
 endif

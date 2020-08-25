@@ -1,2 +1,5 @@
-# Locally calculated after checking pgp signature
-sha256	399d0f47ef6608cc01d29ed1b99c7faff36d9994c45f36f41ba250147100453b	mpfr-3.1.2.tar.xz
+# From http://lists.gnu.org/archive/html/info-gnu/2019-01/msg00019.html
+sha256 1d3be708604eae0e42d578ba93b390c2a145f17743a744d8f3f8c2ad5855a38a  mpfr-4.0.2.tar.xz
+
+# Hash for license file
+sha256 e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118  COPYING.LESSER

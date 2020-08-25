@@ -4,24 +4,44 @@
 #
 ################################################################################
 
-ZMQPP_VERSION = 36413487f05b165dfc82ad307a5a1c36a795e607
-ZMQPP_SITE = $(call github,benjamg,zmqpp,$(ZMQPP_VERSION))
+ZMQPP_VERSION = 4.2.0
+ZMQPP_SITE = $(call github,zeromq,zmqpp,$(ZMQPP_VERSION))
 ZMQPP_INSTALL_STAGING = YES
 ZMQPP_DEPENDENCIES = zeromq
-ZMQPP_LICENSE = LGPLv3+ with exceptions
-ZMQPP_LICENSE_FILES = COPYING COPYING.LESSER
-
+ZMQPP_LICENSE = MPL-2.0
+ZMQPP_LICENSE_FILES = LICENSE
 ZMQPP_MAKE_OPTS = LD="$(TARGET_CXX)" BUILD_PATH=./build PREFIX=/usr
 ZMQPP_LDFLAGS = $(TARGET_LDFLAGS) -lpthread
+
+# gcc bug internal compiler error: in merge_overlapping_regs, at
+# regrename.c:304. This bug is fixed since gcc 6.
+# By setting CONFIG to empty, all optimizations such as -funroll-loops
+# -ffast-math -finline-functions -fomit-frame-pointer are disabled,
+# so only set CONFIG for the non-affected cases.
+ifneq ($(BR2_or1k):$(BR2_TOOLCHAIN_GCC_AT_LEAST_6),y:)
+ZMQPP_CONFIG = $(if $(BR2_ENABLE_DEBUG),debug,release)
+endif
+
+ifeq ($(BR2_TOOLCHAIN_HAS_LIBATOMIC),y)
+ZMQPP_LDFLAGS += -latomic
+endif
 
 ifeq ($(BR2_PACKAGE_ZMQPP_CLIENT),y)
 ZMQPP_DEPENDENCIES += boost
 endif
 
+ifeq ($(BR2_STATIC_LIBS),y)
+ZMQPP_MAKE_OPTS += BUILD_STATIC=yes BUILD_SHARED=no
+else ifeq ($(BR2_SHARED_STATIC_LIBS),y)
+ZMQPP_MAKE_OPTS += BUILD_STATIC=yes BUILD_SHARED=yes
+else ifeq ($(BR2_SHARED_LIBS),y)
+ZMQPP_MAKE_OPTS += BUILD_STATIC=no BUILD_SHARED=yes
+endif
+
 define ZMQPP_BUILD_CMDS
 	$(TARGET_MAKE_ENV) $(MAKE) $(TARGET_CONFIGURE_OPTS) \
-		LDFLAGS="$(ZMQPP_LDFLAGS)" \
-		$(ZMQPP_MAKE_OPTS) $(if $(BR2_PACKAGE_ZMQPP_CLIENT),all) -C $(@D)
+		CONFIG=$(ZMQPP_CONFIG) LDFLAGS="$(ZMQPP_LDFLAGS)" \
+		$(ZMQPP_MAKE_OPTS) $(if $(BR2_PACKAGE_ZMQPP_CLIENT),client,library) -C $(@D)
 endef
 
 define ZMQPP_INSTALL_TARGET_CMDS

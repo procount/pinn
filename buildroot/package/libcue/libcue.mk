@@ -4,12 +4,11 @@
 #
 ################################################################################
 
-LIBCUE_VERSION = 1.4.0
-LIBCUE_SITE = http://downloads.sourceforge.net/project/libcue/libcue/$(LIBCUE_VERSION)
-LIBCUE_SOURCE = libcue-$(LIBCUE_VERSION).tar.bz2
-LIBCUE_LICENSE = GPLv2, BSD-2c (rem.c)
-LIBCUE_LICENSE_FILES = COPYING
-LIBCUE_DEPENDENCIES = flex
+LIBCUE_VERSION = 2.2.1
+LIBCUE_SITE = $(call github,lipnitsk,libcue,v$(LIBCUE_VERSION))
+LIBCUE_LICENSE = GPL-2.0, BSD-2-Clause (rem.c)
+LIBCUE_LICENSE_FILES = LICENSE
+LIBCUE_DEPENDENCIES = host-bison host-flex flex
 LIBCUE_INSTALL_STAGING = YES
 
-$(eval $(autotools-package))
+$(eval $(cmake-package))

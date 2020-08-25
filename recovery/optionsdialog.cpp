@@ -276,7 +276,7 @@ void OptionsDialog::write()
     QFile f("/mnt/recovery.cmdline");
     if (f.open(QIODevice::WriteOnly))
     {
-        f.write(contents.toAscii());
+        f.write(contents.toLatin1());
         f.close();
     }
 }

@@ -59,23 +59,32 @@ endef
 #
 define LIBTOOL_PATCH_HOOK
 	@$(call MESSAGE,"Patching libtool")
-	$(Q)for i in `find $($(PKG)_SRCDIR) -name ltmain.sh`; do \
-		ltmain_version=`sed -n '/^[ 	]*VERSION=/{s/^[ 	]*VERSION=//;p;q;}' $$i | \
-		sed -e 's/\([0-9].[0-9]*\).*/\1/' -e 's/\"//'`; \
-		ltmain_patchlevel=`sed -n '/^[     ]*VERSION=/{s/^[        ]*VERSION=//;p;q;}' $$i | \
-		sed -e 's/\([0-9].[0-9].\)\([0-9]*\).*/\2/' -e 's/\"//'`; \
+	$(Q)for i in `find $($(PKG)_DIR) -name ltmain.sh`; do \
+		ltmain_version=`sed -n '/^[ \t]*VERSION=/{s/^[ \t]*VERSION=//;p;q;}' $$i | \
+		sed -e 's/\([0-9]*\.[0-9]*\).*/\1/' -e 's/\"//'`; \
+		ltmain_patchlevel=`sed -n '/^[ \t]*VERSION=/{s/^[ \t]*VERSION=//;p;q;}' $$i | \
+		sed -e 's/\([0-9]*\.[0-9]*\.*\)\([0-9]*\).*/\2/' -e 's/\"//'`; \
 		if test $${ltmain_version} = '1.5'; then \
-			$(APPLY_PATCHES) $${i%/*} support/libtool buildroot-libtool-v1.5.patch; \
+			patch -i support/libtool/buildroot-libtool-v1.5.patch $${i}; \
 		elif test $${ltmain_version} = "2.2"; then\
-			$(APPLY_PATCHES) $${i%/*} support/libtool buildroot-libtool-v2.2.patch; \
+			patch -i support/libtool/buildroot-libtool-v2.2.patch $${i}; \
 		elif test $${ltmain_version} = "2.4"; then\
-			if test $${ltmain_patchlevel} -gt 2; then\
-				$(APPLY_PATCHES) $${i%/*} support/libtool buildroot-libtool-v2.4.4.patch; \
+			if test $${ltmain_patchlevel:-0} -gt 2; then\
+				patch -i support/libtool/buildroot-libtool-v2.4.4.patch $${i}; \
 			else \
-				$(APPLY_PATCHES) $${i%/*} support/libtool buildroot-libtool-v2.4.patch; \
+				patch -i support/libtool/buildroot-libtool-v2.4.patch $${i}; \
 			fi \
 		fi \
 	done
+endef
+
+#
+# Hook to patch common issue with configure on powerpc64{,le} failing
+# to detect shared library support:
+#
+define CONFIGURE_FIX_POWERPC64_HOOK
+	@$(call MESSAGE,"Checking configure (powerpc64/powerpc64le)")
+	support/scripts/fix-configure-powerpc64.sh $($(PKG)_DIR)
 endef
 
 #
@@ -157,16 +166,7 @@ $(2)_MAKE_ENV			?=
 $(2)_MAKE_OPTS			?=
 $(2)_INSTALL_OPTS                ?= install
 $(2)_INSTALL_STAGING_OPTS	?= DESTDIR=$$(STAGING_DIR) install
-$(2)_INSTALL_TARGET_OPTS		?= DESTDIR=$$(TARGET_DIR)  install
-
-# This must be repeated from inner-generic-package, otherwise we get an empty
-# _DEPENDENCIES if _AUTORECONF is YES.  Also filter the result of _AUTORECONF
-# and _GETTEXTIZE away from the non-host rule
-ifeq ($(4),host)
-$(2)_DEPENDENCIES ?= $$(filter-out host-automake host-autoconf host-libtool \
-				host-gettext host-toolchain $(1),\
-    $$(patsubst host-host-%,host-%,$$(addprefix host-,$$($(3)_DEPENDENCIES))))
-endif
+$(2)_INSTALL_TARGET_OPTS		?= DESTDIR=$$(TARGET_DIR) install
 
 #
 # Configure step. Only define it if not already defined by the package
@@ -193,16 +193,15 @@ define $(2)_CONFIGURE_CMDS
 		--localstatedir=/var \
 		--program-prefix="" \
 		--disable-gtk-doc \
+		--disable-gtk-doc-html \
 		--disable-doc \
 		--disable-docs \
 		--disable-documentation \
 		--with-xmlto=no \
 		--with-fop=no \
-		--disable-dependency-tracking \
-		$$(DISABLE_NLS) \
-		$$(DISABLE_LARGEFILE) \
-		$$(DISABLE_IPV6) \
-		$$(ENABLE_DEBUG) \
+		$$(if $$($$(PKG)_OVERRIDE_SRCDIR),,--disable-dependency-tracking) \
+		--enable-ipv6 \
+		$$(NLS_OPTS) \
 		$$(SHARED_STATIC_LIBS_OPTS) \
 		$$(QUIET) $$($$(PKG)_CONF_OPTS) \
 	)
@@ -215,24 +214,26 @@ else
 # installed.
 define $(2)_CONFIGURE_CMDS
 	(cd $$($$(PKG)_SRCDIR) && rm -rf config.cache; \
-	        $$(HOST_CONFIGURE_OPTS) \
-		CFLAGS="$$(HOST_CFLAGS)" \
-		LDFLAGS="$$(HOST_LDFLAGS)" \
-		$$($$(PKG)_CONF_ENV) \
-		CONFIG_SITE=/dev/null \
-		./configure \
-		--prefix="$$(HOST_DIR)/usr" \
+	$$(HOST_CONFIGURE_OPTS) \
+	CFLAGS="$$(HOST_CFLAGS)" \
+	LDFLAGS="$$(HOST_LDFLAGS)" \
+	$$($$(PKG)_CONF_ENV) \
+	CONFIG_SITE=/dev/null \
+	./configure \
+		--prefix="$$(HOST_DIR)" \
 		--sysconfdir="$$(HOST_DIR)/etc" \
 		--localstatedir="$$(HOST_DIR)/var" \
 		--enable-shared --disable-static \
 		--disable-gtk-doc \
+		--disable-gtk-doc-html \
 		--disable-doc \
 		--disable-docs \
 		--disable-documentation \
 		--disable-debug \
 		--with-xmlto=no \
 		--with-fop=no \
-		--disable-dependency-tracking \
+		--disable-nls \
+		$$(if $$($$(PKG)_OVERRIDE_SRCDIR),,--disable-dependency-tracking) \
 		$$(QUIET) $$($$(PKG)_CONF_OPTS) \
 	)
 endef
@@ -262,6 +263,13 @@ ifneq ($$($(2)_LIBTOOL_PATCH),NO)
 $(2)_POST_PATCH_HOOKS += LIBTOOL_PATCH_HOOK
 endif
 
+endif
+
+# Append a configure hook if building for a powerpc64 (or powerpc64le) arch.
+# Must be added after other pre-configure hooks that might regenerate the
+# configure script and overwrite the changes made here.
+ifneq ($$(filter powerpc64%,$$(if $$(filter target,$(4)),$$(ARCH),$$(HOSTARCH))),)
+$(2)_PRE_CONFIGURE_HOOKS += CONFIGURE_FIX_POWERPC64_HOOK
 endif
 
 #
@@ -294,29 +302,9 @@ endif
 # Staging installation step. Only define it if not already defined by
 # the package .mk file.
 #
-# Most autotools packages install libtool .la files alongside any
-# installed libraries. These .la files sometimes refer to paths
-# relative to the sysroot, which libtool will interpret as absolute
-# paths to host libraries instead of the target libraries. Since this
-# is not what we want, these paths are fixed by prefixing them with
-# $(STAGING_DIR).  As we configure with --prefix=/usr, this fix
-# needs to be applied to any path that starts with /usr.
-#
-# To protect against the case that the output or staging directories
-# themselves are under /usr, we first substitute away any occurrences
-# of these directories as @BASE_DIR@ and @STAGING_DIR@. Note that
-# STAGING_DIR can be outside BASE_DIR when the user sets BR2_HOST_DIR
-# to a custom value.
-#
 ifndef $(2)_INSTALL_STAGING_CMDS
 define $(2)_INSTALL_STAGING_CMDS
 	$$(TARGET_MAKE_ENV) $$($$(PKG)_MAKE_ENV) $$($$(PKG)_MAKE) $$($$(PKG)_INSTALL_STAGING_OPTS) -C $$($$(PKG)_SRCDIR)
-	find $$(STAGING_DIR)/usr/lib* -name "*.la" | xargs --no-run-if-empty \
-		$$(SED) "s:$$(BASE_DIR):@BASE_DIR@:g" \
-			-e "s:$$(STAGING_DIR):@STAGING_DIR@:g" \
-			-e "s:\(['= ]\)/usr:\\1@STAGING_DIR@/usr:g" \
-			-e "s:@STAGING_DIR@:$$(STAGING_DIR):g" \
-			-e "s:@BASE_DIR@:$$(BASE_DIR):g"
 endef
 endif
 

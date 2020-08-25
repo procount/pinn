@@ -4,26 +4,21 @@
 #
 ################################################################################
 
-MONIT_VERSION = 5.7
+MONIT_VERSION = 5.26.0
 MONIT_SITE = http://mmonit.com/monit/dist
-MONIT_LICENSE = AGPLv3 with OpenSSL exception
+MONIT_LICENSE = AGPL-3.0 with OpenSSL exception
 MONIT_LICENSE_FILES = COPYING
 #
 # Touching Makefile.am:
 MONIT_AUTORECONF = YES
-
-# Missing m4/ directory in the source tree
-define MONIT_M4
-	mkdir $(@D)/m4
-endef
-MONIT_POST_PATCH_HOOKS += MONIT_M4
 
 MONIT_CONF_ENV = \
 	libmonit_cv_setjmp_available=yes \
 	libmonit_cv_vsnprintf_c99_conformant=yes
 
 MONIT_CONF_OPTS += \
-	--without-pam
+	--without-pam \
+	--with-largefiles
 
 ifeq ($(BR2_PACKAGE_OPENSSL),y)
 MONIT_CONF_OPTS += --with-ssl=$(STAGING_DIR)/usr
@@ -32,10 +27,11 @@ else
 MONIT_CONF_OPTS += --without-ssl
 endif
 
-ifeq ($(BR2_LARGEFILE),y)
-MONIT_CONF_OPTS += --with-largefiles
+ifeq ($(BR2_PACKAGE_ZLIB),y)
+MONIT_CONF_OPTS += --with-zlib
+MONIT_DEPENDENCIES += zlib
 else
-MONIT_CONF_OPTS += --without-largefiles
+MONIT_CONF_OPTS += --without-zlib
 endif
 
 $(eval $(autotools-package))

@@ -1,3 +1,4 @@
-# From http://sourceforge.net/projects/pcre/files/pcre/8.36/
-md5	ff7b4bb14e355f04885cf18ff4125c98	pcre-8.36.tar.gz
-sha1	fb537757756818133d8157ec878bc11f5a93ef4d	pcre-8.36.tar.gz
+# Locally calculated after checking pgp signature
+sha256  19108658b23b3ec5058edc9f66ac545ea19f9537234be1ec62b714c84399366d  pcre-8.44.tar.bz2
+# License files, locally calculated
+sha256  0dd9c13864dbb9ee4d77a1557e96be29b2d719fb6584192ee36611aae264c4a3  LICENCE

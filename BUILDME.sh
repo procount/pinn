@@ -7,7 +7,7 @@ KERNEL="4.19"
 
 # Final directory where NOOBS files will be copied to
 NOOBS_OUTPUT_DIR="output"
-export QT_SELECT=4
+export QT_SELECT=5
 
 function get_package_version {
   PACKAGE=$1
@@ -51,7 +51,7 @@ function update_github_package_version {
 
 function get_kernel_version {
     CONFIG_FILE=.config
-    CONFIG_VAR=BR2_LINUX_KERNEL_VERSION
+    CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_REPO_VERSION
     grep -E "^$CONFIG_VAR=\".+\"$" "$CONFIG_FILE" | tr -d '"' | cut -d= -f2
 }
 
@@ -75,8 +75,6 @@ function update_github_kernel_version {
                     echo "$PACKAGE ($BRANCH) is already newest version"
                 else
                     CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_REPO_VERSION
-                    sed -ri "s/(^$CONFIG_VAR=\")[0-9a-f]+(\")$/\1$GITREV\2/" "$CONFIG_FILE"
-                    CONFIG_VAR=BR2_LINUX_KERNEL_VERSION
                     sed -ri "s/(^$CONFIG_VAR=\")[0-9a-f]+(\")$/\1$GITREV\2/" "$CONFIG_FILE"
                     echo "$PACKAGE ($BRANCH) updated to version $GITREV"
                 fi
@@ -245,6 +243,10 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
     else
         echo "Warning: kernel armv6 in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
     fi
+
+    # Fix for modular kernel: Force recreation of rootfs image to include modules
+    rm "$IMAGES_DIR/rootfs.squashfs"
+    make
 
 else
     echo "Warning: kernels in '$NOOBS_OUTPUT_DIR' directory haven't been updated"

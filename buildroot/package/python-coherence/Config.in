@@ -3,8 +3,8 @@ config BR2_PACKAGE_PYTHON_COHERENCE
 	depends on BR2_PACKAGE_PYTHON
 	select BR2_PACKAGE_PYTHON_TWISTED
 	select BR2_PACKAGE_PYTHON_ZOPE_INTERFACE
-	select BR2_PACKAGE_PYTHON_PYASN
+	select BR2_PACKAGE_PYTHON_PYASN1
 	help
 	  A DLNA/UPnP Media Server and Framework for the Digital Living.
 
-	  http://coherence-project.org/
+	  https://github.com/coherence-project/Coherence

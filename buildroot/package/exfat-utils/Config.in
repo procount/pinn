@@ -1,11 +1,17 @@
 config BR2_PACKAGE_EXFAT_UTILS
 	bool "exfat-utils"
-	depends on BR2_LARGEFILE
 	depends on BR2_USE_WCHAR
 	help
 	  exFAT filesystem utilities.
 
-	  http://code.google.com/p/exfat/
+	  This is the set of user-space utilities that go together
+	  with the FUSE-based exfat driver from package/exfat.
 
-comment "exfat-utils needs a toolchain w/ largefile, wchar"
-	depends on !BR2_LARGEFILE || !BR2_USE_WCHAR
+	  If you're using the exfat driver from the official Linux
+	  kernel (merged as of Linux 5.7), you must use the user-space
+	  utilities from package/exfatprogs.
+
+	  https://github.com/relan/exfat
+
+comment "exfat-utils needs a toolchain w/ wchar"
+	depends on !BR2_USE_WCHAR

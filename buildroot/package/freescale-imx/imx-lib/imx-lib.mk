@@ -4,24 +4,23 @@
 #
 ################################################################################
 
-IMX_LIB_VERSION = $(FREESCALE_IMX_VERSION)
-IMX_LIB_SITE = $(FREESCALE_IMX_SITE)
-IMX_LIB_LICENSE = LGPLv2.1+
-IMX_LIB_LICENSE_FILES = EULA
+IMX_LIB_VERSION = 3f777974c0c146817e2ff5cb0340ca66a1f99e57
+IMX_LIB_SITE = https://source.codeaurora.org/external/imx/imx-lib
+IMX_LIB_SITE_METHOD = git
+IMX_LIB_LICENSE = LGPL-2.1+
+IMX_LIB_LICENSE_FILES = COPYING-LGPL-2.1
 
 IMX_LIB_INSTALL_STAGING = YES
 
 # imx-lib needs access to imx-specific kernel headers
 IMX_LIB_DEPENDENCIES += linux
 IMX_LIB_INCLUDE = \
-	-I$(LINUX_DIR)/drivers/mxc/security/rng/include \
-	-I$(LINUX_DIR)/drivers/mxc/security/sahara2/include \
 	-idirafter $(LINUX_DIR)/include/uapi
 
 IMX_LIB_MAKE_ENV = \
 	$(TARGET_MAKE_ENV) \
 	$(TARGET_CONFIGURE_OPTS) \
-	CROSS_COMPILE="$(CCACHE) $(TARGET_CROSS)" \
+	CROSS_COMPILE="$(TARGET_CROSS)" \
 	PLATFORM=$(BR2_PACKAGE_FREESCALE_IMX_PLATFORM) \
 	INCLUDE="$(IMX_LIB_INCLUDE)"
 

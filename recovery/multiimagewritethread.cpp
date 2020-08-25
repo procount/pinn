@@ -625,7 +625,7 @@ QByteArray MultiImageWriteThread::makeLabelUnique(QByteArray label, int maxLabel
     {
         if (label.size() > maxLabelLen)
         {   //restrict to maximum size
-            label = shorten(label, maxLabelLen).toAscii();
+            label = shorten(label, maxLabelLen).toLatin1();
         }
 
         if (!isLabelAvailable(label, device))
@@ -1114,7 +1114,7 @@ QStringList MultiImageWriteThread::parseQuotedString(const QString &tarfile, int
         int inc=0;
         QChar c = tarfile.at(pos);
 
-        switch(c.toAscii())
+        switch(c.toLatin1())
         {
         case '\"':
             inQuote = 1-inQuote;

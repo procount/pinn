@@ -4,21 +4,18 @@
 #
 ################################################################################
 
-OMNIORB_VERSION = 4.2.0
+OMNIORB_VERSION = 4.2.4
 OMNIORB_SITE = http://downloads.sourceforge.net/project/omniorb/omniORB/omniORB-$(OMNIORB_VERSION)
 OMNIORB_SOURCE = omniORB-$(OMNIORB_VERSION).tar.bz2
 OMNIORB_INSTALL_STAGING = YES
-OMNIORB_LICENSE = GPL2+ LGPLv2.1+
+OMNIORB_LICENSE = GPL2+, LGPL-2.1+
 OMNIORB_LICENSE_FILES = COPYING COPYING.LIB
 OMNIORB_DEPENDENCIES = host-omniorb
 HOST_OMNIORB_DEPENDENCIES = host-python
 
-# 0001-uclinux-is-also-linux.patch touches configure.ac
-OMNIORB_AUTORECONF = YES
-
 # omniorb is not python3 friendly, so force the python interpreter
-OMNIORB_CONF_OPTS = ac_cv_path_PYTHON=$(HOST_DIR)/usr/bin/python2
-HOST_OMNIORB_CONF_OPTS = ac_cv_path_PYTHON=$(HOST_DIR)/usr/bin/python2
+OMNIORB_CONF_OPTS = ac_cv_path_PYTHON=$(HOST_DIR)/bin/python2
+HOST_OMNIORB_CONF_OPTS = ac_cv_path_PYTHON=$(HOST_DIR)/bin/python2
 
 # Defaulting long double support to a safe option for the
 # mix of embedded targets, this could later be automated
@@ -29,6 +26,17 @@ HOST_OMNIORB_CONF_OPTS = ac_cv_path_PYTHON=$(HOST_DIR)/usr/bin/python2
 # on host are used in target build).
 OMNIORB_CONF_OPTS += --disable-longdouble
 HOST_OMNIORB_CONF_OPTS += --disable-longdouble
+
+ifeq ($(BR2_PACKAGE_OPENSSL),y)
+OMNIORB_CONF_OPTS += --with-openssl
+OMNIORB_DEPENDENCIES += openssl
+else
+OMNIORB_CONF_OPTS += --without-openssl
+endif
+
+ifeq ($(BR2_PACKAGE_ZLIB),y)
+OMNIORB_DEPENDENCIES += zlib
+endif
 
 # The EmbeddedSystem define (set below in OMNIORB_ADJUST_TOOLDIR)
 # enables building of just the lib and disables building of
@@ -57,7 +65,7 @@ endif
 # cross compiled target OMNIORB application.
 define OMNIORB_ADJUST_TOOLDIR
 	# Point to the host folder to get HOST_OMNIORB tools
-	$(SED) 's:TOOLBINDIR = $$(TOP)/$$(BINDIR):TOOLBINDIR = $(HOST_DIR)/usr/bin:g' $(@D)/mk/beforeauto.mk
+	$(SED) 's:TOOLBINDIR = $$(TOP)/$$(BINDIR):TOOLBINDIR = $(HOST_DIR)/bin:g' $(@D)/mk/beforeauto.mk
 	# Disables OMNIORB app/service/tool building
 	echo "EmbeddedSystem=1" >> $(@D)/mk/beforeauto.mk
 endef

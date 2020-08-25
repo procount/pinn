@@ -4,11 +4,15 @@
 #
 ################################################################################
 
-LIVE555_VERSION = 2014.11.01
+LIVE555_VERSION = 2020.06.25
 LIVE555_SOURCE = live.$(LIVE555_VERSION).tar.gz
 LIVE555_SITE = http://www.live555.com/liveMedia/public
-LIVE555_LICENSE = LGPLv2.1+
-LIVE555_LICENSE_FILES = COPYING
+# There is a COPYING file with the GPL-3.0 license text, but none of
+# the source files appear to be released under GPL-3.0, and the
+# project web site says it's licensed under the LGPL:
+# http://live555.com/liveMedia/faq.html#copyright-and-license
+LIVE555_LICENSE = LGPL-3.0+
+LIVE555_LICENSE_FILES = COPYING.LESSER
 LIVE555_INSTALL_STAGING = YES
 
 LIVE555_CFLAGS = $(TARGET_CFLAGS)
@@ -20,6 +24,13 @@ else
 LIVE555_CONFIG_TARGET = linux-with-shared-libraries
 LIVE555_LIBRARY_LINK = $(TARGET_CC) -o
 LIVE555_CFLAGS += -fPIC
+endif
+
+ifeq ($(BR2_PACKAGE_OPENSSL),y)
+LIVE555_DEPENDENCIES += openssl
+LIVE555_LIBS = -lssl -lcrypto
+else
+LIVE555_CFLAGS += -DNO_OPENSSL
 endif
 
 ifndef ($(BR2_ENABLE_LOCALE),y)
@@ -37,26 +48,21 @@ define LIVE555_CONFIGURE_CMDS
 	# Must have a whitespace at the end of LIBRARY_LINK, otherwise static link
 	# fails
 	echo 'LIBRARY_LINK = $(LIVE555_LIBRARY_LINK) ' >> $(@D)/config.$(LIVE555_CONFIG_TARGET)
+	echo 'LIBS_FOR_CONSOLE_APPLICATION = $(LIVE555_LIBS)' >> $(@D)/config.$(LIVE555_CONFIG_TARGET)
+	echo 'LIBS_FOR_LIVEMEDIA_LIB = $(LIVE555_LIBS)' >> $(@D)/config.$(LIVE555_CONFIG_TARGET)
 	(cd $(@D); ./genMakefiles $(LIVE555_CONFIG_TARGET))
 endef
 
 define LIVE555_BUILD_CMDS
-	$(MAKE) -C $(@D) all
+	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D) all
 endef
 
-LIVE555_FILES_TO_INSTALL-y =
-LIVE555_FILES_TO_INSTALL-$(BR2_PACKAGE_LIVE555_OPENRTSP) += testProgs/openRTSP
-LIVE555_FILES_TO_INSTALL-$(BR2_PACKAGE_LIVE555_MEDIASERVER) += mediaServer/live555MediaServer
-LIVE555_FILES_TO_INSTALL-$(BR2_PACKAGE_LIVE555_MPEG2_INDEXER) += testProgs/MPEG2TransportStreamIndexer
-
 define LIVE555_INSTALL_STAGING_CMDS
-	$(MAKE) DESTDIR=$(STAGING_DIR) -C $(@D) install
+	$(TARGET_MAKE_ENV) $(MAKE) DESTDIR=$(STAGING_DIR) -C $(@D) install
 endef
 
 define LIVE555_INSTALL_TARGET_CMDS
-	for i in $(LIVE555_FILES_TO_INSTALL-y); do \
-		$(INSTALL) -D -m 0755 $(@D)/$$i $(TARGET_DIR)/usr/bin/`basename $$i` || exit 1; \
-	done
+	$(TARGET_MAKE_ENV) $(MAKE) DESTDIR=$(TARGET_DIR) PREFIX=/usr -C $(@D) install
 endef
 
 $(eval $(generic-package))

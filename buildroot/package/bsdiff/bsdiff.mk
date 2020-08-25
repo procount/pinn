@@ -7,13 +7,13 @@
 BSDIFF_VERSION = 4.3
 BSDIFF_SITE = http://www.daemonology.net/bsdiff
 BSDIFF_DEPENDENCIES = bzip2
-BSDIFF_LICENSE = BSD-2c
+BSDIFF_LICENSE = BSD-2-Clause
 BSDIFF_LICENSE_FILES = bsdiff.c
 
 define BSDIFF_BUILD_CMDS
-	$(TARGET_CC) $(TARGET_CFLAGS) $(TARGET_LDFLAGS) \
+	$(TARGET_MAKE_ENV) $(TARGET_CC) $(TARGET_CFLAGS) $(TARGET_LDFLAGS) \
 		$(@D)/bsdiff.c -lbz2 -o $(@D)/bsdiff
-	$(TARGET_CC) $(TARGET_CFLAGS) $(TARGET_LDFLAGS) \
+	$(TARGET_MAKE_ENV) $(TARGET_CC) $(TARGET_CFLAGS) $(TARGET_LDFLAGS) \
 		$(@D)/bspatch.c -lbz2 -o $(@D)/bspatch
 endef
 

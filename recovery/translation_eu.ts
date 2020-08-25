@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="eu_ES">
+<TS version="2.1" language="eu_ES">
 <context>
     <name>BackupThread</name>
     <message>
@@ -655,13 +655,6 @@ KONTUZ: Honek zure SD txarteleko datu guztiak ezabatuko ditu</translation>
         <location filename="mainwindow.ui" line="646"/>
         <source>Clone (c)</source>
         <translation>Klonatu (c)</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="583"/>
-        <location filename="mainwindow.ui" line="649"/>
-        <location filename="mainwindow.ui" line="694"/>
-        <source>C</source>
-        <translation>C</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="338"/>

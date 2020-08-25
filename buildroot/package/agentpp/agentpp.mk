@@ -4,9 +4,9 @@
 #
 ################################################################################
 
-AGENTPP_VERSION = 4.0.3
+AGENTPP_VERSION = 4.3.1
 AGENTPP_SOURCE = agent++-$(AGENTPP_VERSION).tar.gz
-AGENTPP_SITE = http://www.agentpp.com
+AGENTPP_SITE = http://www.agentpp.com/download
 AGENTPP_LICENSE = Apache-2.0
 AGENTPP_LICENSE_FILES = LICENSE-2_0.txt
 AGENTPP_INSTALL_STAGING = YES

@@ -34,8 +34,17 @@
 #ifndef __APPLE__
 #include <sys/sysmacros.h>     /* major() and minor() */
 #endif
+#include <ftw.h>
+#ifdef EXTENDED_ATTRIBUTES
+#include <sys/capability.h>
+#endif /* EXTENDED_ATTRIBUTES */
 
 const char *bb_applet_name;
+uid_t recursive_uid;
+gid_t recursive_gid;
+unsigned int recursive_mode;
+#define PASSWD_PATH "etc/passwd"  /* MUST be relative */
+#define GROUP_PATH "etc/group"  /* MUST be relative */
 
 void bb_verror_msg(const char *s, va_list p)
 {
@@ -251,10 +260,20 @@ char *bb_get_chomped_line_from_file(FILE *file)
 long my_getpwnam(const char *name)
 {
 	struct passwd *myuser;
+	FILE *stream;
 
-	myuser  = getpwnam(name);
-	if (myuser==NULL)
-		bb_error_msg_and_die("unknown user name: %s", name);
+	stream = bb_xfopen(PASSWD_PATH, "r");
+	while(1) {
+		errno = 0;
+		myuser = fgetpwent(stream);
+		if (myuser == NULL)
+			bb_error_msg_and_die("unknown user name: %s", name);
+		if (errno)
+			bb_perror_msg_and_die("fgetpwent");
+		if (!strcmp(name, myuser->pw_name))
+			break;
+	}
+	fclose(stream);
 
 	return myuser->pw_uid;
 }
@@ -262,12 +281,22 @@ long my_getpwnam(const char *name)
 long my_getgrnam(const char *name)
 {
 	struct group *mygroup;
+	FILE *stream;
 
-	mygroup  = getgrnam(name);
-	if (mygroup==NULL)
-		bb_error_msg_and_die("unknown group name: %s", name);
+	stream = bb_xfopen(GROUP_PATH, "r");
+	while(1) {
+		errno = 0;
+		mygroup = fgetgrent(stream);
+		if (mygroup == NULL)
+			bb_error_msg_and_die("unknown group name: %s", name);
+		if (errno)
+			bb_perror_msg_and_die("fgetgrent");
+		if (!strcmp(name, mygroup->gr_name))
+			break;
+	}
+	fclose(stream);
 
-	return (mygroup->gr_gid);
+	return mygroup->gr_gid;
 }
 
 unsigned long get_ug_id(const char *s, long (*my_getxxnam)(const char *))
@@ -323,6 +352,49 @@ char *concat_path_file(const char *path, const char *filename)
 	return outbuf;
 }
 
+#ifdef EXTENDED_ATTRIBUTES
+int bb_set_xattr(const char *fpath, const char *xattr)
+{
+	cap_t cap, cap_file, cap_new;
+	char *cap_file_text, *cap_new_text;
+	ssize_t length;
+
+	cap = cap_from_text(xattr);
+	if (cap == NULL)
+		bb_perror_msg_and_die("cap_from_text failed for %s", xattr);
+
+	cap_file = cap_get_file(fpath);
+	if (cap_file == NULL) {
+		/* if no capability was set before, we initialize cap_file */
+		if (errno != ENODATA)
+			bb_perror_msg_and_die("cap_get_file failed on %s", fpath);
+
+		cap_file = cap_init();
+		if (!cap_file)
+			bb_perror_msg_and_die("cap_init failed");
+	}
+
+	if ((cap_file_text = cap_to_text(cap_file, &length)) == NULL)
+		bb_perror_msg_and_die("cap_to_name failed on %s", fpath);
+
+	bb_xasprintf(&cap_new_text, "%s %s", cap_file_text, xattr);
+
+	if ((cap_new = cap_from_text(cap_new_text)) == NULL)
+		bb_perror_msg_and_die("cap_from_text failed on %s", cap_new_text);
+
+	if (cap_set_file(fpath, cap_new) == -1)
+		bb_perror_msg_and_die("cap_set_file failed for %s (xattr = %s)", fpath, xattr);
+
+	cap_free(cap);
+	cap_free(cap_file);
+	cap_free(cap_file_text);
+	cap_free(cap_new);
+	cap_free(cap_new_text);
+
+	return 0;
+}
+#endif /* EXTENDED_ATTRIBUTES */
+
 void bb_show_usage(void)
 {
 	fprintf(stderr, "%s: [-d device_table] rootdir\n\n", bb_applet_name);
@@ -332,6 +404,7 @@ void bb_show_usage(void)
 	fprintf(stderr, "Where name is the file name,  type can be one of:\n");
 	fprintf(stderr, "      f       A regular file\n");
 	fprintf(stderr, "      d       Directory\n");
+	fprintf(stderr, "      r       Directory recursively\n");
 	fprintf(stderr, "      c       Character special device file\n");
 	fprintf(stderr, "      b       Block special device file\n");
 	fprintf(stderr, "      p       Fifo (named pipe)\n");
@@ -364,11 +437,29 @@ void bb_show_usage(void)
 	exit(1);
 }
 
+int bb_recursive(const char *fpath, const struct stat *sb,
+		int tflag, struct FTW *ftwbuf){
+
+	if (chown(fpath, recursive_uid, recursive_gid) == -1) {
+		bb_perror_msg("chown failed for %s", fpath);
+		return -1;
+	}
+	if (recursive_mode != -1) {
+		if (chmod(fpath, recursive_mode) < 0) {
+			bb_perror_msg("chmod failed for %s", fpath);
+			return -1;
+		}
+	}
+
+	return 0;
+}
+
 int main(int argc, char **argv)
 {
 	int opt;
 	FILE *table = stdin;
 	char *rootdir = NULL;
+	char *full_name = NULL;
 	char *line = NULL;
 	int linenum = 0;
 	int ret = EXIT_SUCCESS;
@@ -410,14 +501,29 @@ int main(int argc, char **argv)
 		unsigned int count = 0;
 		unsigned int increment = 0;
 		unsigned int start = 0;
+		char xattr[255];
 		char name[4096];
 		char user[41];
 		char group[41];
-		char *full_name;
 		uid_t uid;
 		gid_t gid;
 
 		linenum++;
+
+		if (1 == sscanf(line, " |xattr %254s", xattr)) {
+#ifdef EXTENDED_ATTRIBUTES
+			if (!full_name)
+				bb_error_msg_and_die("line %d should be after a file\n", linenum);
+
+			if (bb_set_xattr(full_name, xattr) < 0)
+				bb_error_msg_and_die("can't set cap %s on file %s\n", xattr, full_name);
+#else
+			bb_error_msg_and_die("line %d not supported: '%s'\nDid you forget to enable "
+					     "BR2_ROOTFS_DEVICE_TABLE_SUPPORTS_EXTENDED_ATTRIBUTES?\n",
+					     linenum, line);
+#endif /* EXTENDED_ATTRIBUTES */
+			continue;
+		}
 
 		if ((2 > sscanf(line, "%4095s %c %o %40s %40s %u %u %u %u %u", name,
 						&type, &mode, user, group, &major,
@@ -443,6 +549,13 @@ int main(int argc, char **argv)
 		} else {
 			uid = getuid();
 		}
+
+		/*
+		 * free previous full name
+		 * we don't de-allocate full_name at the end of the parsing,
+		 * because we may need it if the next line is an xattr.
+		 */
+		free(full_name);
 		full_name = concat_path_file(rootdir, name);
 
 		if (type == 'd') {
@@ -457,9 +570,12 @@ int main(int argc, char **argv)
 				ret = EXIT_FAILURE;
 				goto loop;
 			}
-		} else if (type == 'f') {
+		} else if (type == 'f' || type == 'F') {
 			struct stat st;
 			if ((stat(full_name, &st) < 0 || !S_ISREG(st.st_mode))) {
+				if (type == 'F') {
+					continue; /*Ignore optional files*/
+				}
 				bb_perror_msg("line %d: regular file '%s' does not exist", linenum, full_name);
 				ret = EXIT_FAILURE;
 				goto loop;
@@ -474,9 +590,20 @@ int main(int argc, char **argv)
 				ret = EXIT_FAILURE;
 				goto loop;
 			}
+		} else if (type == 'r') {
+			recursive_uid = uid;
+			recursive_gid = gid;
+			recursive_mode = mode;
+			if (nftw(full_name, bb_recursive, 20, FTW_MOUNT | FTW_PHYS) < 0) {
+				bb_perror_msg("line %d: recursive failed for %s", linenum, full_name);
+				ret = EXIT_FAILURE;
+				goto loop;
+			}
 		} else
 		{
 			dev_t rdev;
+			unsigned i;
+			char *full_name_inc;
 
 			if (type == 'p') {
 				mode |= S_IFIFO;
@@ -492,47 +619,27 @@ int main(int argc, char **argv)
 				goto loop;
 			}
 
-			if (count > 0) {
-				int i;
-				char *full_name_inc;
-
-				full_name_inc = xmalloc(strlen(full_name) + 8);
-				for (i = 0; i < count; i++) {
-					sprintf(full_name_inc, "%s%d", full_name, start + i);
-					rdev = makedev(major, minor + i * increment);
-					if (mknod(full_name_inc, mode, rdev) == -1) {
-						bb_perror_msg("line %d: Couldnt create node %s", linenum, full_name_inc);
-						ret = EXIT_FAILURE;
-					}
-					else if (chown(full_name_inc, uid, gid) == -1) {
-						bb_perror_msg("line %d: chown failed for %s", linenum, full_name_inc);
-						ret = EXIT_FAILURE;
-					}
-					if ((mode != -1) && (chmod(full_name_inc, mode) < 0)){
-						bb_perror_msg("line %d: chmod failed for %s", linenum, full_name_inc);
-						ret = EXIT_FAILURE;
-					}
-				}
-				free(full_name_inc);
-			} else {
-				rdev = makedev(major, minor);
-				if (mknod(full_name, mode, rdev) == -1) {
-					bb_perror_msg("line %d: Couldnt create node %s", linenum, full_name);
+			full_name_inc = xmalloc(strlen(full_name) + sizeof(int)*3 + 2);
+			if (count)
+				count--;
+			for (i = start; i <= start + count; i++) {
+				sprintf(full_name_inc, count ? "%s%u" : "%s", full_name, i);
+				rdev = makedev(major, minor + (i - start) * increment);
+				if (mknod(full_name_inc, mode, rdev) < 0) {
+					bb_perror_msg("line %d: can't create node %s", linenum, full_name_inc);
 					ret = EXIT_FAILURE;
-				}
-				else if (chown(full_name, uid, gid) == -1) {
-					bb_perror_msg("line %d: chown failed for %s", linenum, full_name);
+				} else if (chown(full_name_inc, uid, gid) < 0) {
+					bb_perror_msg("line %d: can't chown %s", linenum, full_name_inc);
 					ret = EXIT_FAILURE;
-				}
-				if ((mode != -1) && (chmod(full_name, mode) < 0)){
-					bb_perror_msg("line %d: chmod failed for %s", linenum, full_name);
+				} else if (chmod(full_name_inc, mode) < 0) {
+					bb_perror_msg("line %d: can't chmod %s", linenum, full_name_inc);
 					ret = EXIT_FAILURE;
 				}
 			}
+			free(full_name_inc);
 		}
 loop:
 		free(line);
-		free(full_name);
 	}
 	fclose(table);
 

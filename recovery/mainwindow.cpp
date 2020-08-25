@@ -1659,7 +1659,7 @@ void MainWindow::displayMode(int modenr, bool silent)
 
     // Refresh screen
     qApp->processEvents();
-    QWSServer::instance()->refresh();
+    // QWSServer::instance()->refresh();
 
     // In case they can't see the message box, inform that mode change
     // is occurring by turning on the LED during the change
@@ -1737,7 +1737,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             fontsize++;
             QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
             gApp->setStyleSheet(stylesheet);
-            QWSServer::instance()->refresh();
+            // QWSServer::instance()->refresh();
             //qDebug() << "Using fontsize "<<fontsize;
         }
         if (keyEvent->key() == Qt::Key_Minus && fontsize >11)
@@ -1745,7 +1745,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             fontsize--;
             QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
             gApp->setStyleSheet(stylesheet);
-            QWSServer::instance()->refresh();
+            // QWSServer::instance()->refresh();
             //qDebug() << "Using fontsize "<<fontsize;
         }
 
@@ -2800,7 +2800,7 @@ void MainWindow::downloadMetaComplete()
                 QString path = finfo.path() + QString("/error.log");
                 QFile f(path);
                 f.open(f.Append);
-                f.write(error.toAscii());
+                f.write(error.toLatin1());
                 f.close();
             }
             else

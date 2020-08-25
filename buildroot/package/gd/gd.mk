@@ -4,15 +4,28 @@
 #
 ################################################################################
 
-GD_VERSION = 2.1.1
+GD_VERSION = 2.2.5
 GD_SOURCE = libgd-$(GD_VERSION).tar.xz
-GD_SITE = https://bitbucket.org/libgd/gd-libgd/downloads
+GD_SITE = https://github.com/libgd/libgd/releases/download/gd-$(GD_VERSION)
 GD_INSTALL_STAGING = YES
 GD_LICENSE = GD license
 GD_LICENSE_FILES = COPYING
 GD_CONFIG_SCRIPTS = gdlib-config
-GD_CONF_OPTS = --without-x --disable-rpath
+GD_CONF_OPTS = --without-x --disable-rpath --disable-werror
 GD_DEPENDENCIES = host-pkgconf
+
+# 0001-bmp-check-return-value-in-gdImageBmpPtr.patch
+GD_IGNORE_CVES += CVE-2018-1000222
+# 0002-Fix-420-Potential-infinite-loop-in-gdImageCreateFrom.patch
+GD_IGNORE_CVES += CVE-2018-5711
+# 0003-Fix-501-Uninitialized-read-in-gdImageCreateFromXbm-C.patch
+GD_IGNORE_CVES += CVE-2019-11038
+# 0004-Fix-492-Potential-double-free-in-gdImage-Ptr.patch
+GD_IGNORE_CVES += CVE-2019-6978
+# 0005-Fix-potential-NULL-pointer-dereference-in-gdImageClone.patch
+GD_IGNORE_CVES += CVE-2018-14553
+# 0006-Fix-497-gdImageColorMatch-Out-Of-Bounds-Write-on-Heap-CVE-2019-6977.patch
+GD_IGNORE_CVES += CVE-2019-6977
 
 # gd forgets to link utilities with -pthread even though it uses
 # pthreads, causing linking errors with static linking
@@ -49,6 +62,13 @@ GD_DEPENDENCIES += libpng
 GD_CONF_OPTS += --with-png
 else
 GD_CONF_OPTS += --without-png
+endif
+
+ifeq ($(BR2_PACKAGE_WEBP),y)
+GD_DEPENDENCIES += webp
+GD_CONF_OPTS += --with-webp
+else
+GD_CONF_OPTS += --without-webp
 endif
 
 ifeq ($(BR2_PACKAGE_TIFF),y)

@@ -6,7 +6,7 @@
 
 IFPLUGD_VERSION = 0.28
 IFPLUGD_SITE = http://0pointer.de/lennart/projects/ifplugd
-IFPLUGD_LICENSE = GPLv2
+IFPLUGD_LICENSE = GPL-2.0+
 IFPLUGD_LICENSE_FILES = LICENSE
 IFPLUGD_AUTORECONF = YES
 
@@ -14,11 +14,6 @@ IFPLUGD_AUTORECONF = YES
 IFPLUGD_INSTALL_TARGET_OPTS = DESTDIR=$(TARGET_DIR) install-exec
 IFPLUGD_CONF_OPTS = --disable-lynx --with-initdir=/etc/init.d/
 IFPLUGD_DEPENDENCIES = libdaemon
-
-# Prefer big ifplugd
-ifeq ($(BR2_PACKAGE_BUSYBOX),y)
-	IFPLUGD_DEPENDENCIES += busybox
-endif
 
 define IFPLUGD_INSTALL_FIXUP
 	$(INSTALL) -D -m 0644 $(@D)/conf/ifplugd.conf $(TARGET_DIR)/etc/ifplugd/ifplugd.conf; \

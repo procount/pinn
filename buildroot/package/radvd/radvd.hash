@@ -1,2 +1,3 @@
-# From http://www.litech.org/radvd/dist/radvd-2.10.tar.gz.sha256
-sha256	76ceee8304120ae42cc38d03dd720a3db94a57e459f3184254fa523367fb9773	radvd-2.10.tar.xz
+# From http://www.litech.org/radvd/dist/radvd-2.18.tar.gz.sha256
+sha256	4f573e36b96ba92d03b5abbbd5f059b9c8994967812c77852f44049ac5a448fd	radvd-2.18.tar.gz
+sha256	40a6db00cf0b97f031eaa6c6e87157788f40ced1b88e3ea6d78779bd2a39dc80	COPYRIGHT

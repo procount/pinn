@@ -4,10 +4,10 @@
 #
 ################################################################################
 
-LIBOSIP2_VERSION = 3.6.0
+LIBOSIP2_VERSION = 5.1.1
 LIBOSIP2_SITE = $(BR2_GNU_MIRROR)/osip
 LIBOSIP2_INSTALL_STAGING = YES
-LIBOSIP2_LICENSE = LGPLv2.1+
+LIBOSIP2_LICENSE = LGPL-2.1+
 LIBOSIP2_LICENSE_FILES = COPYING
 
 ifeq ($(BR2_arc),y)

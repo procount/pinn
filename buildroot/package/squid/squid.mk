@@ -4,15 +4,12 @@
 #
 ################################################################################
 
-SQUID_VERSION_MAJOR = 3.5
-SQUID_VERSION = $(SQUID_VERSION_MAJOR).1
+SQUID_VERSION = 4.12
 SQUID_SOURCE = squid-$(SQUID_VERSION).tar.xz
-SQUID_SITE = http://www.squid-cache.org/Versions/v3/$(SQUID_VERSION_MAJOR)
-SQUID_LICENSE = GPLv2+
+SQUID_SITE = http://www.squid-cache.org/Versions/v4
+SQUID_LICENSE = GPL-2.0+
 SQUID_LICENSE_FILES = COPYING
-# For squid-01-assume-get-certificate-ok.patch
-SQUID_AUTORECONF = YES
-SQUID_DEPENDENCIES = libcap host-libcap host-pkgconf \
+SQUID_DEPENDENCIES = libcap host-libcap libxml2 host-pkgconf \
 	$(if $(BR2_PACKAGE_LIBNETFILTER_CONNTRACK),libnetfilter_conntrack)
 SQUID_CONF_ENV = \
 	ac_cv_epoll_works=yes \
@@ -21,7 +18,7 @@ SQUID_CONF_ENV = \
 	ac_cv_func___va_copy=yes \
 	ac_cv_func_strnstr=no \
 	ac_cv_have_squid=yes \
-	BUILXCXX="$(HOSTCXX)" \
+	BUILDCXX="$(HOSTCXX)" \
 	BUILDCXXFLAGS="$(HOST_CXXFLAGS)"
 SQUID_CONF_OPTS = \
 	--enable-async-io=8 \
@@ -29,7 +26,6 @@ SQUID_CONF_OPTS = \
 	--enable-removal-policies="lru,heap" \
 	--with-filedescriptors=1024 \
 	--disable-ident-lookups \
-	--with-krb5-config=no \
 	--enable-auth-basic="fake getpwnam" \
 	--enable-auth-digest="file" \
 	--enable-auth-negotiate="wrapper" \
@@ -39,17 +35,38 @@ SQUID_CONF_OPTS = \
 	--with-logdir=/var/log/squid/ \
 	--with-pidfile=/var/run/squid.pid \
 	--with-swapdir=/var/cache/squid/ \
-	--enable-icap-client \
 	--with-default-user=squid
 
-# On uClibc librt needs libpthread
-ifeq ($(BR2_TOOLCHAIN_HAS_THREADS)$(BR2_TOOLCHAIN_USES_UCLIBC),yy)
-	SQUID_CONF_ENV += ac_cv_search_shm_open="-lrt -lpthread"
+ifeq ($(BR2_TOOLCHAIN_HAS_LIBATOMIC),y)
+SQUID_CONF_ENV += LIBS=-latomic
+endif
+
+ifeq ($(BR2_PACKAGE_LIBKRB5),y)
+SQUID_CONF_OPTS += --with-mit-krb5
+SQUID_DEPENDENCIES += libkrb5
+else
+SQUID_CONF_OPTS += --without-mit-krb5
 endif
 
 ifeq ($(BR2_PACKAGE_OPENSSL),y)
-	SQUID_CONF_OPTS += --enable-ssl
-	SQUID_DEPENDENCIES += openssl
+SQUID_CONF_OPTS += --with-openssl
+SQUID_DEPENDENCIES += openssl
+else
+SQUID_CONF_OPTS += --without-openssl
+endif
+
+ifeq ($(BR2_PACKAGE_GNUTLS),y)
+SQUID_CONF_OPTS += --with-gnutls
+SQUID_DEPENDENCIES += gnutls
+else
+SQUID_CONF_OPTS += --without-gnutls
+endif
+
+ifeq ($(BR2_PACKAGE_SYSTEMD),y)
+SQUID_CONF_OPTS += --with-systemd
+SQUID_DEPENDENCIES += systemd
+else
+SQUID_CONF_OPTS += --without-systemd
 endif
 
 define SQUID_CLEANUP_TARGET
@@ -68,6 +85,11 @@ endef
 define SQUID_INSTALL_INIT_SYSV
 	$(INSTALL) -m 755 -D package/squid/S97squid \
 		$(TARGET_DIR)/etc/init.d/S97squid
+endef
+
+define SQUID_INSTALL_INIT_SYSTEMD
+	$(INSTALL) -D -m 0644 $(@D)/tools/systemd/squid.service \
+		$(TARGET_DIR)/usr/lib/systemd/system/squid.service
 endef
 
 $(eval $(autotools-package))

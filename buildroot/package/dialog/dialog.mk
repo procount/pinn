@@ -4,13 +4,13 @@
 #
 ################################################################################
 
-DIALOG_VERSION = 1.2-20140911
+DIALOG_VERSION = 1.3-20200327
 DIALOG_SOURCE = dialog-$(DIALOG_VERSION).tgz
-DIALOG_SITE = ftp://invisible-island.net/dialog
+DIALOG_SITE = https://invisible-mirror.net/archives/dialog
 DIALOG_CONF_OPTS = --with-ncurses --with-curses-dir=$(STAGING_DIR)/usr \
 	--disable-rpath-hack
-DIALOG_DEPENDENCIES = host-pkgconf ncurses
-DIALOG_LICENSE = LGPLv2.1
+DIALOG_DEPENDENCIES = host-pkgconf ncurses $(TARGET_NLS_DEPENDENCIES)
+DIALOG_LICENSE = LGPL-2.1
 DIALOG_LICENSE_FILES = COPYING
 
 ifneq ($(BR2_ENABLE_LOCALE),y)

@@ -11,39 +11,37 @@ if test $? != 0 ; then
 	exit 1
 fi
 
-# sanity check for CWD in LD_LIBRARY_PATH
-# try not to rely on egrep..
-if test -n "$LD_LIBRARY_PATH" ; then
-	echo TRiGGER_start"$LD_LIBRARY_PATH"TRiGGER_end | grep '::' >/dev/null 2>&1 ||
-	echo TRiGGER_start"$LD_LIBRARY_PATH"TRiGGER_end | grep ':\.:' >/dev/null 2>&1 ||
-	echo TRiGGER_start"$LD_LIBRARY_PATH"TRiGGER_end | grep 'TRiGGER_start:' >/dev/null 2>&1 ||
-	echo TRiGGER_start"$LD_LIBRARY_PATH"TRiGGER_end | grep 'TRiGGER_start\.:' >/dev/null 2>&1 ||
-	echo TRiGGER_start"$LD_LIBRARY_PATH"TRiGGER_end | grep ':TRiGGER_end' >/dev/null 2>&1 ||
-	echo TRiGGER_start"$LD_LIBRARY_PATH"TRiGGER_end | grep ':\.TRiGGER_end' >/dev/null 2>&1 ||
-	echo TRiGGER_start"$LD_LIBRARY_PATH"TRiGGER_end | grep 'TRiGGER_start\.TRiGGER_end' >/dev/null 2>&1
-	if test $? = 0; then
-		echo
-		echo "You seem to have the current working directory in your"
-		echo "LD_LIBRARY_PATH environment variable. This doesn't work."
-		exit 1;
-	fi
-fi;
+# Sanity check for CWD in LD_LIBRARY_PATH
+case ":${LD_LIBRARY_PATH:-unset}:" in
+(*::*|*:.:*)
+	echo
+	echo "You seem to have the current working directory in your"
+	echo "LD_LIBRARY_PATH environment variable. This doesn't work."
+	exit 1
+	;;
+esac
 
-# sanity check for CWD in PATH. Having the current working directory
-# in the PATH makes the toolchain build process break.
-# try not to rely on egrep..
-if test -n "$PATH" ; then
-	echo TRiGGER_start"$PATH"TRiGGER_end | grep ':\.:' >/dev/null 2>&1 ||
-	echo TRiGGER_start"$PATH"TRiGGER_end | grep 'TRiGGER_start\.:' >/dev/null 2>&1 ||
-	echo TRiGGER_start"$PATH"TRiGGER_end | grep ':\.TRiGGER_end' >/dev/null 2>&1 ||
-	echo TRiGGER_start"$PATH"TRiGGER_end | grep 'TRiGGER_start\.TRiGGER_end' >/dev/null 2>&1
-	if test $? = 0; then
-		echo
-		echo "You seem to have the current working directory in your"
-		echo "PATH environment variable. This doesn't work."
-		exit 1;
-	fi
-fi;
+# Sanity check for CWD in PATH. Having the current working directory
+# in the PATH makes various packages (e.g. toolchain, coreutils...)
+# build process break.
+# PATH should not contain a newline, otherwise it fails in spectacular
+# ways as soon as PATH is referenced in a package rule
+# An empty PATH is technically possible, but in practice we would not
+# even arrive here if that was the case.
+case ":${PATH:-unset}:" in
+(*::*|*:.:*)
+	echo
+	echo "You seem to have the current working directory in your"
+	echo "PATH environment variable. This doesn't work."
+	exit 1
+	;;
+(*"
+"*)	printf "\n"
+	printf "Your PATH contains a newline (\\\n) character.\n"
+	printf "This doesn't work. Fix you PATH.\n"
+	exit 1
+	;;
+esac
 
 if test -n "$PERL_MM_OPT" ; then
 	echo
@@ -68,6 +66,10 @@ check_prog_host()
 check_prog_host "which"
 # Verify that sed is installed
 check_prog_host "sed"
+
+# 'file' must be present and must be exactly /usr/bin/file,
+# otherwise libtool fails in incomprehensible ways.
+check_prog_host "/usr/bin/file"
 
 # Check make
 MAKE=$(which make 2> /dev/null)
@@ -110,9 +112,9 @@ if [ -z "$COMPILER_VERSION" ] ; then
 fi;
 COMPILER_MAJOR=$(echo $COMPILER_VERSION | sed -e "s/\..*//g")
 COMPILER_MINOR=$(echo $COMPILER_VERSION | sed -e "s/^$COMPILER_MAJOR\.//g" -e "s/\..*//g")
-if [ $COMPILER_MAJOR -lt 3 -o $COMPILER_MAJOR -eq 2 -a $COMPILER_MINOR -lt 95 ] ; then
+if [ $COMPILER_MAJOR -lt 4 -o $COMPILER_MAJOR -eq 4 -a $COMPILER_MINOR -lt 8 ] ; then
 	echo
-	echo "You have gcc '$COMPILER_VERSION' installed.  gcc >= 2.95 is required"
+	echo "You have gcc '$COMPILER_VERSION' installed.  gcc >= 4.8 is required"
 	exit 1;
 fi;
 
@@ -138,9 +140,9 @@ fi
 if [ -n "$CXXCOMPILER_VERSION" ] ; then
 	CXXCOMPILER_MAJOR=$(echo $CXXCOMPILER_VERSION | sed -e "s/\..*//g")
 	CXXCOMPILER_MINOR=$(echo $CXXCOMPILER_VERSION | sed -e "s/^$CXXCOMPILER_MAJOR\.//g" -e "s/\..*//g")
-	if [ $CXXCOMPILER_MAJOR -lt 3 -o $CXXCOMPILER_MAJOR -eq 2 -a $CXXCOMPILER_MINOR -lt 95 ] ; then
+	if [ $CXXCOMPILER_MAJOR -lt 4 -o $CXXCOMPILER_MAJOR -eq 4 -a $CXXCOMPILER_MINOR -lt 8 ] ; then
 		echo
-		echo "You have g++ '$CXXCOMPILER_VERSION' installed.  g++ >= 2.95 is required"
+		echo "You have g++ '$CXXCOMPILER_VERSION' installed.  g++ >= 4.8 is required"
 		exit 1
 	fi
 fi
@@ -158,7 +160,7 @@ fi
 
 # Check that a few mandatory programs are installed
 missing_progs="no"
-for prog in patch perl tar wget cpio python unzip rsync bc ${DL_TOOLS} ; do
+for prog in patch perl tar wget cpio unzip rsync bc ${DL_TOOLS} ; do
 	if ! which $prog > /dev/null ; then
 		echo "You must install '$prog' on your build machine";
 		missing_progs="yes"
@@ -178,14 +180,13 @@ if test "${missing_progs}" = "yes" ; then
 	exit 1
 fi
 
-if grep ^BR2_TOOLCHAIN_BUILDROOT=y $BR2_CONFIG > /dev/null && \
-	grep ^BR2_ENABLE_LOCALE=y       $BR2_CONFIG > /dev/null ; then
+if grep ^BR2_NEEDS_HOST_UTF8_LOCALE=y $BR2_CONFIG > /dev/null; then
 	if ! which locale > /dev/null ; then
 		echo
 		echo "You need locale support on your build machine to build a toolchain supporting locales"
 		exit 1 ;
 	fi
-	if ! locale -a | grep -q -i utf8$ ; then
+	if ! locale -a | grep -q -i -E 'utf-?8$' ; then
 		echo
 		echo "You need at least one UTF8 locale to build a toolchain supporting locales"
 		exit 1 ;
@@ -203,23 +204,18 @@ if grep -q ^BR2_NEEDS_HOST_JAVA=y $BR2_CONFIG ; then
 	fi
 fi
 
-if grep -q ^BR2_NEEDS_HOST_JAVAC=y $BR2_CONFIG ; then
-	check_prog_host "javac"
-fi
-
-if grep -q ^BR2_NEEDS_HOST_JAR=y $BR2_CONFIG ; then
-	check_prog_host "jar"
-fi
-
 if grep -q ^BR2_HOSTARCH_NEEDS_IA32_LIBS=y $BR2_CONFIG ; then
 	if test ! -f /lib/ld-linux.so.2 ; then
 		echo
 		echo "Your Buildroot configuration uses pre-built tools for the x86 architecture,"
 		echo "but your build machine uses the x86-64 architecture without the 32 bits compatibility"
 		echo "library."
-		echo "If you're running a Debian/Ubuntu distribution, install the libc6-386,"
+		echo "If you're running a Debian/Ubuntu distribution, install the libc6-i386,"
 		echo "lib32stdc++6, and lib32z1 packages (or alternatively libc6:i386,"
 		echo "libstdc++6:i386, and zlib1g:i386)."
+		echo "If you're running a RedHat/Fedora distribution, install the glibc.i686 and"
+		echo "zlib.i686 packages."
+		echo "If you're running an ArchLinux distribution, install lib32-glibc."
 		echo "For other distributions, refer to the documentation on how to install the 32 bits"
 		echo "compatibility libraries."
 		exit 1
@@ -234,12 +230,60 @@ if grep -q ^BR2_HOSTARCH_NEEDS_IA32_COMPILER=y $BR2_CONFIG ; then
 		echo "For other distributions, refer to their documentation."
 		exit 1
 	fi
+
+	if ! echo "int main(void) {}" | g++ -m32 -x c++ - -o /dev/null 2>/dev/null; then
+		echo
+		echo "Your Buildroot configuration needs a compiler capable of building 32 bits binaries."
+		echo "If you're running a Debian/Ubuntu distribution, install the g++-multilib package."
+		echo "For other distributions, refer to their documentation."
+		exit 1
+	fi
 fi
 
-# Check that the Perl installation is complete enough to build
-# host-autoconf.
-if ! perl  -e "require Data::Dumper" > /dev/null 2>&1 ; then
-	echo "Your Perl installation is not complete enough, at least Data::Dumper is missing."
-	echo "On Debian/Ubuntu distributions, install the 'perl' package."
+if grep ^BR2_NEEDS_HOST_GCC_PLUGIN_SUPPORT=y $BR2_CONFIG ; then
+	if ! echo "#include <gcc-plugin.h>" | $HOSTCXX_NOCCACHE -I$($HOSTCXX_NOCCACHE -print-file-name=plugin)/include -x c++ -c - -o /dev/null ; then
+		echo
+		echo "Your Buildroot configuration needs a host compiler capable of building gcc plugins."
+		echo "If you're running a Debian/Ubuntu distribution, install gcc-X-plugin-dev package."
+		echo "For other distributions, refer to their documentation."
+		exit 1 ;
+	fi
+fi
+
+# Check that the Perl installation is complete enough for Buildroot.
+required_perl_modules="Data::Dumper" # Needed to build host-autoconf
+required_perl_modules="$required_perl_modules ExtUtils::MakeMaker" # Used by host-libxml-parser-perl
+required_perl_modules="$required_perl_modules Thread::Queue" # Used by host-automake
+
+if grep -q ^BR2_PACKAGE_MPV=y $BR2_CONFIG ; then
+    required_perl_modules="$required_perl_modules Math::BigInt"
+    required_perl_modules="$required_perl_modules Math::BigRat"
+fi
+
+if grep -q ^BR2_PACKAGE_WHOIS=y $BR2_CONFIG ; then
+    required_perl_modules="$required_perl_modules autodie"
+fi
+
+if grep -q -E '^BR2_PACKAGE_(WEBKITGTK|WPEWEBKIT)=y' $BR2_CONFIG ; then
+    required_perl_modules="${required_perl_modules} JSON::PP"
+fi
+
+# This variable will keep the modules that are missing in your system.
+missing_perl_modules=""
+
+for pm in $required_perl_modules ; do
+	if ! perl  -e "require $pm" > /dev/null 2>&1 ; then
+		missing_perl_modules="$missing_perl_modules $pm"
+	fi
+done
+
+if [ -n "$missing_perl_modules" ] ; then
+	echo "Your Perl installation is not complete enough; at least the following"
+	echo "modules are missing:"
+	echo
+	for pm in $missing_perl_modules ; do
+		printf "\t $pm\n"
+	done
+	echo
 	exit 1
 fi

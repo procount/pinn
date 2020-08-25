@@ -1,3 +1,5 @@
-# md5 from https://pypi.python.org/pypi?:action=show_md5&digest=b9dffd2f3b43d673802fe857c8445b1a, sha256 locally computed
-md5	b9dffd2f3b43d673802fe857c8445b1a  Jinja2-2.7.3.tar.gz
-sha256	2e24ac5d004db5714976a04ac0e80c6df6e47e98c354cb2c0d82f8879d4f8fdb  Jinja2-2.7.3.tar.gz
+# md5, sha256 from https://pypi.org/pypi/jinja2/json
+md5  0362203b22547abca06ed1082bc1e7b4  Jinja2-2.11.2.tar.gz
+sha256  89aab215427ef59c34ad58735269eb58b1a5808103067f7bb9d5836c651b3bb0  Jinja2-2.11.2.tar.gz
+# Locally computed sha256 checksums
+sha256  3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b  LICENSE.rst

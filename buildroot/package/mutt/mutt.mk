@@ -4,17 +4,27 @@
 #
 ################################################################################
 
-MUTT_VERSION = 1.5.23
-MUTT_SITE = http://downloads.sourceforge.net/project/mutt/mutt
-MUTT_LICENSE = GPLv2+
+MUTT_VERSION = 1.14.4
+MUTT_SITE = https://bitbucket.org/mutt/mutt/downloads
+MUTT_LICENSE = GPL-2.0+
 MUTT_LICENSE_FILES = GPL
 MUTT_DEPENDENCIES = ncurses
-MUTT_CONF_OPTS = --disable-smtp
-MUTT_AUTORECONF = YES
+MUTT_CONF_OPTS = --disable-doc --disable-smtp
 
 ifeq ($(BR2_PACKAGE_LIBICONV),y)
 MUTT_DEPENDENCIES += libiconv
 MUTT_CONF_OPTS += --enable-iconv
+endif
+
+# Both options can't be selected at the same time so prefer libidn2
+ifeq ($(BR2_PACKAGE_LIBIDN2),y)
+MUTT_DEPENDENCIES += libidn2
+MUTT_CONF_OPTS += --with-idn2 --without-idn
+else ifeq ($(BR2_PACKAGE_LIBIDN),y)
+MUTT_DEPENDENCIES += libidn
+MUTT_CONF_OPTS += --with-idn --without-idn2
+else
+MUTT_CONF_OPTS += --without-idn --without-idn2
 endif
 
 ifeq ($(BR2_PACKAGE_MUTT_IMAP),y)
@@ -41,6 +51,13 @@ else
 MUTT_CONF_OPTS += --without-ssl
 endif
 
+ifeq ($(BR2_PACKAGE_SQLITE),y)
+MUTT_DEPENDENCIES += sqlite
+MUTT_CONF_OPTS += --with-sqlite3
+else
+MUTT_CONF_OPTS += --without-sqlite3
+endif
+
 # Avoid running tests to check for:
 #  - target system is *BSD
 #  - C99 conformance (snprintf, vsnprintf)
@@ -60,6 +77,7 @@ MUTT_CONF_ENV += \
 MUTT_CONF_OPTS += --with-mailpath=/var/mail
 
 define MUTT_VAR_MAIL
+	mkdir -p $(TARGET_DIR)/var
 	ln -sf /tmp $(TARGET_DIR)/var/mail
 endef
 MUTT_POST_INSTALL_TARGET_HOOKS += MUTT_VAR_MAIL

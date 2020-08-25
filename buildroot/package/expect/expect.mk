@@ -4,12 +4,13 @@
 #
 ################################################################################
 
-EXPECT_VERSION = 5.45
+EXPECT_VERSION = 5.45.4
+EXPECT_SITE = https://sourceforge.net/projects/expect/files/Expect/$(EXPECT_VERSION)
 EXPECT_SOURCE = expect$(EXPECT_VERSION).tar.gz
-EXPECT_SITE = http://downloads.sourceforge.net/project/expect/Expect/$(EXPECT_VERSION)
 EXPECT_LICENSE = Public domain
 EXPECT_LICENSE_FILES = README
 
+# 0001-enable-cross-compilation.patch
 EXPECT_AUTORECONF = YES
 EXPECT_DEPENDENCIES = tcl
 EXPECT_CONF_OPTS = --with-tcl=$(BUILD_DIR)/tcl-$(TCL_VERSION)/unix

@@ -4,11 +4,11 @@
 #
 ################################################################################
 
-CCACHE_VERSION = 3.1.8
-CCACHE_SITE = http://samba.org/ftp/ccache
+CCACHE_VERSION = 3.7.10
+CCACHE_SITE = https://github.com/ccache/ccache/releases/download/v$(CCACHE_VERSION)
 CCACHE_SOURCE = ccache-$(CCACHE_VERSION).tar.xz
-CCACHE_LICENSE = GPLv3+, others
-CCACHE_LICENSE_FILES = LICENSE.txt GPL-3.0.txt
+CCACHE_LICENSE = GPL-3.0+, others
+CCACHE_LICENSE_FILES = LICENSE.adoc GPL-3.0.txt
 
 # Force ccache to use its internal zlib. The problem is that without
 # this, ccache would link against the zlib of the build system, but we
@@ -19,26 +19,30 @@ CCACHE_LICENSE_FILES = LICENSE.txt GPL-3.0.txt
 # to use HOSTCC_NOCCACHE as the compiler. Instead, we take the easy
 # path: tell ccache to use its internal copy of zlib, so that ccache
 # has zero dependency besides the C library.
-HOST_CCACHE_CONF_OPTS += ccache_cv_zlib_1_2_3=no
+HOST_CCACHE_CONF_OPTS += --with-bundled-zlib
+
+# We are ccache, so we can't use ccache
+HOST_CCACHE_CONF_ENV = \
+	CC="$(HOSTCC_NOCCACHE)" \
+	CXX="$(HOSTCXX_NOCCACHE)"
 
 # Patch host-ccache as follows:
 #  - Use BR_CACHE_DIR instead of CCACHE_DIR, because CCACHE_DIR
 #    is already used by autotargets for the ccache package.
 #    BR_CACHE_DIR is exported by Makefile based on config option
 #    BR2_CCACHE_DIR.
-#  - ccache shouldn't use the compiler binary mtime to detect a change in
-#    the compiler, because in the context of Buildroot, that completely
-#    defeats the purpose of ccache. Of course, that leaves the user
-#    responsible for purging its cache when the compiler changes.
 #  - Change hard-coded last-ditch default to match path in .config, to avoid
 #    the need to specify BR_CACHE_DIR when invoking ccache directly.
+#    CCache replaces "%s" with the home directory of the current user,
+#    So rewrite BR_CACHE_DIR to take that into consideration for SDK purpose
+HOST_CCACHE_DEFAULT_CCACHE_DIR = $(patsubst $(HOME)/%,\%s/%,$(BR_CACHE_DIR))
+
 define HOST_CCACHE_PATCH_CONFIGURATION
-	sed -i 's,getenv("CCACHE_DIR"),getenv("BR_CACHE_DIR"),' $(@D)/ccache.c
-	sed -i 's,getenv("CCACHE_COMPILERCHECK"),"none",' $(@D)/ccache.c
-	sed -i 's,"%s/.ccache","$(BR_CACHE_DIR)",' $(@D)/ccache.c
+	sed -i 's,getenv("CCACHE_DIR"),getenv("BR_CACHE_DIR"),' $(@D)/src/ccache.c
+	sed -i 's,"%s/.ccache","$(HOST_CCACHE_DEFAULT_CCACHE_DIR)",' $(@D)/src/conf.c
 endef
 
-HOST_CCACHE_POST_CONFIGURE_HOOKS += HOST_CCACHE_PATCH_CONFIGURATION
+HOST_CCACHE_POST_PATCH_HOOKS += HOST_CCACHE_PATCH_CONFIGURATION
 
 define HOST_CCACHE_MAKE_CACHE_DIR
 	mkdir -p $(BR_CACHE_DIR)
