@@ -586,3 +586,6 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Flavours**     - Fix use of .txt files
 - **bugfix**       - fix crash if no source (#414)
 
+### V3.3.4.4
+
+- **Labels**       - Fix partition labels when replacing OS

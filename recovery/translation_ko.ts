@@ -1302,251 +1302,251 @@ Do you want to continue?</source>
 <context>
     <name>MultiImageWriteThread</name>
     <message>
-        <location filename="multiimagewritethread.cpp" line="90"/>
+        <location filename="multiimagewritethread.cpp" line="89"/>
         <source>partitions.json invalid</source>
         <translation>partitions.json이 올바르지 않음</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="103"/>
+        <location filename="multiimagewritethread.cpp" line="102"/>
         <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
         <translation>RISCOS를 설치할 수 없습니다. RISCOS의 오프셋 값이 맞지 않습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="109"/>
+        <location filename="multiimagewritethread.cpp" line="108"/>
         <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
         <translation>RISCOS를 설치할 수 없습니다. RISCOS의 오프셋 값이 없습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="114"/>
+        <location filename="multiimagewritethread.cpp" line="113"/>
         <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
         <translation>RISCOS를 설치할 수 없습니다. 복구 파티션의 크기가 너무 큽니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="143"/>
+        <location filename="multiimagewritethread.cpp" line="142"/>
         <source>More than one operating system requires partition number %1</source>
         <translation>하나 이상의 운영체제에 파티션 %1번이 필요합니다</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="148"/>
+        <location filename="multiimagewritethread.cpp" line="147"/>
         <source>Operating system cannot require a system partition (1,5)</source>
         <translation>운영체제가 시스템 파티션 (1,5) 을 요청할 수 없습니다</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="153"/>
+        <location filename="multiimagewritethread.cpp" line="152"/>
         <source>Operating system cannot claim both primary partitions 2 and 4</source>
         <translation>운영체제가 주 파티션 2와 4를 모두 요구할 수는 없습니다</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="181"/>
+        <location filename="multiimagewritethread.cpp" line="180"/>
         <source>Not enough disk space. Need %1 MB, got %2 MB</source>
         <translation>디스크 공간이 부족합니다. 필요한 공간은 %1 MB이며, 남은 공간은 %2 MB입니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="261"/>
+        <location filename="multiimagewritethread.cpp" line="260"/>
         <source>Fixed partition offset too low</source>
         <translation>고정 파티션 오프셋 값이 너무 낮습니다</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="321"/>
+        <location filename="multiimagewritethread.cpp" line="320"/>
         <source>Writing partition table</source>
         <translation>파티션 테이블을 기록하고 있습니다</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="336"/>
+        <location filename="multiimagewritethread.cpp" line="335"/>
         <source>Writing boot partition table</source>
         <translation>부팅 파티션을 기록하고 있습니다</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="326"/>
-        <location filename="multiimagewritethread.cpp" line="342"/>
+        <location filename="multiimagewritethread.cpp" line="325"/>
+        <location filename="multiimagewritethread.cpp" line="341"/>
         <source>Zero&apos;ing start of each partition</source>
         <translation>각 파티션을 초기화 하고 있습니다</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="210"/>
+        <location filename="multiimagewritethread.cpp" line="209"/>
         <source>Cannot boot partitions &gt; 62. Reduce the number of OSes</source>
         <translation>이 파티션으로 부팅 불가 &gt; 62. 운영체제 수를 줄이십시요.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="232"/>
+        <location filename="multiimagewritethread.cpp" line="231"/>
         <source>Cannot boot partitions &gt; #62. Reduce the number of OSes</source>
         <translation>이 파티션으로 부팅 불가 &gt; #62. 운영체제 수를 줄이십시요.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="387"/>
+        <location filename="multiimagewritethread.cpp" line="386"/>
         <source>.
 Partition not big enough for new image.</source>
         <translation>를 재설치할 수 없습니다.
 운영체제 설치를 위한 파티션 크기가 충분히 크지 않습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="387"/>
+        <location filename="multiimagewritethread.cpp" line="386"/>
         <source>Cannot Reinstall/Replace </source>
         <translation>다시 설치/교체를 할 수 없음</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="433"/>
+        <location filename="multiimagewritethread.cpp" line="432"/>
         <source>Operation cancelled by user</source>
         <translation>사용자가 작업을 취소함</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="439"/>
+        <location filename="multiimagewritethread.cpp" line="438"/>
         <source>Finish writing (sync)</source>
         <translation>(동기화) 기록을 완료합니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="460"/>
+        <location filename="multiimagewritethread.cpp" line="459"/>
         <source>Error reading existing partition table</source>
         <translation>이미 있는 파티션 테이블을 읽는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="545"/>
+        <location filename="multiimagewritethread.cpp" line="544"/>
         <source>Error creating partition table</source>
         <translation>파티션 테이블을 생성하는 과정에서 오류가 발생하였습니다</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="695"/>
+        <location filename="multiimagewritethread.cpp" line="694"/>
         <source>File &apos;%1&apos; does not exist</source>
         <translation>파일 &apos;%1&apos; 이 없습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="723"/>
+        <location filename="multiimagewritethread.cpp" line="722"/>
         <source>OS: &apos;%1&apos; needs a partition label of &apos;%2&apos; which is not available</source>
         <translation>OS: &apos;%1&apos;에 파티션 레이블 &apos;%2&apos;이 필요하지만 지정할 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="735"/>
-        <location filename="multiimagewritethread.cpp" line="742"/>
+        <location filename="multiimagewritethread.cpp" line="734"/>
+        <location filename="multiimagewritethread.cpp" line="741"/>
         <source>%1: Writing OS image</source>
         <translation>%1: 운영체제 이미지 파일을 기록하고 있습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="749"/>
+        <location filename="multiimagewritethread.cpp" line="748"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation>%1: (%2) 파일시스템을 만들고 있습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="758"/>
+        <location filename="multiimagewritethread.cpp" line="757"/>
         <source>%1: Mounting file system</source>
         <translation>%1: 파일 시스템을 마운트하고 있습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="761"/>
-        <location filename="multiimagewritethread.cpp" line="795"/>
-        <location filename="multiimagewritethread.cpp" line="949"/>
-        <location filename="multiimagewritethread.cpp" line="1089"/>
+        <location filename="multiimagewritethread.cpp" line="760"/>
+        <location filename="multiimagewritethread.cpp" line="794"/>
+        <location filename="multiimagewritethread.cpp" line="948"/>
+        <location filename="multiimagewritethread.cpp" line="1088"/>
         <source>%1: Error mounting file system</source>
         <translation>%1: 파일 시스템을 마운트하는 과정에서 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="766"/>
+        <location filename="multiimagewritethread.cpp" line="765"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation>%1: 파일 시스템을 다운로드 및 압축 해제하고 있습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="768"/>
+        <location filename="multiimagewritethread.cpp" line="767"/>
         <source>%1: Extracting filesystem</source>
         <translation>%1: 파일 시스템을 추출하고 있습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="774"/>
+        <location filename="multiimagewritethread.cpp" line="773"/>
         <source>Syncing Filesystem</source>
         <translation>파일 시스템을 동기화하고 있습니다</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="792"/>
-        <location filename="multiimagewritethread.cpp" line="945"/>
+        <location filename="multiimagewritethread.cpp" line="791"/>
+        <location filename="multiimagewritethread.cpp" line="944"/>
         <source>%1: Mounting FAT partition</source>
         <translation>%1: FAT 파티션을 마운트하고 있습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="799"/>
+        <location filename="multiimagewritethread.cpp" line="798"/>
         <source>%1: Creating os_config.json</source>
         <translation>%1: os_config.json을 만들고 있습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="832"/>
+        <location filename="multiimagewritethread.cpp" line="831"/>
         <source>%1: Saving display mode to config.txt</source>
         <translation>%1: 디스플레이 모드를 config.txt에 저장하고 있습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="853"/>
+        <location filename="multiimagewritethread.cpp" line="852"/>
         <source>Error in checksum for partition_setup.sh</source>
         <translation>partition_setup.sh 체크섬 확인에 오류가 있습니다</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="860"/>
+        <location filename="multiimagewritethread.cpp" line="859"/>
         <source>%1: Running partition setup script</source>
         <translation>%1: 파티션 설치 스크립트를 실행하고 있습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="915"/>
+        <location filename="multiimagewritethread.cpp" line="914"/>
         <source>%1: Error executing partition setup script</source>
         <translation>%1: 파티션 설치 스크립트를 실행하는 과정에서 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="932"/>
+        <location filename="multiimagewritethread.cpp" line="931"/>
         <source>%1: Configuring flavour</source>
         <translatorcomment>flavour 를 구성으로 번역하고 있음. https://developer.android.com/studio/build/build-variants.html?hl=ko#flavor-dimensions</translatorcomment>
         <translation>%1: 구성을 설정하고 있습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="922"/>
-        <location filename="multiimagewritethread.cpp" line="983"/>
+        <location filename="multiimagewritethread.cpp" line="921"/>
+        <location filename="multiimagewritethread.cpp" line="982"/>
         <source>%1: Unmounting FAT partition</source>
         <translation>%1: FAT 파티션을 마운트 해제하고 있습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="925"/>
-        <location filename="multiimagewritethread.cpp" line="986"/>
+        <location filename="multiimagewritethread.cpp" line="924"/>
+        <location filename="multiimagewritethread.cpp" line="985"/>
         <source>%1: Error unmounting</source>
         <translation>%1: 마운트 해제하는 과정에서 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="955"/>
+        <location filename="multiimagewritethread.cpp" line="954"/>
         <source>%1: Checking firmware update</source>
         <translation>%1: 펌웨어 업데이트를 확인하고 있습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1372"/>
+        <location filename="multiimagewritethread.cpp" line="1371"/>
         <source>Error creating file system</source>
         <translation>파일 시스템을 만드는 과정에서 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1444"/>
-        <location filename="multiimagewritethread.cpp" line="1554"/>
-        <location filename="multiimagewritethread.cpp" line="1647"/>
+        <location filename="multiimagewritethread.cpp" line="1443"/>
+        <location filename="multiimagewritethread.cpp" line="1553"/>
+        <location filename="multiimagewritethread.cpp" line="1646"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip.</source>
         <oldsource>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</oldsource>
         <translation type="unfinished">압축 파일의 형식을 알아낼 수 없었습니다. .lzo 또는 .gz, .xz, .bz2, .zip 형식을 지원합니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1484"/>
-        <location filename="multiimagewritethread.cpp" line="1585"/>
-        <location filename="multiimagewritethread.cpp" line="1678"/>
+        <location filename="multiimagewritethread.cpp" line="1483"/>
+        <location filename="multiimagewritethread.cpp" line="1584"/>
+        <location filename="multiimagewritethread.cpp" line="1677"/>
         <source>An incorrect file checksum has been detected in %1</source>
         <translation>%1에서 올바르지 않은 파일 체크섬을 확인하였습니다</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1485"/>
-        <location filename="multiimagewritethread.cpp" line="1589"/>
-        <location filename="multiimagewritethread.cpp" line="1682"/>
+        <location filename="multiimagewritethread.cpp" line="1484"/>
+        <location filename="multiimagewritethread.cpp" line="1588"/>
+        <location filename="multiimagewritethread.cpp" line="1681"/>
         <source>Checksum error</source>
         <translation>체크섬 오류</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1495"/>
+        <location filename="multiimagewritethread.cpp" line="1494"/>
         <source>Checksum OK</source>
         <translation>체크섬 확인 완료</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1498"/>
+        <location filename="multiimagewritethread.cpp" line="1497"/>
         <source>Finished downloading</source>
         <translation>다운로드 완료</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1599"/>
-        <location filename="multiimagewritethread.cpp" line="1692"/>
+        <location filename="multiimagewritethread.cpp" line="1598"/>
+        <location filename="multiimagewritethread.cpp" line="1691"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>운영체제를 SD 카드에 다운로드 및 기록하는 과정에서 오류가 발생하였습니다</translation>
     </message>

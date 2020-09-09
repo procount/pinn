@@ -6,7 +6,6 @@
 #include "partitioninfo.h"
 #include "util.h"
 #include "mydebug.h"
-
 #include <QDir>
 #include <QFile>
 #include <QDebug>
@@ -621,7 +620,7 @@ QString MultiImageWriteThread::shorten(QString example, int maxLabelLen)
 
 QByteArray MultiImageWriteThread::makeLabelUnique(QByteArray label, int maxLabelLen, const QByteArray &device)
 {
-    if (_partition)
+    if ((_partition) || (_downloadMode==MODE_REPLACE))
     {
         if (label.size() > maxLabelLen)
         {   //restrict to maximum size

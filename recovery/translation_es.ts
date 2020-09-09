@@ -1302,252 +1302,252 @@ Would you like to make this setting permanent?</source>
 <context>
     <name>MultiImageWriteThread</name>
     <message>
-        <location filename="multiimagewritethread.cpp" line="90"/>
+        <location filename="multiimagewritethread.cpp" line="89"/>
         <source>partitions.json invalid</source>
         <translation type="unfinished">partitions.json erroneo</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="103"/>
+        <location filename="multiimagewritethread.cpp" line="102"/>
         <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
         <translation>RISCOS no puede ser instalado. Discordancia en el valor de desplazamiento (offset) de RISCOS.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="109"/>
+        <location filename="multiimagewritethread.cpp" line="108"/>
         <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
         <translation>RISCOS no puede ser instalado. Falta valor de desplazamiento (offset) de RISCOS.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="114"/>
+        <location filename="multiimagewritethread.cpp" line="113"/>
         <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
         <translatorcomment>La partición recovery es la partición de recuperación de PINN</translatorcomment>
         <translation>RISCOS no puede ser instalado. El tamaño de la partición recovery (recuperación) es demasiado grande.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="143"/>
+        <location filename="multiimagewritethread.cpp" line="142"/>
         <source>More than one operating system requires partition number %1</source>
         <translation>Más de un sistema operativo requiere la partición número %1</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="181"/>
+        <location filename="multiimagewritethread.cpp" line="180"/>
         <source>Not enough disk space. Need %1 MB, got %2 MB</source>
         <translation>No hay espacio suficiente en disco. Necesario %1 MB, disponible %2 MB</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="321"/>
+        <location filename="multiimagewritethread.cpp" line="320"/>
         <source>Writing partition table</source>
         <translation>Escribiendo tabla de particiones</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="261"/>
+        <location filename="multiimagewritethread.cpp" line="260"/>
         <source>Fixed partition offset too low</source>
         <translation type="unfinished">Corregido partición desplazamiento (offset) demasiado bajo</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="148"/>
+        <location filename="multiimagewritethread.cpp" line="147"/>
         <source>Operating system cannot require a system partition (1,5)</source>
         <translation>El sistema operativo no puede requerir una partición de sistema (1,5)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="153"/>
+        <location filename="multiimagewritethread.cpp" line="152"/>
         <source>Operating system cannot claim both primary partitions 2 and 4</source>
         <translation>El sistema operativo no puede solicitar ambas particiones primarias 2 y 4</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="336"/>
+        <location filename="multiimagewritethread.cpp" line="335"/>
         <source>Writing boot partition table</source>
         <translation>Escribiendo tabla de particiones de arranque</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="326"/>
-        <location filename="multiimagewritethread.cpp" line="342"/>
+        <location filename="multiimagewritethread.cpp" line="325"/>
+        <location filename="multiimagewritethread.cpp" line="341"/>
         <source>Zero&apos;ing start of each partition</source>
         <translation type="unfinished">Borrando el comienzo de cada partición</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="210"/>
+        <location filename="multiimagewritethread.cpp" line="209"/>
         <source>Cannot boot partitions &gt; 62. Reduce the number of OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="232"/>
+        <location filename="multiimagewritethread.cpp" line="231"/>
         <source>Cannot boot partitions &gt; #62. Reduce the number of OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="387"/>
+        <location filename="multiimagewritethread.cpp" line="386"/>
         <source>.
 Partition not big enough for new image.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="387"/>
+        <location filename="multiimagewritethread.cpp" line="386"/>
         <source>Cannot Reinstall/Replace </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="433"/>
+        <location filename="multiimagewritethread.cpp" line="432"/>
         <source>Operation cancelled by user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="439"/>
+        <location filename="multiimagewritethread.cpp" line="438"/>
         <source>Finish writing (sync)</source>
         <translation type="unfinished">Terminando de escribir (sincronizar)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="460"/>
+        <location filename="multiimagewritethread.cpp" line="459"/>
         <source>Error reading existing partition table</source>
         <translation>Error al leer tabla de particiones</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="545"/>
+        <location filename="multiimagewritethread.cpp" line="544"/>
         <source>Error creating partition table</source>
         <translation>Error al crear tabla de particiones</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="695"/>
+        <location filename="multiimagewritethread.cpp" line="694"/>
         <source>File &apos;%1&apos; does not exist</source>
         <translation>El archivo &apos;%1&apos; no existe</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="723"/>
+        <location filename="multiimagewritethread.cpp" line="722"/>
         <source>OS: &apos;%1&apos; needs a partition label of &apos;%2&apos; which is not available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="735"/>
-        <location filename="multiimagewritethread.cpp" line="742"/>
+        <location filename="multiimagewritethread.cpp" line="734"/>
+        <location filename="multiimagewritethread.cpp" line="741"/>
         <source>%1: Writing OS image</source>
         <translation>%1: Escribiendo imagen del SO</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="749"/>
+        <location filename="multiimagewritethread.cpp" line="748"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation>%1: Creando sistema de archivos (%2)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="758"/>
+        <location filename="multiimagewritethread.cpp" line="757"/>
         <source>%1: Mounting file system</source>
         <translation>%1: Montando sistema de archivos</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="761"/>
-        <location filename="multiimagewritethread.cpp" line="795"/>
-        <location filename="multiimagewritethread.cpp" line="949"/>
-        <location filename="multiimagewritethread.cpp" line="1089"/>
+        <location filename="multiimagewritethread.cpp" line="760"/>
+        <location filename="multiimagewritethread.cpp" line="794"/>
+        <location filename="multiimagewritethread.cpp" line="948"/>
+        <location filename="multiimagewritethread.cpp" line="1088"/>
         <source>%1: Error mounting file system</source>
         <translation>%1: Error al montar sistema de archivos</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="766"/>
+        <location filename="multiimagewritethread.cpp" line="765"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation>%1: Descargando y extrayendo sistema de archivos</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="768"/>
+        <location filename="multiimagewritethread.cpp" line="767"/>
         <source>%1: Extracting filesystem</source>
         <translation>%1: Extrayendo sistema de archivos</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="774"/>
+        <location filename="multiimagewritethread.cpp" line="773"/>
         <source>Syncing Filesystem</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="792"/>
-        <location filename="multiimagewritethread.cpp" line="945"/>
+        <location filename="multiimagewritethread.cpp" line="791"/>
+        <location filename="multiimagewritethread.cpp" line="944"/>
         <source>%1: Mounting FAT partition</source>
         <translation>%1: Montando partición FAT</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="799"/>
+        <location filename="multiimagewritethread.cpp" line="798"/>
         <source>%1: Creating os_config.json</source>
         <translation>%1: Creando os_config.json</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="832"/>
+        <location filename="multiimagewritethread.cpp" line="831"/>
         <source>%1: Saving display mode to config.txt</source>
         <translation>%1: Guardando modo de pantalla en config.txt</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="853"/>
+        <location filename="multiimagewritethread.cpp" line="852"/>
         <source>Error in checksum for partition_setup.sh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="860"/>
+        <location filename="multiimagewritethread.cpp" line="859"/>
         <source>%1: Running partition setup script</source>
         <translatorcomment>script de configuración de particiones: partition_setup.sh</translatorcomment>
         <translation>%1: Ejecutando script de configuración de particiones</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="915"/>
+        <location filename="multiimagewritethread.cpp" line="914"/>
         <source>%1: Error executing partition setup script</source>
         <translatorcomment>script de configuración de particiones: partition_setup.sh</translatorcomment>
         <translation>%1: Error al ejecutar script de configuración de particiones</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="932"/>
+        <location filename="multiimagewritethread.cpp" line="931"/>
         <source>%1: Configuring flavour</source>
         <translation type="unfinished">%1: Configurando sabor (flavour)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="922"/>
-        <location filename="multiimagewritethread.cpp" line="983"/>
+        <location filename="multiimagewritethread.cpp" line="921"/>
+        <location filename="multiimagewritethread.cpp" line="982"/>
         <source>%1: Unmounting FAT partition</source>
         <translation>%1: Desmontando partición FAT</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="925"/>
-        <location filename="multiimagewritethread.cpp" line="986"/>
+        <location filename="multiimagewritethread.cpp" line="924"/>
+        <location filename="multiimagewritethread.cpp" line="985"/>
         <source>%1: Error unmounting</source>
         <translation>%1: Error desmontando</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="955"/>
+        <location filename="multiimagewritethread.cpp" line="954"/>
         <source>%1: Checking firmware update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1372"/>
+        <location filename="multiimagewritethread.cpp" line="1371"/>
         <source>Error creating file system</source>
         <translation>Error al crear el sistema de archivos</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1444"/>
-        <location filename="multiimagewritethread.cpp" line="1554"/>
-        <location filename="multiimagewritethread.cpp" line="1647"/>
+        <location filename="multiimagewritethread.cpp" line="1443"/>
+        <location filename="multiimagewritethread.cpp" line="1553"/>
+        <location filename="multiimagewritethread.cpp" line="1646"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip.</source>
         <oldsource>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</oldsource>
         <translation type="unfinished">Formato de archivo comprimido desconocido. Formatos válidos: .lzo, .gz, .xz, .bz2 o .zip</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1484"/>
-        <location filename="multiimagewritethread.cpp" line="1585"/>
-        <location filename="multiimagewritethread.cpp" line="1678"/>
+        <location filename="multiimagewritethread.cpp" line="1483"/>
+        <location filename="multiimagewritethread.cpp" line="1584"/>
+        <location filename="multiimagewritethread.cpp" line="1677"/>
         <source>An incorrect file checksum has been detected in %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1485"/>
-        <location filename="multiimagewritethread.cpp" line="1589"/>
-        <location filename="multiimagewritethread.cpp" line="1682"/>
+        <location filename="multiimagewritethread.cpp" line="1484"/>
+        <location filename="multiimagewritethread.cpp" line="1588"/>
+        <location filename="multiimagewritethread.cpp" line="1681"/>
         <source>Checksum error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1495"/>
+        <location filename="multiimagewritethread.cpp" line="1494"/>
         <source>Checksum OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1498"/>
+        <location filename="multiimagewritethread.cpp" line="1497"/>
         <source>Finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1599"/>
-        <location filename="multiimagewritethread.cpp" line="1692"/>
+        <location filename="multiimagewritethread.cpp" line="1598"/>
+        <location filename="multiimagewritethread.cpp" line="1691"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>Error al descargar o escribir el SO a la tarjeta SD</translation>
     </message>

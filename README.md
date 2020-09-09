@@ -43,6 +43,10 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V3.3.4.4
+
+- **Labels**       - Fix partition labels when replacing OS
+
 ### V3.3.4.3
 
 - **Backup**       - Fix backup of Raspberry Pi OS
