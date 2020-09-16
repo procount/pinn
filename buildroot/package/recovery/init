@@ -11,6 +11,8 @@
 /bin/hostname -F /etc/hostname
 /bin/mount -t tmpfs tmpfs /tmp
 
+export PS1="\u@\h:\w#"
+
 modprobe 8188eu
 modprobe 8192cu
 
