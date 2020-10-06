@@ -1150,6 +1150,8 @@ void MainWindow::doReinstall()
 void MainWindow::prepareMetaFiles()
 {
     TRACE
+    QString warning;
+
     _numMetaFilesToDownload=0;
 
     QString mode;
@@ -1169,10 +1171,16 @@ void MainWindow::prepareMetaFiles()
         break;
     }
 
-    QString driveType;
-    driveType = (_drive == "/dev/mmcblk0") ? tr("SD card") : tr("USB drive");
-
-    QString warning = tr("Warning: this will %1 the selected Operating System(s) to %2. All existing data on the %3 will be deleted.").arg(mode,_drive,driveType);
+    if (_eDownloadMode == MODE_INSTALL)
+    {
+        QString driveType;
+        driveType = (_drive == "/dev/mmcblk0") ? tr("SD card") : tr("USB drive");
+        warning = tr("Warning: this will %1 the selected Operating System(s) to %2. All existing data on the %3 will be deleted.").arg(mode,_drive,driveType);
+    }
+    else
+    {
+        warning = tr("Warning: this will %1 the selected Operating System(s) on %2. The partitions of the selected OSes will first be erased.").arg(mode,_drive);
+    }
 
     if ( _silent || QMessageBox::warning(this,
                             tr("Confirm"),
