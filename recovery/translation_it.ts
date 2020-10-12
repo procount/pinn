@@ -164,7 +164,7 @@
         <location filename="datetimedialog.ui" line="52"/>
         <source>Please set the correct UTC date and time below.</source>
         <oldsource>Please set the correct date and time below.</oldsource>
-        <translation type="unfinished">Imposta qui sotto la data e ora corrette.</translation>
+        <translation>Imposta qui sotto la data e ora UTC corrette.</translation>
     </message>
 </context>
 <context>
@@ -525,7 +525,7 @@ Riformattala usando il programma della SD Association e riprova.</translation>
         <location filename="mainwindow.ui" line="694"/>
         <source>C</source>
         <oldsource>L</oldsource>
-        <translation type="unfinished">L</translation>
+        <translation>C</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="634"/>
@@ -2028,7 +2028,7 @@ Ti suggeriamo di usare valori superiori a 127.</translation>
         <location filename="optionsdialog.ui" line="431"/>
         <source>&amp;keyboardtriggerdisable</source>
         <oldsource>&amp;keyboardtriggerenable</oldsource>
-        <translation type="unfinished">&amp;keyboardtriggerenable</translation>
+        <translation>&amp;keyboardtriggerdisable</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="469"/>
