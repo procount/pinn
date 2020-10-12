@@ -4,6 +4,7 @@
 #include "fscheck.h"
 #include "util.h"
 #include "rerunsetup.h"
+#include "showlog.h"
 #include "mainwindow.h"
 
 #include <QDebug>
@@ -26,7 +27,7 @@ repair::repair(QListWidget * listinstalled, MainWindow * mw, const QString &root
     show();
 
     item = new QListWidgetItem("File System Check");
-    item->setCheckState(Qt::Checked);
+    item->setCheckState(Qt::Unchecked);
     QVariantMap mfs;
     mfs["action"]=QString("fscheck");
     item->setData(Qt::UserRole, mfs);
@@ -38,6 +39,14 @@ repair::repair(QListWidget * listinstalled, MainWindow * mw, const QString &root
     mps["action"]=QString("setup");
     item->setData(Qt::UserRole, mps);
     ui->listWidget->addItem(item);
+
+    item = new QListWidgetItem("Show Debug log");
+    item->setCheckState(Qt::Unchecked);
+    QVariantMap mfl;
+    mfl["action"]=QString("showlog");
+    item->setData(Qt::UserRole, mfl);
+    ui->listWidget->addItem(item);
+
 #if 0
     item = new QListWidgetItem("Upgrade firmware");
     item->setCheckState(Qt::Unchecked);
@@ -77,6 +86,12 @@ void repair::on_buttonBox_accepted()
                    rerunsetup dlg(_listinstalled,_mw,_drive);
                    dlg.exec();
                 }
+                if (m["action"] == "showlog")
+                {
+                    showlog dlg(_listinstalled);
+                    dlg.exec();
+                }
+
                 if (m["action"] == "upgrade")
                 {
                     /*xxx dlg(_listinstalled);
