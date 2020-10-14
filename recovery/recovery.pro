@@ -75,7 +75,8 @@ SOURCES += \
     input.cpp \
     joystick.cpp \
     simulate.cpp \
-    WidgetKeyboard.cpp
+    WidgetKeyboard.cpp \
+    showlog.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -130,7 +131,8 @@ HEADERS  += \
     input.h \
     joystick.h \
     simulate.h \
-    WidgetKeyboard.h
+    WidgetKeyboard.h \
+    showlog.h
 
 FORMS    += \
     mainwindow.ui \
@@ -150,7 +152,8 @@ FORMS    += \
     renamedialog.ui \
     termsdialog.ui \
     optionsdialog.ui \
-    WidgetKeyboard.ui
+    WidgetKeyboard.ui \
+    showlog.ui
 
 RESOURCES += \
     icons.qrc

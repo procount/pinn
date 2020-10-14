@@ -5,7 +5,7 @@
 
 The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn-lite.zip) can be downloaded from [sourceforge](http://www.sourceforge.net/projects/pinn).
 
-This README relates to v3.3.4.4
+This README relates to v3.5
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -989,6 +989,10 @@ To recover from a corrupted drive, PINN includes a file system check option whic
 ### Re-run partition_setup.sh
 
 Installed OSes may be upgraded using their standard upgrade procedure (e.g. sudo update;sudo upgrade etc.). However, some OS upgrade procedures may not be aware that they are running in a multi-boot environment and may break the changes PINN made to allow them to work. In this situation, re-running the OSes partition_setup.sh script should fix-up these changes to allow the OS to boot properly. From v3.0, PINN will now skip initial installation tasks in this script and it is restricted to fixing up partition references.
+
+### Show Debug Log
+
+This option displays PINN's debug log in a window to make it more accessible rather than having to go through the command shell. The log is continually updated, so the view needs to be updated by pressing the refresh button to see any more recent logs that may have occurred.
 
 ## Reinstall Individual OSes
 

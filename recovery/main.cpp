@@ -204,7 +204,7 @@ QString findRecoveryDrive()
 
 int main(int argc, char *argv[])
 {
-    bool hasTouchScreen = QFile::exists("/sys/devices/platform/rpi_ft5406");
+    bool hasTouchScreen = QFile::exists("/proc/device-tree/soc/firmware/touchscreen");
 
     // Unless we have a touch screen, wait for keyboard to appear before displaying anything
     if (!hasTouchScreen)
@@ -596,11 +596,8 @@ CecListener *enableCEC(QObject *parent)
     QByteArray cpuinfo = f.readAll();
     f.close();
 
-    if (cpuinfo.contains("BCM2708") || cpuinfo.contains("BCM2709") || cpuinfo.contains("BCM2835")) /* Only supported on the Raspberry for now */
-    {
-        cec = new CecListener(parent);
-        cec->start();
-    }
+    cec = new CecListener(parent);
+    cec->start();
 
     joy = new joystick(parent);
     joy->start();
