@@ -7,6 +7,6 @@ config BR2_PACKAGE_CA_CERTIFICATES
 
 	  It includes, among others, certificate authorities used by the
 	  Debian infrastructure and those shipped with Mozilla's
-      browsers.
+	  browsers.
 
 	  https://salsa.debian.org/debian/ca-certificates
