@@ -888,7 +888,8 @@ I seguenti SO non sono supportati in questa revisione di Raspberry Pi e potrebbe
     <message>
         <location filename="mainwindow.cpp" line="1182"/>
         <source>Warning: this will %1 the selected Operating System(s) on %2. The partitions of the selected OSes will first be erased.</source>
-        <translation type="unfinished"></translation>
+        <translation>Attenzione: questo selezionerà %1 sistemi operativi in %2. 
+Le partizioni dei sistemi operativi selezionati verranno prima cancellate.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1286"/>
@@ -3478,12 +3479,12 @@ Verifica la password</translation>
     <message>
         <location filename="showlog.ui" line="14"/>
         <source>Show Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizza registro eventi</translation>
     </message>
     <message>
         <location filename="showlog.ui" line="55"/>
         <source>&amp;Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aggiorna</translation>
     </message>
 </context>
 </TS>
