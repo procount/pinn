@@ -5,7 +5,7 @@
 
 The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn-lite.zip) can be downloaded from [sourceforge](http://www.sourceforge.net/projects/pinn).
 
-This README relates to v3.5
+This README relates to v3.5.2
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -345,6 +345,9 @@ Two editors are available in the recovery shell: vi and nano. Only the Tiny vers
 ### How to change display output modes
 
 By default, PINN will output over HDMI at your display’s preferred resolution, even if no HDMI display is connected. If you do not see any output on your HDMI display or are using the composite output, press 1, 2, 3 or 4 on your keyboard to select HDMI preferred mode (1), HDMI safe mode (2), composite PAL mode (3), or composite NTSC mode (4), respectively.
+(Note that Composite mode is no longer available by default on the PI4 model)
+
+From v3.5.2, PINN can automatically detect which of the 2 HDMI ports are connected and switch to using the correct one. If both are connected, it will ue HDMI 0. If the DSI touchscreen is attached, this will take precedence over the 2 HDMI ports.
 
 If you don't have a keyboard, you can still change the display mode used by PINN through editing the `recovery.cmdline` file in the root PINN directory prior to first boot and appending the following argument:
 - `display=<display mode number>` (e.g. `display=1` or `display=3`)

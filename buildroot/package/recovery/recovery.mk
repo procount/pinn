@@ -42,7 +42,7 @@ define RECOVERY_INSTALL_TARGET_CMDS
 	mkdir -p $(TARGET_DIR)/settings $(TARGET_DIR)/mnt2 $(TARGET_DIR)/mnt/os $(TARGET_DIR)/boot
 	# allow mount to automatically mount ntfs drives
 	(cd $(TARGET_DIR)/sbin; ln -sf mount.ntfs-3g mount.ntfs)
-	$(INSTALL) -m 0755 package/recovery/.profile  $(TARGET_DIR)/root/.profile
+	$(INSTALL) -m 0755 package/recovery/profile  $(TARGET_DIR)/root/.profile
 endef
 
 $(eval $(generic-package))

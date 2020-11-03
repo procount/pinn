@@ -43,6 +43,12 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V3.5.2
+
+- **KERNEL** - Fix issue with PI4 8GB models
+- **Translations** - Update it translations
+- **HDMI** - Automatic switching between HDMI0 and HDMI1
+
 ### V3.5
 
 - **KERNEL** - Bump firmware & kernel as NOOBS 3.5 for CM4

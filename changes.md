@@ -599,4 +599,10 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Clarify** - Clarify text between replace & reinstall
 - **Logs** - Add Show Log in Fix up menu
 
+### V3.5.2
+
+- **KERNEL** - Fix issue with PI4 8GB models
+- **Translations** - Update it translations
+- **HDMI** - Automatic switching between HDMI0 and HDMI1
+
 
