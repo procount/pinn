@@ -13,8 +13,7 @@ REBOOTP_LICENSE_FILES = LICENSE.txt
 REBOOTP_INSTALL_STAGING = NO
 
 define REBOOTP_BUILD_CMDS
-	cd $(@D) 
-	$(MAKE) -C $(@D) all
+	$(MAKE) CC="$(TARGET_CC)" LD="$(TARGET_LD)" -C $(@D) 
 	$(TARGET_STRIP) $(@D)/rebootp
 endef
 

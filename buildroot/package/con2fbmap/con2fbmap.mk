@@ -13,8 +13,7 @@ CON2FBMAP_LICENSE_FILES = copyright
 CON2FBMAP_INSTALL_STAGING = NO
 
 define CON2FBMAP_BUILD_CMDS
-	cd $(@D) 
-	$(MAKE) -C $(@D) all
+        $(MAKE) CC="$(TARGET_CC)" LD="$(TARGET_LD)" -C $(@D)
 	$(TARGET_STRIP) $(@D)/con2fbmap
 endef
 
