@@ -410,192 +410,197 @@ WARNING: This will erase all data on your SD card</oldsource>
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.ui" line="74"/>
-        <location filename="mainwindow.ui" line="175"/>
+        <location filename="mainwindow.ui" line="185"/>
         <source>Destination drive:</source>
         <translation>目標磁碟：</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="103"/>
-        <location filename="mainwindow.ui" line="198"/>
+        <location filename="mainwindow.ui" line="208"/>
         <source>Needed:</source>
         <translation>需要：</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="122"/>
+        <location filename="mainwindow.ui" line="129"/>
         <source>Model</source>
         <oldsource>model</oldsource>
         <translation>型號</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="132"/>
-        <location filename="mainwindow.ui" line="205"/>
+        <location filename="mainwindow.ui" line="110"/>
+        <location filename="mainwindow.ui" line="215"/>
         <source>Available:</source>
         <translation>可用：</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="163"/>
+        <location filename="mainwindow.ui" line="139"/>
+        <source>Memory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="173"/>
         <source>Download space</source>
         <translation>下載空間</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="254"/>
-        <location filename="mainwindow.ui" line="295"/>
+        <location filename="mainwindow.ui" line="264"/>
+        <location filename="mainwindow.ui" line="305"/>
         <source>toolBar</source>
         <translation>工具列</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="391"/>
+        <location filename="mainwindow.ui" line="401"/>
         <source>Install (i)</source>
         <translation>安裝 (i)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="394"/>
+        <location filename="mainwindow.ui" line="404"/>
         <source>Installs the selected operating system image onto this SD card.</source>
         <translation>安裝選定的作業系統映像檔至這張 SD 記憶卡上。</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="397"/>
+        <location filename="mainwindow.ui" line="407"/>
         <source>I</source>
         <translation>I</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="406"/>
+        <location filename="mainwindow.ui" line="416"/>
         <source>Exit (Esc)</source>
         <translation>結束 (ESC)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="409"/>
+        <location filename="mainwindow.ui" line="419"/>
         <source>Exits and boots the installed operating system.</source>
         <translation>結束並啟動至已安裝的作業系統中。</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="424"/>
+        <location filename="mainwindow.ui" line="434"/>
         <source>More (m)</source>
         <translation>更多 (m)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="427"/>
+        <location filename="mainwindow.ui" line="437"/>
         <source>More menus</source>
         <translation>更多選單</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="430"/>
+        <location filename="mainwindow.ui" line="440"/>
         <source>M</source>
         <translation>M</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="523"/>
+        <location filename="mainwindow.ui" line="533"/>
         <source>Download (d)</source>
         <translation>下載 (d)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="526"/>
+        <location filename="mainwindow.ui" line="536"/>
         <source>Downloads the selected operating system image to USB for local installation</source>
         <translation>下載選定的作業系統映像檔到 USB 裝置中供本機安裝使用</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="529"/>
+        <location filename="mainwindow.ui" line="539"/>
         <source>D</source>
         <translation>D</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="562"/>
+        <location filename="mainwindow.ui" line="572"/>
         <source>Reinstall (r)</source>
         <oldsource>Refresh (r)</oldsource>
         <translation>重新安裝 (r)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="565"/>
-        <location filename="mainwindow.ui" line="739"/>
+        <location filename="mainwindow.ui" line="575"/>
+        <location filename="mainwindow.ui" line="749"/>
         <source>R</source>
         <translation>R</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="580"/>
+        <location filename="mainwindow.ui" line="590"/>
         <source>Replace (c)</source>
         <oldsource>Replace (l)</oldsource>
         <translation>取代 (c)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="583"/>
-        <location filename="mainwindow.ui" line="649"/>
-        <location filename="mainwindow.ui" line="694"/>
+        <location filename="mainwindow.ui" line="593"/>
+        <location filename="mainwindow.ui" line="659"/>
+        <location filename="mainwindow.ui" line="704"/>
         <source>C</source>
         <oldsource>L</oldsource>
         <translation>C</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="634"/>
+        <location filename="mainwindow.ui" line="644"/>
         <source>Wipe (w)</source>
         <translation>抹除 (w)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="661"/>
+        <location filename="mainwindow.ui" line="671"/>
         <source>Information about the installed OS</source>
         <translation>關於已安裝的作業系統的資訊</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="673"/>
+        <location filename="mainwindow.ui" line="683"/>
         <source>Firmware (f)</source>
         <translation>韌體 (f)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="676"/>
+        <location filename="mainwindow.ui" line="686"/>
         <source>Change Firmware</source>
         <translation>變更韌體</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="688"/>
+        <location filename="mainwindow.ui" line="698"/>
         <source>Clear (c)</source>
         <translation>清除 (c)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="691"/>
+        <location filename="mainwindow.ui" line="701"/>
         <source>Clear selection</source>
         <translation>清除選擇</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="703"/>
+        <location filename="mainwindow.ui" line="713"/>
         <source>Time (t)</source>
         <translation>時間 (t)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="706"/>
+        <location filename="mainwindow.ui" line="716"/>
         <source>Set Data &amp; Time</source>
         <translation>設定日期與時間</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="709"/>
+        <location filename="mainwindow.ui" line="719"/>
         <source>T</source>
         <translation>T</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="718"/>
+        <location filename="mainwindow.ui" line="728"/>
         <source>Alias (a)</source>
         <translation>別名 (a)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="721"/>
+        <location filename="mainwindow.ui" line="731"/>
         <source>Rename an OS with an alias</source>
         <translation>使用別名重新命名作業系統</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="724"/>
+        <location filename="mainwindow.ui" line="734"/>
         <source>A</source>
         <translation>A</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="733"/>
+        <location filename="mainwindow.ui" line="743"/>
         <source>Reload Repos (r)</source>
         <translation>重新載入軟體庫 (r)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="736"/>
+        <location filename="mainwindow.ui" line="746"/>
         <source>Scans Repositories and reloads lists of new OSes</source>
         <translation>掃描軟體庫並重新載入新作業系統清單</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="490"/>
+        <location filename="mainwindow.ui" line="500"/>
         <source>Wifi (w)</source>
         <translation>Wifi (w)</translation>
     </message>
@@ -605,265 +610,271 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation>安裝空間</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="508"/>
+        <location filename="mainwindow.ui" line="518"/>
         <source>Password (p)</source>
         <translation>密碼 (p)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="511"/>
+        <location filename="mainwindow.ui" line="521"/>
         <source>Change password</source>
         <translation>變更密碼</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="514"/>
+        <location filename="mainwindow.ui" line="524"/>
         <source>P</source>
         <translation>P</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="544"/>
+        <location filename="mainwindow.ui" line="554"/>
         <source>Backup (b)</source>
         <translation>備份 (b)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="547"/>
+        <location filename="mainwindow.ui" line="557"/>
         <source>B</source>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="598"/>
+        <location filename="mainwindow.ui" line="608"/>
         <source>fsck (f)</source>
         <oldsource>fschk (f)</oldsource>
         <translation>fsck (f)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="601"/>
-        <location filename="mainwindow.ui" line="619"/>
-        <location filename="mainwindow.ui" line="679"/>
+        <location filename="mainwindow.ui" line="611"/>
+        <location filename="mainwindow.ui" line="629"/>
+        <location filename="mainwindow.ui" line="689"/>
         <source>F</source>
         <translation>F</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="616"/>
+        <location filename="mainwindow.ui" line="626"/>
         <source>Fix (f)</source>
         <translation>修復 (f)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="646"/>
+        <location filename="mainwindow.ui" line="656"/>
         <source>Clone (c)</source>
         <translation>再製 (c)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="338"/>
+        <location filename="mainwindow.ui" line="348"/>
         <source>Advanced</source>
         <translation>進階</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="442"/>
+        <location filename="mainwindow.ui" line="452"/>
         <source>Edit config (e)</source>
         <translation>編輯設定 (e)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="445"/>
+        <location filename="mainwindow.ui" line="455"/>
         <source>Opens the config.txt and cmdline.txt for the installed OS in a text editor.</source>
         <translation>為已安裝的作業系統在文字編輯器中開啟 config.txt 與 cmdline.txt。</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="457"/>
+        <location filename="mainwindow.ui" line="467"/>
         <source>Online help (h)</source>
         <translation>線上說明 (h)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="460"/>
+        <location filename="mainwindow.ui" line="470"/>
         <source>Opens a web browser displaying the Raspberry Pi Forum.</source>
         <translation>開啟網路瀏覽器並顯示 Raspberry Pi 論壇。</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="472"/>
-        <location filename="mainwindow.ui" line="658"/>
+        <location filename="mainwindow.ui" line="482"/>
+        <location filename="mainwindow.ui" line="668"/>
         <source>Info (n)</source>
         <translation>資訊 (n)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="475"/>
+        <location filename="mainwindow.ui" line="485"/>
         <source>Information about the selected OS</source>
         <translation>關於選定作業系統的資訊</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="478"/>
-        <location filename="mainwindow.ui" line="664"/>
+        <location filename="mainwindow.ui" line="488"/>
+        <location filename="mainwindow.ui" line="674"/>
         <source>N</source>
         <translation>N</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="493"/>
+        <location filename="mainwindow.ui" line="503"/>
         <source>Select a wifi network to connect to</source>
         <translation>選取要連線的 wifi 網路</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="496"/>
-        <location filename="mainwindow.ui" line="637"/>
+        <location filename="mainwindow.ui" line="506"/>
+        <location filename="mainwindow.ui" line="647"/>
         <source>W</source>
         <translation>W</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="293"/>
+        <location filename="mainwindow.cpp" line="281"/>
         <source>Setting up SD card</source>
         <translation>正在設定 SD 記憶卡</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="326"/>
+        <location filename="mainwindow.cpp" line="314"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation>正在等待 SD 記憶卡（settings 分割區）</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="339"/>
+        <location filename="mainwindow.cpp" line="327"/>
         <source>Mounting settings partition</source>
         <translation>正在掛載 settings 分割區</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="351"/>
+        <location filename="mainwindow.cpp" line="339"/>
         <source>Error mounting settings partition</source>
         <translation>掛載 settings 分割區時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="352"/>
+        <location filename="mainwindow.cpp" line="340"/>
         <source>Persistent settings partition seems corrupt. Reformat?</source>
         <translation>持續性的 settings 分割區似乎已毀損。重新格式化？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="359"/>
+        <location filename="mainwindow.cpp" line="347"/>
         <source>Reformat failed</source>
         <translation>重新格式化失敗</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="359"/>
+        <location filename="mainwindow.cpp" line="347"/>
         <source>SD card might be damaged</source>
         <translation>SD 記憶卡可能已受損</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1161"/>
+        <location filename="mainwindow.cpp" line="1195"/>
         <source>install</source>
         <translation>安裝</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1164"/>
+        <location filename="mainwindow.cpp" line="1198"/>
         <source>reinstall</source>
         <translation>重新安裝</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1167"/>
+        <location filename="mainwindow.cpp" line="1201"/>
         <source>replace</source>
         <translation>取代</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1177"/>
+        <location filename="mainwindow.cpp" line="1211"/>
         <source>USB drive</source>
         <translation>USB 磁碟</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1178"/>
+        <location filename="mainwindow.cpp" line="1212"/>
         <source>Warning: this will %1 the selected Operating System(s) to %2. All existing data on the %3 will be deleted.</source>
         <translation>警告：這將會 %1 選定的作業系統到 %2。所有在 %3 上的資料都將會被刪除。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1263"/>
+        <location filename="mainwindow.cpp" line="1297"/>
         <source>The %1 process will begin shortly.</source>
         <translation>%1 程序將會很快開始。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3929"/>
-        <location filename="mainwindow.cpp" line="3962"/>
+        <location filename="mainwindow.cpp" line="3970"/>
+        <location filename="mainwindow.cpp" line="4003"/>
         <source>RECOMMENDED</source>
         <translation>建議</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1075"/>
-        <location filename="mainwindow.cpp" line="1186"/>
-        <location filename="mainwindow.cpp" line="1285"/>
-        <location filename="mainwindow.cpp" line="1295"/>
-        <location filename="mainwindow.cpp" line="1899"/>
-        <location filename="mainwindow.cpp" line="4729"/>
-        <location filename="mainwindow.cpp" line="4773"/>
+        <location filename="mainwindow.cpp" line="1100"/>
+        <location filename="mainwindow.cpp" line="1109"/>
+        <location filename="mainwindow.cpp" line="1220"/>
+        <location filename="mainwindow.cpp" line="1319"/>
+        <location filename="mainwindow.cpp" line="1329"/>
+        <location filename="mainwindow.cpp" line="1940"/>
+        <location filename="mainwindow.cpp" line="4770"/>
+        <location filename="mainwindow.cpp" line="4814"/>
         <source>Confirm</source>
         <translation>確認</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="684"/>
+        <location filename="mainwindow.cpp" line="702"/>
         <source>Main Menu</source>
         <translation>主選單</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="685"/>
+        <location filename="mainwindow.cpp" line="703"/>
         <source>Archival</source>
         <translation>封存</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="686"/>
+        <location filename="mainwindow.cpp" line="704"/>
         <source>Maintenance</source>
         <translation>維護</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="703"/>
+        <location filename="mainwindow.cpp" line="721"/>
         <source>Please wait while PINN initialises</source>
         <translation>請等待 PINN 初始化</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1066"/>
+        <location filename="mainwindow.cpp" line="1091"/>
         <source>ERROR</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1067"/>
+        <location filename="mainwindow.cpp" line="1092"/>
         <source>Error: Some OSes are not available:
 </source>
         <translation>錯誤：部份作業系統不可用：
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1177"/>
+        <location filename="mainwindow.cpp" line="1211"/>
         <source>SD card</source>
         <translation>SD 記憶卡</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1076"/>
-        <location filename="mainwindow.cpp" line="1296"/>
+        <location filename="mainwindow.cpp" line="1110"/>
+        <location filename="mainwindow.cpp" line="1330"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>警告：已偵測到不相容的作業系統。以下的作業系統在此版本的 Raspberry Pi 不被支援，它們可能會啟動失敗，或是有功能執行不正確：</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1143"/>
+        <location filename="mainwindow.cpp" line="1101"/>
+        <source>Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1177"/>
         <source>ReInstall OSes</source>
         <translation>重新安裝作業系統</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1144"/>
+        <location filename="mainwindow.cpp" line="1178"/>
         <source>Warning: No OSes selected or available
 </source>
         <translation>警告：未選擇作業系統或未提供
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1182"/>
+        <location filename="mainwindow.cpp" line="1216"/>
         <source>Warning: this will %1 the selected Operating System(s) on %2. The partitions of the selected OSes will first be erased.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1286"/>
+        <location filename="mainwindow.cpp" line="1320"/>
         <source>Warning: this will download the selected Operating System(s).</source>
         <translation>警告：這將會下載選定的作業系統。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1359"/>
+        <location filename="mainwindow.cpp" line="1393"/>
         <source>The download process will begin shortly.</source>
         <translation>很快就會開始下載。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1407"/>
+        <location filename="mainwindow.cpp" line="1441"/>
         <source>OS(es) downloaded</source>
         <translation>作業系統已下載完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1421"/>
+        <location filename="mainwindow.cpp" line="1455"/>
         <source>OS(es) Backed up with errors.
 See debug log for details.</source>
         <oldsource>OS(es) Backed up with errors.
@@ -872,116 +883,116 @@ See debug log for details</oldsource>
 檢視除錯紀錄檔以取得更多資訊。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1423"/>
+        <location filename="mainwindow.cpp" line="1457"/>
         <source>OS(es) Backed up Successfully.</source>
         <translation>作業系統備份成功。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1425"/>
-        <location filename="mainwindow.cpp" line="4874"/>
+        <location filename="mainwindow.cpp" line="1459"/>
+        <location filename="mainwindow.cpp" line="4915"/>
         <source>Backup OSes</source>
         <translation>備份作業系統</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1434"/>
+        <location filename="mainwindow.cpp" line="1468"/>
         <source>OS(es) Installed Successfully</source>
         <translation>作業系統已成功安裝</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1436"/>
+        <location filename="mainwindow.cpp" line="1470"/>
         <source>Installation complete</source>
         <translation>安裝完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1472"/>
-        <location filename="mainwindow.cpp" line="1487"/>
-        <location filename="mainwindow.cpp" line="1514"/>
-        <location filename="mainwindow.cpp" line="2181"/>
-        <location filename="mainwindow.cpp" line="2324"/>
-        <location filename="mainwindow.cpp" line="4218"/>
+        <location filename="mainwindow.cpp" line="1507"/>
+        <location filename="mainwindow.cpp" line="1541"/>
+        <location filename="mainwindow.cpp" line="1555"/>
+        <location filename="mainwindow.cpp" line="2222"/>
+        <location filename="mainwindow.cpp" line="2365"/>
+        <location filename="mainwindow.cpp" line="4259"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1537"/>
+        <location filename="mainwindow.cpp" line="1578"/>
         <source>Abort</source>
         <translation>放棄</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1538"/>
+        <location filename="mainwindow.cpp" line="1579"/>
         <source>Discard</source>
         <translation>丟棄</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1539"/>
+        <location filename="mainwindow.cpp" line="1580"/>
         <source>Retry</source>
         <translation>重試</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1540"/>
+        <location filename="mainwindow.cpp" line="1581"/>
         <source>Keep</source>
         <translation>保留</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1564"/>
+        <location filename="mainwindow.cpp" line="1605"/>
         <source>Reboot in %1 secs</source>
         <translation>在 %1 秒內重新啟動</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1874"/>
+        <location filename="mainwindow.cpp" line="1915"/>
         <source>Wiping SD card</source>
         <translation>抹除 SD 記憶卡</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1900"/>
+        <location filename="mainwindow.cpp" line="1941"/>
         <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will restore your SD card to its initial state. All existing data on the SD card except PINN will be overwritten, including any OSes that are already installed.</oldsource>
         <translation>警告：這將會讓您的 PINN 磁碟復原到初始狀態。所有在磁碟上，除了 PINN 以外既有的資料都將會被覆寫，其中也包含任何您已安裝的作業系統。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1905"/>
+        <location filename="mainwindow.cpp" line="1946"/>
         <source>Drive Wiped!</source>
         <translation>磁碟已抹除！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2181"/>
+        <location filename="mainwindow.cpp" line="2222"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation>解析從伺服器下載的 repolist.json 時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2805"/>
+        <location filename="mainwindow.cpp" line="2846"/>
         <source>Error downloading meta file: </source>
         <translation>下載詮釋檔案錯誤： </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3156"/>
-        <location filename="mainwindow.cpp" line="4604"/>
-        <location filename="mainwindow.cpp" line="4632"/>
+        <location filename="mainwindow.cpp" line="3197"/>
+        <location filename="mainwindow.cpp" line="4645"/>
+        <location filename="mainwindow.cpp" line="4673"/>
         <source>Replace OSes</source>
         <translation>取代作業系統</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3201"/>
+        <location filename="mainwindow.cpp" line="3242"/>
         <source>Resume partial downloads?</source>
         <translation>復原部份下載？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3202"/>
+        <location filename="mainwindow.cpp" line="3243"/>
         <source>Normally select NO, unless your last download was not successful, in which case select YES</source>
         <translation>一般會選擇否，除非您最後一次下載並未成功，這種情況下才會選取是</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3425"/>
+        <location filename="mainwindow.cpp" line="3466"/>
         <source>This backup may require </source>
         <translation>這個備份可能需要 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3427"/>
+        <location filename="mainwindow.cpp" line="3468"/>
         <source> MB of backup space, but only </source>
         <translation> MB 的備份空間，但只有 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3429"/>
+        <location filename="mainwindow.cpp" line="3470"/>
         <source> MB is available. This is only an estimate. If you continue, the backup may not complete successfully.
 
 Do you want to continue?</source>
@@ -990,150 +1001,150 @@ Do you want to continue?</source>
 您想要繼續嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3430"/>
+        <location filename="mainwindow.cpp" line="3471"/>
         <source>WARNING: Backup Space</source>
         <translation>警告：備份空間</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3437"/>
+        <location filename="mainwindow.cpp" line="3478"/>
         <source>Backup Info</source>
         <translation>備份資訊</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3437"/>
+        <location filename="mainwindow.cpp" line="3478"/>
         <source>Always test your backups before relying on them</source>
         <translation>在依賴您備份前請測試它們</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3487"/>
+        <location filename="mainwindow.cpp" line="3528"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>不使用本機映像檔的 PINN 需要網路。請在下一個畫面選擇您的 wifi 連線。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3495"/>
+        <location filename="mainwindow.cpp" line="3536"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>不使用本機映像檔的 PINN 需要有線網路。請將網路線插入網路孔。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3830"/>
+        <location filename="mainwindow.cpp" line="3871"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>您確定您要重新格式化磁碟 &apos;%1&apos; 以供 PINN 使用嗎？所有在該磁碟上的資料都會被刪除！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4170"/>
+        <location filename="mainwindow.cpp" line="4211"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>這將會抹除在裝置 &apos;%s&apos; 上的所有內容。您確定嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4172"/>
+        <location filename="mainwindow.cpp" line="4213"/>
         <source>Clone SD Card</source>
         <translation>再製 SD 記憶卡</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4174"/>
+        <location filename="mainwindow.cpp" line="4215"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4175"/>
+        <location filename="mainwindow.cpp" line="4216"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4204"/>
+        <location filename="mainwindow.cpp" line="4245"/>
         <source>Clone Completed</source>
         <translation>再製完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4205"/>
+        <location filename="mainwindow.cpp" line="4246"/>
         <source>Clone Completed Successfully</source>
         <translation>再製成功完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4317"/>
+        <location filename="mainwindow.cpp" line="4358"/>
         <source>Error downloading update file</source>
         <translation>下載更新檔時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4324"/>
-        <location filename="mainwindow.cpp" line="4419"/>
+        <location filename="mainwindow.cpp" line="4365"/>
+        <location filename="mainwindow.cpp" line="4460"/>
         <source>PINN Update Check</source>
         <translation>PINN 更新檢查</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4324"/>
+        <location filename="mainwindow.cpp" line="4365"/>
         <source>Error contacting update server</source>
         <translation>聯絡更新伺服器發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4419"/>
+        <location filename="mainwindow.cpp" line="4460"/>
         <source>No updates available</source>
         <translation>無可用更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4428"/>
+        <location filename="mainwindow.cpp" line="4469"/>
         <source>PINN UPDATE</source>
         <translation>PINN 更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4429"/>
+        <location filename="mainwindow.cpp" line="4470"/>
         <source>A new version of PINN is available</source>
         <translation>已有新版的 PINN 可用</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4430"/>
+        <location filename="mainwindow.cpp" line="4471"/>
         <source>Do you want to download this version?</source>
         <translation>您想要下載此版本嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4462"/>
+        <location filename="mainwindow.cpp" line="4503"/>
         <source>Downloading Update</source>
         <translation>正在下載更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4462"/>
+        <location filename="mainwindow.cpp" line="4503"/>
         <source>Press ESC to cancel</source>
         <translation>按 ESC 取消</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4605"/>
+        <location filename="mainwindow.cpp" line="4646"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation>錯誤：沒有已選取的作業系統
 （不要選取 RISC OS 或 PINN）</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4633"/>
+        <location filename="mainwindow.cpp" line="4674"/>
         <source>Warning: No OSes selected
 </source>
         <translation>警告：沒有選擇作業系統
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4730"/>
+        <location filename="mainwindow.cpp" line="4771"/>
         <source>Warning: this will backup the selected Operating System(s).</source>
         <translation>警告：這將會備份選定的作業系統。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4774"/>
+        <location filename="mainwindow.cpp" line="4815"/>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
         <translation>警告：偵測到不支援的作業系統。PINN 目前無法正確備份下列的作業系統：</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1601"/>
+        <location filename="mainwindow.cpp" line="1642"/>
         <source>HDMI preferred mode</source>
         <translation>偏好 HDMI 模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1128"/>
-        <location filename="mainwindow.cpp" line="4623"/>
+        <location filename="mainwindow.cpp" line="1162"/>
+        <location filename="mainwindow.cpp" line="4664"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation> 不可用。
 請在本機提供它，或是連線到網際網路。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1402"/>
+        <location filename="mainwindow.cpp" line="1436"/>
         <source>OS(es) Downloaded with errors.
 See debug log for details.</source>
         <oldsource>OS(es) Downloaded with errors.
@@ -1142,12 +1153,12 @@ See debug log for details</oldsource>
 檢視除錯紀錄以取得更多資訊。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1404"/>
+        <location filename="mainwindow.cpp" line="1438"/>
         <source>OS(es) Downloaded Successfully.</source>
         <translation>作業系統已下載成功。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1432"/>
+        <location filename="mainwindow.cpp" line="1466"/>
         <source>OS(es) Installed with errors.
 See debug log for details.</source>
         <oldsource>OS(es) Installed with errors.
@@ -1156,39 +1167,39 @@ See debug log for details</oldsource>
 檢視除錯紀錄以取得更多資訊。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1566"/>
+        <location filename="mainwindow.cpp" line="1607"/>
         <source>PINN v%1 - Built: %2 (%3) %4</source>
         <translation>PINN v%1 - 建構： %2 (%3) %4</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1605"/>
+        <location filename="mainwindow.cpp" line="1646"/>
         <source>HDMI safe mode</source>
         <translation>HDMI 安全模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1609"/>
+        <location filename="mainwindow.cpp" line="1650"/>
         <source>composite PAL mode</source>
         <translation>合成 PAL 模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1613"/>
+        <location filename="mainwindow.cpp" line="1654"/>
         <source>composite NTSC mode</source>
         <translation>合成 NTSC 模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1682"/>
+        <location filename="mainwindow.cpp" line="1723"/>
         <source>Display Mode Changed</source>
         <translation>顯示模式已變更</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1683"/>
+        <location filename="mainwindow.cpp" line="1724"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>顯示模式已變更為 %1
 您想要讓這個設定永久生效嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1906"/>
+        <location filename="mainwindow.cpp" line="1947"/>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
@@ -1197,75 +1208,75 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
 再次於這個磁碟上開機將會恢復 PINN 的分割區結構。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1919"/>
-        <location filename="mainwindow.cpp" line="3486"/>
-        <location filename="mainwindow.cpp" line="3494"/>
+        <location filename="mainwindow.cpp" line="1960"/>
+        <location filename="mainwindow.cpp" line="3527"/>
+        <location filename="mainwindow.cpp" line="3535"/>
         <source>No network access</source>
         <translation>無法存取網路</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1920"/>
+        <location filename="mainwindow.cpp" line="1961"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>這個功能要求有線網路連線。請插入一條網路纜線至網路埠中。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2162"/>
-        <location filename="mainwindow.cpp" line="2300"/>
+        <location filename="mainwindow.cpp" line="2203"/>
+        <location filename="mainwindow.cpp" line="2341"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation>從網路上下載散佈版清單時發生錯誤：
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2164"/>
-        <location filename="mainwindow.cpp" line="2302"/>
-        <location filename="mainwindow.cpp" line="2819"/>
-        <location filename="mainwindow.cpp" line="2830"/>
-        <location filename="mainwindow.cpp" line="4317"/>
-        <location filename="mainwindow.cpp" line="4339"/>
+        <location filename="mainwindow.cpp" line="2205"/>
+        <location filename="mainwindow.cpp" line="2343"/>
+        <location filename="mainwindow.cpp" line="2860"/>
+        <location filename="mainwindow.cpp" line="2871"/>
+        <location filename="mainwindow.cpp" line="4358"/>
+        <location filename="mainwindow.cpp" line="4380"/>
         <source>Download error</source>
         <translation>下載錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2324"/>
+        <location filename="mainwindow.cpp" line="2365"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>解析從伺服器上下載的 list.json 時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2591"/>
-        <location filename="mainwindow.cpp" line="2594"/>
+        <location filename="mainwindow.cpp" line="2632"/>
+        <location filename="mainwindow.cpp" line="2635"/>
         <source>Needed</source>
         <translation>需要</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2592"/>
-        <location filename="mainwindow.cpp" line="2595"/>
+        <location filename="mainwindow.cpp" line="2633"/>
+        <location filename="mainwindow.cpp" line="2636"/>
         <source>Available</source>
         <translation>可用</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2819"/>
+        <location filename="mainwindow.cpp" line="2860"/>
         <source>Error downloading meta file</source>
         <translation>下載後設檔案時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2830"/>
-        <location filename="mainwindow.cpp" line="4339"/>
+        <location filename="mainwindow.cpp" line="2871"/>
+        <location filename="mainwindow.cpp" line="4380"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>寫入已下載的檔案至 SD 記憶卡時發生錯誤。SD 記憶卡或檔案系統可能受損。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2942"/>
+        <location filename="mainwindow.cpp" line="2983"/>
         <source>filesize error checking </source>
         <translation>檢查檔案大小錯誤 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3157"/>
+        <location filename="mainwindow.cpp" line="3198"/>
         <source> has an incompatible number of partitions with </source>
         <translation> 有不相容數量的分割區 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3829"/>
+        <location filename="mainwindow.cpp" line="3870"/>
         <source>Reformat drive?</source>
         <translation>重新格式化磁碟？</translation>
     </message>

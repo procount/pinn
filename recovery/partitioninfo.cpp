@@ -16,7 +16,6 @@ PartitionInfo::PartitionInfo(const QVariantMap &m, QObject *parent) :
     _uncompressedTarballSize = m.value("uncompressed_tarball_size").toUInt();
     _active        = m.value("active", false).toBool();
     _requiresLabel = m.value("requires_label",false).toBool();
-
     _csumType      = getCsumType(m);
     if (_csumType != "")
         _csum = getCsum(m,_csumType);

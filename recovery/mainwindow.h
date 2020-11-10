@@ -104,7 +104,7 @@ protected:
     QList<QToolBar*> toolbars;
     int toolbar_index;
 
-    QVariantMap _overrides;
+
     QProcess * _proc;
 
     void untarFirmware();
@@ -156,11 +156,10 @@ protected:
 
     void downloadRepoList(const QString &urlstring);
     void processRepoListJson(QVariant json);
-    void loadOverrides(const QString &filename);
-    void OverrideJson(QVariantMap& m);
     void createPinnEntry();
     void UpdateTime();
     void setTime(QNetworkReply *reply);
+    int closeDialogs();
 
 protected slots:
 

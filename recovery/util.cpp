@@ -17,6 +17,8 @@
 #include <QtEndian>
 #include <QStringRef>
 #include <QMessageBox>
+#include <QVariantMap>
+
 /*
  * Convenience functions
  *
@@ -25,6 +27,8 @@
  *
  * See LICENSE.txt for license details
  */
+
+QVariantMap _overrides;
 
 struct partid_t
 {
@@ -653,4 +657,83 @@ QString getCsum(const QVariantMap &partition, const QString &csumType)
         csum = QString(getRemoteFile(csum)).split(" ").first();
     }
     return(csum);
+}
+
+void SupplantUSBdevice(QVariantMap& m)
+{
+    QString param;
+
+    if ( m.contains("supports_sda_boot") || m.contains("supports_sda_root") )
+    {
+        if (m.value("supports_sda_root",false).toBool() || m.value("supports_sda_boot",false).toBool())
+        {
+            m["use_partuuid"]=false;
+            m.remove("supports_usb_boot");
+            m.remove("supports_usb_root");
+
+            if (m.contains("supports_sda_boot"))
+            {
+                m["supports_usb_boot"] = m.value("supports_sda_boot").toBool();
+            }
+            if (m.contains("supports_sda_root"))
+            {
+                m["supports_usb_root"] = m.value("supports_sda_root").toBool();
+            }
+        }
+    }
+}
+
+void loadOverrides(const QString &filename)
+{
+    TRACE
+    if (QFile::exists(filename))
+    {
+        _overrides = Json::loadFromFile(filename).toMap();
+    }
+}
+
+
+
+void OverrideJson(QVariantMap& m)
+{
+    TRACE
+    QString name;
+    if (m.contains("name"))
+        name = CORE(m.value("name").toString());
+    else if (m.contains("os_name"))
+        name = CORE(m.value("os_name").toString());
+    else
+        return;
+
+    SupplantUSBdevice(m);
+
+    if (!_overrides.contains(name))
+        return;
+
+    QVariantMap osMap = _overrides.value(name).toMap();
+    for(QVariantMap::const_iterator iter = osMap.begin(); iter != osMap.end(); ++iter) {
+        QString key = iter.key();
+        QString action = key.left(1);
+        if (action == "+" || action =="-")
+            key = key.mid(1,-1); //Remove the action character
+        else
+            action = "";    //default action
+
+        if (action=="")
+        {   //Default action is to add or replace new override
+            m[key] = iter.value();
+        }
+        else if (action=="+")
+        {   //Only add if it does not already exist
+            if (!m.contains(key))
+            {
+                m[key] = iter.value();
+            }
+        }
+        else if (action=="-")
+        {   //Remove the key if it exists
+            if (!m.contains(key))
+                m.remove(key);
+        }
+    }
 }

@@ -43,6 +43,15 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V3.5.3
+
+- **buildroot**    - improve some build scripts
+- **dualhdmi**     - fix license
+- **Installation** - Refactor close dialogs for better error handling
+- **Memory**       - Display amount of Pi memory fitted
+- **partuuid**     - Allow installation to USB without partuuid
+- **BuildEnv**     - Buildenv updated to Ubuntu 20.04
+
 ### V3.5.2
 
 - **KERNEL** - Fix issue with PI4 8GB models

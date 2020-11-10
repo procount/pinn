@@ -605,4 +605,14 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **Translations** - Update it translations
 - **HDMI** - Automatic switching between HDMI0 and HDMI1
 
+### V3.5.3
+
+- **buildroot**    - improve some build scripts
+- **dualhdmi**     - fix license
+- **Installation** - Refactor close dialogs for better error handling
+- **Memory**       - Display amount of Pi memory fitted
+- **partuuid**     - Allow installation to USB without partuuid
+- **BuildEnv**     - Buildenv updated to Ubuntu 20.04
+
+
 

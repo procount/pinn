@@ -4,6 +4,7 @@
 #include <QString>
 #include <QByteArray>
 #include <QVariant>
+#include <QVariantMap>
 #include <QListWidgetItem>
 #include <sys/syscall.h>
 #include <linux/reboot.h>
@@ -35,6 +36,9 @@ typedef int eNAMEPARTS;
 #define eUNIQUE (eBASE|eFLAVOUR|ePART)   //Name name + partition info
 #define eFULL (eBASE|eFLAVOUR|eNICKNAME|eDATE|ePART) //Everything
 
+
+extern QVariantMap _overrides;
+
 QByteArray getFileContents(const QString &filename);
 void putFileContents(const QString &filename, const QByteArray &data);
 QByteArray getRemoteFile(const QString &url);
@@ -65,6 +69,9 @@ void setNameParts(QStringList& list, eNAMEPARTS flags, const QString& part );
 QString joinNameParts(QStringList input);
 QString getCsumType(const QVariantMap &partition);
 QString getCsum(const QVariantMap &partition, const QString &csumType);
+void SupplantUSBdevice(QVariantMap &m);
+void OverrideJson(QVariantMap& m);
+void loadOverrides(const QString &filename);
 
 bool updatePartitionScript(QVariantMap & entry, QListWidgetItem * witem);
 
