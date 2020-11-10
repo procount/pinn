@@ -212,7 +212,7 @@ int main(int argc, char *argv[])
 
     qDebug() << VERSION_NUMBER;
 
-    int rev = readBoardRevision();
+    uint rev = readBoardRevision();
     qDebug() << "Board revision is " << rev;
 
     int gpioChannel;

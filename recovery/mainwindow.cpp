@@ -132,21 +132,9 @@ void MainWindow::expired(void)
 {
     //Close any open messageboxes
     int numDialogs=0;
-    QWidgetList topWidgets = QApplication::topLevelWidgets();
-    foreach (QWidget *w, topWidgets)
-    {
-        //if (QMessageBox *mb = qobject_cast<QMessageBox *>(w))
-        if (qobject_cast<QMessageBox *>(w) || qobject_cast<WifiSettingsDialog*>(w))
-        {
-            if (w->isVisible())
-            {
-                numDialogs++;
-                //mb->accept();
-                w->close();
-                QApplication::processEvents();
-            }
-        }
-    }
+
+    numDialogs=closeDialogs();
+
     if (numDialogs)
     {
         QTimer::singleShot(1000,this,SLOT(expired()));
@@ -369,6 +357,36 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
 
     _model = getFileContents("/proc/device-tree/model");
     ui->modelname->setText(_model);
+
+    //Revision code: NOQu uuWu FMMM CCCC PPPP TTTT TTTT RRRR
+    uint rev = readBoardRevision();
+    ui->memory->setText("");
+    uint mem = rev>>20 & 0x07;
+    switch (mem)
+    {
+        case 0:
+            ui->memory->setText("256MB");
+            break;
+        case 1:
+            ui->memory->setText("512MB");
+            break;
+        case 2:
+            ui->memory->setText("1GB");
+            break;
+        case 3:
+            ui->memory->setText("2GB");
+            break;
+        case 4:
+            ui->memory->setText("4GB");
+            break;
+        case 5:
+            ui->memory->setText("8GB");
+            break;
+        default:
+            ui->memory->setText("");
+            break;
+    }
+
     loadOverrides("/mnt/overrides.json");
 
     untarFirmware();
@@ -1025,9 +1043,11 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
 
     bool allSupported = true;
     bool gotAllSource = true;
+    bool bPartuuids=true;
     QString unsupportedOses;
     QString missingOses;
     QString selectedOSes;
+    QString nonpartuuids;
 
     QList<QListWidgetItem *> selected = selectedItems();
 
@@ -1057,6 +1077,11 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
             gotAllSource = false;
             missingOses += "\n" + name;
         }
+        if ((entry.value("use_partuuid")==false) && ((_bootdrive!="/dev/mmcblk0") || (_drive!="/dev/mmcblk0")))
+        {
+            nonpartuuids += "\n" + name;
+            bPartuuids = false;
+        }
     }
 
     if (!gotAllSource)
@@ -1067,6 +1092,15 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
                                  tr("Error: Some OSes are not available:\n")+missingOses,
                                  QMessageBox::Close);
         return;
+    }
+
+    if (bPartuuids == false)
+    {
+        if ( !_silent && QMessageBox::warning(this,
+                                    tr("Confirm"),
+                                    tr("Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:\n") + nonpartuuids + tr("\n\nDo you want to continue?"),
+                                    QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::No)
+            return;
     }
 
     if (_newList.count())
@@ -1441,6 +1475,7 @@ void MainWindow::onCompleted(int arg)
     _qpssd = NULL;
 
     // Return back to main menu
+    closeDialogs();
     setEnabled(true);
     show();
     _silent=false;
@@ -1472,6 +1507,25 @@ void MainWindow::onErrorContinue(const QString &msg)
         QMessageBox::critical(this, tr("Error"), msg, QMessageBox::Close);
 }
 
+int MainWindow::closeDialogs()
+{
+    int numDialogs=0;
+    QWidgetList topWidgets = QApplication::topLevelWidgets();
+    foreach (QWidget *w, topWidgets)
+    {
+        if (qobject_cast<QMessageBox *>(w) || qobject_cast<WifiSettingsDialog*>(w))
+        {
+            if (w->isVisible())
+            {
+                numDialogs++;
+                w->close();
+                QApplication::processEvents();
+            }
+        }
+    }
+    return (numDialogs);
+}
+
 void MainWindow::onError(const QString &msg)
 {
     TRACE
@@ -1486,20 +1540,7 @@ void MainWindow::onError(const QString &msg)
     if (!_silent)
         QMessageBox::critical(this, tr("Error"), msg, QMessageBox::Close);
 
-
-    QWidgetList topWidgets = QApplication::topLevelWidgets();
-    foreach (QWidget *w, topWidgets)
-    {
-        if (qobject_cast<QMessageBox *>(w) || qobject_cast<WifiSettingsDialog*>(w))
-        {
-            if (w->isVisible())
-            {
-                //numDialogs++;
-                w->close();
-                QApplication::processEvents();
-            }
-        }
-    }
+    closeDialogs();
 
     _piDrivePollTimer.start(POLLTIME);
     show();
@@ -4118,8 +4159,7 @@ void MainWindow::filterList()
             else
                 param = "supports_usb_boot";
 
-
-            /* If the repo explicity states wheter or not usb is supported use that info */
+            /* If the repo explicity states whether or not usbS is supported use that info */
             if (m.contains(param))
             {
                 supportsUsb = m.value(param).toBool();
@@ -4562,6 +4602,9 @@ void MainWindow::on_actionReplace_triggered()
     QList<QListWidgetItem *> replacementList;
     QList<QListWidgetItem *> installedList;
 
+    bool bPartuuids=true;
+    QString nonpartuuids;
+
     replacementList = ug->selectedItems();
     installedList   = ug->selectedInstalledItems();
 
@@ -4596,6 +4639,12 @@ void MainWindow::on_actionReplace_triggered()
             it = replacementList.erase(it);
         else
             ++it;
+
+        if ((replacementMap.value("use_partuuid")==false) && ((_bootdrive!="/dev/mmcblk0") || (_drive!="/dev/mmcblk0")))
+        {
+            nonpartuuids += "\n" + name;
+            bPartuuids = false;
+        }
     }
 
     if (!replacementList.count() || !installedList.count())
@@ -4606,6 +4655,16 @@ void MainWindow::on_actionReplace_triggered()
                              QMessageBox::Close);
         return;
     }
+
+    if (bPartuuids == false)
+    {
+        if ( !_silent && QMessageBox::warning(this,
+                                    tr("Confirm"),
+                                    tr("Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:\n") + nonpartuuids + tr("\n\nDo you want to continue?"),
+                                    QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::No)
+            return;
+    }
+
 
     replace dlg(replacementList,installedList,this);
     if (dlg.exec() != QDialog::Accepted)
@@ -4636,57 +4695,6 @@ void MainWindow::on_actionReplace_triggered()
     }
 }
 
-void MainWindow::loadOverrides(const QString &filename)
-{
-    TRACE
-    if (QFile::exists(filename))
-    {
-        _overrides = Json::loadFromFile(filename).toMap();
-    }
-}
-
-
-void MainWindow::OverrideJson(QVariantMap& m)
-{
-    TRACE
-    QString name;
-    if (m.contains("name"))
-        name = CORE(m.value("name").toString());
-    else if (m.contains("os_name"))
-        name = CORE(m.value("os_name").toString());
-    else
-        return;
-
-    if (!_overrides.contains(name))
-        return;
-
-    QVariantMap osMap = _overrides.value(name).toMap();
-    for(QVariantMap::const_iterator iter = osMap.begin(); iter != osMap.end(); ++iter) {
-        QString key = iter.key();
-        QString action = key.left(1);
-        if (action == "+" || action =="-")
-            key = key.mid(1,-1); //Remove the action character
-        else
-            action = "";    //default action
-
-        if (action=="")
-        {   //Default action is to add or replace new override
-            m[key] = iter.value();
-        }
-        else if (action=="+")
-        {   //Only add if it does not already exist
-            if (!m.contains(key))
-            {
-                m[key] = iter.value();
-            }
-        }
-        else if (action=="-")
-        {   //Remove the key if it exists
-            if (!m.contains(key))
-                m.remove(key);
-        }
-    }
-}
 
 void MainWindow::on_actionFschk_triggered()
 {

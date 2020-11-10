@@ -662,7 +662,7 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
     TRACE
     QString os_name = image->name();
     qDebug() << "Processing OS:" << os_name;
-
+    //qDebug() << image;
     _setupError = false;
 
     QList<PartitionInfo *> *partitions = image->partitions();
@@ -802,7 +802,7 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
     foreach (PartitionInfo *p, *partitions)
     {
         QString part = p->partitionDevice();
-        if ((part.left(8) != "PARTUUID") && (part.left(13) != "/dev/mmcblk0p"))
+        if ((part.left(8) != "PARTUUID") && (part.left(13) != "/dev/mmcblk0p") && (image->use_partuuid()))
         {
             part = getPartUUID(part);
         }
@@ -882,7 +882,7 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
                     id = "LABEL="+label;
                 else
                     id = "UUID="+uuid;
-                if (_drive != "/dev/mmcblk0")
+                if ( (_drive != "/dev/mmcblk0") && (image->use_partuuid()) )
                     part = partuuid;
 
                 qDebug() << "part" << part << uuid << label;
@@ -1394,6 +1394,7 @@ bool MultiImageWriteThread::isLabelAvailable(const QByteArray &label, const QByt
 QMessageBox::ButtonRole  MultiImageWriteThread::untar(const QString &tarball, const QString &csumType, const QString &csum, bool bSuppressError)
 {
     TRACE
+    Q_UNUSED(bSuppressError);
 
     QFile f("/tmp/fifo");
     if (f.exists())

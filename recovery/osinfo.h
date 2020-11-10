@@ -19,37 +19,37 @@ public:
     /* Constructor parses the json files in <folder>, and stores information in local variables */
     explicit OsInfo(const QString &folder, const QString &flavour = "", QObject *parent = 0);
 
-    inline QString folder()
+    inline QString folder() const
     {
         return _folder;
     }
 
-    inline QString flavour()
+    inline QString flavour() const
     {
         return _flavour;
     }
 
-    inline QString name()
+    inline QString name() const
     {
         return _name;
     }
 
-    inline QString description()
+    inline QString description() const
     {
         return _description;
     }
 
-    inline QString version()
+    inline QString version() const
     {
         return _version;
     }
 
-    inline QString releaseDate()
+    inline QString releaseDate() const
     {
         return _releaseDate;
     }
 
-    inline bool bootable()
+    inline bool bootable() const
     {
         return _bootable;
     }
@@ -59,42 +59,42 @@ public:
         return &_partitions;
     }
 
-    inline int riscosOffset()
+    inline int riscosOffset() const
     {
         return _riscosOffset;
     }
 
-    inline QStringList supportedModels()
+    inline QStringList supportedModels() const
     {
         return _supportedModels;
     }
 
-    inline QString username()
+    inline QString username() const
     {
         return _username;
     }
 
-    inline QString password()
+    inline QString password() const
     {
         return _password;
     }
 
-    inline QString url()
+    inline QString url() const
     {
         return _url;
     }
 
-    inline QString group()
+    inline QString group() const
     {
         return _group;
     }
 
-    inline QString configPath()
+    inline QString configPath() const
     {
         return _configpath;
     }
 
-    inline QString replacedName()
+    inline QString replacedName() const
     {
         return _replacedName;
     }
@@ -104,12 +104,32 @@ public:
         _replacedName = old_name;
     }
 
-    inline QString supportsBackup()
+    inline QString supportsBackup() const
     {
         return _supports_backup;
     }
 
-    inline QString csumType()
+    inline bool supports_usb_boot() const
+    {
+        return _supports_usb_boot;
+    }
+
+    inline bool supports_usb_root() const
+    {
+        return _supports_usb_root;
+    }
+
+    inline bool supports_sda_boot() const
+    {
+        return _supports_sda_boot;
+    }
+
+    inline bool supports_sda_root() const
+    {
+        return _supports_usb_root;
+    }
+
+    inline QString csumType() const
     {
         return (_csumType);
     }
@@ -119,7 +139,7 @@ public:
         _csumType = type;
     }
 
-    inline QString csum()
+    inline QString csum() const
     {
         return (_csum);
     }
@@ -129,11 +149,22 @@ public:
         _csum = csum;
     }
 
+    inline bool use_partuuid() const
+    {
+        return(_use_partuuid);
+    }
+
+    inline void set_partuuid(const bool useit)
+    {
+        _use_partuuid = useit;
+    }
+
 
 protected:
     QString _folder, _flavour, _name, _description, _version, _releaseDate;
     QString _username, _password, _url, _group, _configpath, _replacedName;
-    bool _bootable;
+    bool _supports_usb_boot, _supports_usb_root, _supports_sda_boot, _supports_sda_root;
+    bool _bootable, _use_partuuid;
     QString _supports_backup;
     QString _csum, _csumType;
     QList<PartitionInfo *> _partitions;
@@ -141,4 +172,7 @@ protected:
     int _riscosOffset;
 
 };
+
+QDebug operator<<(QDebug dbg, const OsInfo &os);
+
 #endif // OSINFO_H
