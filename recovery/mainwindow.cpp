@@ -369,6 +369,36 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
 
     _model = getFileContents("/proc/device-tree/model");
     ui->modelname->setText(_model);
+
+    //Revision code: NOQu uuWu FMMM CCCC PPPP TTTT TTTT RRRR
+    uint rev = readBoardRevision();
+    ui->memory->setText("");
+    uint mem = rev>>20 & 0x07;
+    switch (mem)
+    {
+        case 0:
+            ui->memory->setText("256MB");
+            break;
+        case 1:
+            ui->memory->setText("512MB");
+            break;
+        case 2:
+            ui->memory->setText("1GB");
+            break;
+        case 3:
+            ui->memory->setText("2GB");
+            break;
+        case 4:
+            ui->memory->setText("4GB");
+            break;
+        case 5:
+            ui->memory->setText("8GB");
+            break;
+        default:
+            ui->memory->setText("");
+            break;
+    }
+
     loadOverrides("/mnt/overrides.json");
 
     untarFirmware();
