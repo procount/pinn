@@ -132,21 +132,9 @@ void MainWindow::expired(void)
 {
     //Close any open messageboxes
     int numDialogs=0;
-    QWidgetList topWidgets = QApplication::topLevelWidgets();
-    foreach (QWidget *w, topWidgets)
-    {
-        //if (QMessageBox *mb = qobject_cast<QMessageBox *>(w))
-        if (qobject_cast<QMessageBox *>(w) || qobject_cast<WifiSettingsDialog*>(w))
-        {
-            if (w->isVisible())
-            {
-                numDialogs++;
-                //mb->accept();
-                w->close();
-                QApplication::processEvents();
-            }
-        }
-    }
+
+    numDialogs=closeDialogs();
+
     if (numDialogs)
     {
         QTimer::singleShot(1000,this,SLOT(expired()));
@@ -1471,6 +1459,7 @@ void MainWindow::onCompleted(int arg)
     _qpssd = NULL;
 
     // Return back to main menu
+    closeDialogs();
     setEnabled(true);
     show();
     _silent=false;
@@ -1502,6 +1491,25 @@ void MainWindow::onErrorContinue(const QString &msg)
         QMessageBox::critical(this, tr("Error"), msg, QMessageBox::Close);
 }
 
+int MainWindow::closeDialogs()
+{
+    int numDialogs=0;
+    QWidgetList topWidgets = QApplication::topLevelWidgets();
+    foreach (QWidget *w, topWidgets)
+    {
+        if (qobject_cast<QMessageBox *>(w) || qobject_cast<WifiSettingsDialog*>(w))
+        {
+            if (w->isVisible())
+            {
+                numDialogs++;
+                w->close();
+                QApplication::processEvents();
+            }
+        }
+    }
+    return (numDialogs);
+}
+
 void MainWindow::onError(const QString &msg)
 {
     TRACE
@@ -1516,20 +1524,7 @@ void MainWindow::onError(const QString &msg)
     if (!_silent)
         QMessageBox::critical(this, tr("Error"), msg, QMessageBox::Close);
 
-
-    QWidgetList topWidgets = QApplication::topLevelWidgets();
-    foreach (QWidget *w, topWidgets)
-    {
-        if (qobject_cast<QMessageBox *>(w) || qobject_cast<WifiSettingsDialog*>(w))
-        {
-            if (w->isVisible())
-            {
-                //numDialogs++;
-                w->close();
-                QApplication::processEvents();
-            }
-        }
-    }
+    closeDialogs();
 
     _piDrivePollTimer.start(POLLTIME);
     show();

@@ -161,6 +161,7 @@ protected:
     void createPinnEntry();
     void UpdateTime();
     void setTime(QNetworkReply *reply);
+    int closeDialogs();
 
 protected slots:
 

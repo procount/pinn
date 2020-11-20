@@ -129,11 +129,21 @@ public:
         _csum = csum;
     }
 
+    inline bool use_partuuid()
+    {
+        return(_use_partuuid);
+    }
+
+    inline void set_partuuid(const bool useit)
+    {
+        _use_partuuid = useit;
+    }
+
 
 protected:
     QString _folder, _flavour, _name, _description, _version, _releaseDate;
     QString _username, _password, _url, _group, _configpath, _replacedName;
-    bool _bootable;
+    bool _bootable, _use_partuuid;
     QString _supports_backup;
     QString _csum, _csumType;
     QList<PartitionInfo *> _partitions;

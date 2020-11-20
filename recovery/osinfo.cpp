@@ -39,6 +39,8 @@ OsInfo::OsInfo(const QString &folder, const QString &flavour, QObject *parent) :
     else
         _supports_backup="";
 
+    _use_partuuid  = m.value("use_partuuid",true).toBool();
+
     QVariantMap p = Json::loadFromFile(folder+"/partitions.json").toMap();
     QVariantList parts = p.value("partitions").toList();
     _configpath = p.value("configpath").toString();
