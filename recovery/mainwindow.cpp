@@ -1043,9 +1043,11 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
 
     bool allSupported = true;
     bool gotAllSource = true;
+    bool bPartuuids=true;
     QString unsupportedOses;
     QString missingOses;
     QString selectedOSes;
+    QString nonpartuuids;
 
     QList<QListWidgetItem *> selected = selectedItems();
 
@@ -1075,6 +1077,11 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
             gotAllSource = false;
             missingOses += "\n" + name;
         }
+        if ((entry.value("use_partuuid")==false) && (_bootdrive!="/dev/mmcblk0") || (_drive!="/dev/mmcblk0"))
+        {
+            nonpartuuids += "\n" + name;
+            bPartuuids = false;
+        }
     }
 
     if (!gotAllSource)
@@ -1085,6 +1092,15 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
                                  tr("Error: Some OSes are not available:\n")+missingOses,
                                  QMessageBox::Close);
         return;
+    }
+
+    if (bPartuuids == false)
+    {
+        if ( !_silent && QMessageBox::warning(this,
+                                    tr("Confirm"),
+                                    tr("Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:") + unsupportedOses,
+                                    QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::No)
+            return;
     }
 
     if (_newList.count())
