@@ -1077,7 +1077,7 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
             gotAllSource = false;
             missingOses += "\n" + name;
         }
-        if ((entry.value("use_partuuid")==false) && (_bootdrive!="/dev/mmcblk0") || (_drive!="/dev/mmcblk0"))
+        if ((entry.value("use_partuuid")==false) && ((_bootdrive!="/dev/mmcblk0") || (_drive!="/dev/mmcblk0")))
         {
             nonpartuuids += "\n" + name;
             bPartuuids = false;
@@ -1098,7 +1098,7 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
     {
         if ( !_silent && QMessageBox::warning(this,
                                     tr("Confirm"),
-                                    tr("Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:") + unsupportedOses,
+                                    tr("Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:\n") + nonpartuuids + tr("\n\nDo you want to continue?"),
                                     QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::No)
             return;
     }
