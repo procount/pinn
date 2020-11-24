@@ -157,6 +157,7 @@ protected:
     void downloadRepoList(const QString &urlstring);
     void processRepoListJson(QVariant json);
     void loadOverrides(const QString &filename);
+    //void SupplantUSBdevice(QVariantMap& m); now in util.cpp
     void OverrideJson(QVariantMap& m);
     void createPinnEntry();
     void UpdateTime();

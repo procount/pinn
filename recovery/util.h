@@ -65,6 +65,7 @@ void setNameParts(QStringList& list, eNAMEPARTS flags, const QString& part );
 QString joinNameParts(QStringList input);
 QString getCsumType(const QVariantMap &partition);
 QString getCsum(const QVariantMap &partition, const QString &csumType);
+void SupplantUSBdevice(QVariantMap &m);
 
 bool updatePartitionScript(QVariantMap & entry, QListWidgetItem * witem);
 

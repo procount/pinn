@@ -17,6 +17,8 @@
 #include <QtEndian>
 #include <QStringRef>
 #include <QMessageBox>
+#include <QVariantMap>
+
 /*
  * Convenience functions
  *
@@ -654,3 +656,32 @@ QString getCsum(const QVariantMap &partition, const QString &csumType)
     }
     return(csum);
 }
+
+void SupplantUSBdevice(QVariantMap& m)
+{
+    QString param;
+
+    if ( m.contains("supports_sda_boot") || m.contains("supports_sda_root") )
+    {
+        qDebug() << "Supplanting USB";
+        if (m.value("supports_sda_root",false).toBool() || m.value("supports_sda_boot",false).toBool())
+        {
+            qDebug() << "Removing USB";
+            m["use_partuuid"]=false;
+            m.remove("supports_usb_boot");
+            m.remove("supports_usb_root");
+
+            if (m.contains("supports_sda_boot"))
+            {
+                m["supports_usb_boot"] = m.value("supports_sda_boot").toBool();
+                qDebug() << "Replacing USB boot";
+            }
+            if (m.contains("supports_sda_root"))
+            {
+                m["supports_usb_root"] = m.value("supports_sda_root").toBool();
+                qDebug() << "Replacing USB root";
+            }
+        }
+    }
+}
+

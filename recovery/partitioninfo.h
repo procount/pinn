@@ -152,4 +152,6 @@ protected:
     bool _emptyFS, _wantMaximised, _active, _requiresLabel;
 };
 
+QDebug operator<<(QDebug dbg, const PartitionInfo &PartitionInfo);
+
 #endif // PARTITIONINFO_H

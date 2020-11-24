@@ -83,6 +83,7 @@ void MultiImageWriteThread::run()
 
         foreach (OsInfo *image, _images)
         {
+            qDebug() << *image;
             QList<PartitionInfo *> *partitions = image->partitions();
             if (partitions->isEmpty())
             {
@@ -1394,6 +1395,7 @@ bool MultiImageWriteThread::isLabelAvailable(const QByteArray &label, const QByt
 QMessageBox::ButtonRole  MultiImageWriteThread::untar(const QString &tarball, const QString &csumType, const QString &csum, bool bSuppressError)
 {
     TRACE
+    Q_UNUSED(bSuppressError);
 
     QFile f("/tmp/fifo");
     if (f.exists())

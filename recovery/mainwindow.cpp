@@ -4159,8 +4159,7 @@ void MainWindow::filterList()
             else
                 param = "supports_usb_boot";
 
-
-            /* If the repo explicity states wheter or not usb is supported use that info */
+            /* If the repo explicity states whether or not usbS is supported use that info */
             if (m.contains(param))
             {
                 supportsUsb = m.value(param).toBool();
@@ -4686,7 +4685,6 @@ void MainWindow::loadOverrides(const QString &filename)
     }
 }
 
-
 void MainWindow::OverrideJson(QVariantMap& m)
 {
     TRACE
@@ -4697,6 +4695,10 @@ void MainWindow::OverrideJson(QVariantMap& m)
         name = CORE(m.value("os_name").toString());
     else
         return;
+
+    qDebug() << m;
+    SupplantUSBdevice(m);
+    qDebug() << m;
 
     if (!_overrides.contains(name))
         return;
