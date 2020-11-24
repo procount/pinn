@@ -8,7 +8,10 @@ OsInfo::OsInfo(const QString &folder, const QString &flavour, QObject *parent) :
     QObject(parent), _folder(folder), _flavour(flavour)
 {
     QVariantMap m = Json::loadFromFile(folder+"/os.json").toMap();
-    SupplantUSBdevice(m);
+
+    //Although this was already done when loading the initial lists, we're reading them from disk again, so repeating it.
+    OverrideJson(m);
+
     _name = m.value("name").toString();
     _version = m.value("version").toString();
     _description = m.value("description").toString();

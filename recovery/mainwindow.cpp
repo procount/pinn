@@ -4602,6 +4602,9 @@ void MainWindow::on_actionReplace_triggered()
     QList<QListWidgetItem *> replacementList;
     QList<QListWidgetItem *> installedList;
 
+    bool bPartuuids=true;
+    QString nonpartuuids;
+
     replacementList = ug->selectedItems();
     installedList   = ug->selectedInstalledItems();
 
@@ -4636,6 +4639,12 @@ void MainWindow::on_actionReplace_triggered()
             it = replacementList.erase(it);
         else
             ++it;
+
+        if ((replacementMap.value("use_partuuid")==false) && ((_bootdrive!="/dev/mmcblk0") || (_drive!="/dev/mmcblk0")))
+        {
+            nonpartuuids += "\n" + name;
+            bPartuuids = false;
+        }
     }
 
     if (!replacementList.count() || !installedList.count())
@@ -4646,6 +4655,16 @@ void MainWindow::on_actionReplace_triggered()
                              QMessageBox::Close);
         return;
     }
+
+    if (bPartuuids == false)
+    {
+        if ( !_silent && QMessageBox::warning(this,
+                                    tr("Confirm"),
+                                    tr("Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:\n") + nonpartuuids + tr("\n\nDo you want to continue?"),
+                                    QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::No)
+            return;
+    }
+
 
     replace dlg(replacementList,installedList,this);
     if (dlg.exec() != QDialog::Accepted)
@@ -4676,60 +4695,6 @@ void MainWindow::on_actionReplace_triggered()
     }
 }
 
-void MainWindow::loadOverrides(const QString &filename)
-{
-    TRACE
-    if (QFile::exists(filename))
-    {
-        _overrides = Json::loadFromFile(filename).toMap();
-    }
-}
-
-void MainWindow::OverrideJson(QVariantMap& m)
-{
-    TRACE
-    QString name;
-    if (m.contains("name"))
-        name = CORE(m.value("name").toString());
-    else if (m.contains("os_name"))
-        name = CORE(m.value("os_name").toString());
-    else
-        return;
-
-    qDebug() << m;
-    SupplantUSBdevice(m);
-    qDebug() << m;
-
-    if (!_overrides.contains(name))
-        return;
-
-    QVariantMap osMap = _overrides.value(name).toMap();
-    for(QVariantMap::const_iterator iter = osMap.begin(); iter != osMap.end(); ++iter) {
-        QString key = iter.key();
-        QString action = key.left(1);
-        if (action == "+" || action =="-")
-            key = key.mid(1,-1); //Remove the action character
-        else
-            action = "";    //default action
-
-        if (action=="")
-        {   //Default action is to add or replace new override
-            m[key] = iter.value();
-        }
-        else if (action=="+")
-        {   //Only add if it does not already exist
-            if (!m.contains(key))
-            {
-                m[key] = iter.value();
-            }
-        }
-        else if (action=="-")
-        {   //Remove the key if it exists
-            if (!m.contains(key))
-                m.remove(key);
-        }
-    }
-}
 
 void MainWindow::on_actionFschk_triggered()
 {

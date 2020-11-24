@@ -28,6 +28,8 @@
  * See LICENSE.txt for license details
  */
 
+QVariantMap _overrides;
+
 struct partid_t
 {
     int start;
@@ -685,3 +687,59 @@ void SupplantUSBdevice(QVariantMap& m)
     }
 }
 
+void loadOverrides(const QString &filename)
+{
+    TRACE
+    if (QFile::exists(filename))
+    {
+        _overrides = Json::loadFromFile(filename).toMap();
+    }
+}
+
+
+
+void OverrideJson(QVariantMap& m)
+{
+    TRACE
+    QString name;
+    if (m.contains("name"))
+        name = CORE(m.value("name").toString());
+    else if (m.contains("os_name"))
+        name = CORE(m.value("os_name").toString());
+    else
+        return;
+
+    qDebug() << m;
+    SupplantUSBdevice(m);
+    qDebug() << m;
+
+    if (!_overrides.contains(name))
+        return;
+
+    QVariantMap osMap = _overrides.value(name).toMap();
+    for(QVariantMap::const_iterator iter = osMap.begin(); iter != osMap.end(); ++iter) {
+        QString key = iter.key();
+        QString action = key.left(1);
+        if (action == "+" || action =="-")
+            key = key.mid(1,-1); //Remove the action character
+        else
+            action = "";    //default action
+
+        if (action=="")
+        {   //Default action is to add or replace new override
+            m[key] = iter.value();
+        }
+        else if (action=="+")
+        {   //Only add if it does not already exist
+            if (!m.contains(key))
+            {
+                m[key] = iter.value();
+            }
+        }
+        else if (action=="-")
+        {   //Remove the key if it exists
+            if (!m.contains(key))
+                m.remove(key);
+        }
+    }
+}
