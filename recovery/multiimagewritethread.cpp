@@ -83,7 +83,6 @@ void MultiImageWriteThread::run()
 
         foreach (OsInfo *image, _images)
         {
-            qDebug() << *image;
             QList<PartitionInfo *> *partitions = image->partitions();
             if (partitions->isEmpty())
             {

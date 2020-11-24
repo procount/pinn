@@ -57,7 +57,6 @@ QDebug operator<<(QDebug dbg, const OsInfo &os)
 {
     dbg.nospace() << "OsInfo{";
     dbg.nospace() << "Name="<<os.name();
-/*
     dbg.nospace() << ", Flavour ="<<os.flavour();
     dbg.nospace() << ", Folder="<<os.folder();
     dbg.nospace() << ", Description="<<os.description();
@@ -70,19 +69,16 @@ QDebug operator<<(QDebug dbg, const OsInfo &os)
     dbg.nospace() << ", Configpath="<<os.configPath();
     dbg.nospace() << ", ReplacedName="<<os.replacedName();
     dbg.nospace() << ", SupportsBackup="<<os.supportsBackup();
-*/
     dbg.nospace() << ", UsePartuuid="<<os.use_partuuid();
     dbg.nospace() << ", SupportsUSBboot="<<os.supports_usb_boot();
     dbg.nospace() << ", SupportsUSBroot="<<os.supports_usb_root();
     dbg.nospace() << ", SupportsSDAboot="<<os.supports_sda_boot();
     dbg.nospace() << ", SupportsSDAroot="<<os.supports_sda_root();
-/*
     dbg.nospace() << ", csum="<<os.csum();
     dbg.nospace() << ", CsumType="<<os.csumType();
     dbg.nospace() << ", Bootable="<<os.bootable();
     dbg.nospace() << ", SupportedModels="<<os.supportedModels();
     dbg.nospace() << ", riscosOffset="<<os.riscosOffset();
-*/
     dbg.nospace() << "}";
 
     return dbg.maybeSpace();
