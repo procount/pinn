@@ -130,7 +130,7 @@ void MultiImageWriteThread::run()
                 totalnominalsize += nominalsize;
                 totaluncompressedsize += partition->uncompressedTarballSize();
 
-                if (partition->fsType() == "ext4")
+                if ( (partition->fsType() == "ext4") || (partition->fsType() == "ext3") )
                 {
                     totaluncompressedsize += nominalsize / 20 ; /* overhead for file system meta data */
                 }
@@ -368,7 +368,7 @@ void MultiImageWriteThread::run()
                 uint nominalsize = partition->partitionSizeNominal();
 
                 totaluncompressedsize += partition->uncompressedTarballSize();
-                if (partition->fsType() == "ext4")
+                if ( (partition->fsType() == "ext4") || (partition->fsType() == "ext3") )
                 {
                     totaluncompressedsize += nominalsize / 20 ; /* overhead for file system meta data */
                 }
@@ -1340,6 +1340,14 @@ bool MultiImageWriteThread::mkfs(const QByteArray &device, const QByteArray &fst
     else if (fstype == "ext4")
     {
         cmd = "/usr/sbin/mkfs.ext4 ";
+        if (!label.isEmpty())
+        {
+            cmd += "-L "+makeLabelUnique(label, 16, device)+" ";
+        }
+    }
+    else if (fstype == "ext3")
+    {
+        cmd = "/usr/sbin/mkfs.ext3 ";
         if (!label.isEmpty())
         {
             cmd += "-L "+makeLabelUnique(label, 16, device)+" ";

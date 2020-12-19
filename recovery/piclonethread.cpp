@@ -237,6 +237,21 @@ void piCloneThread::run()
         }
         CANCEL_CHECK;
 
+        if (!strcmp (parts[p].ftype, "ext3"))
+        {
+            qDebug() << "Format ext3";
+            QString cmd = "sh -c \"mkfs.ext3 -F "+partition_name (_dst)+QString::number(parts[p].pnum);
+            if (strlen(parts[p].name) >0)
+                    cmd += QString(" -L ") + QString(parts[p].name);
+            cmd += "\"";
+
+            if (QProcess::execute(cmd))
+            {
+                ERROR("Error Creating EXT3 partition");
+            }
+        }
+        CANCEL_CHECK;
+
         // set the flags
         if (!strcmp (parts[p].flags, "lba"))
         {

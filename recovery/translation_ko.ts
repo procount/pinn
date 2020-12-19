@@ -816,14 +816,26 @@ See debug log for details</oldsource>
         <location filename="mainwindow.cpp" line="1319"/>
         <location filename="mainwindow.cpp" line="1329"/>
         <location filename="mainwindow.cpp" line="1940"/>
-        <location filename="mainwindow.cpp" line="4770"/>
-        <location filename="mainwindow.cpp" line="4814"/>
+        <location filename="mainwindow.cpp" line="4662"/>
+        <location filename="mainwindow.cpp" line="4737"/>
+        <location filename="mainwindow.cpp" line="4781"/>
         <source>Confirm</source>
         <translation>확인</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1101"/>
-        <source>Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:</source>
+        <location filename="mainwindow.cpp" line="4663"/>
+        <source>Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:
+</source>
+        <oldsource>Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1101"/>
+        <location filename="mainwindow.cpp" line="4663"/>
+        <source>
+
+Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -834,7 +846,7 @@ See debug log for details</oldsource>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1162"/>
-        <location filename="mainwindow.cpp" line="4664"/>
+        <location filename="mainwindow.cpp" line="4682"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation>은(는) 사용할 수 없습니다.
@@ -927,7 +939,7 @@ See debug log for details</oldsource>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1459"/>
-        <location filename="mainwindow.cpp" line="4915"/>
+        <location filename="mainwindow.cpp" line="4882"/>
         <source>Backup OSes</source>
         <translation>백업 대상 OS</translation>
     </message>
@@ -947,7 +959,7 @@ See debug log for details</oldsource>
         <location filename="mainwindow.cpp" line="1555"/>
         <location filename="mainwindow.cpp" line="2222"/>
         <location filename="mainwindow.cpp" line="2365"/>
-        <location filename="mainwindow.cpp" line="4259"/>
+        <location filename="mainwindow.cpp" line="4258"/>
         <source>Error</source>
         <translation>오류</translation>
     </message>
@@ -1057,8 +1069,8 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <location filename="mainwindow.cpp" line="2343"/>
         <location filename="mainwindow.cpp" line="2860"/>
         <location filename="mainwindow.cpp" line="2871"/>
-        <location filename="mainwindow.cpp" line="4358"/>
-        <location filename="mainwindow.cpp" line="4380"/>
+        <location filename="mainwindow.cpp" line="4357"/>
+        <location filename="mainwindow.cpp" line="4379"/>
         <source>Download error</source>
         <translation>다운로드 오류</translation>
     </message>
@@ -1096,7 +1108,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2871"/>
-        <location filename="mainwindow.cpp" line="4380"/>
+        <location filename="mainwindow.cpp" line="4379"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>다운로드한 파일을 SD 카드에 기록하는 과정에서 오류가 발생하였습니다. SD 카드 또는 파일 시스템이 손상되었는지 확인하여 주십시오.</translation>
     </message>
@@ -1107,8 +1119,8 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3197"/>
-        <location filename="mainwindow.cpp" line="4645"/>
-        <location filename="mainwindow.cpp" line="4673"/>
+        <location filename="mainwindow.cpp" line="4653"/>
+        <location filename="mainwindow.cpp" line="4691"/>
         <source>Replace OSes</source>
         <translation>OS 교체</translation>
     </message>
@@ -1177,102 +1189,102 @@ Do you want to continue?</source>
         <translation>&apos;%1&apos; 드라이브를 정말 다시 초기화하시겠습니까? 초기화를 완료하면 이 드라이브 안에 있는 모든 데이터는 완전히 삭제됩니다. 초기화 후 PINN이 이 드라이브를 이용합니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4211"/>
+        <location filename="mainwindow.cpp" line="4210"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>장치 &apos;%s&apos;의 모든 내용이 지워집니다. 정말 진행하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4213"/>
+        <location filename="mainwindow.cpp" line="4212"/>
         <source>Clone SD Card</source>
         <translation>SD 카드 복제</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4215"/>
+        <location filename="mainwindow.cpp" line="4214"/>
         <source>Yes</source>
         <translation>예</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4216"/>
+        <location filename="mainwindow.cpp" line="4215"/>
         <source>No</source>
         <translation>아니요</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4245"/>
+        <location filename="mainwindow.cpp" line="4244"/>
         <source>Clone Completed</source>
         <translation>복제 완료</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4246"/>
+        <location filename="mainwindow.cpp" line="4245"/>
         <source>Clone Completed Successfully</source>
         <translation>복제를 완료하였습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4358"/>
+        <location filename="mainwindow.cpp" line="4357"/>
         <source>Error downloading update file</source>
         <translation>업데이트한 파일을 다운로드 하는 과정에 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4365"/>
-        <location filename="mainwindow.cpp" line="4460"/>
+        <location filename="mainwindow.cpp" line="4364"/>
+        <location filename="mainwindow.cpp" line="4459"/>
         <source>PINN Update Check</source>
         <translation>PINN 업데이트 확인</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4365"/>
+        <location filename="mainwindow.cpp" line="4364"/>
         <source>Error contacting update server</source>
         <translation>업데이트 서버에 연결할 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4460"/>
+        <location filename="mainwindow.cpp" line="4459"/>
         <source>No updates available</source>
         <translation>새로운 업데이트가 없습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4469"/>
+        <location filename="mainwindow.cpp" line="4468"/>
         <source>PINN UPDATE</source>
         <translation>PINN 업데이트</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4470"/>
+        <location filename="mainwindow.cpp" line="4469"/>
         <source>A new version of PINN is available</source>
         <translation>새 버전의 PINN 을 사용할 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4471"/>
+        <location filename="mainwindow.cpp" line="4470"/>
         <source>Do you want to download this version?</source>
         <translation>이 버전을 다운로드 하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4503"/>
+        <location filename="mainwindow.cpp" line="4502"/>
         <source>Downloading Update</source>
         <translation>업데이트 다운로드</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4503"/>
+        <location filename="mainwindow.cpp" line="4502"/>
         <source>Press ESC to cancel</source>
         <translation>취소하려면 ESC 를 누르십시요.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4646"/>
+        <location filename="mainwindow.cpp" line="4654"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation>경고: 선택한 OS가 없습니다
 (RISC OS 또는 PINN을 선택하지 마십시요)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4674"/>
+        <location filename="mainwindow.cpp" line="4692"/>
         <source>Warning: No OSes selected
 </source>
         <translation>경고: 선택한 OS가 없습니다
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4771"/>
+        <location filename="mainwindow.cpp" line="4738"/>
         <source>Warning: this will backup the selected Operating System(s).</source>
         <translation>경고: 이 동작은 선택한 운영체제를 백업합니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4815"/>
+        <location filename="mainwindow.cpp" line="4782"/>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
         <translation>경고: 지원하지 않는 운영체제를 발견하였습니다. PINN은 이 운영체제에 대한 백업을 제대로 생성하지 못할 수 있습니다. 대상 운영체제:</translation>
     </message>
@@ -1524,45 +1536,45 @@ Partition not big enough for new image.</source>
         <translation>%1: 펌웨어 업데이트를 확인하고 있습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1371"/>
+        <location filename="multiimagewritethread.cpp" line="1379"/>
         <source>Error creating file system</source>
         <translation>파일 시스템을 만드는 과정에서 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1443"/>
-        <location filename="multiimagewritethread.cpp" line="1553"/>
-        <location filename="multiimagewritethread.cpp" line="1646"/>
+        <location filename="multiimagewritethread.cpp" line="1452"/>
+        <location filename="multiimagewritethread.cpp" line="1562"/>
+        <location filename="multiimagewritethread.cpp" line="1655"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip.</source>
         <oldsource>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</oldsource>
         <translation type="unfinished">압축 파일의 형식을 알아낼 수 없었습니다. .lzo 또는 .gz, .xz, .bz2, .zip 형식을 지원합니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1483"/>
-        <location filename="multiimagewritethread.cpp" line="1584"/>
-        <location filename="multiimagewritethread.cpp" line="1677"/>
+        <location filename="multiimagewritethread.cpp" line="1492"/>
+        <location filename="multiimagewritethread.cpp" line="1593"/>
+        <location filename="multiimagewritethread.cpp" line="1686"/>
         <source>An incorrect file checksum has been detected in %1</source>
         <translation>%1에서 올바르지 않은 파일 체크섬을 확인하였습니다</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1484"/>
-        <location filename="multiimagewritethread.cpp" line="1588"/>
-        <location filename="multiimagewritethread.cpp" line="1681"/>
+        <location filename="multiimagewritethread.cpp" line="1493"/>
+        <location filename="multiimagewritethread.cpp" line="1597"/>
+        <location filename="multiimagewritethread.cpp" line="1690"/>
         <source>Checksum error</source>
         <translation>체크섬 오류</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1494"/>
+        <location filename="multiimagewritethread.cpp" line="1503"/>
         <source>Checksum OK</source>
         <translation>체크섬 확인 완료</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1497"/>
+        <location filename="multiimagewritethread.cpp" line="1506"/>
         <source>Finished downloading</source>
         <translation>다운로드 완료</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1598"/>
-        <location filename="multiimagewritethread.cpp" line="1691"/>
+        <location filename="multiimagewritethread.cpp" line="1607"/>
+        <location filename="multiimagewritethread.cpp" line="1700"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>운영체제를 SD 카드에 다운로드 및 기록하는 과정에서 오류가 발생하였습니다</translation>
     </message>
@@ -3291,12 +3303,12 @@ Break</source>
         <translation>%2개 중 %1번째 파티션을 생성하고 있습니다 </translation>
     </message>
     <message>
-        <location filename="piclonethread.cpp" line="274"/>
+        <location filename="piclonethread.cpp" line="289"/>
         <source>Copying partition %d of %d...</source>
         <translation>파티션을 복사하고 있습니다... ( %d / %d )</translation>
     </message>
     <message>
-        <location filename="piclonethread.cpp" line="345"/>
+        <location filename="piclonethread.cpp" line="360"/>
         <source>Copying %1 MB of %2 MB</source>
         <translation>%2 MB 중 %1 MB 를 복사하고 있습니다.</translation>
     </message>

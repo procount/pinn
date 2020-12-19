@@ -731,8 +731,9 @@ Riformattala usando il programma della SD Association e riprova.</translation>
         <location filename="mainwindow.cpp" line="1319"/>
         <location filename="mainwindow.cpp" line="1329"/>
         <location filename="mainwindow.cpp" line="1940"/>
-        <location filename="mainwindow.cpp" line="4770"/>
-        <location filename="mainwindow.cpp" line="4814"/>
+        <location filename="mainwindow.cpp" line="4662"/>
+        <location filename="mainwindow.cpp" line="4737"/>
+        <location filename="mainwindow.cpp" line="4781"/>
         <source>Confirm</source>
         <translation>Conferma</translation>
     </message>
@@ -816,7 +817,7 @@ Vedi registro debug per i dettagli.</translation>
         <location filename="mainwindow.cpp" line="1555"/>
         <location filename="mainwindow.cpp" line="2222"/>
         <location filename="mainwindow.cpp" line="2365"/>
-        <location filename="mainwindow.cpp" line="4259"/>
+        <location filename="mainwindow.cpp" line="4258"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
@@ -881,7 +882,18 @@ I seguenti SO non sono supportati in questa revisione di Raspberry Pi e potrebbe
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1101"/>
-        <source>Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:</source>
+        <location filename="mainwindow.cpp" line="4663"/>
+        <source>Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:
+</source>
+        <oldsource>Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1101"/>
+        <location filename="mainwindow.cpp" line="4663"/>
+        <source>
+
+Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -933,7 +945,7 @@ Per i dettagli vedi registro debug.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1459"/>
-        <location filename="mainwindow.cpp" line="4915"/>
+        <location filename="mainwindow.cpp" line="4882"/>
         <source>Backup OSes</source>
         <translation>Backup SO</translation>
     </message>
@@ -1025,8 +1037,8 @@ Tutti i dati esistenti nell&apos;unità, eccetto PINN, verranno sovrascritti inc
         <location filename="mainwindow.cpp" line="2343"/>
         <location filename="mainwindow.cpp" line="2860"/>
         <location filename="mainwindow.cpp" line="2871"/>
-        <location filename="mainwindow.cpp" line="4358"/>
-        <location filename="mainwindow.cpp" line="4380"/>
+        <location filename="mainwindow.cpp" line="4357"/>
+        <location filename="mainwindow.cpp" line="4379"/>
         <source>Download error</source>
         <translation>Errore download</translation>
     </message>
@@ -1042,8 +1054,8 @@ Tutti i dati esistenti nell&apos;unità, eccetto PINN, verranno sovrascritti inc
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3197"/>
-        <location filename="mainwindow.cpp" line="4645"/>
-        <location filename="mainwindow.cpp" line="4673"/>
+        <location filename="mainwindow.cpp" line="4653"/>
+        <location filename="mainwindow.cpp" line="4691"/>
         <source>Replace OSes</source>
         <translation>Sostiuisci SO</translation>
     </message>
@@ -1111,103 +1123,103 @@ Inserisci un cavo di rete nella porta ethernet.</translation>
 Tutti i dati esistenti nell&apos;unità verranno eliminati!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4211"/>
+        <location filename="mainwindow.cpp" line="4210"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>Questo cancellerà tutto il contenuto del dispositivo &apos;%s&apos;. 
 Sei sicuro di voler continuare?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4213"/>
+        <location filename="mainwindow.cpp" line="4212"/>
         <source>Clone SD Card</source>
         <translation>Clona scheda SD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4215"/>
+        <location filename="mainwindow.cpp" line="4214"/>
         <source>Yes</source>
         <translation>Sì</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4216"/>
+        <location filename="mainwindow.cpp" line="4215"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4245"/>
+        <location filename="mainwindow.cpp" line="4244"/>
         <source>Clone Completed</source>
         <translation>Clonazione completata</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4246"/>
+        <location filename="mainwindow.cpp" line="4245"/>
         <source>Clone Completed Successfully</source>
         <translation>Clonazione completata correttamente</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4358"/>
+        <location filename="mainwindow.cpp" line="4357"/>
         <source>Error downloading update file</source>
         <translation>Errore download file aggiornamento</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4365"/>
-        <location filename="mainwindow.cpp" line="4460"/>
+        <location filename="mainwindow.cpp" line="4364"/>
+        <location filename="mainwindow.cpp" line="4459"/>
         <source>PINN Update Check</source>
         <translation>Verifica aggiornamenti PINN</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4365"/>
+        <location filename="mainwindow.cpp" line="4364"/>
         <source>Error contacting update server</source>
         <translation>Errore di connessione al server aggiornamenti</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4460"/>
+        <location filename="mainwindow.cpp" line="4459"/>
         <source>No updates available</source>
         <translation>Il software PINN è aggiornato</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4469"/>
+        <location filename="mainwindow.cpp" line="4468"/>
         <source>PINN UPDATE</source>
         <translation>AGGIORNAMENTO PINN</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4470"/>
+        <location filename="mainwindow.cpp" line="4469"/>
         <source>A new version of PINN is available</source>
         <translation>È disponibile una nuova versione di PINN</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4471"/>
+        <location filename="mainwindow.cpp" line="4470"/>
         <source>Do you want to download this version?</source>
         <translation>Vuoi scaricare questa versione?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4503"/>
+        <location filename="mainwindow.cpp" line="4502"/>
         <source>Downloading Update</source>
         <translation>Download aggiornamento</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4503"/>
+        <location filename="mainwindow.cpp" line="4502"/>
         <source>Press ESC to cancel</source>
         <translation>Premi ESC per annullare</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4646"/>
+        <location filename="mainwindow.cpp" line="4654"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation>Errore: nessun S.O. selezionato
 (non scegliere SO RISC o PINN)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4674"/>
+        <location filename="mainwindow.cpp" line="4692"/>
         <source>Warning: No OSes selected
 </source>
         <translation>Attenzione: nessun S.O. selezionato
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4771"/>
+        <location filename="mainwindow.cpp" line="4738"/>
         <source>Warning: this will backup the selected Operating System(s).</source>
         <translation>Attenzione: verrà effettuato il backup dei sistemi operativi selezionati.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4815"/>
+        <location filename="mainwindow.cpp" line="4782"/>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
         <translation>Attenzione: rilevati sistemi operativi non supportati.
 PINN attualmente non può efefttuare il backup dei seguenti SO:</translation>
@@ -1219,7 +1231,7 @@ PINN attualmente non può efefttuare il backup dei seguenti SO:</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1162"/>
-        <location filename="mainwindow.cpp" line="4664"/>
+        <location filename="mainwindow.cpp" line="4682"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation> non è disponibile.
@@ -1263,7 +1275,7 @@ Riavviando l&apos;unità verrà re-installata la struttura di PINN.</translation
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2871"/>
-        <location filename="mainwindow.cpp" line="4380"/>
+        <location filename="mainwindow.cpp" line="4379"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>Errore scrittura su SD del file scaricato. 
 La scheda SD o il file system potrebbero essere danneggiati.</translation>
@@ -1560,46 +1572,46 @@ Partizione non abbastanza grande per la nuova immagine.</translation>
         <translation>%1: controllo aggiornamenti firmware</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1371"/>
+        <location filename="multiimagewritethread.cpp" line="1379"/>
         <source>Error creating file system</source>
         <translation>Errore creazione file system</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1443"/>
-        <location filename="multiimagewritethread.cpp" line="1553"/>
-        <location filename="multiimagewritethread.cpp" line="1646"/>
+        <location filename="multiimagewritethread.cpp" line="1452"/>
+        <location filename="multiimagewritethread.cpp" line="1562"/>
+        <location filename="multiimagewritethread.cpp" line="1655"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip.</source>
         <oldsource>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</oldsource>
         <translation>Estensione file tipo compressione sconosciuta. 
 Attesi: .lzo, .gz, .xz, .bz2,o .zip.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1483"/>
-        <location filename="multiimagewritethread.cpp" line="1584"/>
-        <location filename="multiimagewritethread.cpp" line="1677"/>
+        <location filename="multiimagewritethread.cpp" line="1492"/>
+        <location filename="multiimagewritethread.cpp" line="1593"/>
+        <location filename="multiimagewritethread.cpp" line="1686"/>
         <source>An incorrect file checksum has been detected in %1</source>
         <translation>È stato rilevata una checksum file errata in %1</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1484"/>
-        <location filename="multiimagewritethread.cpp" line="1588"/>
-        <location filename="multiimagewritethread.cpp" line="1681"/>
+        <location filename="multiimagewritethread.cpp" line="1493"/>
+        <location filename="multiimagewritethread.cpp" line="1597"/>
+        <location filename="multiimagewritethread.cpp" line="1690"/>
         <source>Checksum error</source>
         <translation>Errore checksum</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1494"/>
+        <location filename="multiimagewritethread.cpp" line="1503"/>
         <source>Checksum OK</source>
         <translation>Checksum Ok</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1497"/>
+        <location filename="multiimagewritethread.cpp" line="1506"/>
         <source>Finished downloading</source>
         <translation>Download completato</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1598"/>
-        <location filename="multiimagewritethread.cpp" line="1691"/>
+        <location filename="multiimagewritethread.cpp" line="1607"/>
+        <location filename="multiimagewritethread.cpp" line="1700"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>Errore download o scrittura su SD del SO</translation>
     </message>
@@ -3340,12 +3352,12 @@ Verifica la password</translation>
         <translation>Creazione partizione %1 di %2 </translation>
     </message>
     <message>
-        <location filename="piclonethread.cpp" line="274"/>
+        <location filename="piclonethread.cpp" line="289"/>
         <source>Copying partition %d of %d...</source>
         <translation>Copia partizione %d di %d...</translation>
     </message>
     <message>
-        <location filename="piclonethread.cpp" line="345"/>
+        <location filename="piclonethread.cpp" line="360"/>
         <source>Copying %1 MB of %2 MB</source>
         <translation>Copia %1 MB / %2 MB</translation>
     </message>
