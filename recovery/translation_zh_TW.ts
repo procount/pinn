@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_TW">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>BackupThread</name>
     <message>
@@ -435,7 +435,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     <message>
         <location filename="mainwindow.ui" line="139"/>
         <source>Memory</source>
-        <translation type="unfinished"></translation>
+        <translation>記憶體</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="173"/>
@@ -839,6 +839,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1101"/>
+<<<<<<< HEAD
         <location filename="mainwindow.cpp" line="4663"/>
         <source>Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:
 </source>
@@ -852,6 +853,10 @@ WARNING: This will erase all data on your SD card</oldsource>
 
 Do you want to continue?</source>
         <translation type="unfinished"></translation>
+=======
+        <source>Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:</source>
+        <translation>警告：部份 USB 支援。以下的作業系統只能在 USB 儲存裝置為 /dev/sda 時安裝，且可能會開機失敗或無法正常運作：</translation>
+>>>>>>> 189b7db... Update zh_TW translations.
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1177"/>
@@ -868,7 +873,7 @@ Do you want to continue?</source>
     <message>
         <location filename="mainwindow.cpp" line="1216"/>
         <source>Warning: this will %1 the selected Operating System(s) on %2. The partitions of the selected OSes will first be erased.</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：這將會 %1 位於 %2 的選定作業系統。選定作業系統的分割區會先被抹除。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1320"/>
@@ -1768,7 +1773,7 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="382"/>
         <location filename="optionsdialog.ui" line="438"/>
         <source>When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
-        <oldsource> When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
+        <oldsource> When used in conjunction with forcetrigger&#xa0;it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</oldsource>
         <translation>當與 forcetrigger 一起使用時，它會設定一個最大逾時（以秒為單位），以便在繼續開機選取對話框前顯示復原選單，並可以選取要開機的預設作業系統。</translation>
     </message>
     <message>
@@ -1806,7 +1811,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="476"/>
         <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
-        <oldsource>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</oldsource>
+        <oldsource>Uses a VNC network connection to control PINN. However, unlike&#xa0;vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</oldsource>
         <translation>使用 VNC 網路連線控制 PINN。但不像 vncinstall，任何本機連線的鍵盤與滑鼠都還是可以使用，而顯示畫面也會在本機螢幕與 VNC 連線上同步顯示。</translation>
     </message>
     <message>
@@ -3458,12 +3463,12 @@ Break</translation>
     <message>
         <location filename="showlog.ui" line="14"/>
         <source>Show Log</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示紀錄檔</translation>
     </message>
     <message>
         <location filename="showlog.ui" line="55"/>
         <source>&amp;Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>重新整理(&amp;R)</translation>
     </message>
 </context>
 </TS>
