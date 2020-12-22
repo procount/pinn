@@ -1337,6 +1337,14 @@ bool MultiImageWriteThread::mkfs(const QByteArray &device, const QByteArray &fst
             cmd += "-n "+makeLabelUnique(label, 11, device)+" ";
         }
     }
+    else if (fstype == "exfat")
+    {
+        cmd = "/sbin/mkfs.exfat ";
+        if (!label.isEmpty())
+        {
+            cmd += "-n "+makeLabelUnique(label, 11, device)+" ";
+        }
+    }
     else if (fstype == "ext4")
     {
         cmd = "/usr/sbin/mkfs.ext4 ";
@@ -1359,6 +1367,14 @@ bool MultiImageWriteThread::mkfs(const QByteArray &device, const QByteArray &fst
         if (!label.isEmpty())
         {
             cmd += "-L "+makeLabelUnique(label, 32, device)+" ";
+        }
+    }
+    else if (fstype == "btrfs")
+    {
+        cmd = "/sbin/mkfs.btrfs ";
+        if (!label.isEmpty())
+        {
+            cmd += "-L "+makeLabelUnique(label, 16, device)+" "; //maxlength might be 255?
         }
     }
 

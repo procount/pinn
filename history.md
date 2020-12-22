@@ -5,6 +5,16 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.5.4
+
+- **buildroot**    - improve some build scripts
+- **dualhdmi**     - fix license
+- **Installation** - Refactor close dialogs for better error handling
+- **Memory**       - Display amount of Pi memory fitted
+- **partuuid**     - Allow installation to USB without partuuid
+- **Filesystems**  - Added ext3 & exfat
+- **Wifi**         - Updated wifi firmware
+
 ### V3.5.2
 
 - **KERNEL** - Fix issue with PI4 8GB models
