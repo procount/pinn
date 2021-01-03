@@ -293,7 +293,6 @@
    <addaction name="actionDownload"/>
    <addaction name="actionClone"/>
    <addaction name="actionInfo"/>
-   <addaction name="actionFirmware"/>
    <addaction name="actionTime"/>
    <addaction name="actionReload_Repos"/>
   </widget>
@@ -672,21 +671,6 @@
    </property>
    <property name="shortcut">
     <string>N</string>
-   </property>
-  </action>
-  <action name="actionFirmware">
-   <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/icons/arrow_down.png</normaloff>:/icons/arrow_down.png</iconset>
-   </property>
-   <property name="text">
-    <string>Firmware (f)</string>
-   </property>
-   <property name="toolTip">
-    <string>Change Firmware</string>
-   </property>
-   <property name="shortcut">
-    <string>F</string>
    </property>
   </action>
   <action name="actionClear_c">

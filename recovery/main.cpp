@@ -47,7 +47,6 @@
  *
  */
 
-bool g_nofirmware=false;
 bool dsi=false;
 CecListener *cec = NULL;
 CecListener *enableCEC(QObject *parent=0);
@@ -494,10 +493,6 @@ int main(int argc, char *argv[])
                 // Get the coloured pixmap
                 pixmap = QPixmap::fromImage(tmp);
             }
-        }
-        if (s.contains("nofirmware"))
-        {
-            g_nofirmware = true;
         }
     }
 #ifdef Q_WS_QWS

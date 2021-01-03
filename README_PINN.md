@@ -146,7 +146,6 @@ There are three toolbars:
   - **[Download](#download)**: Downloads an OS for offline installation.
   - **[Clone SD](#how-to-clone-an-sd-card)**: Clones the SD to another card.
   - **[Info](#info-on-os)**: [Networking Required] Opens a browser that displays the webpage for the selected OS.
-  - **[Firmware](#pinns-firmware-upgradedowngrade)**: Upgrades or downgrades PINN's firmware for use on RPI3B+ or other models.
   - **[Time](#set-time)**: Sets the current time.
   - **[Reload Repos](reload-repos)**: Reload the OS distribution lists from the internet.
 - **[Maintenance](#maintenance-menu)**
@@ -435,8 +434,6 @@ The following is a complete list of all the PINN options that can be added to th
 
 - **forceupdatepinn** - Forces a PINN self update if one exists, without user interaction.
 
-- **nofirmware**: Prevents PINN from upgrading the firmware of old OSes to be compatible with PINN.
-
 - **vncinstall**: Uses a VNC network connection to control PINN instead of any locally attached keyboard, mouse and display. When this is used, any local display will remain blank.
 
 - **vncshare**: Uses a VNC network connection to control PINN. However, unlike `vncinstall`, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.
@@ -652,26 +649,6 @@ Project Spaces are useful when used with the [Replace](#replace-individual-os) O
 3. They allow the same amount of space to be used for each OS.
 
 When replacing a project space with another OS, remember that the new OS must have the same number of partitions as the project space and each partition must fit within the existing partition sizes. So creating 8 project spaces on a 16GB card may not be very useful as there will be &lt;2GB left on each of the ext4 partitions. That maybe ok for some of the minimal OSes, but no good for a full Raspbian installation, for example.
-
-## PINN's Firmware Upgrade/Downgrade
-
-PINN v2.5.3+ includes new firmware, kernel and drivers to support the new Pi3B+ model. Whilst this firmware will allow PINN to run on all RPi models, some older OSes may not yet be compatible 
-and will not boot from PINN. So when booting on models older than the 3B+, PINN's firmware can be downgraded so that these older OSes can still boot from PINN. 
-Prior to v3.2.4, On first startup on an older RPi model, PINN will automatically downgrade the firmware. It will need upgrading manually if you want to use the latest firmware.
-From v3.2.4 onwards, the automatic downgrade has been removed and it must be downgraded manually if required.
-
-Once PINN's firmware has been downgraded, it will no longer run on the RPi3B+. To run it on a RPI3B+ again it is first necessary to upgrade the firmware on an older model.
-There is a menu item on the Archival menu to upgrade or downgrade PINN's firmware accordingly. it is disabled on the RPi 3B+
-
-## OS firmware upgrade
-
-When PINN is running on upgraded firmware for the RPI3B+, it will try to upgrade the firmware of any OS that is installed, if it is too old to run on the RPi3B+.
-This may allow the OS to boot, but the Ethernet, wifi and USB may not work unless the drivers for these devices are upgraded.
-If this is not required, the `nofirmware` option can be used to prevent the firmware from being upgraded.
-This firmware upgrade feature is disabled when downgraded firmware is in use.
-
-Many OSes that support the Pi3 will need updating to support the new Pi3B+ model, so the list of available OSes for this Pi3B+ may be limited for a while. Adding the `showall` option may allow them
-to be selected, and PINN's new firmware upgrade feature may allow them to boot, but the kernel and drivers will still need to be updated to allow the new hardware features to be used.
 
 ## How to Automatically Install OSes
 

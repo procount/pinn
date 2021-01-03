@@ -267,20 +267,6 @@ cp "$IMAGES_DIR/cmdline.txt" "$FINAL_OUTPUT_DIR/recovery.cmdline"
 cp "$IMAGES_DIR/recovery.cmdline.new" "$FINAL_OUTPUT_DIR"
 touch "$FINAL_OUTPUT_DIR/RECOVERY_FILES_DO_NOT_EDIT"
 
-#Use the latest PINN firmware
-pushd "$FINAL_OUTPUT_DIR"
-bsdtar xvfz firmware.tar.gz
-cp bootcode.bin recovery.elf firmware.latest
-bsdtar cvfz firmware.tar.gz firmware.*
-popd
-
-# HACK - Copy rpi_firmware from latest NOOBS e5b11a9d32cf4388b09097c33ab7bffbe1ca721c private repo because later firmware has display switching issues
-#pushd "$FINAL_OUTPUT_DIR"
-#cp ../noobs_firmware/bootcode.bin .
-#cp ../noobs_firmware/recovery.elf .
-#cp ../noobs_firmware/recover4.elf .
-#popd
- 
 # Create build-date timestamp file containing Git HEAD info for build
 BUILD_INFO="$FINAL_OUTPUT_DIR/BUILD-DATA"
 echo "Build-date: $(date +"%Y-%m-%d")" > "$BUILD_INFO"

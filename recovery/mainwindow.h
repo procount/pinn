@@ -107,9 +107,6 @@ protected:
 
     QProcess * _proc;
 
-    void untarFirmware();
-    bool isLegacyHardware();
-    void checkPinnFirmware();
     virtual void changeEvent(QEvent * event);
     virtual bool eventFilter(QObject *obj, QEvent *event);
     void inputSequence();
@@ -222,9 +219,7 @@ private slots:
     void on_actionRepair_triggered();
     void on_actionReplace_triggered();
     void on_actionBackup_triggered();
-    void on_actionFirmware_triggered();
     void on_actionRename_triggered();
-    void updateFirmware_button();
 
     void on_list_currentRowChanged();
     void on_list_doubleClicked(const QModelIndex &index);

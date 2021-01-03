@@ -949,36 +949,6 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
         return QMessageBox::RejectRole;
     }
 
-    if (!g_nofirmware)
-    {
-        emit statusUpdate(tr("%1: Checking firmware update").arg(os_name));
-        qDebug() <<"Checking for firmware Overrides";
-        QDir dir ("/mnt/firmware.override");
-        if (dir.exists())
-        {
-            dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
-            dir.setSorting(QDir::Size | QDir::Reversed);
-
-            QFileInfoList list = dir.entryInfoList();
-            for (int i = 0; i < list.size(); ++i)
-            {
-                QFileInfo fileInfo = list.at(i);
-                qDebug() << "Examining " << fileInfo.absoluteFilePath() << " " << fileInfo.lastModified();
-                QFileInfo fileInfoOS( "/mnt2/" + fileInfo.fileName() ) ;
-                qDebug() << "against " << fileInfoOS.absoluteFilePath() << " " << fileInfoOS.lastModified();
-                if (fileInfoOS.exists())
-                {
-                    if (fileInfo.lastModified() > fileInfoOS.lastModified())
-                    {
-                        qDebug() << "Copying...";
-                        if (QProcess::execute("cp -p /mnt/firmware.override/"+fileInfo.fileName() + " /mnt2") != 0)
-                            qDebug() <<"ERROR!";
-                    }
-                }
-            }
-        }
-    }
-
     emit statusUpdate(tr("%1: Unmounting FAT partition").arg(os_name));
     if (QProcess::execute("umount /mnt2") != 0)
     {

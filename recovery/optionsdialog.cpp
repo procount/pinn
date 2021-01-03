@@ -217,7 +217,6 @@ void OptionsDialog::write()
     cb_entry(runinstaller);
     cb_entry(noupdate);
     cb_entry(forceupdatepinn);
-    cb_entry(nofirmware);
     cb_entry(noobsconfig);
     eb_entry(configpath);
 
@@ -331,7 +330,6 @@ bool OptionsDialog::recognise(const QString & key, const QString &value)
     cb_entry(runinstaller);
     cb_entry(noupdate);
     cb_entry(forceupdatepinn);
-    cb_entry(nofirmware);
     cb_entry(noobsconfig);
     eb_entry(configpath);
 

@@ -389,8 +389,6 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
 
     loadOverrides("/mnt/overrides.json");
 
-    untarFirmware();
-
     if (QFile::exists("/mnt/os_list_v3.json"))
     {
         /* We have a local os_list_v3.json for testing purposes */
@@ -533,8 +531,6 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     //ALWAYS start networking (for silentinstall of remote images)
     startNetworking();
 
-    checkPinnFirmware();
-
     //Background.sh was here
 
     /* Disable online help buttons until network is functional */
@@ -568,133 +564,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
         disconnect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
     event->accept();
 }
-
-void MainWindow::untarFirmware()
-{
-    TRACE
-    if (QFile::exists("/mnt/firmware.tar.gz"))
-    {
-        QProcess::execute("mount -o remount,rw /mnt");
-
-        QProcess::execute("bsdtar --no-same-permissions --no-same-owner --no-xattrs -xzf /mnt/firmware.tar.gz -C /mnt");
-        QProcess::execute("rm /mnt/firmware.tar.gz");
-        sync();
-        QProcess::execute("mount -o remount,ro /mnt");
-    }
-}
-
-bool MainWindow::isLegacyHardware()
-{
-    bool legacy = true;
-
-    if ( _model.contains("Raspberry Pi 3 Model B Plus Rev", Qt::CaseInsensitive) ||
-         _model.contains("Raspberry Pi 3 Model A Plus Rev", Qt::CaseInsensitive) ||
-         _model.contains("Raspberry Pi 4", Qt::CaseInsensitive) )
-        legacy=false;
-    return legacy;
-}
-
-void MainWindow::checkPinnFirmware()
-{
-    TRACE
-    QString filename = "/mnt/firmware";
-    QString firmwareState;
-
-    if (QFile::exists(filename))
-    {
-        firmwareState = getFileContents(filename);
-    }
-
-    //In case we upgrade but forget to delete firmware file,
-    if (firmwareState.contains("legacy"))
-    {
-        int differ = 0;
-        QDir dir ("/mnt/firmware.legacy");
-        dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
-        dir.setSorting(QDir::Size | QDir::Reversed);
-
-        QFileInfoList list = dir.entryInfoList();
-        for (int i = 0; i < list.size(); ++i)
-        {
-            QFileInfo fileInfo = list.at(i);
-            QFileInfo fileInfoInUse( "/mnt/" + fileInfo.fileName() ) ;
-
-            differ += QProcess::execute("diff "+fileInfo.absoluteFilePath()+" "+fileInfoInUse.absoluteFilePath());
-            //1=differ, 0=same
-        }
-        if (differ)
-        {
-            qDebug() <<"Firmware upgrade detected, removing firmware file.";
-            QProcess::execute("mount -o remount,rw /mnt");
-            QProcess::execute("rm /mnt/firmware");
-            firmwareState="";
-            sync();
-            QProcess::execute("mount -o remount,ro /mnt");
-        }
-    }
-
-    //precondition: already read g_nofirmware setting but not processed
-
-    //If we are not on 3B+,
-    if ( isLegacyHardware())
-    {
-        // on legacy h/w
-
-        //if already downgraded
-        if (firmwareState.contains("legacy"))
-        {
-            //Prevent OS firmware from being upgraded - not needed
-            g_nofirmware=true;
-        }
-        else if (firmwareState.isEmpty())
-        {
-            //Comment out because I don't want to downgrade automatically.
-
-            /* Just installed or upgraded on legacy h/w, so installed firmware=latest */
-            /* => downgrade firmware */
-            //QProcess::execute("/mnt/changefirmware down");
-            //g_nofirmware = true;
-            //qDebug()<< "Firmware downgraded";
-        }
-    }
-    updateFirmware_button();
-}
-
-void MainWindow::updateFirmware_button()
-{
-    TRACE
-    QString filename = "/mnt/firmware";
-    QString firmwareState;
-
-    if (QFile::exists(filename))
-        firmwareState = getFileContents(filename);
-
-
-    if (firmwareState.contains("legacy"))
-        ui->actionFirmware->setIcon(QIcon(":/icons/arrow_up.png"));
-    else
-        ui->actionFirmware->setIcon(QIcon(":/icons/arrow_down.png"));
-
-    ui->actionFirmware->setEnabled( isLegacyHardware() );
-}
-
-void MainWindow::on_actionFirmware_triggered()
-{
-    TRACE
-    QString filename = "/mnt/firmware";
-    QString firmwareState;
-
-    if (QFile::exists(filename))
-        firmwareState = getFileContents(filename);
-
-    if (firmwareState.contains("legacy"))
-        QProcess::execute("/mnt/changefirmware up");
-    else
-        QProcess::execute("/mnt/changefirmware down");
-
-    updateFirmware_button();
-}
-
 
 QString MainWindow::menutext(int index)
 {
@@ -2698,7 +2567,6 @@ void MainWindow::updateNeeded()
 void MainWindow::updateActions()
 {
     TRACE
-    updateFirmware_button();
 
     //For the INSTALLED list...
     QListWidgetItem *item = ug->listInstalled->currentItem();

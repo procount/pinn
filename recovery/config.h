@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 /* Version number displayed in the title bar */
-#define VERSION_NUMBER "3.5.4"
+#define VERSION_NUMBER "3.5.4a"
 
 /* Color of the background */
 // #define BACKGROUND_COLOR  Qt::white
@@ -85,8 +85,6 @@
 #define ALLUSB          2
 #define ALLNETWORK      4
 #define ALLINSTALLED    8
-
-extern bool g_nofirmware;
 
 enum ModeTag {
     MODE_INSTALL=0,
