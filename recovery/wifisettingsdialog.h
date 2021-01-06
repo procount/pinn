@@ -46,8 +46,8 @@ protected:
 
 private:
     WidgetKeyboard *virtualKeyBoard;
-    QString _lastWindow;
-    QString _lastMenu;
+    navigate _nav;
+    navigate * pNav;
 
 protected slots:
     virtual void accept();

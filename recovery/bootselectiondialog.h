@@ -11,6 +11,7 @@
  */
 
 #include "countdownfilter.h"
+#include "input.h"
 
 #include <QAbstractButton>
 #include <QListWidgetItem>
@@ -68,6 +69,7 @@ private:
     bool _inSelection;
     QByteArray _drive;
     CountdownFilter _counter;
+    navigate _nav;
 };
 
 #endif // BOOTSELECTIONDIALOG_H

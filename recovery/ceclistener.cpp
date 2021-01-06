@@ -134,7 +134,7 @@ void CecListener::run()
     }
 
     vc_vchi_cec_init(vchiq, &conn, 1);
-    vc_cec_set_osd_name("ARCADE");
+    vc_cec_set_osd_name("PINN");
     vc_cec_register_callback(_cec_callback, this);
 
     qDebug() << "CecListener done initializing";
@@ -147,7 +147,7 @@ void CecListener::run()
 
 int CecListener::map_button(QVariant cec)
 {
-    int result=0;
+    int result=-1;
     if (cec.type() == QVariant::String)
     {
         result = map_string(cec_map, cec.toString());

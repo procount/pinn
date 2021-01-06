@@ -148,7 +148,7 @@ class CecListener : public Kinput
 public:
     explicit CecListener(QObject *parent = 0);
     virtual ~CecListener();
-    void loadMap(QString filename) { Kinput::loadMap(filename, ":/cec_keys.json"); }
+    void loadMap(QString filename) { Kinput::loadMap(filename, "cec_keys.json"); }
 
     void process_cec(int cec_code, int value);
 

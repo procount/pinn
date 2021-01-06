@@ -6,7 +6,7 @@
 //Conditional GLOBAL flags
 #define DO_DBG 0	//global debug enabler
 #define DBG_FUNC   0	//global Debug entry/exit of functions
-#define DBG_OUT 0	//global Debug  output strings
+#define DBG_OUT 1	//global Debug  output strings
 #define DBG_MSG 0   //global Debug message boxes
 
 

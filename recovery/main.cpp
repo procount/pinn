@@ -230,7 +230,6 @@ int main(int argc, char *argv[])
     RightButtonFilter rbf;
     LongPressHandler lph;
     GpioInput *gpio=NULL;
-    cec = enableCEC();
 
     QString drive;
     bool driveReady = false;
@@ -383,8 +382,8 @@ int main(int argc, char *argv[])
         QProcess::execute("mount -o ro -t vfat "+drive+" /mnt");
     }
 
-    cec->loadMap("/mnt/cec_keys.json");
-    joy->loadMap("/mnt/joy_keys.json");
+    cec = enableCEC();
+    cec->loadMap("cec_keys.json");
 
 #if 0
     qDebug() << "Starting dbus";
@@ -500,6 +499,9 @@ int main(int argc, char *argv[])
 #endif
 
 
+    if (joy)
+        qDebug() << "Searching for " << joy->getMapName();
+
     KSplash *splash = new KSplash(pixmap,0,wallpaper_resize);
 
     splash->show();
@@ -545,6 +547,12 @@ int main(int argc, char *argv[])
                 qDebug() << "cec key detected";
                 break;
             }
+            if (joy->hasKeyPressed())
+            {
+                bailout = false;
+                qDebug() << "Joy key detected";
+                break;
+            }
         }
     }
 
@@ -581,6 +589,7 @@ int main(int argc, char *argv[])
     qDebug() << "Application Exit " << result;
     showBootMenu(drive, defaultPartition, timedReboot);
 
+
     return 0;
 }
 
@@ -591,12 +600,13 @@ CecListener *enableCEC(QObject *parent)
     QByteArray cpuinfo = f.readAll();
     f.close();
 
+    sim = new simulate();
+
     cec = new CecListener(parent);
     cec->start();
 
     joy = new joystick(parent);
     joy->start();
 
-    sim = new simulate();
     return(cec);
 }

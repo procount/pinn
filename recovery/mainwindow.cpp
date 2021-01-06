@@ -32,7 +32,7 @@
 #include "termsdialog.h"
 #include "simulate.h"
 
-#define DBG_LOCAL 0
+#define DBG_LOCAL 1
 #define LOCAL_DO_DBG 0
 #define LOCAL_DBG_FUNC 0
 #define LOCAL_DBG_OUT 0
@@ -262,8 +262,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     h =qMin(h,600);
     resize(w,h);
 
-    Kinput::setWindow("mainwindow");
-    Kinput::setMenu("Main Menu");
+    _nav.setContext("mainwindow", "Main Menu");
+
     if (cec)
     {
         connect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
@@ -271,6 +271,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     if (joy)
     {
         connect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
+        connect(joy, SIGNAL(joyEvent(int,int,int)), this, SLOT(onJoyEvent(int,int,int)));
+        connect(joy, SIGNAL(joyDebug(QString)), this, SLOT(onJoyDebug(QString)));
     }
 
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
@@ -3669,12 +3671,6 @@ void MainWindow::pollForNewDisks()
         _devlistcount = list.count();
     }
 
-    //Check for slow-starting joysticks...
-    if (joy && (joy->get_fd()<0) && (joytries<MAXJOYTRIES))
-    {
-        joytries++;
-        joy->start();
-    }
 }
 
 bool MainWindow::LooksLikePiDrive(QString devname)
@@ -4403,6 +4399,17 @@ void MainWindow::onJoyPress(int joy_code, int value)
     joy->process_joy(joy_code,value);
 }
 #endif
+
+void MainWindow::onJoyEvent(int type, int number, int value)
+{
+    qDebug() << "Joy type: " <<type<< " No: "<<number<<" Value: " << value;
+}
+
+void MainWindow::onJoyDebug(QString dbgmsg)
+{
+    qDebug() << dbgmsg;
+}
+
 
 void MainWindow::on_actionInfo_triggered()
 {

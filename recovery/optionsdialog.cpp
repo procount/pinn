@@ -3,7 +3,6 @@
 #include "optionsdialog.h"
 #include "ui_optionsdialog.h"
 #include "util.h"
-#include "input.h"
 
 #include <QCheckBox>
 #include <QLineEdit>
@@ -28,6 +27,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
     ui->lv_select->setSortingEnabled(true);
 
     virtualKeyBoard = new WidgetKeyboard(this);
+    _nav.setContext("options","any");
 
     //Add all the installable OSes
     QList<QListWidgetItem *> all = gMW->allItems();
@@ -65,9 +65,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 OptionsDialog::~OptionsDialog()
 {
     virtualKeyBoard->hide();
-    Kinput::setWindow(_lastWindow);
-    Kinput::setMenu(_lastMenu);
-    Kinput::setGrabWindow(NULL);
     delete virtualKeyBoard;
     delete ui;
 }
@@ -408,18 +405,18 @@ void OptionsDialog::on_cbvk_toggled(bool checked)
             _lastWidgetFocus->setFocus();
 
         virtualKeyBoard->show();
-        Kinput::setGrabWindow(virtualKeyBoard);
-        _lastWindow = Kinput::getWindow();
-        _lastMenu = Kinput::getMenu();
-        Kinput::setWindow("VKeyboard");
-        Kinput::setMenu("any");
+        if (pNav)
+            delete pNav;
+        pNav = new navigate("VKeyboard", "any", virtualKeyBoard);
     }
     else
     {
         virtualKeyBoard->hide();
-        Kinput::setWindow(_lastWindow);
-        Kinput::setMenu(_lastMenu);
-        Kinput::setGrabWindow(NULL);
+        if (pNav)
+        {
+            delete pNav;
+            pNav=NULL;
+        }
     }
 }
 

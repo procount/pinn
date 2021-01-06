@@ -74,8 +74,8 @@ BootSelectionDialog::BootSelectionDialog(
 
     _altered=false;
 
-    Kinput::setWindow("bootSelection");
-    Kinput::setMenu("any");
+    _nav.setContext("bootSelection", "any");
+
     connect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
     connect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
 

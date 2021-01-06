@@ -31,6 +31,8 @@ WifiSettingsDialog::WifiSettingsDialog(const QString &preferredInterface, QWidge
     connect(ui->passwordEdit, SIGNAL(textChanged(QString)), this, SLOT(checkSettings()));
 
     virtualKeyBoard = new WidgetKeyboard(this);
+    _nav.setContext("wifisettings","any");
+    pNav=NULL;
 
     FiW1Wpa_supplicant1Interface *wpa = WpaFactory::createWpaSupplicantProxy(this);
     _ifpath = wpa->GetInterface(preferredInterface).value();
@@ -95,9 +97,11 @@ WifiSettingsDialog::WifiSettingsDialog(const QString &preferredInterface, QWidge
 WifiSettingsDialog::~WifiSettingsDialog()
 {
     virtualKeyBoard->hide();
-    Kinput::setWindow(_lastWindow);
-    Kinput::setMenu(_lastMenu);
-    Kinput::setGrabWindow(NULL);
+    if (pNav)
+    {
+        delete pNav;
+        pNav=NULL;
+    }
     delete virtualKeyBoard;
     delete ui;
 }
@@ -404,18 +408,18 @@ void WifiSettingsDialog::on_vkeyboard_toggled(bool checked)
     {
         ui->passwordEdit->setFocus();
         virtualKeyBoard->show();
-        _lastWindow = Kinput::getWindow();
-        _lastMenu = Kinput::getMenu();
-        Kinput::setWindow("VKeyboard");
-        Kinput::setMenu("any");
-        Kinput::setGrabWindow(virtualKeyBoard);
+        if (pNav)
+            delete pNav;
+        pNav = new navigate("VKeyboard", "any",virtualKeyBoard);
     }
     else
     {
         virtualKeyBoard->hide();
-        Kinput::setWindow(_lastWindow);
-        Kinput::setMenu(_lastMenu);
-        Kinput::setGrabWindow(NULL);
+        if (pNav)
+        {
+            delete pNav;
+            pNav=NULL;
+        }
     }
 }
 

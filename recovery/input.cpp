@@ -25,7 +25,7 @@
  */
 
 #include "input.h"
-#include <QDebug>
+#include "mydebug.h"
 
 #include <linux/input.h>
 #include <linux/uinput.h>
@@ -132,20 +132,41 @@ int Kinput::map_button(QVariant joy)
     return(0);
 }
 
+void  Kinput::parse_inputs(QVariantMap &map)
+{
+    //TRACE
+    Q_UNUSED(map);
+}
+
 void Kinput::loadMap(QString filename, QString defName)
 {
     //TRACE
-    QString fname = filename;
+
+    QString fname = "/mnt/"+filename;
+#if WANTED
+    qDebug() << "Looking for "<<fname;
+#endif
     if (!QFile::exists(fname))
-        fname=defName; //Use default mapping
+        fname="/mnt/"+defName; //Use default user mapping
+
+    if (!QFile::exists(fname))
+        fname=":/"+defName; //Use default pinn mapping
 
     if (QFile::exists(fname))
     {
+#if WANTED
         qDebug() << "Loading Mappings mappings from " << fname;
+#endif
         _map.clear();
 
         //Get the map of windows (& calibration)
         QVariantMap mapWnd = Json::loadFromFile(fname).toMap();
+
+        if (mapWnd.contains("inputs"))
+        {
+            QVariantMap mapInputs = mapWnd.value("inputs").toMap();
+            parse_inputs(mapInputs);
+        }
 
         for(QVariantMap::const_iterator iWnd = mapWnd.begin(); iWnd != mapWnd.end(); ++iWnd)
         {   //For each window, get the map of menus
@@ -172,6 +193,12 @@ void Kinput::loadMap(QString filename, QString defName)
                 }
             }
 
+            else if (iWnd.key() == "inputs")
+            {
+                //Already processed above
+                ;
+            }
+
             else
             {
                 mapmenu_t m; //My own map of menus
@@ -196,6 +223,7 @@ void Kinput::loadMap(QString filename, QString defName)
         }
     }
 }
+
 void Kinput::inject_key(int key, int value)
 {
     if (key & mouse_any)
@@ -209,12 +237,13 @@ void Kinput::mouse_simulate(int key, int value)
 {
 //    qDebug() << "Inject Mouse Code: "<<key<<" Value: " <<value;
 
+    //Keep track of which mouse dirn are being pressed
     mouse_state[key & 0x07]= (value ? 1 : 0);
 
     if (value)
-    {
+    { // A mouse dirn is pressed
         if (!mouse_input)
-        {
+        {   //If this is the first press, then we start repeating, otherwise ignore
             mouse_input=1;
             step=1;
             count=0;
@@ -222,21 +251,16 @@ void Kinput::mouse_simulate(int key, int value)
         }
     }
     else
-    {
+    { //Mouse dirn released
         int down=0;
         for (int i=0; i<6; i++)
-        {
+        {//Keep track of how many are held down
             if (mouse_state[i])
                 down++;
         }
-        if (!down)
+        if (!down)  //If all released, then we have no input
             mouse_input=0;
     }
-
-
-//    qDebug()<<"Mouse input=" << mouse_input;
-//    for (int i=0; i<6; i++)
-//        qDebug() << mouse_state[i];
 
 }
 
@@ -256,21 +280,17 @@ void Kinput::mouse_repeat()
         case mouse_left:
             if (mouse_state[i])
             {
-                //qDebug()<<"MouseLeft";
                 down++;
                 if (p.x()>0)
                     sim->inject(EV_REL, REL_X, -step);
-                else
+                else //Stop moving when we reach the left
                     mouse_state[i]=0;
             }
             break;
         case mouse_right:
             if (mouse_state[i])
             {
-                //qDebug()<<"MouseRight";
                 down++;
-                //p.rx()+=10;
-                //QCursor::setPos(p);
                 if (p.x()<screen.width())
                     sim->inject(EV_REL, REL_X, step);
                 else
@@ -280,10 +300,7 @@ void Kinput::mouse_repeat()
         case mouse_up:
             if (mouse_state[i])
             {
-                //qDebug()<<"MouseUp";
                 down++;
-                //p.ry()-=10;
-                //QCursor::setPos(p);
                 if (p.y()>0)
                     sim->inject(EV_REL, REL_Y, -step);
                 else
@@ -293,10 +310,7 @@ void Kinput::mouse_repeat()
         case mouse_down:
             if (mouse_state[i])
             {
-                //qDebug()<<"MouseDown";
                 down++;
-                //p.ry()+=10;
-                //QCursor::setPos(p);
                 if (p.y()<screen.height())
                    sim->inject(EV_REL, REL_Y, step);
                 else
@@ -306,18 +320,6 @@ void Kinput::mouse_repeat()
         case mouse_lclick:
             if (mouse_state[i])
             { //Click!
-        /*
-        *             QWidget* widget = dynamic_cast<QWidget*>(QApplication::widgetAt(QCursor::pos()));
-                if (widget)
-                {
-                    QPoint pos = QCursor::pos();
-                    QMouseEvent *event = new QMouseEvent(QEvent::MouseButtonPress,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
-                    QCoreApplication::sendEvent(widget,event);
-                    QMouseEvent *event1 = new QMouseEvent(QEvent::MouseButtonRelease,widget->mapFromGlobal(pos), Qt::LeftButton,Qt::LeftButton,Qt::NoModifier);
-                    QCoreApplication::sendEvent(widget,event1);
-                    qApp->processEvents();
-                }
-        */
                 sim->inject(EV_KEY, BTN_LEFT, 1);
                 sim->inject(EV_SYN, SYN_REPORT, 0);
                 sim->inject(EV_KEY, BTN_LEFT, 0);
@@ -340,9 +342,7 @@ void Kinput::mouse_repeat()
             step=8;
         if (count>50)
             step=10;
-//        QTimer::singleShot(40, this, SLOT(mouse_repeat()));
         mousetimer.start( 40 );
-
     }
 }
 
@@ -445,6 +445,41 @@ const char * decode_key(struct keymap_str *map, int code)
     return("Unknown");
 }
 
+navigate::navigate()
+{
+    TRACE
+    _lastwindow = Kinput::getWindow();
+    _lastmenu = Kinput::getMenu();
+}
 
 
+navigate::navigate(const char * window, const char * menu, QObject * grabWindow)
+{
+    TRACE
+    setContext(window, menu, grabWindow);
+}
 
+
+navigate::~navigate()
+{
+    TRACE
+    qDebug() << "Restoring = "<<_lastwindow << ", "<<_lastmenu;
+    Kinput::setWindow(_lastwindow);
+    Kinput::setMenu(_lastmenu);
+    Kinput::setGrabWindow(NULL);
+
+}
+
+void navigate::setContext(const char * window, const char * menu, QObject * grabWindow)
+{
+    TRACE
+    _lastwindow = Kinput::getWindow();
+    _lastmenu = Kinput::getMenu();
+    qDebug() << "last = "<<_lastwindow << ", "<<_lastmenu;
+    qDebug() << "New = "<<window << ", "<<menu;
+    Kinput::setWindow(window);
+    Kinput::setMenu(menu);
+    if (grabWindow)
+        Kinput::setGrabWindow(grabWindow);
+
+}

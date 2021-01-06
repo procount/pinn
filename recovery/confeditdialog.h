@@ -11,7 +11,7 @@
  */
 
 #include "WidgetKeyboard.h"
-
+#include "input.h"
 #include <QDialog>
 #include <QList>
 #include <QVariantMap>
@@ -45,9 +45,9 @@ private:
     QVariantMap _map;
     QString _partition;
     WidgetKeyboard *virtualKeyBoard;
-    QString _lastWindow;
-    QString _lastMenu;
     QWidget * _lastWidgetFocus;
+    navigate _nav;
+    navigate * pNav;
 };
 
 #endif // CONFEDITDIALOG_H

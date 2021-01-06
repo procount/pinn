@@ -2,6 +2,7 @@
 #define OPTIONSDIALOG_H
 
 #include "WidgetKeyboard.h"
+#include "input.h"
 
 #include <QDialog>
 #include <QStringList>
@@ -34,9 +35,9 @@ private slots:
 private:
     Ui::OptionsDialog *ui;
     WidgetKeyboard *virtualKeyBoard;
-    QString _lastWindow;
-    QString _lastMenu;
     QWidget * _lastWidgetFocus;
+    navigate _nav;
+    navigate * pNav;
 };
 
 #endif // OPTIONSDIALOG_H

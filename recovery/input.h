@@ -99,6 +99,7 @@ protected:
     void inject_key(int key,int value);
     void key_simulate(int key, int value);
     void mouse_simulate(int key, int value);
+    void virtual parse_inputs(QVariantMap &map);
 
 signals:
 
@@ -117,5 +118,20 @@ private:
     QTimer keytimer;
     QTimer mousetimer;
 };
+
+
+class navigate  : public QObject
+{
+    Q_OBJECT
+private:
+    QString _lastwindow;
+    QString _lastmenu;
+public:
+    navigate();
+    navigate(const char * window, const char * menu, QObject * grabWindow=NULL);
+    ~navigate();
+    void setContext(const char * window, const char * menu, QObject * grabWindow=NULL);
+};
+
 
 #endif // INPUT_H
