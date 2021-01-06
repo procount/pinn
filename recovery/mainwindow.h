@@ -16,6 +16,7 @@
 #include "countdownfilter.h"
 #include "repair.h"
 #include "splash.h"
+#include "input.h"
 
 #include <QMainWindow>
 #include <QModelIndex>
@@ -103,7 +104,7 @@ protected:
 
     QList<QToolBar*> toolbars;
     int toolbar_index;
-
+    navigate _nav;
 
     QProcess * _proc;
 
@@ -199,6 +200,8 @@ protected slots:
     void closeEvent(QCloseEvent *event);
     void checkUpdateTime();
     void onJoyPress(int joy_code, int value);
+    void onJoyEvent(int type, int number, int value);
+    void onJoyDebug(QString dbgmsg);
 
 private slots:
     /* UI events */

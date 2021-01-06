@@ -43,7 +43,8 @@ extern "C" {
 #endif
 
 extern CecListener * cec;
-extern joystick * joy;
+extern joystick * joy1;
+extern joystick * joy2;
 
 BootSelectionDialog::BootSelectionDialog(
         const QString &drive,               //PINN drive where boot partitions are stored for DSI mod
@@ -74,10 +75,11 @@ BootSelectionDialog::BootSelectionDialog(
 
     _altered=false;
 
-    Kinput::setWindow("bootSelection");
-    Kinput::setMenu("any");
+    _nav.setContext("bootSelection", "any");
+
     connect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
-    connect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
+    connect(joy1, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
+    connect(joy2, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
 
     /* Also mount recovery partition as it may contain icons we need */
     if (QProcess::execute("mount -t vfat -o ro "+partdev(drive, 1)+" /mnt") != 0)
@@ -161,7 +163,8 @@ BootSelectionDialog::BootSelectionDialog(
         if (partition != 800)
         {
             cec->clearKeyPressed();
-            joy->clearKeyPressed();
+            joy1->clearKeyPressed();
+            joy2->clearKeyPressed();
 
             // Start timer
             qDebug() << "Starting " << _countdown-1 << " second timer before booting into partition" << partition;
@@ -442,6 +445,7 @@ void BootSelectionDialog::onKeyPress(int cec_code, int value)
 #if 1
 void BootSelectionDialog::onJoyPress(int cec_code,int value)
 {
+    joystick* joy = (joystick*) sender(); //joy1 or joy2
     joy->process_joy(cec_code,value);
 }
 #endif

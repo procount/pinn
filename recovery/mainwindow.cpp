@@ -32,11 +32,11 @@
 #include "termsdialog.h"
 #include "simulate.h"
 
-#define DBG_LOCAL 0
-#define LOCAL_DO_DBG 0
+#define LOCAL_DBG_ON   0
 #define LOCAL_DBG_FUNC 0
-#define LOCAL_DBG_OUT 0
-#define LOCAL_DBG_MSG 0
+#define LOCAL_DBG_OUT  0
+#define LOCAL_DBG_MSG  0
+
 #include "mydebug.h"
 
 #include <QByteArray>
@@ -88,7 +88,8 @@ extern "C" {
 
 extern CecListener * cec;
 extern simulate * sim;
-extern joystick * joy;
+extern joystick * joy1;
+extern joystick * joy2;
 
 extern QStringList downloadRepoUrls;
 extern QString repoList;
@@ -154,7 +155,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     _hasWifi(false), _numInstalledOS(0), _numBootableOS(0), _devlistcount(0), _netaccess(NULL), _displayModeBox(NULL), _drive(drive),
     _bootdrive(drive), _noobsconfig(noobsconfig), _numFilesToCheck(0), _eDownloadMode(MODE_INSTALL), _proc(NULL)
 {
-    TRACE
+
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
     setContextMenuPolicy(Qt::NoContextMenu);
@@ -262,15 +263,23 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     h =qMin(h,600);
     resize(w,h);
 
-    Kinput::setWindow("mainwindow");
-    Kinput::setMenu("Main Menu");
+    _nav.setContext("mainwindow", "Main Menu");
+
     if (cec)
     {
         connect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
     }
-    if (joy)
+    if (joy1)
     {
-        connect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
+        connect(joy1, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
+        connect(joy1, SIGNAL(joyEvent(int,int,int)), this, SLOT(onJoyEvent(int,int,int)));
+        connect(joy1, SIGNAL(joyDebug(QString)), this, SLOT(onJoyDebug(QString)));
+    }
+    if (joy2)
+    {
+        connect(joy2, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
+        connect(joy2, SIGNAL(joyEvent(int,int,int)), this, SLOT(onJoyEvent(int,int,int)));
+        connect(joy2, SIGNAL(joyDebug(QString)), this, SLOT(onJoyDebug(QString)));
     }
 
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
@@ -549,8 +558,10 @@ MainWindow::~MainWindow()
 {
     if (cec)
         disconnect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
-    if (joy)
-        disconnect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
+    if (joy1)
+        disconnect(joy1, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
+    if (joy2)
+        disconnect(joy2, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
 
     QProcess::execute("umount /mnt");
     delete ui;
@@ -560,8 +571,10 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
     if (cec)
         disconnect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
-    if (joy)
-        disconnect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
+    if (joy1)
+        disconnect(joy1, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
+    if (joy2)
+        disconnect(joy2, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
     event->accept();
 }
 
@@ -580,7 +593,7 @@ QString MainWindow::menutext(int index)
 /* Discover which images we have, and fill in the list */
 void MainWindow::populate()
 {
-    TRACE
+
     /* Ask user to wait while list is populated */
     if (!_allowSilent)
     {
@@ -639,7 +652,7 @@ void MainWindow::populate()
 
 void MainWindow::repopulate()
 {
-    TRACE
+
     QMap<QString,QVariantMap> images;
 
     QIcon localIcon(":/icons/hdd.png");
@@ -677,7 +690,7 @@ void MainWindow::repopulate()
 /* Whether this OS should be displayed in the list of installable OSes */
 bool MainWindow::canInstallOs(const QString &name, const QVariantMap &values)
 {
-    TRACE
+
     /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
 
     /* If it's not bootable, it isn't really an OS, so is always installable */
@@ -709,7 +722,7 @@ bool MainWindow::canInstallOs(const QString &name, const QVariantMap &values)
 /* Whether this OS is supported */
 bool MainWindow::isSupportedOs(const QString &name, const QVariantMap &values)
 {
-    TRACE
+
     /* Can't simply pull "name" from "values" because in some JSON files it's "os_name" and in others it's "name" */
     /* If it's not bootable, it isn't really an OS, so is always supported */
     if (!canBootOs(name, values))
@@ -821,7 +834,7 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
 
 void MainWindow::updateInstalledStatus()
 {
-    TRACE
+
     _numBootableOS = ug->updateInstalledStatus();
     qDebug() << "Number of bootables = "<<_numBootableOS;
     //@@ Maybe add: _numInstalledOS = ug->listInstalled->count();
@@ -864,7 +877,7 @@ void MainWindow::updateInstalledStatus()
 /* Iterates over the installed images and adds each one to the ug->listinstalled and ug->list lists */
 void MainWindow::addInstalledImages()
 {
-    TRACE
+
     if (ug->listInstalled->count())
         ug->listInstalled->clear();
 
@@ -907,7 +920,7 @@ void MainWindow::addInstalledImages()
 
 void MainWindow::on_actionWrite_image_to_disk_triggered()
 {
-    TRACE
+
     _eDownloadMode = MODE_INSTALL;
 
     bool allSupported = true;
@@ -993,7 +1006,7 @@ void MainWindow::on_actionReinstall_triggered()
 
 void MainWindow::doReinstall()
 {
-    TRACE
+
     _newList.clear();
     QList<QListWidgetItem *> installedList;
 
@@ -1052,7 +1065,7 @@ void MainWindow::doReinstall()
 
 void MainWindow::prepareMetaFiles()
 {
-    TRACE
+
     QString warning;
 
     _numMetaFilesToDownload=0;
@@ -1172,7 +1185,7 @@ void MainWindow::prepareMetaFiles()
 
 void MainWindow::on_actionDownload_triggered()
 {
-    TRACE
+
     _eDownloadMode = MODE_DOWNLOAD;
 
     //@@ maybe here decide if to download to /mnt or /settings and only mount that one rw
@@ -1370,7 +1383,7 @@ void MainWindow::onCompleted(int arg)
 
 void MainWindow::onErrorContinue(const QString &msg)
 {
-    TRACE
+
     qDebug() << "Error:" << msg;
     if (!_silent)
         QMessageBox::critical(this, tr("Error"), msg, QMessageBox::Close);
@@ -1397,7 +1410,7 @@ int MainWindow::closeDialogs()
 
 void MainWindow::onError(const QString &msg)
 {
-    TRACE
+
     qDebug() << "Error:" << msg;
     if (_qpssd)
         _qpssd->hide();
@@ -1417,7 +1430,7 @@ void MainWindow::onError(const QString &msg)
 
 void MainWindow::onQpdError(const QString &msg)
 {
-    TRACE
+
     qDebug() << "Error:" << msg;
     if (_qpd)
         _qpd->hide();
@@ -1434,7 +1447,7 @@ void MainWindow::onQuery(const QString &msg, const QString &title, QMessageBox::
 
 void MainWindow::onChecksumError(const QString &msg, const QString &title, QMessageBox::ButtonRole* answer)
 {
-    TRACE
+
 
     if (!_silent)
     {
@@ -1460,13 +1473,13 @@ void MainWindow::onChecksumError(const QString &msg, const QString &title, QMess
 
 void MainWindow::on_list_currentRowChanged()
 {
-    TRACE
+
     updateActions();
 }
 
 void MainWindow::update_window_title()
 {
-    TRACE
+
     QString count;
     int currentCount = counter.getCountdown();
     if (currentCount)
@@ -1729,7 +1742,7 @@ void MainWindow::inputSequence()
 
 void MainWindow::on_actionAdvanced_triggered()
 {
-    TRACE
+
     toolbars.value(toolbar_index)->setVisible(false);
     toolbar_index = (toolbar_index+1)%NUM_TOOLBARS;
     toolbars.value(toolbar_index)->setVisible(true);
@@ -1755,7 +1768,7 @@ void MainWindow::on_actionAdvanced_triggered()
 
 void MainWindow::on_actionEdit_config_triggered()
 {
-    TRACE
+
     QListWidgetItem *item = ug->listInstalled->currentItem();
 
     if (item && item->data(Qt::UserRole).toMap().contains("partitions"))
@@ -1773,13 +1786,13 @@ void MainWindow::on_actionEdit_config_triggered()
 
 void MainWindow::on_actionBrowser_triggered()
 {
-    TRACE
+
     startBrowser();
 }
 
 void MainWindow::fullFAT()
 {
-    TRACE
+
     setEnabled(false);
     _qpd = new QProgressDialog( tr("Wiping SD card"), QString(), 0, 0, this);
     _qpd->setWindowModality(Qt::WindowModal);
@@ -1804,7 +1817,7 @@ void MainWindow::fullFAT()
 
 void MainWindow::on_actionWipe_triggered()
 {
-    TRACE
+
     if (QMessageBox::warning(this,
                              tr("Confirm"),
                              tr("Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed."),
@@ -1822,7 +1835,7 @@ void MainWindow::on_actionWipe_triggered()
 
 bool MainWindow::requireNetwork()
 {
-    TRACE
+
     if (!isOnline())
     {
         QMessageBox::critical(this,
@@ -1837,7 +1850,7 @@ bool MainWindow::requireNetwork()
 
 void MainWindow::startBrowser()
 {
-    TRACE
+
     if (!requireNetwork())
         return;
     if (_proc)
@@ -1855,7 +1868,7 @@ void MainWindow::startBrowser()
 
 void MainWindow::on_list_doubleClicked(const QModelIndex &index)
 {
-    TRACE
+
     if (index.isValid())
     {
         QListWidgetItem *item = ug->list->currentItem();
@@ -1871,7 +1884,7 @@ void MainWindow::on_list_doubleClicked(const QModelIndex &index)
 
 void MainWindow::copyConf(const QString &fconf)
 {
-    TRACE
+
     //This file is the one used by dhcpcd
     QFile f("/settings/"+fconf);
     if ( f.exists() && f.size() == 0 )
@@ -1921,7 +1934,7 @@ void MainWindow::copyDhcp()
 
 void MainWindow::startNetworking()
 {
-    TRACE
+
     /* Enable dbus so that we can use it to talk to wpa_supplicant later */
     qDebug() << "Starting dbus";
     QProcess::execute("/etc/init.d/S30dbus start");
@@ -1949,7 +1962,7 @@ void MainWindow::startNetworking()
 
 bool MainWindow::isOnline()
 {
-    TRACE
+
     /* Check if we have an IP-address other than localhost */
     QList<QHostAddress> addresses = QNetworkInterface::allAddresses();
 
@@ -1967,7 +1980,7 @@ bool MainWindow::isOnline()
 
 void MainWindow::pollNetworkStatus()
 {
-    TRACE
+
     if (!_hasWifi && QFile::exists("/sys/class/net/wlan0"))
     {
         _hasWifi = true;
@@ -1982,7 +1995,7 @@ void MainWindow::pollNetworkStatus()
 
 void MainWindow::onOnlineStateChanged(bool online)
 {
-    TRACE
+
     if (online)
     {
         qDebug() << "Network up in" << _time.elapsed()/1000.0 << "seconds";
@@ -2019,7 +2032,7 @@ void MainWindow::onOnlineStateChanged(bool online)
 
 void MainWindow::downloadRepoList(const QString &urlstring)
 {
-    TRACE
+
     qDebug() << "downloadRepoList: " << urlstring;
     if (urlstring.isEmpty())
         downloadLists();
@@ -2042,7 +2055,7 @@ void MainWindow::downloadRepoList(const QString &urlstring)
 
 void MainWindow::downloadRepoListRedirectCheck()
 {
-    TRACE
+
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
@@ -2061,7 +2074,7 @@ void MainWindow::downloadRepoListRedirectCheck()
 
 void MainWindow::downloadRepoListComplete()
 {
-    TRACE
+
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
@@ -2085,7 +2098,7 @@ void MainWindow::downloadRepoListComplete()
 
 void MainWindow::processRepoListJson(QVariant json)
 {
-    TRACE
+
     if (json.isNull())
     {
         QMessageBox::critical(this, tr("Error"), tr("Error parsing repolist.json downloaded from server"), QMessageBox::Close);
@@ -2109,7 +2122,7 @@ void MainWindow::processRepoListJson(QVariant json)
 
 void MainWindow::downloadLists()
 {
-    TRACE
+
     _numIconsToDownload = 0;
     _numFilesToCheck = 0;
     QStringList urls = _repo.split(' ', QString::SkipEmptyParts);
@@ -2142,7 +2155,7 @@ void MainWindow::downloadLists()
 
 void MainWindow::downloadList(const QString &urlstring)
 {
-    TRACE
+
     _numListsToDownload++;
     QUrl url(urlstring);
     QNetworkRequest request(url);
@@ -2154,7 +2167,7 @@ void MainWindow::downloadList(const QString &urlstring)
 
 void MainWindow::rebuildInstalledList()
 {
-    TRACE
+
     /* Recovery procedure for damaged settings partitions
      * Scan partitions for operating systems installed and regenerate a minimal
      * installed_os.json so that boot menu can function.
@@ -2198,7 +2211,7 @@ void MainWindow::rebuildInstalledList()
 
 void MainWindow::downloadListComplete()
 {
-    TRACE
+
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
@@ -2228,7 +2241,7 @@ void MainWindow::downloadListComplete()
 
 void MainWindow::processJson(QVariant json)
 {
-    TRACE
+
     if (json.isNull())
     {
         QMessageBox::critical(this, tr("Error"), tr("Error parsing list.json downloaded from server"), QMessageBox::Close);
@@ -2301,7 +2314,7 @@ void MainWindow::processJson(QVariant json)
 
 void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QSet<QString> &iconurls)
 {
-    TRACE
+
     QIcon internetIcon(":/icons/download.png");
     bool bInstalled = false;
     QListWidgetItem *witem = findItemByName(name);
@@ -2322,7 +2335,7 @@ void MainWindow::processJsonOs(const QString &name, QVariantMap &new_details, QS
 
 void MainWindow::getDownloadSize(QVariantMap &new_details)
 {
-    TRACE
+
     qint64 downloadSize=0;    //Start off with a minimum of 2MB for all metadata files.
 
     QString name;
@@ -2355,7 +2368,7 @@ void MainWindow::getDownloadSize(QVariantMap &new_details)
 
 void MainWindow::downloadIcon(const QString &urlstring, const QString &originalurl)
 {
-    TRACE
+
     iconcache cache;
     QPixmap pix;
     if (cache.readPixmapFromCache(urlstring, pix))
@@ -2402,7 +2415,7 @@ QListWidgetItem *MainWindow::findItemByName(const QString &name)
 
 void MainWindow::downloadIconComplete()
 {
-    TRACE
+
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     QString url = reply->url().toString();
     QString originalurl = reply->request().attribute(QNetworkRequest::User).toString();
@@ -2453,13 +2466,13 @@ void MainWindow::assignPixmap(QString originalurl, QPixmap &pix)
 
 QList<QListWidgetItem *> MainWindow::selectedItems()
 {
-    TRACE
+
     return(ug->selectedItems());
 }
 
 void MainWindow::updateNeeded()
 {
-    TRACE
+
     bool enableWrite = false;
     bool enableDownload = false;
     qint64 neededDownload=0;
@@ -2566,7 +2579,7 @@ void MainWindow::updateNeeded()
 
 void MainWindow::updateActions()
 {
-    TRACE
+
 
     //For the INSTALLED list...
     QListWidgetItem *item = ug->listInstalled->currentItem();
@@ -2609,7 +2622,7 @@ void MainWindow::updateActions()
 
 void MainWindow::on_list_itemChanged(QListWidgetItem *item)
 {
-    TRACE
+
     Q_UNUSED(item);
     updateNeeded();
     updateActions();
@@ -2617,7 +2630,7 @@ void MainWindow::on_list_itemChanged(QListWidgetItem *item)
 
 void MainWindow::downloadMetaFile(const QString &urlstring, const QString &saveAs)
 {
-    TRACE
+
     //qDebug() << "Downloading" << urlstring << "to" << saveAs;
     _numMetaFilesToDownload++;
     QUrl url(urlstring);
@@ -2630,7 +2643,7 @@ void MainWindow::downloadMetaFile(const QString &urlstring, const QString &saveA
 
 void MainWindow::downloadListRedirectCheck()
 {
-    TRACE
+
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
@@ -2649,7 +2662,7 @@ void MainWindow::downloadListRedirectCheck()
 
 void MainWindow::downloadIconRedirectCheck()
 {
-    TRACE
+
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
@@ -2665,7 +2678,7 @@ void MainWindow::downloadIconRedirectCheck()
 
 void MainWindow::downloadMetaRedirectCheck()
 {
-    TRACE
+
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
@@ -2682,7 +2695,7 @@ void MainWindow::downloadMetaRedirectCheck()
 
 void MainWindow::downloadMetaComplete()
 {
-    TRACE
+
 
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
@@ -2805,7 +2818,7 @@ void MainWindow::downloadMetaComplete()
 
 void MainWindow::checkFileSize(const QString &urlstring, const QString &osname)
 {
-    TRACE
+
     qDebug() << "checking size of file: " << urlstring;
     QUrl url(urlstring);
     QNetworkRequest request(url);
@@ -2822,7 +2835,7 @@ void MainWindow::checkFileSize(const QString &urlstring, const QString &osname)
 
 void MainWindow::checkFileSizeRedirectCheck()
 {
-    TRACE
+
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
@@ -2839,7 +2852,7 @@ void MainWindow::checkFileSizeRedirectCheck()
 
 void MainWindow::checkFileSizeComplete()
 {
-    TRACE
+
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     const QString &osname = reply->request().attribute(QNetworkRequest::User).toString();
@@ -2883,7 +2896,7 @@ void MainWindow::checkFileSizeComplete()
 
 void MainWindow::startImageWrite()
 {
-    TRACE
+
     _piDrivePollTimer.stop();
     /* All meta files downloaded, extract slides tarball, and launch image writer thread */
     MultiImageWriteThread *imageWriteThread = new MultiImageWriteThread(_bootdrive, _drive, _noobsconfig);
@@ -2977,6 +2990,9 @@ void MainWindow::startImageWrite()
     connect(imageWriteThread, SIGNAL(cont()), _qpssd , SLOT(cont()));
     connect(imageWriteThread, SIGNAL(consolidate()), _qpssd , SLOT(consolidate()));
     connect(imageWriteThread, SIGNAL(finish()), _qpssd , SLOT(finish()));
+
+    connect(_qpssd, SIGNAL(rejected()), this, SLOT(onError(QString)), Qt::BlockingQueuedConnection);
+
     imageWriteThread->start();
     hide();
     _qpssd->exec();
@@ -2984,7 +3000,7 @@ void MainWindow::startImageWrite()
 
 void MainWindow::startImageReinstall()
 {
-    TRACE
+
     _piDrivePollTimer.stop();
     /* All meta files downloaded, extract slides tarball, and launch image writer thread */
     MultiImageWriteThread *imageWriteThread = new MultiImageWriteThread(_bootdrive, _drive, _noobsconfig, false, _eDownloadMode);
@@ -3088,6 +3104,8 @@ void MainWindow::startImageReinstall()
     connect(imageWriteThread, SIGNAL(consolidate()), _qpssd , SLOT(consolidate()));
     connect(imageWriteThread, SIGNAL(finish()), _qpssd , SLOT(finish()));
 
+    connect(_qpssd, SIGNAL(rejected()), this, SLOT(onError(QString)), Qt::BlockingQueuedConnection);
+
     imageWriteThread->start();
     hide();
     _qpssd->exec();
@@ -3097,7 +3115,7 @@ void MainWindow::startImageReinstall()
 
 void MainWindow::startImageDownload()
 {
-    TRACE
+
     _piDrivePollTimer.stop();
     // The drive is already mounted R/W from on_actionDownload_triggered
 
@@ -3228,6 +3246,7 @@ void MainWindow::startImageDownload()
     connect(imageDownloadThread, SIGNAL(consolidate()), _qpssd , SLOT(consolidate()));
     connect(imageDownloadThread, SIGNAL(finish()), _qpssd , SLOT(finish()));
 
+    connect(_qpssd, SIGNAL(rejected()), this, SLOT(onError(QString)), Qt::BlockingQueuedConnection);
 
     imageDownloadThread->start();
     hide();
@@ -3373,7 +3392,7 @@ void MainWindow::startImageBackup()
 
 void MainWindow::hideDialogIfNoNetwork()
 {
-    TRACE
+
     //Maybe more OSes will be downloaded after wifi is connected - WJDK
     //So for now we assume it is done and allow silentinstall/update to continue.
     _processedImages |= ALLNETWORK;
@@ -3411,7 +3430,7 @@ void MainWindow::hideDialogIfNoNetwork()
 
 void MainWindow::on_actionWifi_triggered()
 {
-    TRACE
+
     bool wasAlreadyOnlineBefore = !_networkStatusPollTimer.isActive();
 
     WifiSettingsDialog wsd;
@@ -3430,7 +3449,6 @@ void MainWindow::pollForNewDisks()
     QString dirname = "/sys/class/block";
     QDir dir(dirname);
     QStringList list = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-    static int joytries=0;
 
     if (_infoDelay)
     {
@@ -3669,17 +3687,11 @@ void MainWindow::pollForNewDisks()
         _devlistcount = list.count();
     }
 
-    //Check for slow-starting joysticks...
-    if (joy && (joy->get_fd()<0) && (joytries<MAXJOYTRIES))
-    {
-        joytries++;
-        joy->start();
-    }
 }
 
 bool MainWindow::LooksLikePiDrive(QString devname)
 {
-    TRACE
+
     /* Return TRUE if the drive partition structure looks like it has been PINN formatted */
     return( QFile::exists(sysclassblock(devname, 1))
             && QFile::exists(sysclassblock(devname, 5))
@@ -3688,7 +3700,7 @@ bool MainWindow::LooksLikePiDrive(QString devname)
 
 bool MainWindow::LooksLikeOSDrive(QString devname)
 {
-    TRACE
+
     //@@ maybe mount and check for /os folder present?
     if( devname != "mmcblk0" && !LooksLikePiDrive(devname) )
     {
@@ -3699,7 +3711,7 @@ bool MainWindow::LooksLikeOSDrive(QString devname)
 
 void MainWindow::recalcAvailableMB()
 {
-    TRACE
+
     _availableMB = (getFileContents(sysclassblock(_drive)+"/size").trimmed().toULongLong()-getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toULongLong()-getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toULongLong())/2048;
 
 
@@ -3724,7 +3736,7 @@ void MainWindow::recalcAvailableMB()
 
 void MainWindow::on_targetCombo_currentIndexChanged(int index)
 {
-    TRACE
+
     if (index != -1)
     {
         QString devname = ui->targetCombo->itemData(index).toString();
@@ -3761,7 +3773,7 @@ void MainWindow::on_targetCombo_currentIndexChanged(int index)
 
 void MainWindow::on_targetComboUsb_currentIndexChanged(int index)
 {
-    TRACE
+
     if (index != -1)
     {
         QString devname = ui->targetComboUsb->itemData(index).toString();
@@ -3932,7 +3944,7 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
 
 void MainWindow::newImage(QString Imagefile)
 {
-    TRACE
+
     QVariantMap entry = Json::loadFromFile(Imagefile).toMap();
 
     entry["source"] = SOURCE_USB;
@@ -3964,7 +3976,7 @@ void MainWindow::newImage(QString Imagefile)
 
 void MainWindow::addImagesFromUSB(const QString &device)
 {
-    TRACE
+
     QDir dir;
     QString mntpath = "/tmp/media/"+device;
 
@@ -4005,7 +4017,7 @@ void MainWindow::addImagesFromUSB(const QString &device)
 /* Dynamically hide items from list depending on target drive */
 void MainWindow::filterList()
 {
-    TRACE
+
     QList<QListWidgetItem *> all;
     all = ug->allItems();
     for (int i=0; i < ug->count(); i++)
@@ -4054,7 +4066,7 @@ void MainWindow::filterList()
 
 void MainWindow::on_actionClone_triggered()
 {
-    TRACE
+
     char buffer[256];
     QString src;
     QString dst;
@@ -4105,7 +4117,7 @@ void MainWindow::on_actionClone_triggered()
 
 void MainWindow::onCloneCompleted()
 {
-    TRACE
+
     _qpd->hide();
 
     QMessageBox::information(this,
@@ -4117,7 +4129,7 @@ void MainWindow::onCloneCompleted()
 
 void MainWindow::onCloneError(const QString &msg)
 {
-    TRACE
+
     qDebug() << "Error:" << msg;
     if (_qpd)
         _qpd->hide();
@@ -4138,7 +4150,7 @@ void MainWindow::onCloneError(const QString &msg)
 
 void MainWindow::on_actionPassword_triggered()
 {
-    TRACE
+
     /* If no installed OS is selected, default to first extended partition */
     QListWidgetItem *item = ug->listInstalled->currentItem();
     QVariantMap m;
@@ -4157,7 +4169,7 @@ void MainWindow::on_actionPassword_triggered()
 
 void MainWindow::checkForUpdates(bool display)
 {
-    TRACE
+
     _bdisplayUpdate = display;
     _numBuildsToDownload=0;
     downloadUpdate(BUILD_URL,  "BUILD|" BUILD_NEW);
@@ -4167,7 +4179,7 @@ void MainWindow::checkForUpdates(bool display)
 
 void MainWindow::downloadUpdate(const QString &urlstring, const QString &saveAs)
 {
-    TRACE
+
     //NOTE: saveAs=type|filename
     _numBuildsToDownload++;
     qDebug() << "Downloading" << urlstring << "to" << saveAs;
@@ -4181,7 +4193,7 @@ void MainWindow::downloadUpdate(const QString &urlstring, const QString &saveAs)
 
 void MainWindow::downloadUpdateRedirectCheck()
 {
-    TRACE
+
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
@@ -4201,7 +4213,7 @@ void MainWindow::downloadUpdateRedirectCheck()
 
 void MainWindow::downloadUpdateComplete()
 {
-    TRACE
+
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     QString userInfo = reply->request().attribute(QNetworkRequest::User).toString();
@@ -4331,7 +4343,7 @@ void MainWindow::downloadUpdateComplete()
 
 void MainWindow::on_newVersion()
 {
-    TRACE
+
     QMessageBox msgBox;
     msgBox.setWindowTitle(tr("PINN UPDATE"));
     msgBox.setText(tr("A new version of PINN is available"));
@@ -4398,15 +4410,27 @@ void MainWindow::onKeyPress(int cec_code, int value)
 /* joystick pressed */
 void MainWindow::onJoyPress(int joy_code, int value)
 {
-    //TRACE
+    //
     //qDebug() << "Processing Joy "<<joy_code <<", " << value;
+    joystick* joy = (joystick*) sender(); //joy1 or joy2
     joy->process_joy(joy_code,value);
 }
 #endif
 
+void MainWindow::onJoyEvent(int type, int number, int value)
+{
+    qDebug() << "Joy type: " <<type<< " No: "<<number<<" Value: " << value;
+}
+
+void MainWindow::onJoyDebug(QString dbgmsg)
+{
+    qDebug() << dbgmsg;
+}
+
+
 void MainWindow::on_actionInfo_triggered()
 {
-    TRACE
+
     if (!requireNetwork())
         return;
 
@@ -4434,7 +4458,7 @@ void MainWindow::on_actionInfo_triggered()
 
 void MainWindow::on_actionInfoInstalled_triggered()
 {
-    TRACE
+
 
     if (!requireNetwork())
         return;
@@ -4464,7 +4488,7 @@ void MainWindow::on_actionInfoInstalled_triggered()
 
 void MainWindow::on_actionReplace_triggered()
 {
-    TRACE
+
     _eDownloadMode = MODE_REPLACE;
 
     QList<QListWidgetItem *> replacementList;
@@ -4566,7 +4590,7 @@ void MainWindow::on_actionReplace_triggered()
 
 void MainWindow::on_actionFschk_triggered()
 {
-    TRACE
+
     QListWidgetItem *item = ug->listInstalled->currentItem();
     if (ug->listInstalled->count() && item)
     {
@@ -4577,7 +4601,7 @@ void MainWindow::on_actionFschk_triggered()
 
 void MainWindow::on_actionRepair_triggered()
 {
-    TRACE
+
     QListWidgetItem *item = ug->listInstalled->currentItem();
     if (ug->listInstalled->count() && item)
     {
@@ -4588,7 +4612,7 @@ void MainWindow::on_actionRepair_triggered()
 
 void MainWindow::on_actionBackup_triggered()
 {
-    TRACE
+
     _eDownloadMode = MODE_BACKUP;
 
     _local = "/tmp/media/"+partdev(_osdrive,1);
@@ -4762,7 +4786,7 @@ void MainWindow::on_actionBackup_triggered()
 
 void MainWindow::createPinnEntry()
 {
-    TRACE
+
     QVariantMap pinnMap;
     pinnMap["name"]=QString("PINN");
     pinnMap["description"]="An enhanced OS installer";
@@ -4782,7 +4806,7 @@ void MainWindow::createPinnEntry()
 
 void MainWindow::on_actionClear_c_triggered()
 {
-    TRACE
+
     QList<QListWidgetItem *> selected = selectedItems();
 
     /* Get list of all selected OSes and see if any are unsupported */
@@ -4825,7 +4849,7 @@ void MainWindow::on_actionRename_triggered()
 
 void MainWindow::UpdateTime()
 {
-    TRACE
+
     if (QDate::currentDate().year() < 2019)
     {
         qDebug() << "Requesting current time";
@@ -4839,7 +4863,7 @@ void MainWindow::UpdateTime()
 
 void MainWindow::checkUpdateTime()
 {
-    TRACE
+
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
 
     setTime(reply);

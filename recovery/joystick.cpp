@@ -26,12 +26,10 @@
 
 #include "joystick.h"
 #include "json.h"
-
 #include <QApplication>
 #include <QRect>
 #include <QDesktopWidget>
 #include <QMargins>
-#include <QDebug>
 
 #include <sys/ioctl.h>
 #include <sys/types.h>
@@ -41,51 +39,54 @@
 
 #include <linux/joystick.h>
 
-#define DBG_LOCAL 0
-#define LOCAL_DO_DBG 0
+#define LOCAL_DBG_ON   0
 #define LOCAL_DBG_FUNC 0
-#define LOCAL_DBG_OUT 0
-#define LOCAL_DBG_MSG 0
+#define LOCAL_DBG_OUT  0
+#define LOCAL_DBG_MSG  0
+#include "mydebug.h"
 
+#define WANTED 0
 
 #define sgn(x) ((x < 0) ? -1 : (x > 0))
 
 
 #define TEST 0
+#define MAXINPUTS 50
 
 //Mapping of joystick events to a pseudo "string" key
-struct joymap_str joymap[] =
+struct joymap_str joymap[MAXINPUTS] =
 {
-    //String,          ID, value, type, number
-    {"LAnalogLeft",     1,  -1,  2,  0},
-    {"LAnalogRight",    2,   1,  2,  0},
-    {"LAnalogUp",       3,  -1,  2,  1},
-    {"LAnalogDown",     4,   1,  2,  1},
-    {"LT",              5,   1,  2,  2},
-    {"RAnalogLeft",     6,  -1,  2,  3},
-    {"RAnalogRight",    7,   1,  2,  3},
-    {"RAnalogUp",       8,  -1,  2,  4},
-    {"RAnalogDown",     9,   1,  2,  4},
-    {"RT",             10,   1,  2,  5},
-    {"D-padLeft",      11,  -1,  2,  6},
-    {"D-padRight",     12,   1,  2,  6},
-    {"D-padUp",        13,  -1,  2,  7},
-    {"D-padDown",      14,   1,  2,  7},
-    {"A",              15,   1,  1,  0},
-    {"B",              16,   1,  1,  1},
-    {"X",              17,   1,  1,  2},
-    {"Y",              18,   1,  1,  3},
-    {"LB",             19,   1,  1,  4},
-    {"RB",             20,   1,  1,  5},
-    {"Back",           21,   1,  1,  6},
-    {"Start",          22,   1,  1,  7},
-    {"Mode",           23,   1,  1,  8},
-    {"LAnalog_click",  24,   1,  1,  9},
-    {"RAnalog_click",  25,   1,  1,  10}
+    //String,          ID, value, type, number deadzone
+    {"LAnalogLeft",     1,  -1,  2,  0,  0},
+    {"LAnalogRight",    2,   1,  2,  0,  0},
+    {"LAnalogUp",       3,  -1,  2,  1,  0},
+    {"LAnalogDown",     4,   1,  2,  1,  0},
+    {"LT",              5,   1,  2,  2,  0},
+    {"RAnalogLeft",     6,  -1,  2,  3,  0},
+    {"RAnalogRight",    7,   1,  2,  3,  0},
+    {"RAnalogUp",       8,  -1,  2,  4,  0},
+    {"RAnalogDown",     9,   1,  2,  4,  0},
+    {"RT",             10,   1,  2,  5,  0},
+    {"D-padLeft",      11,  -1,  2,  6,  0},
+    {"D-padRight",     12,   1,  2,  6,  0},
+    {"D-padUp",        13,  -1,  2,  7,  0},
+    {"D-padDown",      14,   1,  2,  7,  0},
+    {"A",              15,   1,  1,  0,  0},
+    {"B",              16,   1,  1,  1,  0},
+    {"X",              17,   1,  1,  2,  0},
+    {"Y",              18,   1,  1,  3,  0},
+    {"LB",             19,   1,  1,  4,  0},
+    {"RB",             20,   1,  1,  5,  0},
+    {"Back",           21,   1,  1,  6,  0},
+    {"Start",          22,   1,  1,  7,  0},
+    {"Mode",           23,   1,  1,  8,  0},
+    {"LAnalog_click",  24,   1,  1,  9,  0},
+    {"RAnalog_click",  25,   1,  1,  10, 0},
+    {"",               -1,   0,  0,  0,  0}
 };
 
-joystick::joystick(QObject *parent) :
-    Kinput(parent)
+joystick::joystick(QObject *parent, QString device) :
+    Kinput(parent), _device(device)
 {
     keyPressed=0;
     fd=-1;
@@ -96,16 +97,26 @@ joystick::~joystick()
 {
 }
 
+int joystick::findJoystick()
+{
+    int fl;
+    if ((fl = open( qPrintable(_device), O_RDONLY)) >= 0)
+    {
+        fd=fl;
+        loadMap("joy_keys.json");
+    }
+    return(fd);
+}
 
 int joystick::map_button(QVariant joy)
 {
-    //TRACE
-    int result=0;
+    TRACE
+    int result=-1;
     if (joy.type() == QVariant::String)
     {
         QString str = joy.toString();
         struct joymap_str * map = joymap;
-        while ((map->string) && (!result))
+        while ((*map->string) && (result==-1))
         {
             if (map->string == str)
                 result = map->id;
@@ -114,34 +125,55 @@ int joystick::map_button(QVariant joy)
     }
     else
         result=joy.toInt();
+    DBG2 << joy << "==>" << result;
     return (result);
 }
 
 
-int joystick::convert_event2joy(struct js_event jse)
+int joystick::convert_event2joy(struct js_event *jse)
 {
-    //TRACE
-    int result=0;
+    TRACE
+    int result=-1;
 
     //DBG2 ("Searching for Type " << jse.type << " Number "<<jse.number << " Value " << jse.value;)
     //qDebug() << "Searching for Type " << jse.type << " Number "<<jse.number << " Value " << jse.value;
-
-    struct joymap_str *map = joymap;
-    while ((map->string) && (!result))
+#if 1 //WANTED
+    if ((jse->type & JS_EVENT_INIT)==0)
     {
-        int value=jse.value;
-        if (jse.type==2)
+        QString dbgmsg;
+        dbgmsg = "Joystick " + ((jse->type==1) ? QString("btn "):QString("axis")) + " #"+ QString::number(jse->number)+" Value: " + QString::number(jse->value);
+        emit joyDebug(dbgmsg);
+    }
+#endif
+    struct joymap_str *map = joymap;
+    while ((*map->string) && (result==-1))
+    {
+        int value=jse->value;
+        if (jse->type==2)
         {
-            value = sgn(value);
+            if (map->deadzone < 0)
+                value = (value > map->deadzone ? 1 : 0);
+            else
+                value = sgn(value);
         }
-        if ((map->type == (jse.type & ~JS_EVENT_INIT)) && ((map->value == value) || (!value)) && (map->number == jse.number))
+
+        if ((map->type == (jse->type & ~JS_EVENT_INIT)) && (map->number == jse->number) && (!value || (map->value == value)) )
         {
             result = map->id;
-            //DBG2 << "Found "<< map->id << ":" <<map->string;
-            //qDebug() << "Found "<< map->id << ":" <<map->string;
+            if (map->deadzone>0)
+            {
+                if ((jse->value < map->deadzone) && (jse->value > -map->deadzone))
+                    jse->value=0;
+            }
+            if (map->deadzone<0)
+            {   //Triggers default to -32768
+                jse->value = value;
+            }
+            DBG2 << "Found "<< map->id << ":" <<map->string;
         }
         map++;
     }
+    DBG2 << "result "<< result;
 
     return (result);
 }
@@ -149,67 +181,190 @@ int joystick::convert_event2joy(struct js_event jse)
 
 void joystick::print_device_info()
 {
-    //TRACE
+    TRACE
     int axes=0, buttons=0;
     char name[128];
+    if (fd != -1)
+    {
+        ioctl(fd, JSIOCGAXES, &axes);
+        ioctl(fd, JSIOCGBUTTONS, &buttons);
+        ioctl(fd, JSIOCGNAME(sizeof(name)), &name);
 
-    ioctl(fd, JSIOCGAXES, &axes);
-    ioctl(fd, JSIOCGBUTTONS, &buttons);
-    ioctl(fd, JSIOCGNAME(sizeof(name)), &name);
-
-    qDebug() << name << "\n" << axes << " Axes, " << buttons << " buttons";
+        qDebug() << name << "\n" << axes << " Axes, " << buttons << " buttons";
+    }
 }
+
+QString joystick::getMapName()
+{
+    char name[128];
+    int axes=0, buttons=0;
+    TRACE
+
+    QString filename;
+    if (fd != -1)
+    {
+        ioctl(fd, JSIOCGAXES, &axes);
+        ioctl(fd, JSIOCGBUTTONS, &buttons);
+        ioctl(fd, JSIOCGNAME(sizeof(name)), &name);
+
+        filename=QString(name)+"_"+QString::number(axes)+"A_"+QString::number(buttons)+"B.json";
+
+        filename.replace(' ','_');
+        filename.replace('(','_');
+        filename.replace(')','_');
+    }
+    return(filename);
+}
+
+void joystick::loadMap(QString def_filename)
+{
+    TRACE
+    QString filename = getMapName();
+    //emit joyDebug(filename);
+    Kinput::loadMap(filename, def_filename);
+
+    //display_mapping();
+}
+
+int joystick::map_input(QVariant joy)
+{
+    TRACE
+    int result=-1;
+    if (joy.type() == QVariant::String)
+    {
+        QString str = joy.toString();
+        struct joymap_str * map = joymap;
+        while ((map->type) && (result == -1))
+        {
+            if (map->string == str)
+            {
+                result = map->id;
+                DBG2 << "map_input found "<<str<< " at "<< result;
+            }
+            map++;
+        }
+    }
+    else
+        result=joy.toInt();
+    return (result);
+}
+
+void joystick::parse_inputs(QVariantMap &map)
+{
+    int i;
+    int numinputs=0;
+    TRACE
+
+    for (i=0; i< MAXINPUTS; i++)
+    {
+        joymap[i].id=-1;
+        joymap[i].value=-1;
+        joymap[i].number=-1;
+        joymap[i].type=0;
+        joymap[i].deadzone=0;
+        strcpy(joymap[i].string,"");
+    }
+
+    for(QVariantMap::const_iterator input = map.begin(); input != map.end(); ++input)
+    {   //For each key
+        QString str = input.key();
+        int type=0;
+        if (str.endsWith("_btn"))
+            type=1;
+        else if (str.endsWith("_axis"))
+            type=2;
+
+        int joy_code = map_input(str);  //Convert the Joy input name
+        if ((type) && (numinputs < MAXINPUTS-1))
+        {
+            if (joy_code == -1)
+            {
+                joy_code = numinputs++;
+            }
+            const char *ca;
+            QByteArray ba;
+            int elems = input.value().toList().size();
+            ba = str.toLatin1();
+            ca = ba.data();
+            strncpy (joymap[joy_code].string, ca,31);
+            joymap[joy_code].id=joy_code;
+            joymap[joy_code].type = type;
+            if (elems>0)
+                joymap[joy_code].number = input.value().toList().at(0).toInt();
+            if (elems>1)
+                joymap[joy_code].value = input.value().toList().at(1).toInt();
+            if (elems>2)
+                joymap[joy_code].deadzone = input.value().toList().at(2).toInt();
+
+            DBG2 <<"Mapped to "<< joymap[joy_code].number << " " << joymap[joy_code].value;
+        }
+    }
+
+#if 0
+    for (i=0; i< MAXINPUTS; i++)
+    {
+        qDebug() << joymap[i].id <<"\t"<<joymap[i].type <<"\t"<< joymap[i].value <<"\t"<< joymap[i].number <<"\t"<< joymap[i].string;
+    }
+#endif
+}
+
 
 void joystick::process_event(struct js_event jse)
 {
+    TRACE
+    int key1=-1;
+    int key2=-1;
+    int trig=0;
 
-    //TRACE
-    int key=convert_event2joy(jse);
-    if (jse.value)
-        keyPressed=1;
-    emit joyPress(key,jse.value);
-    if ((jse.value==0) && (jse.type==2))
-    {   //If a directional axis goes to zero, we should release the previous direction.
-        //But to avoid remembering, just release both opposite directions
-        if (key==1)
-            emit joyPress(2,jse.value);
-        if (key==3)
-            emit joyPress(4,jse.value);
+    key1 = convert_event2joy(&jse);
+    if ((key1 != -1) && (joymap[key1].deadzone < 0))
+        trig=1;
+
+    if ((jse.value==0) && (jse.type==2) && (!trig))
+    {   //If a directional axis goes to zero, we should release both directions.
+        jse.value=1;
+        key1=convert_event2joy(&jse);
+        jse.value=-1;
+        key2=convert_event2joy(&jse);
+        jse.value=0;
+    }
+
+    if ( !(jse.type & JS_EVENT_INIT))
+    {
+        if (jse.value)
+            keyPressed=1;
+        emit joyPress(key1,jse.value);
+        if (key2!=-1)
+            emit joyPress(key2,jse.value);
     }
 }
 
 void joystick::run()
 {
-    //TRACE
-
+    TRACE
     struct js_event jse;
 
-    if ((fd = open("/dev/input/js0", O_RDONLY)) < 0)
+    while (1)
     {
-        qDebug() << "No Joystick found";
-    }
-    else
-    {
-        print_device_info();
-
-        while (1)
+        if (fd==-1)
         {
-            if (read(fd, &jse, sizeof(struct js_event)) != sizeof(struct js_event))
-                //qDebug() << "error reading joystick";
-                ;
-            else
-                process_event(jse);
+            while (findJoystick() ==-1)
+                sleep(1);
         }
-        clearKeyPressed();
+        while (read(fd, &jse, sizeof(struct js_event)) == sizeof(struct js_event))
+                process_event(jse);
+        qDebug()<<"Error reading joystick";
+        close(fd);
+        fd=-1;
+        reset();
     }
 }
 
-
 const char * joystick::decode_joy( int code)
 {
-    //TRACE
+    TRACE
     struct joymap_str *map = joymap;
-    while (map->string)
+    while (*map->string)
     {
         if (map->id == code)
             return(map->string);
@@ -242,13 +397,41 @@ int scale_joystick(int value)
     return(step);
 }
 
+#if 0
+void joystick::display_mapping()
+{
+    for(mapwnd_t::const_iterator wnd =_map.begin(); wnd != _map.end(); ++wnd)
+    {
+        QString wname = wnd.key();
+        qDebug()<<wname;
+        mapmenu_t menu = wnd.value();
+        for(mapmenu_t::const_iterator m =menu.begin(); m != menu.end(); ++m)
+        {
+            QString mname = m.key();
+            qDebug()<<mname;
+            mapkeys_t keys = m.value();
+            for(mapkeys_t::const_iterator k =keys.begin(); k != keys.end(); ++k)
+            {
+                int joy,key;
+                joy = k.key();
+                key = k.value();
+                qDebug() << "Joy="<<joy<<"("<<decode_joy(joy)<<")" <<"Key="<<key<<"("<<decode_key(key_map, key)<<")";
+            }
+        }
+
+    }
+}
+#endif
+
 void joystick::process_joy(int joy_code, int value)
 {
-    //TRACE
+    TRACE
     int found=0;
     int key=-1;
     QString menu;
     QString wnd;
+
+    DBG2 << "joy " << joy_code << " ("<< decode_joy(joy_code) <<  ") Value="<<value;
 
     int done=0;
     wnd=_wnd;
@@ -263,10 +446,11 @@ void joystick::process_joy(int joy_code, int value)
                 if (m.contains(menu))
                 {
                     mapkeys_t k = m.value(menu);
+                    DBG2 << "Searching in keymap "<<wnd<<menu<<joy_code;
                     if (k.contains(joy_code))
                     {
                         key = k.value(joy_code);
-                        qDebug() << "found joy " << joy_code << " ("<< decode_joy(joy_code) <<  ") in "<<wnd<<" : "<<menu<<" as "<<key<< " ("<<decode_key(key_map,key)<<")";
+                        DBG2 << "found joy " << joy_code << " ("<< decode_joy(joy_code) <<  ") in "<<wnd<<" : "<<menu<<" as "<<key<< " ("<<decode_key(key_map,key)<<")";
                         found = 1;
                         done = 1;
                     }
@@ -294,10 +478,10 @@ void joystick::process_joy(int joy_code, int value)
     if (key == -1)
         return;
 
-    int step = scale_joystick(value);
-    int sign = sgn(step);
-    int negstep = step*sign*-1;
-    value = negstep;
+    if (key&joy_any)
+    {
+        value /= 3000;
+    }
 
     inject_key(key,value);
 }

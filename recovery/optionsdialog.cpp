@@ -3,7 +3,6 @@
 #include "optionsdialog.h"
 #include "ui_optionsdialog.h"
 #include "util.h"
-#include "input.h"
 
 #include <QCheckBox>
 #include <QLineEdit>
@@ -15,6 +14,7 @@
 #include <QMessageBox>
 #include <QVariantList>
 #include <QVariantMap>
+#include "mydebug.h"
 
 extern MainWindow * gMW;
 extern QApplication * gApp;
@@ -28,6 +28,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
     ui->lv_select->setSortingEnabled(true);
 
     virtualKeyBoard = new WidgetKeyboard(this);
+    _nav.setContext("options","any");
+
+    pNav=NULL;
 
     //Add all the installable OSes
     QList<QListWidgetItem *> all = gMW->allItems();
@@ -45,16 +48,19 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
     }
 
     //Add any additional installed OSes that we may not have the install files for at the moment
-    QVariantList list = Json::loadFromFile("/settings/installed_os.json").toList();
-    foreach (QVariant v, list)
+    if (QFile::exists("/settings/installed_os.json"))
     {
-        QVariantMap m = v.toMap();
-        QString name = m.value("name").toString();
-        if (ui->lv_select->findItems(name,Qt::MatchExactly).isEmpty())
+        QVariantList list = Json::loadFromFile("/settings/installed_os.json").toList();
+        foreach (QVariant v, list)
         {
-            QListWidgetItem * witem = new QListWidgetItem(name);
-            witem->setCheckState(Qt::Unchecked);
-            ui->lv_select->addItem(witem);
+            QVariantMap m = v.toMap();
+            QString name = m.value("name").toString();
+            if (ui->lv_select->findItems(name,Qt::MatchExactly).isEmpty())
+            {
+                QListWidgetItem * witem = new QListWidgetItem(name);
+                witem->setCheckState(Qt::Unchecked);
+                ui->lv_select->addItem(witem);
+            }
         }
     }
     _lastWidgetFocus=NULL;
@@ -65,9 +71,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 OptionsDialog::~OptionsDialog()
 {
     virtualKeyBoard->hide();
-    Kinput::setWindow(_lastWindow);
-    Kinput::setMenu(_lastMenu);
-    Kinput::setGrabWindow(NULL);
     delete virtualKeyBoard;
     delete ui;
 }
@@ -402,24 +405,26 @@ void OptionsDialog::on_buttonBox_rejected()
 
 void OptionsDialog::on_cbvk_toggled(bool checked)
 {
+
     if (checked)
     {
+
         if (_lastWidgetFocus)
             _lastWidgetFocus->setFocus();
 
         virtualKeyBoard->show();
-        Kinput::setGrabWindow(virtualKeyBoard);
-        _lastWindow = Kinput::getWindow();
-        _lastMenu = Kinput::getMenu();
-        Kinput::setWindow("VKeyboard");
-        Kinput::setMenu("any");
+        if (pNav)
+            delete pNav;
+        pNav = new navigate("VKeyboard", "any", virtualKeyBoard);
     }
     else
     {
         virtualKeyBoard->hide();
-        Kinput::setWindow(_lastWindow);
-        Kinput::setMenu(_lastMenu);
-        Kinput::setGrabWindow(NULL);
+        if (pNav)
+        {
+            delete pNav;
+            pNav=NULL;
+        }
     }
 }
 

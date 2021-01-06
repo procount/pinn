@@ -12,8 +12,7 @@
 #include "joystick.h"
 #include "simulate.h"
 
-#define DBG_LOCAL 1
-#define LOCAL_DO_DBG 0
+#define LOCAL_DBG_ON 0
 //#define LOCAL_DBG_FUNC 0
 //#define LOCAL_DBG_OUT 0
 //#define LOCAL_DBG_MSG 0
@@ -50,7 +49,8 @@
 bool dsi=false;
 CecListener *cec = NULL;
 CecListener *enableCEC(QObject *parent=0);
-joystick *joy = NULL;
+joystick *joy1 = NULL;
+joystick *joy2 = NULL;
 simulate *sim = NULL;
 
 QStringList downloadRepoUrls;
@@ -230,7 +230,6 @@ int main(int argc, char *argv[])
     RightButtonFilter rbf;
     LongPressHandler lph;
     GpioInput *gpio=NULL;
-    cec = enableCEC();
 
     QString drive;
     bool driveReady = false;
@@ -383,8 +382,8 @@ int main(int argc, char *argv[])
         QProcess::execute("mount -o ro -t vfat "+drive+" /mnt");
     }
 
-    cec->loadMap("/mnt/cec_keys.json");
-    joy->loadMap("/mnt/joy_keys.json");
+    cec = enableCEC();
+    cec->loadMap("cec_keys.json");
 
 #if 0
     qDebug() << "Starting dbus";
@@ -500,6 +499,9 @@ int main(int argc, char *argv[])
 #endif
 
 
+    //if (joy)
+    //    qDebug() << "Searching for " << joy->getMapName();
+
     KSplash *splash = new KSplash(pixmap,0,wallpaper_resize);
 
     splash->show();
@@ -545,6 +547,19 @@ int main(int argc, char *argv[])
                 qDebug() << "cec key detected";
                 break;
             }
+            if (joy1->hasKeyPressed())
+            {
+                bailout = false;
+                qDebug() << "Joy1 key detected";
+                break;
+            }
+            if ((joy2) && (joy2->hasKeyPressed()))
+            {
+                bailout = false;
+                qDebug() << "Joy2 key detected";
+                break;
+            }
+
         }
     }
 
@@ -581,6 +596,7 @@ int main(int argc, char *argv[])
     qDebug() << "Application Exit " << result;
     showBootMenu(drive, defaultPartition, timedReboot);
 
+
     return 0;
 }
 
@@ -591,12 +607,18 @@ CecListener *enableCEC(QObject *parent)
     QByteArray cpuinfo = f.readAll();
     f.close();
 
+    sim = new simulate();
+
     cec = new CecListener(parent);
     cec->start();
 
-    joy = new joystick(parent);
-    joy->start();
+    joy1 = new joystick(parent);
+    joy1->start();
 
-    sim = new simulate();
+    joy2 = new joystick(parent, "/dev/input/js1");
+
+    if (joy2)
+        joy2->start();
+
     return(cec);
 }

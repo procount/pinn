@@ -79,7 +79,11 @@ ConfEditDialog::ConfEditDialog(const QVariantMap &map, const QString &partition,
     ui->setupUi(this);
     ui->tabWidget->clear();
 
+    pNav=NULL;
+
     virtualKeyBoard = new WidgetKeyboard(this);
+
+    _nav.setContext("confEdit", "any");
 
     if (_map.value("name") =="PINN")
     {  //This is the PINN reference
@@ -122,8 +126,11 @@ ConfEditDialog::~ConfEditDialog()
         QProcess::execute("umount /boot");
 
     virtualKeyBoard->hide();
-    Kinput::setWindow(_lastWindow);
-    Kinput::setMenu(_lastMenu);
+    if (pNav)
+    {
+        delete pNav;
+        pNav=NULL;
+    }
     Kinput::setGrabWindow(NULL);
     delete virtualKeyBoard;
     delete ui;
@@ -177,18 +184,18 @@ void ConfEditDialog::on_cbvk_toggled(bool checked)
             _lastWidgetFocus->setFocus();
 
         virtualKeyBoard->show();
-        _lastWindow = Kinput::getWindow();
-        _lastMenu = Kinput::getMenu();
-        Kinput::setWindow("VKeyboard");
-        Kinput::setMenu("any");
-        Kinput::setGrabWindow(virtualKeyBoard);
+        if (pNav)
+            delete pNav;
+        pNav = new navigate("VKeyboard", "any", virtualKeyBoard);
     }
     else
     {
         virtualKeyBoard->hide();
-        Kinput::setWindow(_lastWindow);
-        Kinput::setMenu(_lastMenu);
-        Kinput::setGrabWindow(NULL);
+        if (pNav)
+        {
+            delete pNav;
+            pNav=NULL;
+        }
     }
 }
 

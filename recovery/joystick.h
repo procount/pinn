@@ -41,11 +41,13 @@ typedef QMap<QString, mapmenu_t> mapwnd_t;
 
 
 struct joymap_str {
-    const char * string;
+    char string[32];        // Name of button/axis
     int id;                 // Pseudo key
     int value;              // value
-    unsigned char type;     // event type
-    unsigned char number;   // axis/button number
+    int type;               // event type
+    int number;             // axis/button number
+    int deadzone;           // +ve means a +/- deadzone around 0
+                            // -ve means a trigger input (default is -32768) goes to +32768 when > deadzone.
 };
 
 
@@ -55,25 +57,33 @@ class joystick : public Kinput
 {
     Q_OBJECT
 public:
-    explicit joystick(QObject *parent = 0);
+    explicit joystick(QObject *parent = 0, QString device = "/dev/input/js0");
     virtual ~joystick();
 
+    int findJoystick();
     void print_device_info();
     void process_event(struct js_event jse);
     virtual int map_button(QVariant joy);
-    int convert_event2joy(struct js_event jse);
-    void loadMap(QString filename) { Kinput::loadMap(filename, ":/joy_keys.json"); }
+    int convert_event2joy(struct js_event * jse);
+    void loadMap(QString filename);
     void process_joy(int joy_code, int value);
     const char * decode_joy(int code);
     int get_fd() { return fd; }
+    int map_input(QVariant joy);
+    QString getMapName();
 
 protected:
     virtual void run();
+    void virtual parse_inputs(QVariantMap &map);
+    void display_mapping();
 
     int fd;
+    QString _device;
 
 signals:
     void joyPress(int key, int value);
+    void joyEvent(int type, int number, int value);
+    void joyDebug(QString dbgmsg);
 
 public slots:
 

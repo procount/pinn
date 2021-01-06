@@ -46,11 +46,11 @@ struct scale_t
 
 extern struct scale_t scale_map[MAXSTEPS];
 #define mouse_any       0x1000
-#define mouse_left      0x1001
-#define mouse_right     0x1002
-#define mouse_up        0x1003
-#define mouse_down      0x1004
-#define mouse_lclick    0x1005
+#define mouse_left      0x1000
+#define mouse_right     0x1001
+#define mouse_up        0x1002
+#define mouse_down      0x1003
+#define mouse_lclick    0x1004
 
 #define joy_any         0x2000
 #define joy_left        0x2001
@@ -99,6 +99,8 @@ protected:
     void inject_key(int key,int value);
     void key_simulate(int key, int value);
     void mouse_simulate(int key, int value);
+    void virtual parse_inputs(QVariantMap &map);
+    void reset();
 
 signals:
 
@@ -107,7 +109,7 @@ public slots:
     void key_repeat();
 
 private:
-    int mouse_state[6];
+    int mouse_state[8]; //a bit bigger than necessary (only 6 reqd)
     int mouse_input;
     int step;
     int count;
@@ -117,5 +119,20 @@ private:
     QTimer keytimer;
     QTimer mousetimer;
 };
+
+
+class navigate  : public QObject
+{
+    Q_OBJECT
+private:
+    QString _lastwindow;
+    QString _lastmenu;
+public:
+    navigate();
+    navigate(const char * window, const char * menu, QObject * grabWindow=NULL);
+    ~navigate();
+    void setContext(const char * window, const char * menu, QObject * grabWindow=NULL);
+};
+
 
 #endif // INPUT_H

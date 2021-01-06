@@ -1024,6 +1024,7 @@ The following steps allow you to create a modified copy of one of the standard O
   * "partition_size_nominal" - replace the numerical value with the size of the paritions in your custom OS version
   * "uncompressed_tarball_size" - replace the numerical value with the size of your filesystem tarballs when uncompressed
 9. Replace the `.tar.xz` root and boot filesystem tarballs with copies created from your custom OS version (these instructions assume you're only using a single OS at a time with PINN - they won't work if you're running multiple OSes from a single SD card). The name of these tarballs needs to match the labels given in `partitions.json`.
+  * From the root folder of the OS you want to backup, delete any socket files which would otherwise cause problems during the next `bsdtar` operation. Use `sudo find . -type s -exec rm {} \;`. These files are normally temporary and can be safely deleted, but if you are in anyway concerned/paranoid, then backup them up first just in case.
   * To create the root tarball, you will need to run: `sudo bsdtar --numeric-owner --format gnutar --one-file-system -cpf \<label\>_root.tar .` from within the root filesystem of your custom OS version. You should then compress the resulting tarball with `xz -9 -e \<label\>_root.tar`.
   * To create the boot tarball, you will need to run `sudo bsdtar --numeric-owner --format gnutar -cpvf \<label\>_boot.tar .` from the boot partition of your custom OS version. You should then compress the resulting tarball with `xz -9 -e \<label\>_boot.tar`.
 
