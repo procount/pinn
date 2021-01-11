@@ -142,7 +142,7 @@ int joystick::convert_event2joy(struct js_event jse)
     if ((jse.type & JS_EVENT_INIT)==0)
     {
         QString dbgmsg;
-        dbgmsg = "Joy type: " + QString::number(jse.type) + " No: "+ QString::number(jse.number)+" Value: " + QString::number(jse.value);
+        dbgmsg = "Joystick " + ((jse.type==1) ? QString("btn "):QString("axis")) + " #"+ QString::number(jse.number)+" Value: " + QString::number(jse.value);
         emit joyDebug(dbgmsg);
         //emit joyEvent(jse.type, jse.number, jse.value);
          //qDebug() << "Joy type: " <<jse.type<< " No: "<<jse.number<<" Value: " << jse.value;
