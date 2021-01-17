@@ -362,6 +362,15 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     _qpd->hide();
     _qpd->deleteLater();
     _qpd = NULL;
+
+    QProcess::execute("mkdir -p /settings/dropbear");
+    if (!QFile::exists("/settings/.ssh"))
+    {
+        QProcess::execute("mkdir -p /settings/.ssh");
+        QProcess::execute("chmod 700 /settings/.ssh");
+    }
+
+
     QProcess::execute("mount -o ro -t vfat "+partdev(_bootdrive, 1)+" /mnt");
 
     _model = getFileContents("/proc/device-tree/model");
