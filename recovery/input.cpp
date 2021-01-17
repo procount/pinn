@@ -224,6 +224,18 @@ void Kinput::loadMap(QString filename, QString defName)
     }
 }
 
+void Kinput::reset()
+{
+    for (int i=0; i<7; i++)
+        mouse_state[i]=0;
+    mouse_input=0;
+    step=1;
+    count=0;
+
+    keyState=0;
+    currentKey=0;
+}
+
 void Kinput::inject_key(int key, int value)
 {
     if (key & mouse_any)

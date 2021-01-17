@@ -100,6 +100,7 @@ protected:
     void key_simulate(int key, int value);
     void mouse_simulate(int key, int value);
     void virtual parse_inputs(QVariantMap &map);
+    void reset();
 
 signals:
 
@@ -108,7 +109,7 @@ public slots:
     void key_repeat();
 
 private:
-    int mouse_state[6];
+    int mouse_state[8]; //a bit bigger than necessary (only 6 reqd)
     int mouse_input;
     int step;
     int count;

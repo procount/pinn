@@ -344,6 +344,7 @@ void joystick::run()
         qDebug()<<"Error reading joystick";
         close(fd);
         fd=-1;
+        reset();
     }
 }
 

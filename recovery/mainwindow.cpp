@@ -2979,6 +2979,9 @@ void MainWindow::startImageWrite()
     connect(imageWriteThread, SIGNAL(cont()), _qpssd , SLOT(cont()));
     connect(imageWriteThread, SIGNAL(consolidate()), _qpssd , SLOT(consolidate()));
     connect(imageWriteThread, SIGNAL(finish()), _qpssd , SLOT(finish()));
+
+    connect(_qpssd, SIGNAL(rejected()), this, SLOT(onError(QString)), Qt::BlockingQueuedConnection);
+
     imageWriteThread->start();
     hide();
     _qpssd->exec();
@@ -3089,6 +3092,8 @@ void MainWindow::startImageReinstall()
     connect(imageWriteThread, SIGNAL(cont()), _qpssd , SLOT(cont()));
     connect(imageWriteThread, SIGNAL(consolidate()), _qpssd , SLOT(consolidate()));
     connect(imageWriteThread, SIGNAL(finish()), _qpssd , SLOT(finish()));
+
+    connect(_qpssd, SIGNAL(rejected()), this, SLOT(onError(QString)), Qt::BlockingQueuedConnection);
 
     imageWriteThread->start();
     hide();
@@ -3230,6 +3235,7 @@ void MainWindow::startImageDownload()
     connect(imageDownloadThread, SIGNAL(consolidate()), _qpssd , SLOT(consolidate()));
     connect(imageDownloadThread, SIGNAL(finish()), _qpssd , SLOT(finish()));
 
+    connect(_qpssd, SIGNAL(rejected()), this, SLOT(onError(QString)), Qt::BlockingQueuedConnection);
 
     imageDownloadThread->start();
     hide();
