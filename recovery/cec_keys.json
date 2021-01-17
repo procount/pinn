@@ -50,6 +50,8 @@
         "any": {
             "Key_U":        "CEC_User_Control_Number1",
             "Key_D":        "CEC_User_Control_Number2",
+            "Key_Escape":   "CEC_User_Control_Number3",
+            "Key_Enter":    "CEC_User_Control_Number4",
             "Key_Enter":    "CEC_User_Control_Play",
             "Key_Escape":   "CEC_User_Control_Exit",
             "Key_Up":       "CEC_User_Control_ChannelUp",
