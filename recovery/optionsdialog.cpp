@@ -30,6 +30,8 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
     virtualKeyBoard = new WidgetKeyboard(this);
     _nav.setContext("options","any");
 
+    pNav=NULL;
+
     //Add all the installable OSes
     QList<QListWidgetItem *> all = gMW->allItems();
     for (int i=0; i< all.count(); i++)
@@ -46,16 +48,19 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
     }
 
     //Add any additional installed OSes that we may not have the install files for at the moment
-    QVariantList list = Json::loadFromFile("/settings/installed_os.json").toList();
-    foreach (QVariant v, list)
+    if (QFile::exists("/settings/installed_os.json"))
     {
-        QVariantMap m = v.toMap();
-        QString name = m.value("name").toString();
-        if (ui->lv_select->findItems(name,Qt::MatchExactly).isEmpty())
+        QVariantList list = Json::loadFromFile("/settings/installed_os.json").toList();
+        foreach (QVariant v, list)
         {
-            QListWidgetItem * witem = new QListWidgetItem(name);
-            witem->setCheckState(Qt::Unchecked);
-            ui->lv_select->addItem(witem);
+            QVariantMap m = v.toMap();
+            QString name = m.value("name").toString();
+            if (ui->lv_select->findItems(name,Qt::MatchExactly).isEmpty())
+            {
+                QListWidgetItem * witem = new QListWidgetItem(name);
+                witem->setCheckState(Qt::Unchecked);
+                ui->lv_select->addItem(witem);
+            }
         }
     }
     _lastWidgetFocus=NULL;
@@ -400,9 +405,10 @@ void OptionsDialog::on_buttonBox_rejected()
 
 void OptionsDialog::on_cbvk_toggled(bool checked)
 {
-    TRACE
+
     if (checked)
     {
+
         if (_lastWidgetFocus)
             _lastWidgetFocus->setFocus();
 

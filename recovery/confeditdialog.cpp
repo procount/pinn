@@ -186,9 +186,7 @@ void ConfEditDialog::on_cbvk_toggled(bool checked)
         virtualKeyBoard->show();
         if (pNav)
             delete pNav;
-        pNav = new navigate("VKeyboard", "any", virtualKeyBoard);        Kinput::setWindow("VKeyboard");
-        Kinput::setMenu("any");
-        Kinput::setGrabWindow(virtualKeyBoard);
+        pNav = new navigate("VKeyboard", "any", virtualKeyBoard);
     }
     else
     {
@@ -198,7 +196,6 @@ void ConfEditDialog::on_cbvk_toggled(bool checked)
             delete pNav;
             pNav=NULL;
         }
-        Kinput::setGrabWindow(NULL);
     }
 }
 
