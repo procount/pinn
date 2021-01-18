@@ -46,6 +46,8 @@ struct joymap_str {
     int value;              // value
     int type;               // event type
     int number;             // axis/button number
+    int deadzone;           // +ve means a +/- deadzone around 0
+                            // -ve means a trigger input (default is -32768) goes to +32768 when > deadzone.
 };
 
 
@@ -62,7 +64,7 @@ public:
     void print_device_info();
     void process_event(struct js_event jse);
     virtual int map_button(QVariant joy);
-    int convert_event2joy(struct js_event jse);
+    int convert_event2joy(struct js_event * jse);
     void loadMap(QString filename);
     void process_joy(int joy_code, int value);
     const char * decode_joy(int code);

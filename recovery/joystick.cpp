@@ -58,32 +58,32 @@
 struct joymap_str joymap[MAXINPUTS] =
 {
     //String,          ID, value, type, number
-    {"LAnalogLeft",     1,  -1,  2,  0},
-    {"LAnalogRight",    2,   1,  2,  0},
-    {"LAnalogUp",       3,  -1,  2,  1},
-    {"LAnalogDown",     4,   1,  2,  1},
-    {"LT",              5,   1,  2,  2},
-    {"RAnalogLeft",     6,  -1,  2,  3},
-    {"RAnalogRight",    7,   1,  2,  3},
-    {"RAnalogUp",       8,  -1,  2,  4},
-    {"RAnalogDown",     9,   1,  2,  4},
-    {"RT",             10,   1,  2,  5},
-    {"D-padLeft",      11,  -1,  2,  6},
-    {"D-padRight",     12,   1,  2,  6},
-    {"D-padUp",        13,  -1,  2,  7},
-    {"D-padDown",      14,   1,  2,  7},
-    {"A",              15,   1,  1,  0},
-    {"B",              16,   1,  1,  1},
-    {"X",              17,   1,  1,  2},
-    {"Y",              18,   1,  1,  3},
-    {"LB",             19,   1,  1,  4},
-    {"RB",             20,   1,  1,  5},
-    {"Back",           21,   1,  1,  6},
-    {"Start",          22,   1,  1,  7},
-    {"Mode",           23,   1,  1,  8},
-    {"LAnalog_click",  24,   1,  1,  9},
-    {"RAnalog_click",  25,   1,  1,  10},
-    {"",               -1,   0,  0,  0}
+    {"LAnalogLeft",     1,  -1,  2,  0,  0},
+    {"LAnalogRight",    2,   1,  2,  0,  0},
+    {"LAnalogUp",       3,  -1,  2,  1,  0},
+    {"LAnalogDown",     4,   1,  2,  1,  0},
+    {"LT",              5,   1,  2,  2,  0},
+    {"RAnalogLeft",     6,  -1,  2,  3,  0},
+    {"RAnalogRight",    7,   1,  2,  3,  0},
+    {"RAnalogUp",       8,  -1,  2,  4,  0},
+    {"RAnalogDown",     9,   1,  2,  4,  0},
+    {"RT",             10,   1,  2,  5,  0},
+    {"D-padLeft",      11,  -1,  2,  6,  0},
+    {"D-padRight",     12,   1,  2,  6,  0},
+    {"D-padUp",        13,  -1,  2,  7,  0},
+    {"D-padDown",      14,   1,  2,  7,  0},
+    {"A",              15,   1,  1,  0,  0},
+    {"B",              16,   1,  1,  1,  0},
+    {"X",              17,   1,  1,  2,  0},
+    {"Y",              18,   1,  1,  3,  0},
+    {"LB",             19,   1,  1,  4,  0},
+    {"RB",             20,   1,  1,  5,  0},
+    {"Back",           21,   1,  1,  6,  0},
+    {"Start",          22,   1,  1,  7,  0},
+    {"Mode",           23,   1,  1,  8,  0},
+    {"LAnalog_click",  24,   1,  1,  9,  0},
+    {"RAnalog_click",  25,   1,  1,  10, 0},
+    {"",               -1,   0,  0,  0,  0}
 };
 
 joystick::joystick(QObject *parent) :
@@ -131,7 +131,7 @@ int joystick::map_button(QVariant joy)
 }
 
 
-int joystick::convert_event2joy(struct js_event jse)
+int joystick::convert_event2joy(struct js_event *jse)
 {
     TRACE
     int result=0;
@@ -139,26 +139,39 @@ int joystick::convert_event2joy(struct js_event jse)
     //DBG2 ("Searching for Type " << jse.type << " Number "<<jse.number << " Value " << jse.value;)
     //qDebug() << "Searching for Type " << jse.type << " Number "<<jse.number << " Value " << jse.value;
 #if 1 //WANTED
-    if ((jse.type & JS_EVENT_INIT)==0)
+    if ((jse->type & JS_EVENT_INIT)==0)
     {
         QString dbgmsg;
-        dbgmsg = "Joystick " + ((jse.type==1) ? QString("btn "):QString("axis")) + " #"+ QString::number(jse.number)+" Value: " + QString::number(jse.value);
+        dbgmsg = "Joystick " + ((jse->type==1) ? QString("btn "):QString("axis")) + " #"+ QString::number(jse->number)+" Value: " + QString::number(jse->value);
         emit joyDebug(dbgmsg);
-        //emit joyEvent(jse.type, jse.number, jse.value);
-         //qDebug() << "Joy type: " <<jse.type<< " No: "<<jse.number<<" Value: " << jse.value;
+        //emit joyEvent(jse->type, jse->number, jse->value);
+         //qDebug() << "Joy type: " <<jse->type<< " No: "<<jse->number<<" Value: " << jse->value;
     }
 #endif
     struct joymap_str *map = joymap;
     while ((*map->string) && (!result))
     {
-        int value=jse.value;
-        if (jse.type==2)
+        int value=jse->value;
+        if (jse->type==2)
         {
             value = sgn(value);
         }
-        if ((map->type == (jse.type & ~JS_EVENT_INIT)) && ((map->value == value) || (!value)) && (map->number == jse.number))
+        if ((map->type == (jse->type & ~JS_EVENT_INIT)) && ((map->value == value) || (!value)) && (map->number == jse->number))
         {
             result = map->id;
+            if (map->deadzone>0)
+            {
+                if ((jse->value < map->deadzone) && (jse->value > -map->deadzone))
+                    jse->value=0;
+            }
+            if (map->deadzone<0)
+            {   //Triggers default to -32768
+                if (jse->value < map->deadzone)
+                    jse->value=0;
+                else
+                    jse->value=1;
+            }
+
             //DBG2 << "Found "<< map->id << ":" <<map->string;
             //qDebug() << "Found "<< map->id << ":" <<map->string;
         }
@@ -210,7 +223,7 @@ void joystick::loadMap(QString def_filename)
 {
     TRACE
     QString filename = getMapName();
-    emit joyDebug(filename);
+    //emit joyDebug(filename);
     Kinput::loadMap(filename, def_filename);
 
     //display_mapping();
@@ -253,6 +266,7 @@ void joystick::parse_inputs(QVariantMap &map)
         joymap[i].value=-1;
         joymap[i].number=-1;
         joymap[i].type=0;
+        joymap[i].deadzone=0;
         strcpy(joymap[i].string,"");
     }
 
@@ -266,28 +280,28 @@ void joystick::parse_inputs(QVariantMap &map)
             type=2;
 
         int joy_code = map_input(str);  //Convert the Joy input name
-        if (type)
+        if ((type) && (numinputs < MAXINPUTS-1))
         {
             if (joy_code == -1)
             {
-                if (numinputs < MAXINPUTS-1)
-                {
-                    joy_code= numinputs++;
-                }
+                joy_code = numinputs++;
             }
-            if ((joy_code != -1))
-            {
-                const char *ca;
-                QByteArray ba;
-                ba = str.toLatin1();
-                ca = ba.data();
-                strncpy (joymap[joy_code].string, ca,31);
-                joymap[joy_code].id=joy_code;
-                joymap[joy_code].type = type;
+            const char *ca;
+            QByteArray ba;
+            int elems = input.value().toList().size();
+            ba = str.toLatin1();
+            ca = ba.data();
+            strncpy (joymap[joy_code].string, ca,31);
+            joymap[joy_code].id=joy_code;
+            joymap[joy_code].type = type;
+            if (elems>0)
                 joymap[joy_code].number = input.value().toList().at(0).toInt();
+            if (elems>1)
                 joymap[joy_code].value = input.value().toList().at(1).toInt();
-                //qDebug()<<"Mapped to "<< joymap[joy_code].number << " " << joymap[joy_code].value;
-            }
+            if (elems>2)
+                joymap[joy_code].deadzone = input.value().toList().at(2).toInt();
+
+            //qDebug()<<"Mapped to "<< joymap[joy_code].number << " " << joymap[joy_code].value;
         }
     }
 
@@ -306,14 +320,14 @@ void joystick::process_event(struct js_event jse)
     int key1=-1;
     int key2=-1;
 
-    key1 = convert_event2joy(jse);
+    key1 = convert_event2joy(&jse);
 
     if ((jse.value==0) && (jse.type==2))
     {   //If a directional axis goes to zero, we should release both directions.
         jse.value=1;
-        key1=convert_event2joy(jse);
+        key1=convert_event2joy(&jse);
         jse.value=-1;
-        key2=convert_event2joy(jse);
+        key2=convert_event2joy(&jse);
         jse.value=0;
     }
 
@@ -433,7 +447,7 @@ void joystick::process_joy(int joy_code, int value)
                     if (k.contains(joy_code))
                     {
                         key = k.value(joy_code);
-                        //qDebug() << "found joy " << joy_code << " ("<< decode_joy(joy_code) <<  ") in "<<wnd<<" : "<<menu<<" as "<<key<< " ("<<decode_key(key_map,key)<<")";
+                        qDebug() << "found joy " << joy_code << " ("<< decode_joy(joy_code) <<  ") in "<<wnd<<" : "<<menu<<" as "<<key<< " ("<<decode_key(key_map,key)<<")";
                         found = 1;
                         done = 1;
                     }

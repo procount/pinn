@@ -499,8 +499,8 @@ int main(int argc, char *argv[])
 #endif
 
 
-    if (joy)
-        qDebug() << "Searching for " << joy->getMapName();
+    //if (joy)
+    //    qDebug() << "Searching for " << joy->getMapName();
 
     KSplash *splash = new KSplash(pixmap,0,wallpaper_resize);
 

@@ -14,6 +14,7 @@
 #include <QMessageBox>
 #include <QVariantList>
 #include <QVariantMap>
+#include "mydebug.h"
 
 extern MainWindow * gMW;
 extern QApplication * gApp;
@@ -399,6 +400,7 @@ void OptionsDialog::on_buttonBox_rejected()
 
 void OptionsDialog::on_cbvk_toggled(bool checked)
 {
+    TRACE
     if (checked)
     {
         if (_lastWidgetFocus)

@@ -143,7 +143,7 @@ void Kinput::loadMap(QString filename, QString defName)
     //TRACE
 
     QString fname = "/mnt/"+filename;
-#if WANTED
+#if 1
     qDebug() << "Looking for "<<fname;
 #endif
     if (!QFile::exists(fname))
@@ -154,7 +154,7 @@ void Kinput::loadMap(QString filename, QString defName)
 
     if (QFile::exists(fname))
     {
-#if WANTED
+#if 1
         qDebug() << "Loading Mappings mappings from " << fname;
 #endif
         _map.clear();
@@ -247,7 +247,7 @@ void Kinput::inject_key(int key, int value)
 
 void Kinput::mouse_simulate(int key, int value)
 {
-//    qDebug() << "Inject Mouse Code: "<<key<<" Value: " <<value;
+    qDebug() << "Inject Mouse Code: "<<key<<" Value: " <<value;
 
     //Keep track of which mouse dirn are being pressed
     mouse_state[key & 0x07]= (value ? 1 : 0);
