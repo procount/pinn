@@ -52,7 +52,7 @@
 
 
 #define TEST 0
-#define MAXINPUTS 40
+#define MAXINPUTS 50
 
 //Mapping of joystick events to a pseudo "string" key
 struct joymap_str joymap[MAXINPUTS] =
@@ -154,7 +154,10 @@ int joystick::convert_event2joy(struct js_event *jse)
         int value=jse->value;
         if (jse->type==2)
         {
-            value = sgn(value);
+            if (map->deadzone<0)
+                value = (value>map->deadzone ? 1 : 0);
+            else
+                value = sgn(value);
         }
         if ((map->type == (jse->type & ~JS_EVENT_INIT)) && ((map->value == value) || (!value)) && (map->number == jse->number))
         {
