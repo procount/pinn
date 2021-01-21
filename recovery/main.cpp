@@ -12,8 +12,7 @@
 #include "joystick.h"
 #include "simulate.h"
 
-#define DBG_LOCAL 1
-#define LOCAL_DO_DBG 0
+#define LOCAL_DBG_ON 0
 //#define LOCAL_DBG_FUNC 0
 //#define LOCAL_DBG_OUT 0
 //#define LOCAL_DBG_MSG 0

@@ -25,6 +25,11 @@
  */
 
 #include "input.h"
+
+#define LOCAL_DBG_ON 0
+#define LOCAL_DBG_FUNC 0
+#define LOCAL_DBG_OUT 0
+#define LOCAL_DBG_MSG 0
 #include "mydebug.h"
 
 #include <linux/input.h>
@@ -112,6 +117,7 @@ Kinput::Kinput(QObject *parent) :
 
 int Kinput::map_string(struct keymap_str *map, QString str)
 {
+    TRACE
     while (map->string)
     {
         if (map->string == str)
@@ -123,6 +129,7 @@ int Kinput::map_string(struct keymap_str *map, QString str)
 
 int Kinput::map_key(QString key)
 {
+    TRACE
     return ( map_string(key_map, key) );
 }
 
@@ -140,7 +147,7 @@ void  Kinput::parse_inputs(QVariantMap &map)
 
 void Kinput::loadMap(QString filename, QString defName)
 {
-    //TRACE
+    TRACE
 
     QString fname = "/mnt/"+filename;
 #if 1
@@ -209,10 +216,28 @@ void Kinput::loadMap(QString filename, QString defName)
                     mapkeys_t k; //My own map of keys
                     for(QVariantMap::const_iterator iKey = mapKeys.begin(); iKey != mapKeys.end(); ++iKey)
                     {   //For each key
-                        int joy_code = map_button(iKey.value());   //Convert the CEC code (string or int)
                         int key_code = map_key(iKey.key());     //Convert the KEY code to press (string)
-                        if (joy_code !=-1)                      //Use CEC code of -1 to ignore that key
-                            k[joy_code] = key_code;             //Map the CEC code to the key to be pressed
+                        QVariant value = iKey.value();
+                        if (value.type() == QVariant::List)
+                        {
+                            QVariantList sl = value.toList();
+                            foreach (QVariant str,sl)
+                            {
+                                int joy_code = map_button(str);   //Convert the CEC code (string or int)
+                                if (joy_code !=-1)                       //Use CEC code of -1 to ignore that key
+                                    k[joy_code] = key_code;             //Map the CEC code to the key to be pressed
+                                else
+                                    qDebug() <<"Cannot find " << iKey.value();
+                            }
+                        }
+                        else
+                        {
+                            int joy_code = map_button(iKey.value());   //Convert the CEC code (string or int)
+                            if (joy_code !=-1)                       //Use CEC code of -1 to ignore that key
+                                k[joy_code] = key_code;             //Map the CEC code to the key to be pressed
+                            else
+                                qDebug() <<"Cannot find " << iKey.value();
+                        }
                     }
                     //Add key mapping to my menu
                     m[iMenu.key()] = k;
@@ -247,7 +272,7 @@ void Kinput::inject_key(int key, int value)
 
 void Kinput::mouse_simulate(int key, int value)
 {
-    qDebug() << "Inject Mouse Code: "<<key<<" Value: " <<value;
+    //qDebug() << "Inject Mouse Code: "<<key<<" Value: " <<value;
 
     //Keep track of which mouse dirn are being pressed
     mouse_state[key & 0x07]= (value ? 1 : 0);
@@ -475,7 +500,7 @@ navigate::navigate(const char * window, const char * menu, QObject * grabWindow)
 navigate::~navigate()
 {
     TRACE
-    qDebug() << "Restoring = "<<_lastwindow << ", "<<_lastmenu;
+    DBG2 << "Restoring = "<<_lastwindow << ", "<<_lastmenu;
     Kinput::setWindow(_lastwindow);
     Kinput::setMenu(_lastmenu);
     Kinput::setGrabWindow(NULL);
@@ -487,7 +512,7 @@ void navigate::setContext(const char * window, const char * menu, QObject * grab
     TRACE
     _lastwindow = Kinput::getWindow();
     _lastmenu = Kinput::getMenu();
-    qDebug() << "last = "<<_lastwindow << ", "<<_lastmenu;
+    //qDebug() << "last = "<<_lastwindow << ", "<<_lastmenu;
     qDebug() << "New = "<<window << ", "<<menu;
     Kinput::setWindow(window);
     Kinput::setMenu(menu);
