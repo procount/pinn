@@ -272,33 +272,56 @@ void Kinput::inject_key(int key, int value)
 
 void Kinput::mouse_simulate(int key, int value)
 {
+    extern simulate * sim;
     //qDebug() << "Inject Mouse Code: "<<key<<" Value: " <<value;
+
+    if (key==mouse_lclick)
+    {
+        if (value & !mouse_state[key&0x07])
+        {
+            sim->inject(EV_KEY, BTN_LEFT, 1);
+            sim->inject(EV_SYN, SYN_REPORT, 0);
+        }
+        else if (!value & mouse_state[key&0x07])
+        {
+            sim->inject(EV_KEY, BTN_LEFT, 0);
+            sim->inject(EV_SYN, SYN_REPORT, 0);
+        }
+    }
 
     //Keep track of which mouse dirn are being pressed
     mouse_state[key & 0x07]= (value ? 1 : 0);
 
-    if (value)
-    { // A mouse dirn is pressed
-        if (!mouse_input)
-        {   //If this is the first press, then we start repeating, otherwise ignore
-            mouse_input=1;
-            step=1;
-            count=0;
-            mouse_repeat(); //Do it now
-        }
-    }
-    else
-    { //Mouse dirn released
-        int down=0;
-        for (int i=0; i<6; i++)
-        {//Keep track of how many are held down
-            if (mouse_state[i])
-                down++;
-        }
-        if (!down)  //If all released, then we have no input
-            mouse_input=0;
-    }
+    if (key != mouse_lclick)
+    {
+        if (value)
+        { // A mouse dirn is pressed
 
+            if (!mouse_input)
+            {   //If this is the first press, then we start repeating, otherwise ignore
+                mouse_input=1;
+                step=1;
+                count=0;
+                mouse_repeat(); //Do it now
+            }
+        }
+        else
+        { //Mouse dirn released
+            int down=0;
+            for (int i=0; i<4; i++)
+            {//Keep track of how many are held down
+                if (mouse_state[i])
+                    down++;
+            }
+            if (key==mouse_lclick)
+            {
+                sim->inject(EV_KEY, BTN_LEFT, 0);
+                sim->inject(EV_SYN, SYN_REPORT, 0);
+            }
+            if (!down)  //If all released, then we have no input
+                mouse_input=0;
+        }
+    }
 }
 
 void Kinput::mouse_repeat()
@@ -308,9 +331,8 @@ void Kinput::mouse_repeat()
     QPoint p = QCursor::pos();
     QSize screen = QApplication::desktop()->screenGeometry(-1).size();
 
-    for (int i=0; i<6; i++)
+    for (int i=0; i<4; i++)
     {
-
         switch (i | mouse_any)
         {
         /* MOUSE SIMULATION */
@@ -352,15 +374,6 @@ void Kinput::mouse_repeat()
                    sim->inject(EV_REL, REL_Y, step);
                 else
                     mouse_state[i]=0;
-            }
-            break;
-        case mouse_lclick:
-            if (mouse_state[i])
-            { //Click!
-                sim->inject(EV_KEY, BTN_LEFT, 1);
-                sim->inject(EV_SYN, SYN_REPORT, 0);
-                sim->inject(EV_KEY, BTN_LEFT, 0);
-                sim->inject(EV_SYN, SYN_REPORT, 0);
             }
             break;
         }

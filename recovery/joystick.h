@@ -57,7 +57,7 @@ class joystick : public Kinput
 {
     Q_OBJECT
 public:
-    explicit joystick(QObject *parent = 0);
+    explicit joystick(QObject *parent = 0, QString device = "/dev/js0");
     virtual ~joystick();
 
     int findJoystick();
@@ -76,7 +76,10 @@ protected:
     virtual void run();
     void virtual parse_inputs(QVariantMap &map);
     void display_mapping();
+
     int fd;
+    QString _device;
+
 signals:
     void joyPress(int key, int value);
     void joyEvent(int type, int number, int value);

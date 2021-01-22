@@ -85,8 +85,8 @@ struct joymap_str joymap[MAXINPUTS] =
     {"",               -1,   0,  0,  0,  0}
 };
 
-joystick::joystick(QObject *parent) :
-    Kinput(parent)
+joystick::joystick(QObject *parent, QString device) :
+    Kinput(parent), _device(device)
 {
     keyPressed=0;
     fd=-1;
