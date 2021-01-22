@@ -100,7 +100,7 @@ joystick::~joystick()
 int joystick::findJoystick()
 {
     int fl;
-    if ((fl = open("/dev/input/js0", O_RDONLY)) >= 0)
+    if ((fl = open( qPrintable(_device), O_RDONLY)) >= 0)
     {
         fd=fl;
         loadMap("joy_keys.json");

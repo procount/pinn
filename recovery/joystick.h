@@ -57,7 +57,7 @@ class joystick : public Kinput
 {
     Q_OBJECT
 public:
-    explicit joystick(QObject *parent = 0, QString device = "/dev/js0");
+    explicit joystick(QObject *parent = 0, QString device = "/dev/input/js0");
     virtual ~joystick();
 
     int findJoystick();

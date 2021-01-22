@@ -49,7 +49,8 @@
 bool dsi=false;
 CecListener *cec = NULL;
 CecListener *enableCEC(QObject *parent=0);
-joystick *joy = NULL;
+joystick *joy1 = NULL;
+joystick *joy2 = NULL;
 simulate *sim = NULL;
 
 QStringList downloadRepoUrls;
@@ -546,12 +547,19 @@ int main(int argc, char *argv[])
                 qDebug() << "cec key detected";
                 break;
             }
-            if (joy->hasKeyPressed())
+            if (joy1->hasKeyPressed())
             {
                 bailout = false;
-                qDebug() << "Joy key detected";
+                qDebug() << "Joy1 key detected";
                 break;
             }
+            if ((joy2) && (joy2->hasKeyPressed()))
+            {
+                bailout = false;
+                qDebug() << "Joy2 key detected";
+                break;
+            }
+
         }
     }
 
@@ -604,8 +612,13 @@ CecListener *enableCEC(QObject *parent)
     cec = new CecListener(parent);
     cec->start();
 
-    joy = new joystick(parent);
-    joy->start();
+    joy1 = new joystick(parent);
+    joy1->start();
+
+    joy2 = new joystick(parent, "/dev/input/js1");
+
+    if (joy2)
+        joy2->start();
 
     return(cec);
 }

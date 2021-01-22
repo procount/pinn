@@ -88,7 +88,8 @@ extern "C" {
 
 extern CecListener * cec;
 extern simulate * sim;
-extern joystick * joy;
+extern joystick * joy1;
+extern joystick * joy2;
 
 extern QStringList downloadRepoUrls;
 extern QString repoList;
@@ -268,11 +269,17 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     {
         connect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
     }
-    if (joy)
+    if (joy1)
     {
-        connect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
-        connect(joy, SIGNAL(joyEvent(int,int,int)), this, SLOT(onJoyEvent(int,int,int)));
-        connect(joy, SIGNAL(joyDebug(QString)), this, SLOT(onJoyDebug(QString)));
+        connect(joy1, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
+        connect(joy1, SIGNAL(joyEvent(int,int,int)), this, SLOT(onJoyEvent(int,int,int)));
+        connect(joy1, SIGNAL(joyDebug(QString)), this, SLOT(onJoyDebug(QString)));
+    }
+    if (joy2)
+    {
+        connect(joy2, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
+        connect(joy2, SIGNAL(joyEvent(int,int,int)), this, SLOT(onJoyEvent(int,int,int)));
+        connect(joy2, SIGNAL(joyDebug(QString)), this, SLOT(onJoyDebug(QString)));
     }
 
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
@@ -551,8 +558,10 @@ MainWindow::~MainWindow()
 {
     if (cec)
         disconnect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
-    if (joy)
-        disconnect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
+    if (joy1)
+        disconnect(joy1, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
+    if (joy2)
+        disconnect(joy2, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
 
     QProcess::execute("umount /mnt");
     delete ui;
@@ -562,8 +571,10 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
     if (cec)
         disconnect(cec, SIGNAL(keyPress(int,int)), this, SLOT(onKeyPress(int,int)));
-    if (joy)
-        disconnect(joy, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
+    if (joy1)
+        disconnect(joy1, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
+    if (joy2)
+        disconnect(joy2, SIGNAL(joyPress(int,int)), this, SLOT(onJoyPress(int,int)));
     event->accept();
 }
 
@@ -3438,7 +3449,6 @@ void MainWindow::pollForNewDisks()
     QString dirname = "/sys/class/block";
     QDir dir(dirname);
     QStringList list = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-    static int joytries=0;
 
     if (_infoDelay)
     {
@@ -4402,6 +4412,7 @@ void MainWindow::onJoyPress(int joy_code, int value)
 {
     //
     //qDebug() << "Processing Joy "<<joy_code <<", " << value;
+    joystick* joy = (joystick*) sender(); //joy1 or joy2
     joy->process_joy(joy_code,value);
 }
 #endif
