@@ -81,5 +81,6 @@
         <file>icons/right.JPG</file>
         <file>icons/up.JPG</file>
         <file>joy_keys.json</file>
+        <file>icons/skull_old.png</file>
     </qresource>
 </RCC>

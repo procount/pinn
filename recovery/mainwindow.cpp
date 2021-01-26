@@ -940,6 +940,15 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
         return;
     }
 
+    if (_numBootableOS)
+    {
+        if ( !_silent && QMessageBox::warning(this,
+                                    tr("Confirm"),
+                                    tr("Warning: Some OSes are already installed!\nContinuing will DELETE them.\n\nDo you want to continue?"),
+                                    QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::No)
+            return;
+    }
+
     _newList.clear();
     /* Get list of all selected OSes and see if any are unsupported */
     foreach (QListWidgetItem *item, selected)
@@ -2535,6 +2544,15 @@ void MainWindow::updateNeeded()
     }
 
     ui->actionWrite_image_to_disk->setEnabled(enableWrite);
+    QIcon newIcon;
+    if (_numBootableOS)
+        newIcon.addFile(":/icons/skull_old.png");
+    else
+        newIcon.addFile(":/icons/backups.png");
+    ui->actionWrite_image_to_disk->setIcon(newIcon);
+
+
+
     QPalette p = ui->neededLabel->palette();
     if (p.color(QPalette::WindowText) != colorNeededLabel)
     {
