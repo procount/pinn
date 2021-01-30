@@ -1,0 +1,64 @@
+{
+    "inputs": {
+        "A_btn":                [12,1],
+        "B_btn":                [13,1],
+        "X_btn":                [15,1],
+        "Y_btn":                [14,1],
+        "L1_btn":               [8,1],
+        "R1_btn":               [11,1],
+        "L2_btn":               [10,1],
+        "R2_btn":               [9,1],
+        "DLeft_btn":            [7,1],
+        "DRight_btn":           [5,1],
+        "DUp_btn":              [4,1],
+        "DDown_btn":            [6,1],
+        "Select_btn":           [0,1],
+        "Start_btn":            [3,1],
+        "Home_btn":             [16,1],
+        "LAnalog_btn":          [1,1],
+        "RAnalog_btn":          [2,1],
+        "LAnalogLeft_axis":     [ 0, -1],
+        "LAnalogRight_axis":    [ 0, 1],
+        "LAnalogUp_axis":       [ 1, -1],
+        "LAnalogDown_axis":     [ 1, 1],
+        "RAnalogLeft_axis":     [ 2, -1],
+        "RAnalogRight_axis":    [ 2, 1],
+        "RAnalogUp_axis":       [ 3, -1],
+        "RAnalogDown_axis":     [ 3, 1]
+    },
+
+    "VKeyboard": {
+        "any": {
+            "Key_Left":     "DLeft_btn",
+            "Key_Right":    "DRight_btn",
+            "Key_Up":       "DUp_btn",
+            "Key_Down":     "DDown_btn", 
+            "Key_Space":    "B_btn"
+        }
+    },
+
+    "any": {
+        "any": {
+            "mouse_left":   "LAnalogLeft_axis",
+            "mouse_right":  "LAnalogRight_axis",
+            "mouse_up":     "LAnalogUp_axis",
+            "mouse_down":   "LAnalogDown_axis",
+
+            "joy_left":     "RAnalogLeft_axis",
+            "joy_right":    "RAnalogRight_axis",
+            "joy_up":       "RAnalogUp_axis",
+            "joy_down":     "RAnalogDown_axis",
+
+            "Key_Left":     "DLeft_btn",
+            "Key_Right":    "DRight_btn",
+            "Key_Up":       "DUp_btn",
+            "Key_Down":     "DDown_btn",
+            "Key_Space":    "B_btn",
+            "mouse_lclick": "A_btn",
+            "Key_Escape":   "X_btn",
+            "Key_Enter":    "Start_btn"
+
+        }
+    }
+}
+
