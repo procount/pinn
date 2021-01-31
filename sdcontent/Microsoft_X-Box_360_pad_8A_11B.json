@@ -1,0 +1,68 @@
+{
+    "inputs": {
+        "A_btn":                [0,1],
+        "B_btn":                [1,1],
+        "X_btn":                [2,1],
+        "Y_btn":                [3,1],
+        "L1_btn":               [4,1],
+        "R1_btn":               [5,1],
+        
+        "L2_axis":              [2, 1, -30000],
+        "R2_axis":              [5, 1, -30000],
+        
+        "DLeft_axis":           [6,-1],
+        "DRight_axis":          [6, 1],
+        
+        "DUp_axis":             [7,-1],
+        "DDown_axis":           [7, 1],
+        
+        "Select_btn":           [6,1],
+        "Start_btn":            [7,1],
+        "Home_btn":             [8,1],
+        
+        "LAnalog_btn":          [9,1],
+        "RAnalog_btn":          [10,1],
+        
+        "LAnalogLeft_axis":     [ 0, -1, 6000],
+        "LAnalogRight_axis":    [ 0, 1, 6000],
+        "LAnalogUp_axis":       [ 1, -1, 6000],
+        "LAnalogDown_axis":     [ 1, 1, 6000],
+        
+        "RAnalogLeft_axis":     [ 3, -1, 6000],
+        "RAnalogRight_axis":    [ 3, 1, 6000],
+        "RAnalogUp_axis":       [ 4, -1, 6000],
+        "RAnalogDown_axis":     [ 4, 1, 6000]
+    },
+
+    "VKeyboard": {
+        "any": {
+            "Key_Left":     "DLeft_axis",
+            "Key_Right":    "DRight_axis",
+            "Key_Up":       "DUp_axis",
+            "Key_Down":     "DDown_axis", 
+            "Key_Space":    "B_btn"
+        }
+    },
+
+    "any": {
+        "any": {
+            "mouse_left":   ["LAnalogLeft_axis","RAnalogLeft_axis"],
+            "mouse_right":  ["LAnalogRight_axis","RAnalogRight_axis"],
+            "mouse_up":     ["LAnalogUp_axis","RAnalogUp_axis"],
+            "mouse_down":   ["LAnalogDown_axis","RAnalogDown_axis"],
+
+            "Key_Left":     "DLeft_axis",
+            "Key_Right":    "DRight_axis",
+            "Key_Up":       "DUp_axis",
+            "Key_Down":     "DDown_axis", 
+
+            "Key_Space":    "B_btn",
+            "mouse_lclick": "A_btn",
+            "Key_Escape":   "X_btn",
+            "Key_Enter":    "Start_btn",
+            "Key_C":        ["R2_axis","L2_axis","Y_btn"]
+
+        }
+    }
+}
+
