@@ -48,6 +48,7 @@ public slots:
     void consolidate();
     void finish();
     void updateIOstats();
+    void reject();
 
 protected:
     QString _drive;
