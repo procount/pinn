@@ -165,6 +165,15 @@ bool BackupThread::processImage(const QVariantMap & entry)
         pmap.remove("sha256sum");
         pmap.remove("sha512sum");
 
+
+        //#442 - remove useless socket files that prevent tar working
+        QProcess::execute("mount -o rw "+dev+" /tmp/src");
+        QProcess::execute("find /tmp/src -type s -exec rm {} \;");
+        int errorcode;
+        readexec(1, "mount -o rw "+dev+" /tmp/src", errorcode);
+        readexec(1, "find /tmp/src -type s -exec rm {} \;", errorcode);
+        readexec(1, "umount /tmp/src", errorcode);
+
         //   Mount it
         QProcess::execute("mount -o ro "+dev+" /tmp/src");
         emit newDrive(dev, ePM_READSTATS);
