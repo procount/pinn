@@ -2,6 +2,7 @@
 #include "ui_repair.h"
 #include "passwd.h"
 #include "fscheck.h"
+#include "chkperms.h"
 #include "util.h"
 #include "rerunsetup.h"
 #include "showlog.h"
@@ -47,6 +48,13 @@ repair::repair(QListWidget * listinstalled, MainWindow * mw, const QString &root
     item->setData(Qt::UserRole, mfl);
     ui->listWidget->addItem(item);
 
+    item = new QListWidgetItem("Check Permissions");
+    item->setCheckState(Qt::Unchecked);
+    QVariantMap mfp;
+    mfp["action"]=QString("chkperms");
+    item->setData(Qt::UserRole, mfp);
+    ui->listWidget->addItem(item);
+
 #if 0
     item = new QListWidgetItem("Upgrade firmware");
     item->setCheckState(Qt::Unchecked);
@@ -89,6 +97,11 @@ void repair::on_buttonBox_accepted()
                 if (m["action"] == "showlog")
                 {
                     showlog dlg(_listinstalled);
+                    dlg.exec();
+                }
+                if (m["action"] == "chkperms")
+                {
+                    chkperms dlg(_listinstalled);
                     dlg.exec();
                 }
 

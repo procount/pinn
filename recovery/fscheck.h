@@ -19,5 +19,4 @@ public:
 private:
     Ui::fscheck *ui;
 };
-
 #endif // FSCHECK_H

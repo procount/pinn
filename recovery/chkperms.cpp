@@ -1,5 +1,5 @@
-#include "fscheck.h"
-#include "ui_fscheck.h"
+#include "chkperms.h"
+#include "ui_chkperms.h"
 #include "passwd.h"
 #include "util.h"
 
@@ -8,10 +8,13 @@
 #include <QRegExp>
 #include <QString>
 #include <QVariantMap>
+#include <QDir>
+#include <QFile>
+#include <QFileInfoList>
 
-fscheck::fscheck(QListWidget * list, QWidget *parent) :
+chkperms::chkperms(QListWidget * list, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::fscheck)
+    ui(new Ui::chkperms)
 {
     int dummy;
     int part_err=0;
@@ -27,7 +30,7 @@ fscheck::fscheck(QListWidget * list, QWidget *parent) :
         return;
     }
 
-    ui->plainTextEdit->appendPlainText("Checking filesystems...");
+    ui->plainTextEdit->appendPlainText("Checking file permissions");
     show();
     QApplication::processEvents();
 
@@ -46,27 +49,23 @@ fscheck::fscheck(QListWidget * list, QWidget *parent) :
                 QString part = pv.toString();
                 ui->plainTextEdit->appendPlainText(part+":");
 
-                QString sedparam;
-                sedparam = "'s_^\\([^:]*\\):.* TYPE=\\(.*\\) .*_\\2_p'";
+                QProcess::execute("mount -o rw "+part+" /mnt2");
 
-                QString cmd;
-                cmd = "sh -c \"blkid | grep \"" + part+ ":\" | sed -ne "+sedparam+" \"";
-                QString type = readexec(0,cmd, dummy);
-                type.remove(QChar(34)).remove(QChar(10)).remove(QChar(13));
-                if (type=="vfat")
-                    type="fat";
-
-                QApplication::processEvents();
-
-                QString result;
-                if (!type.isEmpty())
+                QDir dir("/mnt2/media");
+                QFileInfoList dirList = dir.entryInfoList(QDir::AllDirs);
+                foreach (QFileInfo dirinfo, dirList)
                 {
-                    cmd = "sh -c \"fsck."+type+" -y "+part+"\"";
-                    result = readexec(1,cmd, part_err);
-                    os_err |= part_err;
-                    overall_err |= os_err;
+                    QString hexperms;
+
+                    hexperms = QString::number(dirinfo.permissions(),16);
+                    ui->plainTextEdit->appendPlainText( dirinfo.filePath() );
+                    ui->plainTextEdit->appendPlainText( hexperms );
+
+                    QDir d=QDir(dirinfo.filePath());
+                    ui->plainTextEdit->appendPlainText( QString::number(d.entryList().size()) );
                 }
-                ui->plainTextEdit->appendPlainText(type + result);
+
+                QProcess::execute("umount /mnt2");
 
                 QApplication::processEvents();
 
@@ -84,9 +83,7 @@ fscheck::fscheck(QListWidget * list, QWidget *parent) :
 
 }
 
-fscheck::~fscheck()
+chkperms::~chkperms()
 {
     delete ui;
 }
-
-

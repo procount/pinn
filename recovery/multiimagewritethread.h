@@ -25,6 +25,7 @@ public:
 protected:
     virtual void run();
     QString findTarballExt(QString base, QString exts);
+    void correct_media_permissions();
     QMessageBox::ButtonRole processImage(OsInfo *image);
     void postInstallConfig(OsInfo *image, const QString &part, const QString &customName);
     void testForCustomFile(const QString &baseName, const QString &ext);

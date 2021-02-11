@@ -657,6 +657,41 @@ QByteArray MultiImageWriteThread::makeLabelUnique(QByteArray label, int maxLabel
     return (label);
 }
 
+void MultiImageWriteThread::correct_media_permissions()
+{   //using /mnt2
+    QDir dir("/mnt2/media");
+
+    //Get list of all directories in /media
+    QFileInfoList dirList = dir.entryInfoList(QDir::AllDirs);
+    foreach (QFileInfo dirinfo, dirList)
+    {
+        //grab the permissions of the dir
+        QFile::Permissions perms;
+        perms = dirinfo.permissions();
+
+        //count how many files are within the folder
+        QDir d=QDir(dirinfo.filePath());
+        int filecount = d.entryList().size();
+        if ((filecount==2) && (perms != 0x7755))
+        {
+            qDebug()<<"Setting permissions of "<<dirinfo.filePath()<<" to 0x7755";
+            QFile f(dirinfo.filePath());
+            f.setPermissions(         (QFile::ReadOwner |
+                                       QFile::WriteOwner |
+                                       QFile::ExeOwner |
+                                       QFile::ReadUser |
+                                       QFile::WriteUser |
+                                       QFile::ExeUser |
+                                       QFile::ReadGroup |
+                                       QFile::ExeGroup |
+                                       QFile::ReadOther |
+                                       QFile::ExeOther)   ); //0x7755;
+
+        }
+    }
+}
+
+
 QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
 {
     TRACE
@@ -769,6 +804,9 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
                     emit newDrive(partdevice,ePM_WRITEDF);
                     emit startAccounting();
                     result = untar(tarball,csumType, csum);
+
+                    //#447 - check the permissions on /media/*
+                    correct_media_permissions();
 
                     emit statusUpdate(tr("Syncing Filesystem"));
                     emit idle();

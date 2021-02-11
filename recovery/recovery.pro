@@ -76,7 +76,8 @@ SOURCES += \
     joystick.cpp \
     simulate.cpp \
     WidgetKeyboard.cpp \
-    showlog.cpp
+    showlog.cpp \
+    chkperms.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -132,7 +133,8 @@ HEADERS  += \
     joystick.h \
     simulate.h \
     WidgetKeyboard.h \
-    showlog.h
+    showlog.h \
+    chkperms.h
 
 FORMS    += \
     mainwindow.ui \
@@ -153,7 +155,8 @@ FORMS    += \
     termsdialog.ui \
     optionsdialog.ui \
     WidgetKeyboard.ui \
-    showlog.ui
+    showlog.ui \
+    chkperms.ui
 
 RESOURCES += \
     icons.qrc
