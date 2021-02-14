@@ -614,3 +614,14 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **partuuid**     - Allow installation to USB without partuuid
 - **Filesystems**  - Added ext3 & exfat
 - **Wifi**         - Updated wifi firmware
+
+### V3.5.5
+
+- **Joysticks** - New joystick drivers including triggers and deadzones. Support for 2 joysticks. 
+- **Firmware**  - Removed firmware upgrades for very old OSes.
+- **Install**   - Install icon changed to warn against deletion {#380}
+- **CM4**       - Added dwc2 USB driver for CM4
+- **Backup**    - Better backups by deleting socket files (#442) and setting attributes (#447).
+- **ssh**       - Uses permanent storage
+- **progress**  - prevent progressdialog from closing
+

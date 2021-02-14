@@ -3,6 +3,8 @@
 PINN v3.3.2 onwards supports programmable USB Joysticks/Gamepads
 PINN includes its own Joystick mapping file, but a user-supplied one can override it for different joysticks, gamepads or personal preference.
 
+After v3.5.4, the joystick file has been enhanced. See below for more details.
+
 ## JOY Key Mapping file
 
 The user-supplied JOY key mapping file must be called *joy_keys.json* and be stored in PINN's recovery partition (/dev/mmcblk0p1 if on an SD card, where you will find 
@@ -178,4 +180,94 @@ The following JOY codes are recognised:
 
 To identify which buttons are supported by your joystick/gamepad, enter the recovery shell by pressing "ctrl-alt-F2" and login with the username/password of root/raspberry.
 At the command prompt type `tail -f /tmp/debug`. You can now press each button in turn on your joystick/gamepad and note down which JOY codes are produced. 
+
+# New Joystick file format
+
+After V3.5.4, the joystick configuration files have changed, although the old style will still work to a certain extent.
+
+PINN will now search for a joystick configuration file based on the name of the joystick and the number of channels it supports. The name of the file is formatted as "JoystickName_xA_yB.json" where x and y are the number of the Analog and Digital channels respectively. You will find this name in the debug log. If the configuration file cannot be found, PINN will use the default joy_keys.json file instead with the default key mappings.
+
+The calibration codes are no longer used and this section can be omitted.
+
+## Inputs section
+
+A new section to define the inputs has been added.
+
+Here is an example of how this inputs section will look:
+
+
+    "inputs": {
+        "A_btn":                [0,1],
+        "B_btn":                [1,1],
+        "X_btn":                [2,1],
+        "Y_btn":                [3,1],
+        "L1_btn":               [4,1],
+        "R1_btn":               [5,1],
+        
+        "L2_axis":              [2, 1, -30000],
+        "R2_axis":              [5, 1, -30000],
+        
+        "DLeft_axis":           [6,-1],
+        "DRight_axis":          [6, 1],
+        
+        "DUp_axis":             [7,-1],
+        "DDown_axis":           [7, 1],
+        
+        "Select_btn":           [6,1],
+        "Start_btn":            [7,1],
+        "Home_btn":             [8,1],
+        
+        "LAnalog_btn":          [9,1],
+        "RAnalog_btn":          [10,1],
+        
+        "LAnalogLeft_axis":     [ 0, -1, 6000],
+        "LAnalogRight_axis":    [ 0, 1, 6000],
+        "LAnalogUp_axis":       [ 1, -1, 6000],
+        "LAnalogDown_axis":     [ 1, 1, 6000],
+        
+        "RAnalogLeft_axis":     [ 3, -1, 6000],
+        "RAnalogRight_axis":    [ 3, 1, 6000],
+        "RAnalogUp_axis":       [ 4, -1, 6000],
+        "RAnalogDown_axis":     [ 4, 1, 6000]
+    },
+
+The format of this file is as follows:
+
+        "InputName_type":    [ id, direction {, deadzone} ],
+
+### Input Name & type
+
+The inputName name can be whatever you like, but it is best to stick to the defined joy-code names defined above.
+The inputName must end with either '_btn' or '_axis' to indicate its type to determine its behaviour.
+
+### ID
+
+The id is the number of the input channel as given by the joystick.
+
+### Direction
+
+The direction of the button type (_btn) must always be 1 as the button has a default value of 0 which changes to 1 when pressed.
+Analog channels (_axis) are centred at 0 and send positive values when moved in one direction and negative values when moved in the opposite direction. These are mapped to 2 different buttons with the direction=1 representing the positive axis and direction=-1 representing the negative direction.
+
+### Deadzone
+
+The optional deadzone value can serve 2 different purposes for analog channels. 
+
+Some joysticks give a definite 0 value when centred, whilst others jitter around. A positive deadzone value can be used to stop the jitter, since any value between +/- deadzone is forced to zero.
+
+Some joystick analog channels are called triggers, which default to -32767 and increase in value through 0 to +32767 when pressed. These can be indicated by a negative deadzone value. When the joystick is below the deadzone value, it is reported as a 0, and a 1 when above the deadzone value.
+
+## Multiple buttons
+
+It is now possible to map multiple joystick channels to the same key by adding an array of joystick button names. For example:
+
+        "mouse_left":   ["LAnalogLeft_axis","RAnalogLeft_axis"],
+
+Here, both the Left analog and Right analog joysticks are mapped onto the mouse_left function.
+This is a convenience function only and may not work fully for all button or axis functionality.
+
+## Multiple Joysticks
+
+PINN can support 2 joysticks and use both of them simultaneously. However, some joysticks appear as 2 devices, so if one of those is detected first, it will take up both slots. In that case, try changing the order they are plugged into the Pi after it has booted. 
+
 

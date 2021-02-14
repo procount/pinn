@@ -5,6 +5,16 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.5.5
+
+- **Joysticks** - New joystick drivers including triggers and deadzones. Support for 2 joysticks. 
+- **Firmware**  - Removed firmware upgrades for very old OSes.
+- **Install**   - Install icon changed to warn against deletion {#380}
+- **CM4**       - Added dwc2 USB driver for CM4
+- **Backup**    - Better backups by deleting socket files (#442) and setting attributes (#447).
+- **ssh**       - Uses permanent storage
+- **progress**  - prevent progressdialog from closing
+
 ### V3.5.4
 
 - **buildroot**    - improve some build scripts

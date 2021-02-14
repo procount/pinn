@@ -427,6 +427,8 @@ int main(int argc, char *argv[])
     if (!QFile::exists(wallpaperName))
         wallpaperName = "/mnt/wallpaper.png";
 
+    QRect screen= a.desktop()->availableGeometry(); //Also used for font scaling
+
     if (QFile::exists(wallpaperName))
     {
         QPixmap temp;
@@ -506,7 +508,17 @@ int main(int argc, char *argv[])
 
     splash->show();
     splash->resize();
-    splash->showMessage("For recovery mode, hold SHIFT...",Qt::black);
+
+    //Adjust font size for size of screen
+    int pointsize = screen.width()/80;
+    if (pointsize<12)
+        pointsize=12;
+    if (pointsize>24)
+        pointsize=24;
+    QFont font(splash->font().family(),pointsize);
+    splash->setFont(font);
+
+    splash->showMessage("For recovery mode, hold SHIFT\nclick mouse\nor press joystick...",Qt::white);
     QApplication::processEvents();
 
 #ifdef Q_WS_QWS
@@ -525,9 +537,9 @@ int main(int argc, char *argv[])
     if (bailout && keyboard_trigger)
     {
         t.start();
-        while (t.elapsed() < 3000)
+        while (t.elapsed() < 4000)
         {
-            splash->showMessage("For recovery mode, hold SHIFT...", Qt::AlignLeft, (t.elapsed()%1000 < 500)?Qt::black : Qt::white);
+            splash->showMessage("For recovery mode, hold SHIFT\nclick mouse\nor press joystick...", Qt::AlignLeft, (t.elapsed()%1000 < 500)?Qt::black : Qt::white);
             QApplication::processEvents(QEventLoop::WaitForMoreEvents, 10);
             if (QApplication::queryKeyboardModifiers().testFlag(Qt::ShiftModifier))
             {
