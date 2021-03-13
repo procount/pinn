@@ -438,7 +438,7 @@ Riformattala usando il programma della SD Association e riprova.</translation>
     <message>
         <location filename="mainwindow.ui" line="139"/>
         <source>Memory</source>
-        <translation type="unfinished"></translation>
+        <translation>Memoria</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="173"/>
@@ -876,7 +876,10 @@ I seguenti SO non sono supportati in questa revisione di Raspberry Pi e potrebbe
 Continuing will DELETE them.
 
 Do you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Attenzione: alcuni sistemi operativi sono già installati!
+Continuando verranno ELIMINATI.
+
+Vuoi continuare?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1001"/>
@@ -884,7 +887,9 @@ Do you want to continue?</source>
         <source>Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:
 </source>
         <oldsource>Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Avvertenza: supporto USB parziale. 
+I seguenti sistemi operativi possono essere eseguiti da USB solo quando è /dev/sda e potrebbero non avviarsi o funzionare correttamente se non è così:
+</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1001"/>
@@ -892,7 +897,9 @@ Do you want to continue?</source>
         <source>
 
 Do you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>
+
+Vuoi continuare?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1077"/>
@@ -1673,7 +1680,7 @@ Attesi: .lzo, .gz, .xz, .bz2,o .zip.</translation>
         <location filename="optionsdialog.ui" line="123"/>
         <source>Selects all OSes where the most recent one is on the SD card</source>
         <oldsource>DO not update the firmware of old OSes on installation</oldsource>
-        <translation type="unfinished">NON aggiorna i firmware di vecchie installazioni di SO</translation>
+        <translation>Seleziona tutti i S.O. in cui si trova il più recente nella scheda SD</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="133"/>
@@ -3310,7 +3317,7 @@ Verifica la password</translation>
     <message>
         <location filename="chkperms.ui" line="14"/>
         <source>File System Check</source>
-        <translation type="unfinished">Controllo file system</translation>
+        <translation>Controllo file system</translation>
     </message>
 </context>
 <context>
