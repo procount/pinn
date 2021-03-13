@@ -1680,7 +1680,7 @@ Attesi: .lzo, .gz, .xz, .bz2,o .zip.</translation>
         <location filename="optionsdialog.ui" line="123"/>
         <source>Selects all OSes where the most recent one is on the SD card</source>
         <oldsource>DO not update the firmware of old OSes on installation</oldsource>
-        <translation>Seleziona tutti i SO in cui si trova il più recente nella scheda SD</translation>
+        <translation>Seleziona tutti i S.O. in cui si trova il più recente nella scheda SD</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="133"/>
