@@ -3,7 +3,7 @@
 
 set -e
 
-KERNEL="4.19"
+KERNEL="5.4"
 
 # Final directory where NOOBS files will be copied to
 NOOBS_OUTPUT_DIR="output"
