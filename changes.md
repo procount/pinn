@@ -625,3 +625,9 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **ssh**       - Uses permanent storage
 - **progress**  - prevent progressdialog from closing
 
+### V3.5.6
+
+- **Firmware**  - Updated firmware and wifi to match NOOBS 3.6
+- **Language**  - Updated Italian translation
+- **pinn_init** - Fixed pinn_init.sh for USB boots
+

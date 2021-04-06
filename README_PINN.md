@@ -736,6 +736,7 @@ To make use of the installation progress feature, a background shell script can 
 If a script called /pinn_init.sh exists in PINN's recovery partition, it will be executed before PINN is started. 
 This script will be mounted as /tmp/media/pinn_init.sh and must complete before PINN starts. 
 It can be useful to initialise third party display drivers before the main PINN splash screen is shown.
+The pinn_init.sh script is passed the boot drive as its frist parameter (e.g. /dev/sda1 or /dev/mmcblk0p1)
 
 ---
 

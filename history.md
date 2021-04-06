@@ -5,6 +5,12 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.5.6
+
+- **Firmware**  - Updated firmware and wifi to match NOOBS 3.6
+- **Language**  - Updated Italian translation
+- **pinn_init** - Fixed pinn_init.sh for USB boots
+
 ### V3.5.5
 
 - **Joysticks** - New joystick drivers including triggers and deadzones. Support for 2 joysticks. 
