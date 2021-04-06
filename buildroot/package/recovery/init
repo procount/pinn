@@ -81,8 +81,6 @@ fi
 
 
 
-
-
 # Mouse acceleration
 #export QWS_MOUSE_PROTO=:accel=1
 
@@ -101,31 +99,39 @@ fi
 pinndrive=
 mkdir -p /tmp/mnt
 cd /sys/class/block
-for d in *1/;
+
+while [ "$pinndrive" = "" ]
 do
-  # remove trailing slash
-  d=${d%?}
-  if [ -h $d ]; then
-    cd $d
-    realpath=`pwd -P`
-    case $realpath in
-      *"devices/virtual"*)
-        ;;
-      *)
-        mount /dev/$d /tmp/mnt 2>/dev/null
-        if [ $? -eq 0 ]; then
-          if [ -f "/tmp/mnt/recovery.rfs" ]; then
-            pinndrive=/dev/$d
-            if [ -f "/tmp/mnt/pinn_init.sh" ]; then
-              sh -c "/tmp/mnt/pinn_init.sh"
+
+    for d in *1/;
+    do
+      # remove trailing slash
+      d=${d%?}
+      if [ -h $d ]; then
+        cd $d
+        realpath=`pwd -P`
+        case $realpath in
+          *"devices/virtual"*)
+            ;;
+          *)
+            echo "$d">>/tmp/init.log
+            mount /dev/$d /tmp/mnt 2>/dev/null
+            if [ $? -eq 0 ]; then
+              if [ -f "/tmp/mnt/recovery.rfs" ]; then
+                pinndrive=/dev/$d
+                if [ -f "/tmp/mnt/pinn_init.sh" ]; then
+                  sh -c "/tmp/mnt/pinn_init.sh $pinndrive"
+                fi
+              fi
+              umount /dev/$d >/dev/null
             fi
-          fi
-          umount /dev/$d >/dev/null
-        fi
-    esac
-    cd ..
-  fi
+        esac
+        cd ..
+      fi
+    done
+
 done
+
 rmdir /tmp/mnt
 
 
