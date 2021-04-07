@@ -77,8 +77,8 @@ void FullFatThread::run()
 
 bool FullFatThread::method_resizePartitions()
 {
-    uint newStartOfRescuePartition = getFileContents(sysclassblock(_drive, 1)+"/start").trimmed().toUInt();
-    uint newEndOfRescuePartition   = getFileContents(sysclassblock(_drive, -1)+"/size").trimmed().toUInt() -2;
+    uint newStartOfRescuePartition = getFileContents(sysclassblock(_drive, 1)+"/start").trimmed().toUInt();  //sectors
+    uint newEndOfRescuePartition   = getFileContents(sysclassblock(_drive, -1)+"/size").trimmed().toUInt() -2; //sectors
 
     if (!umountSystemPartition())
     {

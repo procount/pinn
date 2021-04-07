@@ -23,7 +23,7 @@
 #include <sys/ioctl.h>
 #include <QtEndian>
 
-InitDriveThread::InitDriveThread(const QString &drive, QObject *parent, const QString& P1size ) :
+InitDriveThread::InitDriveThread(const QString &drive, QObject *parent, const QString& P1size, const QString& provision ) :
     QThread(parent), _drive(drive)
 {
     TRACE
@@ -36,6 +36,7 @@ InitDriveThread::InitDriveThread(const QString &drive, QObject *parent, const QS
     else
         _action = "";    //default action
     _size = value.toUInt(); //in MB
+    _provision = provision.toUint(); // in MB
 }
 
 void InitDriveThread::run()
@@ -272,8 +273,8 @@ bool InitDriveThread::method_resizePartitions()
     emit statusUpdate(tr("Creating extended partition"));
 
     QByteArray partitionTable;
-    uint startOfOurPartition = getFileContents(sysclassblock(_drive, 1)+"/start").trimmed().toUInt();
-    uint sizeOfOurPartition  = getFileContents(sysclassblock(_drive, 1)+"/size").trimmed().toUInt();
+    uint startOfOurPartition = getFileContents(sysclassblock(_drive, 1)+"/start").trimmed().toUInt(); //sectors
+    uint sizeOfOurPartition  = getFileContents(sysclassblock(_drive, 1)+"/size").trimmed().toUInt();  //sectors
     uint startOfExtended = startOfOurPartition+sizeOfOurPartition;
 
     // Align start of settings partition on 4 MiB boundary
@@ -281,9 +282,12 @@ bool InitDriveThread::method_resizePartitions()
     if (startOfSettings % PARTITION_ALIGNMENT != 0)
          startOfSettings += PARTITION_ALIGNMENT-(startOfSettings % PARTITION_ALIGNMENT);
 
+    // Calculate size (in sectors) of extended partition less any provision (MB)
+    uint sizeOfExtended = sizeofSDCardInBlocks()*2 - startOfExtended - (_provision*2048) -2; //sectors
+
     // Primary partitions
     partitionTable  = QByteArray::number(startOfOurPartition)+","+QByteArray::number(sizeOfOurPartition)+",0E\n"; /* FAT partition */
-    partitionTable += QByteArray::number(startOfExtended)+",,E\n"; /* Extended partition with all remaining space */
+    partitionTable += QByteArray::number(startOfExtended)+","+sizeOfExtended+",E\n"; /* Extended partition with all remaining space */
     partitionTable += "0,0\n";
     partitionTable += "0,0\n";
     // Logical partitions
@@ -323,7 +327,7 @@ int InitDriveThread::sizeofBootFilesInKB()
 uint InitDriveThread::sizeofSDCardInBlocks()
 {
     TRACE
-    QFile f(sysclassblock(_drive)+"/size");
+    QFile f(sysclassblock(_drive)+"/size"); //block = kB
     f.open(f.ReadOnly);
     uint blocks = f.readAll().trimmed().toUInt();
     f.close();
@@ -459,17 +463,20 @@ bool InitDriveThread::partitionDrive()
             sizeOfOurPartition = qMax(_size, (uint)RESCUE_PARTITION_SIZE)*1024*2;
         }
     }
-    uint startOfOurPartition = PARTITION_ALIGNMENT;
-    uint startOfExtended = startOfOurPartition+sizeOfOurPartition;
+    uint startOfOurPartition = PARTITION_ALIGNMENT; //sectors
+    uint startOfExtended = startOfOurPartition+sizeOfOurPartition; //sectors
 
     // Align start of settings partition on 4 MiB boundary
     uint startOfSettings = startOfExtended + PARTITION_GAP;
     if (startOfSettings % PARTITION_ALIGNMENT != 0)
          startOfSettings += PARTITION_ALIGNMENT-(startOfSettings % PARTITION_ALIGNMENT);
 
+    // Calculate size (in sectors) of extended partition less any provision (MB)
+    uint sizeOfExtended = sizeofSDCardInBlocks()*2 - startOfExtended - (_provision*2048) -2; //sectors
+
     // Primary partitions
     partitionTable  = QByteArray::number(startOfOurPartition)+","+QByteArray::number(sizeOfOurPartition)+",0E\n"; /* FAT partition */
-    partitionTable += QByteArray::number(startOfExtended)+",,E\n"; /* Extended partition with all remaining space */
+    partitionTable += QByteArray::number(startOfExtended)+","+sizeOfExtended+",E\n"; /* Extended partition with all remaining space */
     partitionTable += "0,0\n";
     partitionTable += "0,0\n";
     // Logical partitions

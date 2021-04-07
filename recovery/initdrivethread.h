@@ -18,7 +18,7 @@ class InitDriveThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit InitDriveThread(const QString &drive, QObject *parent = 0, const QString& P1size="+0");
+    explicit InitDriveThread(const QString &drive, QObject *parent = 0, const QString& P1size="+0", const QString& provision="0");
     bool formatUsbDrive();
 
 protected:
@@ -44,6 +44,7 @@ protected:
     QString _drive;
     uint _size;
     QString _action;
+    uint _provision;
 
 signals:
     void error(const QString &msg);

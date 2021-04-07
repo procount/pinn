@@ -292,6 +292,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
         _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 
         QString reserve ="+0";
+        QString provision="0";
         QString cmdline = getFileContents("/proc/cmdline");
         QStringList args = cmdline.split(QChar(' '),QString::SkipEmptyParts);
         foreach (QString s, args)
@@ -301,9 +302,14 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
                 QStringList params = s.split(QChar('='));
                 reserve = params.at(1);
             }
+            if (s.contains("provision"))
+            {
+                QStringList params = s.split(QChar('='));
+                provision = params.at(1);
+            }
         }
 
-        InitDriveThread *idt = new InitDriveThread(_bootdrive, this, reserve);
+        InitDriveThread *idt = new InitDriveThread(_bootdrive, this, reserve, provision);
         connect(idt, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
         connect(idt, SIGNAL(completed()), _qpd, SLOT(deleteLater()));
         connect(idt, SIGNAL(error(QString)), this, SLOT(onQpdError(QString)));
@@ -4342,6 +4348,12 @@ void MainWindow::downloadUpdateComplete()
     if (_numBuildsToDownload==0)
     {
         BuildData currentver, newver, ignorever;
+
+        if (_bdisplayUpdate)
+        {   //If user manually asks for an update check, then remove the ignore file.
+            QProcess::execute(QString("rm ")+BUILD_IGNORE);
+            QProcess::execute("sync");
+        }
 
         qDebug()<<"BUILD_IGNORE...";
         ignorever.read(BUILD_IGNORE);
