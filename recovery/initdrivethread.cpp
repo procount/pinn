@@ -36,7 +36,7 @@ InitDriveThread::InitDriveThread(const QString &drive, QObject *parent, const QS
     else
         _action = "";    //default action
     _size = value.toUInt(); //in MB
-    _provision = provision.toUint(); // in MB
+    _provision = provision.toUInt(); // in MB
 }
 
 void InitDriveThread::run()
@@ -287,7 +287,7 @@ bool InitDriveThread::method_resizePartitions()
 
     // Primary partitions
     partitionTable  = QByteArray::number(startOfOurPartition)+","+QByteArray::number(sizeOfOurPartition)+",0E\n"; /* FAT partition */
-    partitionTable += QByteArray::number(startOfExtended)+","+sizeOfExtended+",E\n"; /* Extended partition with all remaining space */
+    partitionTable += QByteArray::number(startOfExtended)+","+QByteArray::number(sizeOfExtended)+",E\n"; /* Extended partition with all remaining space */
     partitionTable += "0,0\n";
     partitionTable += "0,0\n";
     // Logical partitions
@@ -476,7 +476,7 @@ bool InitDriveThread::partitionDrive()
 
     // Primary partitions
     partitionTable  = QByteArray::number(startOfOurPartition)+","+QByteArray::number(sizeOfOurPartition)+",0E\n"; /* FAT partition */
-    partitionTable += QByteArray::number(startOfExtended)+","+sizeOfExtended+",E\n"; /* Extended partition with all remaining space */
+    partitionTable += QByteArray::number(startOfExtended)+","+QByteArray::number(sizeOfExtended)+",E\n"; /* Extended partition with all remaining space */
     partitionTable += "0,0\n";
     partitionTable += "0,0\n";
     // Logical partitions

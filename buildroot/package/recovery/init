@@ -102,7 +102,7 @@ cd /sys/class/block
 
 while [ "$pinndrive" = "" ]
 do
-
+    sleep 1
     for d in *1/;
     do
       # remove trailing slash
