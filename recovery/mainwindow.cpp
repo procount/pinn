@@ -3744,9 +3744,13 @@ bool MainWindow::LooksLikeOSDrive(QString devname)
 
 void MainWindow::recalcAvailableMB()
 {
+    int errorcode=0;
 
-    _availableMB = (getFileContents(sysclassblock(_drive)+"/size").trimmed().toULongLong()-getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toULongLong()-getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toULongLong())/2048;
+    //_availableMB = (getFileContents(sysclassblock(_drive)+"/size").trimmed().toULongLong()-getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toULongLong()-getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toULongLong())/2048;
 
+    QString cmd = "sh -c \"fdisk -l " + _drive + " | grep Extended | sed -e 's/ \\+/ /g' | cut -d ' ' -f 4\"";
+    QString result = readexec(0,cmd,errorcode);
+    _availableMB = result.toUInt() / 2048;
 
     QString classdev = sysclassblock(_osdrive, 1);
     if (QFile::exists(classdev))

@@ -283,7 +283,7 @@ bool InitDriveThread::method_resizePartitions()
          startOfSettings += PARTITION_ALIGNMENT-(startOfSettings % PARTITION_ALIGNMENT);
 
     // Calculate size (in sectors) of extended partition less any provision (MB)
-    uint sizeOfExtended = sizeofSDCardInBlocks()*2 - startOfExtended - (_provision*2048) -2; //sectors
+    uint sizeOfExtended = sizeofSDCardInBlocks() - startOfExtended - (_provision*2048) -2; //sectors
 
     // Primary partitions
     partitionTable  = QByteArray::number(startOfOurPartition)+","+QByteArray::number(sizeOfOurPartition)+",0E\n"; /* FAT partition */
@@ -472,7 +472,7 @@ bool InitDriveThread::partitionDrive()
          startOfSettings += PARTITION_ALIGNMENT-(startOfSettings % PARTITION_ALIGNMENT);
 
     // Calculate size (in sectors) of extended partition less any provision (MB)
-    uint sizeOfExtended = sizeofSDCardInBlocks()*2 - startOfExtended - (_provision*2048) -2; //sectors
+    uint sizeOfExtended = sizeofSDCardInBlocks() - startOfExtended - (_provision*2048) -2; //sectors
 
     // Primary partitions
     partitionTable  = QByteArray::number(startOfOurPartition)+","+QByteArray::number(sizeOfOurPartition)+",0E\n"; /* FAT partition */
