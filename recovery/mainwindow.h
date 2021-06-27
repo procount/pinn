@@ -137,6 +137,9 @@ protected:
     void addInstalledImages();
     void addImagesFromUSB(const QString &device);
     void filterList();
+    void backupConf(const QString &fconf);
+    void backupWpa();
+    void backupDhcp();
     void copyConf(const QString &fconf);
     void copyWpa();
     void copyDhcp();

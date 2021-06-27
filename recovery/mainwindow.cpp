@@ -284,6 +284,24 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
 
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
     {
+
+       // Check for Settings partition and backup conf files
+        QByteArray settingsPartition = partdev(_bootdrive, SETTINGS_PARTNR);
+        QByteArray pinnPartition = partdev(_bootdrive, 1);
+        if (QFile::exists(settingsPartition))
+        {
+            if (QProcess::execute("mount -t ext4 "+settingsPartition+" /settings") == 0)
+            {
+                QProcess::execute("mount -t vfat "+pinnPartition+" /mnt");
+                backupWpa();
+                backupDhcp();
+                sync();
+            }
+        }
+
+        QProcess::execute("umount /mnt");
+        QProcess::execute("umount /settings");
+
         /* Repartition SD card first */
         _partInited = true;
         setEnabled(false);
@@ -1905,6 +1923,33 @@ void MainWindow::on_list_doubleClicked(const QModelIndex &index)
     }
 }
 
+void MainWindow::backupConf(const QString &fconf)
+{
+    // Precondition - /settings exists and is already mounted r/w
+
+    /* If user supplied a conf file on the FAT partition copy that one to settings regardless */
+    if (QFile::exists("/settings/"+fconf))
+    {
+        qDebug() << "Backing up "+fconf;
+
+        QProcess::execute("mount -o remount,rw /mnt");
+
+        QFile::copy("/settings/"+fconf, "/mnt/"+fconf);
+        QProcess::execute("sync");
+
+        QProcess::execute("mount -o remount,ro /mnt");
+    }
+}
+
+void MainWindow::backupWpa()
+{
+    backupConf("wpa_supplicant.conf");
+}
+
+void MainWindow::backupDhcp()
+{
+    backupConf("dhcpcd.conf");
+}
 
 void MainWindow::copyConf(const QString &fconf)
 {
@@ -3750,7 +3795,7 @@ void MainWindow::recalcAvailableMB()
 
     QString cmd = "sh -c \"fdisk -l " + _drive + " | grep Extended | sed -e 's/ \\+/ /g' | cut -d ' ' -f 4\"";
     QString result = readexec(0,cmd,errorcode);
-    _availableMB = result.toUInt() / 2048;
+    _availableMB = (result.toULongLong() - getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toULongLong())/ 2048;
 
     QString classdev = sysclassblock(_osdrive, 1);
     if (QFile::exists(classdev))
