@@ -43,11 +43,14 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
-### V3.5.6
+### V3.6
 
-- **Firmware**  - Updated firmware and wifi to match NOOBS 3.6
-- **Language**  - Updated Italian translation
-- **pinn_init** - Fixed pinn_init.sh for USB boots
+- **Firmware**     - Updated firmware and wifi to match NOOBS 3.6
+- **Language**     - Updated Italian translation
+- **pinn_init**    - Fixed pinn_init.sh for USB boots
+- **Provision**    - Added option for manual SSD provisioning
+- **runinstaller** - Maintain network settings during runinstaller
+- **self-check**   - Manual check for PINN upgrade removes ignore flag. #497
 
 ### V3.5.5
 
