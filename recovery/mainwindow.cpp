@@ -155,7 +155,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     _hasWifi(false), _numInstalledOS(0), _numBootableOS(0), _devlistcount(0), _netaccess(NULL), _displayModeBox(NULL), _drive(drive),
     _bootdrive(drive), _noobsconfig(noobsconfig), _numFilesToCheck(0), _eDownloadMode(MODE_INSTALL), _proc(NULL)
 {
-
+    TRACE
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
     setContextMenuPolicy(Qt::NoContextMenu);
@@ -213,6 +213,10 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     connect(foo3, SIGNAL(activated()), this, SLOT(on_actionCancel_triggered()));
     //====================
 
+    QString reserve ="+0";
+    QString provision="0";
+    _provision=0;
+
     QString cmdline = getFileContents("/proc/cmdline");
 
     _networkTimeout=8000;
@@ -233,6 +237,17 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
         {
             QStringList params = s.split(QChar('='));
             _networkTimeout = 1000 * params.at(1).toInt();
+        }
+        if (s.contains("reserve"))
+        {
+            QStringList params = s.split(QChar('='));
+            reserve = params.at(1);
+        }
+        if (s.contains("provision"))
+        {
+            QStringList params = s.split(QChar('='));
+            provision = params.at(1);
+            _provision = provision.toUInt();
         }
     }
 
@@ -282,6 +297,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
         connect(joy2, SIGNAL(joyDebug(QString)), this, SLOT(onJoyDebug(QString)));
     }
 
+
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
     {
 
@@ -309,25 +325,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
         _qpd->setWindowModality(Qt::WindowModal);
         _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 
-        QString reserve ="+0";
-        QString provision="0";
-        QString cmdline = getFileContents("/proc/cmdline");
-        QStringList args = cmdline.split(QChar(' '),QString::SkipEmptyParts);
-        foreach (QString s, args)
-        {
-            if (s.contains("reserve"))
-            {
-                QStringList params = s.split(QChar('='));
-                reserve = params.at(1);
-            }
-            if (s.contains("provision"))
-            {
-                QStringList params = s.split(QChar('='));
-                provision = params.at(1);
-            }
-        }
-
-        InitDriveThread *idt = new InitDriveThread(_bootdrive, this, reserve, provision);
+        InitDriveThread *idt = new InitDriveThread(_bootdrive, this, reserve, _provision);
         connect(idt, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
         connect(idt, SIGNAL(completed()), _qpd, SLOT(deleteLater()));
         connect(idt, SIGNAL(error(QString)), this, SLOT(onQpdError(QString)));
@@ -2974,10 +2972,10 @@ void MainWindow::checkFileSizeComplete()
 
 void MainWindow::startImageWrite()
 {
-
+    TRACE
     _piDrivePollTimer.stop();
     /* All meta files downloaded, extract slides tarball, and launch image writer thread */
-    MultiImageWriteThread *imageWriteThread = new MultiImageWriteThread(_bootdrive, _drive, _noobsconfig);
+    MultiImageWriteThread *imageWriteThread = new MultiImageWriteThread(_bootdrive, _drive, _noobsconfig, _provision);
     QString folder, slidesFolder;
     QStringList slidesFolders;
 
@@ -3078,10 +3076,11 @@ void MainWindow::startImageWrite()
 
 void MainWindow::startImageReinstall()
 {
-
+    TRACE
     _piDrivePollTimer.stop();
     /* All meta files downloaded, extract slides tarball, and launch image writer thread */
-    MultiImageWriteThread *imageWriteThread = new MultiImageWriteThread(_bootdrive, _drive, _noobsconfig, false, _eDownloadMode);
+
+    MultiImageWriteThread *imageWriteThread = new MultiImageWriteThread(_bootdrive, _drive, _noobsconfig, _provision, false, _eDownloadMode);
     QString folder, slidesFolder;
     QStringList slidesFolders;
 

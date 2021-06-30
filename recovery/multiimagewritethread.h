@@ -17,7 +17,7 @@ class MultiImageWriteThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive,bool noobsconfig=false, bool partition=true,  enum ModeTag mode=MODE_INSTALL, QObject *parent = 0);
+    explicit MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive,bool noobsconfig=false, uint provision=0, bool partition=true,  enum ModeTag mode=MODE_INSTALL, QObject *parent = 0);
     void addImage(const QString &folder, const QString &flavour);
     void addInstalledImage(const QString& folder, const QString& flavour, const QVariantMap& sParts, const QString& replacedName="");
     QMessageBox::ButtonRole untar(const QString &tarball, const QString &csumType, const QString &csum, bool bSuppressError=false);
@@ -55,6 +55,7 @@ protected:
     QVariantList installed_os;
     bool _multiDrives;
     bool _noobsconfig;
+    uint _provision;
     bool _partition;
     enum ModeTag _downloadMode;
     QString _srcFolder; //For noobsconfig

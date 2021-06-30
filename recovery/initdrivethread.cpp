@@ -23,7 +23,7 @@
 #include <sys/ioctl.h>
 #include <QtEndian>
 
-InitDriveThread::InitDriveThread(const QString &drive, QObject *parent, const QString& P1size, const QString& provision ) :
+InitDriveThread::InitDriveThread(const QString &drive, QObject *parent, const QString& P1size, const uint provision ) :
     QThread(parent), _drive(drive)
 {
     TRACE
@@ -36,7 +36,7 @@ InitDriveThread::InitDriveThread(const QString &drive, QObject *parent, const QS
     else
         _action = "";    //default action
     _size = value.toUInt(); //in MB
-    _provision = provision.toUInt(); // in MB
+    _provision = provision; // in MB
 }
 
 void InitDriveThread::run()
