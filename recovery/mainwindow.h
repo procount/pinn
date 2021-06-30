@@ -94,6 +94,7 @@ protected:
     QStringList _selectOsList;
 
     enum ModeTag _eDownloadMode;
+    uint _provision;
 
     QMap<QString,QVariantMap> listImages(const QString &folder = "/mnt/os");
 

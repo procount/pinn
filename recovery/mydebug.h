@@ -4,9 +4,10 @@
 #include <QDebug>
 
 //Conditional GLOBAL flags
-#define GLOBAL_ENABLE_DEBUG 0   //global debug enabler, enables MyDebug class
+#define GLOBAL_ENABLE_DEBUG 1   //global debug enabler, enables MyDebug class
 
-#define GLOBAL_DBG_ON       1   //Use the global data everywhere (overrides ths other globals. sets them to 0)
+#define GLOBAL_DBG_ON       0   //Use the global data everywhere (overrides ths other globals. sets them to 0)
+
 #if GLOBAL_DBG_ON
   #define GLOBAL_DBG_FUNC   0	//global Debug entry/exit of functions
   #define GLOBAL_DBG_OUT    0	//global Debug  output strings
@@ -41,7 +42,7 @@
   #define DBG_MSG     GLOBAL_DBG_MSG
 #endif
 
-///////////////////////////////////////////////////////////////////
+
 #if GLOBAL_ENABLE_DEBUG
 
  #define MYDEBUG MyDebug dbg(__PRETTY_FUNCTION__, DBG_FUNC)

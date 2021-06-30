@@ -5,6 +5,12 @@
 #include "osinfo.h"
 #include "partitioninfo.h"
 #include "util.h"
+
+#define LOCAL_DBG_ON   0
+#define LOCAL_DBG_FUNC 0
+#define LOCAL_DBG_OUT  0
+#define LOCAL_DBG_MSG  0
+
 #include "mydebug.h"
 #include <QDir>
 #include <QFile>
@@ -27,9 +33,10 @@
 
 QString readexec(int log, const QString& cmd, int & errorcode);
 
-MultiImageWriteThread::MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive, bool noobsconfig, bool partition, enum ModeTag mode, QObject *parent) :
-    QThread(parent), _drive(rootdrive), _bootdrive(bootdrive), _extraSpacePerPartition(0), _part(5), _noobsconfig(noobsconfig), _partition(partition), _downloadMode(mode)
+MultiImageWriteThread::MultiImageWriteThread(const QString &bootdrive, const QString &rootdrive, bool noobsconfig, uint provision, bool partition, enum ModeTag mode, QObject *parent) :
+    QThread(parent), _drive(rootdrive), _bootdrive(bootdrive), _extraSpacePerPartition(0), _part(5), _noobsconfig(noobsconfig), _provision(provision*2048), _partition(partition), _downloadMode(mode)
 {
+    TRACE
     QDir dir;
     _multiDrives = (bootdrive != rootdrive);
 
@@ -77,7 +84,8 @@ void MultiImageWriteThread::run()
         uint startSector = getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toUInt()
                         + getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toUInt();
         uint totalSectors = getFileContents(sysclassblock(_drive)+"/size").trimmed().toUInt();
-        uint availableMB = (totalSectors-startSector)/2048;
+        uint availableMB = (totalSectors-startSector-_provision)/2048;
+
         /* key: partition number, value: partition information */
         QMap<int, PartitionInfo *> partitionMap, bootPartitionMap;
 
@@ -171,6 +179,7 @@ void MultiImageWriteThread::run()
         {
             /* Extra spare space available for partitions that want to be expanded */
             _extraSpacePerPartition = (availableMB-totalnominalsize)/numexpandparts;
+
         }
 
         emit parsedImagesize(qint64(totaluncompressedsize)*1024*1024);
@@ -283,7 +292,7 @@ void MultiImageWriteThread::run()
             if (p == log_before_prim.last())
             {
                 /* Let last partition have any remaining space that we couldn't divide evenly */
-                uint spaceleft = totalSectors - offset - partsizeSectors;
+                uint spaceleft = totalSectors - offset - partsizeSectors - _provision;
 
                 if (spaceleft > 0 && p->wantMaximised())
                 {
