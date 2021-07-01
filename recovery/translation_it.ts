@@ -1691,7 +1691,7 @@ Attesi: .lzo, .gz, .xz, .bz2,o .zip.</translation>
     <message>
         <location filename="optionsdialog.ui" line="143"/>
         <source>Selects all OSes where the most recent one is on remote repositories.</source>
-        <translation>Seleziona tutti i SO in cui si trova il più recente nei repository remoti.</translation>
+        <translation>Seleziona tutti i S.O. in cui si trova il più recente nei repository remoti.</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="153"/>
