@@ -4358,7 +4358,7 @@ void MainWindow::downloadUpdateComplete()
     {
         qDebug() << "Time to update PINN!";
         QProcess::execute("mount -o remount,rw /mnt");
-        QProcess::execute("unzip /tmp/pinn-lite.zip -o -x recovery.cmdline -d /mnt");
+        QProcess::execute("unzip /tmp/pinn-lite.zip -uo -x recovery.cmdline -d /mnt");
         QProcess::execute("mount -o remount,ro /mnt");
         QProcess::execute(QString("rm ")+BUILD_IGNORE);
         QProcess::execute("sync");
