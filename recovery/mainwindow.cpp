@@ -216,6 +216,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     QString reserve ="+0";
     QString provision="0";
     _provision=0;
+    int forceruninstaller=0;
 
     QString cmdline = getFileContents("/proc/cmdline");
 
@@ -248,6 +249,10 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
             QStringList params = s.split(QChar('='));
             provision = params.at(1);
             _provision = provision.toUInt();
+        }
+        if (s.contains("forceruninstaller"))
+        {
+            forceruninstaller = 1;
         }
     }
 
@@ -300,42 +305,78 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
 
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
     {
+        bool doinstall=true;
 
-       // Check for Settings partition and backup conf files
+        // Check for Settings partition and backup conf files
         QByteArray settingsPartition = partdev(_bootdrive, SETTINGS_PARTNR);
         QByteArray pinnPartition = partdev(_bootdrive, 1);
         if (QFile::exists(settingsPartition))
         {
             if (QProcess::execute("mount -t ext4 "+settingsPartition+" /settings") == 0)
             {
-                QProcess::execute("mount -t vfat "+pinnPartition+" /mnt");
-                backupWpa();
-                backupDhcp();
-                sync();
+                if (QFile::exists("/settings/installed_os.json"))
+                {
+
+                    if ( !_silent && !forceruninstaller && (QMessageBox::question(this,
+                        tr("RUNINSTALLER - Initialise Drive"),
+                        tr("There are existing OSes installed.\nAre you sure you want to initialise the drive?"),
+                        QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No))
+                    {
+                        doinstall = false; /* Don't re-install */
+                    }
+
+                    QProcess::execute("mount -t vfat "+pinnPartition+" /mnt");
+                    if (doinstall)
+                    {
+                        backupWpa();
+                        backupDhcp();
+                        sync();
+                    }
+                    else
+                    {
+                        QString cmdlinefilename = "/mnt/recovery.cmdline";
+                        if (!QFile::exists(cmdlinefilename))
+                            cmdlinefilename = "/mnt/cmdline.txt";
+
+                        /* Remove "runinstaller" from cmdline.txt */
+                        QFile f(cmdlinefilename);
+                        if (f.open(f.ReadOnly))
+                        {
+                            QByteArray line = f.readAll().trimmed();
+                            line = line.replace("runinstaller", "").trimmed();
+                            f.close();
+                            f.open(f.WriteOnly);
+                            f.write(line);
+                            f.close();
+                        }
+                    }
+                    QProcess::execute("umount /mnt");
+                }
+                QProcess::execute("umount /settings");
             }
         }
 
-        QProcess::execute("umount /mnt");
-        QProcess::execute("umount /settings");
+        if (doinstall)
+        {
+            /* Repartition SD card first */
+            _partInited = true;
+            setEnabled(false);
+            _qpd = new QProgressDialog( tr("Setting up SD card"), QString(), 0, 0, this);
+            _qpd->setWindowModality(Qt::WindowModal);
+            _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 
-        /* Repartition SD card first */
-        _partInited = true;
-        setEnabled(false);
-        _qpd = new QProgressDialog( tr("Setting up SD card"), QString(), 0, 0, this);
-        _qpd->setWindowModality(Qt::WindowModal);
-        _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+            InitDriveThread *idt = new InitDriveThread(_bootdrive, this, reserve, _provision);
+            connect(idt, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
+            connect(idt, SIGNAL(completed()), _qpd, SLOT(deleteLater()));
+            connect(idt, SIGNAL(error(QString)), this, SLOT(onQpdError(QString)));
+            connect(idt, SIGNAL(query(QString, QString, QMessageBox::StandardButton*)),
+                    this, SLOT(onQuery(QString, QString, QMessageBox::StandardButton*)),
+                    Qt::BlockingQueuedConnection);
 
-        InitDriveThread *idt = new InitDriveThread(_bootdrive, this, reserve, _provision);
-        connect(idt, SIGNAL(statusUpdate(QString)), _qpd, SLOT(setLabelText(QString)));
-        connect(idt, SIGNAL(completed()), _qpd, SLOT(deleteLater()));
-        connect(idt, SIGNAL(error(QString)), this, SLOT(onQpdError(QString)));
-        connect(idt, SIGNAL(query(QString, QString, QMessageBox::StandardButton*)),
-                this, SLOT(onQuery(QString, QString, QMessageBox::StandardButton*)),
-                Qt::BlockingQueuedConnection);
-
-        idt->start();
-        _qpd->exec();
-        setEnabled(true);
+            idt->start();
+            _qpd->exec();
+            setEnabled(true);
+        }
     }
 
     /* Make sure the SD card is ready, and partition table is read by Linux */
@@ -4830,8 +4871,11 @@ void MainWindow::on_actionBackup_triggered()
                     errors += QProcess::execute(cmd);
 
                     //- /slides_vga
-                    cmd = "cp -r "+ settingsFolder+"/slides_vga/ "+backupFolder;
-                    errors += QProcess::execute(cmd);
+                    if (QFile::exists(settingsFolder+"/slides_vga/"))
+                    {
+                        cmd = "cp -r "+ settingsFolder+"/slides_vga/ "+backupFolder;
+                        errors += QProcess::execute(cmd);
+                    }
 
                     //- os.json (with new description
                     cmd = "cp "+ settingsFolder+"/os.json "+backupFolder;
