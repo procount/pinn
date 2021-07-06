@@ -181,6 +181,7 @@ protected slots:
     /* Events from ImageWriterThread */
     void onQpdError(const QString &msg);
     void onError(const QString &msg);
+    void onErrorNoMsg();
     void onErrorContinue(const QString &msg);
     void onCompleted(int arg=0);
     void onCloneError(const QString &msg);

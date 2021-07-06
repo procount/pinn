@@ -32,9 +32,9 @@
 #include "termsdialog.h"
 #include "simulate.h"
 
-#define LOCAL_DBG_ON   0
-#define LOCAL_DBG_FUNC 0
-#define LOCAL_DBG_OUT  0
+#define LOCAL_DBG_ON   1
+#define LOCAL_DBG_FUNC 1
+#define LOCAL_DBG_OUT  1
 #define LOCAL_DBG_MSG  0
 
 #include "mydebug.h"
@@ -1239,6 +1239,16 @@ void MainWindow::prepareMetaFiles()
                 QProcess::execute(cmd);
                 cmd = "cp "+ local+"/partition_setup.sh "+folder;
                 QProcess::execute(cmd);
+                if (QFile::exists(local+"/marketing.tar" ))
+                {
+                    cmd = "cp "+ local+"/marketing.tar "+folder;
+                    QProcess::execute(cmd);
+
+                    QString marketingTar = folder+"/marketing.tar";
+                    /* Extract tarball with slides */
+                    QProcess::execute("tar xf "+marketingTar+" -C "+folder);
+                    QFile::remove(marketingTar);
+                }
                 cmd = "cp -r "+ local+"/slides_vga/ "+folder;
                 QProcess::execute(cmd);
 
@@ -1519,6 +1529,11 @@ void MainWindow::onQpdError(const QString &msg)
     setEnabled(true);
     _piDrivePollTimer.start(POLLTIME);
     show();
+}
+
+void MainWindow::onErrorNoMsg()
+{
+    qDebug() << "Rejected";
 }
 
 void MainWindow::onQuery(const QString &msg, const QString &title, QMessageBox::StandardButton* answer)
@@ -3025,6 +3040,9 @@ void MainWindow::startImageWrite()
     {
         QVariantMap entry = item->data(Qt::UserRole).toMap();
 
+        QString settingsfolder = "/settings/os/"+CORE(entry.value("name").toString());
+        settingsfolder.replace(' ', '_');
+
         if (entry.contains("folder"))
         {
             /* Local image */
@@ -3032,8 +3050,7 @@ void MainWindow::startImageWrite()
         }
         else
         {
-            folder = "/settings/os/"+CORE(entry.value("name").toString());
-            folder.replace(' ', '_');
+            folder = settingsfolder;
 
             QString marketingTar = folder+"/marketing.tar";
             if (QFile::exists(marketingTar))
@@ -3070,6 +3087,10 @@ void MainWindow::startImageWrite()
         if (QFile::exists(folder+"/slides_vga"))
         {
             slidesFolder = folder+"/slides_vga";
+        }
+        else if (QFile::exists(settingsfolder+"/slides_vga"))
+        {
+            slidesFolder = settingsfolder+"/slides_vga";
         }
 
         QString sTerms(folder+"/terms");
@@ -3108,7 +3129,7 @@ void MainWindow::startImageWrite()
     connect(imageWriteThread, SIGNAL(consolidate()), _qpssd , SLOT(consolidate()));
     connect(imageWriteThread, SIGNAL(finish()), _qpssd , SLOT(finish()));
 
-    connect(_qpssd, SIGNAL(rejected()), this, SLOT(onError(QString)), Qt::BlockingQueuedConnection);
+    connect(_qpssd, SIGNAL(rejected()), this, SLOT(onErrorNoMsg()), Qt::BlockingQueuedConnection);
 
     imageWriteThread->start();
     hide();
@@ -3128,6 +3149,10 @@ void MainWindow::startImageReinstall()
     foreach (QVariantMap entry, _newList)
     {
         int i=0;
+
+        QString settingsfolder = "/settings/os/"+CORE(entry.value("name").toString());
+        settingsfolder.replace(' ', '_');
+
         if (entry.contains("folder"))
         {
             /* Local image */
@@ -3139,8 +3164,7 @@ void MainWindow::startImageReinstall()
         }
         else
         {
-            folder = "/settings/os/"+CORE(entry.value("name").toString());
-            folder.replace(' ', '_');
+            folder = settingsfolder;
 
             QString marketingTar = folder+"/marketing.tar";
             if (QFile::exists(marketingTar))
@@ -3172,6 +3196,11 @@ void MainWindow::startImageReinstall()
         {
             slidesFolder = folder+"/slides_vga";
         }
+        else if (QFile::exists(settingsfolder+"/slides_vga"))
+        {
+            slidesFolder = settingsfolder+"/slides_vga";
+        }
+
         QVariantMap installedEntry = entry.value("existingOS").toMap();
 
         QVariantList iPartitions = installedEntry.value("partitions").toList();
@@ -3222,7 +3251,7 @@ void MainWindow::startImageReinstall()
     connect(imageWriteThread, SIGNAL(consolidate()), _qpssd , SLOT(consolidate()));
     connect(imageWriteThread, SIGNAL(finish()), _qpssd , SLOT(finish()));
 
-    connect(_qpssd, SIGNAL(rejected()), this, SLOT(onError(QString)), Qt::BlockingQueuedConnection);
+    connect(_qpssd, SIGNAL(rejected()), this, SLOT(NoMsg()), Qt::BlockingQueuedConnection);
 
     imageWriteThread->start();
     hide();
@@ -3364,7 +3393,7 @@ void MainWindow::startImageDownload()
     connect(imageDownloadThread, SIGNAL(consolidate()), _qpssd , SLOT(consolidate()));
     connect(imageDownloadThread, SIGNAL(finish()), _qpssd , SLOT(finish()));
 
-    connect(_qpssd, SIGNAL(rejected()), this, SLOT(onError(QString)), Qt::BlockingQueuedConnection);
+    connect(_qpssd, SIGNAL(rejected()), this, SLOT(onErrorNoMsg()), Qt::BlockingQueuedConnection);
 
     imageDownloadThread->start();
     hide();
