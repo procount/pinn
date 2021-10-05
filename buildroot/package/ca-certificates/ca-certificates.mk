@@ -7,8 +7,8 @@
 CA_CERTIFICATES_VERSION = 20210119
 CA_CERTIFICATES_SOURCE = ca-certificates_$(CA_CERTIFICATES_VERSION).tar.xz
 CA_CERTIFICATES_SITE = https://snapshot.debian.org/archive/debian/20210325T091936Z/pool/main/c/ca-certificates
-CA_CERTIFICATES_DEPENDENCIES = host-openssl host-python3
-CA_CERTIFICATES_LICENSE = GPL-2.0+ (script), MPL-2.0 (data)
+CA_CERTIFICATES_DEPENDENCIES = host-openssl host-python
+CA_CERTIFICATES_LICENSE = GPLv2+ (script), MPLv2.0 (data)
 CA_CERTIFICATES_LICENSE_FILES = debian/copyright
 
 define CA_CERTIFICATES_BUILD_CMDS
@@ -33,7 +33,7 @@ define CA_CERTIFICATES_INSTALL_TARGET_CMDS
 	done >$(@D)/ca-certificates.crt
 
 	# Create symlinks to the certificates by their hash values
-	$(HOST_DIR)/bin/c_rehash $(TARGET_DIR)/etc/ssl/certs
+	$(HOST_DIR)/usr/bin/c_rehash $(TARGET_DIR)/etc/ssl/certs
 
 	# Install the certificates bundle
 	$(INSTALL) -D -m 644 $(@D)/ca-certificates.crt \
