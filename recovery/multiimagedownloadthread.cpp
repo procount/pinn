@@ -112,7 +112,7 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
 
         /* Download the compressed tarball */
         //"sh -o pipefail -c \"";
-        QString cmd = "wget --continue --retry-connrefused --read-timeout=20 --waitretry=1 --no-verbose --tries=inf --directory-prefix "+folder+" "+tarball;
+        QString cmd = "wget --no-check-certificate --continue --retry-connrefused --read-timeout=20 --waitretry=1 --no-verbose --tries=inf --directory-prefix "+folder+" "+tarball;
 
         QTime t1;
         t1.start();
