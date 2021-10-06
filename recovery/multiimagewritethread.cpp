@@ -1313,7 +1313,7 @@ void MultiImageWriteThread::processEntry(const QString &srcFolder, const QString
         else
         { //URL
             DBG( "Downloading file: " + entry);
-            QString cmd = "wget --retry-connrefused  --read-timeout=120 --no-verbose --tries=inf -O "+_dstFolder + dstSubFolder + "/" +fname + " " +entry;
+            QString cmd = "wget --no-check-certificate --retry-connrefused  --read-timeout=120 --no-verbose --tries=inf -O "+_dstFolder + dstSubFolder + "/" +fname + " " +entry;
             DBG(cmd);
             QProcess::execute(cmd);
         }
@@ -1447,7 +1447,7 @@ QMessageBox::ButtonRole  MultiImageWriteThread::untar(const QString &tarball, co
     QString tarballPath = QString(tarball);
     if (isURL(tarball)){
         tarballPath = QUrl::fromUserInput(tarball).toString(QUrl::RemoveQuery);
-        cmd += "wget  --retry-connrefused  --read-timeout=120 --tries=inf --no-verbose -O- "+tarball;
+        cmd += "wget --no-check-certificate  --retry-connrefused  --read-timeout=120 --tries=inf --no-verbose -O- "+tarball;
     }
     else
         cmd += "cat '"+tarball+"'";
@@ -1563,7 +1563,7 @@ QMessageBox::ButtonRole MultiImageWriteThread::dd(const QString &imagePath, cons
     QString cmd = "sh -o pipefail -c \"";
 
     if (isURL(imagePath))
-        cmd += "wget  --retry-connrefused --read-timeout=120 --tries=inf --no-verbose -O- "+imagePath;
+        cmd += "wget --no-check-certificate  --retry-connrefused --read-timeout=120 --tries=inf --no-verbose -O- "+imagePath;
     else
         cmd += "cat "+imagePath;
 
@@ -1656,7 +1656,7 @@ QMessageBox::ButtonRole MultiImageWriteThread::partclone_restore(const QString &
     QString cmd = "sh -o pipefail -c \"";
 
     if (isURL(imagePath))
-        cmd += "wget --retry-connrefused --read-timeout=120 --tries=inf --no-verbose --tries=inf -O- "+imagePath;
+        cmd += "wget --no-check-certificate --retry-connrefused --read-timeout=120 --tries=inf --no-verbose --tries=inf -O- "+imagePath;
     else
         cmd += " "+imagePath;
 

@@ -43,6 +43,18 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V3.6.2
+
+- **SSL errors**   - Workaround for Let's Encrypt SSL certificate expiry
+
+### V3.6.1.2
+
+- **Language**     - minor Italian translation fix
+- **Update**       - Try to avoid PINN overwriting user modified files when updating
+- **runinstaller** - Detect existing installations to avoid wiping them out
+- **backup**       - Backup files even when slides_vga is missing
+- **install**      - Allow use of marketing.tar for local files too
+
 ### V3.6
 
 - **Firmware**     - Updated firmware and wifi to match NOOBS 3.6

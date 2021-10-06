@@ -69,7 +69,7 @@ QByteArray getRemoteFile(const QString &url)
     QProcess p;
     QString cmd;
     QByteArray result;
-    cmd = "wget --no-verbose --tries=inf -O- "+url;
+    cmd = "wget --no-check-certificate --no-verbose --tries=inf -O- "+url;
 
     //p.setProcessChannelMode(p.MergedChannels);
     p.start(cmd);

@@ -634,3 +634,14 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 - **runinstaller** - Maintain network settings during runinstaller
 - **self-check**   - Manual check for PINN upgrade removes ignore flag. #497
 
+### V3.6.1.2
+
+- **Language**     - minor Italian translation fix
+- **Update**       - Try to avoid PINN overwriting user modified files when updating
+- **runinstaller** - Detect existing installations to avoid wiping them out
+- **backup**       - Backup files even when slides_vga is missing
+- **install**      - Allow use of marketing.tar for local files too
+
+### V3.6.2
+
+- **SSL errors**  - Workaround for Let's Encrypt SSL certificate expiry

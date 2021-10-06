@@ -2116,6 +2116,11 @@ void MainWindow::pollNetworkStatus()
     }
 }
 
+void MainWindow::OnsslErrors(QNetworkReply * reply, QList<QSslError> list)
+{
+      reply->ignoreSslErrors(list);
+}
+
 void MainWindow::onOnlineStateChanged(bool online)
 {
 
@@ -2135,6 +2140,8 @@ void MainWindow::onOnlineStateChanged(bool online)
             _listno = 0;
             QNetworkConfigurationManager manager;
             _netaccess->setConfiguration(manager.defaultConfiguration());
+
+            connect(_netaccess, SIGNAL(sslErrors(QNetworkReply *, QList<QSslError>)), this, SLOT(OnsslErrors(QNetworkReply *, QList<QSslError>)));
 
             UpdateTime();
             QString cmdline = getFileContents("/proc/cmdline");
