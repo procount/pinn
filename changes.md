@@ -645,3 +645,8 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 ### V3.6.2
 
 - **SSL errors**  - Workaround for Let's Encrypt SSL certificate expiry
+
+### V3.7
+
+- **Firmware**    - Updated firmware to match NOOBS 3.7
+- **DevEnv**      - The development environment used to build PINN is now Ubuntu 20.04

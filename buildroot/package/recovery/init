@@ -11,9 +11,6 @@
 /bin/hostname -F /etc/hostname
 /bin/mount -t tmpfs tmpfs /tmp
 
-#modprobe 8188eu
-modprobe 8192cu
-
 # Newer kernel versions can load firmware from /lib/firmware by themselves without help
 # However that can fail during boot due to our initrd ramdisk not being mounted in time
 # Retry any pending requests
@@ -121,6 +118,14 @@ do
                 pinndrive=/dev/$d
                 if [ -f "/tmp/mnt/pinn_init.sh" ]; then
                   sh -c "/tmp/mnt/pinn_init.sh $pinndrive"
+                fi
+                if [ -f "/tmp/mnt/modules" ]; then
+                   cat "/tmp/mnt/modules"
+                   while IFS= read -r line
+                   do
+                     echo $line
+                     modprobe $line
+                   done <"/tmp/mnt/modules"
                 fi
               fi
               umount /dev/$d >/dev/null

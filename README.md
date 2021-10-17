@@ -43,6 +43,11 @@ Please note that in some cases it may extract the files into a folder, if this i
 
 ## Change History
 
+### V3.7
+
+- **Firmware**    - Updated firmware to match NOOBS 3.7
+- **DevEnv**      - The development environment used to build PINN is now Ubuntu 20.04
+
 ### V3.6.2
 
 - **SSL errors**   - Workaround for Let's Encrypt SSL certificate expiry

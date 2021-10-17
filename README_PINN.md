@@ -5,7 +5,7 @@
 
 The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn-lite.zip) can be downloaded from [sourceforge](http://www.sourceforge.net/projects/pinn).
 
-This README relates to v3.6.2
+This README relates to v3.7
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -426,7 +426,9 @@ Note that these defaults will be overwritten by any changes made in the GUI to t
 
 The following is a complete list of all the PINN options that can be added to the `recovery.cmdline` file on the PINN recovery partition to affect its operation:
 
-- **runinstaller**: This option is present when PINN is first installed to cause it to reformat the SD card. Once reformatted, PINN will delete this option. Manually adding it back in will cause PINN to reformat the SD card on next boot, losing any and all installed OSes, so be careful! The `reserve` and `provision` options will be used to adjust the size of the partitions as instructed. If there is a wpa_supplicat.conf or dhcpcd.conf file in the /settings partition, they will be preserved across this repartitioning action so that the network is not lost when performing it remotely.
+- **runinstaller**: This option is present when PINN is first installed to cause it to reformat the SD card. Once reformatted, PINN will delete this option. Manually adding it back in will cause PINN to reformat the SD card on next boot. (See also `forceruninstaller`) The `reserve` and `provision` options will be used to adjust the size of the partitions as instructed. If there is a wpa_supplicant.conf or dhcpcd.conf file in the /settings partition, they will be preserved across this repartitioning action so that the network is not lost when performing it remotely.
+
+- **forceruninstaller**: If the `runinstaller` option is specified, PINN will now check if any OSes are already installed to prevent them being overwritten and in this case will ask if you really want to reformat your drive. If trying to do this remotely, it will not be possible to answer this prompt, so in this case, use the `forceruninstaller` option for PINN to ignore this check and reformat the drive regardless. Setting this option could potentially erase any installed OSes, so please be careful when setting it.
  
 - **reserve=(+)NNN**: This option will reserve a set amount of space for PINN's partition (typically /dev/mmcblk0p1) when the `runinstaller` option first formats the SD card. This space may be useful for adding OS install files later, or for using the first partition as a transfer area for data between the RPi and a Windows PC that can only read the SD card's first partition. NNN specifies the total size of this partition in MB. The default value is around 64MB. If the size is prefixed with a '+' sign, the value indicates an amount of disk space to be reserved [i]in addition[/i] to the size of PINN's files. So, `reserve=200` will make P1 200MB in size and `reserve=+200` will make it about 263MB in size.
 
