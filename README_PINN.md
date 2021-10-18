@@ -222,13 +222,13 @@ Any of the above remote keys can be used instead of the keyboard shift key on st
 **NOTE: CEC implementations vary between TV manufacturers. The above key mappings work on Samsung TVs supporting their Anynet+. Other TV brands may not work as well, but the mouse simulation is designed to work on most TVs.**
 
 It is possible to program your own set of key mappings for your particular remote. 
-To do this you should create a `cec_keys.json` file. 
+To do this you should create a `cec_keys.json` file. You can start by copying the default file `cec_keys.def` to `cec_keys.json` and then modifying it.
 See the [cec_keys.md](cec_keys.md) document on how to do this.
 The default mappings are listed in the [wiki](https://github.com/procount/pinn/wiki/Default-CEC-Key-mappings-for-cec_keys.json).
 
 ### Joystick Control
 
-PINN can be controlled with a USB Joystick or Gamepad that is compatibel with XBox style interfaces.
+PINN can be controlled with a USB Joystick or Gamepad that is compatible with XBox style interfaces.
 The default buttons are mapped as follows:
 
 To simulate a mouse the following keys are used:
@@ -241,7 +241,7 @@ Any of the buttons can be used instead of the keyboard shift key on startup to a
 Some other buttons are mapped to the cursor keys, primarily for use with the [virtual keyboard](#virtual-keyboard)
 
 It is possible to program your own set of key mappings for your particular remote. 
-To do this you should create a `joy_keys.json` file. 
+To do this you should create a `joy_keys.json` file.  You can start by copying the default file `joy_keys.def` to `joy_keys.json` and then modifying it.
 See the [joy_keys.md](joy_keys.md) document on how to do this.
 The default mappings are listed in the [wiki](https://github.com/procount/pinn/wiki/Default-JOY-Key-mappings-for-joy_keys.json).
 
@@ -251,7 +251,7 @@ A virtual keyboard is available in certain dialogs that require keyboard input, 
 
 Keyboard navigation can also be achieved by mapping joystick or CEC buttons to the cursor keys, and keys selected by mapping to the spacebar key.
 
-The virtual keyboard is not moveable, but it can be made transparent using the slide control to the right of the space-bar.
+The virtual keyboard is not movable, but it can be made transparent using the slide control to the right of the space-bar.
 
 ### How to use with the Raspberry Pi Touch Display
 
