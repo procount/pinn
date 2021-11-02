@@ -189,8 +189,6 @@ protected slots:
     void onCloneCompleted();
     void newImage(QString Imagefile);
 
-    void OnsslErrors(QNetworkReply *, QList<QSslError>);
-
     void downloadIconRedirectCheck();
     void downloadIconComplete();
     void downloadMetaRedirectCheck();
