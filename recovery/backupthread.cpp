@@ -170,12 +170,15 @@ bool BackupThread::processImage(const QVariantMap & entry)
         //#442 - remove useless socket files that prevent tar working
         readexec(1, "mount -o rw "+dev+" /tmp/src", error);
         readexec(1, "find /tmp/src -type s -exec rm {} \\;", error);
+        // Store extended ACL attributes
+        readexec(1, "sh -c \"cd /tmp/src; getfacl -s -R . >/tmp/src/acl_permissions.pinn\"", error);
         readexec(1, "umount /tmp/src", error);
 
         //   Mount it
         QProcess::execute("mount -o ro "+dev+" /tmp/src");
         emit newDrive(dev, ePM_READSTATS);
         QString cmd;
+
 
         emit startAccounting();
         if (fstype=="raw")

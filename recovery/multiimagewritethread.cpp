@@ -1547,7 +1547,14 @@ QMessageBox::ButtonRole  MultiImageWriteThread::untar(const QString &tarball, co
         //S    emit error(tr("Error downloading or extracting tarball")+"\n"+msg);
         return QMessageBox::RejectRole ;
     }
+
+    if (QFile::exists("/mnt2/acl_permissions.pinn"))
+    {
+        int error;
+        readexec(1, "sh -c\"cd /mnt2; setfacl --restore=acl_permissions.pinn\"", error);
+    }
     qDebug() << "finished writing filesystem in" << (t1.elapsed()/1000.0) << "seconds";
+
 
     return QMessageBox::AcceptRole;
 }
