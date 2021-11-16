@@ -776,8 +776,8 @@ See debug log for details</oldsource>
         <translation>은(는) 다음 파티션과 호환되지 않은 파티션 번호를 갖고 있습니다.대상 파티션: </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4001"/>
-        <location filename="mainwindow.cpp" line="4034"/>
+        <location filename="mainwindow.cpp" line="4005"/>
+        <location filename="mainwindow.cpp" line="4051"/>
         <source>RECOMMENDED</source>
         <translation>추천 파티션</translation>
     </message>
@@ -806,9 +806,9 @@ See debug log for details</oldsource>
         <location filename="mainwindow.cpp" line="1292"/>
         <location filename="mainwindow.cpp" line="1302"/>
         <location filename="mainwindow.cpp" line="1918"/>
-        <location filename="mainwindow.cpp" line="4711"/>
-        <location filename="mainwindow.cpp" line="4786"/>
-        <location filename="mainwindow.cpp" line="4830"/>
+        <location filename="mainwindow.cpp" line="4741"/>
+        <location filename="mainwindow.cpp" line="4816"/>
+        <location filename="mainwindow.cpp" line="4860"/>
         <source>Confirm</source>
         <translation>확인</translation>
     </message>
@@ -833,7 +833,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1064"/>
-        <location filename="mainwindow.cpp" line="4712"/>
+        <location filename="mainwindow.cpp" line="4742"/>
         <source>Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:
 </source>
         <oldsource>Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:</oldsource>
@@ -841,7 +841,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1064"/>
-        <location filename="mainwindow.cpp" line="4712"/>
+        <location filename="mainwindow.cpp" line="4742"/>
         <source>
 
 Do you want to continue?</source>
@@ -855,7 +855,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1125"/>
-        <location filename="mainwindow.cpp" line="4731"/>
+        <location filename="mainwindow.cpp" line="4761"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation>은(는) 사용할 수 없습니다.
@@ -948,7 +948,7 @@ See debug log for details</oldsource>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1432"/>
-        <location filename="mainwindow.cpp" line="4934"/>
+        <location filename="mainwindow.cpp" line="4964"/>
         <source>Backup OSes</source>
         <translation>백업 대상 OS</translation>
     </message>
@@ -968,7 +968,7 @@ See debug log for details</oldsource>
         <location filename="mainwindow.cpp" line="1528"/>
         <location filename="mainwindow.cpp" line="2227"/>
         <location filename="mainwindow.cpp" line="2370"/>
-        <location filename="mainwindow.cpp" line="4289"/>
+        <location filename="mainwindow.cpp" line="4319"/>
         <source>Error</source>
         <translation>오류</translation>
     </message>
@@ -1078,8 +1078,8 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <location filename="mainwindow.cpp" line="2348"/>
         <location filename="mainwindow.cpp" line="2873"/>
         <location filename="mainwindow.cpp" line="2884"/>
-        <location filename="mainwindow.cpp" line="4388"/>
-        <location filename="mainwindow.cpp" line="4410"/>
+        <location filename="mainwindow.cpp" line="4418"/>
+        <location filename="mainwindow.cpp" line="4440"/>
         <source>Download error</source>
         <translation>다운로드 오류</translation>
     </message>
@@ -1117,7 +1117,7 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     </message>
     <message>
         <location filename="mainwindow.cpp" line="2884"/>
-        <location filename="mainwindow.cpp" line="4410"/>
+        <location filename="mainwindow.cpp" line="4440"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>다운로드한 파일을 SD 카드에 기록하는 과정에서 오류가 발생하였습니다. SD 카드 또는 파일 시스템이 손상되었는지 확인하여 주십시오.</translation>
     </message>
@@ -1128,8 +1128,8 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3228"/>
-        <location filename="mainwindow.cpp" line="4702"/>
-        <location filename="mainwindow.cpp" line="4740"/>
+        <location filename="mainwindow.cpp" line="4732"/>
+        <location filename="mainwindow.cpp" line="4770"/>
         <source>Replace OSes</source>
         <translation>OS 교체</translation>
     </message>
@@ -1198,102 +1198,102 @@ Do you want to continue?</source>
         <translation>&apos;%1&apos; 드라이브를 정말 다시 초기화하시겠습니까? 초기화를 완료하면 이 드라이브 안에 있는 모든 데이터는 완전히 삭제됩니다. 초기화 후 PINN이 이 드라이브를 이용합니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4241"/>
+        <location filename="mainwindow.cpp" line="4271"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>장치 &apos;%s&apos;의 모든 내용이 지워집니다. 정말 진행하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4243"/>
+        <location filename="mainwindow.cpp" line="4273"/>
         <source>Clone SD Card</source>
         <translation>SD 카드 복제</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4245"/>
+        <location filename="mainwindow.cpp" line="4275"/>
         <source>Yes</source>
         <translation>예</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4246"/>
+        <location filename="mainwindow.cpp" line="4276"/>
         <source>No</source>
         <translation>아니요</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4275"/>
+        <location filename="mainwindow.cpp" line="4305"/>
         <source>Clone Completed</source>
         <translation>복제 완료</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4276"/>
+        <location filename="mainwindow.cpp" line="4306"/>
         <source>Clone Completed Successfully</source>
         <translation>복제를 완료하였습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4388"/>
+        <location filename="mainwindow.cpp" line="4418"/>
         <source>Error downloading update file</source>
         <translation>업데이트한 파일을 다운로드 하는 과정에 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4395"/>
-        <location filename="mainwindow.cpp" line="4496"/>
+        <location filename="mainwindow.cpp" line="4425"/>
+        <location filename="mainwindow.cpp" line="4526"/>
         <source>PINN Update Check</source>
         <translation>PINN 업데이트 확인</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4395"/>
+        <location filename="mainwindow.cpp" line="4425"/>
         <source>Error contacting update server</source>
         <translation>업데이트 서버에 연결할 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4496"/>
+        <location filename="mainwindow.cpp" line="4526"/>
         <source>No updates available</source>
         <translation>새로운 업데이트가 없습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4505"/>
+        <location filename="mainwindow.cpp" line="4535"/>
         <source>PINN UPDATE</source>
         <translation>PINN 업데이트</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4506"/>
+        <location filename="mainwindow.cpp" line="4536"/>
         <source>A new version of PINN is available</source>
         <translation>새 버전의 PINN 을 사용할 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4507"/>
+        <location filename="mainwindow.cpp" line="4537"/>
         <source>Do you want to download this version?</source>
         <translation>이 버전을 다운로드 하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4539"/>
+        <location filename="mainwindow.cpp" line="4569"/>
         <source>Downloading Update</source>
         <translation>업데이트 다운로드</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4539"/>
+        <location filename="mainwindow.cpp" line="4569"/>
         <source>Press ESC to cancel</source>
         <translation>취소하려면 ESC 를 누르십시요.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4703"/>
+        <location filename="mainwindow.cpp" line="4733"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation>경고: 선택한 OS가 없습니다
 (RISC OS 또는 PINN을 선택하지 마십시요)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4741"/>
+        <location filename="mainwindow.cpp" line="4771"/>
         <source>Warning: No OSes selected
 </source>
         <translation>경고: 선택한 OS가 없습니다
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4787"/>
+        <location filename="mainwindow.cpp" line="4817"/>
         <source>Warning: this will backup the selected Operating System(s).</source>
         <translation>경고: 이 동작은 선택한 운영체제를 백업합니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4831"/>
+        <location filename="mainwindow.cpp" line="4861"/>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
         <translation>경고: 지원하지 않는 운영체제를 발견하였습니다. PINN은 이 운영체제에 대한 백업을 제대로 생성하지 못할 수 있습니다. 대상 운영체제:</translation>
     </message>

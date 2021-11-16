@@ -650,3 +650,14 @@ Fixes the incorrect recovery.cmdline bug in v2.5.2.
 
 - **Firmware**    - Updated firmware to match NOOBS 3.7
 - **DevEnv**      - The development environment used to build PINN is now Ubuntu 20.04
+
+### V3.7.2
+
+- **SSL Errors**     - Fix for Let's Encrypt SSL errors.
+- **Backup**         - Backup now stores additional final ACL attributes
+- **upgrade**        - fix self-update
+
+### V3.7.3
+
+- **Tooltips**       - Add tooltips showing OS version and release date (if known)
+

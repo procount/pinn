@@ -5,6 +5,16 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.7.3
+
+- **Tooltips**       - Add tooltips showing OS version and release date (if known)
+
+### V3.7.2
+
+- **SSL Errors**     - Fix for Let's Encrypt SSL errors.
+- **Backup**         - Backup now stores additional final ACL attributes
+- **upgrade**        - fix self-update
+
 ### V3.7
 
 - **Firmware**    - Updated firmware to match NOOBS 3.7

@@ -5,7 +5,7 @@
 
 The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn-lite.zip) can be downloaded from [sourceforge](http://www.sourceforge.net/projects/pinn).
 
-This README relates to v3.7
+This README relates to v3.7.3
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -642,7 +642,11 @@ Once USB boot mode is enabled, proceed as follows:
 
 ## Project Spaces
 
-Project Spaces are empty OSes that just consist of an empty 100MB FAT32 partition and an empty 500MB nominal ext4 partition. Up to 8 Project Spaces can be installed onto an SD card along with any other OSes. Any remaining space left on the SD card will be divided up between all of these Project Spaces, so their ext4 partitions will expand to fill the remaining space and they will all be the same size.
+When PINN installs OSes to a drive, it allocates all of the available drive space to the OSes by expanding the partitions. It is not possible to add any OSes later because there will be no remaining space. It is possible to replace an existing OS with another one. 
+
+Project Spaces are empty OSes that just consist of an empty 100MB FAT32 partition and an empty 500MB nominal ext4 partition. The idea is that they can be installed initially with other OSes to reserve space for a future OS. Later the ProjectSpace can be replaced with another OS that has a similar partition layout.
+
+Up to 8 Project Spaces can be installed onto an SD card along with any other OSes. Any remaining space left on the SD card will be divided up between all of these Project Spaces, so their ext4 partitions will expand to fill the remaining space and they will all be the same size.
 
 ![alt text](screenshots/projectspaces.png "Project Spaces")
 
@@ -1030,6 +1034,7 @@ The following steps allow you to create a modified copy of one of the standard O
   * "uncompressed_tarball_size" - replace the numerical value with the size of your filesystem tarballs when uncompressed
 9. Replace the `.tar.xz` root and boot filesystem tarballs with copies created from your custom OS version (these instructions assume you're only using a single OS at a time with PINN - they won't work if you're running multiple OSes from a single SD card). The name of these tarballs needs to match the labels given in `partitions.json`.
   * From the root folder of the OS you want to backup, delete any socket files which would otherwise cause problems during the next `bsdtar` operation. Use `sudo find . -type s -exec rm {} \;`. These files are normally temporary and can be safely deleted, but if you are in anyway concerned/paranoid, then backup them up first just in case.
+  * If there are any additional ACL attributes, run: `sudo getfacl -s -R . >acl_permissions.pinn` in the root of each partition. If you are not sure, there is no harm to run this command anyway.
   * To create the root tarball, you will need to run: `sudo bsdtar --numeric-owner --format gnutar --one-file-system -cpf \<label\>_root.tar .` from within the root filesystem of your custom OS version. You should then compress the resulting tarball with `xz -9 -e \<label\>_root.tar`.
   * To create the boot tarball, you will need to run `sudo bsdtar --numeric-owner --format gnutar -cpvf \<label\>_boot.tar .` from the boot partition of your custom OS version. You should then compress the resulting tarball with `xz -9 -e \<label\>_boot.tar`.
 

@@ -3944,9 +3944,13 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
     QString name = m.value("name").toString();
     QString folder  = m.value("folder").toString();
     QString description = m.value("description").toString();
+    QString version = m.value("version").toString();
     bool recommended = m.value("recommended").toBool();
     DBG(name);
     QListWidgetItem *witem = NULL;
+    QString tooltip;
+
+    tooltip="";
 
     //If it is already installed, we don't care that it WAS installed from a backup, so remove date.
     if (bInstalled)
@@ -4003,6 +4007,19 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
                 friendlyname += "\n"+description;
             witem->setText(friendlyname);
 
+            //Set Tooltip
+            if (m.contains("release_date"))
+            {
+                tooltip += m.value("release_date","").toString();
+            }
+            if (m.contains("version"))
+            {
+                if (!tooltip.isEmpty())
+                    tooltip += ", ";
+                tooltip += m.value("version","").toString();
+            }
+            witem->setToolTip(tooltip);
+
             witem->setData(Qt::UserRole, m);
             witem->setData(SecondIconRole, icon);
             ug->list->update();
@@ -4038,6 +4055,19 @@ void MainWindow::addImage(QVariantMap& m, QIcon &icon, bool &bInstalled)
         witem = new QListWidgetItem(friendlyname);
         witem->setCheckState(Qt::Unchecked);
         witem->setData(Qt::UserRole, m);
+
+        //Set Tooltip
+        if (m.contains("release_date"))
+        {
+            tooltip += m.value("release_date","").toString();
+        }
+        if (m.contains("version"))
+        {
+            if (!tooltip.isEmpty())
+                tooltip += ", ";
+            tooltip += m.value("version","").toString();
+        }
+        witem->setToolTip(tooltip);
 
         witem->setData(SecondIconRole, icon);
 
