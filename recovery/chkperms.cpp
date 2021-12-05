@@ -16,8 +16,8 @@ chkperms::chkperms(QListWidget * list, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::chkperms)
 {
-    int dummy;
-    int part_err=0;
+    //int dummy;
+    //int part_err=0;
     int os_err=0;
     int overall_err=0;
     QListWidgetItem * item;

@@ -46,7 +46,7 @@ private:
     QString _partition;
     WidgetKeyboard *virtualKeyBoard;
     QWidget * _lastWidgetFocus;
-    navigate _nav;
+    //navigate _nav;
     navigate * pNav;
 };
 

@@ -31,6 +31,7 @@
 #include "iconcache.h"
 #include "termsdialog.h"
 #include "simulate.h"
+#include "dlginstall.h"
 
 #define LOCAL_DBG_ON   0
 #define LOCAL_DBG_FUNC 0
@@ -1014,11 +1015,13 @@ void MainWindow::on_actionWrite_image_to_disk_triggered()
 
     if (_numBootableOS)
     {
-        if ( !_silent && QMessageBox::warning(this,
-                                    tr("Confirm"),
-                                    tr("Warning: Some OSes are already installed!\nContinuing will DELETE them.\n\nDo you want to continue?"),
-                                    QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::No)
-            return;
+        dlgInstall dlg;
+        if (!_silent)
+        {
+            dlg.setWindowModality(Qt::WindowModal);
+            if (QDialog::Rejected == dlg.exec())
+                return;
+        }
     }
 
     _newList.clear();
@@ -2658,14 +2661,6 @@ void MainWindow::updateNeeded()
     }
 
     ui->actionWrite_image_to_disk->setEnabled(enableWrite);
-    QIcon newIcon;
-    if (_numBootableOS)
-        newIcon.addFile(":/icons/skull_old.png");
-    else
-        newIcon.addFile(":/icons/backups.png");
-    ui->actionWrite_image_to_disk->setIcon(newIcon);
-
-
 
     QPalette p = ui->neededLabel->palette();
     if (p.color(QPalette::WindowText) != colorNeededLabel)

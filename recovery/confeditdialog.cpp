@@ -83,7 +83,7 @@ ConfEditDialog::ConfEditDialog(const QVariantMap &map, const QString &partition,
 
     virtualKeyBoard = new WidgetKeyboard(this);
 
-    _nav.setContext("confEdit", "any");
+    //_nav.setContext("confEdit", "any");
 
     if (_map.value("name") =="PINN")
     {  //This is the PINN reference

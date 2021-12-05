@@ -25,6 +25,7 @@ LIBS += -lqjson
 system(sh updateqm.sh 2>/dev/null)
 
 SOURCES += \
+    dlginstall.cpp \
     main.cpp\
     mainwindow.cpp \
     languagedialog.cpp \
@@ -80,6 +81,7 @@ SOURCES += \
     chkperms.cpp
 
 HEADERS  += \
+    dlginstall.h \
     mainwindow.h \
     languagedialog.h \
     initdrivethread.h \
@@ -137,6 +139,7 @@ HEADERS  += \
     chkperms.h
 
 FORMS    += \
+    dlginstall.ui \
     mainwindow.ui \
     languagedialog.ui \
     progressslideshowdialog.ui \
