@@ -1,0 +1,33 @@
+From ddccd92db4fead4a3b805182a442ba5861147c16 Mon Sep 17 00:00:00 2001
+From: procount <kevin.procoun@googlemail.com>
+Date: Mon, 6 Dec 2021 13:03:57 +0000
+Subject: [PATCH] Pinn Bookmarks
+
+---
+ src/data/defaultbookmarks.xbel | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/src/data/defaultbookmarks.xbel b/src/data/defaultbookmarks.xbel
+index 5869929..666e67e 100644
+--- a/src/data/defaultbookmarks.xbel
++++ b/src/data/defaultbookmarks.xbel
+@@ -3,8 +3,14 @@
+ <xbel version="1.0">
+     <folder folded="yes">
+         <title>Bookmarks Bar</title>
+-        <bookmark href="http://arora-browser.org/">
+-            <title>Arora</title>
++        <bookmark href="https://forums.raspberrypi.com/viewtopic.php?t=142574">
++            <title>PINN Forum thread</title>
++        </bookmark>
++        <bookmark href="https://github.com/procount/pinn/blob/master/README_PINN.md">
++            <title>README_PINN.md</title>
++        </bookmark>
++        <bookmark href="https://github.com/procount/pinn/wiki">
++            <title>Wiki</title>
+         </bookmark>
+     </folder>
+     <folder folded="yes">
+-- 
+2.25.1
+
