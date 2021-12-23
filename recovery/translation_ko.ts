@@ -1461,8 +1461,8 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="804"/>
         <location filename="multiimagewritethread.cpp" line="841"/>
-        <location filename="multiimagewritethread.cpp" line="995"/>
-        <location filename="multiimagewritethread.cpp" line="1105"/>
+        <location filename="multiimagewritethread.cpp" line="997"/>
+        <location filename="multiimagewritethread.cpp" line="1107"/>
         <source>%1: Error mounting file system</source>
         <translation>%1: 파일 시스템을 마운트하는 과정에서 오류가 발생하였습니다.</translation>
     </message>
@@ -1483,7 +1483,7 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="838"/>
-        <location filename="multiimagewritethread.cpp" line="991"/>
+        <location filename="multiimagewritethread.cpp" line="993"/>
         <source>%1: Mounting FAT partition</source>
         <translation>%1: FAT 파티션을 마운트하고 있습니다.</translation>
     </message>
@@ -1508,68 +1508,68 @@ Partition not big enough for new image.</source>
         <translation>%1: 파티션 설치 스크립트를 실행하고 있습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="961"/>
+        <location filename="multiimagewritethread.cpp" line="963"/>
         <source>%1: Error executing partition setup script</source>
         <translation>%1: 파티션 설치 스크립트를 실행하는 과정에서 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="978"/>
+        <location filename="multiimagewritethread.cpp" line="980"/>
         <source>%1: Configuring flavour</source>
         <translatorcomment>flavour 를 구성으로 번역하고 있음. https://developer.android.com/studio/build/build-variants.html?hl=ko#flavor-dimensions</translatorcomment>
         <translation>%1: 구성을 설정하고 있습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="968"/>
-        <location filename="multiimagewritethread.cpp" line="999"/>
+        <location filename="multiimagewritethread.cpp" line="970"/>
+        <location filename="multiimagewritethread.cpp" line="1001"/>
         <source>%1: Unmounting FAT partition</source>
         <translation>%1: FAT 파티션을 마운트 해제하고 있습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="971"/>
-        <location filename="multiimagewritethread.cpp" line="1002"/>
+        <location filename="multiimagewritethread.cpp" line="973"/>
+        <location filename="multiimagewritethread.cpp" line="1004"/>
         <source>%1: Error unmounting</source>
         <translation>%1: 마운트 해제하는 과정에서 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1412"/>
+        <location filename="multiimagewritethread.cpp" line="1414"/>
         <source>Error creating file system</source>
         <translation>파일 시스템을 만드는 과정에서 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1485"/>
-        <location filename="multiimagewritethread.cpp" line="1602"/>
-        <location filename="multiimagewritethread.cpp" line="1695"/>
+        <location filename="multiimagewritethread.cpp" line="1487"/>
+        <location filename="multiimagewritethread.cpp" line="1604"/>
+        <location filename="multiimagewritethread.cpp" line="1697"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip.</source>
         <oldsource>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</oldsource>
         <translation type="unfinished">압축 파일의 형식을 알아낼 수 없었습니다. .lzo 또는 .gz, .xz, .bz2, .zip 형식을 지원합니다.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1525"/>
-        <location filename="multiimagewritethread.cpp" line="1633"/>
-        <location filename="multiimagewritethread.cpp" line="1726"/>
+        <location filename="multiimagewritethread.cpp" line="1527"/>
+        <location filename="multiimagewritethread.cpp" line="1635"/>
+        <location filename="multiimagewritethread.cpp" line="1728"/>
         <source>An incorrect file checksum has been detected in %1</source>
         <translation>%1에서 올바르지 않은 파일 체크섬을 확인하였습니다</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1526"/>
-        <location filename="multiimagewritethread.cpp" line="1637"/>
-        <location filename="multiimagewritethread.cpp" line="1730"/>
+        <location filename="multiimagewritethread.cpp" line="1528"/>
+        <location filename="multiimagewritethread.cpp" line="1639"/>
+        <location filename="multiimagewritethread.cpp" line="1732"/>
         <source>Checksum error</source>
         <translation>체크섬 오류</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1536"/>
+        <location filename="multiimagewritethread.cpp" line="1538"/>
         <source>Checksum OK</source>
         <translation>체크섬 확인 완료</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1539"/>
+        <location filename="multiimagewritethread.cpp" line="1541"/>
         <source>Finished downloading</source>
         <translation>다운로드 완료</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1647"/>
-        <location filename="multiimagewritethread.cpp" line="1740"/>
+        <location filename="multiimagewritethread.cpp" line="1649"/>
+        <location filename="multiimagewritethread.cpp" line="1742"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>운영체제를 SD 카드에 다운로드 및 기록하는 과정에서 오류가 발생하였습니다</translation>
     </message>
@@ -3426,29 +3426,29 @@ Break</source>
         <translation>지정된 체크섬= %1 계산 결과= %2</translation>
     </message>
     <message>
-        <location filename="rerunsetup.cpp" line="152"/>
+        <location filename="rerunsetup.cpp" line="155"/>
         <source>%1: Error executing partition setup script</source>
         <translation>%1: 파티션 설치 스크립트를 실행하는 과정에서 오류가 발생하였습니다.</translation>
     </message>
     <message>
-        <location filename="rerunsetup.cpp" line="157"/>
+        <location filename="rerunsetup.cpp" line="160"/>
         <source> partions_setup.sh script error
 </source>
         <translation> partions_setup.sh 스크립트 오류</translation>
     </message>
     <message>
-        <location filename="rerunsetup.cpp" line="159"/>
+        <location filename="rerunsetup.cpp" line="162"/>
         <source> partition_setup.sh script OK
 </source>
         <translation> partions_setup.sh 스크립트 확인 완료</translation>
     </message>
     <message>
-        <location filename="rerunsetup.cpp" line="166"/>
+        <location filename="rerunsetup.cpp" line="169"/>
         <source>DONE - some setup script errors detected</source>
         <translation>작업 완료 - 설치 스크립트 오류 발견됨</translation>
     </message>
     <message>
-        <location filename="rerunsetup.cpp" line="168"/>
+        <location filename="rerunsetup.cpp" line="171"/>
         <source>DONE - SUCCESSFUL setup scripts exeuted</source>
         <translation>작업 완료 - 설치 스크립트 실행에 성공함</translation>
     </message>

@@ -1449,8 +1449,8 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="804"/>
         <location filename="multiimagewritethread.cpp" line="841"/>
-        <location filename="multiimagewritethread.cpp" line="995"/>
-        <location filename="multiimagewritethread.cpp" line="1105"/>
+        <location filename="multiimagewritethread.cpp" line="997"/>
+        <location filename="multiimagewritethread.cpp" line="1107"/>
         <source>%1: Error mounting file system</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1471,7 +1471,7 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="838"/>
-        <location filename="multiimagewritethread.cpp" line="991"/>
+        <location filename="multiimagewritethread.cpp" line="993"/>
         <source>%1: Mounting FAT partition</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1496,67 +1496,67 @@ Partition not big enough for new image.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="961"/>
+        <location filename="multiimagewritethread.cpp" line="963"/>
         <source>%1: Error executing partition setup script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="978"/>
+        <location filename="multiimagewritethread.cpp" line="980"/>
         <source>%1: Configuring flavour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="968"/>
-        <location filename="multiimagewritethread.cpp" line="999"/>
+        <location filename="multiimagewritethread.cpp" line="970"/>
+        <location filename="multiimagewritethread.cpp" line="1001"/>
         <source>%1: Unmounting FAT partition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="971"/>
-        <location filename="multiimagewritethread.cpp" line="1002"/>
+        <location filename="multiimagewritethread.cpp" line="973"/>
+        <location filename="multiimagewritethread.cpp" line="1004"/>
         <source>%1: Error unmounting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1412"/>
+        <location filename="multiimagewritethread.cpp" line="1414"/>
         <source>Error creating file system</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1485"/>
-        <location filename="multiimagewritethread.cpp" line="1602"/>
-        <location filename="multiimagewritethread.cpp" line="1695"/>
+        <location filename="multiimagewritethread.cpp" line="1487"/>
+        <location filename="multiimagewritethread.cpp" line="1604"/>
+        <location filename="multiimagewritethread.cpp" line="1697"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip.</source>
         <oldsource>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1525"/>
-        <location filename="multiimagewritethread.cpp" line="1633"/>
-        <location filename="multiimagewritethread.cpp" line="1726"/>
+        <location filename="multiimagewritethread.cpp" line="1527"/>
+        <location filename="multiimagewritethread.cpp" line="1635"/>
+        <location filename="multiimagewritethread.cpp" line="1728"/>
         <source>An incorrect file checksum has been detected in %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1526"/>
-        <location filename="multiimagewritethread.cpp" line="1637"/>
-        <location filename="multiimagewritethread.cpp" line="1730"/>
+        <location filename="multiimagewritethread.cpp" line="1528"/>
+        <location filename="multiimagewritethread.cpp" line="1639"/>
+        <location filename="multiimagewritethread.cpp" line="1732"/>
         <source>Checksum error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1536"/>
+        <location filename="multiimagewritethread.cpp" line="1538"/>
         <source>Checksum OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1539"/>
+        <location filename="multiimagewritethread.cpp" line="1541"/>
         <source>Finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1647"/>
-        <location filename="multiimagewritethread.cpp" line="1740"/>
+        <location filename="multiimagewritethread.cpp" line="1649"/>
+        <location filename="multiimagewritethread.cpp" line="1742"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3411,29 +3411,29 @@ Break</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="rerunsetup.cpp" line="152"/>
+        <location filename="rerunsetup.cpp" line="155"/>
         <source>%1: Error executing partition setup script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="rerunsetup.cpp" line="157"/>
+        <location filename="rerunsetup.cpp" line="160"/>
         <source> partions_setup.sh script error
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="rerunsetup.cpp" line="159"/>
+        <location filename="rerunsetup.cpp" line="162"/>
         <source> partition_setup.sh script OK
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="rerunsetup.cpp" line="166"/>
+        <location filename="rerunsetup.cpp" line="169"/>
         <source>DONE - some setup script errors detected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="rerunsetup.cpp" line="168"/>
+        <location filename="rerunsetup.cpp" line="171"/>
         <source>DONE - SUCCESSFUL setup scripts exeuted</source>
         <translation type="unfinished"></translation>
     </message>

@@ -953,6 +953,8 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
             proc.setWorkingDirectory("/mnt2");
             proc.start("/bin/sh", args);
             proc.waitForFinished(-1);
+            QString output(proc.readAllStandardOutput());
+            qDebug() << output;
             qDebug() << proc.exitStatus();
 
             if (proc.exitCode() != 0)

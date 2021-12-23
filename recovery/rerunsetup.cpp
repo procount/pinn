@@ -125,8 +125,8 @@ rerunsetup::rerunsetup(QListWidget * listinstalled, MainWindow * mw, const QStri
                             id = "LABEL="+label;
                         else
                             id = "UUID="+uuid;
-                        if (_drive != "/dev/mmcblk0")
-                            part = partuuid;
+                        //if (_drive != "/dev/mmcblk0")
+                        //    part = partuuid;
 
                         args << "part"+nr+"="+part << "id"+nr+"="+id;
 
@@ -146,6 +146,9 @@ rerunsetup::rerunsetup(QListWidget * listinstalled, MainWindow * mw, const QStri
                     proc.setWorkingDirectory("/mnt2");
                     proc.start("/bin/sh", args);
                     proc.waitForFinished(-1);
+
+                    QString output(proc.readAllStandardOutput());
+                    qDebug() << output;
 
                     if (proc.exitCode() != 0)
                     {
