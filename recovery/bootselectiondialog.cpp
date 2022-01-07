@@ -166,13 +166,16 @@ BootSelectionDialog::BootSelectionDialog(
             joy1->clearKeyPressed();
             joy2->clearKeyPressed();
 
-            // Start timer
-            qDebug() << "Starting " << _countdown-1 << " second timer before booting into partition" << partition;
+            if (_countdown > 1)
+            {   //if BOOTMENUTIMEOUT >0
+                // Start timer
+                qDebug() << "Starting " << _countdown-1 << " second timer before booting into partition" << partition;
 
-            connect(&_counter, SIGNAL(countdownTick(int)), this, SLOT(countdown(int)));
-            connect(&_counter, SIGNAL(countdownExpired()), this, SLOT(countdownExpired()) );
-            ui->list->installEventFilter(&_counter);
-            _counter.startCountdown(_countdown);
+                connect(&_counter, SIGNAL(countdownTick(int)), this, SLOT(countdown(int)));
+                connect(&_counter, SIGNAL(countdownExpired()), this, SLOT(countdownExpired()) );
+                ui->list->installEventFilter(&_counter);
+                _counter.startCountdown(_countdown);
+            }
 
             // Select OS booted previously
             QString partnrStr = QString::number(partition);
