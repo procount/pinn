@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="it" sourcelanguage="en">
+<TS version="2.1" language="it_IT" sourcelanguage="en">
 <context>
     <name>BackupThread</name>
     <message>
@@ -872,13 +872,14 @@ I seguenti SO non sono supportati in questa revisione di Raspberry Pi e potrebbe
     <message>
         <location filename="mainwindow.cpp" line="322"/>
         <source>RUNINSTALLER - Initialise Drive</source>
-        <translation type="unfinished"></translation>
+        <translation>RUNINSTALLER-Inizializza unità</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="323"/>
         <source>There are existing OSes installed.
 Are you sure you want to initialise the drive?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ci sono sistemi operativi esistenti installati.
+Vuoi inizializzare veramente l&apos;unità?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1067"/>
@@ -3324,17 +3325,17 @@ Verifica la password</translation>
     <message>
         <location filename="dlginstall.ui" line="14"/>
         <source>Confirm</source>
-        <translation type="unfinished">Conferma</translation>
+        <translation>Conferma</translation>
     </message>
     <message>
         <location filename="dlginstall.ui" line="71"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;WARNING: Some OSes are already installed!&lt;/p&gt;&lt;p&gt;Continuing to install new OSes will delete your previous installation. Consider using the Replace function if you just want to replace one OS &lt;/p&gt;&lt;p&gt;To continue installing, enter &amp;quot;DELETE&amp;quot; in the box below&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ATTENZIONE: Alcuni sistemi operativi sono già installati!&lt;/p&gt;&lt;p&gt;Continuando ad installare nuovi sistemi operativi cancellerài l&apos;installazione precedente. Considera l&apos;uso della funzione &apos;Sostituisc&apos;i se vuoi solo sostituire un sistema operativo.&lt;/p&gt;&lt;p&gt;Per continuare l&apos;installazione, inserisci &amp; quot; ELIMINA &amp; quot; nella casella qui sotto&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="dlginstall.ui" line="93"/>
         <source>Virtual Keyboard</source>
-        <translation type="unfinished">Tastiera virtuale</translation>
+        <translation>Tastiera virtuale</translation>
     </message>
 </context>
 <context>
