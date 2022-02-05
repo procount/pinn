@@ -1424,7 +1424,7 @@ bool MultiImageWriteThread::isLabelAvailable(const QByteArray &label, const QByt
     QString part = readexec(1, "/sbin/findfs LABEL="+label, result);
     if (!result)
     {   // label found - already exists
-        if ( !device.isEmpty() && (part==device))
+        if ( !device.isEmpty() && (part.trimmed()==device))
         {   //A device is specified and it matches part
             result=1;   //pretend it wasn't found
             return ( result != 0);
