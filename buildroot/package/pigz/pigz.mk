@@ -3,7 +3,7 @@
 # pigz
 #
 #############################################################
-PIGZ_VERSION = 2.4
+PIGZ_VERSION = 2.7
 PIGZ_SOURCE = pigz-$(PIGZ_VERSION).tar.gz
 PIGZ_SITE = zlib.net/pigz
 #download.freenas.org/distfiles
