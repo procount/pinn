@@ -469,7 +469,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
             break;
     }
 
-    loadOverrides("/mnt/overrides.json");
+    if (!cmdline.contains("no_overrides"))
+        loadOverrides("/mnt/overrides.json");
 
     if (QFile::exists("/mnt/os_list_v3.json"))
     {
@@ -5077,5 +5078,19 @@ void MainWindow::setTime(QNetworkReply *reply)
 
 void MainWindow::on_actionReload_Repos_triggered()
 {
+#if 0
+    QList<QListWidgetItem *> all;
+    all = ug->allItems();
+    QByteArray buffer;
+
+    foreach (QListWidgetItem *item, all)
+    {
+        QVariantMap m = item->data(Qt::UserRole).toMap();
+        buffer += Json::serialize( (QVariant)m);
+    }
+    qDebug()<<buffer;
+#endif
+
     downloadRepoList(repoList);
 }
+
