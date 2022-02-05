@@ -839,12 +839,9 @@ WARNING: This will erase all data on your SD card</oldsource>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1101"/>
-<<<<<<< HEAD
         <location filename="mainwindow.cpp" line="4663"/>
-        <source>Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:
-</source>
-        <oldsource>Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:</oldsource>
-        <translation type="unfinished"></translation>
+        <source>Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:</source>
+        <translation>警告：部份 USB 支援。以下的作業系統只能在 USB 儲存裝置為 /dev/sda 時安裝，且可能會開機失敗或無法正常運作：</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1101"/>
@@ -853,10 +850,6 @@ WARNING: This will erase all data on your SD card</oldsource>
 
 Do you want to continue?</source>
         <translation type="unfinished"></translation>
-=======
-        <source>Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:</source>
-        <translation>警告：部份 USB 支援。以下的作業系統只能在 USB 儲存裝置為 /dev/sda 時安裝，且可能會開機失敗或無法正常運作：</translation>
->>>>>>> 189b7db... Update zh_TW translations.
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1177"/>
