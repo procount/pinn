@@ -114,9 +114,10 @@ bool BackupThread::processImage(const QVariantMap & entry)
                     return(false);
                 }
                 //If it was raw or empty & change to fat or ext4 tar file, change partition parameters.
-                pmap["filesystem_type"] = mounttype;
-                if (mounttype.left(3)=="ext")
-                    pmap["mkfs_options"] = "-O ^huge_file";
+
+                //pmap["filesystem_type"] = mounttype;
+                //if (mounttype.left(3)=="ext")
+                //    pmap["mkfs_options"] = "-O ^huge_file";
 
             }
 
@@ -128,7 +129,8 @@ bool BackupThread::processImage(const QVariantMap & entry)
                 pmap["filesystem_type"] = "raw";
                 //use dd to backup
             }
-            else
+
+            if (pmap.value("filesystem_type").toString() != "raw")
             {
                 pmap["uncompressed_tarball_size"] = tarballsizes[i].toULongLong();
                 if (i==0)
