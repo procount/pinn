@@ -5,7 +5,7 @@
 
 The latest version of [PINN](http://downloads.sourceforge.net/projects/pinn/pinn-lite.zip) can be downloaded from [sourceforge](http://www.sourceforge.net/projects/pinn).
 
-This README relates to v3.7.5
+This README relates to v3.8
 
 <sup>(PINN-lite does not include any operating systems at all. It is more akin to `NOOBS-lite` rather than `NOOBS`. For that reason, the filename that you download is called `pinn-lite.zip`. More recently, `pinn.zip` has also been made available for download which includes versions of Raspbian and LibreELEC.)</sup>
 
@@ -503,7 +503,7 @@ In addition to specifying a list of OS names, some reserved words are also avail
 
 - **showall**: Shows all available installable OSes, whether they are suitable for the current model of Pi or not. Useful for preparing SD cards to be used in other RPis.
 
-- **bootmenutimeout=\<time in secs\>**: Changes the default timeout allowed before an OS is booted without any selection. (If this option is provided with a default sticky OS selected, the menu boot time will be respected, allowing you to choose another OS for this boot only).
+- **bootmenutimeout=\<time in secs\>**: Changes the default timeout allowed before an OS is booted without any selection. (If this option is provided with a default sticky OS selected, the menu boot time will be respected, allowing you to choose another OS for this boot only). A value of 0 will wait indefinitely.
 
 - **noobsconfig**: Prevents any noobsconfig customisations from being applied to an OS on installation
 
