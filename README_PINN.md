@@ -1157,7 +1157,7 @@ Note that this will require a minimum of 6 GB free disk space.
 
 On Ubuntu:
 
-`sudo apt-get install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-linguist-tools libssl-dev`
+`sudo apt-get install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-linguist-tools libssl-dev libgmp-dev`
 
 Also needed is bsdtar v3.3.1 which can be built as follows:
 ```
