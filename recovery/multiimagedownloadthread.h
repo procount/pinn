@@ -42,6 +42,9 @@ signals:
     void consolidate();
     void newDrive(const QString& drive, eProgressMode mode);
     void imageWritten(QString Imagefile);
+    void finish();
+    void idle();
+    void cont();
 
 public slots:
     

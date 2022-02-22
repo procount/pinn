@@ -839,6 +839,8 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
             continue;
         QVariantMap osv = Json::loadFromFile(imagefolder+"/os.json").toMap();
 
+        OverrideJson(osv); //Allow overriding of supported_models by putting this here.
+
         if (folder == "/mnt/os")
             osv["source"] = SOURCE_SDCARD;
         else
@@ -1334,20 +1336,34 @@ void MainWindow::on_actionDownload_triggered()
                         f.remove();
                     }
 
+                    //Is this the same as fi.path()?
+                    QString urlpath = entry.value("os_info").toString().left(entry.value("os_info").toString().lastIndexOf('/'));
+
+                    //Required fields
+                    downloadMetaFile(entry.value("os_info").toString(), folder+"/os.json");
+                    downloadMetaFile(entry.value("partitions_info").toString(), folder+"/partitions.json");
+
                     //Try and download flavours, but not an error if they don't exist
                     downloadMetaFile( fi.path() +"/flavours.json",  "-"+folder+"/flavours.json");
                     downloadMetaFile( fi.path() +"/flavours.tar.xz", "-"+folder+"/flavours.tar.xz");
 
-                    downloadMetaFile(entry.value("os_info").toString(), folder+"/os.json");
-                    downloadMetaFile(entry.value("partitions_info").toString(), folder+"/partitions.json");
-                    QString urlpath = entry.value("os_info").toString().left(entry.value("os_info").toString().lastIndexOf('/'));
                     downloadMetaFile(urlpath+"/release_notes.txt", "-" + folder+"/release_notes.txt"); //'-' indicates optional
                     downloadMetaFile(urlpath+"/terms", "-" + folder+"/terms"); //'-' indicates optional
                     if (entry.contains("marketing_info"))
+                    {
                         downloadMetaFile(entry.value("marketing_info").toString(), folder+"/marketing.tar");
+                    }
+                    else {
+                        downloadMetaFile(urlpath+"/marketing.tar", "-" + folder+"/marketing.tar"); //'-' indicates optional
+                    }
 
                     if (entry.contains("partition_setup"))
+                    {
                         downloadMetaFile(entry.value("partition_setup").toString(), folder+"/partition_setup.sh");
+                    }
+                    else {
+                        downloadMetaFile(urlpath+"/partition_setup.sh", "-" + folder+"/partition_setup.sh"); //'-' indicates optional
+                    }
 
                     if (entry.contains("icon"))
                     {
@@ -2381,6 +2397,8 @@ void MainWindow::processJson(QVariant json)
     foreach (QVariant osv, list)
     {
         QVariantMap  os = osv.toMap();
+
+        OverrideJson(os);
 
         QString basename = os.value("os_name").toString();
         if (canInstallOs(basename, os))
@@ -4829,7 +4847,7 @@ void MainWindow::on_actionBackup_triggered()
                 unsupportedOses += "\n" + name;
                 item->setCheckState(Qt::Unchecked); //Deselect the unsupported OSes
             }
-            if (entry.value("supports_backup","false").toString()=="update")
+            if (entry.value("supports_backup",false).toString()=="update")
             {
                 QString name = CORE(entry.value("name").toString());
                 QListWidgetItem *witem = findItemByName(name);
@@ -4842,7 +4860,7 @@ void MainWindow::on_actionBackup_triggered()
                 }
             }
 
-            if (entry.value("supports_backup","false").toBool()==false)
+            if (entry.value("supports_backup",false).toBool()==false)
             {
                 allSupported = false;
                 unsupportedOses += "\n" + name;

@@ -71,8 +71,13 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
     QVariantList partitions = Json::loadFromFile(folder+"/partitions.json").toMap().value("partitions").toList();
     foreach (QVariant pv, partitions)
     {
+        QString tarball;
         QVariantMap partition = pv.toMap();
-        QString tarball  = partition.value("download").toString();
+
+        tarball          = partition.value("tarball").toString();
+        if (tarball.isEmpty())
+            tarball      = partition.value("download").toString();
+
         bool emptyfs     = partition.value("empty_fs", false).toBool();
         QString csumType = getCsumType(partition);
         QString csum     = getCsum(partition,csumType);
@@ -87,7 +92,7 @@ bool MultiImageDownloadThread::processImage(const QString &folder, const QString
             /* If no tarball URL is specified, What are we doing here? */
 
             emit error(tr("File '%1' does not need downloading").arg(tarball));
-            return (false);
+            continue; //return true;
         }
 
         // Get the full pathname of the destination file
