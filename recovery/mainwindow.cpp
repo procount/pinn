@@ -4224,15 +4224,24 @@ void MainWindow::filterList()
             witem->setHidden(false);
         }
         else
-        {
+        {   //Installing to something other than SD card
             QVariantMap m = witem->data(Qt::UserRole).toMap();
             bool supportsUsb;
             QString param;
 
-            if (_bootdrive == "/dev/mmcblk0")
-                param = "supports_usb_root";
-            else
-                param = "supports_usb_boot";
+            if (_drive.contains("/dev/nvme"))
+            {
+                if (_bootdrive == "/dev/mmcblk0")
+                    param = "supports_nvme_root";
+                else
+                    param = "supports_nvme_boot";
+            }
+            else {
+                if (_bootdrive == "/dev/mmcblk0")
+                    param = "supports_usb_root";
+                else
+                    param = "supports_usb_boot";
+            }
 
             /* If the repo explicity states whether or not usbS is supported use that info */
             if (m.contains(param))

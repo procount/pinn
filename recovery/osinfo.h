@@ -129,6 +129,16 @@ public:
         return _supports_usb_root;
     }
 
+    inline bool supports_nvme_boot() const
+    {
+        return _supports_nvme_boot;
+    }
+
+    inline bool supports_nvme_root() const
+    {
+        return _supports_nvme_root;
+    }
+
     inline QString csumType() const
     {
         return (_csumType);
@@ -163,7 +173,9 @@ public:
 protected:
     QString _folder, _flavour, _name, _description, _version, _releaseDate;
     QString _username, _password, _url, _group, _configpath, _replacedName;
-    bool _supports_usb_boot, _supports_usb_root, _supports_sda_boot, _supports_sda_root;
+    bool _supports_usb_boot, _supports_usb_root;
+    bool _supports_sda_boot, _supports_sda_root;
+    bool _supports_nvme_boot, _supports_nvme_root;
     bool _bootable, _use_partuuid;
     QString _supports_backup;
     QString _csum, _csumType;

@@ -28,6 +28,8 @@ OsInfo::OsInfo(const QString &folder, const QString &flavour, QObject *parent) :
     _supports_usb_root = m.value("supports_usb_root",true).toBool();
     _supports_sda_boot = m.value("supports_sda_boot",true).toBool();
     _supports_sda_root = m.value("supports_sda_root",true).toBool();
+    _supports_nvme_boot = m.value("supports_nvme_boot",true).toBool();
+    _supports_nvme_root = m.value("supports_nvme_root",true).toBool();
     _use_partuuid  = m.value("use_partuuid",true).toBool();
 
     if (m.contains("supports_backup"))
@@ -74,6 +76,8 @@ QDebug operator<<(QDebug dbg, const OsInfo &os)
     dbg.nospace() << ", SupportsUSBroot="<<os.supports_usb_root();
     dbg.nospace() << ", SupportsSDAboot="<<os.supports_sda_boot();
     dbg.nospace() << ", SupportsSDAroot="<<os.supports_sda_root();
+    dbg.nospace() << ", SupportsNVMEboot="<<os.supports_nvme_boot();
+    dbg.nospace() << ", SupportsNVMEroot="<<os.supports_nvme_root();
     dbg.nospace() << ", csum="<<os.csum();
     dbg.nospace() << ", CsumType="<<os.csumType();
     dbg.nospace() << ", Bootable="<<os.bootable();
