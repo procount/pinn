@@ -87,7 +87,8 @@ define DROPBEAR_INSTALL_TARGET_CMDS
 		ln -snf ../sbin/dropbear $(TARGET_DIR)/usr/bin/$$f ; \
 	done
 	ln -snf /settings/dropbear $(TARGET_DIR)/etc/dropbear
-	ln -snf /settings/.ssh $(TARGET_DIR)/root/.ssh
+        ln -snf /settings/dropbear $(TARGET_DIR)/etc/default
+        ln -snf /settings/.ssh $(TARGET_DIR)/root/.ssh
 endef
 
 $(eval $(autotools-package))

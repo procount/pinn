@@ -5,6 +5,14 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.8.1
+
+- **Override**       - Allow supported_models to be overridden
+- **Downloads**      - Allow markeitng.tar and partition_setup.sh to be optional files.
+- **Backup**         - Minor fix to parsing of supports_backup
+- **tarball**        - Allow tarballs in partitions.json
+- **tarballs**       - Allow missing tarballs for emptyfs
+
 ### V3.8
 
 - **Translation**    - Update italian Translation
