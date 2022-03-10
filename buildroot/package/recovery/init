@@ -149,6 +149,7 @@ done
 
 rmdir /tmp/mnt
 
+ifup lo
 
 SAFE_MODE=`vcgencmd get_config safe_mode_gpio`
 
