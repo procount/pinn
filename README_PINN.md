@@ -329,13 +329,47 @@ Note 2: The `remotetimeout` option is useful to gain remote access within a time
 
 1. Once the PINN GUI is launched, the busybox shell can be accessed by pressing CTRL-ALT-F2. Use the Username of `root` and password of `raspberry`. Use CTL-ALT-F1 to get back to the GUI. This can be useful for editing recovery.cmdline locally or performing other maintenance tasks on your SD card.
 
-2. You can also SSH into the PINN basic busybox shell. To enable this feature, add `ssh` to the argument list in the `recovery.cmdline` file. SSH is also accessible from the rescueshell, but allow 5 seconds after boot to allow the network to establish. PINN SSH does not store any keys, so it takes a while to connect at first after each boot as it generates new keys for that session.
+2. You can also SSH into the PINN basic busybox shell. To enable this feature, add `ssh` to the argument list in the `recovery.cmdline` file. SSH is also accessible from the rescueshell, but allow 5 seconds after boot to allow the network to establish. PINN generates host keys on first use, so it may take a little while to connect on the first attempt.
 
 The IP address of the PI is shown in the window title bar for ease of connection.
 
 Use the username of `root` and password `raspberry` to login to the shell via the console or SSH.
 
-NOTE: This SSH option is meant to be used on a local LAN only. If your Pi is open to the internet, **anyone** can gain access to PINN as the only security is a well-known username/password.
+
+### Secure Remote Access
+
+PINN's headless access via SSH and VNC is meant to be used on a local LAN only. If your Pi is open to the internet, **anyone** can gain access to PINN as the only security is a well-known username/password for SSH and VNC has no security at all. IF you do want to access PINN over the internet, it is necessary to secure these protocols.
+
+#### Securing SSH
+
+To secure SSH it is necessary to switch from password based to public key based authentication.
+Create a key pair and store the public key in /settings/.ssh/authorized_keys.
+Test your key by logging in to SSH. If it works, you can then disable password authentication by creating /settings/dropbear/dropbear with the following contents:
+```
+DROPBEAR_ARGS="-s -g"
+```
+You may now open a port in your router and map it to port 22 on your Pi to allow remote access. Be aware that opening such a port will also open it for any other OS you may switch to, so you should be careful to secure port 22 in each of your OSes.
+
+#### Securing VNC
+
+PINN's VNC cannot be secured directly, so do not expose the VNC port directly to the internet. 
+However, if you have a secure SSH connection, it is possible to create a secure tunnel through SSH for VNC.
+The idea is to connect a local port on your client computer through the SSH tunnel to the VNC port (5900) on the RPi.
+THic can be achieved with the following cmdline parameters to SSH:
+```
+ssh root@<pi_address> -L <port>:localhost:5900
+e.g.
+ssh root@192.168.2.1 -L 1234:localhost:5900
+```
+Where 1234 is the port on the client computer and 5900 is the VNC port on the Pi computer (indicated by the name `localhost` from the pi computer's point of view.
+
+With the above example, your VNC application would need to connect to port 1234 of the client computer.
+e.g.
+```
+vnc 127.0.0.1:1234
+```
+```
+
 
 ### Shell editors
 
