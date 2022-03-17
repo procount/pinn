@@ -13,6 +13,7 @@
 #include "wpa_supplicant/wpafactory.h"
 #include "twoiconsdelegate.h"
 #include "input.h"
+#include "util.h"
 
 #include <QMessageBox>
 #include <QPushButton>
@@ -430,4 +431,23 @@ void WifiSettingsDialog::on_checkBox_stateChanged(int arg1)
     if (arg1)
         mode = QLineEdit::Normal;
     ui->passwordEdit->setEchoMode(mode);
+}
+
+void WifiSettingsDialog::on_pbDelete_clicked()
+{
+    int errorcode;
+    qDebug() << "Deleting wifi configuration";
+    readexec(1, "/usr/sbin/wpa_cli -i "+_ifname+" remove_network 0", errorcode);
+    msleep(500);
+    readexec(1, "/usr/sbin/wpa_cli -i "+_ifname+" save_config", errorcode);
+
+    /* Clear the icon showing the current connection (if any) */
+    for (int i=0; i< ui->list->count(); i++)
+    {
+        QListWidgetItem *wi = ui->list->item(i);
+        if ( wi->data(SecondIconRole).isValid() )
+        {
+            wi->setData(SecondIconRole, QVariant() );
+        }
+    }
 }
