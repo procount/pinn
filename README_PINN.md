@@ -168,7 +168,7 @@ OSes are grouped onto tabs which categorise the type of OS they are. This groupi
 
 Each OS has a checkbox at the left hand side to select whether it will be installed or not. When PINN is booted with OSes already installed, these OSes will normally have their checkbox automatically ticked (but see the `select` option) and their background will also be light green in colour, along with the word **[installed]** next to their name. Note that installed OSes may be selected in multiple tabs.
 
-When the **Maintenance** toolbar is selected, this list will change to only show the list of OSes that are already installed, since the toolbar buttons are only relevent to installed OSes.
+When the **Maintenance** toolbar is selected, this list will change to only show the list of OSes that are already installed, since the toolbar buttons are only relevant to installed OSes.
 
 ## Status Window
 
@@ -299,12 +299,12 @@ Load:   dtoverlay=pimhyp4,<param>[=<val>]
 Params: rotate or rotate_0          Default orientation (portrait)  
         rotate_1                    Rotate 90 degrees CW (landscape)  
         rotate_2                    Rotate 180 degrees (portrait)  
-        rotate_3                    Rotate 270 degrees (landscap)  
+        rotate_3                    Rotate 270 degrees (landscape)  
         checkonly                   Checks for presence of screen but does not load driver  
 
 To rotate the screens, add `display_lcd_rotate=0` to config.txt.  
 Replace the `0` with 1,2 or 3 for the various rotations.  
-To rotate the touchscreen add the appopriate dtparam to the overlay, e.g. `dtoverlay=pimhyp4:rotate_0`  
+To rotate the touchscreen add the appropriate dtparam to the overlay, e.g. `dtoverlay=pimhyp4:rotate_0`  
 For some rotations, it may also be necessary to set the `framebuffer_width` and `framebuffer_height` parameters.  
 
 Example config.txt files called config.hyp3 and config.hyp4 are included with example settings for each of the 4 rotations.  
@@ -327,7 +327,7 @@ Note 2: The `remotetimeout` option is useful to gain remote access within a time
 
 ### How to access the shell or SSH into PINN
 
-1. Once the PINN GUI is launched, the busybox shell can be accessed by pressing CTRL-ALT-F2. Use the Username of `root` and password of `raspberry`. Use CTL-ALT-F1 to get back to the GUI. This can be useful for editing recovery.cmdline locally or performing other maintenance tasks on your SD card.
+1. Once the PINN GUI is launched, the busybox shell can be accessed by pressing CTRL-ALT-F2. Use the Username of `root` and password of `raspberry`. Use CTRL-ALT-F1 to get back to the GUI. This can be useful for editing recovery.cmdline locally or performing other maintenance tasks on your SD card.
 
 2. You can also SSH into the PINN basic busybox shell. To enable this feature, add `ssh` to the argument list in the `recovery.cmdline` file. SSH is also accessible from the rescueshell, but allow 5 seconds after boot to allow the network to establish. PINN generates host keys on first use, so it may take a little while to connect on the first attempt.
 
@@ -355,7 +355,7 @@ You may now open a port in your router and map it to port 22 on your Pi to allow
 PINN's VNC cannot be secured directly, so do not expose the VNC port directly to the internet. 
 However, if you have a secure SSH connection, it is possible to create a secure tunnel through SSH for VNC.
 The idea is to connect a local port on your client computer through the SSH tunnel to the VNC port (5900) on the RPi.
-THic can be achieved with the following cmdline parameters to SSH:
+This can be achieved with the following cmdline parameters to SSH:
 ```
 ssh root@<pi_address> -L <port>:localhost:5900
 e.g.
@@ -378,7 +378,7 @@ Two editors are available in the recovery shell: vi and nano. Only the Tiny vers
 By default, PINN will output over HDMI at your display’s preferred resolution, even if no HDMI display is connected. If you do not see any output on your HDMI display or are using the composite output, press 1, 2, 3 or 4 on your keyboard to select HDMI preferred mode (1), HDMI safe mode (2), composite PAL mode (3), or composite NTSC mode (4), respectively.
 (Note that Composite mode is no longer available by default on the PI4 model)
 
-From v3.5.2, PINN can automatically detect which of the 2 HDMI ports are connected and switch to using the correct one. If both are connected, it will ue HDMI 0. If the DSI touchscreen is attached, this will take precedence over the 2 HDMI ports.
+From v3.5.2, PINN can automatically detect which of the 2 HDMI ports are connected and switch to using the correct one. If both are connected, it will use HDMI 0. If the DSI touchscreen is attached, this will take precedence over the 2 HDMI ports.
 
 If you don't have a keyboard, you can still change the display mode used by PINN through editing the `recovery.cmdline` file in the root PINN directory prior to first boot and appending the following argument:
 - `display=<display mode number>` (e.g. `display=1` or `display=3`)
@@ -399,7 +399,7 @@ If a wired ethernet cable is plugged into the Pi before PINN starts, PINN will c
 
 ### Wireless Wifi Networks
 
-If you have the official [Rapberry Pi USB wifi Dongle](https://www.raspberrypi.org/products/usb-wifi-dongle/), or are using the Raspberry Pi 3 Model B/B+ or Pi0W with built-in Wi-Fi, the Wi-Fi icon on the PINN toolbar will be available. Click on this to select your Wi-Fi SSID network and enter the Wi-Fi password. If the password is correct, you will soon be connected to the Internet and PINN will present a list of downloadable operating systems for you to install.
+If you have the official [Raspberry Pi USB wifi Dongle](https://www.raspberrypi.org/products/usb-wifi-dongle/), or are using the Raspberry Pi 3 Model B/B+ or Pi0W with built-in Wi-Fi, the Wi-Fi icon on the PINN toolbar will be available. Click on this to select your Wi-Fi SSID network and enter the Wi-Fi password. If the password is correct, you will soon be connected to the Internet and PINN will present a list of downloadable operating systems for you to install.
 
 ![alt text](screenshots/wifi_selector.png "Select your Wi-Fi network and enter the password.")
 
@@ -492,7 +492,7 @@ The following is a complete list of all the PINN options that can be added to th
 
 - **gpiochannel=\<channel\>**: Allows a different GPIO pin to be specified to trigger the recovery menu.
 
-- **gpiochannelValue=\<value\>**: This specifies the value the GPIO shoudl be set to to trigger the recovery menu. The default is 0. Specify 1 to trigger when the GPIO pin goes high.
+- **gpiochannelValue=\<value\>**: This specifies the value the GPIO should be set to to trigger the recovery menu. The default is 0. Specify 1 to trigger when the GPIO pin goes high.
 
 - **keyboardtriggerdisable**: Prevents a `SHIFT` keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)
 
@@ -519,9 +519,9 @@ In addition to specifying a list of OS names, some reserved words are also avail
 
 - **alt_image_source=\<url\>**: Provides the URL of an additional os_list_v3.json file indicating the location of other OSes that can be downloaded from the Internet. Multiple instances of this option can be used.
 
-- **repo_list=\<url\>**: Provides the URL of a repo_list.json file that contains a list of URLs to other os-list_v3.json files. This allows easy remote management of Internet respositories.
+- **repo_list=\<url\>**: Provides the URL of a repo_list.json file that contains a list of URLs to other os-list_v3.json files. This allows easy remote management of Internet repositories.
 
-- **repo=\<url\>**: Similar to `alt_image_source` but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.
+- **repo=\<url\>**: Similar to `alt_image_source` but it matches the NOOBS method of specifying a list of additional repositories as a space separated quoted string.
 
 - **no_default_source**: Prevents the default RaspberryPi Foundation repository from being used.
 
@@ -607,7 +607,7 @@ PINN provides many options to customise the list of repositories that it will us
 
 - **repo=** option from NOOBS is supported by PINN. Using `repo` will replace the default RPF server repository, whereas `alt_image_source` simply adds a repository. To add multiple repositories add multiple space-separated urls to the single "quoted" repo option.
 
-- **repo_list=** is used by default as it is a convenient way to support multiple repsositories by specifying one URL that points to a JSON file containing a list of other repositories. This makes it easier to maintain the OS list remotely for a set of users, rather than editing it manually on each Pi. For testing purposes, including a `repo_list.json` file on the PINN recovery partition will override any cmdline option and will be read instead.
+- **repo_list=** is used by default as it is a convenient way to support multiple repositories by specifying one URL that points to a JSON file containing a list of other repositories. This makes it easier to maintain the OS list remotely for a set of users, rather than editing it manually on each Pi. For testing purposes, including a `repo_list.json` file on the PINN recovery partition will override any cmdline option and will be read instead.
 
 ## Local Images on SD card
 
@@ -670,7 +670,7 @@ Once USB boot mode is enabled, proceed as follows:
 
 1. Format the USB device as FAT 32 and copy the PINN files to it, just as you would for a normal PINN installation on an SD card.
 2. Boot PINN on the Pi from the USB device.
-3. Install your requried OSes as normal.
+3. Install your required OSes as normal.
 
 ## Project Spaces
 
@@ -776,7 +776,7 @@ To make use of the installation progress feature, a background shell script can 
 If a script called /pinn_init.sh exists in PINN's recovery partition, it will be executed before PINN is started. 
 This script will be mounted as /tmp/media/pinn_init.sh and must complete before PINN starts. 
 It can be useful to initialise third party display drivers before the main PINN splash screen is shown.
-The pinn_init.sh script is passed the boot drive as its frist parameter (e.g. /dev/sda1 or /dev/mmcblk0p1)
+The pinn_init.sh script is passed the boot drive as its first parameter (e.g. /dev/sda1 or /dev/mmcblk0p1)
 
 ---
 
@@ -832,7 +832,7 @@ NOTE: that once an `autoboot.txt` file is present, there's then no way to force 
 
 ## Booting an OS directly from the recovery shell.
 
-The ususal `reboot` command does not work in the PINN recovery shell. However, a new command `rebootp` has been added to allow this. By providing a partition number as an argument, it is possible to boot directly into one of the installed OSes directly. E.G. `reboot 6` will boot direclty into the OS installed in partition 6. There is also `rebootp.sh` which may be better to use from an ssh shell, as it provides a cleaner exit to the ssh terminal.
+The usual `reboot` command does not work in the PINN recovery shell. However, a new command `rebootp` has been added to allow this. By providing a partition number as an argument, it is possible to boot directly into one of the installed OSes directly. E.G. `reboot 6` will boot directly into the OS installed in partition 6. There is also `rebootp.sh` which may be better to use from an ssh shell, as it provides a cleaner exit to the ssh terminal.
 
 ---
 
@@ -852,13 +852,13 @@ The Info button will take you to the web page specific to the currently highligh
 
 ## Clear
 
-The clear button will de-select any selected OSes either in the available or isntalled lists. On startup, PINN will auto-select any installed OSes, but this may be overridden
+The clear button will de-select any selected OSes either in the available or installed lists. On startup, PINN will auto-select any installed OSes, but this may be overridden
 by the select option. In any case, this button provides a quick way of de-selecting all OSes in case you want to start afresh, without having to track them all down in the 
 various tabs and windows.
 
 ## Exit
 
-The Exit button (Esc) will exit recovery mode and go to the boot selection dialog, or directly boot the OS if only one is installed. The Exit button is ony enabled if bootable OSes have been installed. If only data partitions or ProjectSpaces have been installed, for example, then it will be greyed out.
+The Exit button (Esc) will exit recovery mode and go to the boot selection dialog, or directly boot the OS if only one is installed. The Exit button is only enabled if bootable OSes have been installed. If only data partitions or ProjectSpaces have been installed, for example, then it will be greyed out.
 From p3.2.4 It is also possible to exit to the boot selection dialog from the other menus by pressing the Esc key, even though there is no toolbar button available.
 
 ---
@@ -871,7 +871,7 @@ From p3.2.4 It is also possible to exit to the boot selection dialog from the ot
 
 As documented earlier, PINN can install an OS from a local USB disk instead of directly from the internet for use when no internet is available, or to avoid repetitive slow or costly downloads. But to do this, the OS and is accompanying meta-files must be downloaded from the internet to the USB drive. PINN's `download` feature allows this task to be done easily. It will only download OSes that are sourced from the network - selected OSes on a USB stick, for example, will be ignored.
 
-You will be asked if you want to resume partial downloads. Only select this option if a previous download failed and you wnat to continue downloading the same file rather than starting again. Selecting Yes when no partial downloads are available could end up extending an existing file with a newer file, causing a problem.
+You will be asked if you want to resume partial downloads. Only select this option if a previous download failed and you want to continue downloading the same file rather than starting again. Selecting Yes when no partial downloads are available could end up extending an existing file with a newer file, causing a problem.
 
 ![alt text](screenshots/download.png "Downloading OSes for offline use.")
 
@@ -918,7 +918,7 @@ If a backup is attempted with no internet connection, this function will be call
 
 ## Reload Repos
 
-If PINN cannot access the internet when it starts, it will not be able to download the lists of repositories or the OS distribution lists. Normally it will retry when the internet connection is restored, but in some circumstances this will not happen. If this is the case, the lsit of repositories and OS distribution lists can be reloaded manually through this option.
+If PINN cannot access the internet when it starts, it will not be able to download the lists of repositories or the OS distribution lists. Normally it will retry when the internet connection is restored, but in some circumstances this will not happen. If this is the case, the list of repositories and OS distribution lists can be reloaded manually through this option.
 
 <!-- ## Wipe the Drive
 
@@ -987,7 +987,7 @@ When an OS is backed up, an sha512sum signature checksum is calculated for each 
 
 ## Restoring Backups
 
-There is no specific "Restore" button to restore a Backed up OS. As the backup is aready in NOOBS format, the backed up OS can be installed as any other OS to a fresh (PINN format) SD Card or USB drive, or they can be used to replace an existing OS or ProjectSpace (if it is in a compatible partition layout).
+There is no specific "Restore" button to restore a Backed up OS. As the backup is already in NOOBS format, the backed up OS can be installed as any other OS to a fresh (PINN format) SD Card or USB drive, or they can be used to replace an existing OS or ProjectSpace (if it is in a compatible partition layout).
 
 When a backed up OS is restored, PINN will fix up partition references by running the partitions_setup.sh script. However, certain tasks in that script that are only needed on an initial install will be skipped, as it is assumed they were already done and are not needed on restoration. This also includes the copying of ssh and wpa_supplicant.conf files from the PINN partition. Flavour customisation scripts are also not executed.
 
@@ -1025,11 +1025,11 @@ PINN itself is included in the list of installed OSes. If it is the ONLY OS to b
 
 ## Replace Individual OSes
 
-The `replace` function will allow the replacement of an installed OS with another different OS, provided the number of partitions in the two OSes is the same and the new OS will fit within the existing partition sizes. So it will work with most OSes, but not for those that use a non-standard partition layout. Windows IoT and RiscOS are specifically excluded and it is unlikely many Android versions witll work, but your mileage may vary. Any other installed OSes will remain unaltered.
+The `replace` function will allow the replacement of an installed OS with another different OS, provided the number of partitions in the two OSes is the same and the new OS will fit within the existing partition sizes. So it will work with most OSes, but not for those that use a non-standard partition layout. Windows IoT and RiscOS are specifically excluded and it is unlikely many Android versions will work, but your mileage may vary. Any other installed OSes will remain unaltered.
 
 This is particularly useful with the [Project Spaces](#project-spaces) feature, which will allow OS space to be reserved for installing an OS at a later date.
 
-To replace one or more OSes, first select the new OSes you want to install on the `Main Menu`. Then move to the `Maintenance Menu` and select the OSes (or project Spaces) that you want to be replaced and click the `Replace` button. A dialog box will pop up lsiting all the OSes to be replaced. Alongside each one is a drop down box, where you can select which new OS shall replace each installed OS. The Click OK to replace the old OSes with the new OSes.
+To replace one or more OSes, first select the new OSes you want to install on the `Main Menu`. Then move to the `Maintenance Menu` and select the OSes (or project Spaces) that you want to be replaced and click the `Replace` button. A dialog box will pop up listing all the OSes to be replaced. Alongside each one is a drop down box, where you can select which new OS shall replace each installed OS. The Click OK to replace the old OSes with the new OSes.
 
 ![alt text](screenshots/replace.png "Replace OSes.")
 
@@ -1062,7 +1062,7 @@ The following steps allow you to create a modified copy of one of the standard O
 6. [Optional] Rename or replace the existing `<OS>.png` icon file with one matching the name of your custom OS version.
 7. [Optional] Replace the PNG image files in the `slides` and `slides_vga` directory with your own custom installer slides.
 8. Edit the following fields in the `partitions.json` file contained in the folder that you just created:
-  * "partition_size_nominal" - replace the numerical value with the size of the paritions in your custom OS version
+  * "partition_size_nominal" - replace the numerical value with the size of the partitions in your custom OS version
   * "uncompressed_tarball_size" - replace the numerical value with the size of your filesystem tarballs when uncompressed
 9. Replace the `.tar.xz` root and boot filesystem tarballs with copies created from your custom OS version (these instructions assume you're only using a single OS at a time with PINN - they won't work if you're running multiple OSes from a single SD card). The name of these tarballs needs to match the labels given in `partitions.json`.
   * From the root folder of the OS you want to backup, delete any socket files which would otherwise cause problems during the next `bsdtar` operation. Use `sudo find . -type s -exec rm {} \;`. These files are normally temporary and can be safely deleted, but if you are in anyway concerned/paranoid, then backup them up first just in case.
@@ -1117,13 +1117,13 @@ When using this technique, do not make any modifications to config.txt directly 
 
 From v3.1 PINN includes automatic screen detection amongst HDMI, DSI and Pimoroni Hyperpixel screens. To enable this feature, download screenswitch.zip and unzip to the PINN recovery partition. This includes some config.txt files for the various screens and a pinn_init.sh script to detect and switch the screen configuration. The idea is that no matter which of these screens is fitted, PINN will always be able to make its display visible. 
 
-In the case where mutiple screens are attached at the same time, enter your preferred screen on the first line of `screenpref` as hdmi, dsi, hyp3 or hyp4 and PINN will attempt to select this one.
+In the case where multiple screens are attached at the same time, enter your preferred screen on the first line of `screenpref` as hdmi, dsi, hyp3 or hyp4 and PINN will attempt to select this one.
 
 When PINN detects a different screen is fitted, it will reconfigure itself and reboot to make this take effect, so it takes slightly longer to boot in this instance. 
 
 Whilst the Hyperpixel screens and the HDMI monitor can nearly always be detected, the RPF DSI Touchscreen is sometimes not detectable, or hidden, depending on the current configuration. In this case it may be necessary to remove some displays and/or switch to HDMI mode in order to detect the DSI touchscreen and then switch to it.
 
-Whilst using this screen detection technqiue, do not edit config.txt, but rather change the config file for the appropriate display. Also do not change the first line of each config file as this is used by the script to detect the current configuration.
+Whilst using this screen detection technique, do not edit config.txt, but rather change the config file for the appropriate display. Also do not change the first line of each config file as this is used by the script to detect the current configuration.
 
 ---
 
@@ -1169,7 +1169,7 @@ To boot into a basic busybox shell rather than launching the PINN GUI, you can *
 
 ## Debug Information
 
-PINN produces a debug log which can be helpful if something goes wrong. Please see the [troubleshooting guide](https://github.com/procount/pinn/wiki/Troubleshooting) in the wiki on how to access this and waht to do if you suspect a bug.
+PINN produces a debug log which can be helpful if something goes wrong. Please see the [troubleshooting guide](https://github.com/procount/pinn/wiki/Troubleshooting) in the wiki on how to access this and what to do if you suspect a bug.
 
 ---
 
