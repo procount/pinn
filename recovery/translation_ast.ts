@@ -2311,6 +2311,16 @@ Are you sure?</source>
     </message>
 </context>
 <context>
+    <name>QMainWindow</name>
+    <message>
+        <location filename="main.cpp" line="521"/>
+        <source>For recovery mode, hold SHIFT
+click mouse
+or press joystick...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TermsDialog</name>
     <message>
         <location filename="termsdialog.ui" line="14"/>

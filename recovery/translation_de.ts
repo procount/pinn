@@ -2341,6 +2341,18 @@ Sicher, dass das gewollt ist?</translation>
     </message>
 </context>
 <context>
+    <name>QMainWindow</name>
+    <message>
+        <location filename="main.cpp" line="521"/>
+        <source>For recovery mode, hold SHIFT
+click mouse
+or press joystick...</source>
+        <translation type="unfinished">Für Wiederherstellungsmodus:
+UMSCHALT-Taste gedrückt halten bzw.
+Maustaste oder Joystick drücken&quot;</translation>
+    </message>
+</context>
+<context>
     <name>TermsDialog</name>
     <message>
         <location filename="termsdialog.ui" line="14"/>

@@ -518,7 +518,7 @@ int main(int argc, char *argv[])
     QFont font(splash->font().family(),pointsize);
     splash->setFont(font);
 
-    splash->showMessage(tr("For recovery mode, hold SHIFT\nclick mouse\nor press joystick..."),Qt::white);
+    splash->showMessage(QMainWindow::tr("For recovery mode, hold SHIFT\nclick mouse\nor press joystick..."),Qt::white);
     QApplication::processEvents();
 
 #ifdef Q_WS_QWS
