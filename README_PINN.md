@@ -664,7 +664,7 @@ Using this technique you will always need to boot from the PINN SD card.
 
 ### Option 3: Boot and Rootfs on USB
 
-This option is only applicable to RPi models based on the BCM2837 chipset (RPi3B and RPi2Bv1.2) which have the facility to boot directly from a USB device. However this mode must be enabled first, which can be done by following the instructions at: https://github.com/raspberrypi/documentation/blob/master/hardware/raspberrypi/bootmodes/msd.md
+This option is only applicable to RPi models based on the BCM2837 chipset (RPi3B and RPi2Bv1.2) which have the facility to boot directly from a USB device. However this mode must be enabled first, which can be done by following the instructions at: https://github.com/raspberrypi/documentation/blob/docs-ng/documentation/asciidoc/computers/raspberry-pi/boot-msd.adoc
 
 Once USB boot mode is enabled, proceed as follows:
 
