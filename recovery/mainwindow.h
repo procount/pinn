@@ -174,6 +174,7 @@ protected slots:
     void populate();
     void startBrowser();
     void startNetworking();
+    void startRetrogame();
     void pollNetworkStatus();
     void onOnlineStateChanged(bool online);
     void downloadListComplete();

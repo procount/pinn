@@ -303,7 +303,6 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
         connect(joy2, SIGNAL(joyDebug(QString)), this, SLOT(onJoyDebug(QString)));
     }
 
-
     if (qApp->arguments().contains("-runinstaller") && !_partInited)
     {
         bool doinstall=true;
@@ -436,6 +435,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
 
 
     QProcess::execute("mount -o ro -t vfat "+partdev(_bootdrive, 1)+" /mnt");
+
 
     _model = getFileContents("/proc/device-tree/model");
     ui->modelname->setText(_model);
@@ -601,6 +601,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
             }
         }
     }
+
+    startRetrogame();
 
     copyWpa();
     copyDhcp();
@@ -2101,6 +2103,14 @@ void MainWindow::startNetworking()
         connect(&_networkStatusPollTimer, SIGNAL(timeout()), SLOT(pollNetworkStatus()));
         _networkStatusPollTimer.start(100);
     }
+}
+
+void MainWindow::startRetrogame()
+{
+    /* Run retrogame in background */
+    QProcess *proc = new QProcess(this);
+    qDebug() << "Starting Retrogame";
+    proc->start("/usr/bin/retrogame /mnt/retrogame.cfg &");
 }
 
 bool MainWindow::isOnline()

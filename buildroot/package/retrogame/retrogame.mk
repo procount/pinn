@@ -1,0 +1,34 @@
+################################################################################
+#
+# retrogame
+#
+################################################################################
+
+RETROGAME_VERSION = 1.0
+RETROGAME_SITE = $(TOPDIR)/../retrogame
+RETROGAME_SITE_METHOD = local
+RETROGAME_LICENSE = Proprietary
+#RETROGAME_LICENSE_FILES = 
+
+define RETROGAME_BUILD_CMDS
+	cd $(@D)
+        $(MAKE) CC="$(TARGET_CC)" LD="$(TARGET_LD)" -C $(@D)
+#	$(TARGET_MAKE_ENV) $(MAKE)    \
+#		CC="$(TARGET_CC)"           \
+#		EXTRA_CFLAGS="$(TARGET_CFLAGS)"  -Wall -static -c11 -Ofast -fomit-frame-pointer -funroll-loops -s \
+# -I/opt/vc/include \
+# -I/opt/vc/include/interface/vcos/pthreads \
+# -I/opt/vc/include/interface/vmcs_host \
+# -I/opt/vc/include/interface/vmcs_host/linux \
+# -L/opt/vc/lib
+#		EXTRA_LDFLAGS="$(TARGET_LDFLAGS)" \
+#		-C $(@D) all 
+		$(TARGET_STRIP) $(@D)/retrogame
+endef
+
+define RETROGAME_INSTALL_TARGET_CMDS
+	$(INSTALL) -D -m 0755 $(@D)/retrogame $(TARGET_DIR)/usr/bin/retrogame
+endef
+
+$(eval $(generic-package))
+
