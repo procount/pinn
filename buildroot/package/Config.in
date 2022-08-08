@@ -10,6 +10,7 @@ menu "Target packages"
 	source "package/pigz/Config.in"
 	source "package/con2fbmap/Config.in"
 	source "package/retrogame/Config.in"
+	source "package/retrojoy/Config.in"
 
 menu "Audio and video applications"
 	source "package/alsa-utils/Config.in"

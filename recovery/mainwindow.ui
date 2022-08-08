@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>575</width>
-    <height>450</height>
+    <height>378</height>
    </rect>
   </property>
   <property name="font">
@@ -23,19 +23,7 @@
     <enum>Qt::NoFocus</enum>
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
-     <widget class="QListWidget" name="list">
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="spacing">
-       <number>1</number>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
+    <item row="2" column="0">
      <widget class="QGroupBox" name="groupBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -146,7 +134,7 @@
       </layout>
      </widget>
     </item>
-    <item row="2" column="0">
+    <item row="3" column="0">
      <widget class="QGroupBox" name="groupBoxUsb">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -217,6 +205,18 @@
         </widget>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QListWidget" name="list">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="spacing">
+       <number>1</number>
+      </property>
      </widget>
     </item>
    </layout>
@@ -384,7 +384,7 @@
      <x>0</x>
      <y>0</y>
      <width>575</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

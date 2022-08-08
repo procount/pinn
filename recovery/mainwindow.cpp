@@ -280,8 +280,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     int w = s.width()-10;
     int h = s.height() - 100;
 
-    w =qMin(w,800);
-    h =qMin(h,600);
+    w =qMin(w,450);
+    h =qMin(h,350);
     resize(w,h);
 
     _nav.setContext("mainwindow", "Main Menu");
@@ -1459,8 +1459,10 @@ void MainWindow::onCompleted(int arg)
             QString info;
             if (arg)
                 info = tr("OS(es) Installed with errors.\nSee debug log for details.");
-            else
+            else {
+                hidePinn();
                 info = tr("OS(es) Installed Successfully");
+            }
             ret = QMessageBox::information(this,
                                      tr("Installation complete"),
                                      info, QMessageBox::Ok);
@@ -1492,6 +1494,16 @@ void MainWindow::onCompleted(int arg)
             }
         }
     }
+}
+
+void MainWindow::hidePinn()
+{
+    QByteArray contents = "boot_partition=6\n";
+
+    QProcess::execute("mount -o remount,rw /mnt");
+    putFileContents("/mnt/autoboot.txt",contents);
+    QProcess::execute("sync");
+    QProcess::execute("mount -o remount,ro /mnt");
 }
 
 void MainWindow::onErrorContinue(const QString &msg)

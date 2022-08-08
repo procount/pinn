@@ -1,0 +1,48 @@
+# Sample configuration file for retrogame.
+# Really minimal syntax, typically two elements per line w/space delimiter:
+# 1) a key name (from keyTable.h; shortened from /usr/include/linux/input.h).
+# 2) a GPIO pin number; when grounded, will simulate corresponding keypress.
+# Uses Broadcom pin numbers for GPIO.
+# If first element is GND, the corresponding pin (or pins, multiple can be
+# given) is a LOW-level output; an extra ground pin for connecting buttons.
+# A '#' character indicates a comment to end-of-line.
+# File can be edited "live," no need to restart retrogame!
+
+# Here's a pin configuration for the Adafruit Arcade Bonnet.  This board is
+# based on the MCP23017 I2C port expander, with a default address of 0x26
+# (solder jumper selects 0x27 if needed).  retrogame treats port expanders
+# as their own GPIO pin numbers beyond the normal 0-31:
+
+#    0 -  31   GPIO header 'P5' (Broadcom pin numbers)
+#   32 -  47   MCP23017 at address 0x20
+#   48 -  63   MCP23017 at address 0x21
+#   64 -  79   MCP23017 at address 0x22
+#   80 -  95   MCP23017 at address 0x23
+#   96 - 111   MCP23017 at address 0x24
+#  112 - 127   MCP23017 at address 0x25
+#  128 - 143   MCP23017 at address 0x26 *** Arcade Bonnet default address
+#  144 - 159   MCP23017 at address 0x27 *** Arcade Bonnet alt address
+
+# The Arcade Bonnet MUST be enabled with the IRQ command to
+# assign an interrupt request GPIO pin and I2C bus address.
+# IRQ pin for this board is hardwired as 17.
+
+IRQ 17 0x26  # Arcade Bonnet default address, use GPIO 128-143
+
+#                  Keyboard          Bonnet        EmulationStation
+LEFTCTRL 128     # Left control key  1A            'A' button
+LEFTALT  129     # Left alt key      1B            'B' button
+Z        130     # Z key             1C            'X' button
+X        131     # X key             1D            'Y' button
+SPACE    132     # Space bar         1E            'Select' button
+ENTER    133     # Enter key         1F            'Start' button
+ESC      132 133 # Escape key        N/A           Select + Start
+# 134, 135 not connected on Bonnet
+DOWN     136     # Down arrow        4-way down    D-pad down
+UP       137     # Up arrow          4-way up      D-pad up
+RIGHT    138     # Right arrow       4-way right   D-pad right
+LEFT     139     # Left arrow        4-way left    D-pad left
+L        140     # L key             Analog right
+H        141     # H key             Analog left
+J        142     # J key             Analog down
+K        143     # K key             Analog up

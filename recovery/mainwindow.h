@@ -163,6 +163,7 @@ protected:
     void UpdateTime();
     void setTime(QNetworkReply *reply);
     int closeDialogs();
+    void hidePinn();
 
 protected slots:
 
