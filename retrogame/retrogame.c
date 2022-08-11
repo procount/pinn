@@ -102,8 +102,8 @@ char
   *cfgPath,                          // Directory containing config file
   *cfgName      = NULL,              // Name (no path) of config
   *cfgPathname,                      // Full path/name to config file
-   debug        = 3,                 // 0=off, 1=cfg file, 2=live buttons
-   startupDebug = 3,                 // Initial debug level before cfg load
+   debug        = 0,                 // 0=off, 1=cfg file, 2=live buttons
+   startupDebug = 0,                 // Initial debug level before cfg load
    readAddr     = 0x10;              // For MCP23017 reads (INTCAPA reg addr)
 int
    key[161],                         // Keycodes assigned to GPIO pins

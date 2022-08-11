@@ -624,7 +624,7 @@ CecListener *enableCEC(QObject *parent)
 
     cec = new CecListener(parent);
     cec->start();
-#if 0
+#if 1
     joy1 = new joystick(parent);
     joy1->start();
 
