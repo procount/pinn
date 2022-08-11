@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>575</width>
+    <width>487</width>
     <height>400</height>
    </rect>
   </property>
@@ -123,7 +123,6 @@
  <tabstops>
   <tabstop>list</tabstop>
   <tabstop>pushButton</tabstop>
-  <tabstop>buttonBox</tabstop>
   <tabstop>pb_Up</tabstop>
   <tabstop>pb_Down</tabstop>
  </tabstops>

@@ -624,7 +624,7 @@ CecListener *enableCEC(QObject *parent)
 
     cec = new CecListener(parent);
     cec->start();
-
+#if 0
     joy1 = new joystick(parent);
     joy1->start();
 
@@ -632,7 +632,7 @@ CecListener *enableCEC(QObject *parent)
 
     if (joy2)
         joy2->start();
-
+#endif
     retrogame = new Kinput(parent);
 
     return(cec);

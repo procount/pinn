@@ -1,11 +1,12 @@
 // This file is software-generated; do not edit. See keyTableGen.sh instead.
 
-#include </usr/include/linux/input-event-codes.h>
+//#include </usr/include/linux/input-event-codes.h>
 
 typedef struct {
 	char *name;
 	int   value;
 } dict;
+
 
 dict keyTable[] = {
 	{ "RESERVED", KEY_RESERVED },

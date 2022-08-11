@@ -102,8 +102,8 @@ char
   *cfgPath,                          // Directory containing config file
   *cfgName      = NULL,              // Name (no path) of config
   *cfgPathname,                      // Full path/name to config file
-   debug        = 0,                 // 0=off, 1=cfg file, 2=live buttons
-   startupDebug = 0,                 // Initial debug level before cfg load
+   debug        = 3,                 // 0=off, 1=cfg file, 2=live buttons
+   startupDebug = 3,                 // Initial debug level before cfg load
    readAddr     = 0x10;              // For MCP23017 reads (INTCAPA reg addr)
 int
    key[161],                         // Keycodes assigned to GPIO pins
@@ -138,13 +138,14 @@ enum commandNum {
 	CMD_DEBUG // Set debug level
 };
 
+
 // dict of config file commands that AREN'T keys (KEY_*)
 dict command[] = { // Struct is defined in keyTable.h
 	{ "GND"     , CMD_GND   },
 	{ "GROUND"  , CMD_GND   },
 	{ "IRQ"     , CMD_IRQ   },
 	{ "DEBUG"   , CMD_DEBUG },
-	// Might add commands here for fine-tuning debounce & repeat settings
+        // Might add commands here for fine-tuning debounce & repeat settings
 	{  NULL     , -1        } }; // END-OF-LIST
 
 #define GPIO_BASE              0x200000

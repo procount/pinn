@@ -1774,29 +1774,47 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
         int value = (event->type() == QEvent::KeyPress)? 1 : 0;
-
-        if (keyEvent->key() == Qt::Key_5)
+        qDebug() << "Retrogame KEY "<< keyEvent->key() << " scancode " << keyEvent->nativeScanCode();
+#if 0
+        if ((keyEvent->key() >=0x2C0) && (keyEvent->key() <= 0x2C4))
         {
+            qDebug() << "Retrogame "<< keyEvent->key() << keyEvent->key()-0x2C0+0x1000;
+            eat=true;
+            retrogame->inject_key(keyEvent->key()-0x2C0+0x1000,value);
+        }
+        if ((keyEvent->key() >=0x2D0) && (keyEvent->key() <= 0x2D4))
+        {
+            eat=true;
+            retrogame->inject_key(keyEvent->key()-0x2D0+0x2000,value);
+        }
+#endif
+        if (keyEvent->key() ==Qt::Key_Left)
+        {
+            qDebug() << "Retrogame "<< keyEvent->key() << keyEvent->key()-0x2C0+0x1000;
             eat=true;
             retrogame->inject_key(mouse_left,value);
         }
-        if (keyEvent->key() == Qt::Key_6)
+        if (keyEvent->key() ==Qt::Key_Up)
         {
+            qDebug() << "Retrogame "<< keyEvent->key() << keyEvent->key()-0x2C0+0x1000;
             eat=true;
             retrogame->inject_key(mouse_up,value);
         }
-        if (keyEvent->key() == Qt::Key_7)
+        if (keyEvent->key() ==Qt::Key_Down)
         {
+            qDebug() << "Retrogame "<< keyEvent->key() << keyEvent->key()-0x2C0+0x1000;
             eat=true;
             retrogame->inject_key(mouse_down,value);
         }
-        if (keyEvent->key() == Qt::Key_8)
+        if (keyEvent->key() ==Qt::Key_Right)
         {
+            qDebug() << "Retrogame "<< keyEvent->key() << keyEvent->key()-0x2C0+0x1000;
             eat=true;
             retrogame->inject_key(mouse_right,value);
         }
-        if (keyEvent->key() == Qt::Key_0)
+        if (keyEvent->key() ==Qt::Key_0)
         {
+            qDebug() << "Retrogame "<< keyEvent->key() << keyEvent->key()-0x2C0+0x1000;
             eat=true;
             retrogame->inject_key(mouse_lclick,value);
         }
