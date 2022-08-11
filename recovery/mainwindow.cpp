@@ -91,6 +91,7 @@ extern CecListener * cec;
 extern simulate * sim;
 extern joystick * joy1;
 extern joystick * joy2;
+extern Kinput * retrogame;
 
 extern QStringList downloadRepoUrls;
 extern QString repoList;
@@ -157,6 +158,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     _bootdrive(drive), _noobsconfig(noobsconfig), _numFilesToCheck(0), _eDownloadMode(MODE_INSTALL), _proc(NULL)
 {
     TRACE
+    extern QApplication * gApp;
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
     setContextMenuPolicy(Qt::NoContextMenu);
@@ -218,6 +220,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     QString provision="0";
     _provision=0;
     int forceruninstaller=0;
+
+    gApp->installEventFilter(this);
 
     QString cmdline = getFileContents("/proc/cmdline");
 
@@ -1765,7 +1769,38 @@ void MainWindow::displayMode(int modenr, bool silent)
 bool MainWindow::eventFilter(QObject *, QEvent *event)
 {
     extern QApplication * gApp;
+    bool eat=false;
+    if ((event->type() == QEvent::KeyPress) || (event->type() == QEvent::KeyRelease))
+    {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+        int value = (event->type() == QEvent::KeyPress)? 1 : 0;
 
+        if (keyEvent->key() == Qt::Key_5)
+        {
+            eat=true;
+            retrogame->inject_key(mouse_left,value);
+        }
+        if (keyEvent->key() == Qt::Key_6)
+        {
+            eat=true;
+            retrogame->inject_key(mouse_up,value);
+        }
+        if (keyEvent->key() == Qt::Key_7)
+        {
+            eat=true;
+            retrogame->inject_key(mouse_down,value);
+        }
+        if (keyEvent->key() == Qt::Key_8)
+        {
+            eat=true;
+            retrogame->inject_key(mouse_right,value);
+        }
+        if (keyEvent->key() == Qt::Key_0)
+        {
+            eat=true;
+            retrogame->inject_key(mouse_lclick,value);
+        }
+    }
     if (event->type() == QEvent::KeyPress)
     {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
@@ -1775,16 +1810,19 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         // HDMI preferred mode
         if (keyEvent->key() == Qt::Key_1 && _currentMode != 0)
         {
+            eat=true;
             displayMode(0);
         }
         // HDMI safe mode
         if (keyEvent->key() == Qt::Key_2 && _currentMode != 1)
         {
+            eat=true;
             displayMode(1);
         }
         // Composite PAL
         if (keyEvent->key() == Qt::Key_3 && _currentMode != 2)
         {
+            eat=true;
             displayMode(2);
         }
          // Composite NTSC
@@ -1795,6 +1833,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
 
         if (keyEvent->key() == Qt::Key_Plus && fontsize < 20)
         {
+            eat=true;
             fontsize++;
             QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
             gApp->setStyleSheet(stylesheet);
@@ -1803,6 +1842,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         }
         if (keyEvent->key() == Qt::Key_Minus && fontsize >11)
         {
+            eat=true;
             fontsize--;
             QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
             gApp->setStyleSheet(stylesheet);
@@ -1830,6 +1870,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
                 }
             }
         }
+
         // cursor Left changes tab headings
         if (keyEvent->key() == Qt::Key_Left)
         {
@@ -1858,7 +1899,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             _kcpos=0;
     }
 
-    return false;
+    return eat;
 }
 
 void MainWindow::inputSequence()

@@ -52,6 +52,7 @@ CecListener *enableCEC(QObject *parent=0);
 joystick *joy1 = NULL;
 joystick *joy2 = NULL;
 simulate *sim = NULL;
+Kinput * retrogame = NULL;
 
 QStringList downloadRepoUrls;
 QString repoList;
@@ -242,8 +243,8 @@ int main(int argc, char *argv[])
     bool wallpaper_resize = false;
     bool gpio_trigger = false;
 
-    QString defaultLang = "en";
-    QString defaultKeyboard = "gb";
+    QString defaultLang = "us";
+    QString defaultKeyboard = "us";
     QString defaultDisplay = "0";
     QString defaultPartition = "800";
 
@@ -631,6 +632,8 @@ CecListener *enableCEC(QObject *parent)
 
     if (joy2)
         joy2->start();
+
+    retrogame = new Kinput(parent);
 
     return(cec);
 }

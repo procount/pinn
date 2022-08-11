@@ -87,6 +87,7 @@ public:
     static QString getWindow() { return _wnd; }
     static QString getMenu() { return _menu; }
     void loadMap(QString filename, QString defName);
+    void inject_key(int key,int value);
 
 protected:
     int keyPressed;
@@ -96,7 +97,6 @@ protected:
     int map_key(QString cec);
     mapwnd_t _map;
     virtual int map_button(QVariant joy);
-    void inject_key(int key,int value);
     void key_simulate(int key, int value);
     void mouse_simulate(int key, int value);
     void virtual parse_inputs(QVariantMap &map);
