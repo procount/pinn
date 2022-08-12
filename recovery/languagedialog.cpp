@@ -45,7 +45,7 @@ LanguageDialog::LanguageDialog(const QString &defaultLang, const QString &defaul
 {
     _instance = this;
 
-    setAttribute(Qt::WA_ShowWithoutActivating);
+    //setAttribute(Qt::WA_ShowWithoutActivating);
 
     qDebug() << "Default language is " << defaultLang;
     qDebug() << "Default keyboard layout is " << defaultKeyboard;
@@ -107,6 +107,7 @@ LanguageDialog::LanguageDialog(const QString &defaultLang, const QString &defaul
     changeLanguage(savedLang);
     changeKeyboardLayout(savedKeyLayout);
     ui->keyCombo->setCurrentIndex(ui->keyCombo->findData(savedKeyLayout));
+    hide();
 }
 
 LanguageDialog::~LanguageDialog()

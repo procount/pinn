@@ -633,6 +633,11 @@ CecListener *enableCEC(QObject *parent)
     if (joy2)
         joy2->start();
 #endif
+
+    QProcess *proc = new QProcess();
+    qDebug() << "Starting Retrogame";
+    proc->start("/usr/bin/retrogame /mnt/retrogame.cfg &");
+
     retrogame = new Kinput(parent);
 
     return(cec);

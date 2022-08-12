@@ -196,8 +196,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     ui->toolBar_2->addWidget(_checkLabel);
 
     toolbars.append(ui->toolBar_1);
-    toolbars.append(ui->toolBar_2);
-    toolbars.append(ui->toolBar_3);
+    //toolbars.append(ui->toolBar_2);
+    //toolbars.append(ui->toolBar_3);
 
     toolbar_index=TOOLBAR_MAIN;
     ui->toolBar_1->setVisible(toolbar_index==TOOLBAR_MAIN);
@@ -276,7 +276,12 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
 
     ug->setFocus();
 
-    ui->advToolBar->setVisible(true);
+    ui->advToolBar->setVisible(false);
+
+    ui->actionInfo->setVisible(false);
+    ui->actionBrowser->setVisible(false);
+    ui->actionClear_c->setVisible(false);
+//    ui->toolBar_1->addWidget(ui->actionEdit_config->parentWidget());
 
     _ipaddress=QHostAddress();
 
@@ -606,7 +611,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
         }
     }
 
-    startRetrogame();
+    startRetrogame(); //Start it again cos sometimes it stops working.
 
     copyWpa();
     copyDhcp();
@@ -1719,9 +1724,11 @@ void MainWindow::displayMode(int modenr, bool silent)
     _splash->setPixmap(_splash->pixmap()); //reposition, keeping same image.
 
     LanguageDialog *ld = LanguageDialog::instance("en", "gb");
-    ld->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignHCenter | Qt::AlignBottom, ld->size(), qApp->desktop()->availableGeometry()));
+    if (ld)
+    {
+        ld->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignHCenter | Qt::AlignBottom, ld->size(), qApp->desktop()->availableGeometry()));
+    }
     this->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, this->size(), qApp->desktop()->availableGeometry()));
-
     // Refresh screen
     qApp->processEvents();
     QWSServer::instance()->refresh();
