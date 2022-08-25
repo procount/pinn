@@ -1625,7 +1625,7 @@ void MainWindow::update_window_title()
     {
         count = QString(tr("Reboot in %1 secs")).arg(QString::number(currentCount));
     }
-    setWindowTitle(QString(tr("PINN v%1 - Built: %2 (%3) %4")).arg(VERSION_NUMBER).arg(QString::fromLocal8Bit(__DATE__)).arg(_ipaddress.toString()).arg(count));
+    setWindowTitle(QString(tr("Installer v%1 - Built: %2 (%3) %4")).arg(VERSION_NUMBER).arg(QString::fromLocal8Bit(__DATE__)).arg(_ipaddress.toString()).arg(count));
 }
 
 void MainWindow::changeEvent(QEvent* event)

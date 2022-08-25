@@ -316,6 +316,7 @@ int main(int argc, char *argv[])
                     downloadRepoUrls << url;
              }
         }
+#if 0
         else if (strcmp(argv[i], "-repo_list")==0)
         {
             if (argc > i+1)
@@ -323,6 +324,7 @@ int main(int argc, char *argv[])
                   repoList = argv[i+1];
             }
         }
+#endif
         // Allow gpio channel to be specified in commandline
         else if (strcmp(argv[i], "-gpiochannel") == 0)
         {
