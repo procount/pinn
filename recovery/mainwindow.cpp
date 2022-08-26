@@ -1811,31 +1811,33 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     if (event->type() == QEvent::KeyPress)
     {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
-        // Let user find the best display mode for their display
-        // experimentally by using keys 1-4. PINN will default to using HDMI preferred mode.
-
-        // HDMI preferred mode
-        if (keyEvent->key() == Qt::Key_1 && _currentMode != 0)
+        if (!Kinput::grabWindow())
         {
-            eat=true;
-            displayMode(0);
-        }
-        // HDMI safe mode
-        if (keyEvent->key() == Qt::Key_2 && _currentMode != 1)
-        {
-            eat=true;
-            displayMode(1);
-        }
-        // Composite PAL
-        if (keyEvent->key() == Qt::Key_3 && _currentMode != 2)
-        {
-            eat=true;
-            displayMode(2);
-        }
-         // Composite NTSC
-        if (keyEvent->key() == Qt::Key_4 && _currentMode != 3)
-        {
-            displayMode(3);
+            // Let user find the best display mode for their display
+            // experimentally by using keys 1-4. PINN will default to using HDMI preferred mode.
+            // HDMI preferred mode
+            if (keyEvent->key() == Qt::Key_1 && _currentMode != 0)
+            {
+                eat=true;
+                displayMode(0);
+            }
+            // HDMI safe mode
+            if (keyEvent->key() == Qt::Key_2 && _currentMode != 1)
+            {
+                eat=true;
+                displayMode(1);
+            }
+            // Composite PAL
+            if (keyEvent->key() == Qt::Key_3 && _currentMode != 2)
+            {
+                eat=true;
+                displayMode(2);
+            }
+             // Composite NTSC
+            if (keyEvent->key() == Qt::Key_4 && _currentMode != 3)
+            {
+                displayMode(3);
+            }
         }
 
         if (keyEvent->key() == Qt::Key_Plus && fontsize < 20)
