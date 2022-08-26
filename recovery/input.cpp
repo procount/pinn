@@ -32,7 +32,7 @@
 #define LOCAL_DBG_MSG 0
 #include "mydebug.h"
 
-//#define ACCELERATE /* define this to make the simulated mouse accelerate */
+#define ACCELERATE /* define this to make the simulated mouse accelerate */
 
 #include <linux/input.h>
 #include <linux/uinput.h>

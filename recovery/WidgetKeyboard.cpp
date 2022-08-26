@@ -45,7 +45,7 @@ WidgetKeyboard::WidgetKeyboard(QWidget *parent) : QWidget(0)
     extern QApplication * gApp;
 
     setupUi(this);
-    resize(0,0);
+    //resize(0,0);
     this->setWindowFlags(Qt::Tool | Qt::FramelessWindowHint);
     //this->setWindowFlags(Qt::Dialog);
     m_pParent = parent;
@@ -83,7 +83,6 @@ WidgetKeyboard::WidgetKeyboard(QWidget *parent) : QWidget(0)
         allButtons.at(i)->installEventFilter(this);
 
     }
-    this->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignHCenter | Qt::AlignBottom, this->size(), gApp->desktop()->availableGeometry()));
 
     connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(my_btn_clicked(int)));
     HighlightKey();

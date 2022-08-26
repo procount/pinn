@@ -20,6 +20,7 @@
 #include <QProgressDialog>
 #include <QNetworkInterface>
 #include <QProcess>
+#include <QDesktopWidget>
 
 WifiSettingsDialog::WifiSettingsDialog(const QString &preferredInterface, QWidget *parent) :
     QDialog(parent),
@@ -405,8 +406,12 @@ QString WifiSettingsDialog::removeQuotes(QString str)
 
 void WifiSettingsDialog::on_vkeyboard_toggled(bool checked)
 {
+    extern QApplication * gApp;
+
     if (checked)
     {
+        virtualKeyBoard->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignHCenter | Qt::AlignBottom, QSize(480,170), gApp->desktop()->availableGeometry()));
+
         ui->passwordEdit->setFocus();
         virtualKeyBoard->show();
         if (pNav)
