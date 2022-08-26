@@ -15,7 +15,7 @@
 #define CENTER_BACKGROUND_IMAGE
 
 /* Enable language selection */
-//#define ENABLE_LANGUAGE_CHOOSER
+#define ENABLE_LANGUAGE_CHOOSER
 
 /* Website launched when launching Arora */
 #define HOMEPAGE  "http://www.raspberrypi.org/help/"

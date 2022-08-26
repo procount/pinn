@@ -638,7 +638,7 @@ CecListener *enableCEC(QObject *parent)
 
     QProcess *proc = new QProcess();
     qDebug() << "Starting Retrogame";
-    proc->start("/usr/bin/retrogame /mnt/retrogame.cfg &");
+    proc->start("/usr/bin/retrogame /mnt/pinn.cfg &");
 
     retrogame = new Kinput(parent);
 

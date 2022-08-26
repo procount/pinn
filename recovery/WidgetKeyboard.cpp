@@ -63,15 +63,15 @@ WidgetKeyboard::WidgetKeyboard(QWidget *parent) : QWidget(0)
     QFont font;
     font.setFamily("Arial");
     //font.setBold(true);
-    int points=8;
-    if (rect.width()>=800)
+    int points=12;
+/*    if (rect.width()>=800)
         points=10;
     if (rect.width()>1200)
         points=12;
     if (rect.width()>1600)
         points=16;
-    font.setPixelSize(points);
-    //font.setStretch(125);
+    font.setPixelSize(points);*/
+    font.setStretch(125);
 
     signalMapper = new QSignalMapper(this);
     sliderOpacity->setRange(20,100);

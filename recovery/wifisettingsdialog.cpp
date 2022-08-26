@@ -410,7 +410,7 @@ void WifiSettingsDialog::on_vkeyboard_toggled(bool checked)
 
     if (checked)
     {
-        virtualKeyBoard->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignHCenter | Qt::AlignBottom, QSize(480,170), gApp->desktop()->availableGeometry()));
+        virtualKeyBoard->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignHCenter | Qt::AlignBottom, QSize(480,160), gApp->desktop()->availableGeometry()));
 
         ui->passwordEdit->setFocus();
         virtualKeyBoard->show();

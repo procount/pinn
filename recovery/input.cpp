@@ -32,8 +32,6 @@
 #define LOCAL_DBG_MSG 0
 #include "mydebug.h"
 
-#define ACCELERATE /* define this to make the simulated mouse accelerate */
-
 #include <linux/input.h>
 #include <linux/uinput.h>
 
@@ -47,6 +45,8 @@
 QString Kinput::_wnd="";
 QString Kinput::_menu="";
 QObject * Kinput::_grab;
+
+extern int mouse_accelerate;
 
 struct scale_t scale_map[MAXSTEPS] = {-1,-1};
 
@@ -388,14 +388,17 @@ void Kinput::mouse_repeat()
     }
     else {
         count++;
-#ifdef ACCELERATE
-        if (count>5)
-            step=5;
-        if (count>25)
-            step=8;
-        if (count>50)
-            step=10;
-#endif
+
+        if (mouse_accelerate)
+        {
+            if (count>50)
+                step=5;
+            if (count>100)
+                step=8;
+            if (count>150)
+                step=10;
+        }
+
         mousetimer.start( 40 );
     }
 }

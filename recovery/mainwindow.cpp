@@ -97,6 +97,7 @@ extern QStringList downloadRepoUrls;
 extern QString repoList;
 
 int fontsize=11;
+int mouse_accelerate=0;
 
 /* Main window
  *
@@ -258,6 +259,10 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
         if (s.contains("forceruninstaller"))
         {
             forceruninstaller = 1;
+        }
+        if (s.contains("mouseaccelerate"))
+        {
+            mouse_accelerate=1;
         }
     }
 
@@ -1802,7 +1807,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             eat=true;
             retrogame->inject_key(mouse_right,value);
         }
-        if (keyEvent->key() ==Qt::Key_0)
+        if (keyEvent->key() ==Qt::Key_F10)
         {
             eat=true;
             retrogame->inject_key(mouse_lclick,value);
@@ -1811,6 +1816,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     if (event->type() == QEvent::KeyPress)
     {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+
         if (!Kinput::grabWindow())
         {
             // Let user find the best display mode for their display
@@ -1838,25 +1844,56 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             {
                 displayMode(3);
             }
-        }
 
-        if (keyEvent->key() == Qt::Key_Plus && fontsize < 20)
-        {
-            eat=true;
-            fontsize++;
-            QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
-            gApp->setStyleSheet(stylesheet);
-            QWSServer::instance()->refresh();
-            //qDebug() << "Using fontsize "<<fontsize;
-        }
-        if (keyEvent->key() == Qt::Key_Minus && fontsize >11)
-        {
-            eat=true;
-            fontsize--;
-            QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
-            gApp->setStyleSheet(stylesheet);
-            QWSServer::instance()->refresh();
-            //qDebug() << "Using fontsize "<<fontsize;
+            if (keyEvent->key() == Qt::Key_Plus && fontsize < 20)
+            {
+                eat=true;
+                fontsize++;
+                QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
+                gApp->setStyleSheet(stylesheet);
+                QWSServer::instance()->refresh();
+                //qDebug() << "Using fontsize "<<fontsize;
+            }
+            if (keyEvent->key() == Qt::Key_Minus && fontsize >11)
+            {
+                eat=true;
+                fontsize--;
+                QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
+                gApp->setStyleSheet(stylesheet);
+                QWSServer::instance()->refresh();
+                //qDebug() << "Using fontsize "<<fontsize;
+            }
+#if 0
+            // cursor Right changes tab headings
+            if (keyEvent->key() == Qt::Key_Right)
+            {
+                if (ug->tabs && toolbar_index !=TOOLBAR_MAINTENANCE) //Don't do if no tabs visisble
+                {
+                    if (ug->tabs->count() > 0)
+                    {
+                        int index = ug->tabs->currentIndex()+1;
+                        if (index >= ug->tabs->count())
+                            index =0;
+                        ug->tabs->setCurrentIndex(index);
+                    }
+                }
+            }
+
+            // cursor Left changes tab headings
+            if (keyEvent->key() == Qt::Key_Left)
+            {
+                if (ug->tabs && toolbar_index !=TOOLBAR_MAINTENANCE) //Don't do if no tabs visisble
+                {
+                    if (ug->tabs->count() > 0)
+                    {
+                        int index = ug->tabs->currentIndex()-1;
+                        if (index < 0)
+                            index = ug->tabs->count()-1;
+                        ug->tabs->setCurrentIndex(index);
+                    }
+                }
+            }
+#endif
         }
 
         // Catch Return key to trigger OS boot
@@ -1864,48 +1901,6 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         {
             on_list_doubleClicked(ug->list->currentIndex());
         }
-
-        // cursor Right changes tab headings
-        if (keyEvent->key() == Qt::Key_Right)
-        {
-            if (ug->tabs && toolbar_index !=TOOLBAR_MAINTENANCE) //Don't do if no tabs visisble
-            {
-                if (ug->tabs->count() > 0)
-                {
-                    int index = ug->tabs->currentIndex()+1;
-                    if (index >= ug->tabs->count())
-                        index =0;
-                    ug->tabs->setCurrentIndex(index);
-                }
-            }
-        }
-
-        // cursor Left changes tab headings
-        if (keyEvent->key() == Qt::Key_Left)
-        {
-            if (ug->tabs && toolbar_index !=TOOLBAR_MAINTENANCE) //Don't do if no tabs visisble
-            {
-                if (ug->tabs->count() > 0)
-                {
-                    int index = ug->tabs->currentIndex()-1;
-                    if (index < 0)
-                        index = ug->tabs->count()-1;
-                    ug->tabs->setCurrentIndex(index);
-                }
-            }
-        }
-
-        if (_kc.at(_kcpos) == keyEvent->key())
-        {
-            _kcpos++;
-            if (_kcpos == _kc.size())
-            {
-                inputSequence();
-                _kcpos = 0;
-            }
-        }
-        else
-            _kcpos=0;
     }
 
     return eat;
@@ -2172,7 +2167,7 @@ void MainWindow::startRetrogame()
     /* Run retrogame in background */
     QProcess *proc = new QProcess(this);
     qDebug() << "Starting Retrogame";
-    proc->start("/usr/bin/retrogame /mnt/retrogame.cfg &");
+    proc->start("/usr/bin/retrogame /mnt/pinn.cfg &");
 }
 
 bool MainWindow::isOnline()
