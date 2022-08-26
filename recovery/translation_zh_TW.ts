@@ -409,36 +409,36 @@ WARNING: This will erase all data on your SD card</oldsource>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.ui" line="74"/>
-        <location filename="mainwindow.ui" line="185"/>
+        <location filename="mainwindow.ui" line="62"/>
+        <location filename="mainwindow.ui" line="173"/>
         <source>Destination drive:</source>
         <translation>目標磁碟：</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="103"/>
-        <location filename="mainwindow.ui" line="208"/>
+        <location filename="mainwindow.ui" line="91"/>
+        <location filename="mainwindow.ui" line="196"/>
         <source>Needed:</source>
         <translation>需要：</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="129"/>
+        <location filename="mainwindow.ui" line="117"/>
         <source>Model</source>
         <oldsource>model</oldsource>
         <translation>型號</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="110"/>
-        <location filename="mainwindow.ui" line="215"/>
+        <location filename="mainwindow.ui" line="98"/>
+        <location filename="mainwindow.ui" line="203"/>
         <source>Available:</source>
         <translation>可用：</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="139"/>
+        <location filename="mainwindow.ui" line="127"/>
         <source>Memory</source>
         <translation>記憶體</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="173"/>
+        <location filename="mainwindow.ui" line="161"/>
         <source>Download space</source>
         <translation>下載空間</translation>
     </message>
@@ -595,7 +595,7 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation>Wifi (w)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="62"/>
+        <location filename="mainwindow.ui" line="50"/>
         <source>Install space</source>
         <translation>安裝空間</translation>
     </message>
@@ -700,181 +700,181 @@ WARNING: This will erase all data on your SD card</oldsource>
         <translation>W</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="365"/>
+        <location filename="mainwindow.cpp" line="378"/>
         <source>Setting up SD card</source>
         <translation>正在設定 SD 記憶卡</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="387"/>
+        <location filename="mainwindow.cpp" line="400"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation>正在等待 SD 記憶卡（settings 分割區）</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="400"/>
+        <location filename="mainwindow.cpp" line="413"/>
         <source>Mounting settings partition</source>
         <translation>正在掛載 settings 分割區</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="412"/>
+        <location filename="mainwindow.cpp" line="425"/>
         <source>Error mounting settings partition</source>
         <translation>掛載 settings 分割區時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="413"/>
+        <location filename="mainwindow.cpp" line="426"/>
         <source>Persistent settings partition seems corrupt. Reformat?</source>
         <translation>持續性的 settings 分割區似乎已毀損。重新格式化？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="420"/>
+        <location filename="mainwindow.cpp" line="433"/>
         <source>Reformat failed</source>
         <translation>重新格式化失敗</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="420"/>
+        <location filename="mainwindow.cpp" line="433"/>
         <source>SD card might be damaged</source>
         <translation>SD 記憶卡可能已受損</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1164"/>
+        <location filename="mainwindow.cpp" line="1180"/>
         <source>install</source>
         <translation>安裝</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1167"/>
+        <location filename="mainwindow.cpp" line="1183"/>
         <source>reinstall</source>
         <translation>重新安裝</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1170"/>
+        <location filename="mainwindow.cpp" line="1186"/>
         <source>replace</source>
         <translation>取代</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1180"/>
+        <location filename="mainwindow.cpp" line="1196"/>
         <source>USB drive</source>
         <translation>USB 磁碟</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1181"/>
+        <location filename="mainwindow.cpp" line="1197"/>
         <source>Warning: this will %1 the selected Operating System(s) to %2. All existing data on the %3 will be deleted.</source>
         <translation>警告：這將會 %1 選定的作業系統到 %2。所有在 %3 上的資料都將會被刪除。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1276"/>
+        <location filename="mainwindow.cpp" line="1292"/>
         <source>The %1 process will begin shortly.</source>
         <translation>%1 程序將會很快開始。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4019"/>
-        <location filename="mainwindow.cpp" line="4065"/>
+        <location filename="mainwindow.cpp" line="4086"/>
+        <location filename="mainwindow.cpp" line="4132"/>
         <source>RECOMMENDED</source>
         <translation>建議</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1069"/>
-        <location filename="mainwindow.cpp" line="1078"/>
-        <location filename="mainwindow.cpp" line="1189"/>
-        <location filename="mainwindow.cpp" line="1298"/>
-        <location filename="mainwindow.cpp" line="1308"/>
-        <location filename="mainwindow.cpp" line="1938"/>
-        <location filename="mainwindow.cpp" line="4764"/>
-        <location filename="mainwindow.cpp" line="4839"/>
-        <location filename="mainwindow.cpp" line="4883"/>
+        <location filename="mainwindow.cpp" line="1085"/>
+        <location filename="mainwindow.cpp" line="1094"/>
+        <location filename="mainwindow.cpp" line="1205"/>
+        <location filename="mainwindow.cpp" line="1314"/>
+        <location filename="mainwindow.cpp" line="1324"/>
+        <location filename="mainwindow.cpp" line="1997"/>
+        <location filename="mainwindow.cpp" line="4831"/>
+        <location filename="mainwindow.cpp" line="4906"/>
+        <location filename="mainwindow.cpp" line="4950"/>
         <source>Confirm</source>
         <translation>確認</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="658"/>
+        <location filename="mainwindow.cpp" line="674"/>
         <source>Main Menu</source>
         <translation>主選單</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="659"/>
+        <location filename="mainwindow.cpp" line="675"/>
         <source>Archival</source>
         <translation>封存</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="660"/>
+        <location filename="mainwindow.cpp" line="676"/>
         <source>Maintenance</source>
         <translation>維護</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="677"/>
+        <location filename="mainwindow.cpp" line="693"/>
         <source>Please wait while PINN initialises</source>
         <translation>請等待 PINN 初始化</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1060"/>
+        <location filename="mainwindow.cpp" line="1076"/>
         <source>ERROR</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1061"/>
+        <location filename="mainwindow.cpp" line="1077"/>
         <source>Error: Some OSes are not available:
 </source>
         <translation>錯誤：部份作業系統不可用：
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1180"/>
+        <location filename="mainwindow.cpp" line="1196"/>
         <source>SD card</source>
         <translation>SD 記憶卡</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1079"/>
-        <location filename="mainwindow.cpp" line="1309"/>
+        <location filename="mainwindow.cpp" line="1095"/>
+        <location filename="mainwindow.cpp" line="1325"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>警告：已偵測到不相容的作業系統。以下的作業系統在此版本的 Raspberry Pi 不被支援，它們可能會啟動失敗，或是有功能執行不正確：</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1070"/>
-        <location filename="mainwindow.cpp" line="4765"/>
+        <location filename="mainwindow.cpp" line="1086"/>
+        <location filename="mainwindow.cpp" line="4832"/>
         <source>
 
 Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1070"/>
-        <location filename="mainwindow.cpp" line="4765"/>
+        <location filename="mainwindow.cpp" line="1086"/>
+        <location filename="mainwindow.cpp" line="4832"/>
         <source>Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1146"/>
+        <location filename="mainwindow.cpp" line="1162"/>
         <source>ReInstall OSes</source>
         <translation>重新安裝作業系統</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1147"/>
+        <location filename="mainwindow.cpp" line="1163"/>
         <source>Warning: No OSes selected or available
 </source>
         <translation>警告：未選擇作業系統或未提供
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1185"/>
+        <location filename="mainwindow.cpp" line="1201"/>
         <source>Warning: this will %1 the selected Operating System(s) on %2. The partitions of the selected OSes will first be erased.</source>
         <translation>警告：這將會 %1 位於 %2 的選定作業系統。選定作業系統的分割區會先被抹除。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1299"/>
+        <location filename="mainwindow.cpp" line="1315"/>
         <source>Warning: this will download the selected Operating System(s).</source>
         <translation>警告：這將會下載選定的作業系統。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1386"/>
+        <location filename="mainwindow.cpp" line="1402"/>
         <source>The download process will begin shortly.</source>
         <translation>很快就會開始下載。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1434"/>
+        <location filename="mainwindow.cpp" line="1450"/>
         <source>OS(es) downloaded</source>
         <translation>作業系統已下載完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1448"/>
+        <location filename="mainwindow.cpp" line="1464"/>
         <source>OS(es) Backed up with errors.
 See debug log for details.</source>
         <oldsource>OS(es) Backed up with errors.
@@ -883,116 +883,121 @@ See debug log for details</oldsource>
 檢視除錯紀錄檔以取得更多資訊。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1450"/>
+        <location filename="mainwindow.cpp" line="1466"/>
         <source>OS(es) Backed up Successfully.</source>
         <translation>作業系統備份成功。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1452"/>
-        <location filename="mainwindow.cpp" line="4987"/>
+        <location filename="mainwindow.cpp" line="1468"/>
+        <location filename="mainwindow.cpp" line="5054"/>
         <source>Backup OSes</source>
         <translation>備份作業系統</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1461"/>
+        <location filename="mainwindow.cpp" line="1478"/>
         <source>OS(es) Installed Successfully</source>
         <translation>作業系統已成功安裝</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1463"/>
+        <location filename="mainwindow.cpp" line="1481"/>
         <source>Installation complete</source>
         <translation>安裝完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1500"/>
-        <location filename="mainwindow.cpp" line="1534"/>
-        <location filename="mainwindow.cpp" line="1548"/>
-        <location filename="mainwindow.cpp" line="2247"/>
-        <location filename="mainwindow.cpp" line="2390"/>
-        <location filename="mainwindow.cpp" line="4342"/>
+        <location filename="mainwindow.cpp" line="1528"/>
+        <location filename="mainwindow.cpp" line="1562"/>
+        <location filename="mainwindow.cpp" line="1576"/>
+        <location filename="mainwindow.cpp" line="2314"/>
+        <location filename="mainwindow.cpp" line="2457"/>
+        <location filename="mainwindow.cpp" line="4409"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1576"/>
+        <location filename="mainwindow.cpp" line="1604"/>
         <source>Abort</source>
         <translation>放棄</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1577"/>
+        <location filename="mainwindow.cpp" line="1605"/>
         <source>Discard</source>
         <translation>丟棄</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1578"/>
+        <location filename="mainwindow.cpp" line="1606"/>
         <source>Retry</source>
         <translation>重試</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1579"/>
+        <location filename="mainwindow.cpp" line="1607"/>
         <source>Keep</source>
         <translation>保留</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1603"/>
+        <location filename="mainwindow.cpp" line="1631"/>
         <source>Reboot in %1 secs</source>
         <translation>在 %1 秒內重新啟動</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1913"/>
+        <location filename="mainwindow.cpp" line="1633"/>
+        <source>Installer v%1 - Built: %2 (%3) %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1972"/>
         <source>Wiping SD card</source>
         <translation>抹除 SD 記憶卡</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1939"/>
+        <location filename="mainwindow.cpp" line="1998"/>
         <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will restore your SD card to its initial state. All existing data on the SD card except PINN will be overwritten, including any OSes that are already installed.</oldsource>
         <translation>警告：這將會讓您的 PINN 磁碟復原到初始狀態。所有在磁碟上，除了 PINN 以外既有的資料都將會被覆寫，其中也包含任何您已安裝的作業系統。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1944"/>
+        <location filename="mainwindow.cpp" line="2003"/>
         <source>Drive Wiped!</source>
         <translation>磁碟已抹除！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2247"/>
+        <location filename="mainwindow.cpp" line="2314"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation>解析從伺服器下載的 repolist.json 時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2873"/>
+        <location filename="mainwindow.cpp" line="2940"/>
         <source>Error downloading meta file: </source>
         <translation>下載詮釋檔案錯誤： </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3242"/>
-        <location filename="mainwindow.cpp" line="4755"/>
-        <location filename="mainwindow.cpp" line="4793"/>
+        <location filename="mainwindow.cpp" line="3309"/>
+        <location filename="mainwindow.cpp" line="4822"/>
+        <location filename="mainwindow.cpp" line="4860"/>
         <source>Replace OSes</source>
         <translation>取代作業系統</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3289"/>
+        <location filename="mainwindow.cpp" line="3356"/>
         <source>Resume partial downloads?</source>
         <translation>復原部份下載？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3290"/>
+        <location filename="mainwindow.cpp" line="3357"/>
         <source>Normally select NO, unless your last download was not successful, in which case select YES</source>
         <translation>一般會選擇否，除非您最後一次下載並未成功，這種情況下才會選取是</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3514"/>
+        <location filename="mainwindow.cpp" line="3581"/>
         <source>This backup may require </source>
         <translation>這個備份可能需要 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3516"/>
+        <location filename="mainwindow.cpp" line="3583"/>
         <source> MB of backup space, but only </source>
         <translation> MB 的備份空間，但只有 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3518"/>
+        <location filename="mainwindow.cpp" line="3585"/>
         <source> MB is available. This is only an estimate. If you continue, the backup may not complete successfully.
 
 Do you want to continue?</source>
@@ -1001,161 +1006,161 @@ Do you want to continue?</source>
 您想要繼續嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3519"/>
+        <location filename="mainwindow.cpp" line="3586"/>
         <source>WARNING: Backup Space</source>
         <translation>警告：備份空間</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3526"/>
+        <location filename="mainwindow.cpp" line="3593"/>
         <source>Backup Info</source>
         <translation>備份資訊</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3526"/>
+        <location filename="mainwindow.cpp" line="3593"/>
         <source>Always test your backups before relying on them</source>
         <translation>在依賴您備份前請測試它們</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3576"/>
+        <location filename="mainwindow.cpp" line="3643"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>不使用本機映像檔的 PINN 需要網路。請在下一個畫面選擇您的 wifi 連線。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3584"/>
+        <location filename="mainwindow.cpp" line="3651"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>不使用本機映像檔的 PINN 需要有線網路。請將網路線插入網路孔。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3916"/>
+        <location filename="mainwindow.cpp" line="3983"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation>您確定您要重新格式化磁碟 &apos;%1&apos; 以供 PINN 使用嗎？所有在該磁碟上的資料都會被刪除！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4294"/>
+        <location filename="mainwindow.cpp" line="4361"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation>這將會抹除在裝置 &apos;%s&apos; 上的所有內容。您確定嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4296"/>
+        <location filename="mainwindow.cpp" line="4363"/>
         <source>Clone SD Card</source>
         <translation>再製 SD 記憶卡</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4298"/>
+        <location filename="mainwindow.cpp" line="4365"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4299"/>
+        <location filename="mainwindow.cpp" line="4366"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4328"/>
+        <location filename="mainwindow.cpp" line="4395"/>
         <source>Clone Completed</source>
         <translation>再製完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4329"/>
+        <location filename="mainwindow.cpp" line="4396"/>
         <source>Clone Completed Successfully</source>
         <translation>再製成功完成</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4441"/>
+        <location filename="mainwindow.cpp" line="4508"/>
         <source>Error downloading update file</source>
         <translation>下載更新檔時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4448"/>
-        <location filename="mainwindow.cpp" line="4549"/>
+        <location filename="mainwindow.cpp" line="4515"/>
+        <location filename="mainwindow.cpp" line="4616"/>
         <source>PINN Update Check</source>
         <translation>PINN 更新檢查</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4448"/>
+        <location filename="mainwindow.cpp" line="4515"/>
         <source>Error contacting update server</source>
         <translation>聯絡更新伺服器發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4549"/>
+        <location filename="mainwindow.cpp" line="4616"/>
         <source>No updates available</source>
         <translation>無可用更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4558"/>
+        <location filename="mainwindow.cpp" line="4625"/>
         <source>PINN UPDATE</source>
         <translation>PINN 更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4559"/>
+        <location filename="mainwindow.cpp" line="4626"/>
         <source>A new version of PINN is available</source>
         <translation>已有新版的 PINN 可用</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4560"/>
+        <location filename="mainwindow.cpp" line="4627"/>
         <source>Do you want to download this version?</source>
         <translation>您想要下載此版本嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4592"/>
+        <location filename="mainwindow.cpp" line="4659"/>
         <source>Downloading Update</source>
         <translation>正在下載更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4592"/>
+        <location filename="mainwindow.cpp" line="4659"/>
         <source>Press ESC to cancel</source>
         <translation>按 ESC 取消</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4756"/>
+        <location filename="mainwindow.cpp" line="4823"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation>錯誤：沒有已選取的作業系統
 （不要選取 RISC OS 或 PINN）</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4794"/>
+        <location filename="mainwindow.cpp" line="4861"/>
         <source>Warning: No OSes selected
 </source>
         <translation>警告：沒有選擇作業系統
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4840"/>
+        <location filename="mainwindow.cpp" line="4907"/>
         <source>Warning: this will backup the selected Operating System(s).</source>
         <translation>警告：這將會備份選定的作業系統。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4884"/>
+        <location filename="mainwindow.cpp" line="4951"/>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
         <translation>警告：偵測到不支援的作業系統。PINN 目前無法正確備份下列的作業系統：</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1640"/>
+        <location filename="mainwindow.cpp" line="1668"/>
         <source>HDMI preferred mode</source>
         <translation>偏好 HDMI 模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="322"/>
+        <location filename="mainwindow.cpp" line="335"/>
         <source>RUNINSTALLER - Initialise Drive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="323"/>
+        <location filename="mainwindow.cpp" line="336"/>
         <source>There are existing OSes installed.
 Are you sure you want to initialise the drive?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1131"/>
-        <location filename="mainwindow.cpp" line="4784"/>
+        <location filename="mainwindow.cpp" line="1147"/>
+        <location filename="mainwindow.cpp" line="4851"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation> 不可用。
 請在本機提供它，或是連線到網際網路。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1429"/>
+        <location filename="mainwindow.cpp" line="1445"/>
         <source>OS(es) Downloaded with errors.
 See debug log for details.</source>
         <oldsource>OS(es) Downloaded with errors.
@@ -1164,12 +1169,12 @@ See debug log for details</oldsource>
 檢視除錯紀錄以取得更多資訊。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1431"/>
+        <location filename="mainwindow.cpp" line="1447"/>
         <source>OS(es) Downloaded Successfully.</source>
         <translation>作業系統已下載成功。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1459"/>
+        <location filename="mainwindow.cpp" line="1475"/>
         <source>OS(es) Installed with errors.
 See debug log for details.</source>
         <oldsource>OS(es) Installed with errors.
@@ -1178,39 +1183,34 @@ See debug log for details</oldsource>
 檢視除錯紀錄以取得更多資訊。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1605"/>
-        <source>PINN v%1 - Built: %2 (%3) %4</source>
-        <translation>PINN v%1 - 建構： %2 (%3) %4</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="1644"/>
+        <location filename="mainwindow.cpp" line="1672"/>
         <source>HDMI safe mode</source>
         <translation>HDMI 安全模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1648"/>
+        <location filename="mainwindow.cpp" line="1676"/>
         <source>composite PAL mode</source>
         <translation>合成 PAL 模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1652"/>
+        <location filename="mainwindow.cpp" line="1680"/>
         <source>composite NTSC mode</source>
         <translation>合成 NTSC 模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1721"/>
+        <location filename="mainwindow.cpp" line="1751"/>
         <source>Display Mode Changed</source>
         <translation>顯示模式已變更</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1722"/>
+        <location filename="mainwindow.cpp" line="1752"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>顯示模式已變更為 %1
 您想要讓這個設定永久生效嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1945"/>
+        <location filename="mainwindow.cpp" line="2004"/>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
@@ -1219,75 +1219,75 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
 再次於這個磁碟上開機將會恢復 PINN 的分割區結構。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1958"/>
-        <location filename="mainwindow.cpp" line="3575"/>
-        <location filename="mainwindow.cpp" line="3583"/>
+        <location filename="mainwindow.cpp" line="2017"/>
+        <location filename="mainwindow.cpp" line="3642"/>
+        <location filename="mainwindow.cpp" line="3650"/>
         <source>No network access</source>
         <translation>無法存取網路</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1959"/>
+        <location filename="mainwindow.cpp" line="2018"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>這個功能要求有線網路連線。請插入一條網路纜線至網路埠中。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2228"/>
-        <location filename="mainwindow.cpp" line="2366"/>
+        <location filename="mainwindow.cpp" line="2295"/>
+        <location filename="mainwindow.cpp" line="2433"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation>從網路上下載散佈版清單時發生錯誤：
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2230"/>
-        <location filename="mainwindow.cpp" line="2368"/>
-        <location filename="mainwindow.cpp" line="2887"/>
-        <location filename="mainwindow.cpp" line="2898"/>
-        <location filename="mainwindow.cpp" line="4441"/>
-        <location filename="mainwindow.cpp" line="4463"/>
+        <location filename="mainwindow.cpp" line="2297"/>
+        <location filename="mainwindow.cpp" line="2435"/>
+        <location filename="mainwindow.cpp" line="2954"/>
+        <location filename="mainwindow.cpp" line="2965"/>
+        <location filename="mainwindow.cpp" line="4508"/>
+        <location filename="mainwindow.cpp" line="4530"/>
         <source>Download error</source>
         <translation>下載錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2390"/>
+        <location filename="mainwindow.cpp" line="2457"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>解析從伺服器上下載的 list.json 時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2659"/>
-        <location filename="mainwindow.cpp" line="2662"/>
+        <location filename="mainwindow.cpp" line="2726"/>
+        <location filename="mainwindow.cpp" line="2729"/>
         <source>Needed</source>
         <translation>需要</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2660"/>
-        <location filename="mainwindow.cpp" line="2663"/>
+        <location filename="mainwindow.cpp" line="2727"/>
+        <location filename="mainwindow.cpp" line="2730"/>
         <source>Available</source>
         <translation>可用</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2887"/>
+        <location filename="mainwindow.cpp" line="2954"/>
         <source>Error downloading meta file</source>
         <translation>下載後設檔案時發生錯誤</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2898"/>
-        <location filename="mainwindow.cpp" line="4463"/>
+        <location filename="mainwindow.cpp" line="2965"/>
+        <location filename="mainwindow.cpp" line="4530"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>寫入已下載的檔案至 SD 記憶卡時發生錯誤。SD 記憶卡或檔案系統可能受損。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3010"/>
+        <location filename="mainwindow.cpp" line="3077"/>
         <source>filesize error checking </source>
         <translation>檢查檔案大小錯誤 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3243"/>
+        <location filename="mainwindow.cpp" line="3310"/>
         <source> has an incompatible number of partitions with </source>
         <translation> 有不相容數量的分割區 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3915"/>
+        <location filename="mainwindow.cpp" line="3982"/>
         <source>Reformat drive?</source>
         <translation>重新格式化磁碟？</translation>
     </message>
@@ -2327,7 +2327,7 @@ Are you sure?</source>
 <context>
     <name>QMainWindow</name>
     <message>
-        <location filename="main.cpp" line="521"/>
+        <location filename="main.cpp" line="524"/>
         <source>For recovery mode, hold SHIFT
 click mouse
 or press joystick...</source>
@@ -2351,806 +2351,690 @@ or press joystick...</source>
 <context>
     <name>WidgetKeyboard</name>
     <message>
-        <location filename="WidgetKeyboard.ui" line="14"/>
+        <location filename="WidgetKeyboard.ui" line="19"/>
         <source>Virtual Keyboard</source>
         <translation>虛擬鍵盤</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="53"/>
+        <location filename="WidgetKeyboard.ui" line="61"/>
         <source>0x01000000</source>
         <translation>0x01000000</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="59"/>
+        <location filename="WidgetKeyboard.ui" line="67"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="85"/>
+        <location filename="WidgetKeyboard.ui" line="93"/>
         <source>0x01000030</source>
         <translation>0x01000030</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="88"/>
+        <location filename="WidgetKeyboard.ui" line="96"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="109"/>
+        <location filename="WidgetKeyboard.ui" line="117"/>
         <source>0x01000031</source>
         <translation>0x01000031</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="112"/>
+        <location filename="WidgetKeyboard.ui" line="120"/>
         <source>F2</source>
         <translation>F2</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="133"/>
+        <location filename="WidgetKeyboard.ui" line="141"/>
         <source>0x01000032</source>
         <translation>0x01000032</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="136"/>
+        <location filename="WidgetKeyboard.ui" line="144"/>
         <source>F3</source>
         <translation>F3</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="157"/>
+        <location filename="WidgetKeyboard.ui" line="165"/>
         <source>0x01000033</source>
         <translation>0x01000033</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="160"/>
+        <location filename="WidgetKeyboard.ui" line="168"/>
         <source>F4</source>
         <translation>F4</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="188"/>
+        <location filename="WidgetKeyboard.ui" line="196"/>
         <source>0x01000034</source>
         <translation>0x01000034</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="191"/>
+        <location filename="WidgetKeyboard.ui" line="199"/>
         <source>F5</source>
         <translation>F5</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="212"/>
+        <location filename="WidgetKeyboard.ui" line="220"/>
         <source>0x01000035</source>
         <translation>0x01000035</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="215"/>
+        <location filename="WidgetKeyboard.ui" line="223"/>
         <source>F6</source>
         <translation>F6</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="239"/>
+        <location filename="WidgetKeyboard.ui" line="247"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="260"/>
+        <location filename="WidgetKeyboard.ui" line="268"/>
         <source>0x01000037</source>
         <translation>0x01000037</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="263"/>
+        <location filename="WidgetKeyboard.ui" line="271"/>
         <source>F8</source>
         <translation>F8</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="291"/>
+        <location filename="WidgetKeyboard.ui" line="299"/>
         <source>0x01000038</source>
         <translation>0x01000038</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="294"/>
+        <location filename="WidgetKeyboard.ui" line="302"/>
         <source>F9</source>
         <translation>F9</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="315"/>
+        <location filename="WidgetKeyboard.ui" line="323"/>
         <source>0x01000039</source>
         <translation>0x01000039</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="318"/>
+        <location filename="WidgetKeyboard.ui" line="326"/>
         <source>F10</source>
         <translation>F10</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="339"/>
+        <location filename="WidgetKeyboard.ui" line="347"/>
         <source>0x0100003a</source>
         <translation>0x0100003a</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="342"/>
+        <location filename="WidgetKeyboard.ui" line="350"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="363"/>
+        <location filename="WidgetKeyboard.ui" line="371"/>
         <source>0x0100003b</source>
         <translation>0x0100003b</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="366"/>
+        <location filename="WidgetKeyboard.ui" line="374"/>
         <source>F12</source>
         <translation>F12</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="401"/>
-        <source>0x01000006</source>
-        <translation>0x01000006</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="404"/>
-        <source>Insert</source>
-        <translation>Insert</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="428"/>
-        <source>0x01000010</source>
-        <translation>0x01000010</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="431"/>
-        <source>Home</source>
-        <translation>Home</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="452"/>
-        <source>0x01000016</source>
-        <translation>0x01000016</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="455"/>
-        <source>PgUP</source>
-        <translation>PgUP</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="476"/>
-        <source>0x01000007</source>
-        <translation>0x01000007</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="479"/>
-        <source>Delete</source>
-        <translation>Delete</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="500"/>
-        <source>0x01000011</source>
-        <translation>0x01000011</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="503"/>
-        <source>End</source>
-        <translation>End</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="524"/>
-        <source>0x01000017</source>
-        <translation>0x01000017</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="527"/>
-        <source>PgDn</source>
-        <translation>PgDn</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="552"/>
-        <source>0x01000013</source>
-        <translation>0x01000013</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="580"/>
-        <source>0x01000012</source>
-        <translation>0x01000012</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="608"/>
-        <source>0x01000015</source>
-        <translation>0x01000015</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="636"/>
-        <source>0x01000014</source>
-        <translation>0x01000014</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="678"/>
+        <location filename="WidgetKeyboard.ui" line="409"/>
         <source>0x60</source>
         <translation>0x60</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="681"/>
+        <location filename="WidgetKeyboard.ui" line="412"/>
         <source>`</source>
         <translation>`</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="702"/>
+        <location filename="WidgetKeyboard.ui" line="433"/>
         <source>0x31</source>
         <translation>0x31</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="705"/>
+        <location filename="WidgetKeyboard.ui" line="436"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="726"/>
+        <location filename="WidgetKeyboard.ui" line="457"/>
         <source>0x32</source>
         <translation>0x32</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="729"/>
+        <location filename="WidgetKeyboard.ui" line="460"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="750"/>
+        <location filename="WidgetKeyboard.ui" line="481"/>
         <source>0x33</source>
         <translation>0x33</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="753"/>
+        <location filename="WidgetKeyboard.ui" line="484"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="774"/>
+        <location filename="WidgetKeyboard.ui" line="505"/>
         <source>0x34</source>
         <translation>0x34</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="777"/>
+        <location filename="WidgetKeyboard.ui" line="508"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="798"/>
+        <location filename="WidgetKeyboard.ui" line="529"/>
         <source>0x35</source>
         <translation>0x35</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="801"/>
+        <location filename="WidgetKeyboard.ui" line="532"/>
         <source>5</source>
         <translation>5</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="822"/>
+        <location filename="WidgetKeyboard.ui" line="553"/>
         <source>0x36</source>
         <translation>0x36</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="825"/>
+        <location filename="WidgetKeyboard.ui" line="556"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="846"/>
+        <location filename="WidgetKeyboard.ui" line="577"/>
         <source>0x37</source>
         <translation>0x37</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="849"/>
+        <location filename="WidgetKeyboard.ui" line="580"/>
         <source>7</source>
         <translation>7</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="870"/>
+        <location filename="WidgetKeyboard.ui" line="601"/>
         <source>0x38</source>
         <translation>0x38</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="873"/>
+        <location filename="WidgetKeyboard.ui" line="604"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="894"/>
+        <location filename="WidgetKeyboard.ui" line="625"/>
         <source>0x39</source>
         <translation>0x39</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="897"/>
+        <location filename="WidgetKeyboard.ui" line="628"/>
         <source>9</source>
         <translation>9</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="918"/>
+        <location filename="WidgetKeyboard.ui" line="649"/>
         <source>0x30</source>
         <translation>0x30</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="921"/>
+        <location filename="WidgetKeyboard.ui" line="652"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="942"/>
+        <location filename="WidgetKeyboard.ui" line="673"/>
         <source>0x2d</source>
         <translation>0x2d</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="945"/>
+        <location filename="WidgetKeyboard.ui" line="676"/>
         <source>-</source>
         <translation>-</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="966"/>
+        <location filename="WidgetKeyboard.ui" line="697"/>
         <source>13</source>
         <translation>13</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="969"/>
+        <location filename="WidgetKeyboard.ui" line="700"/>
         <source>=</source>
         <translation>=</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="990"/>
+        <location filename="WidgetKeyboard.ui" line="721"/>
         <source>0x01000003</source>
         <translation>0x01000003</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="993"/>
+        <location filename="WidgetKeyboard.ui" line="724"/>
         <source>Backspace</source>
         <translation>Backspace</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1021"/>
+        <location filename="WidgetKeyboard.ui" line="752"/>
         <source>0x01000024</source>
         <translation>0x01000024</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1024"/>
+        <location filename="WidgetKeyboard.ui" line="755"/>
         <source>    Caps   </source>
         <translation>    Caps   </translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1048"/>
+        <location filename="WidgetKeyboard.ui" line="779"/>
         <source>0x41</source>
         <translation>0x41</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1051"/>
+        <location filename="WidgetKeyboard.ui" line="782"/>
         <source>A</source>
         <translation>A</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1072"/>
+        <location filename="WidgetKeyboard.ui" line="803"/>
         <source>0x53</source>
         <translation>0x53</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1075"/>
+        <location filename="WidgetKeyboard.ui" line="806"/>
         <source>S</source>
         <translation>S</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1096"/>
+        <location filename="WidgetKeyboard.ui" line="827"/>
         <source>0x44</source>
         <translation>0x44</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1099"/>
+        <location filename="WidgetKeyboard.ui" line="830"/>
         <source>D</source>
         <translation>D</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1120"/>
+        <location filename="WidgetKeyboard.ui" line="851"/>
         <source>0x46</source>
         <translation>0x46</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1123"/>
+        <location filename="WidgetKeyboard.ui" line="854"/>
         <source>F</source>
         <translation>F</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1144"/>
+        <location filename="WidgetKeyboard.ui" line="875"/>
         <source>0x47</source>
         <translation>0x47</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1147"/>
+        <location filename="WidgetKeyboard.ui" line="878"/>
         <source>G</source>
         <translation>G</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1168"/>
+        <location filename="WidgetKeyboard.ui" line="899"/>
         <source>0x48</source>
         <translation>0x48</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1171"/>
+        <location filename="WidgetKeyboard.ui" line="902"/>
         <source>H</source>
         <translation>H</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1192"/>
+        <location filename="WidgetKeyboard.ui" line="923"/>
         <source>0x4a</source>
         <translation>0x4a</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1195"/>
+        <location filename="WidgetKeyboard.ui" line="926"/>
         <source>J</source>
         <translation>J</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1216"/>
+        <location filename="WidgetKeyboard.ui" line="947"/>
         <source>0x4b</source>
         <translation>0x4b</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1219"/>
+        <location filename="WidgetKeyboard.ui" line="950"/>
         <source>K</source>
         <translation>K</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1240"/>
+        <location filename="WidgetKeyboard.ui" line="971"/>
         <source>0x4c</source>
         <translation>0x4c</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1243"/>
+        <location filename="WidgetKeyboard.ui" line="974"/>
         <source>L</source>
         <translation>L</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1264"/>
+        <location filename="WidgetKeyboard.ui" line="995"/>
         <source>0x3b</source>
         <translation>0x3b</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1267"/>
+        <location filename="WidgetKeyboard.ui" line="998"/>
         <source>;</source>
         <translation>;</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1288"/>
+        <location filename="WidgetKeyboard.ui" line="1019"/>
         <source>0x27</source>
         <translation>0x27</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1291"/>
+        <location filename="WidgetKeyboard.ui" line="1022"/>
         <source>&apos;</source>
         <translation>&apos;</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1312"/>
+        <location filename="WidgetKeyboard.ui" line="1043"/>
         <source>0x01000004</source>
         <translation>0x01000004</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1315"/>
+        <location filename="WidgetKeyboard.ui" line="1046"/>
         <source>    Return   </source>
         <translation>    Return   </translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1343"/>
-        <location filename="WidgetKeyboard.ui" line="1610"/>
+        <location filename="WidgetKeyboard.ui" line="1074"/>
+        <location filename="WidgetKeyboard.ui" line="1341"/>
         <source>0x01000020</source>
         <translation>0x01000020</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1346"/>
+        <location filename="WidgetKeyboard.ui" line="1077"/>
         <source>     Shift     </source>
         <translation>     Shift     </translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1370"/>
+        <location filename="WidgetKeyboard.ui" line="1101"/>
         <source>0x5a</source>
         <translation>0x5a</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1373"/>
+        <location filename="WidgetKeyboard.ui" line="1104"/>
         <source>Z</source>
         <translation>Z</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1394"/>
+        <location filename="WidgetKeyboard.ui" line="1125"/>
         <source>0x58</source>
         <translation>0x58</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1397"/>
+        <location filename="WidgetKeyboard.ui" line="1128"/>
         <source>X</source>
         <translation>X</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1418"/>
+        <location filename="WidgetKeyboard.ui" line="1149"/>
         <source>0x43</source>
         <translation>0x43</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1421"/>
+        <location filename="WidgetKeyboard.ui" line="1152"/>
         <source>C</source>
         <translation>C</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1442"/>
+        <location filename="WidgetKeyboard.ui" line="1173"/>
         <source>0x56</source>
         <translation>0x56</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1445"/>
+        <location filename="WidgetKeyboard.ui" line="1176"/>
         <source>V</source>
         <translation>V</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1466"/>
+        <location filename="WidgetKeyboard.ui" line="1197"/>
         <source>0x42</source>
         <translation>0x42</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1469"/>
+        <location filename="WidgetKeyboard.ui" line="1200"/>
         <source>B</source>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1490"/>
+        <location filename="WidgetKeyboard.ui" line="1221"/>
         <source>0x4e</source>
         <translation>0x4e</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1493"/>
+        <location filename="WidgetKeyboard.ui" line="1224"/>
         <source>N</source>
         <translation>N</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1514"/>
+        <location filename="WidgetKeyboard.ui" line="1245"/>
         <source>0x4d</source>
         <translation>0x4d</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1517"/>
+        <location filename="WidgetKeyboard.ui" line="1248"/>
         <source>M</source>
         <translation>M</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1538"/>
+        <location filename="WidgetKeyboard.ui" line="1269"/>
         <source>0x2c</source>
         <translation>0x2c</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1541"/>
+        <location filename="WidgetKeyboard.ui" line="1272"/>
         <source>,</source>
         <translation>,</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1562"/>
+        <location filename="WidgetKeyboard.ui" line="1293"/>
         <source>0x2e</source>
         <translation>0x2e</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1565"/>
+        <location filename="WidgetKeyboard.ui" line="1296"/>
         <source>.</source>
         <translation>.</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1586"/>
+        <location filename="WidgetKeyboard.ui" line="1317"/>
         <source>0x2f</source>
         <translation>0x2f</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1589"/>
+        <location filename="WidgetKeyboard.ui" line="1320"/>
         <source>/</source>
         <translation>/</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1613"/>
+        <location filename="WidgetKeyboard.ui" line="1344"/>
         <source>     Shift      </source>
         <translation>     Shift      </translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1644"/>
+        <location filename="WidgetKeyboard.ui" line="1375"/>
         <source>0x01000021</source>
         <translation>0x01000021</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1647"/>
+        <location filename="WidgetKeyboard.ui" line="1378"/>
         <source>    Ctrl     </source>
         <translation>    Ctrl     </translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1671"/>
+        <location filename="WidgetKeyboard.ui" line="1402"/>
         <source>0x01000023</source>
         <translation>0x01000023</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1674"/>
+        <location filename="WidgetKeyboard.ui" line="1405"/>
         <source>   Alt  </source>
         <translation>   Alt  </translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1698"/>
+        <location filename="WidgetKeyboard.ui" line="1429"/>
         <source>0x20</source>
         <translation>0x20</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1717"/>
+        <location filename="WidgetKeyboard.ui" line="1448"/>
         <source>Transparency</source>
         <translation>Transparency</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1745"/>
+        <location filename="WidgetKeyboard.ui" line="1476"/>
         <source>0x01000001</source>
         <translation>0x01000001</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1748"/>
+        <location filename="WidgetKeyboard.ui" line="1479"/>
         <source>  Tab   </source>
         <translation>  Tab   </translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1769"/>
+        <location filename="WidgetKeyboard.ui" line="1500"/>
         <source>0x51</source>
         <translation>0x51</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1772"/>
+        <location filename="WidgetKeyboard.ui" line="1503"/>
         <source>Q</source>
         <translation>Q</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1793"/>
+        <location filename="WidgetKeyboard.ui" line="1524"/>
         <source>0x57</source>
         <translation>0x57</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1796"/>
+        <location filename="WidgetKeyboard.ui" line="1527"/>
         <source>W</source>
         <translation>W</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1817"/>
+        <location filename="WidgetKeyboard.ui" line="1548"/>
         <source>0x45</source>
         <translation>0x45</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1820"/>
+        <location filename="WidgetKeyboard.ui" line="1551"/>
         <source>E</source>
         <translation>E</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1841"/>
+        <location filename="WidgetKeyboard.ui" line="1572"/>
         <source>0x52</source>
         <translation>0x52</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1844"/>
+        <location filename="WidgetKeyboard.ui" line="1575"/>
         <source>R</source>
         <translation>R</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1865"/>
+        <location filename="WidgetKeyboard.ui" line="1596"/>
         <source>0x54</source>
         <translation>0x54</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1868"/>
+        <location filename="WidgetKeyboard.ui" line="1599"/>
         <source>T</source>
         <translation>T</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1889"/>
+        <location filename="WidgetKeyboard.ui" line="1620"/>
         <source>0x59</source>
         <translation>0x59</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1892"/>
+        <location filename="WidgetKeyboard.ui" line="1623"/>
         <source>Y</source>
         <translation>Y</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1913"/>
+        <location filename="WidgetKeyboard.ui" line="1644"/>
         <source>0x55</source>
         <translation>0x55</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1916"/>
+        <location filename="WidgetKeyboard.ui" line="1647"/>
         <source>U</source>
         <translation>U</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1937"/>
+        <location filename="WidgetKeyboard.ui" line="1668"/>
         <source>0x49</source>
         <translation>0x49</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1940"/>
+        <location filename="WidgetKeyboard.ui" line="1671"/>
         <source>I</source>
         <translation>I</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1961"/>
+        <location filename="WidgetKeyboard.ui" line="1692"/>
         <source>0x4f</source>
         <translation>0x4f</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1964"/>
+        <location filename="WidgetKeyboard.ui" line="1695"/>
         <source>O</source>
         <translation>O</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1985"/>
+        <location filename="WidgetKeyboard.ui" line="1716"/>
         <source>0x50</source>
         <translation>0x50</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="1988"/>
+        <location filename="WidgetKeyboard.ui" line="1719"/>
         <source>P</source>
         <translation>P</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="2009"/>
+        <location filename="WidgetKeyboard.ui" line="1740"/>
         <source>0x5b</source>
         <translation>0x5b</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="2012"/>
+        <location filename="WidgetKeyboard.ui" line="1743"/>
         <source>[</source>
         <translation>[</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="2033"/>
+        <location filename="WidgetKeyboard.ui" line="1764"/>
         <source>0x5d</source>
         <translation>0x5d</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="2036"/>
+        <location filename="WidgetKeyboard.ui" line="1767"/>
         <source>]</source>
         <translation>]</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="2057"/>
+        <location filename="WidgetKeyboard.ui" line="1788"/>
         <source>0x5c</source>
         <translation>0x5c</translation>
     </message>
     <message>
-        <location filename="WidgetKeyboard.ui" line="2060"/>
+        <location filename="WidgetKeyboard.ui" line="1791"/>
         <source>\</source>
         <translation>\</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="2093"/>
-        <source>0x01000009</source>
-        <translation>0x01000009</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="2096"/>
-        <source>Print
-Screen</source>
-        <translation>Print
-Screen</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="2121"/>
-        <source>0x01000026</source>
-        <translation>0x01000026</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="2124"/>
-        <source>Scroll
-Lock</source>
-        <translation>Scroll
-Lock</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="2149"/>
-        <source>0x01000008</source>
-        <translation>0x01000008</translation>
-    </message>
-    <message>
-        <location filename="WidgetKeyboard.ui" line="2152"/>
-        <source>Pause
-Break</source>
-        <translation>Pause
-Break</translation>
     </message>
 </context>
 <context>
@@ -3209,47 +3093,47 @@ Break</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="52"/>
+        <location filename="wifisettingsdialog.cpp" line="53"/>
         <source>No wifi interfaces</source>
         <translation>沒有 wifi 介面</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="52"/>
+        <location filename="wifisettingsdialog.cpp" line="53"/>
         <source>No wifi interfaces available</source>
         <translation>未提供 wifi 介面</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="242"/>
+        <location filename="wifisettingsdialog.cpp" line="243"/>
         <source>Authenticated but still waiting for DHCP lease</source>
         <translation>驗證完全，但仍在等待 DHCP 租約</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="249"/>
+        <location filename="wifisettingsdialog.cpp" line="250"/>
         <source>Connecting to wifi failed</source>
         <translation>連線至 wifi 失敗</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="249"/>
+        <location filename="wifisettingsdialog.cpp" line="250"/>
         <source>Connecting to the wifi access point failed. Check your password</source>
         <translation>連線到 wifi 存取點失敗。檢查您的密碼</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="284"/>
+        <location filename="wifisettingsdialog.cpp" line="285"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="290"/>
+        <location filename="wifisettingsdialog.cpp" line="291"/>
         <source>Releasing old DHCP lease</source>
         <translation>正在釋放舊的 DHCP 租約</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="305"/>
+        <location filename="wifisettingsdialog.cpp" line="306"/>
         <source>Disconnecting</source>
         <translation>斷線</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="310"/>
+        <location filename="wifisettingsdialog.cpp" line="311"/>
         <source>Connecting</source>
         <translation>連線</translation>
     </message>
