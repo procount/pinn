@@ -97,7 +97,7 @@ extern QStringList downloadRepoUrls;
 extern QString repoList;
 
 int fontsize=11;
-int mouse_accelerate=0;
+int mouse_accelerate=1;
 
 /* Main window
  *
@@ -260,9 +260,9 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
         {
             forceruninstaller = 1;
         }
-        if (s.contains("mouseaccelerate"))
+        if (s.contains("noaccelerate"))
         {
-            mouse_accelerate=1;
+            mouse_accelerate=0;
         }
     }
 

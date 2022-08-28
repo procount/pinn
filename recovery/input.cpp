@@ -391,11 +391,11 @@ void Kinput::mouse_repeat()
 
         if (mouse_accelerate)
         {
-            if (count>50)
+            if (count>5)
                 step=5;
-            if (count>100)
+            if (count>25)
                 step=8;
-            if (count>150)
+            if (count>50)
                 step=10;
         }
 
