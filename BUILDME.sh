@@ -263,8 +263,8 @@ cp "$IMAGES_DIR/rpi-firmware/fixup4.dat" "$FINAL_OUTPUT_DIR/fixup4rc.dat"
 cp "$IMAGES_DIR/rpi-firmware/config.txt" "$FINAL_OUTPUT_DIR"
 cp "$IMAGES_DIR/rpi-firmware/bootcode.bin" "$FINAL_OUTPUT_DIR"
 cp -a $IMAGES_DIR/*.dtb "$IMAGES_DIR/overlays" "$FINAL_OUTPUT_DIR"
-cp "$IMAGES_DIR/cmdline.txt" "$FINAL_OUTPUT_DIR/recovery.cmdline"
-cp "$IMAGES_DIR/recovery.cmdline.new" "$FINAL_OUTPUT_DIR"
+cp "$IMAGES_DIR/baolian_cmdline.txt" "$FINAL_OUTPUT_DIR/recovery.cmdline"
+cp "$IMAGES_DIR/baolian_config.txt" "$FINAL_OUTPUT_DIR/config.txt"
 touch "$FINAL_OUTPUT_DIR/RECOVERY_FILES_DO_NOT_EDIT"
 
 # Create build-date timestamp file containing Git HEAD info for build

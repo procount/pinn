@@ -574,6 +574,12 @@ int main(int argc, char *argv[])
                 qDebug() << "Joy2 key detected";
                 break;
             }
+            if (retrogame->hasKeyPressed())
+            {
+                bailout = false;
+                qDebug() << "retrogame button detected";
+                break;
+            }
 
         }
     }

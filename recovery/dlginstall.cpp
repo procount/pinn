@@ -1,5 +1,6 @@
 #include "dlginstall.h"
 #include "ui_dlginstall.h"
+#include <QDesktopWidget>
 
 extern QApplication * gApp;
 
@@ -56,6 +57,7 @@ void dlgInstall::on_cbvk_toggled(bool checked)
         if (_lastWidgetFocus)
             _lastWidgetFocus->setFocus();
 
+        virtualKeyBoard->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignHCenter | Qt::AlignBottom, QSize(480,160), gApp->desktop()->availableGeometry()));
         virtualKeyBoard->show();
         if (pNav)
             delete pNav;

@@ -265,6 +265,9 @@ void Kinput::reset()
 
 void Kinput::inject_key(int key, int value)
 {
+    if(value)
+        keyPressed=1;
+
     if (key & mouse_any)
         mouse_simulate(key,value);
     else

@@ -641,7 +641,6 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     connect(&_piDrivePollTimer, SIGNAL(timeout()), SLOT(pollForNewDisks()));
     _piDrivePollTimer.start(POLLTIME);
     ug->setFocus();
-
 }
 
 MainWindow::~MainWindow()
@@ -1630,7 +1629,7 @@ void MainWindow::update_window_title()
     {
         count = QString(tr("Reboot in %1 secs")).arg(QString::number(currentCount));
     }
-    setWindowTitle(QString(tr("Installer v%1 - Built: %2 (%3) %4")).arg(VERSION_NUMBER).arg(QString::fromLocal8Bit(__DATE__)).arg(_ipaddress.toString()).arg(count));
+    setWindowTitle(QString(tr("PINN v%1 - Built: %2 (%3) %4")).arg(VERSION_NUMBER).arg(QString::fromLocal8Bit(__DATE__)).arg(_ipaddress.toString()).arg(count));
 }
 
 void MainWindow::changeEvent(QEvent* event)
@@ -1816,85 +1815,6 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     if (event->type() == QEvent::KeyPress)
     {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
-
-        if (!Kinput::grabWindow())
-        {
-            // Let user find the best display mode for their display
-            // experimentally by using keys 1-4. PINN will default to using HDMI preferred mode.
-            // HDMI preferred mode
-            if (keyEvent->key() == Qt::Key_1 && _currentMode != 0)
-            {
-                eat=true;
-                displayMode(0);
-            }
-            // HDMI safe mode
-            if (keyEvent->key() == Qt::Key_2 && _currentMode != 1)
-            {
-                eat=true;
-                displayMode(1);
-            }
-            // Composite PAL
-            if (keyEvent->key() == Qt::Key_3 && _currentMode != 2)
-            {
-                eat=true;
-                displayMode(2);
-            }
-             // Composite NTSC
-            if (keyEvent->key() == Qt::Key_4 && _currentMode != 3)
-            {
-                displayMode(3);
-            }
-
-            if (keyEvent->key() == Qt::Key_Plus && fontsize < 20)
-            {
-                eat=true;
-                fontsize++;
-                QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
-                gApp->setStyleSheet(stylesheet);
-                QWSServer::instance()->refresh();
-                //qDebug() << "Using fontsize "<<fontsize;
-            }
-            if (keyEvent->key() == Qt::Key_Minus && fontsize >11)
-            {
-                eat=true;
-                fontsize--;
-                QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
-                gApp->setStyleSheet(stylesheet);
-                QWSServer::instance()->refresh();
-                //qDebug() << "Using fontsize "<<fontsize;
-            }
-#if 0
-            // cursor Right changes tab headings
-            if (keyEvent->key() == Qt::Key_Right)
-            {
-                if (ug->tabs && toolbar_index !=TOOLBAR_MAINTENANCE) //Don't do if no tabs visisble
-                {
-                    if (ug->tabs->count() > 0)
-                    {
-                        int index = ug->tabs->currentIndex()+1;
-                        if (index >= ug->tabs->count())
-                            index =0;
-                        ug->tabs->setCurrentIndex(index);
-                    }
-                }
-            }
-
-            // cursor Left changes tab headings
-            if (keyEvent->key() == Qt::Key_Left)
-            {
-                if (ug->tabs && toolbar_index !=TOOLBAR_MAINTENANCE) //Don't do if no tabs visisble
-                {
-                    if (ug->tabs->count() > 0)
-                    {
-                        int index = ug->tabs->currentIndex()-1;
-                        if (index < 0)
-                            index = ug->tabs->count()-1;
-                        ug->tabs->setCurrentIndex(index);
-                    }
-                }
-            }
-#endif
-        }
 
         // Catch Return key to trigger OS boot
         if (keyEvent->key() == Qt::Key_Return)
