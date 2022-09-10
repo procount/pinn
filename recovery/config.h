@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 /* Version number displayed in the title bar */
-#define VERSION_NUMBER "3.8.3b"
+#define VERSION_NUMBER "3.8.3c"
 
 /* Color of the background */
 // #define BACKGROUND_COLOR  Qt::white
@@ -24,13 +24,13 @@
 
 /* Location to download the list of available distributions from
  * Multiple lists can be specified by space separating the URLs */
-#define DEFAULT_REPO_SERVER  "http://thunderstickstudio.com/build-a-cade/PINN/os_list.json"
+#define DEFAULT_REPO_SERVER  "http://downloads.sourceforge.net/project/build-a-cade/PINN/os_list_v3.json"
 
 /* Location of data for self-updating */
-#define BUILD_URL       "http://thunderstickstudio.com/build-a-cade/PINN/BUILD-DATA"
-#define UPDATE_URL      "http://thunderstickstudio.com/build-a-cade/PINN/pinn-lite.zip"
-#define README_URL      "http://thunderstickstudio.com/build-a-cade/PINN/README.md"
-#define GROUP_URL       "http://thunderstickstudio.com/build-a-cade/PINN/overrides.json"
+#define BUILD_URL       "http://downloads.sourceforge.net/project/build-a-cade/PINN/BUILD-DATA"
+#define UPDATE_URL      "http://downloads.sourceforge.net/project/build-a-cade/PINN/pinn-lite.zip"
+#define README_URL      "http://downloads.sourceforge.net/project/build-a-cade/PINN/README.md"
+#define GROUP_URL       "http://downloads.sourceforge.net/project/build-a-cade/PINN/overrides.json"
 #define BUILD_CURRENT   "/mnt/BUILD-DATA"
 #define BUILD_NEW       "/tmp/BUILD-DATA"
 #define BUILD_IGNORE    "/settings/BUILD-DATA"
