@@ -1,0 +1,14 @@
+ignore_lcd=0
+display_default_lcd=1
+display_lcd_rotate=3
+framebufferwidth=480
+framebufferheight=800
+
+gpu_mem=16
+start_file=recovery.elf
+fixup_file=fixup_rc.dat
+
+[pi4]
+start_file=recover4.elf
+fixup_file=fixup4rc.dat
+max_framebuffers=2
