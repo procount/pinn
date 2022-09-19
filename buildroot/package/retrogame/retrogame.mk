@@ -9,6 +9,7 @@ RETROGAME_SITE = $(TOPDIR)/../retrogame
 RETROGAME_SITE_METHOD = local
 RETROGAME_LICENSE = Proprietary
 #RETROGAME_LICENSE_FILES = 
+RETROGAME_DEPENDENCIES = rpi-userland
 
 define RETROGAME_BUILD_CMDS
 	cd $(@D)
@@ -28,6 +29,7 @@ endef
 
 define RETROGAME_INSTALL_TARGET_CMDS
 	$(INSTALL) -D -m 0755 $(@D)/retrogame $(TARGET_DIR)/usr/bin/retrogame
+	$(INSTALL) -D -m 0644 $(@D)/iso3166.tab $(TARGET_DIR)/usr/share/zoneinfo/
 endef
 
 $(eval $(generic-package))
