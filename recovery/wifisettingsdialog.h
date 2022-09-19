@@ -43,6 +43,7 @@ protected:
     bool _connecting;
     void msleep(int msec);
     QString removeQuotes(QString str);
+    QString _wifiCountry;
 
 private:
     WidgetKeyboard *virtualKeyBoard;

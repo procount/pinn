@@ -75,63 +75,63 @@
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QGroupBox" name="passwordGroupBox">
-           <property name="title">
-            <string/>
-           </property>
-           <property name="flat">
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="passwordGroupBox">
+        <property name="title">
+         <string/>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+        <layout class="QFormLayout" name="formLayout">
+         <property name="fieldGrowthPolicy">
+          <enum>QFormLayout::ExpandingFieldsGrow</enum>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLabel" name="userLabel">
+           <property name="enabled">
             <bool>false</bool>
            </property>
-           <layout class="QFormLayout" name="formLayout">
-            <property name="fieldGrowthPolicy">
-             <enum>QFormLayout::ExpandingFieldsGrow</enum>
-            </property>
-            <item row="0" column="0">
-             <widget class="QLabel" name="userLabel">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string>&amp;Username</string>
-              </property>
-              <property name="buddy">
-               <cstring>userEdit</cstring>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="userEdit">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_3">
-              <property name="text">
-               <string>&amp;Password</string>
-              </property>
-              <property name="buddy">
-               <cstring>passwordEdit</cstring>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="passwordEdit">
-              <property name="echoMode">
-               <enum>QLineEdit::Password</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0" colspan="2">
-             <widget class="QCheckBox" name="checkBox">
-              <property name="text">
-               <string>&amp;Show Password</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+           <property name="text">
+            <string>&amp;Username</string>
+           </property>
+           <property name="buddy">
+            <cstring>userEdit</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="userEdit">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>&amp;Password</string>
+           </property>
+           <property name="buddy">
+            <cstring>passwordEdit</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="passwordEdit">
+           <property name="echoMode">
+            <enum>QLineEdit::Password</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0" colspan="2">
+          <widget class="QCheckBox" name="checkBox">
+           <property name="text">
+            <string>&amp;Show Password</string>
+           </property>
           </widget>
          </item>
         </layout>
@@ -141,11 +141,31 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="vkeyboard">
-     <property name="text">
-      <string>&amp;Virtual Keyboard</string>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QCheckBox" name="vkeyboard">
+       <property name="text">
+        <string>&amp;Virtual Keyboard</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_cc">
+       <property name="text">
+        <string>&amp;Country</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="buddy">
+        <cstring>country</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="country"/>
+     </item>
+    </layout>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -182,8 +202,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>325</x>
-     <y>419</y>
+     <x>389</x>
+     <y>469</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
@@ -198,8 +218,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>257</x>
-     <y>419</y>
+     <x>353</x>
+     <y>469</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
