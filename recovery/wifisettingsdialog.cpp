@@ -21,6 +21,10 @@
 #include <QNetworkInterface>
 #include <QProcess>
 #include <QDesktopWidget>
+#include "QFile"
+#include "util.h"
+
+#define WPA_FILE "/settings/wpa_supplicant.conf"
 
 WifiSettingsDialog::WifiSettingsDialog(const QString &preferredInterface, QWidget *parent) :
     QDialog(parent),
@@ -58,6 +62,10 @@ WifiSettingsDialog::WifiSettingsDialog(const QString &preferredInterface, QWidge
     _interface = WpaFactory::createInterfaceProxy(_ifpath, this);
     _ifname = _interface->ifname();
     qDebug() << "Using wifi interface" << _ifname;
+
+    GetCountryCode();
+    SetCountryCode("GB");
+    GetCountryCode();
 
     _currentBSS = _interface->currentBSS();
     connect(_interface, SIGNAL(BSSAdded(QDBusObjectPath,QVariantMap)), this, SLOT(onBSSAdded(QDBusObjectPath)));
@@ -454,5 +462,50 @@ void WifiSettingsDialog::on_pbDelete_clicked()
         {
             wi->setData(SecondIconRole, QVariant() );
         }
+    }
+}
+
+QString WifiSettingsDialog::GetCountryCode()
+{
+    QString countryCode="";
+    QByteArray wpaFile;
+    QRegExp rx("country=([A-Z]{2})");
+    int idx;
+
+    if (QFile::exists(WPA_FILE))
+    {
+        wpaFile = getFileContents(WPA_FILE);
+        QString str = QString::fromUtf8(wpaFile);
+        if ( (idx=rx.indexIn(str)) != -1)
+        {
+            countryCode = rx.cap(1);
+            qDebug()<<"Country = "<<countryCode;
+        }
+    }
+    return(countryCode);
+}
+
+void WifiSettingsDialog::SetCountryCode(QString country)
+{
+    QByteArray wpaFile;
+    QString outstr;
+    QRegExp rx("country=([A-Z]{2})");
+    int idx;
+
+    if (QFile::exists(WPA_FILE))
+    {
+        wpaFile = getFileContents(WPA_FILE);
+        QString str = QString::fromUtf8(wpaFile);
+        if ( (idx=rx.indexIn(str)) != -1)
+        {
+            str[idx+8]=country[0];
+            str[idx+9]=country[1];
+            outstr = str;
+        }
+        else
+        {
+            outstr = "country="+country+"\n"+str;
+        }
+        putFileContents(WPA_FILE, outstr.toLatin1() );
     }
 }

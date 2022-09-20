@@ -44,6 +44,8 @@ protected:
     void msleep(int msec);
     QString removeQuotes(QString str);
     QString _wifiCountry;
+    QString GetCountryCode();
+    void SetCountryCode(QString country);
 
 private:
     WidgetKeyboard *virtualKeyBoard;
