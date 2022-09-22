@@ -25,6 +25,7 @@
 #include "util.h"
 
 #define WPA_FILE "/settings/wpa_supplicant.conf"
+#define ISO3166FILE  "/usr/share/zoneinfo/iso3166.tab"
 
 WifiSettingsDialog::WifiSettingsDialog(const QString &preferredInterface, QWidget *parent) :
     QDialog(parent),
@@ -63,9 +64,27 @@ WifiSettingsDialog::WifiSettingsDialog(const QString &preferredInterface, QWidge
     _ifname = _interface->ifname();
     qDebug() << "Using wifi interface" << _ifname;
 
-    GetCountryCode();
-    SetCountryCode("GB");
-    GetCountryCode();
+    _wifiCountry = GetCountryCode();
+
+    QString contents = QString::fromLatin1(getFileContents(ISO3166FILE));
+    QStringList lines = contents.split("\n");
+    QStringList countryList;
+    foreach (QString country, lines)
+    {
+        if (country[0] != '#')
+        {
+            countryList << country;
+            QString code = country.left(2);
+            ui->country->addItem(country, code);
+            qDebug()<<country << ":"<< code <<":"<<_wifiCountry;
+
+            if ((_wifiCountry.length()==2) && (code.compare(_wifiCountry, Qt::CaseInsensitive) == 0))
+            {
+                //_currentLang = langcode;
+                ui->country->setCurrentIndex(ui->country->count() - 1);
+            }
+        }
+    }
 
     _currentBSS = _interface->currentBSS();
     connect(_interface, SIGNAL(BSSAdded(QDBusObjectPath,QVariantMap)), this, SLOT(onBSSAdded(QDBusObjectPath)));
@@ -268,6 +287,12 @@ void WifiSettingsDialog::accept()
     QString ssid = ui->list->currentItem()->text();
     bool useWPS = ui->WpsRadio->isEnabled() && ui->WpsRadio->isChecked();
 
+    int idx = ui->country->currentIndex();
+    _wifiCountry = ui->country->itemData(idx).toString();
+    qDebug()<<"Setting wifi to " << _wifiCountry;
+
+    SetCountryCode(_wifiCountry);
+
     if (ui->userEdit->isEnabled())
         username = ui->userEdit->text();
     if (ui->passwordEdit->isEnabled())
@@ -385,6 +410,8 @@ bool WifiSettingsDialog::connectToWifi(const QString &ssid, const QString &usern
         qDebug() << "Saving wifi configuration";
         QProcess::execute("/usr/sbin/wpa_cli", args);
 
+        SetCountryCode(_wifiCountry);
+
         return true;
     }
 }
@@ -492,20 +519,33 @@ void WifiSettingsDialog::SetCountryCode(QString country)
     QRegExp rx("country=([A-Z]{2})");
     int idx;
 
-    if (QFile::exists(WPA_FILE))
+    if (country.length()==2)
     {
-        wpaFile = getFileContents(WPA_FILE);
-        QString str = QString::fromUtf8(wpaFile);
-        if ( (idx=rx.indexIn(str)) != -1)
+        if (QFile::exists(WPA_FILE))
         {
-            str[idx+8]=country[0];
-            str[idx+9]=country[1];
-            outstr = str;
+            wpaFile = getFileContents(WPA_FILE);
+            QString str = QString::fromUtf8(wpaFile);
+            if ( (idx=rx.indexIn(str)) != -1)
+            {
+                str[idx+8]=country[0];
+                str[idx+9]=country[1];
+                outstr = str;
+            }
+            else
+            {
+                outstr = "country="+country+"\n"+str;
+            }
+            putFileContents(WPA_FILE, outstr.toLatin1() );
+            qDebug()<<outstr;
         }
-        else
-        {
-            outstr = "country="+country+"\n"+str;
-        }
-        putFileContents(WPA_FILE, outstr.toLatin1() );
     }
+    else {
+        qDebug()<<"ERROR wifi code is not length 2";
+    }
+}
+
+void WifiSettingsDialog::on_country_currentIndexChanged(int idx)
+{
+//    _wifiCountry = ui->country->itemData(idx).toString();
+    qDebug() << "Index changed to " << idx << " : " << _wifiCountry;
 }

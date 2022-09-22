@@ -64,6 +64,7 @@ private slots:
     void on_vkeyboard_toggled(bool checked);
     void on_checkBox_stateChanged(int arg1);
     void on_pbDelete_clicked();
+    void on_country_currentIndexChanged(int idx);
 };
 
 #endif // WIFISETTINGSDIALOG_H

@@ -227,5 +227,21 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>country</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>country</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>306</x>
+     <y>421</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>306</x>
+     <y>421</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
 </ui>
