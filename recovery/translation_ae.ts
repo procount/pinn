@@ -3026,47 +3026,47 @@ or press joystick...</source>
 <context>
     <name>WifiSettingsDialog</name>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="53"/>
+        <location filename="wifisettingsdialog.cpp" line="58"/>
         <source>No wifi interfaces</source>
         <translation>لا واجات wifi</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="53"/>
+        <location filename="wifisettingsdialog.cpp" line="58"/>
         <source>No wifi interfaces available</source>
         <translation>لا واجات wifi متوفرة</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="243"/>
+        <location filename="wifisettingsdialog.cpp" line="270"/>
         <source>Authenticated but still waiting for DHCP lease</source>
         <translation>مصادقه ولكن لا يزال في انتظار تاجير DHCP</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="250"/>
+        <location filename="wifisettingsdialog.cpp" line="277"/>
         <source>Connecting to wifi failed</source>
         <translation>فشل الاتصال ب wifi</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="250"/>
+        <location filename="wifisettingsdialog.cpp" line="277"/>
         <source>Connecting to the wifi access point failed. Check your password</source>
         <translation>فشل الاتصال بنقطه وصول wifi. التحقق من كلمه السر</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="285"/>
+        <location filename="wifisettingsdialog.cpp" line="318"/>
         <source>Cancel</source>
         <translation>الغاء الامر</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="291"/>
+        <location filename="wifisettingsdialog.cpp" line="324"/>
         <source>Releasing old DHCP lease</source>
         <translation>إصدار إيجار DHCP قديم</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="306"/>
+        <location filename="wifisettingsdialog.cpp" line="339"/>
         <source>Disconnecting</source>
         <translation>قطع</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="311"/>
+        <location filename="wifisettingsdialog.cpp" line="344"/>
         <source>Connecting</source>
         <translation>اتصال</translation>
     </message>
@@ -3098,28 +3098,33 @@ or press joystick...</source>
         <translation type="unfinished">تحقق من كلمة السر</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="96"/>
+        <location filename="wifisettingsdialog.ui" line="99"/>
         <source>&amp;Username</source>
         <oldsource>Username</oldsource>
         <translation type="unfinished">اسم المستخدم</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="113"/>
+        <location filename="wifisettingsdialog.ui" line="116"/>
         <source>&amp;Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="130"/>
+        <location filename="wifisettingsdialog.ui" line="133"/>
         <source>&amp;Show Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="146"/>
+        <location filename="wifisettingsdialog.ui" line="148"/>
         <source>&amp;Virtual Keyboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="158"/>
+        <location filename="wifisettingsdialog.ui" line="155"/>
+        <source>&amp;Country</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="wifisettingsdialog.ui" line="178"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>

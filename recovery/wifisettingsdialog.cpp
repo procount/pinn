@@ -71,7 +71,7 @@ WifiSettingsDialog::WifiSettingsDialog(const QString &preferredInterface, QWidge
     QStringList countryList;
     foreach (QString country, lines)
     {
-        if (country[0] != '#')
+        if ((country[0] >= 'A') && (country[0] <= 'Z'))
         {
             countryList << country;
             QString code = country.left(2);

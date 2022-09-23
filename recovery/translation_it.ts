@@ -3090,48 +3090,48 @@ or press joystick...</source>
 <context>
     <name>WifiSettingsDialog</name>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="53"/>
+        <location filename="wifisettingsdialog.cpp" line="58"/>
         <source>No wifi interfaces</source>
         <translation>Nessuna rete Wi-Fi</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="53"/>
+        <location filename="wifisettingsdialog.cpp" line="58"/>
         <source>No wifi interfaces available</source>
         <translation>Nessuna rete Wi-Fi disponibile</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="243"/>
+        <location filename="wifisettingsdialog.cpp" line="270"/>
         <source>Authenticated but still waiting for DHCP lease</source>
         <translation>Autentificato ma ancora in attesa del lease DHCP</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="250"/>
+        <location filename="wifisettingsdialog.cpp" line="277"/>
         <source>Connecting to wifi failed</source>
         <translation>Connessione alla rete Wi-Fi fallita</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="250"/>
+        <location filename="wifisettingsdialog.cpp" line="277"/>
         <source>Connecting to the wifi access point failed. Check your password</source>
         <translation>Connessione all&apos;access point Wi-Fi fallita. 
 Verifica la password</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="285"/>
+        <location filename="wifisettingsdialog.cpp" line="318"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="291"/>
+        <location filename="wifisettingsdialog.cpp" line="324"/>
         <source>Releasing old DHCP lease</source>
         <translation>Rilascio vecchio lease DHCP</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="306"/>
+        <location filename="wifisettingsdialog.cpp" line="339"/>
         <source>Disconnecting</source>
         <translation>Disconnessione</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="311"/>
+        <location filename="wifisettingsdialog.cpp" line="344"/>
         <source>Connecting</source>
         <translation>Connessione</translation>
     </message>
@@ -3163,28 +3163,33 @@ Verifica la password</translation>
         <translation>Password &amp;autentificazione</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="96"/>
+        <location filename="wifisettingsdialog.ui" line="99"/>
         <source>&amp;Username</source>
         <oldsource>Username</oldsource>
         <translation>&amp;Utente</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="113"/>
+        <location filename="wifisettingsdialog.ui" line="116"/>
         <source>&amp;Password</source>
         <translation>&amp;Password</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="130"/>
+        <location filename="wifisettingsdialog.ui" line="133"/>
         <source>&amp;Show Password</source>
         <translation>Vi&amp;sualizza password</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="146"/>
+        <location filename="wifisettingsdialog.ui" line="148"/>
         <source>&amp;Virtual Keyboard</source>
         <translation>Tastiera &amp;virtuale</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="158"/>
+        <location filename="wifisettingsdialog.ui" line="155"/>
+        <source>&amp;Country</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="wifisettingsdialog.ui" line="178"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>

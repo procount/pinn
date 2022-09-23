@@ -3025,47 +3025,47 @@ or press joystick...</source>
 <context>
     <name>WifiSettingsDialog</name>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="53"/>
+        <location filename="wifisettingsdialog.cpp" line="58"/>
         <source>No wifi interfaces</source>
         <translation>Ingen wifi grensesnitt</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="53"/>
+        <location filename="wifisettingsdialog.cpp" line="58"/>
         <source>No wifi interfaces available</source>
         <translation>Ingen wifi grensesnitt tilgjengelig</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="243"/>
+        <location filename="wifisettingsdialog.cpp" line="270"/>
         <source>Authenticated but still waiting for DHCP lease</source>
         <translation>Autorisert, men venter på DHCP-avtale</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="250"/>
+        <location filename="wifisettingsdialog.cpp" line="277"/>
         <source>Connecting to wifi failed</source>
         <translation>Tilkobling til wifi feilet</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="250"/>
+        <location filename="wifisettingsdialog.cpp" line="277"/>
         <source>Connecting to the wifi access point failed. Check your password</source>
         <translation>Tilkobling til wifi aksesspunkt feilet. Kontroller passord</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="285"/>
+        <location filename="wifisettingsdialog.cpp" line="318"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="291"/>
+        <location filename="wifisettingsdialog.cpp" line="324"/>
         <source>Releasing old DHCP lease</source>
         <translation>Frigjør gammel DHCP-avtale</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="306"/>
+        <location filename="wifisettingsdialog.cpp" line="339"/>
         <source>Disconnecting</source>
         <translation>Kobler fra</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="311"/>
+        <location filename="wifisettingsdialog.cpp" line="344"/>
         <source>Connecting</source>
         <translation>Kobler til</translation>
     </message>
@@ -3097,28 +3097,33 @@ or press joystick...</source>
         <translation type="unfinished">Passord godkjenning</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="96"/>
+        <location filename="wifisettingsdialog.ui" line="99"/>
         <source>&amp;Username</source>
         <oldsource>Username</oldsource>
         <translation type="unfinished">Brukernavn</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="113"/>
+        <location filename="wifisettingsdialog.ui" line="116"/>
         <source>&amp;Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="130"/>
+        <location filename="wifisettingsdialog.ui" line="133"/>
         <source>&amp;Show Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="146"/>
+        <location filename="wifisettingsdialog.ui" line="148"/>
         <source>&amp;Virtual Keyboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="158"/>
+        <location filename="wifisettingsdialog.ui" line="155"/>
+        <source>&amp;Country</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="wifisettingsdialog.ui" line="178"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>

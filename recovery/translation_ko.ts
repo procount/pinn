@@ -3066,73 +3066,78 @@ or press joystick...</source>
         <translation type="unfinished">비밀번호 인증</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="96"/>
+        <location filename="wifisettingsdialog.ui" line="99"/>
         <source>&amp;Username</source>
         <oldsource>Username</oldsource>
         <translation type="unfinished">계정명</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="113"/>
+        <location filename="wifisettingsdialog.ui" line="116"/>
         <source>&amp;Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="130"/>
+        <location filename="wifisettingsdialog.ui" line="133"/>
         <source>&amp;Show Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="146"/>
+        <location filename="wifisettingsdialog.ui" line="148"/>
         <source>&amp;Virtual Keyboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="158"/>
+        <location filename="wifisettingsdialog.ui" line="155"/>
+        <source>&amp;Country</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="wifisettingsdialog.ui" line="178"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="53"/>
+        <location filename="wifisettingsdialog.cpp" line="58"/>
         <source>No wifi interfaces</source>
         <translation>Wi-Fi 수신기 없음</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="53"/>
+        <location filename="wifisettingsdialog.cpp" line="58"/>
         <source>No wifi interfaces available</source>
         <translation>사용 가능한 Wi-Fi 수신기가 없습니다</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="243"/>
+        <location filename="wifisettingsdialog.cpp" line="270"/>
         <source>Authenticated but still waiting for DHCP lease</source>
         <translation>인증 완료 - DHCP에서 임대할 IP를 기다리고 있습니다</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="250"/>
+        <location filename="wifisettingsdialog.cpp" line="277"/>
         <source>Connecting to wifi failed</source>
         <translation>Wi-Fi 연결 실패</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="250"/>
+        <location filename="wifisettingsdialog.cpp" line="277"/>
         <source>Connecting to the wifi access point failed. Check your password</source>
         <translation>Wi-Fi 액세스 지점에 연결하지 못하였습니다. 입력한 암호를 확인하여 주십시오</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="285"/>
+        <location filename="wifisettingsdialog.cpp" line="318"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="291"/>
+        <location filename="wifisettingsdialog.cpp" line="324"/>
         <source>Releasing old DHCP lease</source>
         <translation>DHCP 에서 임대한 IP를 갱신하고 있습니다</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="306"/>
+        <location filename="wifisettingsdialog.cpp" line="339"/>
         <source>Disconnecting</source>
         <translation>연결을 해제하고 있습니다</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="311"/>
+        <location filename="wifisettingsdialog.cpp" line="344"/>
         <source>Connecting</source>
         <translation>연결하고 있습니다</translation>
     </message>

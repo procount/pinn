@@ -3060,73 +3060,78 @@ or press joystick...</source>
         <translation type="unfinished">Pasahitz bidezko autentifikazioa</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="96"/>
+        <location filename="wifisettingsdialog.ui" line="99"/>
         <source>&amp;Username</source>
         <oldsource>Username</oldsource>
         <translation type="unfinished">Erabiltzaile-izena</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="113"/>
+        <location filename="wifisettingsdialog.ui" line="116"/>
         <source>&amp;Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="130"/>
+        <location filename="wifisettingsdialog.ui" line="133"/>
         <source>&amp;Show Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="146"/>
+        <location filename="wifisettingsdialog.ui" line="148"/>
         <source>&amp;Virtual Keyboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="158"/>
+        <location filename="wifisettingsdialog.ui" line="155"/>
+        <source>&amp;Country</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="wifisettingsdialog.ui" line="178"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="53"/>
+        <location filename="wifisettingsdialog.cpp" line="58"/>
         <source>No wifi interfaces</source>
         <translation>Wifi interfazerik ez</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="53"/>
+        <location filename="wifisettingsdialog.cpp" line="58"/>
         <source>No wifi interfaces available</source>
         <translation>Wifi interfazerik ez erabilgarri</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="243"/>
+        <location filename="wifisettingsdialog.cpp" line="270"/>
         <source>Authenticated but still waiting for DHCP lease</source>
         <translation>Autentifikatuta baina DHCP lortzeko zain</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="250"/>
+        <location filename="wifisettingsdialog.cpp" line="277"/>
         <source>Connecting to wifi failed</source>
         <translation>Wifi-ra konektatzeak huts egin du</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="250"/>
+        <location filename="wifisettingsdialog.cpp" line="277"/>
         <source>Connecting to the wifi access point failed. Check your password</source>
         <translation>Wifi sarbide-puntura konektatzeak huts egin du. Egiaztatu zure pasahitza</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="285"/>
+        <location filename="wifisettingsdialog.cpp" line="318"/>
         <source>Cancel</source>
         <translation>Utzi</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="291"/>
+        <location filename="wifisettingsdialog.cpp" line="324"/>
         <source>Releasing old DHCP lease</source>
         <translation>DHCP zaharra uzten</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="306"/>
+        <location filename="wifisettingsdialog.cpp" line="339"/>
         <source>Disconnecting</source>
         <translation>Deskonektatzen</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.cpp" line="311"/>
+        <location filename="wifisettingsdialog.cpp" line="344"/>
         <source>Connecting</source>
         <translation>Konektatzen</translation>
     </message>
