@@ -1191,6 +1191,21 @@ On Ubuntu:
 
 `sudo apt-get install build-essential rsync texinfo libncurses-dev whois unzip bc qt4-linguist-tools libssl-dev libgmp-dev`
 
+The Qt4 framework has been removed from Ubuntu 20.04 main repository.
+You can still get Qt4 libraries, adding the PPA rock-core/qt4
+Run in a terminal:
+`sudo add-apt-repository ppa:rock-core/qt4`
+`sudo apt update`
+
+And install the required Qt4 libraries by running command:
+
+`sudo apt install qt4-linguist-tools`
+
+For full tools use:
+`sudo apt install qt4-dev-tools libqt4-dev libqt4-core libqt4-gui`
+or
+`sudo apt install qt4-dev-tools libqt4-dev libqtcore4 libqtgui4`
+
 Also needed is bsdtar v3.3.1 which can be built as follows:
 ```
 wget https://www.libarchive.org/downloads/libarchive-3.3.1.tar.gz
