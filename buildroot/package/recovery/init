@@ -79,13 +79,6 @@ if grep -q vncshare /proc/cmdline; then
     export QWS_DISPLAY="VNC:"$QWS_DISPLAY
 fi
 
-if grep -q ssh /proc/cmdline; then
-    # SSH server mode. Mainly useful for debugging
-    /bin/mkdir -p /dev/pts
-    /bin/mount -t devpts devpts /dev/pts
-    . /etc/S50dropbear start &
-fi
-
 
 
 # Mouse acceleration
@@ -157,6 +150,19 @@ if ( [ ${SAFE_MODE#*=} -eq 1 ] && ! grep -q disablesafemode /proc/cmdline ) || g
     sleep 5
     ifup eth0
     sh
+fi
+
+if grep -q ssh /proc/cmdline; then
+    # SSH server mode. Mainly useful for debugging
+    /bin/mkdir -p /dev/pts
+    /bin/mount -t devpts devpts /dev/pts
+
+    #This dev needs to be dynamic for USB boot. Replace last partition '1' of pinndriver with '5'
+    /bin/mount ${pinndrive%?}5 /settings
+    sleep 1
+    . /etc/S50dropbear start &
+    sleep 1
+    /bin/umount /settings
 fi
 
     RUN_INSTALLER=
