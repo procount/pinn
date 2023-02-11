@@ -9,9 +9,9 @@
 #define GLOBAL_DBG_ON       0   //Use the global data everywhere (overrides ths other globals. sets them to 0)
 
 #if GLOBAL_DBG_ON
-  #define GLOBAL_DBG_FUNC   0	//global Debug entry/exit of functions
-  #define GLOBAL_DBG_OUT    0	//global Debug  output strings
-  #define GLOBAL_DBG_MSG    0   //global Debug message boxes
+  #define GLOBAL_DBG_FUNC   1	//global Debug entry/exit of functions
+  #define GLOBAL_DBG_OUT    1	//global Debug  output strings
+  #define GLOBAL_DBG_MSG    1   //global Debug message boxes
 #else
   #define GLOBAL_DBG_FUNC   0	//global Debug entry/exit of functions
   #define GLOBAL_DBG_OUT    0	//global Debug  output strings
@@ -45,14 +45,16 @@
 
 #if GLOBAL_ENABLE_DEBUG
 
- #define MYDEBUG MyDebug dbg(__PRETTY_FUNCTION__, DBG_FUNC)
- #define TRACE MYDEBUG;
- #define PARAMS qDebug() << dbg.header() << (const char *)"Params:"
+ #define MYDEBUG(x) MyDebug dbg(__PRETTY_FUNCTION__, x);
+ #define TRACE MYDEBUG(DBG_FUNC);
+ #define TRACEIF(x) MYDEBUG(x);
+
+ #define PARAMS if (dbg._display) qDebug() << dbg.header() << (const char *)"Params:"
  #define INDENT(n) dbg._local_level+=n
  #define OUTDENT(n) dbg._local_level-=n
 
  #if DBG_OUT
-  #define DBG2 qDebug() << dbg.header() <<""
+  #define DBG2 if (dbg._display==1) qDebug() << dbg.header() << ""
   #define DBG(x) DBG2 << x
  #else
   #define DBG2 QNoDebug()
@@ -72,12 +74,12 @@ public:
     MyDebug(const char * funcname, int display=0);
     ~MyDebug();
     int _local_level;
+    int _display;
 
     const char * header();
 private:
     QString _name;
     static int _level;
-    int _display;
 };
 
 #else //GLOBAL_ENABLE_DEBUG

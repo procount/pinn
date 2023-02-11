@@ -5,6 +5,11 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.8.4
+
+- **Security**       - Fixed Secure remote SSH and VNC access
+- **Images**         - Added support for mkswap in OS images
+
 ### V3.8.3
 
 - **NVMe**           - Support for booting on NVMe drives on CM4

@@ -34,9 +34,9 @@
 #include "dlginstall.h"
 
 #define LOCAL_DBG_ON   0
-#define LOCAL_DBG_FUNC 0
-#define LOCAL_DBG_OUT  0
-#define LOCAL_DBG_MSG  0
+#define LOCAL_DBG_FUNC 1
+#define LOCAL_DBG_OUT  1
+#define LOCAL_DBG_MSG  1
 
 #include "mydebug.h"
 
@@ -882,6 +882,7 @@ QMap<QString, QVariantMap> MainWindow::listImages(const QString &folder)
                 images[name] = osv;
             }
         }
+        DBG(osv);
     }
     DBG("-------");
     for (QMap<QString,QVariantMap>::iterator i = images.begin(); i != images.end(); i++)

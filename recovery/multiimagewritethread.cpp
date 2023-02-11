@@ -6,10 +6,10 @@
 #include "partitioninfo.h"
 #include "util.h"
 
-#define LOCAL_DBG_ON   0
-#define LOCAL_DBG_FUNC 0
-#define LOCAL_DBG_OUT  0
-#define LOCAL_DBG_MSG  0
+#define LOCAL_DBG_ON   1
+#define LOCAL_DBG_FUNC 1
+#define LOCAL_DBG_OUT  1
+#define LOCAL_DBG_MSG  1
 
 #include "mydebug.h"
 #include <QDir>
@@ -1396,25 +1396,32 @@ bool MultiImageWriteThread::mkfs(const QByteArray &device, const QByteArray &fst
             cmd += "-L "+makeLabelUnique(label, 16, device)+" "; //maxlength might be 255?
         }
     }
-
-    if (!mkfsopt.isEmpty())
-        cmd += mkfsopt+" ";
-
-    cmd += device;
-
-    qDebug() << "Executing:" << cmd;
-    QProcess p;
-    p.setProcessChannelMode(p.MergedChannels);
-    p.start(cmd);
-    p.closeWriteChannel();
-    p.waitForFinished(-1);
-
-    if (p.exitCode() != 0)
+    else if (fstype == "swap")
     {
-        emit error(tr("Error creating file system")+"\n"+p.readAll());
-        return false;
+        cmd = "/sbin/mkswap ";
     }
 
+    if (!cmd.isEmpty())
+    {
+        if (!mkfsopt.isEmpty())
+            cmd += mkfsopt+" ";
+
+        cmd += device;
+
+        qDebug() << "Executing:" << cmd;
+        QProcess p;
+        p.setProcessChannelMode(p.MergedChannels);
+        p.start(cmd);
+        p.closeWriteChannel();
+        p.waitForFinished(-1);
+
+        if (p.exitCode() != 0)
+        {
+            DBG(p.exitCode());
+            emit error(tr("Error creating file system")+"\n"+p.readAll());
+            return false;
+        }
+    }
     return true;
 }
 

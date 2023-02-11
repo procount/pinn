@@ -711,6 +711,7 @@ void OverrideJson(QVariantMap& m)
         name = CORE(m.value("os_name").toString());
     else
         return;
+    DBG(name);
 
     SupplantUSBdevice(m);
 
@@ -743,4 +744,5 @@ void OverrideJson(QVariantMap& m)
                 m.remove(key);
         }
     }
+    DBG(m);
 }
