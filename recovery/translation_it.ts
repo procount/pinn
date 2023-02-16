@@ -2381,7 +2381,9 @@ Vuoi proseguire?</translation>
         <source>For recovery mode, hold SHIFT
 click mouse
 or press joystick...</source>
-        <translation type="unfinished"></translation>
+        <translation>Per la modalità di ripristino, tieni premuto MAIUSC
+clic del mouse
+oppure premi il joystick...</translation>
     </message>
 </context>
 <context>
@@ -3301,7 +3303,7 @@ Verifica la password</translation>
     <message>
         <location filename="wifisettingsdialog.ui" line="158"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Elimina</translation>
     </message>
 </context>
 <context>
