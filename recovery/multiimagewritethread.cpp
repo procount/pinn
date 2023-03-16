@@ -6,10 +6,10 @@
 #include "partitioninfo.h"
 #include "util.h"
 
-#define LOCAL_DBG_ON   1
-#define LOCAL_DBG_FUNC 1
-#define LOCAL_DBG_OUT  1
-#define LOCAL_DBG_MSG  1
+#define LOCAL_DBG_ON   0
+#define LOCAL_DBG_FUNC 0
+#define LOCAL_DBG_OUT  0
+#define LOCAL_DBG_MSG  0
 
 #include "mydebug.h"
 #include <QDir>

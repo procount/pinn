@@ -93,7 +93,7 @@ protected:
     unsigned _waitforImages;
     unsigned _processedImages;
     QStringList _selectOsList;
-
+    bool timeset;
     enum ModeTag _eDownloadMode;
     uint _provision;
 

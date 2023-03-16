@@ -157,6 +157,8 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     _bootdrive(drive), _noobsconfig(noobsconfig), _numFilesToCheck(0), _eDownloadMode(MODE_INSTALL), _proc(NULL)
 {
     TRACE
+
+    timeset=false;
     ui->setupUi(this);
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
     setContextMenuPolicy(Qt::NoContextMenu);
@@ -5064,8 +5066,9 @@ void MainWindow::on_actionRename_triggered()
 void MainWindow::UpdateTime()
 {
 
-    if (QDate::currentDate().year() < 2019)
+    if (!timeset)
     {
+        qDebug() << "current date is "<< QDate::currentDate();
         qDebug() << "Requesting current time";
         QUrl url(BUILD_URL);
         QNetworkRequest request(url);
@@ -5085,9 +5088,10 @@ void MainWindow::checkUpdateTime()
 
 void MainWindow::setTime(QNetworkReply *reply)
 {
-    /* Set our clock to server time if we currently have a date before 2019 */
+    /* Set our clock to server time if it is more than 1 day newer */
     QByteArray dateStr = reply->rawHeader("Date");
-    if (!dateStr.isEmpty() && QDate::currentDate().year() < 2019)
+
+    if (!dateStr.isEmpty())
     {
         // Qt 4 does not have a standard function for parsing the Date header, but it does
         // have one for parsing a Last-Modified header that uses the same date/time format, so just use that
@@ -5095,12 +5099,16 @@ void MainWindow::setTime(QNetworkReply *reply)
         dummyReq.setRawHeader("Last-Modified", dateStr);
         QDateTime parsedDate = dummyReq.header(dummyReq.LastModifiedHeader).toDateTime();
 
-        struct timeval tv;
-        tv.tv_sec = parsedDate.toTime_t();
-        tv.tv_usec = 0;
-        settimeofday(&tv, NULL);
-
-        qDebug() << "Time set to: " << parsedDate;
+        QDateTime now = QDateTime::currentDateTime().addDays(1);
+        if (parsedDate > now)
+        {
+            struct timeval tv;
+            tv.tv_sec = parsedDate.toTime_t();
+            tv.tv_usec = 0;
+            settimeofday(&tv, NULL);
+            timeset=true;
+            qDebug() << "Time set to: " << parsedDate;
+        }
     }
 }
 
