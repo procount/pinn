@@ -5,6 +5,14 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.8.5.3
+
+- **Backups**        - Fix ACL permissions when restoring backups
+
+### V3.8.5
+
+- **Network**        - Fixed Network time setting'
+
 ### V3.8.4
 
 - **Security**       - Fixed Secure remote SSH and VNC access
