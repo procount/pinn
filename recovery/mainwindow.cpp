@@ -4483,9 +4483,9 @@ void MainWindow::downloadUpdateComplete()
     if (type=="UPDATE") //upgrade
     {
         qDebug() << "Time to update PINN!";
-        QProcess::execute("mount -o remount,rw /mnt");
-        QProcess::execute("unzip /tmp/pinn-lite.zip -o -x recovery.cmdline -d /mnt");
-        QProcess::execute("mount -o remount,ro /mnt");
+
+        updatePinn();
+
         QProcess::execute(QString("rm ")+BUILD_IGNORE);
         QProcess::execute("sync");
 
@@ -4552,6 +4552,13 @@ void MainWindow::downloadUpdateComplete()
             QMessageBox::information(this, tr("PINN Update Check"), tr("No updates available"), QMessageBox::Close);
         }
     }
+}
+
+void MainWindow::updatePinn()
+{
+    QProcess::execute("mount -o remount,rw /mnt");
+    QProcess::execute("unzip /tmp/pinn-lite.zip -o -x recovery.cmdline -d /mnt");
+    QProcess::execute("mount -o remount,ro /mnt");
 }
 
 void MainWindow::on_newVersion()
