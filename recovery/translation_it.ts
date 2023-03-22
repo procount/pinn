@@ -3303,7 +3303,7 @@ Verifica la password</translation>
     <message>
         <location filename="wifisettingsdialog.ui" line="158"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Elimina<</translation>
+        <translation>&amp;Elimina</translation>
     </message>
 </context>
 <context>
