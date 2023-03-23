@@ -712,9 +712,9 @@ Achtung: Dies löscht alle Daten auf dieser SD-Karte.</translation>
         <location filename="mainwindow.cpp" line="1301"/>
         <location filename="mainwindow.cpp" line="1311"/>
         <location filename="mainwindow.cpp" line="1941"/>
-        <location filename="mainwindow.cpp" line="4767"/>
-        <location filename="mainwindow.cpp" line="4842"/>
-        <location filename="mainwindow.cpp" line="4886"/>
+        <location filename="mainwindow.cpp" line="4804"/>
+        <location filename="mainwindow.cpp" line="4879"/>
+        <location filename="mainwindow.cpp" line="4923"/>
         <source>Confirm</source>
         <translation>Bestätigen</translation>
     </message>
@@ -750,7 +750,7 @@ Achtung: Dies löscht alle Daten auf dieser SD-Karte.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1134"/>
-        <location filename="mainwindow.cpp" line="4787"/>
+        <location filename="mainwindow.cpp" line="4824"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation> ist nicht verfügbar.
@@ -848,7 +848,7 @@ Sicher, dass das Laufwerk initialisiert werden soll?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1073"/>
-        <location filename="mainwindow.cpp" line="4768"/>
+        <location filename="mainwindow.cpp" line="4805"/>
         <source>Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:
 </source>
         <oldsource>Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:</oldsource>
@@ -856,7 +856,7 @@ Sicher, dass das Laufwerk initialisiert werden soll?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1073"/>
-        <location filename="mainwindow.cpp" line="4768"/>
+        <location filename="mainwindow.cpp" line="4805"/>
         <source>
 
 Do you want to continue?</source>
@@ -912,7 +912,7 @@ Siehe Fehlerprotokoll für weitere Einzelheiten.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1455"/>
-        <location filename="mainwindow.cpp" line="4990"/>
+        <location filename="mainwindow.cpp" line="5027"/>
         <source>Backup OSes</source>
         <translation>Betriebssysteme sichern</translation>
     </message>
@@ -1020,8 +1020,8 @@ Soll diese Einstellung dauerhaft gespeichert werden?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3245"/>
-        <location filename="mainwindow.cpp" line="4758"/>
-        <location filename="mainwindow.cpp" line="4796"/>
+        <location filename="mainwindow.cpp" line="4795"/>
+        <location filename="mainwindow.cpp" line="4833"/>
         <source>Replace OSes</source>
         <translation>Betriebssystem(e) ersetzen</translation>
     </message>
@@ -1136,50 +1136,50 @@ Soll fortgesetzt werden?</translation>
         <translation>Kein Update verfügbar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4561"/>
+        <location filename="mainwindow.cpp" line="4598"/>
         <source>PINN UPDATE</source>
         <translation>PINN UPDATE</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4562"/>
+        <location filename="mainwindow.cpp" line="4599"/>
         <source>A new version of PINN is available</source>
         <translation>Eine neue Version von PINN ist verfügbar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4563"/>
+        <location filename="mainwindow.cpp" line="4600"/>
         <source>Do you want to download this version?</source>
         <translation>Soll diese Version heruntergeladen werden?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4595"/>
+        <location filename="mainwindow.cpp" line="4632"/>
         <source>Downloading Update</source>
         <translation>Update wird heruntergeladen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4595"/>
+        <location filename="mainwindow.cpp" line="4632"/>
         <source>Press ESC to cancel</source>
         <translation>Zum Abbrechen die ESC-Taste drücken</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4759"/>
+        <location filename="mainwindow.cpp" line="4796"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation>Fehler: Kein Betriebssystem ausgewählt
 (Bitte nicht RISC oder PINN auswählen)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4797"/>
+        <location filename="mainwindow.cpp" line="4834"/>
         <source>Warning: No OSes selected
 </source>
         <translation>Warnung: Kein Betriebssystem ausgewählt</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4843"/>
+        <location filename="mainwindow.cpp" line="4880"/>
         <source>Warning: this will backup the selected Operating System(s).</source>
         <translation>Warnung: Damit werden die gewählten Betriebssysteme gesichert (Backup).</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4887"/>
+        <location filename="mainwindow.cpp" line="4924"/>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
         <translation>Warnung: Nicht unterstützte(s) Betriebssystem(e) erkannt. PINN kann gegenwärtig folgende Betriebssysteme nicht korrekt sichern (Backup):</translation>
     </message>
@@ -3256,17 +3256,17 @@ Untbr</translation>
         <translation>&amp;Passwort</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="130"/>
+        <location filename="wifisettingsdialog.ui" line="132"/>
         <source>&amp;Show Password</source>
         <translation>Passwort an&amp;zeigen</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="146"/>
+        <location filename="wifisettingsdialog.ui" line="139"/>
         <source>&amp;Virtual Keyboard</source>
         <translation>Bildschirm&amp;tastatur</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="158"/>
+        <location filename="wifisettingsdialog.ui" line="162"/>
         <source>&amp;Delete</source>
         <translation>&amp;Löschen</translation>
     </message>

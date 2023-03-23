@@ -805,9 +805,9 @@ See debug log for details</oldsource>
         <location filename="mainwindow.cpp" line="1301"/>
         <location filename="mainwindow.cpp" line="1311"/>
         <location filename="mainwindow.cpp" line="1941"/>
-        <location filename="mainwindow.cpp" line="4767"/>
-        <location filename="mainwindow.cpp" line="4842"/>
-        <location filename="mainwindow.cpp" line="4886"/>
+        <location filename="mainwindow.cpp" line="4804"/>
+        <location filename="mainwindow.cpp" line="4879"/>
+        <location filename="mainwindow.cpp" line="4923"/>
         <source>Confirm</source>
         <translation>확인</translation>
     </message>
@@ -824,7 +824,7 @@ Are you sure you want to initialise the drive?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1073"/>
-        <location filename="mainwindow.cpp" line="4768"/>
+        <location filename="mainwindow.cpp" line="4805"/>
         <source>Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:
 </source>
         <oldsource>Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:</oldsource>
@@ -832,7 +832,7 @@ Are you sure you want to initialise the drive?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1073"/>
-        <location filename="mainwindow.cpp" line="4768"/>
+        <location filename="mainwindow.cpp" line="4805"/>
         <source>
 
 Do you want to continue?</source>
@@ -846,7 +846,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1134"/>
-        <location filename="mainwindow.cpp" line="4787"/>
+        <location filename="mainwindow.cpp" line="4824"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation>은(는) 사용할 수 없습니다.
@@ -939,7 +939,7 @@ See debug log for details</oldsource>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1455"/>
-        <location filename="mainwindow.cpp" line="4990"/>
+        <location filename="mainwindow.cpp" line="5027"/>
         <source>Backup OSes</source>
         <translation>백업 대상 OS</translation>
     </message>
@@ -1119,8 +1119,8 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3245"/>
-        <location filename="mainwindow.cpp" line="4758"/>
-        <location filename="mainwindow.cpp" line="4796"/>
+        <location filename="mainwindow.cpp" line="4795"/>
+        <location filename="mainwindow.cpp" line="4833"/>
         <source>Replace OSes</source>
         <translation>OS 교체</translation>
     </message>
@@ -1240,51 +1240,51 @@ Do you want to continue?</source>
         <translation>새로운 업데이트가 없습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4561"/>
+        <location filename="mainwindow.cpp" line="4598"/>
         <source>PINN UPDATE</source>
         <translation>PINN 업데이트</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4562"/>
+        <location filename="mainwindow.cpp" line="4599"/>
         <source>A new version of PINN is available</source>
         <translation>새 버전의 PINN 을 사용할 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4563"/>
+        <location filename="mainwindow.cpp" line="4600"/>
         <source>Do you want to download this version?</source>
         <translation>이 버전을 다운로드 하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4595"/>
+        <location filename="mainwindow.cpp" line="4632"/>
         <source>Downloading Update</source>
         <translation>업데이트 다운로드</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4595"/>
+        <location filename="mainwindow.cpp" line="4632"/>
         <source>Press ESC to cancel</source>
         <translation>취소하려면 ESC 를 누르십시요.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4759"/>
+        <location filename="mainwindow.cpp" line="4796"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation>경고: 선택한 OS가 없습니다
 (RISC OS 또는 PINN을 선택하지 마십시요)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4797"/>
+        <location filename="mainwindow.cpp" line="4834"/>
         <source>Warning: No OSes selected
 </source>
         <translation>경고: 선택한 OS가 없습니다
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4843"/>
+        <location filename="mainwindow.cpp" line="4880"/>
         <source>Warning: this will backup the selected Operating System(s).</source>
         <translation>경고: 이 동작은 선택한 운영체제를 백업합니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4887"/>
+        <location filename="mainwindow.cpp" line="4924"/>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
         <translation>경고: 지원하지 않는 운영체제를 발견하였습니다. PINN은 이 운영체제에 대한 백업을 제대로 생성하지 못할 수 있습니다. 대상 운영체제:</translation>
     </message>
@@ -3190,17 +3190,17 @@ Break</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="130"/>
+        <location filename="wifisettingsdialog.ui" line="132"/>
         <source>&amp;Show Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="146"/>
+        <location filename="wifisettingsdialog.ui" line="139"/>
         <source>&amp;Virtual Keyboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="158"/>
+        <location filename="wifisettingsdialog.ui" line="162"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>

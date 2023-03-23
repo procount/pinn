@@ -4556,8 +4556,38 @@ void MainWindow::downloadUpdateComplete()
 
 void MainWindow::updatePinn()
 {
+    //When PINN is updated, We don't need these files to be extracted
+    QString exclusions = " -x recovery.cmdline -x updatepinn -x exclude.txt";
+
     QProcess::execute("mount -o remount,rw /mnt");
-    QProcess::execute("unzip /tmp/pinn-lite.zip -o -x recovery.cmdline -d /mnt");
+
+    //First we'll extract these 2 files to /tmp to automate hte update process
+    QProcess::execute("unzip /tmp/pinn-lite.zip -o exclude.txt updatepinn -d /tmp");
+
+    if (QFile::exists("/tmp/exclude.txt"))
+    {
+        //exclude.txt can avoid extracting addtional files to RECOVERY that we don't want updating
+        QString contents = getFileContents("/tmp/exclude.txt");
+        QStringList fileList = contents.split("\n");
+        foreach (QString file, fileList)
+        {
+            //Add each filename to the list of file extraction exclusios
+            file=file.trimmed();
+            if (file.length()>0)
+                exclusions += " -x "+file;
+        }
+    }
+    //Extract all the files to Recovery, except our excluded set
+    QString cmd = "unzip /tmp/pinn-lite.zip -o" + exclusions + " -d /mnt";
+    QProcess::execute(cmd);
+
+    //In case we need to do some additional upgrade processing
+    if (QFile::exists("/tmp/updatepinn"))
+    {
+        QProcess::execute("chmod +x /tmp/updatepinn");
+        QProcess::execute("/tmp/updatepinn");
+    }
+
     QProcess::execute("mount -o remount,ro /mnt");
 }
 
