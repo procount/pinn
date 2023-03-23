@@ -1,0 +1,16 @@
+#select dsi
+#(rpf 7" touchsreen)
+
+dtoverlay=pimhyp3:checkonly
+dtoverlay=pimhyp44:checkonly
+
+display_default_lcd=1
+
+gpu_mem=16
+start_file=recovery.elf
+fixup_file=fixup_rc.dat
+
+[pi4]
+start_file=recover4.elf
+fixup_file=fixup4rc.dat
+max_framebuffers=2

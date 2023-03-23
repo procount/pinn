@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>480</height>
+    <height>444</height>
    </rect>
   </property>
   <property name="font">
@@ -125,11 +125,22 @@
              </widget>
             </item>
             <item row="2" column="0" colspan="2">
-             <widget class="QCheckBox" name="checkBox">
-              <property name="text">
-               <string>&amp;Show Password</string>
-              </property>
-             </widget>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QCheckBox" name="checkBox">
+                <property name="text">
+                 <string>&amp;Show Password</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="vkeyboard">
+                <property name="text">
+                 <string>&amp;Virtual Keyboard</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
           </widget>
@@ -138,13 +149,6 @@
        </widget>
       </item>
      </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QCheckBox" name="vkeyboard">
-     <property name="text">
-      <string>&amp;Virtual Keyboard</string>
-     </property>
     </widget>
    </item>
    <item>

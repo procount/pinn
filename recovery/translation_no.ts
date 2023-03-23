@@ -716,9 +716,9 @@ WARNING: This will erase all data on your SD card</oldsource>
         <location filename="mainwindow.cpp" line="1301"/>
         <location filename="mainwindow.cpp" line="1311"/>
         <location filename="mainwindow.cpp" line="1941"/>
-        <location filename="mainwindow.cpp" line="4767"/>
-        <location filename="mainwindow.cpp" line="4842"/>
-        <location filename="mainwindow.cpp" line="4886"/>
+        <location filename="mainwindow.cpp" line="4804"/>
+        <location filename="mainwindow.cpp" line="4879"/>
+        <location filename="mainwindow.cpp" line="4923"/>
         <source>Confirm</source>
         <translation>Bekreft</translation>
     </message>
@@ -873,7 +873,7 @@ Are you sure you want to initialise the drive?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1073"/>
-        <location filename="mainwindow.cpp" line="4768"/>
+        <location filename="mainwindow.cpp" line="4805"/>
         <source>Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:
 </source>
         <oldsource>Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:</oldsource>
@@ -881,7 +881,7 @@ Are you sure you want to initialise the drive?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1073"/>
-        <location filename="mainwindow.cpp" line="4768"/>
+        <location filename="mainwindow.cpp" line="4805"/>
         <source>
 
 Do you want to continue?</source>
@@ -933,7 +933,7 @@ See debug log for details</oldsource>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1455"/>
-        <location filename="mainwindow.cpp" line="4990"/>
+        <location filename="mainwindow.cpp" line="5027"/>
         <source>Backup OSes</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1039,8 +1039,8 @@ Would you like to make this setting permanent?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3245"/>
-        <location filename="mainwindow.cpp" line="4758"/>
-        <location filename="mainwindow.cpp" line="4796"/>
+        <location filename="mainwindow.cpp" line="4795"/>
+        <location filename="mainwindow.cpp" line="4833"/>
         <source>Replace OSes</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1153,49 +1153,49 @@ Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4561"/>
+        <location filename="mainwindow.cpp" line="4598"/>
         <source>PINN UPDATE</source>
         <translation>PINN OPPDATERING</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4562"/>
+        <location filename="mainwindow.cpp" line="4599"/>
         <source>A new version of PINN is available</source>
         <translation>En ny versjon av PINN er tilgjengelig</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4563"/>
+        <location filename="mainwindow.cpp" line="4600"/>
         <source>Do you want to download this version?</source>
         <translation>Vil du laste ned denne versjonen?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4595"/>
+        <location filename="mainwindow.cpp" line="4632"/>
         <source>Downloading Update</source>
         <translation>Laster ned oppdatering</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4595"/>
+        <location filename="mainwindow.cpp" line="4632"/>
         <source>Press ESC to cancel</source>
         <translation>Trykk ESC for å avbryte</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4759"/>
+        <location filename="mainwindow.cpp" line="4796"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4797"/>
+        <location filename="mainwindow.cpp" line="4834"/>
         <source>Warning: No OSes selected
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4843"/>
+        <location filename="mainwindow.cpp" line="4880"/>
         <source>Warning: this will backup the selected Operating System(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4887"/>
+        <location filename="mainwindow.cpp" line="4924"/>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1206,7 +1206,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1134"/>
-        <location filename="mainwindow.cpp" line="4787"/>
+        <location filename="mainwindow.cpp" line="4824"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation type="unfinished"></translation>
@@ -3221,17 +3221,17 @@ Break</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="130"/>
+        <location filename="wifisettingsdialog.ui" line="132"/>
         <source>&amp;Show Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="146"/>
+        <location filename="wifisettingsdialog.ui" line="139"/>
         <source>&amp;Virtual Keyboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="158"/>
+        <location filename="wifisettingsdialog.ui" line="162"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>

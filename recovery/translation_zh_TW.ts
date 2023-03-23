@@ -777,9 +777,9 @@ WARNING: This will erase all data on your SD card</oldsource>
         <location filename="mainwindow.cpp" line="1301"/>
         <location filename="mainwindow.cpp" line="1311"/>
         <location filename="mainwindow.cpp" line="1941"/>
-        <location filename="mainwindow.cpp" line="4767"/>
-        <location filename="mainwindow.cpp" line="4842"/>
-        <location filename="mainwindow.cpp" line="4886"/>
+        <location filename="mainwindow.cpp" line="4804"/>
+        <location filename="mainwindow.cpp" line="4879"/>
+        <location filename="mainwindow.cpp" line="4923"/>
         <source>Confirm</source>
         <translation>確認</translation>
     </message>
@@ -828,7 +828,7 @@ WARNING: This will erase all data on your SD card</oldsource>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1073"/>
-        <location filename="mainwindow.cpp" line="4768"/>
+        <location filename="mainwindow.cpp" line="4805"/>
         <source>
 
 Do you want to continue?</source>
@@ -836,7 +836,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1073"/>
-        <location filename="mainwindow.cpp" line="4768"/>
+        <location filename="mainwindow.cpp" line="4805"/>
         <source>Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:
 </source>
         <translation type="unfinished"></translation>
@@ -889,7 +889,7 @@ See debug log for details</oldsource>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1455"/>
-        <location filename="mainwindow.cpp" line="4990"/>
+        <location filename="mainwindow.cpp" line="5027"/>
         <source>Backup OSes</source>
         <translation>備份作業系統</translation>
     </message>
@@ -966,8 +966,8 @@ See debug log for details</oldsource>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="3245"/>
-        <location filename="mainwindow.cpp" line="4758"/>
-        <location filename="mainwindow.cpp" line="4796"/>
+        <location filename="mainwindow.cpp" line="4795"/>
+        <location filename="mainwindow.cpp" line="4833"/>
         <source>Replace OSes</source>
         <translation>取代作業系統</translation>
     </message>
@@ -1082,51 +1082,51 @@ Do you want to continue?</source>
         <translation>無可用更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4561"/>
+        <location filename="mainwindow.cpp" line="4598"/>
         <source>PINN UPDATE</source>
         <translation>PINN 更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4562"/>
+        <location filename="mainwindow.cpp" line="4599"/>
         <source>A new version of PINN is available</source>
         <translation>已有新版的 PINN 可用</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4563"/>
+        <location filename="mainwindow.cpp" line="4600"/>
         <source>Do you want to download this version?</source>
         <translation>您想要下載此版本嗎？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4595"/>
+        <location filename="mainwindow.cpp" line="4632"/>
         <source>Downloading Update</source>
         <translation>正在下載更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4595"/>
+        <location filename="mainwindow.cpp" line="4632"/>
         <source>Press ESC to cancel</source>
         <translation>按 ESC 取消</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4759"/>
+        <location filename="mainwindow.cpp" line="4796"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation>錯誤：沒有已選取的作業系統
 （不要選取 RISC OS 或 PINN）</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4797"/>
+        <location filename="mainwindow.cpp" line="4834"/>
         <source>Warning: No OSes selected
 </source>
         <translation>警告：沒有選擇作業系統
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4843"/>
+        <location filename="mainwindow.cpp" line="4880"/>
         <source>Warning: this will backup the selected Operating System(s).</source>
         <translation>警告：這將會備份選定的作業系統。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4887"/>
+        <location filename="mainwindow.cpp" line="4924"/>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
         <translation>警告：偵測到不支援的作業系統。PINN 目前無法正確備份下列的作業系統：</translation>
     </message>
@@ -1148,7 +1148,7 @@ Are you sure you want to initialise the drive?</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1134"/>
-        <location filename="mainwindow.cpp" line="4787"/>
+        <location filename="mainwindow.cpp" line="4824"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation> 不可用。
@@ -3194,17 +3194,17 @@ Break</translation>
         <translation>密碼(&amp;P)</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="130"/>
+        <location filename="wifisettingsdialog.ui" line="132"/>
         <source>&amp;Show Password</source>
         <translation>顯示密碼(&amp;S)</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="146"/>
+        <location filename="wifisettingsdialog.ui" line="139"/>
         <source>&amp;Virtual Keyboard</source>
         <translation>虛擬鍵盤(&amp;V)</translation>
     </message>
     <message>
-        <location filename="wifisettingsdialog.ui" line="158"/>
+        <location filename="wifisettingsdialog.ui" line="162"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>

@@ -5,6 +5,12 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.8.6
+
+- **Updates**        - Improved the update process to prevent overwriting of config files etc.
+- **WifiDialog**     - Resized the wifi dialog to fit on 800x480 sized displays.
+- **Hyperpixel4**    - Updated Hyperpixel4 drivers and config files for Pi4
+
 ### V3.8.5.3
 
 - **Backups**        - Fix ACL permissions when restoring backups
