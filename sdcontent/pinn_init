@@ -1,0 +1,159 @@
+#!/bin/sh
+#PINN_INIT.SH
+#A script to identify which of (hyp3, hyp4, dsi or hdmi) screens are attached.
+#Then to switch config.txt to enable the most appropriate one (config.hyp4, config.dsi etc), rebooting if necessary.
+
+#Rename this file to pinn_init.sh to enable it and copy config.hdmi to config.txt
+
+#The first line of the config.* files indicates which display is currently selected.
+#The script will try to maintain the last selection if multiple displays are attached.
+#To force a particular preference in the case of multiple displayes being attached, enter the display type
+#on the first line of the screenpref file.
+
+
+#set -x
+cd /tmp/mnt
+
+logfile=/tmp/mnt/log
+#rm $logfile
+
+pref=""
+config=""
+dsi=""
+dpi=""
+hdmi=""
+
+#read the currently selected configuration
+config=`cat config.txt | grep "^#select \(.*\)" | sed -e "s|#select \(.*\)|\1|"`
+echo "config=$config" >>$logfile
+
+#read the user's preference
+if [ -e "screenpref" ] ; then
+        #Process user preferences
+        read pref <screenpref
+        #echo "screenpref found"
+fi
+echo "read pref=$pref" >>$logfile
+
+#Set pref to current config if not known
+if [[ -z $pref ]]; then
+	pref=$config
+fi
+#echo "pref=$pref"
+
+
+#Discover what is fitted
+#Check if we have an LCD screen attached
+if ( dmesg | grep "Detected: pimhyp3" >/dev/null); then
+    #echo "found hyp3"
+    dpi="hyp3"
+fi
+if ( dmesg | grep "Detected: pimhyp4" >/dev/null ); then
+    #echo "found hyp4"
+    dpi="hyp4"
+fi
+echo "dpi=$dpi" >>$logfile
+
+#Check if  DSI touchscreen is attached
+if [ -e /sys/firmware/devicetree/base/soc/firmware/touchscreen ]; then
+	#if [ -e /sys/devices/platform/rpi_ft5406 ]; then
+    dsi="dsi"
+fi
+echo "dsi=$dsi" >>$logfile
+
+#Check if HDMI is attached
+hdminame=$(tvservice -n 2>&1)
+#remove any line feed
+echo -n $hdminame>/tmp/hdmi
+read hdminame</tmp/hdmi
+rm /tmp/hdmi
+if [[ "$hdminame" != "[E] No device present" ]]; then
+    #echo "HDMI attached!"
+    hdmi="hdmi"
+fi
+echo "hmdi=$hdmi" >>$logfile
+
+default=$config #Choose this for a quicker boot if no display connected (keeps existing)
+#default="hdmi" #Choose this to force HDMI if no display connected.
+
+
+case $pref in
+hyp3)
+	echo "case hyp3" >>$logfile
+	if [ "$dpi" = "hyp3" ]; then
+		wanted="hyp3"
+	elif [ "$dpi"  = "hyp4" ]; then
+		wanted="hyp4"
+	elif [ "$dsi" = "dsi" ]; then
+		wanted="dsi"
+	else
+		#echo "No display connected"
+		wanted=$default
+	fi
+        ;;
+hyp4)
+	echo "case hyp4" >>$logfile
+        if [ "$dpi" = "hyp4" ];then
+                wanted="hyp4"
+        elif [ "$dpi"  = "hyp3" ]; then
+                wanted="hyp3"
+        elif [ "$dsi" = "dsi" ]; then
+                wanted="dsi"
+        else
+		#echo "No display connected"
+                wanted=$default
+        fi
+        ;;
+dsi)
+	echo "case dsi" >>$logfile
+        if [ "$dsi" = "dsi" ]; then
+                wanted="dsi"
+        elif [ "$dpi"  = "hyp3" ]; then
+                wanted="hyp3"
+        elif [ "$dpi" = "hyp4" ]; then
+                wanted="hyp4"
+        else
+            #echo "No display connected"
+            #wanted=$default
+            wanted="hdmi" # to force dsi to be detected.
+        fi
+        ;;
+hdmi)
+	echo "case hdmi" >>$logfile
+	if [ "$hdmi" = "hdmi" ];then
+            wanted="hdmi"
+        elif [ "$dpi" = "hyp3" ];then
+            wanted="hyp3"
+        elif [ "$dpi"  = "hyp4" ]; then
+            wanted="hyp4"
+        elif [ "$dsi" = "dsi" ]; then
+            wanted="dsi"
+        else
+            #echo "No display connected"
+            wanted="hdmi"
+        fi
+        ;;
+*)
+	echo "Shouldn't get here!" >>$logfile
+	#echo "default"
+        wanted=$default
+        ;;
+esac
+
+echo "comparing $config with $wanted" >>$logfile
+
+if [ "$config" = "$wanted" ];  then
+	echo "Keeping original config of $config" >>$logfile
+	echo "==================" >>$logfile
+else
+	echo "Switching to $wanted..." >>$logfile
+
+	#mount -o remount,rw /tmp/mnt
+	cd /tmp/mnt
+	cp config.$wanted config.txt
+	sync
+	#rebootp
+fi
+sync
+cd /tmp
+
