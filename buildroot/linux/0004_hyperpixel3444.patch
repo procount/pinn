@@ -1,3 +1,17 @@
+diff --git a/arch/arm/boot/dts/overlays/Makefile b/arch/arm/boot/dts/overlays/Makefile
+index bff07c174..a32dc1508 100644
+--- a/arch/arm/boot/dts/overlays/Makefile
++++ b/arch/arm/boot/dts/overlays/Makefile
+@@ -151,6 +151,9 @@ dtbo-$(CONFIG_ARCH_BCM2835) += \
+ 	pifi-dac-zero.dtbo \
+ 	pifi-mini-210.dtbo \
+ 	piglow.dtbo \
++	pimhyp3.dtbo \
++	pimhyp4.dtbo \
++	pimhyp44.dtbo \
+ 	piscreen.dtbo \
+ 	piscreen2r.dtbo \
+ 	pisound.dtbo \
 diff --git a/arch/arm/boot/dts/overlays/pimhyp3-overlay.dts b/arch/arm/boot/dts/overlays/pimhyp3-overlay.dts
 new file mode 100644
 index 000000000..1bfb71863
