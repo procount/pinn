@@ -1,0 +1,5 @@
+
+
+#For use with pinn_init.sh
+#Enter your preferred screen to use on the first line (in case multiple screens are attached)
+#Options are : hyp3, hyp4, dsi, hdmi

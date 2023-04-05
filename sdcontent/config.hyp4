@@ -5,23 +5,27 @@ dtoverlay=pimhyp3:checkonly
 
 #hormal display
 #dtoverlay=pimhyp44
+#dtoverlay=pimhyp44
 #framebuffer_width=480
 #framebuffer_height=800
 
 #rotated 90 degrees
 dtoverlay=pimhyp44:rotate_1
+dtoverlay=pimhyp4:rotate_1
 display_lcd_rotate=1
 framebuffer_width=800
 framebuffer_height=480
 
 #rotated 180 degrees
 #dtoverlay=pimhyp44:rotate_2
+#dtoverlay=pimhyp4:rotate_2
 #display_lcd_rotate=2
 #framebuffer_width=480
 #framebuffer_height=800
 
 #rotated 270 degrees
 #dtoverlay=pimhyp44:rotate_3
+#dtoverlay=pimhyp4:rotate_3
 #display_lcd_rotate=3
 #framebuffer_width=800
 #framebuffer_height=480

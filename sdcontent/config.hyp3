@@ -1,5 +1,6 @@
 #select hyp3
 dtoverlay=pimhyp44:checkonly
+dtoverlay=pimhyp4:checkonly
 
 # HyperPixel LCD Settings
 
