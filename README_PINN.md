@@ -1233,6 +1233,20 @@ to lower the number to prevent swapping:
 
 If your build machine also has some QT5 components, it is useful to `export QT_SELECT=4` before building to ensure the QT4 component versions are selected.
 
+## Build using docker
+
+When using docker, all required packages will get installed automatically when running, making sure the container is able to build PINN.
+When you run the container first time, it'll download all packages and (maybe) ubuntu20.04. Once that's done, it's recommended to create an image from this container,
+so you don't have to download it over and over again. Use `docker commit <container-id> pinn-build-image`. Then you have to change all references to ubuntu:20.04
+  with pinn-build-image in the Dockerfile and docker-compose.yml
+
+Starting the build on linux:
+`sudo docker-compose up`
+
+This will execute all the builds and output the binary file into the buildroot/output folder, just like when you execute the BUIDME.sh directly.
+
+The output folder will be created during runtime.
+
 ## How to run your Build
 
 In order to set up an SD card with a newly built version of PINN, you will need to:
