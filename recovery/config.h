@@ -25,8 +25,7 @@
 
 /* Location to download the list of available distributions from
  * Multiple lists can be specified by space separating the URLs */
-#define DEFAULT_REPO_SERVER  "http://downloads.raspberrypi.org/os_list_v3.json"
-
+#define DEFAULT_REPO_SERVER  "http://raw.githubusercontent.com/procount/pinn-os/master/os/os_all.json"
 
 /* Location of data for self-updating */
 #define BUILD_URL       "http://downloads.sourceforge.net/project/pinn/BUILD-DATA"
