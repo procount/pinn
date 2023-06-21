@@ -966,7 +966,7 @@ If you have changed your login password for an OS and forget what it is, PINN wi
 
 ## Backup
 
-The backup function allows an installed OS to be backed up to a USB drive. The USB drive must first be formatted as FAT32, ext4 or ntfs and have a /os folder on it to store the backups in, otherwise it will not be recognised.
+The backup function allows an installed OS to be backed up to a USB drive. The USB drive must first be formatted as FAT32, ext4 or ntfs and have a `/os` folder on it to store the backups in, otherwise it will not be recognised.
 
 Select all OSes to backup and then click the backup button. After a confirmation dialog, OSes that are not suitable for backing up will be indicated in a dialog box and deselected. These currently include Risc OS, XBian and Win10 IoT. Some other OSes have required modified setup scripts in order to restore them properly after backing up. If you are trying to backup an OS that was installed prior to this modification, PINN will try to install these modified files from an installable source. So to backup such an OS it may be necessary to connect the RPi to the internet or plug in a USB stick with the OS installation files on it.
 
