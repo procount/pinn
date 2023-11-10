@@ -69,7 +69,7 @@ void runCustomScript(const QString &driveDev, int partNr, const QString &cmd, bo
     bool mntStillMounted = true ; // suppose yes.
 
     // check if /mnt is still mounted to the recovery partition.
-    if (QFile::exists("/mnt/recovery.rfs"))
+    if (QFile::exists("/mnt/pinn.rfs"))
     {
         mntStillMounted = true ;
     }
@@ -141,7 +141,7 @@ bool hasInstalledOS(const QString &drive)
 
 QString findRecoveryDrive()
 {
-    /* Search for drive with recovery.rfs */
+    /* Search for drive with pinn.rfs */
     QString drive;
     QString dirname  = "/sys/class/block";
     QDir    dir(dirname);
@@ -178,9 +178,9 @@ QString findRecoveryDrive()
         if (QProcess::execute("mount -t vfat -o ro /dev/"+devname+" /mnt") == 0)
         {
 
-            if (QFile::exists("/mnt/recovery.rfs"))
+            if (QFile::exists("/mnt/pinn.rfs"))
             {
-                qDebug() << "Found recovery.rfs at" << devname;
+                qDebug() << "Found pinn.rfs at" << devname;
 
                 // We are interested in the drive, not the exact partition
                 drive = "/dev/"+devname;
@@ -212,7 +212,7 @@ int main(int argc, char *argv[])
     qDebug() << VERSION_NUMBER;
 
     uint rev = readBoardRevision();
-    qDebug() << "Board revision is " << rev;
+    qDebug() << "Board revision is " << hex << showbase <<rev;
 
     int gpioChannel;
     int gpioChannelValue = 0;
@@ -320,6 +320,7 @@ int main(int argc, char *argv[])
             if (argc > i+1)
             {
                   repoList = argv[i+1];
+                  qDebug() <<"Read repo_list from args: "<<repoList;
             }
         }
         // Allow gpio channel to be specified in commandline

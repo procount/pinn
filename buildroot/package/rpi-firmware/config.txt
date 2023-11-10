@@ -1,8 +1,10 @@
 gpu_mem=16
-start_file=recovery.elf
-fixup_file=fixup_rc.dat
+start_file=start.elf
+fixup_file=fixup.dat
+
+initramfs pinn.rfs
 
 [pi4]
-start_file=recover4.elf
-fixup_file=fixup4rc.dat
+start_file=start4.elf
+fixup_file=fixup4.dat
 max_framebuffers=2
