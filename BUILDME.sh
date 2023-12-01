@@ -18,6 +18,15 @@ function get_package_version {
   fi
 }
 
+function get_package_version6 {
+  PACKAGE=$1
+  CONFIG_FILE="../buildroot-2023.02/package/$PACKAGE/$PACKAGE.mk"
+  if [ -f "$CONFIG_FILE" ]; then
+    CONFIG_VAR=$(echo "$PACKAGE-version" | tr '[:lower:]-' '[:upper:]_')
+    grep -E "^$CONFIG_VAR\s*=\s*.+$" "$CONFIG_FILE" | tr -d ' ' | cut -d= -f2
+  fi
+}
+
 
 function update_github_package_version {
     PACKAGE=$1
@@ -50,7 +59,7 @@ function update_github_package_version {
 
 
 function get_kernel_version {
-    CONFIG_FILE=.config
+    CONFIG_FILE=../buildroot-2023.02/.config
     CONFIG_VAR=BR2_LINUX_KERNEL_VERSION
     grep -E "^$CONFIG_VAR=\".+\"$" "$CONFIG_FILE" | tr -d '"' | cut -d= -f2
 }
@@ -220,11 +229,10 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
         # Rebuild kernel for ARMv8
         select_kernelconfig armv8
         make linux-reconfigure
+	make rpi-firmware
         # copy ARMv8 kernel
         cp "$IMAGES_DIR/Image.gz"                      "$FINAL_OUTPUT_DIR/kernel8.img"
         for f in "$IMAGES_DIR/*.dtb";                   do cp $f "$FINAL_OUTPUT_DIR"; done
-        for f in "$IMAGES_DIR/rpi-firmware/fix*.dat";   do cp $f "$FINAL_OUTPUT_DIR"; done
-        for f in "$IMAGES_DIR/rpi-firmware/start*.elf"; do cp $f "$FINAL_OUTPUT_DIR"; done
     else
         echo "Warning: kernel armv8 in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
     fi
@@ -233,11 +241,10 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
         # Rebuild kernel for ARMv7L
         select_kernelconfig armv7l
         make linux-reconfigure
+	make rpi-firmware
         # copy ARMv7L kernel
         cp "$IMAGES_DIR/zImage"                         "$FINAL_OUTPUT_DIR/kernel7l.img"
         for f in "$IMAGES_DIR/*.dtb";                   do cp $f "$FINAL_OUTPUT_DIR"; done
-        for f in "$IMAGES_DIR/rpi-firmware/fix*.dat";   do cp $f "$FINAL_OUTPUT_DIR"; done
-        for f in "$IMAGES_DIR/rpi-firmware/start*.elf"; do cp $f "$FINAL_OUTPUT_DIR"; done
     else
         echo "Warning: kernel armv7l in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
     fi
@@ -246,11 +253,10 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
         # Rebuild kernel for ARMv7
         select_kernelconfig armv7
         make linux-reconfigure
+	make rpi-firmware
         # copy ARMv7 kernel
         cp "$IMAGES_DIR/zImage"                         "$FINAL_OUTPUT_DIR/kernel7.img"
         for f in "$IMAGES_DIR/*.dtb";                   do cp $f "$FINAL_OUTPUT_DIR"; done
-        for f in "$IMAGES_DIR/rpi-firmware/fix*.dat";   do cp $f "$FINAL_OUTPUT_DIR"; done
-        for f in "$IMAGES_DIR/rpi-firmware/start*.elf"; do cp $f "$FINAL_OUTPUT_DIR"; done
     else
         echo "Warning: kernel armv7 in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
     fi
@@ -259,11 +265,10 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
         # Rebuild kernel for ARMv6
         select_kernelconfig armv6
         make linux-reconfigure
+	make rpi-firmware
         # copy ARMv6 kernel
         cp "$IMAGES_DIR/zImage"                         "$FINAL_OUTPUT_DIR/kernel.img"
         for f in "$IMAGES_DIR/*.dtb";                   do cp $f "$FINAL_OUTPUT_DIR"; done
-        for f in "$IMAGES_DIR/rpi-firmware/fix*.dat";   do cp $f "$FINAL_OUTPUT_DIR"; done
-        for f in "$IMAGES_DIR/rpi-firmware/start*.elf"; do cp $f "$FINAL_OUTPUT_DIR"; done
     else
         echo "Warning: kernel armv6 in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
     fi
@@ -293,14 +298,14 @@ cp "$IMAGES_DIR/rootfs.squashfs" "$FINAL_OUTPUT_DIR/pinn.rfs"
 #cp "$IMAGES_DIR/rootfs.cpio.lzo" "$FINAL_OUTPUT_DIR/pinn.rfs"
 
 # Ensure that final output dir contains files necessary to boot
-#cp "$IMAGES_DIR/rpi-firmware/start.elf" "$FINAL_OUTPUT_DIR"
+cp "$IMAGES_DIR/rpi-firmware/start.elf" "$FINAL_OUTPUT_DIR"
 
-#cp "$IMAGES_DIR/rpi-firmware/start4.elf" "$FINAL_OUTPUT_DIR"
-#cp "$IMAGES_DIR/rpi-firmware/fixup.dat" "$FINAL_OUTPUT_DIR"
-#cp "$IMAGES_DIR/rpi-firmware/fixup4.dat" "$FINAL_OUTPUT_DIR"
-#cp "$IMAGES_DIR/rpi-firmware/config.txt" "$FINAL_OUTPUT_DIR"
+cp "$IMAGES_DIR/rpi-firmware/start4.elf" "$FINAL_OUTPUT_DIR"
+cp "$IMAGES_DIR/rpi-firmware/fixup.dat" "$FINAL_OUTPUT_DIR"
+cp "$IMAGES_DIR/rpi-firmware/fixup4.dat" "$FINAL_OUTPUT_DIR"
+cp "$IMAGES_DIR/rpi-firmware/config.txt" "$FINAL_OUTPUT_DIR"
 cp "$IMAGES_DIR/rpi-firmware/bootcode.bin" "$FINAL_OUTPUT_DIR"
-cp -a $IMAGES_DIR/*.dtb "$IMAGES_DIR/overlays" "$FINAL_OUTPUT_DIR"
+cp -a  "../buildroot-2023.02/$IMAGES_DIR/rpi-firmware/overlays" "$FINAL_OUTPUT_DIR"
 cp "$IMAGES_DIR/cmdline.txt" "$FINAL_OUTPUT_DIR"
 cp "$IMAGES_DIR/recovery.cmdline.new" "$FINAL_OUTPUT_DIR"
 touch "$FINAL_OUTPUT_DIR/RECOVERY_FILES_DO_NOT_EDIT"
@@ -311,7 +316,7 @@ echo "Build-date: $(date +"%Y-%m-%d")" > "$BUILD_INFO"
 echo "PINN Version: $(sed -n 's|.*VERSION_NUMBER.*\"\(.*\)\"|v\1|p' ../recovery/config.h)" >> "$BUILD_INFO"
 echo "PINN Git HEAD @ $(git rev-parse --verify HEAD)" >> "$BUILD_INFO"
 echo "rpi-userland Git master @ $(get_package_version rpi-userland)" >> "$BUILD_INFO"
-echo "rpi-firmware Git master @ $(get_package_version rpi-firmware)" >> "$BUILD_INFO"
+echo "rpi-firmware Git master @ $(get_package_version6 rpi-firmware)" >> "$BUILD_INFO"
 echo "rpi-linux Git rpi-$KERNEL.y @ $(get_kernel_version)" >> "$BUILD_INFO"
 
 cd ..
