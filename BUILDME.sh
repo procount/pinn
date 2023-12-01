@@ -293,12 +293,12 @@ cp "$IMAGES_DIR/rootfs.squashfs" "$FINAL_OUTPUT_DIR/pinn.rfs"
 #cp "$IMAGES_DIR/rootfs.cpio.lzo" "$FINAL_OUTPUT_DIR/pinn.rfs"
 
 # Ensure that final output dir contains files necessary to boot
-cp "$IMAGES_DIR/rpi-firmware/start.elf" "$FINAL_OUTPUT_DIR"
+#cp "$IMAGES_DIR/rpi-firmware/start.elf" "$FINAL_OUTPUT_DIR"
 
-cp "$IMAGES_DIR/rpi-firmware/start4.elf" "$FINAL_OUTPUT_DIR"
-cp "$IMAGES_DIR/rpi-firmware/fixup.dat" "$FINAL_OUTPUT_DIR"
-cp "$IMAGES_DIR/rpi-firmware/fixup4.dat" "$FINAL_OUTPUT_DIR"
-cp "$IMAGES_DIR/rpi-firmware/config.txt" "$FINAL_OUTPUT_DIR"
+#cp "$IMAGES_DIR/rpi-firmware/start4.elf" "$FINAL_OUTPUT_DIR"
+#cp "$IMAGES_DIR/rpi-firmware/fixup.dat" "$FINAL_OUTPUT_DIR"
+#cp "$IMAGES_DIR/rpi-firmware/fixup4.dat" "$FINAL_OUTPUT_DIR"
+#cp "$IMAGES_DIR/rpi-firmware/config.txt" "$FINAL_OUTPUT_DIR"
 cp "$IMAGES_DIR/rpi-firmware/bootcode.bin" "$FINAL_OUTPUT_DIR"
 cp -a $IMAGES_DIR/*.dtb "$IMAGES_DIR/overlays" "$FINAL_OUTPUT_DIR"
 cp "$IMAGES_DIR/cmdline.txt" "$FINAL_OUTPUT_DIR"
