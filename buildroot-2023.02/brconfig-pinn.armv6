@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Buildroot p3.8.8b-dirty Configuration
+# Buildroot p3.8.8b-3-g5276c3a0-dirty Configuration
 #
 BR2_HAVE_DOT_CONFIG=y
 BR2_HOST_GCC_AT_LEAST_4_9=y
@@ -569,7 +569,7 @@ BR2_LINUX_KERNEL_GZIP=y
 # BR2_LINUX_KERNEL_ZSTD is not set
 BR2_LINUX_KERNEL_DTS_SUPPORT=y
 # BR2_LINUX_KERNEL_DTB_IS_SELF_BUILT is not set
-BR2_LINUX_KERNEL_INTREE_DTS_NAME="bcm2710-rpi-3-b bcm2710-rpi-3-b-plus bcm2710-rpi-cm3"
+BR2_LINUX_KERNEL_INTREE_DTS_NAME="bcm2708-rpi-b bcm2708-rpi-b-plus bcm2708-rpi-b-rev1 bcm2708-rpi-cm bcm2708-rpi-zero bcm2708-rpi-zero-w bcm2709-rpi-2-b bcm2709-rpi-cm2"
 BR2_LINUX_KERNEL_CUSTOM_DTS_PATH=""
 # BR2_LINUX_KERNEL_DTB_KEEP_DIRNAME is not set
 BR2_LINUX_KERNEL_DTB_OVERLAY_SUPPORT=y
