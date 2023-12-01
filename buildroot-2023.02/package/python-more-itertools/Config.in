@@ -1,0 +1,6 @@
+config BR2_PACKAGE_PYTHON_MORE_ITERTOOLS
+	bool "python-more-itertools"
+	help
+	  More routines for operating on iterables, beyond itertools.
+
+	  https://github.com/more-itertools/more-itertools

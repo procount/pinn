@@ -1,0 +1,5 @@
+# From https://lists.x.org/archives/xorg-announce/2022-October/003244.html
+sha256  5094d1f0fcc1828cb1696d0d39d9e866ae32520c54d01f618f1a3c1e30c2085c  libXinerama-1.1.5.tar.xz
+sha512  735b5320de4782005b379e409bf2f976131c17d496b297d33a0e127ca1443034778586b6b25c077b2ad73a4ab34d440d7510475e0041f38202bb40f15fb08ff7  libXinerama-1.1.5.tar.xz
+# Locally computed
+sha256  f661fd883b6e980b3b118e0fbe230fbf10eef8d4d4a35931355f29ed647ddbe3  COPYING

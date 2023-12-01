@@ -1,0 +1,6 @@
+# From https://ftp.exim.org/pub/exim/exim4/00-sha256sums.txt
+sha256  299a56927b2eb3477daafd3c5bda02bc67e5c4e5898a7aeaf2740875278cf1a3  exim-4.96.tar.xz
+# From https://ftp.exim.org/pub/exim/exim4/00-sha512sums.txt
+sha512  6b863661465a0b9897c1b71875c5196a1903cf560dd85de45b08242b9731edb2bc10eb56945d62e477e5d15cc7a8d493915bff2ca81689673a8091c66f62c89e  exim-4.96.tar.xz
+# Locally calculated
+sha256  49240db527b7e55b312a46fc59794fde5dd006422e422257f4f057bfd27b3c8f  LICENCE

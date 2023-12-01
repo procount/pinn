@@ -1,0 +1,5 @@
+# md5, sha256 from https://pypi.org/pypi/terminaltables/json
+md5  5467e06a1a6e24dc44e6dd241706668e  terminaltables-3.1.10.tar.gz
+sha256  ba6eca5cb5ba02bba4c9f4f985af80c54ec3dccf94cfcd190154386255e47543  terminaltables-3.1.10.tar.gz
+# Locally computed sha256 checksums
+sha256  2e1320fd337db06a3136d0f4101bd62f13249c95c5b581304f35481e979d432a  LICENSE

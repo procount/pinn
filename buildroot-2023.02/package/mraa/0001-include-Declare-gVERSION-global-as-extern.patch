@@ -1,0 +1,30 @@
+From aaa0a5cd4e401bde4fb3691dd4e6c70a5c61e031 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Bj=C3=B6rn=20Esser?= <besser82@fedoraproject.org>
+Date: Mon, 13 Apr 2020 20:12:11 +0200
+Subject: [PATCH] include: Declare gVERSION global as 'extern'.
+
+Fixes build with '-fno-common'.
+
+Signed-off-by: Thomas Ingleby <thomas.ingleby@intel.com>
+[Retrieved from:
+https://github.com/eclipse/mraa/commit/aaa0a5cd4e401bde4fb3691dd4e6c70a5c61e031]
+Signed-off-by: Fabrice Fontaine <fontaine.fabrice@gmail.com>
+---
+ include/version.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/include/version.h b/include/version.h
+index 47366ef6f..3a567a1d5 100644
+--- a/include/version.h
++++ b/include/version.h
+@@ -11,8 +11,8 @@
+ extern "C" {
+ #endif
+ 
+-const char* gVERSION;
+-const char* gVERSION_SHORT;
++extern const char* gVERSION;
++extern const char* gVERSION_SHORT;
+ 
+ #ifdef __cplusplus
+ }

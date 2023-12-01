@@ -1,0 +1,8 @@
+config BR2_PACKAGE_IMX_KOBS
+	bool "imx-kobs"
+	depends on BR2_arm # Only relevant for i.MX
+	help
+	  The imx-kobs tool is used for writing images to NAND on i.MX
+	  platforms.
+
+	  https://github.com/NXPmicro/imx-kobs

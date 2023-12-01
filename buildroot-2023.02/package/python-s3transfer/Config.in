@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_S3TRANSFER
+	bool "python-s3transfer"
+	select BR2_PACKAGE_PYTHON_BOTOCORE # runtime
+	help
+	  An Amazon S3 Transfer Manager.
+
+	  https://github.com/boto/s3transfer

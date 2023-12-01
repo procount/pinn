@@ -1,0 +1,14 @@
+config BR2_PACKAGE_VALIJSON
+	bool "valijson"
+	depends on BR2_INSTALL_LIBSTDCPP
+	help
+	  Valijson is a header-only JSON Schema Validation library for
+	  C++. Valijson provides a simple validation API that allows
+	  you load JSON Schemas, and validate documents loaded by one
+	  of several supported parser libraries like boost, jsoncpp,
+	  rapidjson and picoJSON.
+
+	  https://github.com/tristanpenman/valijson
+
+comment "valijson needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP

@@ -1,0 +1,5 @@
+# md5, sha256 from https://pypi.org/pypi/texttable/json
+md5  83eb15fb541dd857ff051a8d0c979b9c  texttable-1.6.7.tar.gz
+sha256  290348fb67f7746931bcdfd55ac7584ecd4e5b0846ab164333f0794b121760f2  texttable-1.6.7.tar.gz
+# Locally computed sha256 checksums
+sha256  4ba7bdab54504a3bc44eb33ecca873a26a63ab902822101a87bb46235da63594  LICENSE

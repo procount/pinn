@@ -1,0 +1,5 @@
+# md5, sha256 from https://pypi.org/pypi/inflection/json
+md5  c3287d4f0e3bdf625a52d655cc514403  inflection-0.5.1.tar.gz
+sha256  1a29730d366e996aaacffb2f1f1cb9593dc38e2ddd30c91250c6dde09ea9b417  inflection-0.5.1.tar.gz
+# Locally computed sha256 checksums
+sha256  9e9f9b4b2e7543ad1486f1328bf9ec50e5a5e2bb9caceb59652496dd61e64133  LICENSE

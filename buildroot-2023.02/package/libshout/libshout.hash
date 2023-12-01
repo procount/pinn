@@ -1,0 +1,8 @@
+# From https://ftp.osuosl.org/pub/xiph/releases/libshout/SHA512SUMS
+sha512  e8478cdbf9a27674c16a7b620d1576f2e31a47262b8e29b314d0f46d4e5be24b9a29790b7b226f48939bc34cacf5734fae0aa5686c7ed5879cdbd827ff8e0339  libshout-2.4.6.tar.gz
+
+# From https://ftp.osuosl.org/pub/xiph/releases/libshout/SHA256SUMS
+sha256  39cbd4f0efdfddc9755d88217e47f8f2d7108fa767f9d58a2ba26a16d8f7c910  libshout-2.4.6.tar.gz
+
+# Hash for license file
+sha256  7a4436f9ec37603356791c87de3bc444989befd2682d29efb3d97604e04c1852  COPYING

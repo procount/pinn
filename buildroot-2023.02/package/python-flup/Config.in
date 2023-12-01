@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PYTHON_FLUP
+	bool "python-flup"
+	help
+	  flup provides of a collection of WSGI modules for Python.
+	  It allows a webserver to use scgi-mod and fastcgi-mod
+	  with python.
+
+	  https://pypi.python.org/pypi/flup

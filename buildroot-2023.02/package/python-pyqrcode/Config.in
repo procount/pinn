@@ -1,0 +1,9 @@
+config BR2_PACKAGE_PYTHON_PYQRCODE
+	bool "python-pyqrcode"
+	select BR2_PACKAGE_PYTHON3_PYEXPAT # runtime
+	select BR2_PACKAGE_PYTHON3_CODECSCJK # runtime
+	help
+	  A QR code generator written purely in Python with SVG, EPS,
+	  PNG and terminal output.
+
+	  https://github.com/mnooner256/pyqrcode

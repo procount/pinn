@@ -1,0 +1,5 @@
+# Hash from: https://download.gnome.org/sources/vte/0.66/vte-0.66.2.sha256sum
+sha256  e89974673a72a0a06edac6d17830b82bb124decf0cb3b52cebc92ec3ff04d976  vte-0.66.2.tar.xz
+
+# Hash for license file:
+sha256  9ccf26cfe845e0eb8bb58053e47366e7ab6b697ae010f7650978d4b71b7d1fc1  COPYING.LGPL3

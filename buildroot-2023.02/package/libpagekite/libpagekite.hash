@@ -1,0 +1,7 @@
+# Locally calculated
+sha256  db835d49becebc00d462f2f47aefc1f1d3a4e0e096487cb3b4248134185df715  libpagekite-0.91.201110.tar.gz
+
+# License files, locally calculated
+sha256  ba443b9c9d4273d06aae3e147e9ad1ec199cc9c23455f486a039536d47f57eed  doc/COPYING.md
+sha256  4a271d0bb6bb6e0bac880efddb46da73e6df3dcf0d9ca08a945a232f8ab882ef  doc/LICENSE-2.0.txt
+sha256  8e0f770cabe772d67d36469f6bf413afd2dcfa6ac37acfc65f770cf3a134106d  doc/AGPLv3.txt

@@ -1,0 +1,6 @@
+# From https://lists.freedesktop.org/archives/pulseaudio-discuss/2022-June/032287.html
+sha256  8eef32ce91d47979f95fd9a935e738cd7eb7463430dabc72863251751e504ae4  pulseaudio-16.1.tar.xz
+# Locally computed
+sha256  c38aee9e3c8c4d5d594ff548a1be05453023016d6286931f6512db215ec1fd42  GPL
+sha256  a9bdde5616ecdd1e980b44f360600ee8783b1f99b8cc83a2beb163a0a390e861  LGPL
+sha256  a1064b9838b6b4feee61eaeb0925da4b4834c984b77716558860c4294ed6c015  LICENSE

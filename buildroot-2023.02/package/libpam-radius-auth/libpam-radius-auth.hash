@@ -1,0 +1,5 @@
+# Locally calculated after checking PGP signature
+sha256  798dc358e7a143163e103bd38c4101645b2e93d82aa0ec63d32c0cb929d9c65c  libpam-radius-auth-2.0.0.tar.gz
+
+# Hash for license file:
+sha256  67f82e045cf7acfef853ea0f426575a8359161a0a325e19f02b529a87c4b6c34  LICENSE

@@ -1,0 +1,5 @@
+# From https://lists.x.org/archives/xorg-announce/2022-August/003205.html
+sha256  38f369d431e753280fde70fa489cc94ce204f9f8eabd2f49fc7d32afa69f4405  ico-1.0.6.tar.xz
+sha512  0ada451b8026ea10d1a5633f847b7bf833292e4cd01e3f1079d82c91fd142c06c6c4005b7146900ee34ac7acc8fd981db37ada9052dff49c2cfce995b9146c8c  ico-1.0.6.tar.xz
+# Locally computed
+sha256  97ef3a622f2f385cabfc8ab7aff13dc46468c10a5520670b5edfa33f2c3999eb  COPYING

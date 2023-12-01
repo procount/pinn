@@ -1,0 +1,6 @@
+config BR2_PACKAGE_PYTHON_DJANGO_ENUMFIELDS
+	bool "python-django-enumfields"
+	help
+	  Real Python Enums for Django.
+
+	  https://github.com/hzdg/django-enumfields

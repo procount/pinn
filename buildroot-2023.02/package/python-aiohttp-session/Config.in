@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_AIOHTTP_SESSION
+	bool "python-aiohttp-session"
+	select BR2_PACKAGE_PYTHON_AIOHTTP # runtime
+	help
+	  Sessions for aiohttp.web.
+
+	  https://github.com/aio-libs/aiohttp_session/

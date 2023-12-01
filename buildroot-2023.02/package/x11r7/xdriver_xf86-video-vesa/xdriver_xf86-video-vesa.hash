@@ -1,0 +1,5 @@
+# From https://lists.x.org/archives/xorg-announce/2022-December/003297.html
+sha256  10082771b1a8f659c60b3d9b70456a4b59948a75b3cade2dfa33b8b05e549bb1  xf86-video-vesa-2.6.0.tar.xz
+sha512  494e117c1e6e0ce4c66ac7798de54667862c62605bfd76dd9373447d40dcd0521100810c9285cbe9c159440e217954c0cad6d5219c5894e075509c7c0bc353c7  xf86-video-vesa-2.6.0.tar.xz
+# Locally computed
+sha256  bda49ba1e860501c20fd444423bc790f6da4f769561b69acc0cbe5abff9409b6  COPYING

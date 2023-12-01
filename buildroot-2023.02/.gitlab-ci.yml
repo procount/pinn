@@ -1,0 +1,28 @@
+# Configuration for Gitlab-CI.
+# Builds appear on https://gitlab.com/buildroot.org/buildroot/pipelines
+
+image: $CI_REGISTRY/buildroot.org/buildroot/base:20230207.1123
+
+stages:
+  - generate-gitlab-ci
+  - build
+
+generate-gitlab-ci-yml:
+  stage: generate-gitlab-ci
+  script: ./support/scripts/generate-gitlab-ci-yml support/misc/gitlab-ci.yml.in > generated-gitlab-ci.yml
+  artifacts:
+    when: always
+    paths:
+      - generated-gitlab-ci.yml
+      - br-test-pkg/*/.config
+      - br-test-pkg/*/missing.config
+
+buildroot-pipeline:
+  stage: build
+  trigger:
+    include:
+      - artifact: generated-gitlab-ci.yml
+        job: generate-gitlab-ci-yml
+    strategy: depend
+  variables:
+    PARENT_PIPELINE_ID: $CI_PIPELINE_ID

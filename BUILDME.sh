@@ -3,7 +3,7 @@
 
 set -e
 
-KERNEL="5.4"
+KERNEL="6.1"
 
 # Final directory where NOOBS files will be copied to
 NOOBS_OUTPUT_DIR="output"
@@ -90,9 +90,10 @@ function update_github_kernel_version {
 function select_kernelconfig {
     ARCH=$1
     CONFIG_FILE=.config
-    CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE
-    VAR_PREFIX=kernelconfig-recovery
-    sed -ri "s/(^$CONFIG_VAR=\"$VAR_PREFIX\.).+(\")$/\1$ARCH\2/" "$CONFIG_FILE"
+    cp brconfig-pinn.$ARCH .config
+    #CONFIG_VAR=BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE
+    #VAR_PREFIX=kernelconfig-recovery
+    #sed -ri "s/(^$CONFIG_VAR=\"$VAR_PREFIX\.).+(\")$/\1$ARCH\2/" "$CONFIG_FILE"
 
 #    if [ "$ARCH" == "armv6" ]; then
 #        REPO="git:\/\/github.com\/raspberrypi\/linux.git";
@@ -113,7 +114,6 @@ function select_kernelconfig {
 
 }
 
-cd buildroot
 
 # WARNING: don't try changing these - you'll break buildroot
 BUILD_DIR="output/build"
@@ -123,6 +123,7 @@ SKIP_KERNEL_REBUILD=0
 SKIP_KERNEL_6=0
 SKIP_KERNEL_7=0
 SKIP_KERNEL_7L=0
+SKIP_KERNEL_8=0
 SKIP_RECOVERY_REBUILD=0
 UPDATE_TS=0
 
@@ -167,6 +168,11 @@ for i in $*; do
     fi
 
     # Option to build just recovery without completely rebuilding both kernels
+    if [ $i = "skip-kernel-8" ]; then
+        SKIP_KERNEL_8=1
+    fi
+
+    # Option to build just recovery without completely rebuilding both kernels
     if [ $i = "skip-recovery-rebuild" ]; then
         SKIP_RECOVERY_REBUILD=1
     fi
@@ -200,13 +206,7 @@ if [ $SKIP_RECOVERY_REBUILD -ne 1 ]; then
 fi
 
 
-# Let buildroot build everything
-make
-
-# copy any updated translation files
-if [ $UPDATE_TS -eq 1 ]; then
-    cp $BUILD_DIR/recovery-$(get_package_version recovery)/*.ts ../recovery
-fi
+cd buildroot-2023.02
 
 # Create output dir and copy files
 FINAL_OUTPUT_DIR="../$NOOBS_OUTPUT_DIR"
@@ -216,12 +216,28 @@ cp -r ../sdcontent/* "$FINAL_OUTPUT_DIR"
 
 if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
 
+    if [ $SKIP_KERNEL_8 -ne 1 ]; then
+        # Rebuild kernel for ARMv8
+        select_kernelconfig armv8
+        make linux-reconfigure
+        # copy ARMv8 kernel
+        cp "$IMAGES_DIR/Image.gz"                      "$FINAL_OUTPUT_DIR/kernel8.img"
+        for f in "$IMAGES_DIR/*.dtb";                   do cp $f "$FINAL_OUTPUT_DIR"; done
+        for f in "$IMAGES_DIR/rpi-firmware/fix*.dat";   do cp $f "$FINAL_OUTPUT_DIR"; done
+        for f in "$IMAGES_DIR/rpi-firmware/start*.elf"; do cp $f "$FINAL_OUTPUT_DIR"; done
+    else
+        echo "Warning: kernel armv8 in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
+    fi
+
     if [ $SKIP_KERNEL_7L -ne 1 ]; then
         # Rebuild kernel for ARMv7L
         select_kernelconfig armv7l
         make linux-reconfigure
         # copy ARMv7L kernel
-        cp "$IMAGES_DIR/zImage" "$FINAL_OUTPUT_DIR/kernel7l.img"
+        cp "$IMAGES_DIR/zImage"                         "$FINAL_OUTPUT_DIR/kernel7l.img"
+        for f in "$IMAGES_DIR/*.dtb";                   do cp $f "$FINAL_OUTPUT_DIR"; done
+        for f in "$IMAGES_DIR/rpi-firmware/fix*.dat";   do cp $f "$FINAL_OUTPUT_DIR"; done
+        for f in "$IMAGES_DIR/rpi-firmware/start*.elf"; do cp $f "$FINAL_OUTPUT_DIR"; done
     else
         echo "Warning: kernel armv7l in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
     fi
@@ -231,7 +247,10 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
         select_kernelconfig armv7
         make linux-reconfigure
         # copy ARMv7 kernel
-        cp "$IMAGES_DIR/zImage" "$FINAL_OUTPUT_DIR/kernel7.img"
+        cp "$IMAGES_DIR/zImage"                         "$FINAL_OUTPUT_DIR/kernel7.img"
+        for f in "$IMAGES_DIR/*.dtb";                   do cp $f "$FINAL_OUTPUT_DIR"; done
+        for f in "$IMAGES_DIR/rpi-firmware/fix*.dat";   do cp $f "$FINAL_OUTPUT_DIR"; done
+        for f in "$IMAGES_DIR/rpi-firmware/start*.elf"; do cp $f "$FINAL_OUTPUT_DIR"; done
     else
         echo "Warning: kernel armv7 in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
     fi
@@ -241,7 +260,10 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
         select_kernelconfig armv6
         make linux-reconfigure
         # copy ARMv6 kernel
-        cp "$IMAGES_DIR/zImage" "$FINAL_OUTPUT_DIR/kernel.img"
+        cp "$IMAGES_DIR/zImage"                         "$FINAL_OUTPUT_DIR/kernel.img"
+        for f in "$IMAGES_DIR/*.dtb";                   do cp $f "$FINAL_OUTPUT_DIR"; done
+        for f in "$IMAGES_DIR/rpi-firmware/fix*.dat";   do cp $f "$FINAL_OUTPUT_DIR"; done
+        for f in "$IMAGES_DIR/rpi-firmware/start*.elf"; do cp $f "$FINAL_OUTPUT_DIR"; done
     else
         echo "Warning: kernel armv6 in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
     fi
@@ -249,6 +271,22 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
 else
     echo "Warning: kernels in '$NOOBS_OUTPUT_DIR' directory haven't been updated"
 fi
+
+cd ..
+
+# Let buildroot build everything
+cd buildroot
+make
+
+# copy any updated translation files
+if [ $UPDATE_TS -eq 1 ]; then
+    cp $BUILD_DIR/recovery-$(get_package_version recovery)/*.ts ../recovery
+fi
+
+
+
+
+
 
 # copy rootfs
 cp "$IMAGES_DIR/rootfs.squashfs" "$FINAL_OUTPUT_DIR/pinn.rfs"

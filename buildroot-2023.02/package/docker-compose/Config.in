@@ -1,0 +1,15 @@
+config BR2_PACKAGE_DOCKER_COMPOSE
+	bool "docker-compose"
+	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
+	depends on BR2_PACKAGE_HOST_GO_TARGET_CGO_LINKING_SUPPORTS
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	depends on BR2_PACKAGE_DOCKER_CLI
+	help
+	  Multi-container applications with the Docker CLI.
+
+	  https://github.com/docker/compose
+
+comment "docker-compose needs docker-cli and a toolchain w/ threads"
+	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
+	depends on BR2_PACKAGE_HOST_GO_TARGET_CGO_LINKING_SUPPORTS
+	depends on !BR2_TOOLCHAIN_HAS_THREADS || !BR2_PACKAGE_DOCKER_CLI

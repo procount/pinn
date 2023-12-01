@@ -1,0 +1,40 @@
+From 881705ec581ab7cd61c8e4fe134db8854a83ec4e Mon Sep 17 00:00:00 2001
+From: Gwenhael Goavec-Merou <gwenhael.goavec-merou@trabucayre.com>
+Date: Tue, 28 Apr 2020 16:56:29 +0200
+Subject: [PATCH] host: CMakeLists: add boost unit_test_framework required only
+ when ENABLE_TESTS=ON
+
+By default, boost unit_test_framework is always required, but only use
+when ENABLE_TESTS=ON.
+This PR suppress unit_test_framework to the default list and append
+UHD_BOOST_REQUIRED_COMPONENTS when this library is needed
+
+Signed-off-by: Gwenhael Goavec-Merou <gwenhael.goavec-merou@trabucayre.com>
+[Fabrice: updated for 4.3.0.0]
+Signed-off-by: Fabrice Fontaine <fontaine.fabrice@gmail.com>
+[Upstream status: reverted (https://github.com/EttusResearch/uhd/commit/1a00949b19eaecb84af0f27c370400dc71a9fd84)]
+---
+ host/CMakeLists.txt | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/host/CMakeLists.txt b/host/CMakeLists.txt
+index 8f72ece76..a7731ffbd 100644
+--- a/host/CMakeLists.txt
++++ b/host/CMakeLists.txt
+@@ -291,9 +291,12 @@ set(UHD_BOOST_REQUIRED_COMPONENTS
+     system
+     serialization
+     thread
+-    unit_test_framework
+ )
+
++if(ENABLE_TESTS)
++    list(APPEND UHD_BOOST_REQUIRED_COMPONENTS unit_test_framework)
++endif(ENABLE_TESTS)
++
+ include(UHDBoost)
+ 
+ include_directories(${Boost_INCLUDE_DIRS})
+-- 
+2.26.2
+

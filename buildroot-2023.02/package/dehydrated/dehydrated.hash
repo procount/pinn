@@ -1,0 +1,6 @@
+# Locally computed after verifying
+# https://github.com/dehydrated-io/dehydrated/releases/download/v0.7.1/dehydrated-0.7.1.tar.gz.asc
+# with key 3C2F2605E078A1E18F4793909C4DBE6CF438F333 from https://keybase.io/lukas2511
+sha256  4d28a0598230b276b316070ce16be7d9ab984f3bdef482acf0bc24fcdcc0d0b0  dehydrated-0.7.1.tar.gz
+# License, locally computed
+sha256  f25ab9c5f13abf15ab097180423ef6b82a89c552e92d49ae627762ee9c04a3a8  LICENSE

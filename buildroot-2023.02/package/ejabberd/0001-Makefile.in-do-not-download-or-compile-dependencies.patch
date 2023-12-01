@@ -1,0 +1,35 @@
+From bf3571da4a68a6a857ab7ad8256f8276b3687a38 Mon Sep 17 00:00:00 2001
+From: Johan Oudinet <johan.oudinet@gmail.com>
+Date: Fri, 13 May 2022 14:22:37 +0200
+Subject: [PATCH] Makefile.in: do not download or compile dependencies
+
+Signed-off-by: Johan Oudinet <johan.oudinet@gmail.com>
+---
+ Makefile.in | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index ab0e9d967..6e54168a7 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -139,7 +139,7 @@ else
+ endif
+ endif
+ 
+-all: deps src
++all: src
+ 
+ deps: $(DEPSDIR)/.got
+ 
+@@ -153,7 +153,7 @@ $(DEPSDIR)/.built: $(DEPSDIR)/.got
+ 	$(CONFIGURE_DEPS)
+ 	$(REBAR) compile && :> $(DEPSDIR)/.built
+ 
+-src: $(DEPSDIR)/.built
++src:
+ 	$(REBAR) $(SKIPDEPS) compile
+ 
+ update:
+-- 
+2.34.1
+

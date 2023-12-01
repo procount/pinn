@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PYTHON_PYSFTP
+	bool "python-pysftp"
+	depends on BR2_PACKAGE_HOST_RUSTC_TARGET_ARCH_SUPPORTS # python-paramiko -> python-cryptography
+	select BR2_PACKAGE_PYTHON_PARAMIKO # runtime
+	help
+	  A friendly face on SFTP.
+
+	  https://bitbucket.org/dundeemt/pysftp

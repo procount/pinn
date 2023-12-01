@@ -1,0 +1,7 @@
+config BR2_PACKAGE_URANDOM_SCRIPTS
+	bool "urandom-initscripts"
+	default y if BR2_PACKAGE_INITSCRIPTS
+	depends on BR2_PACKAGE_BUSYBOX
+	depends on !BR2_PACKAGE_SYSTEMD
+	help
+	  Initscript to preserve the random seed between reboots.

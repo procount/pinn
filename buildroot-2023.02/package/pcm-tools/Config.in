@@ -1,0 +1,33 @@
+comment "pcm-tools needs a toolchain w/ C++, NPTL"
+	depends on BR2_i386 || BR2_x86_64
+	depends on !BR2_INSTALL_LIBSTDCPP || \
+		!BR2_TOOLCHAIN_HAS_THREADS_NPTL
+
+config BR2_PACKAGE_PCM_TOOLS
+	bool "pcm-tools"
+	depends on BR2_i386 || BR2_x86_64
+	depends on BR2_INSTALL_LIBSTDCPP
+	depends on BR2_TOOLCHAIN_HAS_THREADS_NPTL
+	select BR2_PACKAGE_HWDATA
+	select BR2_PACKAGE_HWDATA_PCI_IDS
+	help
+	  Processor Counter Monitor (PCM) is an application programming
+	  interface (API) and a set of tools based on the API to monitor
+	  performance and energy metrics of Intel(R) Core(TM), Xeon(R),
+	  Atom(TM) and Xeon Phi(TM) processors.
+
+	  https://github.com/opcm/pcm
+
+if BR2_PACKAGE_PCM_TOOLS
+
+config BR2_PACKAGE_PCM_TOOLS_PMU_QUERY
+	bool "install the pmu-query script"
+	default y
+	depends on BR2_PACKAGE_PYTHON3
+	select BR2_PACKAGE_CA_CERTIFICATES # https
+	select BR2_PACKAGE_PYTHON3_SSL # urllib2
+
+comment "pmu-query needs Python3"
+	depends on !BR2_PACKAGE_PYTHON3
+
+endif
