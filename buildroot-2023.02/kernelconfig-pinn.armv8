@@ -2,7 +2,7 @@
 # Automatically generated file; DO NOT EDIT.
 # Linux/arm64 6.1.54 Kernel Configuration
 #
-CONFIG_CC_VERSION_TEXT="aarch64-buildroot-linux-gnu-gcc.br_real (Buildroot -gdaca84b-dirty) 11.3.0"
+CONFIG_CC_VERSION_TEXT="aarch64-buildroot-linux-gnu-gcc.br_real (Buildroot p3.8.8b-4-g2ba22e39-dirty) 11.3.0"
 CONFIG_CC_IS_GCC=y
 CONFIG_GCC_VERSION=110300
 CONFIG_CLANG_VERSION=0
@@ -1623,7 +1623,7 @@ CONFIG_FW_LOADER_PAGED_BUF=y
 CONFIG_FW_LOADER_SYSFS=y
 CONFIG_EXTRA_FIRMWARE=""
 CONFIG_FW_LOADER_USER_HELPER=y
-# CONFIG_FW_LOADER_USER_HELPER_FALLBACK is not set
+CONFIG_FW_LOADER_USER_HELPER_FALLBACK=y
 # CONFIG_FW_LOADER_COMPRESS is not set
 CONFIG_FW_UPLOAD=y
 # end of Firmware loader
