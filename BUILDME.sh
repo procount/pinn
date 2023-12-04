@@ -207,6 +207,8 @@ for i in $*; do
     fi
 done
 
+cd buildroot
+
 if [ $SKIP_RECOVERY_REBUILD -ne 1 ]; then
     # Delete buildroot build directory to force rebuild
     if [ -e "$BUILD_DIR" ]; then
@@ -215,7 +217,7 @@ if [ $SKIP_RECOVERY_REBUILD -ne 1 ]; then
 fi
 
 
-cd buildroot-2023.02
+cd ../buildroot-2023.02
 
 # Create output dir and copy files
 FINAL_OUTPUT_DIR="../$NOOBS_OUTPUT_DIR"
