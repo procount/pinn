@@ -2,7 +2,7 @@
 # Bash script to rebuild recovery
 
 #set -e
-set -x
+#set -x
 
 KERNEL="6.1"
 

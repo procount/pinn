@@ -2406,6 +2406,7 @@ void MainWindow::processJson(QVariant json)
         OverrideJson(os);
 
         QString basename = os.value("os_name").toString();
+        qDebug() << "#" <<basename << " " << os.value("os_info").toString() << " " << os.value("release_date").toString();
         if (canInstallOs(basename, os))
         {
             if (os.contains("flavours"))
