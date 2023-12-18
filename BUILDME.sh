@@ -1,7 +1,8 @@
 #!/bin/bash
 # Bash script to rebuild recovery
 
-set -e
+#set -e
+set -x
 
 KERNEL="6.1"
 
@@ -94,6 +95,30 @@ function update_github_kernel_version {
     else
         echo "$CONFIG_FILE doesn't exist"
     fi
+}
+
+function select_bits64 {
+
+    #BITS is the version we want to build
+    BITS=$1 #0=32, 1=64
+
+    #PREVBITS is the previous version
+    PREVBITS=`expr 1 - $BITS`
+
+    #If we haven't already built this version
+    if ! [ -e .bits$BITS ]; then
+
+        #if we have built the previous version then delete it
+        if [ -e .bits$PREVBITS ]; then
+            rm .bits$PREVBITS
+            make clean
+        fi
+	make
+        #otherwise assume no version has been built, so no need to make clean
+    else #Just build the Linux kernel
+        make linux-reconfigure
+    fi
+    touch .bits$BITS
 }
 
 function select_kernelconfig {
@@ -207,17 +232,9 @@ for i in $*; do
     fi
 done
 
-cd buildroot
-
-if [ $SKIP_RECOVERY_REBUILD -ne 1 ]; then
-    # Delete buildroot build directory to force rebuild
-    if [ -e "$BUILD_DIR" ]; then
-        rm -rf "$BUILD_DIR/recovery-$(get_package_version recovery)" || true
-    fi
-fi
 
 
-cd ../buildroot-2023.02
+cd buildroot-2023.02
 
 # Create output dir and copy files
 FINAL_OUTPUT_DIR="../$NOOBS_OUTPUT_DIR"
@@ -230,8 +247,9 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
     if [ $SKIP_KERNEL_8 -ne 1 ]; then
         # Rebuild kernel for ARMv8
         select_kernelconfig armv8
-        make linux-reconfigure
-	make rpi-firmware
+        select_bits64 1
+        #make linux-reconfigure
+        make rpi-firmware
         # copy ARMv8 kernel
         cp "$IMAGES_DIR/Image"                         "$FINAL_OUTPUT_DIR/kernel8.img"
         for f in "$IMAGES_DIR/*.dtb";                   do cp $f "$FINAL_OUTPUT_DIR"; done
@@ -242,8 +260,9 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
     if [ $SKIP_KERNEL_7L -ne 1 ]; then
         # Rebuild kernel for ARMv7L
         select_kernelconfig armv7l
-        make linux-reconfigure
-	make rpi-firmware
+        select_bits64 0
+        #make linux-reconfigure
+        make rpi-firmware
         # copy ARMv7L kernel
         cp "$IMAGES_DIR/zImage"                         "$FINAL_OUTPUT_DIR/kernel7l.img"
         for f in "$IMAGES_DIR/*.dtb";                   do cp $f "$FINAL_OUTPUT_DIR"; done
@@ -254,8 +273,9 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
     if [ $SKIP_KERNEL_7 -ne 1 ]; then
         # Rebuild kernel for ARMv7
         select_kernelconfig armv7
-        make linux-reconfigure
-	make rpi-firmware
+        select_bits64 0
+        #make linux-reconfigure
+        make rpi-firmware
         # copy ARMv7 kernel
         cp "$IMAGES_DIR/zImage"                         "$FINAL_OUTPUT_DIR/kernel7.img"
         for f in "$IMAGES_DIR/*.dtb";                   do cp $f "$FINAL_OUTPUT_DIR"; done
@@ -266,8 +286,9 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
     if [ $SKIP_KERNEL_6 -ne 1 ]; then
         # Rebuild kernel for ARMv6
         select_kernelconfig armv6
-        make linux-reconfigure
-	make rpi-firmware
+        select_bits64 0
+        #make linux-reconfigure
+        make rpi-firmware
         # copy ARMv6 kernel
         cp "$IMAGES_DIR/zImage"                         "$FINAL_OUTPUT_DIR/kernel.img"
         for f in "$IMAGES_DIR/*.dtb";                   do cp $f "$FINAL_OUTPUT_DIR"; done
@@ -283,6 +304,13 @@ cd ..
 
 # Let buildroot build everything
 cd buildroot
+
+if [ $SKIP_RECOVERY_REBUILD -ne 1 ]; then
+    # Delete buildroot build directory to force rebuild
+    if [ -e "$BUILD_DIR" ]; then
+        rm -rf "$BUILD_DIR/recovery-$(get_package_version recovery)" || true
+    fi
+fi
 make
 
 # copy any updated translation files
