@@ -3143,7 +3143,7 @@ CONFIG_HWMON=y
 # CONFIG_SENSORS_OCC_P8_I2C is not set
 # CONFIG_SENSORS_PCF8591 is not set
 # CONFIG_PMBUS is not set
-# CONFIG_SENSORS_PWM_FAN is not set
+CONFIG_SENSORS_PWM_FAN=y
 # CONFIG_SENSORS_RASPBERRYPI_HWMON is not set
 # CONFIG_SENSORS_SBTSI is not set
 # CONFIG_SENSORS_SBRMI is not set
@@ -3855,7 +3855,6 @@ CONFIG_MEDIA_TUNER=y
 #
 # ATSC (North American/Korean Terrestrial/Cable DTV) frontends
 #
-# CONFIG_DVB_AU8522 is not set
 # CONFIG_DVB_AU8522_DTV is not set
 # CONFIG_DVB_BCM3510 is not set
 # CONFIG_DVB_LG2160 is not set
