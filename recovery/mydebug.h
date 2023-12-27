@@ -4,7 +4,7 @@
 #include <QDebug>
 
 //Conditional GLOBAL flags
-#define GLOBAL_ENABLE_DEBUG 1   //global debug enabler, enables MyDebug class
+#define GLOBAL_ENABLE_DEBUG 0   //global debug enabler, enables MyDebug class
 
 #define GLOBAL_DBG_ON       0   //Use the global data everywhere (overrides ths other globals. sets them to 0)
 

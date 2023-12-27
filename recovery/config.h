@@ -3,7 +3,7 @@
 
 
 /* Version number displayed in the title bar */
-#define VERSION_NUMBER "3.8.8b"
+#define VERSION_NUMBER "3.8.9"
 
 /* Color of the background */
 // #define BACKGROUND_COLOR  Qt::white
@@ -28,9 +28,9 @@
 #define DEFAULT_REPO_SERVER  "http://raw.githubusercontent.com/procount/pinn-os/master/os/os_all.json"
 
 /* Location of data for self-updating */
-#define BUILD_URL       "http://downloads.sourceforge.net/project/pinn/BUILD-DATA"
-#define UPDATE_URL      "http://downloads.sourceforge.net/project/pinn/pinn-lite.zip"
-#define README_URL      "http://downloads.sourceforge.net/project/pinn/README.md"
+#define BUILD_URL       "http://downloads.sourceforge.net/project/pinn/beta/BUILD-DATA"
+#define UPDATE_URL      "http://downloads.sourceforge.net/project/pinn/beta/pinn-lite.zip"
+#define README_URL      "http://downloads.sourceforge.net/project/pinn/beta/README.md"
 
 #define GROUP_URL       "http://raw.githubusercontent.com/procount/pinn-os/master/os/overrides.json"
 #define BUILD_CURRENT   "/mnt/BUILD-DATA"
@@ -43,12 +43,12 @@
 #define INFO_URL        "https://github.com/procount/pinn"
 
 /* Size of recovery FAT partition in MB when using reformat drive initialization method. */
-#define RESCUE_PARTITION_SIZE  63
+#define RESCUE_PARTITION_SIZE  127
 
 /* Files that are currently on the FAT partition are normally saved to memory during
  * repartitioning.
  * If files they are larger than number of MB, try resizing the FAT partition instead */
-#define MAXIMUM_BOOTFILES_SIZE  64
+#define MAXIMUM_BOOTFILES_SIZE  128
 
 /* Partitioning settings */
 #define PARTITION_ALIGNMENT  8192
