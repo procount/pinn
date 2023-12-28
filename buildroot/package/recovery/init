@@ -20,11 +20,9 @@
 ls
 while [ "$(ls | wc -l)" != "1" ]; do
     for F in *; do
-        echo $F
         if [ -d "$F" ]; then
             fw1="/lib/firmware/${F/!//}"
             fw2="$(echo "$fw1" | sed 's/\..*\././')"
-            echo $fw1 $fw2
             echo 1 > "$F/loading"
             for fw in "$fw1" "$fw2"; do
                 if [ -e "$fw" ]; then
