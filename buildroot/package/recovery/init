@@ -2,7 +2,7 @@
 #
 # Recovery init script
 #
-set -x
+#set -x
 
 # Standard busybox init
 /bin/mount -t proc proc /proc
