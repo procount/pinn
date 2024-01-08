@@ -697,7 +697,7 @@
     <string>Time (t)</string>
    </property>
    <property name="toolTip">
-    <string>Set Data &amp; Time</string>
+    <string>Set Date &amp; Time</string>
    </property>
    <property name="shortcut">
     <string>T</string>
