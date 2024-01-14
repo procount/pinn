@@ -440,36 +440,9 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     QProcess::execute("mount -o ro -t vfat "+partdev(_bootdrive, 1)+" /mnt");
 
     _model = getFileContents("/proc/device-tree/model");
-    ui->modelname->setText(_model);
 
-    //Revision code: NOQu uuWu FMMM CCCC PPPP TTTT TTTT RRRR
-    uint rev = readBoardRevision();
-    ui->memory->setText("");
-    uint mem = rev>>20 & 0x07;
-    switch (mem)
-    {
-        case 0:
-            ui->memory->setText("256MB");
-            break;
-        case 1:
-            ui->memory->setText("512MB");
-            break;
-        case 2:
-            ui->memory->setText("1GB");
-            break;
-        case 3:
-            ui->memory->setText("2GB");
-            break;
-        case 4:
-            ui->memory->setText("4GB");
-            break;
-        case 5:
-            ui->memory->setText("8GB");
-            break;
-        default:
-            ui->memory->setText("");
-            break;
-    }
+    setModelInfo();
+
 
     if (!cmdline.contains("no_overrides"))
         loadOverrides("/mnt/overrides.json");
@@ -627,6 +600,41 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     connect(&_piDrivePollTimer, SIGNAL(timeout()), SLOT(pollForNewDisks()));
     _piDrivePollTimer.start(POLLTIME);
     ug->setFocus();
+
+}
+
+void MainWindow::setModelInfo()
+{
+    ui->modelname->setText(_model);
+
+    //Revision code: NOQu uuWu FMMM CCCC PPPP TTTT TTTT RRRR
+    uint rev = readBoardRevision();
+    ui->memory->setText("");
+    uint mem = rev>>20 & 0x07;
+    switch (mem)
+    {
+        case 0:
+            ui->memory->setText("256MB");
+            break;
+        case 1:
+            ui->memory->setText("512MB");
+            break;
+        case 2:
+            ui->memory->setText("1GB");
+            break;
+        case 3:
+            ui->memory->setText("2GB");
+            break;
+        case 4:
+            ui->memory->setText("4GB");
+            break;
+        case 5:
+            ui->memory->setText("8GB");
+            break;
+        default:
+            ui->memory->setText("");
+            break;
+    }
 
 }
 
@@ -1616,6 +1624,7 @@ void MainWindow::changeEvent(QEvent* event)
         ug->retranslateUI();
         update_window_title();
         updateNeeded();
+        setModelInfo();
         if (_menuLabel)
             _menuLabel->setText(menutext(toolbar_index));
         //repopulate(); #@@ Needs all lists to be cleared & network downloads re-done. Better when osSource implemented.

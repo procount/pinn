@@ -110,6 +110,8 @@ protected:
 
     QProcess * _proc;
 
+    void setModelInfo();
+
     virtual void changeEvent(QEvent * event);
     virtual bool eventFilter(QObject *obj, QEvent *event);
     void inputSequence();
