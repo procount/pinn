@@ -4,7 +4,8 @@
 #
 ################################################################################
 # was  RPI_FIRMWARE_VERSION = 3f20b832b27cd730deb6419b570f31a98167eef6
-RPI_FIRMWARE_VERSION = cac01bed1224743104cb2a4103605f269f207b1a
+# RPI_FIRMWARE_VERSION = cac01bed1224743104cb2a4103605f269f207b1a Sep 29 1st version for Pi5
+RPI_FIRMWARE_VERSION = 8fb3d0bbb6044f8e90f3e7ca4fa02240fdc0ed9d
 RPI_FIRMWARE_SITE = $(call github,raspberrypi,rpi-firmware,$(RPI_FIRMWARE_VERSION))
 RPI_FIRMWARE_LICENSE = BSD-3-Clause
 RPI_FIRMWARE_LICENSE_FILES = boot/LICENCE.broadcom

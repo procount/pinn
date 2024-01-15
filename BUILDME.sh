@@ -6,6 +6,9 @@
 
 KERNEL="6.1"
 
+BUILDROOT_OLD="buildroot"
+BUILDROOT_NEW="buildroot-2023.02"
+
 # Final directory where NOOBS files will be copied to
 NOOBS_OUTPUT_DIR="output"
 export QT_SELECT=4
@@ -21,7 +24,7 @@ function get_package_version {
 
 function get_package_version6 {
   PACKAGE=$1
-  CONFIG_FILE="../buildroot-2023.02/package/$PACKAGE/$PACKAGE.mk"
+  CONFIG_FILE="../${BUILDROOT_NEW}/package/$PACKAGE/$PACKAGE.mk"
   if [ -f "$CONFIG_FILE" ]; then
     CONFIG_VAR=$(echo "$PACKAGE-version" | tr '[:lower:]-' '[:upper:]_')
     grep -E "^$CONFIG_VAR\s*=\s*.+$" "$CONFIG_FILE" | tr -d ' ' | cut -d= -f2
@@ -60,7 +63,7 @@ function update_github_package_version {
 
 
 function get_kernel_version {
-    CONFIG_FILE=../buildroot-2023.02/.config
+    CONFIG_FILE=../${BUILDROOT_NEW}/.config
     CONFIG_VAR=BR2_LINUX_KERNEL_VERSION
     grep -E "^$CONFIG_VAR=\".+\"$" "$CONFIG_FILE" | tr -d '"' | cut -d= -f2
 }
@@ -234,7 +237,7 @@ done
 
 
 
-cd buildroot-2023.02
+cd ${BUILDROOT_NEW} #buildroot-2023.02
 
 # Create output dir and copy files
 FINAL_OUTPUT_DIR="../$NOOBS_OUTPUT_DIR"
@@ -300,10 +303,10 @@ else
     echo "Warning: kernels in '$NOOBS_OUTPUT_DIR' directory haven't been updated"
 fi
 
-cd ..
 
-# Let buildroot build everything
-cd buildroot
+# Let buildroot build everything in rootfs
+cd ..
+cd ${BUILDROOT_OLD} #buildroot
 
 if [ $SKIP_RECOVERY_REBUILD -ne 1 ]; then
     # Delete buildroot build directory to force rebuild
@@ -318,26 +321,27 @@ if [ $UPDATE_TS -eq 1 ]; then
     cp $BUILD_DIR/recovery-$(get_package_version recovery)/*.ts ../recovery
 fi
 
-
-
-
-
-
 # copy rootfs
 cp "$IMAGES_DIR/rootfs.squashfs" "$FINAL_OUTPUT_DIR/pinn.rfs"
 #cp "$IMAGES_DIR/rootfs.cpio.lzo" "$FINAL_OUTPUT_DIR/pinn.rfs"
 
-# Ensure that final output dir contains files necessary to boot
-cp "$IMAGES_DIR/rpi-firmware/start.elf" "$FINAL_OUTPUT_DIR"
 
-cp "$IMAGES_DIR/rpi-firmware/start4.elf" "$FINAL_OUTPUT_DIR"
-cp "$IMAGES_DIR/rpi-firmware/fixup.dat" "$FINAL_OUTPUT_DIR"
-cp "$IMAGES_DIR/rpi-firmware/fixup4.dat" "$FINAL_OUTPUT_DIR"
+
+#Copy the firmware from the new kernels
+cd ..
+cd ${BUILDROOT_NEW} #buildroot
+pwd
+
+# Ensure that final output dir contains files necessary to boot
+cp "$IMAGES_DIR/rpi-firmware/start_cd.elf" "$FINAL_OUTPUT_DIR/start.elf"
+cp "$IMAGES_DIR/rpi-firmware/start4cd.elf" "$FINAL_OUTPUT_DIR/start4.elf"
+cp "$IMAGES_DIR/rpi-firmware/fixup_cd.dat" "$FINAL_OUTPUT_DIR/fixup.dat"
+cp "$IMAGES_DIR/rpi-firmware/fixup4cd.dat" "$FINAL_OUTPUT_DIR/fixup4.dat"
 cp "$IMAGES_DIR/rpi-firmware/config.txt" "$FINAL_OUTPUT_DIR"
 cp "$IMAGES_DIR/rpi-firmware/bootcode.bin" "$FINAL_OUTPUT_DIR"
-cp -a  "../buildroot-2023.02/$IMAGES_DIR/rpi-firmware/overlays" "$FINAL_OUTPUT_DIR"
-cp "$IMAGES_DIR/cmdline.txt" "$FINAL_OUTPUT_DIR"
-cp "$IMAGES_DIR/recovery.cmdline.new" "$FINAL_OUTPUT_DIR"
+cp -a  "$IMAGES_DIR/rpi-firmware/overlays" "$FINAL_OUTPUT_DIR"
+cp "$IMAGES_DIR/rpi-firmware/cmdline.txt" "$FINAL_OUTPUT_DIR"
+#cp "$IMAGES_DIR/recovery.cmdline.new" "$FINAL_OUTPUT_DIR"
 touch "$FINAL_OUTPUT_DIR/RECOVERY_FILES_DO_NOT_EDIT"
 
 # Create build-date timestamp file containing Git HEAD info for build
