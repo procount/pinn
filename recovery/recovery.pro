@@ -168,7 +168,7 @@ TRANSLATIONS += \
     translation_ae.ts \
     translation_ast.ts \
     translation_ca.ts \
-    translation_cz.ts \
+    translation_cs.ts \
     translation_de.ts \
     translation_en.ts \
     translation_es.ts \
