@@ -36,6 +36,8 @@ QT_TRANSLATE_NOOP("QDialogButtonBox","Show Details...")
 QT_TRANSLATE_NOOP("QDialogButtonBox","Hide Details...")
 #endif
 
+
+
 LanguageDialog *LanguageDialog::_instance = NULL;
 
 LanguageDialog::LanguageDialog(const QString &defaultLang, const QString &defaultKeyboard, QWidget *parent) :
@@ -89,9 +91,6 @@ LanguageDialog::LanguageDialog(const QString &defaultLang, const QString &defaul
         /* Exception for Arabic (Dunno why not displayed) */
         if (langcode.compare("ae", Qt::CaseInsensitive) == 0)
             languagename = "Arabic";
-        /* Exception for Czech (Dunno why not displayed) */
-        if (langcode.compare("cz", Qt::CaseInsensitive) == 0)
-            languagename = "Čeština";
 
         QString iconfilename = ":/icons/"+langcode+".png";
 

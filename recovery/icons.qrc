@@ -13,8 +13,8 @@
         <file>icons/us.png</file>
         <file>translation_ca.qm</file>
         <file>icons/ca.png</file>
-        <file>translation_cz.qm</file>
-        <file>icons/cz.png</file>
+        <file>translation_cs.qm</file>
+        <file>icons/cs.png</file>
         <file>translation_de.qm</file>
         <file>icons/de.png</file>
         <file>translation_es.qm</file>
@@ -84,5 +84,6 @@
         <file>icons/up.JPG</file>
         <file>joy_keys.json</file>
         <file>icons/skull_old.png</file>
+        <file>translation_cs.ts</file>
     </qresource>
 </RCC>

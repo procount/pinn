@@ -5,6 +5,15 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.8.7d
+
+- **Translation**    - Added Czech translation thanks to Jan
+
+### V3.8.7
+
+- **Hyperpixel**     - Reinstated Hyperpixel3 drivers and updated pinn_init
+- **Default Repos**  - Changed the default Repos.
+
 ### V3.8.6
 
 - **Updates**        - Improved the update process to prevent overwriting of config files etc.

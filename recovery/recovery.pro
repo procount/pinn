@@ -168,7 +168,7 @@ TRANSLATIONS += \
     translation_ae.ts \
     translation_ast.ts \
     translation_ca.ts \
-    translation_cz.ts \
+    translation_cs.ts \
     translation_de.ts \
     translation_en.ts \
     translation_es.ts \
@@ -193,3 +193,6 @@ OTHER_FILES += \
     wpa_supplicant/wpa_supplicant.xml \
     ../buildroot/package/recovery/init \
     recalbox_os_list.json
+
+DISTFILES += \
+    translation_cs.ts
