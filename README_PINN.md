@@ -1194,9 +1194,11 @@ On Ubuntu:
 The Qt4 framework has been removed from Ubuntu 20.04 main repository.
 You can still get Qt4 libraries, adding the PPA rock-core/qt4
 Run in a terminal:
-`sudo add-apt-repository ppa:rock-core/qt4`
-`sudo apt update`
-
+```
+sudo apt-get install software-properties-common  
+sudo add-apt-repository ppa:rock-core/qt4  
+sudo apt update  
+```
 And install the required Qt4 libraries by running command:
 
 `sudo apt install qt4-linguist-tools`
