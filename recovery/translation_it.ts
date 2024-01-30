@@ -561,7 +561,7 @@ Riformattala usando il programma della SD Association e riprova.</translation>
         <location filename="mainwindow.ui" line="700"/>
         <source>Set Date &amp; Time</source>
         <oldsource>Set Data &amp; Time</oldsource>
-        <translation type="unfinished">Imposta data e ora</translation>
+        <translation>Imposta data e ora</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="703"/>
@@ -2212,17 +2212,17 @@ Vuoi proseguire?</translation>
     <message>
         <location filename="osgroup.cpp" line="20"/>
         <source>Testing</source>
-        <translation type="unfinished"></translation>
+        <translation>Test</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="21"/>
         <source>Legacy</source>
-        <translation type="unfinished"></translation>
+        <translation>Legacy</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="22"/>
         <source>Sailing</source>
-        <translation type="unfinished"></translation>
+        <translation>Navigazione</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="345"/>
