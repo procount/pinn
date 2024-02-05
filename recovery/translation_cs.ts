@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="cz">
+<TS version="2.0" language="cs">
 <context>
     <name>BackupThread</name>
     <message>
@@ -16,12 +16,12 @@
     <message>
         <location filename="backupthread.cpp" line="113"/>
         <source> :BTRFS file format</source>
-        <translation>Formát souborů BTRFS</translation>
+        <translation> :Formát souborů BTRFS</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="235"/>
         <source>%1: Updating partitions.json</source>
-        <translation>Aktualizuji partition.json</translation>
+        <translation>: Aktualizuji partition.json</translation>
     </message>
     <message>
         <location filename="backupthread.cpp" line="189"/>
@@ -65,13 +65,13 @@
     <message>
         <location filename="bootselectiondialog.ui" line="38"/>
         <source>Sticky default</source>
-        <translation type="unfinished"></translation>
+        <translation>Označeno jako výchozí</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="45"/>
         <source>&amp;Up</source>
         <oldsource>Up</oldsource>
-        <translation>&amp;Nahoru</translation>
+        <translation>Nahor&amp;u</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.ui" line="52"/>
@@ -111,17 +111,17 @@
     <message>
         <location filename="bootselectiondialog.cpp" line="332"/>
         <source>composite PAL mode</source>
-        <translation>Kompositní PAL mód</translation>
+        <translation>kompozitní PAL mód</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.cpp" line="336"/>
         <source>composite NTSC mode</source>
-        <translation>Kompositní NTSC mód</translation>
+        <translation>Kompozitní NTSC mód</translation>
     </message>
     <message>
         <location filename="bootselectiondialog.cpp" line="378"/>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
-        <translation>PINN - Naposledy vybraný OS nastartuje za %1 vteřin</translation>
+        <translation>PINN - Naposledy vybraný OS nastartuje za %1 sekund</translation>
     </message>
 </context>
 <context>
@@ -135,7 +135,7 @@
         <location filename="confeditdialog.ui" line="36"/>
         <source>&amp;Edit Options</source>
         <oldsource>Edit Options</oldsource>
-        <translation>&amp;Změna nastavení</translation>
+        <translation>Změna nastav&amp;ení</translation>
     </message>
     <message>
         <location filename="confeditdialog.ui" line="46"/>
@@ -320,7 +320,7 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
         <location filename="initdrivethread.cpp" line="218"/>
         <source>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</source>
         <oldsource>SD card has now been formatted ready for NOOBS installation. Please re-copy the NOOBS files onto the card and reboot</oldsource>
-        <translation>SD karta je nyní naformátována a připravena pro instalaci NOOBS. Znovu zkopírujte soubory NOOBS na kartu a restartujte počítač</translation>
+        <translation>SD karta je nyní naformátována a připravena pro instalaci PINNu. Znovu zkopírujte soubory PINNu na kartu a restartujte</translation>
     </message>
     <message>
         <location filename="initdrivethread.cpp" line="223"/>
@@ -424,7 +424,7 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
         <location filename="mainwindow.ui" line="129"/>
         <source>Model</source>
         <oldsource>model</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Model</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="110"/>
@@ -446,12 +446,12 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
     <message>
         <location filename="mainwindow.ui" line="347"/>
         <source>Advanced</source>
-        <translation>Rozšíření</translation>
+        <translation>Pokročilý</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="400"/>
         <source>Install (i)</source>
-        <translation>Instalace (i)</translation>
+        <translation>Instalovat (i)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="403"/>
@@ -471,7 +471,7 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
     <message>
         <location filename="mainwindow.ui" line="418"/>
         <source>Exits and boots the installed operating system.</source>
-        <translation>Ukončit a spustit instalovaný oparační systém.</translation>
+        <translation>Ukončit a spustit instalovaný operační systém.</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="433"/>
@@ -496,12 +496,12 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
     <message>
         <location filename="mainwindow.ui" line="454"/>
         <source>Opens the config.txt and cmdline.txt for the installed OS in a text editor.</source>
-        <translation>Otevře soubory config.txt a cmdline.txt pro instalované soubory v textovém editoru.</translation>
+        <translation>Otevře soubory config.txt a cmdline.txt pro instalované systémy v textovém editoru.</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="466"/>
         <source>Online help (h)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumentace RPi</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="469"/>
@@ -512,7 +512,7 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
         <location filename="mainwindow.ui" line="481"/>
         <location filename="mainwindow.ui" line="667"/>
         <source>Info (n)</source>
-        <translation type="unfinished"></translation>
+        <translation>Podrobnosti (n)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="484"/>
@@ -544,7 +544,7 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
         <location filename="mainwindow.ui" line="571"/>
         <source>Reinstall (r)</source>
         <oldsource>Refresh (r)</oldsource>
-        <translation>Přeinstalování</translation>
+        <translation>Přeinstalování (r)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="574"/>
@@ -593,8 +593,9 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="700"/>
-        <source>Set Data &amp; Time</source>
-        <translation>Nastavit Datum &amp; Čas</translation>
+        <source>Set Date &amp; Time</source>
+        <oldsource>Set Data &amp; Time</oldsource>
+        <translation type="unfinished">Nastavit Datum &amp; Čas</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="703"/>
@@ -604,7 +605,7 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
     <message>
         <location filename="mainwindow.ui" line="712"/>
         <source>Alias (a)</source>
-        <translation type="unfinished"></translation>
+        <translation>Přejmenovat systém (a)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="715"/>
@@ -629,7 +630,7 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
     <message>
         <location filename="mainwindow.ui" line="499"/>
         <source>Wifi (w)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wifi (w)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="62"/>
@@ -692,7 +693,7 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
     <message>
         <location filename="mainwindow.ui" line="625"/>
         <source>Fix (f)</source>
-        <translation type="unfinished"></translation>
+        <translation>Opravit (f)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="655"/>
@@ -735,92 +736,92 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
         <translation>SD karta je možná poškozena</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="660"/>
+        <location filename="mainwindow.cpp" line="668"/>
         <source>Main Menu</source>
         <translation>Hlavní Menu</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="661"/>
+        <location filename="mainwindow.cpp" line="669"/>
         <source>Archival</source>
         <translation>Archív</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="662"/>
+        <location filename="mainwindow.cpp" line="670"/>
         <source>Maintenance</source>
         <translation>Údržba</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="679"/>
+        <location filename="mainwindow.cpp" line="687"/>
         <source>Please wait while PINN initialises</source>
         <translation>Prosím vyčkejte dokud se PINN neinicializuje</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1167"/>
+        <location filename="mainwindow.cpp" line="1175"/>
         <source>install</source>
         <translation>Instalovat</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1170"/>
+        <location filename="mainwindow.cpp" line="1178"/>
         <source>reinstall</source>
         <translation>Přeinstalovat</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1173"/>
+        <location filename="mainwindow.cpp" line="1181"/>
         <source>replace</source>
         <translation>Zaměnit</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1183"/>
+        <location filename="mainwindow.cpp" line="1191"/>
         <source>USB drive</source>
-        <translation>USB jednotka</translation>
+        <translation>USB disk</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1184"/>
+        <location filename="mainwindow.cpp" line="1192"/>
         <source>Warning: this will %1 the selected Operating System(s) to %2. All existing data on the %3 will be deleted.</source>
         <translation>Upozornění: toto zamění %1 vybraný Operační Systém(y) za %2. Všechna současná data na %3 budou vymazána.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1279"/>
+        <location filename="mainwindow.cpp" line="1287"/>
         <source>The %1 process will begin shortly.</source>
         <translation>Proces %1 začne za okamžik</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3246"/>
+        <location filename="mainwindow.cpp" line="3255"/>
         <source> has an incompatible number of partitions with </source>
-        <translation>má nesprávný počet oddílů s </translation>
+        <translation> má nesprávný počet oddílů s </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4022"/>
-        <location filename="mainwindow.cpp" line="4068"/>
+        <location filename="mainwindow.cpp" line="4031"/>
+        <location filename="mainwindow.cpp" line="4077"/>
         <source>RECOMMENDED</source>
         <translation>DOPORUČENÉ</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1063"/>
+        <location filename="mainwindow.cpp" line="1071"/>
         <source>ERROR</source>
         <translation>CHYBA</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1064"/>
+        <location filename="mainwindow.cpp" line="1072"/>
         <source>Error: Some OSes are not available:
 </source>
         <translation>Chyba: Některé systémy nejsou dostupné:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1183"/>
+        <location filename="mainwindow.cpp" line="1191"/>
         <source>SD card</source>
         <translation>SD karta</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1072"/>
-        <location filename="mainwindow.cpp" line="1081"/>
-        <location filename="mainwindow.cpp" line="1192"/>
-        <location filename="mainwindow.cpp" line="1301"/>
-        <location filename="mainwindow.cpp" line="1311"/>
-        <location filename="mainwindow.cpp" line="1941"/>
-        <location filename="mainwindow.cpp" line="4804"/>
-        <location filename="mainwindow.cpp" line="4879"/>
-        <location filename="mainwindow.cpp" line="4923"/>
+        <location filename="mainwindow.cpp" line="1080"/>
+        <location filename="mainwindow.cpp" line="1089"/>
+        <location filename="mainwindow.cpp" line="1200"/>
+        <location filename="mainwindow.cpp" line="1309"/>
+        <location filename="mainwindow.cpp" line="1319"/>
+        <location filename="mainwindow.cpp" line="1950"/>
+        <location filename="mainwindow.cpp" line="4813"/>
+        <location filename="mainwindow.cpp" line="4888"/>
+        <location filename="mainwindow.cpp" line="4932"/>
         <source>Confirm</source>
         <translation>Potvrdit</translation>
     </message>
@@ -834,316 +835,319 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
         <source>There are existing OSes installed.
 Are you sure you want to initialise the drive?</source>
         <translation>Jsou zde již nainstalované operační systémy
-Opravdu chcete provést inicializaci jednotky?</translation>
+Opravdu chcete provést inicializaci úložiště?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1073"/>
-        <location filename="mainwindow.cpp" line="4805"/>
+        <location filename="mainwindow.cpp" line="1081"/>
+        <location filename="mainwindow.cpp" line="4814"/>
         <source>Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:
 </source>
         <oldsource>Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:</oldsource>
         <translation>Upozornění: Částečná podpora USB. Následující operační systémy mohou být instalovány na USB pokud je připojeno do /dev/sda a mohou selhat při startu nebo nefungovat správně pokud to není tento případ:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1073"/>
-        <location filename="mainwindow.cpp" line="4805"/>
+        <location filename="mainwindow.cpp" line="1081"/>
+        <location filename="mainwindow.cpp" line="4814"/>
         <source>
 
 Do you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>
+		
+Opravdu chcete pokračovat?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1082"/>
-        <location filename="mainwindow.cpp" line="1312"/>
+        <location filename="mainwindow.cpp" line="1090"/>
+        <location filename="mainwindow.cpp" line="1320"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>Upozornění: Zjištěn(y) nekompatibilní Operační Systém(y). Následující OS aren&apos;t nejsou podporovány tímto Raspberry Pi a mohou selhat při startu nebo nefungovat správně:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1149"/>
+        <location filename="mainwindow.cpp" line="1157"/>
         <source>ReInstall OSes</source>
         <translation>Přeinstalovat systémy</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1150"/>
+        <location filename="mainwindow.cpp" line="1158"/>
         <source>Warning: No OSes selected or available
 </source>
         <translation>Upozornění: Žádné systémy nebyly vybrány nebo nejsou dostupné</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1188"/>
+        <location filename="mainwindow.cpp" line="1196"/>
         <source>Warning: this will %1 the selected Operating System(s) on %2. The partitions of the selected OSes will first be erased.</source>
-        <translation>Upozornění: toto %1 vybraný(é) Operační Systém(y) %2. Oddíl vybraného operačního systému bude nejdříve vymazán.</translation>
+        <translation>Upozornění: toto %1 vybraný(é) Operační Systém(y) na %2. Oddíly vybraných operačních systémů budou nejdříve vymazány.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1302"/>
+        <location filename="mainwindow.cpp" line="1310"/>
         <source>Warning: this will download the selected Operating System(s).</source>
         <translation>Upozornění: Toto stáhne vybraný(é) Operační Systém(y).</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1389"/>
+        <location filename="mainwindow.cpp" line="1397"/>
         <source>The download process will begin shortly.</source>
         <translation>Stahování začne již brzy.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1437"/>
+        <location filename="mainwindow.cpp" line="1445"/>
         <source>OS(es) downloaded</source>
         <translation>Operační Systém(y) stažen(y)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1451"/>
+        <location filename="mainwindow.cpp" line="1459"/>
         <source>OS(es) Backed up with errors.
 See debug log for details.</source>
         <oldsource>OS(es) Backed up with errors.
 See debug log for details</oldsource>
-        <translation>Operační systém(y) zálohován s chybou.
+        <translation>Operační systém(y) zálohován(y) s chybou.
 Pro více informací zkontrolujte debug log.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1453"/>
+        <location filename="mainwindow.cpp" line="1461"/>
         <source>OS(es) Backed up Successfully.</source>
         <translation>Záloha OS(ů) úspěšná.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1455"/>
-        <location filename="mainwindow.cpp" line="5027"/>
+        <location filename="mainwindow.cpp" line="1463"/>
+        <location filename="mainwindow.cpp" line="5036"/>
         <source>Backup OSes</source>
         <translation>Záloha OS</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1464"/>
+        <location filename="mainwindow.cpp" line="1472"/>
         <source>OS(es) Installed Successfully</source>
         <translation>Úspěšně nainstalováno</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1466"/>
+        <location filename="mainwindow.cpp" line="1474"/>
         <source>Installation complete</source>
         <translation>Instalace kompletní</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1503"/>
-        <location filename="mainwindow.cpp" line="1537"/>
-        <location filename="mainwindow.cpp" line="1551"/>
-        <location filename="mainwindow.cpp" line="2250"/>
-        <location filename="mainwindow.cpp" line="2393"/>
-        <location filename="mainwindow.cpp" line="4345"/>
+        <location filename="mainwindow.cpp" line="1511"/>
+        <location filename="mainwindow.cpp" line="1545"/>
+        <location filename="mainwindow.cpp" line="1559"/>
+        <location filename="mainwindow.cpp" line="2259"/>
+        <location filename="mainwindow.cpp" line="2402"/>
+        <location filename="mainwindow.cpp" line="4354"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1579"/>
+        <location filename="mainwindow.cpp" line="1587"/>
         <source>Abort</source>
         <translation>Přerušit</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1580"/>
+        <location filename="mainwindow.cpp" line="1588"/>
         <source>Discard</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1581"/>
+        <location filename="mainwindow.cpp" line="1589"/>
         <source>Retry</source>
         <translation>Opakovat</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1582"/>
+        <location filename="mainwindow.cpp" line="1590"/>
         <source>Keep</source>
         <translation>Ponechat</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1606"/>
+        <location filename="mainwindow.cpp" line="1614"/>
         <source>Reboot in %1 secs</source>
-        <translation>Restart za %1 vteři</translation>
+        <translation>Restart za %1 sekund</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1643"/>
+        <location filename="mainwindow.cpp" line="1652"/>
         <source>HDMI preferred mode</source>
         <translation>HDMI preferovaný mód</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1647"/>
+        <location filename="mainwindow.cpp" line="1656"/>
         <source>HDMI safe mode</source>
         <translation>HDMI bezpečný mód</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1651"/>
+        <location filename="mainwindow.cpp" line="1660"/>
         <source>composite PAL mode</source>
         <translation>kompositní PAL mód</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1655"/>
+        <location filename="mainwindow.cpp" line="1664"/>
         <source>composite NTSC mode</source>
         <translation>kompozitní NTSC mód</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1724"/>
+        <location filename="mainwindow.cpp" line="1733"/>
         <source>Display Mode Changed</source>
         <translation>Změna módu zobrazení</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1725"/>
+        <location filename="mainwindow.cpp" line="1734"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>Mód zobrazení změněn na %1
 Přejete si toto nastavení ponechat?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1916"/>
+        <location filename="mainwindow.cpp" line="1925"/>
         <source>Wiping SD card</source>
         <translation>Čištění SD karty</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1942"/>
+        <location filename="mainwindow.cpp" line="1951"/>
         <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will restore your SD card to its initial state. All existing data on the SD card except PINN will be overwritten, including any OSes that are already installed.</oldsource>
         <translation>Upozornění: toto obnoví disk s PINNem do jeho počátečního stavu. Všechna data na disku kromě PINNu budou přepsány, včetně všech již nainstalovaných systémů.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1947"/>
+        <location filename="mainwindow.cpp" line="1956"/>
         <source>Drive Wiped!</source>
-        <translation>Jednotka vyčištěna!</translation>
+        <translation>Disk vyčištěn!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1961"/>
-        <location filename="mainwindow.cpp" line="3578"/>
-        <location filename="mainwindow.cpp" line="3586"/>
+        <location filename="mainwindow.cpp" line="1970"/>
+        <location filename="mainwindow.cpp" line="3587"/>
+        <location filename="mainwindow.cpp" line="3595"/>
         <source>No network access</source>
         <translation>Žádná síť k dispozici</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1962"/>
+        <location filename="mainwindow.cpp" line="1971"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
-        <translation>Tato funkce vyžaduje připojení k pevné síti. Vložte síťový kabel do síťového portu.</translation>
+        <translation>Tato funkce vyžaduje připojení k pevné síti. Vložte síťový kabel do síťového konektoru.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2231"/>
-        <location filename="mainwindow.cpp" line="2369"/>
+        <location filename="mainwindow.cpp" line="2240"/>
+        <location filename="mainwindow.cpp" line="2378"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation>Chyba stahování seznamu distribucí z Internetu:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2233"/>
-        <location filename="mainwindow.cpp" line="2371"/>
-        <location filename="mainwindow.cpp" line="2890"/>
-        <location filename="mainwindow.cpp" line="2901"/>
-        <location filename="mainwindow.cpp" line="4444"/>
-        <location filename="mainwindow.cpp" line="4466"/>
+        <location filename="mainwindow.cpp" line="2242"/>
+        <location filename="mainwindow.cpp" line="2380"/>
+        <location filename="mainwindow.cpp" line="2899"/>
+        <location filename="mainwindow.cpp" line="2910"/>
+        <location filename="mainwindow.cpp" line="4453"/>
+        <location filename="mainwindow.cpp" line="4475"/>
         <source>Download error</source>
         <translation>Chyba stahování</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2250"/>
+        <location filename="mainwindow.cpp" line="2259"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation>Chyba při získávání repolist.json ze serveru</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2393"/>
+        <location filename="mainwindow.cpp" line="2402"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>Chyba při získávání list.json ze serveru</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2662"/>
-        <location filename="mainwindow.cpp" line="2665"/>
+        <location filename="mainwindow.cpp" line="2671"/>
+        <location filename="mainwindow.cpp" line="2674"/>
         <source>Needed</source>
         <translation>Potřeba</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2663"/>
-        <location filename="mainwindow.cpp" line="2666"/>
+        <location filename="mainwindow.cpp" line="2672"/>
+        <location filename="mainwindow.cpp" line="2675"/>
         <source>Available</source>
         <translation>Dostupné</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2876"/>
+        <location filename="mainwindow.cpp" line="2885"/>
         <source>Error downloading meta file: </source>
         <translation>Chyba při stahování meta souboru: </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3013"/>
+        <location filename="mainwindow.cpp" line="3022"/>
         <source>filesize error checking </source>
-        <translation>Chyba při kontrole velikosti</translation>
+        <translation>Chyba při kontrole velikosti souboru</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3292"/>
+        <location filename="mainwindow.cpp" line="3301"/>
         <source>Resume partial downloads?</source>
         <translation>Obnovit částečné stahování?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3293"/>
+        <location filename="mainwindow.cpp" line="3302"/>
         <source>Normally select NO, unless your last download was not successful, in which case select YES</source>
         <translation>Normálně vyberte NE, pokud vaše poslední stahování nebylo úspěšné, v takovém případě vyberte ANO</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3517"/>
+        <location filename="mainwindow.cpp" line="3526"/>
         <source>This backup may require </source>
         <translation>Tato záloha může vyžadovat </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3519"/>
+        <location filename="mainwindow.cpp" line="3528"/>
         <source> MB of backup space, but only </source>
         <translation>MB záložního místa, ale pouze </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3521"/>
+        <location filename="mainwindow.cpp" line="3530"/>
         <source> MB is available. This is only an estimate. If you continue, the backup may not complete successfully.
 
 Do you want to continue?</source>
         <translation> MB dostupných. Toto je pouze odhad. Pokud budete pokračovat, záloha nemusí být úspěšná.
+		
 Chcete pokračovat?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3522"/>
+        <location filename="mainwindow.cpp" line="3531"/>
         <source>WARNING: Backup Space</source>
         <translation>UPOZORNĚNÍ: Místo pro zálohu</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3529"/>
+        <location filename="mainwindow.cpp" line="3538"/>
         <source>Backup Info</source>
         <translation>Informace o záloze</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3529"/>
+        <location filename="mainwindow.cpp" line="3538"/>
         <source>Always test your backups before relying on them</source>
         <translation>Vždy otestujte zálohy, než se na ně budete spoléhat</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4796"/>
+        <location filename="mainwindow.cpp" line="4805"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation>Žádné systémy nejsou vybrány
-(Nevybírejte RISC OS ani PIN)</translation>
+(Nevybírejte RISC OS ani PINN)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4834"/>
+        <location filename="mainwindow.cpp" line="4843"/>
         <source>Warning: No OSes selected
 </source>
-        <translation>Žádné systémy nejsou vybrány</translation>
+        <translation>Upozornění: Žádné systémy nejsou vybrány</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4880"/>
+        <location filename="mainwindow.cpp" line="4889"/>
         <source>Warning: this will backup the selected Operating System(s).</source>
         <translation>Upozornění: toto provede zálohu vybraného Operačního systému.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4924"/>
+        <location filename="mainwindow.cpp" line="4933"/>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
-        <translation>Zjištěn nepodporovaný Operační Systém(y). PINN nemůže provést zálohu následujících Operačních Systémů správně:</translation>
+        <translation>Upozornění: Zjištěn nepodporovaný Operační Systém(y). PINN nemůže provést zálohu následujících Operačních Systémů správně:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2890"/>
+        <location filename="mainwindow.cpp" line="2899"/>
         <source>Error downloading meta file</source>
         <translation>Chyba při stahování meta souborů</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1134"/>
-        <location filename="mainwindow.cpp" line="4824"/>
+        <location filename="mainwindow.cpp" line="1142"/>
+        <location filename="mainwindow.cpp" line="4833"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
-        <translation>není k dispozici
+        <translation>není k dispozici.
 Prosím zajistěte jej lokálně, nebo se připojte k internetu.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1432"/>
+        <location filename="mainwindow.cpp" line="1440"/>
         <source>OS(es) Downloaded with errors.
 See debug log for details.</source>
         <oldsource>OS(es) Downloaded with errors.
@@ -1152,12 +1156,12 @@ See debug log for details</oldsource>
 Prohlédněte debug log pro podrobnosti</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1434"/>
+        <location filename="mainwindow.cpp" line="1442"/>
         <source>OS(es) Downloaded Successfully.</source>
         <translation>Operační Systém(y) Stažen(y) Úspěšně.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1462"/>
+        <location filename="mainwindow.cpp" line="1470"/>
         <source>OS(es) Installed with errors.
 See debug log for details.</source>
         <oldsource>OS(es) Installed with errors.
@@ -1166,12 +1170,12 @@ See debug log for details</oldsource>
 Prohlédněte debug log pro podrobnosti</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1608"/>
+        <location filename="mainwindow.cpp" line="1616"/>
         <source>PINN v%1 - Built: %2 (%3) %4</source>
         <translation>PINN v%1 - Sestavení: %2 (%3) %4</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1948"/>
+        <location filename="mainwindow.cpp" line="1957"/>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
@@ -1180,111 +1184,111 @@ Instalace a stahování nebude fungovat dokud nebude jednotka restartována.
 Další start jednotky obnoví původní strukturu oddílů PINN&apos;s</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2901"/>
-        <location filename="mainwindow.cpp" line="4466"/>
+        <location filename="mainwindow.cpp" line="2910"/>
+        <location filename="mainwindow.cpp" line="4475"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>Chyba při zápisu stažených souborů na SD kartu. SD karta nebo souborový systém můžou být poškozené.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3245"/>
-        <location filename="mainwindow.cpp" line="4795"/>
-        <location filename="mainwindow.cpp" line="4833"/>
+        <location filename="mainwindow.cpp" line="3254"/>
+        <location filename="mainwindow.cpp" line="4804"/>
+        <location filename="mainwindow.cpp" line="4842"/>
         <source>Replace OSes</source>
         <translation>Zaměnit Systémy</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3579"/>
+        <location filename="mainwindow.cpp" line="3588"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation>Síťový přístup je nutný pro používání PINNu bez místních obrazů. Prosím vyberte na další obrazovce Vaši wifi síť.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3587"/>
+        <location filename="mainwindow.cpp" line="3596"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>Síťový přístup přes kabel je nutný pro používaní PINNu bez místních obrazů. Prosím připojte síťový kabel do síťového vstupu.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3918"/>
+        <location filename="mainwindow.cpp" line="3927"/>
         <source>Reformat drive?</source>
-        <translation>Znovu formátovat jednotku?</translation>
+        <translation>Znovu formátovat disk?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3919"/>
+        <location filename="mainwindow.cpp" line="3928"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
-        <translation>Opravdu chcete formátovat jednotku &apos;%1&apos; pro použití PINNu? Všechna současná data budou smazána!</translation>
+        <translation>Opravdu chcete formátovat disk &apos;%1&apos; pro použití PINNu? Všechna současná data na disku budou smazána!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4297"/>
+        <location filename="mainwindow.cpp" line="4306"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
-        <translation>Toto smaže celý obsah zařízení &apos;%s&apos;. Jste si jistý?</translation>
+        <translation>Toto smaže celý obsah disku &apos;%s&apos;. Jste si jistý?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4299"/>
+        <location filename="mainwindow.cpp" line="4308"/>
         <source>Clone SD Card</source>
         <translation>Kopie SD karty</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4301"/>
+        <location filename="mainwindow.cpp" line="4310"/>
         <source>Yes</source>
         <translation>Ano</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4302"/>
+        <location filename="mainwindow.cpp" line="4311"/>
         <source>No</source>
         <translation>Ne</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4331"/>
+        <location filename="mainwindow.cpp" line="4340"/>
         <source>Clone Completed</source>
         <translation>Kopie dokončena</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4332"/>
+        <location filename="mainwindow.cpp" line="4341"/>
         <source>Clone Completed Successfully</source>
         <translation>Kopie Úspěšně Dokončena</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4444"/>
+        <location filename="mainwindow.cpp" line="4453"/>
         <source>Error downloading update file</source>
         <translation>Chyba při stahování aktualizačního souboru</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4451"/>
-        <location filename="mainwindow.cpp" line="4552"/>
+        <location filename="mainwindow.cpp" line="4460"/>
+        <location filename="mainwindow.cpp" line="4561"/>
         <source>PINN Update Check</source>
         <translation>Kontrola Aktualizací PINNu</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4451"/>
+        <location filename="mainwindow.cpp" line="4460"/>
         <source>Error contacting update server</source>
         <translation>Chyba při kontaktování aktualizačního serveru</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4552"/>
+        <location filename="mainwindow.cpp" line="4561"/>
         <source>No updates available</source>
         <translation>Žádné aktualizace k dispozici</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4598"/>
+        <location filename="mainwindow.cpp" line="4607"/>
         <source>PINN UPDATE</source>
         <translation>AKTUALIZACE PINNu</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4599"/>
+        <location filename="mainwindow.cpp" line="4608"/>
         <source>A new version of PINN is available</source>
         <translation>Je dostupná nová verze PINNu</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4600"/>
+        <location filename="mainwindow.cpp" line="4609"/>
         <source>Do you want to download this version?</source>
         <translation>Chcete stáhnout tuto verzi?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4632"/>
+        <location filename="mainwindow.cpp" line="4641"/>
         <source>Downloading Update</source>
         <translation>Stahuji Aktualizaci</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4632"/>
+        <location filename="mainwindow.cpp" line="4641"/>
         <source>Press ESC to cancel</source>
         <translation>Stiskněte ESC pro zrušení</translation>
     </message>
@@ -1404,12 +1408,13 @@ Další start jednotky obnoví původní strukturu oddílů PINN&apos;s</transla
         <location filename="multiimagewritethread.cpp" line="395"/>
         <source>.
 Partition not big enough for new image.</source>
-        <translation>Oddíl není dost velký pro nový obraz.</translation>
+        <translation>.
+Oddíl není dost velký pro nový obraz.</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="395"/>
         <source>Cannot Reinstall/Replace </source>
-        <translation>Nelze Přeinstalovat/Nahradit </translation>
+        <translation>Nelze Přeinstalovat/Zaměnit </translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="441"/>
@@ -1419,7 +1424,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="447"/>
         <source>Finish writing (sync)</source>
-        <translation type="unfinished"></translation>
+        <translation>Konec zapisování (sync)</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="468"/>
@@ -1439,7 +1444,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="766"/>
         <source>OS: &apos;%1&apos; needs a partition label of &apos;%2&apos; which is not available</source>
-        <translation>OS: &apos;%1&apos; potřebuje popisku oddílu &apos;%1&apos; která není dostupná&quot;</translation>
+        <translation>OS: &apos;%1&apos; potřebuje popisku oddílu &apos;%1&apos; která není dostupná</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="778"/>
@@ -1563,7 +1568,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="multiimagewritethread.cpp" line="1548"/>
         <source>Finished downloading</source>
-        <translation>Stahování dokončen</translation>
+        <translation>Stahování dokončeno</translation>
     </message>
     <message>
         <location filename="multiimagewritethread.cpp" line="1656"/>
@@ -1593,7 +1598,7 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="46"/>
         <source>noobs&amp;config</source>
         <oldsource>noobsconfig</oldsource>
-        <translation>noobs&amp;nastavení</translation>
+        <translation>noobs nastavení (&amp;c)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="53"/>
@@ -1604,13 +1609,13 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="56"/>
         <source>re&amp;serve=</source>
         <oldsource>reserve=</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>re&amp;serva=</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="66"/>
         <location filename="optionsdialog.ui" line="79"/>
         <source>Specifies a path or URL where the noobsconfig customisation files can be found (rather than being in /os/&amp;lt;distro&amp;gt;/)</source>
-        <translation>Nastavuje cestu nebo URL kde je možné najít přizpůsobení noobsconfig (spíše než v /os/&amp;lt;distro&amp;gt;/</translation>
+        <translation>Nastavuje cestu nebo URL kde je možné najít přizpůsobení noobsconfig (spíše než v /os/&amp;lt;distro&amp;gt;/)</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="86"/>
@@ -1620,7 +1625,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="93"/>
         <source>Selecting this will erase all of your OSes</source>
-        <translation>Vybrání tohoto vymaže všechny Vaše Systémy</translation>
+        <translation>Zvolení tohoto vymaže všechny Vaše Systémy</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="103"/>
@@ -1642,7 +1647,7 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="133"/>
         <source>Selects all OSes where the most recent one is on a local USB drive</source>
         <oldsource> Selects all OSes where the most recent one is on a local USB drive</oldsource>
-        <translation>Vybere všechny operační systémy, kde je ten nejnovější na místním USB úložišti</translation>
+        <translation>Vybere všechny operační systémy, kde je ten nejnovější na místním USB disku</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="143"/>
@@ -1663,12 +1668,12 @@ Partition not big enough for new image.</source>
         <location filename="optionsdialog.ui" line="173"/>
         <source>Waits for all OSes on local USBs to be listed</source>
         <oldsource> Waits for all OSes on local USBs to be listed</oldsource>
-        <translation>Čeká, až budou zobrazeny všechny operační systémy na úložišti USB</translation>
+        <translation>Čeká, až budou zobrazeny všechny operační systémy na disku USB</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="183"/>
         <source>Waits for all OS lists to be downloaded from the internet before checking the list of OSes</source>
-        <translation>Před kontrolou seznamu OS čeká na stažení všech seznamů OS z internetu</translation>
+        <translation>Před kontrolou seznamu OS čeká na stažení všech seznamů OSů z internetu</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="193"/>
@@ -1859,7 +1864,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="681"/>
         <source>Virtual Keyboard</source>
-        <translation>Virtuální klávesnice&quot;</translation>
+        <translation>Virtuální Klávesnice</translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="69"/>
@@ -1874,7 +1879,7 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="106"/>
         <source>no_&amp;update</source>
-        <translation>no_&amp;aktualizace</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="116"/>
@@ -1894,12 +1899,12 @@ Partition not big enough for new image.</source>
     <message>
         <location filename="optionsdialog.ui" line="146"/>
         <source>all&amp;network</source>
-        <translation>all&amp;síť</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="156"/>
         <source>all&amp;installed</source>
-        <translation>all&amp;instalováno</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="optionsdialog.ui" line="166"/>
@@ -2123,12 +2128,12 @@ Jste si jistý?</translation>
     <message>
         <location filename="osgroup.cpp" line="13"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Obecné</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="14"/>
         <source>Media</source>
-        <translation type="unfinished"></translation>
+        <translation>Média</translation>
     </message>
     <message>
         <location filename="osgroup.cpp" line="15"/>
@@ -2156,23 +2161,38 @@ Jste si jistý?</translation>
         <translation>Nástroje</translation>
     </message>
     <message>
-        <location filename="osgroup.cpp" line="342"/>
+        <location filename="osgroup.cpp" line="20"/>
+        <source>Testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="21"/>
+        <source>Legacy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="22"/>
+        <source>Sailing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="osgroup.cpp" line="345"/>
         <source>RECOMMENDED</source>
         <translation>DOPORUČENÉ</translation>
     </message>
     <message>
-        <location filename="osgroup.cpp" line="347"/>
+        <location filename="osgroup.cpp" line="350"/>
         <source>NEW VERSION</source>
         <translation>NOVÁ VERZE</translation>
     </message>
     <message>
-        <location filename="osgroup.cpp" line="348"/>
+        <location filename="osgroup.cpp" line="351"/>
         <source>UPDATE</source>
         <translation>AKTUALIZACE</translation>
     </message>
     <message>
-        <location filename="osgroup.cpp" line="352"/>
-        <location filename="osgroup.cpp" line="353"/>
+        <location filename="osgroup.cpp" line="355"/>
+        <location filename="osgroup.cpp" line="356"/>
         <source>INSTALLED</source>
         <oldsource>INSTALOVÁNO</oldsource>
         <translation type="unfinished"></translation>
@@ -2284,7 +2304,7 @@ Jste si jistý?</translation>
     <message>
         <location filename="languagedialog.cpp" line="29"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Zrušit</translation>
+        <translation>Zrušit (&amp;c)</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="30"/>
@@ -2294,12 +2314,12 @@ Jste si jistý?</translation>
     <message>
         <location filename="languagedialog.cpp" line="31"/>
         <source>&amp;Close</source>
-        <translation>&amp;Zavřít</translation>
+        <translation>Zavřít (&amp;c)</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="32"/>
         <source>&amp;Yes</source>
-        <translation>&amp;Ano</translation>
+        <translation>Ano (&amp;y)</translation>
     </message>
     <message>
         <location filename="languagedialog.cpp" line="33"/>
@@ -2329,7 +2349,7 @@ Jste si jistý?</translation>
         <source>For recovery mode, hold SHIFT
 click mouse
 or press joystick...</source>
-        <translation>Pro zotavovací mód, stiskni SHIFT
+        <translation>Pro obnovovací mód, stiskni SHIFT
 klikni myší
 nebo stiskni joystick...</translation>
     </message>
@@ -2345,7 +2365,7 @@ nebo stiskni joystick...</translation>
         <location filename="termsdialog.ui" line="27"/>
         <source>Please accept these T &amp; Cs to continue.</source>
         <oldsource>Please accept these T&amp;Cs to continue.</oldsource>
-        <translation>Prosím potvď souhlas s tímto T&amp;Cs pro pokračování</translation>
+        <translation>Prosím potvrdit souhlas s tímto T &amp; Cs pro pokračování</translation>
     </message>
 </context>
 <context>
@@ -3178,7 +3198,7 @@ Break</source>
         <location filename="wifisettingsdialog.ui" line="71"/>
         <source>Password &amp;authentication</source>
         <oldsource>Password authentication</oldsource>
-        <translation>Pomocí &amp;Hesla</translation>
+        <translation>Pomocí Hesl&amp;a</translation>
     </message>
     <message>
         <location filename="wifisettingsdialog.ui" line="96"/>
@@ -3189,12 +3209,12 @@ Break</source>
     <message>
         <location filename="wifisettingsdialog.ui" line="113"/>
         <source>&amp;Password</source>
-        <translation>&amp;Heslo</translation>
+        <translation>Heslo (p)</translation>
     </message>
     <message>
         <location filename="wifisettingsdialog.ui" line="132"/>
         <source>&amp;Show Password</source>
-        <translation>&amp;Zobrazit Heslo</translation>
+        <translation>Zobrazit He&amp;Slo</translation>
     </message>
     <message>
         <location filename="wifisettingsdialog.ui" line="139"/>
@@ -3204,7 +3224,7 @@ Break</source>
     <message>
         <location filename="wifisettingsdialog.ui" line="162"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Smazat</translation>
+        <translation>Smazat (&amp;D)</translation>
     </message>
     <message>
         <location filename="wifisettingsdialog.cpp" line="52"/>
@@ -3219,7 +3239,7 @@ Break</source>
     <message>
         <location filename="wifisettingsdialog.cpp" line="242"/>
         <source>Authenticated but still waiting for DHCP lease</source>
-        <translation>Přihlášeno, ale stále čeká na přidělení DHCP</translation>
+        <translation>Přihlášeno, ale stále čeká na adresu od DHCP</translation>
     </message>
     <message>
         <location filename="wifisettingsdialog.cpp" line="249"/>
@@ -3239,7 +3259,7 @@ Break</source>
     <message>
         <location filename="wifisettingsdialog.cpp" line="290"/>
         <source>Releasing old DHCP lease</source>
-        <translation>Uvolnit staré zapůjčené DHCP</translation>
+        <translation>Uvolnit starou adresu zapůjčenou od DHCP</translation>
     </message>
     <message>
         <location filename="wifisettingsdialog.cpp" line="305"/>
@@ -3293,7 +3313,7 @@ Break</source>
     <message>
         <location filename="dlginstall.ui" line="71"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;WARNING: Some OSes are already installed!&lt;/p&gt;&lt;p&gt;Continuing to install new OSes will delete your previous installation. Consider using the Replace function if you just want to replace one OS &lt;/p&gt;&lt;p&gt;To continue installing, enter &amp;quot;DELETE&amp;quot; in the box below&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;VATROVÁNÍ: Některé Systémy jsou již nainstalované!&lt;/p&gt;&lt;p&gt;Pokračováním instalace nových Systémů smaže Vaše předcházející instalace. Zvažte použití funkce Nahradit, pokud chcete nahradit pouze jeden OS &lt;/p&gt;&lt;p&gt;Pro pokračování instalace vložte &amp;quot;DELETE&amp;quot; do pole níže&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;VAROVÁNÍ: Některé Systémy jsou již nainstalované!&lt;/p&gt;&lt;p&gt;Pokračováním instalace nových Systémů smaže Vaše předcházející instalace. Zvažte použití funkce Nahradit, pokud chcete nahradit pouze jeden OS &lt;/p&gt;&lt;p&gt;Pro pokračování instalace vložte &amp;quot;DELETE&amp;quot; do pole níže&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="dlginstall.ui" line="93"/>
@@ -3329,12 +3349,12 @@ Break</source>
     <message>
         <location filename="piclonethread.cpp" line="168"/>
         <source>Creating partition %1 of %2 </source>
-        <translation>Vytváření Oddílů %1 ze %2 </translation>
+        <translation>Vytváření Oddílu %1 ze %2 </translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="289"/>
         <source>Copying partition %d of %d...</source>
-        <translation>Kopírování Oddílu %d z %d...</translation>
+        <translation>Kopírování Oddílu %d ze %d...</translation>
     </message>
     <message>
         <location filename="piclonethread.cpp" line="360"/>
@@ -3371,7 +3391,7 @@ Break</source>
         <location filename="renamedialog.ui" line="14"/>
         <location filename="renamedialog.ui" line="61"/>
         <source>Alias</source>
-        <translation type="unfinished"></translation>
+        <translation>Přejmenovat jako</translation>
     </message>
     <message>
         <location filename="renamedialog.ui" line="77"/>
@@ -3420,7 +3440,7 @@ Break</source>
     <message>
         <location filename="rerunsetup.cpp" line="58"/>
         <source>Maybe insert source USB stick</source>
-        <translation>Můžete vložit jako zdroj USB stick</translation>
+        <translation>Můžete vložit jako zdroj USB disk</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="63"/>
@@ -3440,7 +3460,7 @@ Break</source>
     <message>
         <location filename="rerunsetup.cpp" line="90"/>
         <source>Expected csum= %1 Calculated= %2</source>
-        <translation>Předpokládaný součet= %1 Vypočítaný= %2</translation>
+        <translation>Očekávaný součet= %1 Vypočítaný= %2</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="155"/>
@@ -3459,7 +3479,7 @@ Break</source>
         <source> partition_setup.sh script OK
 </source>
         <oldsource> partition_setup.sh script OK</oldsource>
-        <translation type="unfinished"> partition_setup.sh skript OK</translation>
+        <translation> partition_setup.sh skript je v pořádku</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="169"/>
@@ -3469,12 +3489,12 @@ Break</source>
     <message>
         <location filename="rerunsetup.cpp" line="171"/>
         <source>DONE - SUCCESSFUL setup scripts exeuted</source>
-        <translation>HOTOVO – ÚSPĚŠNĚ byly provedeny instalační skripty</translation>
+        <translation>HOTOVO – instalační skripty byly provedeny ÚSPĚŠNĚ </translation>
     </message>
     <message>
         <location filename="rerunsetup.ui" line="14"/>
         <source>re-run partition_setup</source>
-        <translation>Znovu spusťte nastavení Oddílů</translation>
+        <translation>Znovu spusťte nastavení oddílů</translation>
     </message>
 </context>
 <context>
@@ -3487,7 +3507,7 @@ Break</source>
     <message>
         <location filename="showlog.ui" line="55"/>
         <source>&amp;Refresh</source>
-        <translation>&amp;Obnovit</translation>
+        <translation>Obnovit (&amp;r)</translation>
     </message>
 </context>
 </TS>
