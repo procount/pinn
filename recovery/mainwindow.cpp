@@ -32,7 +32,7 @@
 #include "termsdialog.h"
 #include "simulate.h"
 #include "dlginstall.h"
-
+#include "sleepsimulator.h"
 #define LOCAL_DBG_ON   0
 #define LOCAL_DBG_FUNC 1
 #define LOCAL_DBG_OUT  1
@@ -4493,6 +4493,14 @@ void MainWindow::downloadUpdateComplete()
     {
         qDebug() << "Time to update PINN!";
 
+        if (_qpd)
+        {
+            ((QProgressDialog*)_qpd)->setLabel( new QLabel(tr("PINN will now update and reboot in a few secs...")));
+            QApplication::processEvents();
+            SleepSimulator s;
+            s.sleep(1000);
+        }
+
         updatePinn();
 
         QProcess::execute(QString("rm ")+BUILD_IGNORE);
@@ -4638,9 +4646,10 @@ void MainWindow::on_newVersion()
         case QMessageBox::Yes:
             // Yes was clicked
             setEnabled(false);
-            _qpd = new QProgressDialog( QString(tr("Downloading Update")), QString(tr("Press ESC to cancel")), 0, 0, this);
+            _qpd = new QProgressDialog( QString(tr("Downloading Update")), QString(), 0, 0, this);
             _qpd->setWindowModality(Qt::WindowModal);
             _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+            _qpd->setWindowTitle("Updating PINN");
             _qpd->show();
             downloadUpdate(UPDATE_URL,  "UPDATE|" UPDATE_NEW);
             break;
