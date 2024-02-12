@@ -33,6 +33,7 @@
 #include "simulate.h"
 #include "dlginstall.h"
 #include "sleepsimulator.h"
+#include "adjustsizes.h"
 
 #define LOCAL_DBG_ON   0
 #define LOCAL_DBG_FUNC 0
@@ -3139,6 +3140,13 @@ void MainWindow::startImageWrite()
         }
 
     }
+
+
+    adjustSizes dlg(imageWriteThread->getImages(), 0, 0, 0);
+    if (dlg.exec() != QDialog::Accepted)
+        return;
+    ;
+
 
     if (slidesFolders.isEmpty())
         slidesFolder.append("/mnt/defaults/slides");
