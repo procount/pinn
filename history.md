@@ -5,6 +5,15 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.8.7f
+
+- **Usability**      - Updated info message when updating PINN'
+- **Translation**    - Fixed selection of CZ keyboard'
+
+### V3.8.7e
+
+- **Translation**    - Updated Italian translation'
+
 ### V3.8.7d
 
 - **Translation**    - Added Czech translation thanks to Jan
