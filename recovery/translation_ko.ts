@@ -3465,13 +3465,15 @@ Break</source>
         <location filename="rerunsetup.cpp" line="160"/>
         <source> partions_setup.sh script error
 </source>
-        <translation> partions_setup.sh 스크립트 오류</translation>
+        <translation> partions_setup.sh 스크립트 오류
+</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="162"/>
         <source> partition_setup.sh script OK
 </source>
-        <translation> partions_setup.sh 스크립트 확인 완료</translation>
+        <translation> partions_setup.sh 스크립트 확인 완료
+</translation>
     </message>
     <message>
         <location filename="rerunsetup.cpp" line="169"/>
