@@ -22,9 +22,9 @@ adjustSizes::adjustSizes(QList<OsInfo *> _images, ulong totalSize,  ulong availa
     TRACE
     ui->setupUi(this);
 
-    ui->tableWidget->setColumnCount(3);
+    ui->tableWidget->setColumnCount(5);
 
-    m_TableHeader << "OS Name" << "Default Size" << "New Size";
+    m_TableHeader << "OS Name" << "Default Size" << "Extra" << "Spare" << "Total";
     ui->tableWidget->setHorizontalHeaderLabels(m_TableHeader);
     //ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);

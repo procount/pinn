@@ -194,6 +194,10 @@ void LanguageDialog::changeLanguage(const QString &langcode)
     {
         defaultKeyboardLayout = "se";
     }
+    else if (langcode == "cs")
+    {
+        defaultKeyboardLayout = "cz";
+    }
     else
     {
         defaultKeyboardLayout = langcode.left(2); /* Use only 2 letter keyboard code as best guess */
