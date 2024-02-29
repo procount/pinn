@@ -43,12 +43,12 @@
 #define INFO_URL        "https://github.com/procount/pinn"
 
 /* Size of recovery FAT partition in MB when using reformat drive initialization method. */
-#define RESCUE_PARTITION_SIZE  63
+#define RESCUE_PARTITION_SIZE  127
 
 /* Files that are currently on the FAT partition are normally saved to memory during
  * repartitioning.
  * If files they are larger than number of MB, try resizing the FAT partition instead */
-#define MAXIMUM_BOOTFILES_SIZE  64
+#define MAXIMUM_BOOTFILES_SIZE  128
 
 /* Partitioning settings */
 #define PARTITION_ALIGNMENT  8192
