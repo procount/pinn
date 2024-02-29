@@ -33,7 +33,8 @@
 #include "simulate.h"
 #include "dlginstall.h"
 #include "sleepsimulator.h"
-#define LOCAL_DBG_ON   0
+
+#define LOCAL_DBG_ON   1
 #define LOCAL_DBG_FUNC 1
 #define LOCAL_DBG_OUT  1
 #define LOCAL_DBG_MSG  1
@@ -337,7 +338,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
                     }
                     else
                     {
-                        QString cmdlinefilename = "/mnt/recovery.cmdline";
+                        QString cmdlinefilename = "/mnt/cmdline.txt";
                         if (!QFile::exists(cmdlinefilename))
                             cmdlinefilename = "/mnt/cmdline.txt";
 
@@ -792,7 +793,7 @@ bool MainWindow::canInstallOs(const QString &name, const QVariantMap &values)
         }
     }
 
-    /* Display OS in list if it is supported or "showall" is specified in recovery.cmdline */
+    /* Display OS in list if it is supported or "showall" is specified in cmdline.txt */
     if (_showAll)
     {
         return true;
@@ -2174,6 +2175,8 @@ void MainWindow::onOnlineStateChanged(bool online)
                 checkForUpdates();
             else
                 qDebug()<<"Skipping self update check";
+
+            qDebug() <<"Online! repo_list= "<<repoList;
 
             downloadRepoList(repoList);
         }
@@ -4574,7 +4577,7 @@ void MainWindow::downloadUpdateComplete()
 void MainWindow::updatePinn()
 {
     //When PINN is updated, We don't need these files to be extracted
-    QString exclusions = " -x recovery.cmdline -x updatepinn -x exclude.txt";
+    QString exclusions = " -x cmdline.txt -x updatepinn -x exclude.txt";
 
     QProcess::execute("mount -o remount,rw /mnt");
 

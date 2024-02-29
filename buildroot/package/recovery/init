@@ -117,7 +117,7 @@ do
             echo "$d">>/tmp/init.log
             mount /dev/$d /tmp/mnt 2>/dev/null
             if [ $? -eq 0 ]; then
-              if [ -f "/tmp/mnt/recovery.rfs" ]; then
+              if [ -f "/tmp/mnt/pinn.rfs" ]; then
                 pinndrive=/dev/$d
                 if [ -f "/tmp/mnt/pinn_init.sh" ]; then
                   sh -c "/tmp/mnt/pinn_init.sh $pinndrive"

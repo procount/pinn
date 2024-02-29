@@ -79,7 +79,7 @@ void OptionsDialog::read()
 {
     int sep;
     QString line;
-    QString file = getFileContents("/mnt/recovery.cmdline");
+    QString file = getFileContents("/mnt/cmdline.txt");
 
     sep = file.indexOf('\n');
     if (-1==sep)
@@ -275,7 +275,7 @@ void OptionsDialog::write()
 
     contents += remainderOptions.trimmed() + "\n" + remainderFile;
 
-    QFile f("/mnt/recovery.cmdline");
+    QFile f("/mnt/cmdline.txt");
     if (f.open(QIODevice::WriteOnly))
     {
         f.write(contents.toAscii());

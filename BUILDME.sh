@@ -221,7 +221,7 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
         select_kernelconfig armv7l
         make linux-reconfigure
         # copy ARMv7L kernel
-        cp "$IMAGES_DIR/zImage" "$FINAL_OUTPUT_DIR/recovery7l.img"
+        cp "$IMAGES_DIR/zImage" "$FINAL_OUTPUT_DIR/kernel7l.img"
     else
         echo "Warning: kernel armv7l in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
     fi
@@ -231,7 +231,7 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
         select_kernelconfig armv7
         make linux-reconfigure
         # copy ARMv7 kernel
-        cp "$IMAGES_DIR/zImage" "$FINAL_OUTPUT_DIR/recovery7.img"
+        cp "$IMAGES_DIR/zImage" "$FINAL_OUTPUT_DIR/kernel7.img"
     else
         echo "Warning: kernel armv7 in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
     fi
@@ -241,7 +241,7 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
         select_kernelconfig armv6
         make linux-reconfigure
         # copy ARMv6 kernel
-        cp "$IMAGES_DIR/zImage" "$FINAL_OUTPUT_DIR/recovery.img"
+        cp "$IMAGES_DIR/zImage" "$FINAL_OUTPUT_DIR/kernel.img"
     else
         echo "Warning: kernel armv6 in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
     fi
@@ -251,19 +251,19 @@ else
 fi
 
 # copy rootfs
-cp "$IMAGES_DIR/rootfs.squashfs" "$FINAL_OUTPUT_DIR/recovery.rfs"
-#cp "$IMAGES_DIR/rootfs.cpio.lzo" "$FINAL_OUTPUT_DIR/recovery.rfs"
+cp "$IMAGES_DIR/rootfs.squashfs" "$FINAL_OUTPUT_DIR/pinn.rfs"
+#cp "$IMAGES_DIR/rootfs.cpio.lzo" "$FINAL_OUTPUT_DIR/pinn.rfs"
 
 # Ensure that final output dir contains files necessary to boot
-cp "$IMAGES_DIR/rpi-firmware/start.elf" "$FINAL_OUTPUT_DIR/recovery.elf"
+cp "$IMAGES_DIR/rpi-firmware/start.elf" "$FINAL_OUTPUT_DIR"
 
-cp "$IMAGES_DIR/rpi-firmware/start4.elf" "$FINAL_OUTPUT_DIR/recover4.elf"
-cp "$IMAGES_DIR/rpi-firmware/fixup.dat" "$FINAL_OUTPUT_DIR/fixup_rc.dat"
-cp "$IMAGES_DIR/rpi-firmware/fixup4.dat" "$FINAL_OUTPUT_DIR/fixup4rc.dat"
+cp "$IMAGES_DIR/rpi-firmware/start4.elf" "$FINAL_OUTPUT_DIR"
+cp "$IMAGES_DIR/rpi-firmware/fixup.dat" "$FINAL_OUTPUT_DIR"
+cp "$IMAGES_DIR/rpi-firmware/fixup4.dat" "$FINAL_OUTPUT_DIR"
 cp "$IMAGES_DIR/rpi-firmware/config.txt" "$FINAL_OUTPUT_DIR"
 cp "$IMAGES_DIR/rpi-firmware/bootcode.bin" "$FINAL_OUTPUT_DIR"
 cp -a $IMAGES_DIR/*.dtb "$IMAGES_DIR/overlays" "$FINAL_OUTPUT_DIR"
-cp "$IMAGES_DIR/cmdline.txt" "$FINAL_OUTPUT_DIR/recovery.cmdline"
+cp "$IMAGES_DIR/cmdline.txt" "$FINAL_OUTPUT_DIR"
 cp "$IMAGES_DIR/recovery.cmdline.new" "$FINAL_OUTPUT_DIR"
 touch "$FINAL_OUTPUT_DIR/RECOVERY_FILES_DO_NOT_EDIT"
 
