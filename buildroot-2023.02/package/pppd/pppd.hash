@@ -1,0 +1,7 @@
+# Locally calculated
+sha256  675bff4f366174649f4a3c92fd32ac476e694164ff2b0b7710019b6ead9c561e  pppd-2.4.9.tar.gz
+sha256  3990c65c506885f7bb75455d1d6188743a14ad46f5b62e136ef3739aed52c532  pppd/tdb.c
+sha256  1822ead9d2854adfbd282322b29730a3fec4cc67f6f6a2e487aad3476e3afd59  pppd/plugins/pppoatm/COPYING
+sha256  d759ec16875a69c2d5529f8cb3c040fef8fe38d26f70457aadb73c91b72746c8  pppdump/bsd-comp.c
+sha256  c0d0f14b6ec9948332f10ded741293ed1f3b96e0d266e4903b605a6e1f8af7cd  pppd/ccp.c
+sha256  367f334c509db2b293aea5ce9f54284d9a9f6e0a9e0c6e305d544079baf8ab63  pppd/plugins/passprompt.c

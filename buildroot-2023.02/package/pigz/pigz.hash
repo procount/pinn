@@ -1,0 +1,5 @@
+# From http://zlib.net/pigz
+sha256  b4c9e60344a08d5db37ca7ad00a5b2c76ccb9556354b722d56d55ca7e8b1c707  pigz-2.7.tar.gz
+
+# Locally calculated
+sha256  67e2b9e30e924724a9d72549a6004ed15a041f51d9ea9ab781e048fa27ae07a2  README

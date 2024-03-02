@@ -1,0 +1,5 @@
+# From https://snapshot.debian.org/archive/debian/20210903T205304Z/pool/main/l/lockfile-progs/lockfile-progs_0.1.19.dsc
+sha256  2c5704b01c8f474f82921780e4592a927b2bf6a6d7616354a6c5d7cd5664857e  lockfile-progs_0.1.19.tar.gz
+
+# Hash for license file
+sha256  dcc100d4161cc0b7177545ab6e47216f84857cda3843847c792a25289852dcaa  COPYING

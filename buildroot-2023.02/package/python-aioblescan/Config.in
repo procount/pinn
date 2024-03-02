@@ -1,0 +1,6 @@
+config BR2_PACKAGE_PYTHON_AIOBLESCAN
+	bool "python-aioblescan"
+	help
+	  Scanning Bluetooth for advertised info with asyncio.
+
+	  https://github.com/frawau/aioblescan

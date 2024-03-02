@@ -1,0 +1,5 @@
+# From https://lists.x.org/archives/xorg-announce/2022-July/003176.html
+sha256  9a2f8168f7b0bc382828847403902cb6bf175e17658b36189eac87edda877e81  xmodmap-1.0.11.tar.xz
+sha512  a78f916f048d2017f079733becc99232c087c360ece61ec6c4fa4b5b130b96a1b10c4ce1b64a15bdcab7ea05de3c7f16035503d5be6f8ce1a7612ce71d558510  xmodmap-1.0.11.tar.xz
+# Locally computed
+sha256  c149563cf2cb0ecfb1148b6eb8f604c62bed43452a0d0fbafb97286a97840f5c  COPYING

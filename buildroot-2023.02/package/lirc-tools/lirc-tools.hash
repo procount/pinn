@@ -1,0 +1,6 @@
+# hash from https://sourceforge.net/projects/lirc/files/LIRC/0.10.2/
+sha1  02092890205891b6de5a699294485a1eedba46c5  lirc-0.10.2.tar.bz2
+md5  cb96cfb0af8067c0062e2f5a100f426a  lirc-0.10.2.tar.bz2
+# Locally computed
+sha256  3d44ec8274881cf262f160805641f0827ffcc20ade0d85e7e6f3b90e0d3d222a  lirc-0.10.2.tar.bz2
+sha256  8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643  COPYING

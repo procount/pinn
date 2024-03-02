@@ -1,0 +1,5 @@
+# From https://lists.x.org/archives/xorg-announce/2022-October/003235.html
+sha256  62c34e21d06264687faea7edbf63632c9f04d55e72114aa4a57bb95e4f888a0b  xcb-util-wm-0.4.2.tar.xz
+sha512  eab6588e6a47d28a3b25ecd13b5018529419db6b49c74458c093699b60a194933be1e1f6f7799abf03344f7ebc7af88586ff2935938d53644bdd5c763a7fa9b0  xcb-util-wm-0.4.2.tar.xz
+# License file, locally calculated
+sha256  12ab3559977a4b22ae3030b90c64a386e6ec51ab0e4eab1ff530f81a2639400a  COPYING

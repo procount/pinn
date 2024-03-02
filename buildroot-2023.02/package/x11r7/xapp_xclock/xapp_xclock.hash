@@ -1,0 +1,5 @@
+# From https://lists.x.org/archives/xorg-announce/2022-April/003156.html
+sha256  df7ceabf8f07044a2fde4924d794554996811640a45de40cb12c2cf1f90f742c  xclock-1.1.1.tar.xz
+sha512  059ea986bc7537c2796e8855676e8357bd8a7852fbac0839b3f8a9e3ffa088de41bc4e4961973353f0a7b7293366b81bc764d74f3dc4e90e361da06185d976e7  xclock-1.1.1.tar.xz
+# Locally computed
+sha256  ee1f19f46801ef00e70498603e74df644d0b93fc82f06b55ce64c3a2c9f16e71  COPYING

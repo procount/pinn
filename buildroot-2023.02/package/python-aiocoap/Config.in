@@ -1,0 +1,6 @@
+config BR2_PACKAGE_PYTHON_AIOCOAP
+	bool "python-aiocoap"
+	help
+	  Python CoAP library.
+
+	  https://github.com/chrysn/aiocoap

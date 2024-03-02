@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PYTHON_PYROUTE2
+	bool "python-pyroute2"
+	select BR2_PACKAGE_PYTHON3_SQLITE
+	help
+	  Python netlink library - Linux network / netns / wireless /
+	  ipset configuration.
+
+	  https://github.com/svinota/pyroute2

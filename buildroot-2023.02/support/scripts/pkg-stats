@@ -1,0 +1,1354 @@
+#!/usr/bin/env python3
+
+# Copyright (C) 2009 by Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
+# Copyright (C) 2022 by Sen Hastings <sen@phobosdpl.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+import aiohttp
+import argparse
+import asyncio
+import datetime
+import fnmatch
+import os
+from collections import defaultdict
+import re
+import subprocess
+import json
+import sys
+import time
+import gzip
+import xml.etree.ElementTree
+import requests
+
+brpath = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", ".."))
+
+sys.path.append(os.path.join(brpath, "utils"))
+from getdeveloperlib import parse_developers  # noqa: E402
+from cpedb import CPEDB_URL  # noqa: E402
+
+INFRA_RE = re.compile(r"\$\(eval \$\(([a-z-]*)-package\)\)")
+URL_RE = re.compile(r"\s*https?://\S*\s*$")
+
+RM_API_STATUS_ERROR = 1
+RM_API_STATUS_FOUND_BY_DISTRO = 2
+RM_API_STATUS_FOUND_BY_PATTERN = 3
+RM_API_STATUS_NOT_FOUND = 4
+
+
+class Defconfig:
+    def __init__(self, name, path):
+        self.name = name
+        self.path = path
+        self.developers = None
+
+    def set_developers(self, developers):
+        """
+        Fills in the .developers field
+        """
+        self.developers = [
+            developer.name
+            for developer in developers
+            if developer.hasfile(self.path)
+        ]
+
+
+def get_defconfig_list():
+    """
+    Builds the list of Buildroot defconfigs, returning a list of Defconfig
+    objects.
+    """
+    return [
+        Defconfig(name[:-len('_defconfig')], os.path.join('configs', name))
+        for name in os.listdir(os.path.join(brpath, 'configs'))
+        if name.endswith('_defconfig')
+    ]
+
+
+class Package:
+    all_licenses = dict()
+    all_license_files = list()
+    all_versions = dict()
+    all_ignored_cves = dict()
+    all_cpeids = dict()
+    # This is the list of all possible checks. Add new checks to this list so
+    # a tool that post-processeds the json output knows the checks before
+    # iterating over the packages.
+    status_checks = ['cve', 'developers', 'hash', 'license',
+                     'license-files', 'patches', 'pkg-check', 'url', 'version']
+
+    def __init__(self, name, path):
+        self.name = name
+        self.path = path
+        self.pkg_path = os.path.dirname(path)
+        # Contains a list of tuple (type, infra), such as ("target",
+        # "autotools"). When pkg-stats is run without -c, it contains
+        # the list of all infra/type supported by the package. When
+        # pkg-stats is run with -c, it contains the list of infra/type
+        # used by the current configuration.
+        self.infras = None
+        self.license = None
+        self.has_license = False
+        self.has_license_files = False
+        self.has_hash = False
+        self.patch_files = []
+        self.warnings = 0
+        self.current_version = None
+        self.url = None
+        self.url_worker = None
+        self.cpeid = None
+        self.cves = list()
+        self.ignored_cves = list()
+        self.unsure_cves = list()
+        self.latest_version = {'status': RM_API_STATUS_ERROR, 'version': None, 'id': None}
+        self.status = {}
+
+    def pkgvar(self):
+        return self.name.upper().replace("-", "_")
+
+    def set_url(self):
+        """
+        Fills in the .url field
+        """
+        self.status['url'] = ("warning", "no Config.in")
+        pkgdir = os.path.dirname(os.path.join(brpath, self.path))
+        for filename in os.listdir(pkgdir):
+            if fnmatch.fnmatch(filename, 'Config.*'):
+                fp = open(os.path.join(pkgdir, filename), "r")
+                for config_line in fp:
+                    if URL_RE.match(config_line):
+                        self.url = config_line.strip()
+                        self.status['url'] = ("ok", "found")
+                        fp.close()
+                        return
+                self.status['url'] = ("error", "missing")
+                fp.close()
+
+    @property
+    def patch_count(self):
+        return len(self.patch_files)
+
+    @property
+    def has_valid_infra(self):
+        if self.infras is None:
+            return False
+        return len(self.infras) > 0
+
+    @property
+    def is_actual_package(self):
+        try:
+            if not self.has_valid_infra:
+                return False
+            if self.infras[0][1] == 'virtual':
+                return False
+        except IndexError:
+            return False
+        return True
+
+    def set_infra(self, show_info_js):
+        """
+        Fills in the .infras field
+        """
+        # If we're running pkg-stats for a given Buildroot
+        # configuration, keep only the type/infra that applies
+        if show_info_js:
+            keep_host = "host-%s" % self.name in show_info_js
+            keep_target = self.name in show_info_js
+        # Otherwise, keep all
+        else:
+            keep_host = True
+            keep_target = True
+
+        self.infras = list()
+        with open(os.path.join(brpath, self.path), 'r') as f:
+            lines = f.readlines()
+            for line in lines:
+                match = INFRA_RE.match(line)
+                if not match:
+                    continue
+                infra = match.group(1)
+                if infra.startswith("host-") and keep_host:
+                    self.infras.append(("host", infra[5:]))
+                elif keep_target:
+                    self.infras.append(("target", infra))
+
+    def set_license(self):
+        """
+        Fills in the .status['license'] and .status['license-files'] fields
+        """
+        if not self.is_actual_package:
+            self.status['license'] = ("na", "no valid package infra")
+            self.status['license-files'] = ("na", "no valid package infra")
+            return
+
+        var = self.pkgvar()
+        self.status['license'] = ("error", "missing")
+        self.status['license-files'] = ("error", "missing")
+        if var in self.all_licenses:
+            self.license = self.all_licenses[var]
+            self.status['license'] = ("ok", "found")
+        if var in self.all_license_files:
+            self.status['license-files'] = ("ok", "found")
+
+    def set_hash_info(self):
+        """
+        Fills in the .status['hash'] field
+        """
+        if not self.is_actual_package:
+            self.status['hash'] = ("na", "no valid package infra")
+            self.status['hash-license'] = ("na", "no valid package infra")
+            return
+
+        hashpath = self.path.replace(".mk", ".hash")
+        if os.path.exists(os.path.join(brpath, hashpath)):
+            self.status['hash'] = ("ok", "found")
+        else:
+            self.status['hash'] = ("error", "missing")
+
+    def set_patch_count(self):
+        """
+        Fills in the .patch_count, .patch_files and .status['patches'] fields
+        """
+        if not self.is_actual_package:
+            self.status['patches'] = ("na", "no valid package infra")
+            return
+
+        pkgdir = os.path.dirname(os.path.join(brpath, self.path))
+        for subdir, _, _ in os.walk(pkgdir):
+            self.patch_files = fnmatch.filter(os.listdir(subdir), '*.patch')
+
+        if self.patch_count == 0:
+            self.status['patches'] = ("ok", "no patches")
+        elif self.patch_count < 5:
+            self.status['patches'] = ("warning", "some patches")
+        else:
+            self.status['patches'] = ("error", "lots of patches")
+
+    def set_current_version(self):
+        """
+        Fills in the .current_version field
+        """
+        var = self.pkgvar()
+        if var in self.all_versions:
+            self.current_version = self.all_versions[var]
+
+    def set_cpeid(self):
+        """
+        Fills in the .cpeid field
+        """
+        var = self.pkgvar()
+        if not self.is_actual_package:
+            self.status['cpe'] = ("na", "N/A - virtual pkg")
+            return
+        if not self.current_version:
+            self.status['cpe'] = ("na", "no version information available")
+            return
+
+        if var in self.all_cpeids:
+            self.cpeid = self.all_cpeids[var]
+            # Set a preliminary status, it might be overridden by check_package_cpes()
+            self.status['cpe'] = ("warning", "not checked against CPE dictionnary")
+        else:
+            self.status['cpe'] = ("error", "no verified CPE identifier")
+
+    def set_check_package_warnings(self):
+        """
+        Fills in the .warnings and .status['pkg-check'] fields
+        """
+        cmd = [os.path.join(brpath, "utils/check-package")]
+        pkgdir = os.path.dirname(os.path.join(brpath, self.path))
+        self.status['pkg-check'] = ("error", "Missing")
+        for root, dirs, files in os.walk(pkgdir):
+            for f in files:
+                if f.endswith(".mk") or f.endswith(".hash") or f == "Config.in" or f == "Config.in.host":
+                    cmd.append(os.path.join(root, f))
+        o = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[1]
+        lines = o.splitlines()
+        for line in lines:
+            m = re.match("^([0-9]*) warnings generated", line.decode())
+            if m:
+                self.warnings = int(m.group(1))
+                if self.warnings == 0:
+                    self.status['pkg-check'] = ("ok", "no warnings")
+                else:
+                    self.status['pkg-check'] = ("error", "{} warnings".format(self.warnings))
+                return
+
+    def set_ignored_cves(self):
+        """
+        Give the list of CVEs ignored by the package
+        """
+        self.ignored_cves = list(self.all_ignored_cves.get(self.pkgvar(), []))
+
+    def set_developers(self, developers):
+        """
+        Fills in the .developers and .status['developers'] field
+        """
+        self.developers = [
+            dev.name
+            for dev in developers
+            if dev.hasfile(self.path)
+        ]
+
+        if self.developers:
+            self.status['developers'] = ("ok", "{} developers".format(len(self.developers)))
+        else:
+            self.status['developers'] = ("warning", "no developers")
+
+    def is_status_ok(self, name):
+        return name in self.status and self.status[name][0] == 'ok'
+
+    def is_status_error(self, name):
+        return name in self.status and self.status[name][0] == 'error'
+
+    def is_status_na(self, name):
+        return name in self.status and self.status[name][0] == 'na'
+
+    def __eq__(self, other):
+        return self.path == other.path
+
+    def __lt__(self, other):
+        return self.path < other.path
+
+    def __str__(self):
+        return "%s (path='%s', license='%s', license_files='%s', hash='%s', patches=%d)" % \
+            (self.name, self.path, self.is_status_ok('license'),
+             self.is_status_ok('license-files'), self.status['hash'], self.patch_count)
+
+
+def get_pkglist(npackages, package_list):
+    """
+    Builds the list of Buildroot packages, returning a list of Package
+    objects. Only the .name and .path fields of the Package object are
+    initialized.
+
+    npackages: limit to N packages
+    package_list: limit to those packages in this list
+    """
+    WALK_USEFUL_SUBDIRS = ["boot", "linux", "package", "toolchain"]
+    WALK_EXCLUDES = ["boot/common.mk",
+                     "linux/linux-ext-.*.mk",
+                     "package/freescale-imx/freescale-imx.mk",
+                     "package/gcc/gcc.mk",
+                     "package/gstreamer/gstreamer.mk",
+                     "package/gstreamer1/gstreamer1.mk",
+                     "package/gtk2-themes/gtk2-themes.mk",
+                     "package/matchbox/matchbox.mk",
+                     "package/opengl/opengl.mk",
+                     "package/qt5/qt5.mk",
+                     "package/x11r7/x11r7.mk",
+                     "package/doc-asciidoc.mk",
+                     "package/pkg-.*.mk",
+                     "toolchain/toolchain-external/pkg-toolchain-external.mk",
+                     "toolchain/toolchain-external/toolchain-external.mk",
+                     "toolchain/toolchain.mk",
+                     "toolchain/helpers.mk",
+                     "toolchain/toolchain-wrapper.mk"]
+    packages = list()
+    count = 0
+    for root, dirs, files in os.walk(brpath):
+        root = os.path.relpath(root, brpath)
+        rootdir = root.split("/")
+        if len(rootdir) < 1:
+            continue
+        if rootdir[0] not in WALK_USEFUL_SUBDIRS:
+            continue
+        for f in files:
+            if not f.endswith(".mk"):
+                continue
+            # Strip ending ".mk"
+            pkgname = f[:-3]
+            if package_list and pkgname not in package_list:
+                continue
+            pkgpath = os.path.join(root, f)
+            skip = False
+            for exclude in WALK_EXCLUDES:
+                if re.match(exclude, pkgpath):
+                    skip = True
+                    continue
+            if skip:
+                continue
+            p = Package(pkgname, pkgpath)
+            packages.append(p)
+            count += 1
+            if npackages and count == npackages:
+                return packages
+    return packages
+
+
+def get_show_info_js():
+    cmd = ["make", "--no-print-directory", "show-info"]
+    return json.loads(subprocess.check_output(cmd))
+
+
+def package_init_make_info():
+    # Fetch all variables at once
+    variables = subprocess.check_output(["make", "--no-print-directory", "-s",
+                                         "BR2_HAVE_DOT_CONFIG=y", "printvars",
+                                         "VARS=%_LICENSE %_LICENSE_FILES %_VERSION %_IGNORE_CVES %_CPE_ID"])
+    variable_list = variables.decode().splitlines()
+
+    # We process first the host package VERSION, and then the target
+    # package VERSION. This means that if a package exists in both
+    # target and host variants, with different values (eg. version
+    # numbers (unlikely)), we'll report the target one.
+    variable_list = [x[5:] for x in variable_list if x.startswith("HOST_")] + \
+                    [x for x in variable_list if not x.startswith("HOST_")]
+
+    for item in variable_list:
+        # Get variable name and value
+        pkgvar, value = item.split("=", maxsplit=1)
+
+        # Strip the suffix according to the variable
+        if pkgvar.endswith("_LICENSE"):
+            # If value is "unknown", no license details available
+            if value == "unknown":
+                continue
+            pkgvar = pkgvar[:-8]
+            Package.all_licenses[pkgvar] = value
+
+        elif pkgvar.endswith("_LICENSE_FILES"):
+            if pkgvar.endswith("_MANIFEST_LICENSE_FILES"):
+                continue
+            pkgvar = pkgvar[:-14]
+            Package.all_license_files.append(pkgvar)
+
+        elif pkgvar.endswith("_VERSION"):
+            if pkgvar.endswith("_DL_VERSION"):
+                continue
+            pkgvar = pkgvar[:-8]
+            Package.all_versions[pkgvar] = value
+
+        elif pkgvar.endswith("_IGNORE_CVES"):
+            pkgvar = pkgvar[:-12]
+            Package.all_ignored_cves[pkgvar] = value.split()
+
+        elif pkgvar.endswith("_CPE_ID"):
+            pkgvar = pkgvar[:-7]
+            Package.all_cpeids[pkgvar] = value
+
+
+check_url_count = 0
+
+
+async def check_url_status(session, pkg, npkgs, retry=True):
+    global check_url_count
+
+    try:
+        async with session.get(pkg.url) as resp:
+            if resp.status >= 400:
+                pkg.status['url'] = ("error", "invalid {}".format(resp.status))
+                check_url_count += 1
+                print("[%04d/%04d] %s" % (check_url_count, npkgs, pkg.name))
+                return
+    except (aiohttp.ClientError, asyncio.TimeoutError):
+        if retry:
+            return await check_url_status(session, pkg, npkgs, retry=False)
+        else:
+            pkg.status['url'] = ("error", "invalid (err)")
+            check_url_count += 1
+            print("[%04d/%04d] %s" % (check_url_count, npkgs, pkg.name))
+            return
+
+    pkg.status['url'] = ("ok", "valid")
+    check_url_count += 1
+    print("[%04d/%04d] %s" % (check_url_count, npkgs, pkg.name))
+
+
+async def check_package_urls(packages):
+    tasks = []
+    connector = aiohttp.TCPConnector(limit_per_host=5)
+    async with aiohttp.ClientSession(connector=connector, trust_env=True,
+                                     timeout=aiohttp.ClientTimeout(total=15)) as sess:
+        packages = [p for p in packages if p.status['url'][0] == 'ok']
+        for pkg in packages:
+            tasks.append(asyncio.ensure_future(check_url_status(sess, pkg, len(packages))))
+        await asyncio.wait(tasks)
+
+
+def check_package_latest_version_set_status(pkg, status, version, identifier):
+    pkg.latest_version = {
+        "status": status,
+        "version": version,
+        "id": identifier,
+    }
+
+    if pkg.latest_version['status'] == RM_API_STATUS_ERROR:
+        pkg.status['version'] = ('warning', "Release Monitoring API error")
+    elif pkg.latest_version['status'] == RM_API_STATUS_NOT_FOUND:
+        pkg.status['version'] = ('warning', "Package not found on Release Monitoring")
+
+    if pkg.latest_version['version'] is None:
+        pkg.status['version'] = ('warning', "No upstream version available on Release Monitoring")
+    elif pkg.latest_version['version'] != pkg.current_version:
+        pkg.status['version'] = ('error', "The newer version {} is available upstream".format(pkg.latest_version['version']))
+    else:
+        pkg.status['version'] = ('ok', 'up-to-date')
+
+
+async def check_package_get_latest_version_by_distro(session, pkg, retry=True):
+    url = "https://release-monitoring.org//api/project/Buildroot/%s" % pkg.name
+    try:
+        async with session.get(url) as resp:
+            if resp.status != 200:
+                return False
+
+            data = await resp.json()
+            if 'stable_versions' in data and data['stable_versions']:
+                version = data['stable_versions'][0]
+            elif 'version' in data:
+                version = data['version']
+            else:
+                version = None
+            check_package_latest_version_set_status(pkg,
+                                                    RM_API_STATUS_FOUND_BY_DISTRO,
+                                                    version,
+                                                    data['id'])
+            return True
+
+    except (aiohttp.ClientError, asyncio.TimeoutError):
+        if retry:
+            return await check_package_get_latest_version_by_distro(session, pkg, retry=False)
+        else:
+            return False
+
+
+async def check_package_get_latest_version_by_guess(session, pkg, retry=True):
+    url = "https://release-monitoring.org/api/projects/?pattern=%s" % pkg.name
+    try:
+        async with session.get(url) as resp:
+            if resp.status != 200:
+                return False
+
+            data = await resp.json()
+            # filter projects that have the right name and a version defined
+            projects = [p for p in data['projects'] if p['name'] == pkg.name and 'stable_versions' in p]
+            projects.sort(key=lambda x: x['id'])
+
+            if len(projects) == 0:
+                return False
+
+            if len(projects[0]['stable_versions']) == 0:
+                return False
+
+            check_package_latest_version_set_status(pkg,
+                                                    RM_API_STATUS_FOUND_BY_PATTERN,
+                                                    projects[0]['stable_versions'][0],
+                                                    projects[0]['id'])
+            return True
+
+    except (aiohttp.ClientError, asyncio.TimeoutError):
+        if retry:
+            return await check_package_get_latest_version_by_guess(session, pkg, retry=False)
+        else:
+            return False
+
+
+check_latest_count = 0
+
+
+async def check_package_latest_version_get(session, pkg, npkgs):
+    global check_latest_count
+
+    if await check_package_get_latest_version_by_distro(session, pkg):
+        check_latest_count += 1
+        print("[%04d/%04d] %s" % (check_latest_count, npkgs, pkg.name))
+        return
+
+    if await check_package_get_latest_version_by_guess(session, pkg):
+        check_latest_count += 1
+        print("[%04d/%04d] %s" % (check_latest_count, npkgs, pkg.name))
+        return
+
+    check_package_latest_version_set_status(pkg,
+                                            RM_API_STATUS_NOT_FOUND,
+                                            None, None)
+    check_latest_count += 1
+    print("[%04d/%04d] %s" % (check_latest_count, npkgs, pkg.name))
+
+
+async def check_package_latest_version(packages):
+    """
+    Fills in the .latest_version field of all Package objects
+
+    This field is a dict and has the following keys:
+
+    - status: one of RM_API_STATUS_ERROR,
+      RM_API_STATUS_FOUND_BY_DISTRO, RM_API_STATUS_FOUND_BY_PATTERN,
+      RM_API_STATUS_NOT_FOUND
+    - version: string containing the latest version known by
+      release-monitoring.org for this package
+    - id: string containing the id of the project corresponding to this
+      package, as known by release-monitoring.org
+    """
+
+    for pkg in [p for p in packages if not p.is_actual_package]:
+        pkg.status['version'] = ("na", "no valid package infra")
+
+    tasks = []
+    connector = aiohttp.TCPConnector(limit_per_host=5)
+    async with aiohttp.ClientSession(connector=connector, trust_env=True) as sess:
+        packages = [p for p in packages if p.is_actual_package]
+        for pkg in packages:
+            tasks.append(asyncio.ensure_future(check_package_latest_version_get(sess, pkg, len(packages))))
+        await asyncio.wait(tasks)
+
+
+def check_package_cve_affects(cve, cpe_product_pkgs):
+    for product in cve.affected_products:
+        if product not in cpe_product_pkgs:
+            continue
+        for pkg in cpe_product_pkgs[product]:
+            cve_status = cve.affects(pkg.name, pkg.current_version, pkg.ignored_cves, pkg.cpeid)
+            if cve_status == cve.CVE_AFFECTS:
+                pkg.cves.append(cve.identifier)
+            elif cve_status == cve.CVE_UNKNOWN:
+                pkg.unsure_cves.append(cve.identifier)
+
+
+def check_package_cves(nvd_path, packages):
+    if not os.path.isdir(nvd_path):
+        os.makedirs(nvd_path)
+
+    cpe_product_pkgs = defaultdict(list)
+    for pkg in packages:
+        if not pkg.is_actual_package:
+            pkg.status['cve'] = ("na", "N/A")
+            continue
+        if not pkg.current_version:
+            pkg.status['cve'] = ("na", "no version information available")
+            continue
+        if pkg.cpeid:
+            cpe_product = cvecheck.cpe_product(pkg.cpeid)
+            cpe_product_pkgs[cpe_product].append(pkg)
+        else:
+            cpe_product_pkgs[pkg.name].append(pkg)
+
+    for cve in cvecheck.CVE.read_nvd_dir(nvd_path):
+        check_package_cve_affects(cve, cpe_product_pkgs)
+
+    for pkg in packages:
+        if 'cve' not in pkg.status:
+            if pkg.cves or pkg.unsure_cves:
+                pkg.status['cve'] = ("error", "affected by CVEs")
+            else:
+                pkg.status['cve'] = ("ok", "not affected by CVEs")
+
+
+def check_package_cpes(nvd_path, packages):
+    class CpeXmlParser:
+        cpes = []
+
+        def start(self, tag, attrib):
+            if tag == "{http://scap.nist.gov/schema/cpe-extension/2.3}cpe23-item":
+                self.cpes.append(attrib['name'])
+
+        def close(self):
+            return self.cpes
+
+    print("CPE: Setting up NIST dictionary")
+    if not os.path.exists(os.path.join(nvd_path, "cpe")):
+        os.makedirs(os.path.join(nvd_path, "cpe"))
+
+    cpe_dict_local = os.path.join(nvd_path, "cpe", os.path.basename(CPEDB_URL))
+    if not os.path.exists(cpe_dict_local) or os.stat(cpe_dict_local).st_mtime < time.time() - 86400:
+        print("CPE: Fetching xml manifest from [" + CPEDB_URL + "]")
+        cpe_dict = requests.get(CPEDB_URL)
+        open(cpe_dict_local, "wb").write(cpe_dict.content)
+
+    print("CPE: Unzipping xml manifest...")
+    nist_cpe_file = gzip.GzipFile(fileobj=open(cpe_dict_local, 'rb'))
+
+    parser = xml.etree.ElementTree.XMLParser(target=CpeXmlParser())
+    while True:
+        c = nist_cpe_file.read(1024*1024)
+        if not c:
+            break
+        parser.feed(c)
+    cpes = parser.close()
+
+    for p in packages:
+        if not p.cpeid:
+            continue
+        if p.cpeid in cpes:
+            p.status['cpe'] = ("ok", "verified CPE identifier")
+        else:
+            p.status['cpe'] = ("error", "CPE version unknown in CPE database")
+
+
+def calculate_stats(packages):
+    stats = defaultdict(int)
+    stats['packages'] = len(packages)
+    for pkg in packages:
+        # If packages have multiple infra, take the first one. For the
+        # vast majority of packages, the target and host infra are the
+        # same. There are very few packages that use a different infra
+        # for the host and target variants.
+        if len(pkg.infras) > 0:
+            infra = pkg.infras[0][1]
+            stats["infra-%s" % infra] += 1
+        else:
+            stats["infra-unknown"] += 1
+        if pkg.is_status_ok('license'):
+            stats["license"] += 1
+        else:
+            stats["no-license"] += 1
+        if pkg.is_status_ok('license-files'):
+            stats["license-files"] += 1
+        else:
+            stats["no-license-files"] += 1
+        if pkg.is_status_ok('hash'):
+            stats["hash"] += 1
+        else:
+            stats["no-hash"] += 1
+        if pkg.latest_version['status'] == RM_API_STATUS_FOUND_BY_DISTRO:
+            stats["rmo-mapping"] += 1
+        else:
+            stats["rmo-no-mapping"] += 1
+        if not pkg.latest_version['version']:
+            stats["version-unknown"] += 1
+        elif pkg.latest_version['version'] == pkg.current_version:
+            stats["version-uptodate"] += 1
+        else:
+            stats["version-not-uptodate"] += 1
+        stats["patches"] += pkg.patch_count
+        stats["total-cves"] += len(pkg.cves)
+        stats["total-unsure-cves"] += len(pkg.unsure_cves)
+        if len(pkg.cves) != 0:
+            stats["pkg-cves"] += 1
+        if len(pkg.unsure_cves) != 0:
+            stats["pkg-unsure-cves"] += 1
+        if pkg.cpeid:
+            stats["cpe-id"] += 1
+        else:
+            stats["no-cpe-id"] += 1
+    return stats
+
+
+html_header = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+const triangleUp = String.fromCodePoint(32, 9652);
+const triangleDown = String.fromCodePoint(32, 9662);
+var lastColumnName = false;
+const styleElement = document.createElement('style');
+document.head.insertAdjacentElement("afterend", styleElement);
+const styleSheet = styleElement.sheet;
+addedCSSRules = [
+".collapse{ height: 200px; overflow: hidden scroll;}",
+".see-more{ display: block;}",
+".label:hover,.see-more:hover { cursor: pointer; background: #d2ffc4;}"
+];
+
+addedCSSRules.forEach(rule => styleSheet.insertRule(rule));
+
+function sortGrid(sortLabel){
+	let i = 0;
+	let pkgSortArray = [], sortedPkgArray = [], pkgStringSortArray = [], pkgNumSortArray = [];
+	const columnValues = Array.from(document.getElementsByClassName(sortLabel));
+	const columnName = document.getElementById(sortLabel);
+	let lastStyle = document.getElementById("sort-css");
+
+	if (lastStyle){
+		lastStyle.disable = true;
+		lastStyle.remove();
+	};
+	styleElement.id = "sort-css";
+	document.head.appendChild(styleElement);
+	const styleSheet = styleElement.sheet;
+
+        columnValues.shift();
+        columnValues.forEach((listing) => {
+                let sortArr = [];
+                sortArr[0] = listing.id.replace(sortLabel+"_", "");
+                if (!listing.innerText){
+                        sortArr[1] = -1;
+                } else {
+                        sortArr[1] = listing.innerText;
+                };
+                pkgSortArray.push(sortArr);
+        });
+        pkgSortArray.forEach((listing) => {
+                if ( isNaN(parseInt(listing[1], 10)) ){
+                        pkgStringSortArray.push(listing);
+                } else {
+                        listing[1] = parseFloat(listing[1]);
+                        pkgNumSortArray.push(listing);
+                };
+        });
+
+        let sortedStringPkgArray = pkgStringSortArray.sort((a, b) => {
+                if (a[1].toUpperCase() < b[1].toUpperCase()) { return -1; };
+                if (a[1].toUpperCase() > b[1].toUpperCase()) { return 1; };
+                return 0;
+        });
+        let sortedNumPkgArray = pkgNumSortArray.sort((a, b) => a[1] - b[1]);
+
+        if (columnName.lastElementChild.innerText == triangleDown) {
+                columnName.lastElementChild.innerText = triangleUp;
+                sortedStringPkgArray.reverse();
+                sortedNumPkgArray.reverse();
+                sortedPkgArray = sortedNumPkgArray.concat(sortedStringPkgArray);
+        } else {
+                columnName.lastElementChild.innerText = triangleDown;
+                sortedPkgArray = sortedStringPkgArray.concat(sortedNumPkgArray);
+        };
+
+	if (lastColumnName && lastColumnName != columnName){lastColumnName.lastElementChild.innerText = ""};
+	lastColumnName = columnName;
+	sortedPkgArray.unshift(["label"]);
+        sortedPkgArray.forEach((listing) => {
+		i++;
+		let rule = "." + listing[0] + " { grid-row: " + i + "; }";
+		styleSheet.insertRule(rule);
+        });
+	addedCSSRules.forEach(rule => styleSheet.insertRule(rule));
+};
+
+function expandField(fieldId){
+        const field = document.getElementById(fieldId);
+        const fieldText = field.firstElementChild.innerText;
+        const fieldTotal = fieldText.split(' ')[2];
+
+        if (fieldText == "see all " + fieldTotal + triangleDown){
+		field.firstElementChild.innerText = "see less " + fieldTotal + triangleUp;
+                field.style.height = "auto";
+        } else {
+                field.firstElementChild.innerText = "see all " + fieldTotal + triangleDown;
+                field.style.height = "200px";
+        }
+};
+</script>
+
+<style>
+
+.see-more{
+  display: none;
+}
+
+.label, .see-more {
+  position: sticky;
+  top: 1px;
+}
+.label{
+  z-index: 1;
+  background: white;
+  padding: 10px 2px 10px 2px;
+}
+#package-grid, #results-grid {
+  display: grid;
+  grid-gap: 2px;
+  grid-template-columns: 1fr repeat(12, min-content);
+}
+#results-grid {
+  grid-template-columns: 3fr 1fr;
+}
+.data {
+  border: solid 1px gray;
+}
+.centered {
+  text-align: center;
+}
+ .correct, .nopatches, .good_url, .version-good, .cpe-ok, .cve-ok {
+   background: #d2ffc4;
+ }
+ .wrong, .lotsofpatches, .invalid_url, .version-needs-update, .cpe-nok, .cve-nok {
+   background: #ff9a69;
+ }
+ .somepatches, .missing_url, .version-unknown, .cpe-unknown, .cve-unknown {
+   background: #ffd870;
+ }
+ .cve_ignored, .version-error {
+  background: #ccc;
+ }
+
+</style>
+
+<title>Statistics of Buildroot packages</title>
+
+</head>
+
+<body>
+
+<a href="#results">Results</a><br/>
+
+"""  # noqa - tabs and spaces
+
+
+html_footer = """
+</body>
+</html>
+"""
+
+
+def infra_str(infra_list):
+    if not infra_list:
+        return "Unknown"
+    elif len(infra_list) == 1:
+        return "<b>%s</b><br/>%s" % (infra_list[0][1], infra_list[0][0])
+    elif infra_list[0][1] == infra_list[1][1]:
+        return "<b>%s</b><br/>%s + %s" % \
+            (infra_list[0][1], infra_list[0][0], infra_list[1][0])
+    else:
+        return "<b>%s</b> (%s)<br/><b>%s</b> (%s)" % \
+            (infra_list[0][1], infra_list[0][0],
+             infra_list[1][1], infra_list[1][0])
+
+
+def boolean_str(b):
+    if b:
+        return "Yes"
+    else:
+        return "No"
+
+
+def dump_html_pkg(f, pkg):
+    pkg_css_class = pkg.path.replace("/", "_")[:-3]
+    f.write(f'<div id="package__{pkg_css_class}" \
+        class="package data _{pkg_css_class}">{pkg.path}</div>\n')
+    # Patch count
+    data_field_id = f'patch_count__{pkg_css_class}'
+    div_class = ["centered patch_count data"]
+    div_class.append(f'_{pkg_css_class}')
+    if pkg.patch_count == 0:
+        div_class.append("nopatches")
+    elif pkg.patch_count < 5:
+        div_class.append("somepatches")
+    else:
+        div_class.append("lotsofpatches")
+    f.write(f'  <div id="{data_field_id}" class="{" ".join(div_class)} \
+        ">{str(pkg.patch_count)}</div>\n')
+
+    # Infrastructure
+    data_field_id = f'infrastructure__{pkg_css_class}'
+    infra = infra_str(pkg.infras)
+    div_class = ["centered infrastructure data"]
+    div_class.append(f'_{pkg_css_class}')
+    if infra == "Unknown":
+        div_class.append("wrong")
+    else:
+        div_class.append("correct")
+    f.write(f'  <div id="{data_field_id}" class="{" ".join(div_class)} \
+        ">{infra_str(pkg.infras)}</div>\n')
+
+    # License
+    data_field_id = f'license__{pkg_css_class}'
+    div_class = ["centered license data"]
+    div_class.append(f'_{pkg_css_class}')
+    if pkg.is_status_ok('license'):
+        div_class.append("correct")
+    else:
+        div_class.append("wrong")
+    f.write(f'  <div id="{data_field_id}" class="{" ".join(div_class)} \
+        ">{boolean_str(pkg.is_status_ok("license"))}</div>\n')
+
+    # License files
+    data_field_id = f'license_files__{pkg_css_class}'
+    div_class = ["centered license_files data"]
+    div_class.append(f'_{pkg_css_class}')
+    if pkg.is_status_ok('license-files'):
+        div_class.append("correct")
+    else:
+        div_class.append("wrong")
+    f.write(f'  <div id="{data_field_id}" class="{" ".join(div_class)} \
+        ">{boolean_str(pkg.is_status_ok("license-files"))}</div>\n')
+
+    # Hash
+    data_field_id = f'hash_file__{pkg_css_class}'
+    div_class = ["centered hash_file data"]
+    div_class.append(f'_{pkg_css_class}')
+    if pkg.is_status_ok('hash'):
+        div_class.append("correct")
+    else:
+        div_class.append("wrong")
+    f.write(f'  <div id="{data_field_id}" class="{" ".join(div_class)} \
+        ">{boolean_str(pkg.is_status_ok("hash"))}</div>\n')
+
+    # Current version
+    data_field_id = f'current_version__{pkg_css_class}'
+    if len(pkg.current_version) > 20:
+        current_version = pkg.current_version[:20] + "..."
+    else:
+        current_version = pkg.current_version
+    f.write(f'  <div id="{data_field_id}" \
+        class="centered current_version data _{pkg_css_class}">{current_version}</div>\n')
+
+    # Latest version
+    data_field_id = f'latest_version__{pkg_css_class}'
+    div_class.append(f'_{pkg_css_class}')
+    div_class.append("latest_version data")
+    if pkg.latest_version['status'] == RM_API_STATUS_ERROR:
+        div_class.append("version-error")
+    if pkg.latest_version['version'] is None:
+        div_class.append("version-unknown")
+    elif pkg.latest_version['version'] != pkg.current_version:
+        div_class.append("version-needs-update")
+    else:
+        div_class.append("version-good")
+
+    if pkg.latest_version['status'] == RM_API_STATUS_ERROR:
+        latest_version_text = "<b>Error</b>"
+    elif pkg.latest_version['status'] == RM_API_STATUS_NOT_FOUND:
+        latest_version_text = "<b>Not found</b>"
+    else:
+        if pkg.latest_version['version'] is None:
+            latest_version_text = "<b>Found, but no version</b>"
+        else:
+            latest_version_text = f"""<a href="https://release-monitoring.org/project/{pkg.latest_version['id']}">""" \
+                                  f"""<b>{str(pkg.latest_version['version'])}</b></a>"""
+
+        latest_version_text += "<br/>"
+
+        if pkg.latest_version['status'] == RM_API_STATUS_FOUND_BY_DISTRO:
+            latest_version_text += 'found by <a href="https://release-monitoring.org/distro/Buildroot/">distro</a>'
+        else:
+            latest_version_text += "found by guess"
+
+    f.write(f'  <div id="{data_field_id}" class="{" ".join(div_class)}">{latest_version_text}</div>\n')
+
+    # Warnings
+    data_field_id = f'warnings__{pkg_css_class}'
+    div_class = ["centered warnings data"]
+    div_class.append(f'_{pkg_css_class}')
+    if pkg.warnings == 0:
+        div_class.append("correct")
+    else:
+        div_class.append("wrong")
+    f.write(f'  <div id="{data_field_id}" class="{" ".join(div_class)}">{pkg.warnings}</div>\n')
+
+    # URL status
+    data_field_id = f'upstream_url__{pkg_css_class}'
+    div_class = ["centered upstream_url data"]
+    div_class.append(f'_{pkg_css_class}')
+    url_str = pkg.status['url'][1]
+    if pkg.status['url'][0] in ("error", "warning"):
+        div_class.append("missing_url")
+    if pkg.status['url'][0] == "error":
+        div_class.append("invalid_url")
+        url_str = f"""<a href="{pkg.url}">{pkg.status['url'][1]}</a>"""
+    else:
+        div_class.append("good_url")
+        url_str = f'<a href="{pkg.url}">Link</a>'
+    f.write(f'  <div id="{data_field_id}" class="{" ".join(div_class)}">{url_str}</div>\n')
+
+    # CVEs
+    data_field_id = f'cves__{pkg_css_class}'
+    div_class = ["centered cves data"]
+    div_class.append(f'_{pkg_css_class}')
+    if len(pkg.cves) > 10:
+        div_class.append("collapse")
+    if pkg.is_status_ok("cve"):
+        div_class.append("cve-ok")
+    elif pkg.is_status_error("cve"):
+        div_class.append("cve-nok")
+    elif pkg.is_status_na("cve") and not pkg.is_actual_package:
+        div_class.append("cve-ok")
+    else:
+        div_class.append("cve-unknown")
+    f.write(f'  <div id="{data_field_id}" class="{" ".join(div_class)}">\n')
+    if len(pkg.cves) > 10:
+        cve_total = len(pkg.cves) + 1
+        f.write(f' <div onclick="expandField(\'{data_field_id}\')" \
+        class="see-more centered cve_ignored">see all ({cve_total}) &#9662;</div>\n')
+    if pkg.is_status_error("cve"):
+        for cve in pkg.cves:
+            f.write(f'   <a href="https://security-tracker.debian.org/tracker/{cve}">{cve}</a><br/>\n')
+        for cve in pkg.unsure_cves:
+            f.write(f'   <a href="https://security-tracker.debian.org/tracker/{cve}">{cve} <i>(unsure)</i></a><br/>\n')
+    elif pkg.is_status_na("cve"):
+        f.write(f"""    {pkg.status['cve'][1]}""")
+    else:
+        f.write("    N/A\n")
+    f.write("  </div>\n")
+
+    # CVEs Ignored
+    data_field_id = f'ignored_cves__{pkg_css_class}'
+    div_class = ["centered data ignored_cves"]
+    div_class.append(f'_{pkg_css_class}')
+    if pkg.ignored_cves:
+        div_class.append("cve_ignored")
+    f.write(f'  <div id="{data_field_id}" class="{" ".join(div_class)}">\n')
+    for ignored_cve in pkg.ignored_cves:
+        f.write(f'    <a href="https://security-tracker.debian.org/tracker/{ignored_cve}">{ignored_cve}</a><br/>\n')
+    f.write("  </div>\n")
+
+    # CPE ID
+    data_field_id = f'cpe_id__{pkg_css_class}'
+    div_class = ["left cpe_id data"]
+    div_class.append(f'_{pkg_css_class}')
+    if pkg.is_status_ok("cpe"):
+        div_class.append("cpe-ok")
+    elif pkg.is_status_error("cpe"):
+        div_class.append("cpe-nok")
+    elif pkg.is_status_na("cpe") and not pkg.is_actual_package:
+        div_class.append("cpe-ok")
+    else:
+        div_class.append("cpe-unknown")
+    f.write(f'  <div id="{data_field_id}" class="{" ".join(div_class)}">\n')
+    if pkg.cpeid:
+        cpeid_begin = ":".join(pkg.cpeid.split(":")[0:4]) + ":"
+        cpeid_formatted = pkg.cpeid.replace(cpeid_begin, cpeid_begin + "<wbr>")
+        f.write("  <code>%s</code>\n" % cpeid_formatted)
+    if not pkg.is_status_ok("cpe"):
+        if pkg.is_actual_package and pkg.current_version:
+            if pkg.cpeid:
+                f.write(f"""  <br/>{pkg.status['cpe'][1]} <a href="https://nvd.nist.gov/products/cpe/search/results?"""
+                        f"""namingFormat=2.3&keyword={":".join(pkg.cpeid.split(":")[0:5])}">(Search)</a>\n""")
+            else:
+                f.write(f"""  {pkg.status['cpe'][1]} <a href="https://nvd.nist.gov/products/cpe/search/results?"""
+                        f"""namingFormat=2.3&keyword={pkg.name}">(Search)</a>\n""")
+        else:
+            f.write("  %s\n" % pkg.status['cpe'][1])
+
+    f.write("  </div>\n")
+
+
+def dump_html_all_pkgs(f, packages):
+    f.write("""
+<div id="package-grid">
+<div style="grid-column: 1;" onclick="sortGrid(this.id)" id="package"
+     class="package data label"><span>Package</span><span></span></div>
+<div style="grid-column: 2;" onclick="sortGrid(this.id)" id="patch_count"
+     class="centered patch_count data label"><span>Patch count</span><span></span></div>
+<div style="grid-column: 3;" onclick="sortGrid(this.id)" id="infrastructure"
+     class="centered infrastructure data label">Infrastructure<span></span></div>
+<div style="grid-column: 4;" onclick="sortGrid(this.id)" id="license"
+     class="centered license data label"><span>License</span><span></span></div>
+<div style="grid-column: 5;" onclick="sortGrid(this.id)" id="license_files"
+     class="centered license_files data label"><span>License files</span><span></span></div>
+<div style="grid-column: 6;" onclick="sortGrid(this.id)" id="hash_file"
+     class="centered hash_file data label"><span>Hash file</span><span></span></div>
+<div style="grid-column: 7;" onclick="sortGrid(this.id)" id="current_version"
+     class="centered current_version data label"><span>Current version</span><span></span></div>
+<div style="grid-column: 8;" onclick="sortGrid(this.id)" id="latest_version"
+     class="centered latest_version data label"><span>Latest version</span><span></span></div>
+<div style="grid-column: 9;" onclick="sortGrid(this.id)" id="warnings"
+     class="centered warnings data label"><span>Warnings</span><span></span></div>
+<div style="grid-column: 10;" onclick="sortGrid(this.id)" id="upstream_url"
+     class="centered upstream_url data label"><span>Upstream URL</span><span></span></div>
+<div style="grid-column: 11;" onclick="sortGrid(this.id)" id="cves"
+     class="centered cves data label"><span>CVEs</span><span></span></div>
+<div style="grid-column: 12;" onclick="sortGrid(this.id)" id="ignored_cves"
+     class="centered ignored_cves data label"><span>CVEs Ignored</span><span></span></div>
+<div style="grid-column: 13;" onclick="sortGrid(this.id)" id="cpe_id"
+     class="centered cpe_id data label"><span>CPE ID</span><span></span></div>
+""")
+    for pkg in sorted(packages):
+        dump_html_pkg(f, pkg)
+    f.write("</div>")
+
+
+def dump_html_stats(f, stats):
+    f.write('<a id="results"></a>\n')
+    f.write('<div class="data" id="results-grid">\n')
+    infras = [infra[6:] for infra in stats.keys() if infra.startswith("infra-")]
+    for infra in infras:
+        f.write(' <div class="data">Packages using the <i>%s</i> infrastructure</div><div class="data">%s</div>\n' %
+                (infra, stats["infra-%s" % infra]))
+    f.write(' <div class="data">Packages having license information</div><div class="data">%s</div>\n' %
+            stats["license"])
+    f.write(' <div class="data">Packages not having license information</div><div class="data">%s</div>\n' %
+            stats["no-license"])
+    f.write(' <div class="data">Packages having license files information</div><div class="data">%s</div>\n' %
+            stats["license-files"])
+    f.write(' <div class="data">Packages not having license files information</div><div class="data">%s</div>\n' %
+            stats["no-license-files"])
+    f.write(' <div class="data">Packages having a hash file</div><div class="data">%s</div>\n' %
+            stats["hash"])
+    f.write(' <div class="data">Packages not having a hash file</div><div class="data">%s</div>\n' %
+            stats["no-hash"])
+    f.write(' <div class="data">Total number of patches</div><div class="data">%s</div>\n' %
+            stats["patches"])
+    f.write('<div class="data">Packages having a mapping on <i>release-monitoring.org</i></div><div class="data">%s</div>\n' %
+            stats["rmo-mapping"])
+    f.write('<div class="data">Packages lacking a mapping on <i>release-monitoring.org</i></div><div class="data">%s</div>\n' %
+            stats["rmo-no-mapping"])
+    f.write('<div class="data">Packages that are up-to-date</div><div class="data">%s</div>\n' %
+            stats["version-uptodate"])
+    f.write('<div class="data">Packages that are not up-to-date</div><div class="data">%s</div>\n' %
+            stats["version-not-uptodate"])
+    f.write('<div class="data">Packages with no known upstream version</div><div class="data">%s</div>\n' %
+            stats["version-unknown"])
+    f.write('<div class="data">Packages affected by CVEs</div><div class="data">%s</div>\n' %
+            stats["pkg-cves"])
+    f.write('<div class="data">Total number of CVEs affecting all packages</div><div class="data">%s</div>\n' %
+            stats["total-cves"])
+    f.write('<div class="data">Packages affected by unsure CVEs</div><div class="data">%s</div>\n' %
+            stats["pkg-unsure-cves"])
+    f.write('<div class="data">Total number of unsure CVEs affecting all packages</div><div class="data">%s</div>\n' %
+            stats["total-unsure-cves"])
+    f.write('<div class="data">Packages with CPE ID</div><div class="data">%s</div>\n' %
+            stats["cpe-id"])
+    f.write('<div class="data">Packages without CPE ID</div><div class="data">%s</div>\n' %
+            stats["no-cpe-id"])
+    f.write('</div>\n')
+
+
+def dump_html_gen_info(f, date, commit):
+    # Updated on Mon Feb 19 08:12:08 CET 2018, Git commit aa77030b8f5e41f1c53eb1c1ad664b8c814ba032
+    f.write("<p><i>Updated on %s, git commit %s</i></p>\n" % (str(date), commit))
+
+
+def dump_html(packages, stats, date, commit, output):
+    with open(output, 'w') as f:
+        f.write(html_header)
+        dump_html_all_pkgs(f, packages)
+        dump_html_stats(f, stats)
+        dump_html_gen_info(f, date, commit)
+        f.write(html_footer)
+
+
+def dump_json(packages, defconfigs, stats, date, commit, output):
+    # Format packages as a dictionnary instead of a list
+    # Exclude local field that does not contains real date
+    excluded_fields = ['url_worker', 'name']
+    pkgs = {
+        pkg.name: {
+            k: v
+            for k, v in pkg.__dict__.items()
+            if k not in excluded_fields
+        } for pkg in packages
+    }
+    defconfigs = {
+        d.name: {
+            k: v
+            for k, v in d.__dict__.items()
+        } for d in defconfigs
+    }
+    # Aggregate infrastructures into a single dict entry
+    statistics = {
+        k: v
+        for k, v in stats.items()
+        if not k.startswith('infra-')
+    }
+    statistics['infra'] = {k[6:]: v for k, v in stats.items() if k.startswith('infra-')}
+    # The actual structure to dump, add commit and date to it
+    final = {'packages': pkgs,
+             'stats': statistics,
+             'defconfigs': defconfigs,
+             'package_status_checks': Package.status_checks,
+             'commit': commit,
+             'date': str(date)}
+
+    with open(output, 'w') as f:
+        json.dump(final, f, indent=2, separators=(',', ': '))
+        f.write('\n')
+
+
+def resolvepath(path):
+    return os.path.abspath(os.path.expanduser(path))
+
+
+def list_str(values):
+    return values.split(',')
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    output = parser.add_argument_group('output', 'Output file(s)')
+    output.add_argument('--html', dest='html', type=resolvepath,
+                        help='HTML output file')
+    output.add_argument('--json', dest='json', type=resolvepath,
+                        help='JSON output file')
+    packages = parser.add_mutually_exclusive_group()
+    packages.add_argument('-c', dest='configpackages', action='store_true',
+                          help='Apply to packages enabled in current configuration')
+    packages.add_argument('-n', dest='npackages', type=int, action='store',
+                          help='Number of packages')
+    packages.add_argument('-p', dest='packages', action='store',
+                          help='List of packages (comma separated)')
+    parser.add_argument('--nvd-path', dest='nvd_path',
+                        help='Path to the local NVD database', type=resolvepath)
+    parser.add_argument('--disable', type=list_str,
+                        help='Features to disable, comma-separated (cve, upstream, url, cpe, warning)',
+                        default=[])
+    args = parser.parse_args()
+    if not args.html and not args.json:
+        parser.error('at least one of --html or --json (or both) is required')
+    return args
+
+
+def __main__():
+    global cvecheck
+
+    args = parse_args()
+
+    if args.nvd_path:
+        import cve as cvecheck
+
+    show_info_js = None
+    if args.packages:
+        package_list = args.packages.split(",")
+    elif args.configpackages:
+        show_info_js = get_show_info_js()
+        package_list = set([v["name"] for v in show_info_js.values() if 'name' in v])
+    else:
+        package_list = None
+    date = datetime.datetime.utcnow()
+    commit = subprocess.check_output(['git', '-C', brpath,
+                                      'rev-parse',
+                                      'HEAD']).splitlines()[0].decode()
+    print("Build package list ...")
+    packages = get_pkglist(args.npackages, package_list)
+    print("Getting developers ...")
+    developers = parse_developers()
+    print("Build defconfig list ...")
+    defconfigs = get_defconfig_list()
+    for d in defconfigs:
+        d.set_developers(developers)
+    print("Getting package make info ...")
+    package_init_make_info()
+    print("Getting package details ...")
+    for pkg in packages:
+        pkg.set_infra(show_info_js)
+        pkg.set_license()
+        pkg.set_hash_info()
+        pkg.set_patch_count()
+        if "warnings" not in args.disable:
+            pkg.set_check_package_warnings()
+        pkg.set_current_version()
+        pkg.set_cpeid()
+        pkg.set_url()
+        pkg.set_ignored_cves()
+        pkg.set_developers(developers)
+    if "url" not in args.disable:
+        print("Checking URL status")
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(check_package_urls(packages))
+    if "upstream" not in args.disable:
+        print("Getting latest versions ...")
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(check_package_latest_version(packages))
+    if "cve" not in args.disable and args.nvd_path:
+        print("Checking packages CVEs")
+        check_package_cves(args.nvd_path, packages)
+    if "cpe" not in args.disable and args.nvd_path:
+        print("Checking packages CPEs")
+        check_package_cpes(args.nvd_path, packages)
+    print("Calculate stats")
+    stats = calculate_stats(packages)
+    if args.html:
+        print("Write HTML")
+        dump_html(packages, stats, date, commit, args.html)
+    if args.json:
+        print("Write JSON")
+        dump_json(packages, defconfigs, stats, date, commit, args.json)
+
+
+__main__()

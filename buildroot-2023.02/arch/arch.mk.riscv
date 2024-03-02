@@ -1,0 +1,39 @@
+#
+# Configure the GCC_TARGET_ARCH variable and append the
+# appropriate RISC-V ISA extensions.
+#
+
+ifeq ($(BR2_riscv),y)
+
+ifeq ($(BR2_RISCV_64),y)
+GCC_TARGET_ARCH := rv64i
+else
+GCC_TARGET_ARCH := rv32i
+endif
+
+ifeq ($(BR2_RISCV_ISA_RVM),y)
+GCC_TARGET_ARCH := $(GCC_TARGET_ARCH)m
+endif
+ifeq ($(BR2_RISCV_ISA_RVA),y)
+GCC_TARGET_ARCH := $(GCC_TARGET_ARCH)a
+endif
+ifeq ($(BR2_RISCV_ISA_RVF),y)
+GCC_TARGET_ARCH := $(GCC_TARGET_ARCH)f
+endif
+ifeq ($(BR2_RISCV_ISA_RVD),y)
+GCC_TARGET_ARCH := $(GCC_TARGET_ARCH)d
+endif
+ifeq ($(BR2_RISCV_ISA_RVC),y)
+GCC_TARGET_ARCH := $(GCC_TARGET_ARCH)c
+endif
+
+# Starting from gcc 12.x, csr and fence instructions have been
+# separated from the base I instruction set, and special -march
+# suffixes are needed to enable their support. In Buildroot, we assume
+# all RISC-V cores that support Linux implement those instructions, so
+# we unconditionally enable those extensions.
+ifeq ($(BR2_TOOLCHAIN_GCC_AT_LEAST_12),y)
+GCC_TARGET_ARCH := $(GCC_TARGET_ARCH)_zicsr_zifencei
+endif
+
+endif

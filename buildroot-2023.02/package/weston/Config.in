@@ -1,0 +1,179 @@
+comment "weston needs udev and a toolchain w/ locale, threads, dynamic library, headers >= 3.0"
+	depends on !BR2_PACKAGE_HAS_UDEV || !BR2_TOOLCHAIN_HAS_THREADS || \
+		!BR2_TOOLCHAIN_HEADERS_AT_LEAST_3_0 || BR2_STATIC_LIBS || \
+		!BR2_ENABLE_LOCALE
+
+config BR2_PACKAGE_WESTON
+	bool "weston"
+	depends on BR2_PACKAGE_HAS_UDEV
+	depends on !BR2_STATIC_LIBS # wayland
+	depends on BR2_TOOLCHAIN_HAS_THREADS # wayland
+	depends on BR2_TOOLCHAIN_HEADERS_AT_LEAST_3_0
+	select BR2_PACKAGE_WAYLAND
+	select BR2_PACKAGE_WAYLAND_PROTOCOLS
+	select BR2_PACKAGE_LIBXKBCOMMON
+	select BR2_PACKAGE_CAIRO
+	select BR2_PACKAGE_CAIRO_PNG
+	select BR2_PACKAGE_LIBPNG
+	select BR2_PACKAGE_JPEG
+	select BR2_PACKAGE_LIBINPUT
+	select BR2_PACKAGE_LIBDRM
+	# Runtime dependency
+	select BR2_PACKAGE_XKEYBOARD_CONFIG
+	select BR2_PACKAGE_WESTON_SHELL_DESKTOP if !BR2_PACKAGE_WESTON_HAS_SHELL
+	help
+	  Weston is the reference implementation of a Wayland
+	  compositor, and a useful compositor in its own right.
+	  Weston has various backends that lets it run on Linux kernel
+	  modesetting and evdev input as well as under X11.
+
+	  http://wayland.freedesktop.org/
+
+if BR2_PACKAGE_WESTON
+
+choice
+	prompt "default compositor"
+
+config BR2_PACKAGE_WESTON_DEFAULT_DRM
+	bool "drm"
+	select BR2_PACKAGE_WESTON_DRM
+
+config BR2_PACKAGE_WESTON_DEFAULT_HEADLESS
+	bool "headless"
+	select BR2_PACKAGE_WESTON_HEADLESS
+
+config BR2_PACKAGE_WESTON_DEFAULT_WAYLAND
+	bool "wayland (nested)"
+	select BR2_PACKAGE_WESTON_WAYLAND
+
+config BR2_PACKAGE_WESTON_DEFAULT_X11
+	bool "X11 (nested)"
+	depends on BR2_PACKAGE_XORG7
+	select BR2_PACKAGE_WESTON_X11
+
+comment "X11 (nested) backend needs X.org"
+	depends on !BR2_PACKAGE_XORG7
+
+endchoice
+
+config BR2_PACKAGE_WESTON_DEFAULT_COMPOSITOR
+	string
+	default "drm"      if BR2_PACKAGE_WESTON_DEFAULT_DRM
+	default "headless" if BR2_PACKAGE_WESTON_DEFAULT_HEADLESS
+	default "wayland"  if BR2_PACKAGE_WESTON_DEFAULT_WAYLAND
+	default "x11"      if BR2_PACKAGE_WESTON_DEFAULT_X11
+
+config BR2_PACKAGE_WESTON_DRM
+	bool "DRM compositor"
+
+# FreeRDP needs threads and !static, already the case for weston
+config BR2_PACKAGE_WESTON_RDP
+	bool "RDP compositor"
+	depends on BR2_USE_MMU # freerdp, libglib2
+	depends on BR2_TOOLCHAIN_HAS_SYNC_4
+	depends on BR2_USE_WCHAR # freerdp
+	depends on BR2_INSTALL_LIBSTDCPP # freerdp
+	select BR2_PACKAGE_FREERDP
+	help
+	  This enables the RDP backend, which allows accessing weston
+	  through the network with any RDP-compliant client.
+
+	  Please note that one must pass those options to weston for RDP
+	  to be functional:
+	    --rdp-tls-cert=/path/to/server.crt
+	    --rdp-tls-key=/path/to/server.key
+
+	  By default, Buildroot installs such files in
+	  /etc/freerdp/server/ so you may want to change them in a
+	  post-build script or a rootfs overlay.
+
+comment "RDP compositor needs a toolchain w/ wchar, C++"
+	depends on BR2_USE_MMU
+	depends on BR2_TOOLCHAIN_HAS_SYNC_4
+	depends on !BR2_USE_WCHAR || !BR2_INSTALL_LIBSTDCPP
+
+config BR2_PACKAGE_WESTON_HEADLESS
+	bool "headless (testing) compositor"
+
+config BR2_PACKAGE_WESTON_WAYLAND
+	bool "Wayland (nested) compositor"
+
+config BR2_PACKAGE_WESTON_X11
+	bool "X11 (nested) compositor"
+	depends on BR2_PACKAGE_XORG7
+	select BR2_PACKAGE_LIBXCB
+	select BR2_PACKAGE_XLIB_LIBX11
+
+comment "X11 (nested) compositor needs X.org enabled"
+	depends on !BR2_PACKAGE_XORG7
+
+config BR2_PACKAGE_WESTON_XWAYLAND
+	bool "XWayland support"
+	depends on BR2_PACKAGE_LIBEPOXY
+	depends on BR2_PACKAGE_XORG7 # xwayland
+	depends on BR2_USE_MMU # xwayland
+	depends on !BR2_STATIC_LIBS # xwayland
+	depends on BR2_TOOLCHAIN_HAS_THREADS # xwayland
+	depends on !BR2_RISCV_32 # xwayland -> xlib_libxshmfence
+	depends on BR2_TOOLCHAIN_HAS_SYNC_4 # xwayland -> xlib_libxshmfence
+	select BR2_PACKAGE_CAIRO
+	select BR2_PACKAGE_LIBXCB
+	select BR2_PACKAGE_XLIB_LIBX11
+	select BR2_PACKAGE_XLIB_LIBXCURSOR
+	select BR2_PACKAGE_XWAYLAND
+
+comment "XWayland support needs libepoxy and X.org enabled"
+	depends on !BR2_PACKAGE_XORG7 || !BR2_PACKAGE_LIBEPOXY
+
+comment "XWayland support needs a toolchain w/ threads, dynamic library"
+	depends on BR2_USE_MMU
+	depends on !BR2_RISCV_32
+	depends on BR2_TOOLCHAIN_HAS_SYNC_4
+	depends on !BR2_TOOLCHAIN_HAS_THREADS || BR2_STATIC_LIBS
+
+# Weston needs at least one shell; this can be one of the bundled ones,
+# below, of from a third-party package, which should then select this.
+config BR2_PACKAGE_WESTON_HAS_SHELL
+	bool
+
+config BR2_PACKAGE_WESTON_SHELL_DESKTOP
+	bool "desktop shell"
+	default y
+
+config BR2_PACKAGE_WESTON_SHELL_FULLSCREEN
+	bool "fullscreen shell"
+	default y
+	select BR2_PACKAGE_WESTON_HAS_SHELL
+
+config BR2_PACKAGE_WESTON_SHELL_IVI
+	bool "ivi shell"
+	default y
+	select BR2_PACKAGE_WESTON_HAS_SHELL
+
+config BR2_PACKAGE_WESTON_SHELL_KIOSK
+	bool "kiosk shell"
+	default y
+	select BR2_PACKAGE_WESTON_HAS_SHELL
+
+config BR2_PACKAGE_WESTON_DEMO_CLIENTS
+	bool "demo clients"
+	depends on BR2_USE_MMU # pango
+	depends on BR2_TOOLCHAIN_HAS_SYNC_4 # pango
+	depends on BR2_TOOLCHAIN_GCC_AT_LEAST_4_9 # pango
+	depends on BR2_INSTALL_LIBSTDCPP # pango
+	depends on BR2_TOOLCHAIN_HAS_THREADS # pango
+	depends on BR2_USE_WCHAR # pango
+	depends on BR2_PACKAGE_HAS_LIBGLES
+	depends on BR2_PACKAGE_HAS_LIBEGL_WAYLAND
+	select BR2_PACKAGE_PANGO
+	help
+	  This enables the installation of Weston's demo clients.
+
+comment "demo clients needs an OpenGL ES provider, an OpenEGL-capable Wayland backend and a toolchain w/ wchar, threads, C++, gcc >= 4.9"
+	depends on BR2_USE_MMU
+	depends on BR2_TOOLCHAIN_HAS_SYNC_4
+	depends on !BR2_INSTALL_LIBSTDCPP || !BR2_TOOLCHAIN_HAS_THREADS || \
+		!BR2_USE_WCHAR || !BR2_PACKAGE_HAS_LIBGLES || \
+		!BR2_PACKAGE_HAS_LIBEGL_WAYLAND || !BR2_TOOLCHAIN_GCC_AT_LEAST_4_9
+
+endif

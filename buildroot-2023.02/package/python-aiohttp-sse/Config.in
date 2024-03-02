@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_AIOHTTP_SSE
+	bool "python-aiohttp-sse"
+	select BR2_PACKAGE_PYTHON_AIOHTTP # runtime
+	help
+	  Server-sent events support for aiohttp.
+
+	  https://github.com/aio-libs/aiohttp_sse/

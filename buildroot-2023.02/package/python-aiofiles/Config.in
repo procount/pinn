@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_AIOFILES
+	bool "python-aiofiles"
+	help
+	  aiofiles aims to  handle local disk files in
+	  asyncio applications.
+
+	  https://pypi.org/project/aiofiles

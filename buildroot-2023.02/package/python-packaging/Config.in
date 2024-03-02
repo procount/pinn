@@ -1,0 +1,6 @@
+config BR2_PACKAGE_PYTHON_PACKAGING
+	bool "python-packaging"
+	help
+	  Core utilities for Python packages.
+
+	  https://github.com/pypa/packaging

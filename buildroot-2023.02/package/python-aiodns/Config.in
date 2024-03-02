@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_AIODNS
+	bool "python-aiodns"
+	select BR2_PACKAGE_PYTHON_PYCARES # runtime
+	help
+	  Simple DNS resolver for asyncio.
+
+	  http://github.com/saghul/aiodns

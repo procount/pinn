@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_PYTRIE
+	bool "python-pytrie"
+	select BR2_PACKAGE_PYTHON_SORTEDCONTAINERS # runtime
+	help
+	  A pure Python implementation of the trie data structure.
+
+	  https://pypi.python.org/pypi/PyTrie

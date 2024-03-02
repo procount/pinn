@@ -1,0 +1,11 @@
+config BR2_PACKAGE_PYTHON_PARAMIKO
+	bool "python-paramiko"
+	depends on BR2_PACKAGE_HOST_RUSTC_TARGET_ARCH_SUPPORTS # python-cryptography, python-bcrypt
+	select BR2_PACKAGE_PYTHON_BCRYPT # runtime
+	select BR2_PACKAGE_PYTHON_CRYPTOGRAPHY # runtime
+	select BR2_PACKAGE_PYTHON_PYNACL # runtime
+	select BR2_PACKAGE_PYTHON3_ZLIB # runtime
+	help
+	  SSH2 protocol library.
+
+	  https://github.com/paramiko/paramiko/

@@ -1,0 +1,6 @@
+# From http://sourceforge.net/projects/mjpeg/files/mjpegtools/2.2.1/
+md5  168e0131c0b8a2e31df7a73eb602fc32  mjpegtools-2.2.1.tar.gz
+sha1  26e980912cd06f31033964acbc4b8d1932788bfc  mjpegtools-2.2.1.tar.gz
+# Locally computed
+sha256  b180536d7d9960b05e0023a197b00dcb100929a49aab71d19d55f4a1b210f49a  mjpegtools-2.2.1.tar.gz
+sha256  32b1062f7da84967e7019d01ab805935caa7ab7321a7ced0e30ebe75e5df1670  COPYING

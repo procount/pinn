@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PYTHON_DPKT
+	bool "python-dpkt"
+	select BR2_PACKAGE_PYTHON3_ZLIB # runtime
+	help
+	  Fast, simple packet creation / parsing, with definitions
+	  for the basic TCP/IP protocols.
+
+	  https://github.com/kbandla/dpkt

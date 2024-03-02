@@ -1,0 +1,4 @@
+# From https://downloads.es.net/pub/iperf/iperf-3.12.tar.gz.sha256
+sha256  72034ecfb6a7d6d67e384e19fb6efff3236ca4f7ed4c518d7db649c447e1ffd6  iperf-3.12.tar.gz
+# Locally computed
+sha256  a5c2e3d799f2835156e565a3de4fad33d32ed289cdc9e414dfaf75719fd12ef9  LICENSE

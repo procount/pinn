@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_PYCARES
+	bool "python-pycares"
+	select BR2_PACKAGE_PYTHON_CFFI # runtime
+	help
+	  Python interface for c-ares.
+
+	  http://github.com/saghul/pycares

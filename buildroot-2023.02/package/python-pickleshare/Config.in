@@ -1,0 +1,6 @@
+config BR2_PACKAGE_PYTHON_PICKLESHARE
+	bool "python-pickleshare"
+	help
+	  Tiny 'shelve'-like database with concurrency support
+
+	  https://pypi.python.org/pypi/pickleshare

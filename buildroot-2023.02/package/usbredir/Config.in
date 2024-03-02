@@ -1,0 +1,40 @@
+comment "usbredir needs a toolchain w/ threads, gcc >= 4.9"
+	depends on !BR2_TOOLCHAIN_HAS_THREADS || \
+		!BR2_TOOLCHAIN_GCC_AT_LEAST_4_9
+
+config BR2_PACKAGE_USBREDIR
+	bool "usbredir"
+	depends on BR2_TOOLCHAIN_HAS_THREADS # libusb
+	depends on BR2_TOOLCHAIN_GCC_AT_LEAST_4_9 # libusb
+	select BR2_PACKAGE_LIBUSB
+	help
+	  usbredir is the name of a network protocol for sending usb
+	  device traffic over a network connection. It is also the
+	  name of the software package offering a parsing library, a
+	  usbredirhost library and several utilities implementing this
+	  protocol.
+
+	  Note: only the library is installed, not the utilities. Say
+	  'y' below if you want the tools too.
+
+	  http://www.spice-space.org/page/UsbRedir
+
+if BR2_PACKAGE_USBREDIR
+
+config BR2_PACKAGE_USBREDIR_TOOLS
+	bool "enable tools"
+	depends on BR2_USE_MMU # libglib2
+	depends on BR2_USE_WCHAR # libglib2
+	select BR2_PACKAGE_LIBGLIB2
+	help
+	  If you want to serve usbredir requests on your target, say
+	  'y' here to have the tools built and installed on the target
+	  (including usbredirect binary).
+
+	  Note: the tools are not required to use the library.
+
+comment "tools needs a toolchain w/ wchar"
+	depends on BR2_USE_MMU
+	depends on !BR2_USE_WCHAR
+
+endif

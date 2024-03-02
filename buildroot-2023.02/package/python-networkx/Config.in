@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PYTHON_NETWORKX
+	bool "python-networkx"
+	help
+	  A Python package for the creation, manipulation,
+	  and study of the structure, dynamics, and
+	  functions of complex networks.
+
+	  https://pypi.python.org/pypi/networkx

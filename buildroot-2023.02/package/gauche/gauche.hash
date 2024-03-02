@@ -1,0 +1,6 @@
+# Locally calculated after checking signature
+# https://github.com/shirok/Gauche/releases/download/release0_9_12/Gauche-0.9.12.tgz.asc
+sha256  b4ae64921b07a96661695ebd5aac0dec813d1a68e546a61609113d7843f5b617  Gauche-0.9.12.tgz
+
+# Locally calculated
+sha256  bc09c643a05e14d7ea8264aa737c5c14d60a20911a0309e7b27da231bbb4525d  COPYING

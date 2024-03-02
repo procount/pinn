@@ -1,0 +1,9 @@
+config BR2_PACKAGE_PYTHON_ARGON2_CFFI
+	bool "python-argon2-cffi"
+	depends on BR2_USE_MMU # python-argon2-cffi-bindings
+	depends on !BR2_STATIC_LIBS # python-argon2-cffi-bindings
+	select BR2_PACKAGE_PYTHON_ARGON2_CFFI_BINDINGS # runtime
+	help
+	  The secure Argon2 password hashing algorithm.
+
+	  https://argon2-cffi.readthedocs.io/

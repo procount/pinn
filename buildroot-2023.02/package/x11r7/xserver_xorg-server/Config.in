@@ -1,0 +1,90 @@
+config BR2_PACKAGE_XSERVER_XORG_SERVER
+	bool "xorg-server"
+	depends on BR2_USE_MMU # fork()
+	# We need a SHA1 implementation. If either openssl or
+	# libgcrypt are already part of the build, we'll use one of
+	# them, otherwise, use the small libsha1 library.
+	select BR2_PACKAGE_LIBSHA1 if (!BR2_PACKAGE_OPENSSL && !BR2_PACKAGE_LIBGCRYPT)
+	select BR2_PACKAGE_MCOOKIE
+	select BR2_PACKAGE_PIXMAN
+	select BR2_PACKAGE_XFONT_FONT_ALIAS
+	select BR2_PACKAGE_XFONT_FONT_MISC_MISC
+	select BR2_PACKAGE_XFONT_FONT_CURSOR_MISC
+	select BR2_PACKAGE_XLIB_LIBX11
+	select BR2_PACKAGE_XLIB_LIBXAU
+	select BR2_PACKAGE_XLIB_LIBXCURSOR
+	select BR2_PACKAGE_XLIB_LIBXCVT
+	select BR2_PACKAGE_XLIB_LIBXDAMAGE
+	select BR2_PACKAGE_XLIB_LIBXDMCP
+	select BR2_PACKAGE_XLIB_LIBXEXT
+	select BR2_PACKAGE_XLIB_LIBXFIXES
+	select BR2_PACKAGE_XLIB_LIBXFONT2
+	select BR2_PACKAGE_XLIB_LIBXFT
+	select BR2_PACKAGE_XLIB_LIBXI
+	select BR2_PACKAGE_XLIB_LIBXINERAMA
+	select BR2_PACKAGE_XLIB_LIBXRANDR
+	select BR2_PACKAGE_XLIB_LIBXRENDER
+	select BR2_PACKAGE_XLIB_LIBXRES
+	select BR2_PACKAGE_XLIB_LIBXXF86VM
+	select BR2_PACKAGE_XLIB_LIBXKBFILE
+	select BR2_PACKAGE_XLIB_XTRANS
+	select BR2_PACKAGE_XDATA_XBITMAPS
+	select BR2_PACKAGE_XORGPROTO
+	select BR2_PACKAGE_XUTIL_UTIL_MACROS
+	select BR2_PACKAGE_XKEYBOARD_CONFIG
+	help
+	  X.Org X server
+
+	  http://xorg.freedesktop.org
+
+if BR2_PACKAGE_XSERVER_XORG_SERVER
+
+choice
+	prompt "X Window System server type"
+	help
+	  Select the X Window System server to use
+
+config BR2_PACKAGE_XSERVER_XORG_SERVER_MODULAR
+	bool "Modular X.org"
+	depends on BR2_INSTALL_LIBSTDCPP
+	select BR2_PACKAGE_LIBDRM
+	select BR2_PACKAGE_LIBPCIACCESS
+	select BR2_PACKAGE_XLIB_LIBXSHMFENCE if \
+		(BR2_TOOLCHAIN_HAS_SYNC_4 && !BR2_RISCV_32)
+	help
+	  This variant of the X.org server is the full-blown variant,
+	  as used by desktop GNU/Linux distributions. The drivers (for
+	  input and graphics) are built separately from the X.org
+	  server (see the xdriver* packages).
+
+comment "Modular X.org needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP
+
+config BR2_PACKAGE_XSERVER_XORG_SERVER_KDRIVE
+	bool "KDrive / TinyX"
+	help
+	  This variant of the X.org server is a lightweight version
+	  intended for embedded systems. The drivers (for input and
+	  graphics) are built into the server. It is generally used
+	  directly on top of the Linux framebuffer without DRM or
+	  video card specific drivers.
+
+endchoice
+
+comment "Optional Servers"
+
+config BR2_PACKAGE_XSERVER_XORG_SERVER_XVFB
+	bool "Xvfb server"
+	help
+	  Virtual frame buffer X server.
+
+config BR2_PACKAGE_XSERVER_XORG_SERVER_XEPHYR
+	bool "Xephyr server"
+	select BR2_PACKAGE_XCB_UTIL_IMAGE if BR2_PACKAGE_XSERVER_XORG_SERVER_KDRIVE
+	select BR2_PACKAGE_XCB_UTIL_KEYSYMS if BR2_PACKAGE_XSERVER_XORG_SERVER_KDRIVE
+	select BR2_PACKAGE_XCB_UTIL_RENDERUTIL if BR2_PACKAGE_XSERVER_XORG_SERVER_KDRIVE
+	select BR2_PACKAGE_XCB_UTIL_WM if BR2_PACKAGE_XSERVER_XORG_SERVER_KDRIVE
+	help
+	  Xephyr nested X server; successor to Xnest.
+
+endif

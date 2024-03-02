@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_LOGBOOK
+	bool "python-logbook"
+	select BR2_PACKAGE_PYTHON3_ZLIB
+	help
+	  A logging replacement for Python.
+
+	  http://logbook.pocoo.org/

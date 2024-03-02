@@ -1,0 +1,143 @@
+#!/usr/bin/env bash
+set -e
+set -o pipefail
+
+main() {
+    local template="${1}"
+
+    preamble "${template}"
+    gen_tests
+}
+
+preamble() {
+    local template="${1}"
+
+    cat - "${template}" <<-_EOF_
+	# This file is generated; do not edit!
+	# Builds appear on https://gitlab.com/buildroot.org/buildroot/pipelines
+
+	image: ${CI_JOB_IMAGE}
+
+_EOF_
+}
+
+gen_tests() {
+    local -a basics defconfigs runtimes
+    local do_basics do_defconfigs do_runtime do_testpkg
+    local defconfigs_ext cfg tst
+
+    basics=( check-package check-symbol DEVELOPERS flake8 package symbol )
+
+    defconfigs=( $(cd configs; LC_ALL=C ls -1 *_defconfig) )
+
+    runtimes=( $(./support/testing/run-tests -l 2>&1 \
+                 | sed -r -e '/^test_run \((.*)\).*/!d; s//\1/' \
+                 | LC_ALL=C sort)
+             )
+
+    if [ -n "${CI_COMMIT_TAG}" ]; then
+        # When a tag is added to the Buildroot git tree, we want
+        # to run the runtime tests and only test Qemu defconfigs.
+        defconfigs=( $(cd configs; LC_ALL=C ls -1 qemu_*_defconfig) )
+        do_basics=true
+        do_defconfigs=base
+        do_runtime=true
+    elif [ "${CI_PIPELINE_SOURCE}" = "trigger" ]; then
+        case "${BR_SCHEDULE_JOBS}" in
+          (basic)
+            do_basics=true
+            do_defconfigs=check
+            defconfigs_ext=_check
+            ;;
+          (defconfig)
+            do_defconfigs=base
+            ;;
+          (runtime)
+            do_runtime=true
+            ;;
+        esac
+    else
+        case "${CI_COMMIT_REF_NAME}" in
+          (*-basics)
+            do_basics=true
+            do_defconfigs=check
+            defconfigs_ext=_check
+            ;;
+          (*-defconfigs)
+            do_defconfigs=base
+            ;;
+          (*-defconfigs-*)
+            pattern=$(echo ${CI_COMMIT_REF_NAME} | sed 's%^.*-defconfigs-\(.*\)%\1%')
+            defconfigs=( $(cd configs; LC_ALL=C ls -1 | grep ^${pattern}) )
+            do_defconfigs=base
+            ;;
+          (*-*_defconfig)
+            defconfigs=( "${CI_COMMIT_REF_NAME##*-}" )
+            do_defconfigs=base
+            ;;
+          (*-runtime-tests)
+            do_runtime=true
+            ;;
+          (*-tests.*)
+            runtimes=( $(./support/testing/run-tests -l 2>&1 \
+                         | sed -r -e '/^test_run \((.*)\).*/!d; s//\1/' \
+                         | LC_ALL=C sort \
+                         | grep "^${CI_COMMIT_REF_NAME##*-}")
+                     )
+            do_runtime=true
+            ;;
+        esac
+    fi
+
+    # Retrieve defconfig for test-pkg from the git commit message (if any)
+    if grep -q -E '^test-pkg config:$' <<<"${CI_COMMIT_DESCRIPTION}"; then
+        sed -r -n -e '/^test-pkg config:$/{:a;n;s/^ +//;p;ba;}' \
+            <<<"${CI_COMMIT_DESCRIPTION}" \
+            >defconfig.frag
+        if [ ! -s defconfig.frag ]; then
+            printf "Empty configuration fragment.\n" >&2; exit 1
+        fi
+        # Use --all since we expect the user having already pre-tested the
+        # new package with the default subset of toolchains.
+        ./utils/test-pkg \
+            --all --prepare-only \
+            --config-snippet defconfig.frag \
+            --build-dir br-test-pkg >&2
+        do_testpkg=( $(ls -1 br-test-pkg/*/.config 2>/dev/null |xargs -r dirname ) )
+        if [ "${#do_testpkg[@]}" -eq 0 ]; then
+            printf "Configuration fragment enables no test.\n" >&2; exit 1
+        fi
+    fi
+
+    # If nothing else, at least do the basics to generate a valid pipeline
+    if [    -z "${do_defconfigs}" \
+         -a -z "${do_runtime}" \
+         -a -z "${do_testpkg}" \
+       ]
+    then
+        do_basics=true
+    fi
+
+    if ${do_basics:-false}; then
+        for tst in "${basics[@]}"; do
+            printf 'check-%s: { extends: .check-%s_base }\n' "${tst}" "${tst}"
+        done
+    fi
+
+    if [ -n "${do_defconfigs}" ]; then
+        for cfg in "${defconfigs[@]}"; do
+            printf '%s%s: { extends: .defconfig_%s }\n' \
+                   "${cfg}" "${defconfigs_ext}" "${do_defconfigs}"
+        done
+    fi
+
+    if ${do_runtime:-false}; then
+        printf '%s: { extends: .runtime_test_base }\n' "${runtimes[@]}"
+    fi
+
+    if [ -n "${do_testpkg}" ]; then
+        printf '%s: { extends: .test_pkg }\n' "${do_testpkg[@]}"
+    fi
+}
+
+main "${@}"
