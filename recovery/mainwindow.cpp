@@ -444,6 +444,15 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
 
     setModelInfo();
 
+    if (_model.contains("Pi 5"))
+    {
+        extern QApplication * gApp;
+
+        fontsize=10;
+        QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
+        gApp->setStyleSheet(stylesheet);
+        QWSServer::instance()->refresh();
+    }
 
     if (!cmdline.contains("no_overrides"))
         loadOverrides("/mnt/overrides.json");
@@ -1800,7 +1809,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             QWSServer::instance()->refresh();
             //qDebug() << "Using fontsize "<<fontsize;
         }
-        if (keyEvent->key() == Qt::Key_Minus && fontsize >11)
+        if (keyEvent->key() == Qt::Key_Minus && fontsize >9)
         {
             fontsize--;
             QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";

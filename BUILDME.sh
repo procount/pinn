@@ -243,7 +243,8 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
         make linux-reconfigure
         make rpi-firmware
         # copy ARMv8 kernel
-        cp "$IMAGES_DIR/Image"                         "$FINAL_OUTPUT_DIR/kernel8.img"
+	gzip -k "$IMAGES_DDIR/Image"
+        cp "$IMAGES_DIR/Image.gz"                         "$FINAL_OUTPUT_DIR/kernel8.img"
         for f in "$IMAGES_DIR/*.dtb";                   do cp $f "$FINAL_OUTPUT_DIR"; done
     else
         echo "Warning: kernel armv8 in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
