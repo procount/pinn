@@ -4591,7 +4591,7 @@ void MainWindow::updatePinn()
     QProcess::execute("mount -o remount,rw /mnt");
 
     //First we'll extract these 2 files to /tmp to automate hte update process
-    QProcess::execute("unzip /tmp/pinn-lite.zip -o exclude.txt updatepinn -d /tmp");
+    QProcess::execute("unzip /tmp/pinn-lite.zip -o exclude.txt updatepinn preupdate -d /tmp");
 
     if (QFile::exists("/tmp/exclude.txt"))
     {
@@ -4606,6 +4606,15 @@ void MainWindow::updatePinn()
                 exclusions += " -x "+file;
         }
     }
+
+    //In case we need to do some additional upgrade processing
+    if (QFile::exists("/tmp/preupdate"))
+    {
+        QProcess::execute("chmod +x /tmp/preupdate");
+        QProcess::execute("/tmp/preupdate");
+    }
+
+
     //Extract all the files to Recovery, except our excluded set
     QString cmd = "unzip /tmp/pinn-lite.zip -o" + exclusions + " -d /mnt";
     QProcess::execute(cmd);
