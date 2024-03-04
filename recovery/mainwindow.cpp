@@ -4594,15 +4594,28 @@ void MainWindow::updatePinn()
                 exclusions += " -x "+file;
         }
     }
-    //Extract all the files to Recovery, except our excluded set
-    QString cmd = "unzip /tmp/pinn-lite.zip -o" + exclusions + " -d /mnt";
-    QProcess::execute(cmd);
+
 
     //In case we need to do some additional upgrade processing
-    if (QFile::exists("/tmp/updatepinn"))
+    int error=0;
+    if (QFile::exists("/tmp/preupdate"))
     {
-        QProcess::execute("chmod +x /tmp/updatepinn");
-        QProcess::execute("/tmp/updatepinn");
+        QProcess::execute("chmod +x /tmp/preupdate");
+        error = QProcess::execute("/tmp/preupdate");
+    }
+
+    if (!error)
+    {
+        //Extract all the files to Recovery, except our excluded set
+        QString cmd = "unzip /tmp/pinn-lite.zip -o" + exclusions + " -d /mnt";
+        QProcess::execute(cmd);
+
+        //In case we need to do some additional upgrade processing
+        if (QFile::exists("/tmp/updatepinn"))
+        {
+            QProcess::execute("chmod +x /tmp/updatepinn");
+            QProcess::execute("/tmp/updatepinn");
+        }
     }
 
     QProcess::execute("mount -o remount,ro /mnt");
