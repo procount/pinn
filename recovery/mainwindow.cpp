@@ -4429,6 +4429,7 @@ void MainWindow::downloadUpdateRedirectCheck()
 
 void MainWindow::downloadUpdateComplete()
 {
+    int error=0;
 
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
@@ -4501,7 +4502,7 @@ void MainWindow::downloadUpdateComplete()
             s.sleep(1000);
         }
 
-        updatePinn();
+        error = updatePinn();
 
         QProcess::execute(QString("rm ")+BUILD_IGNORE);
         QProcess::execute("sync");
@@ -4512,12 +4513,22 @@ void MainWindow::downloadUpdateComplete()
             _qpd->deleteLater();
             _qpd = NULL;
         }
-        //Reboot back into PINN
-        QByteArray partition("1");
-        setRebootPartition(partition);
 
-        // Reboot
-        reboot();
+        if (error)
+        {
+            if (_bdisplayUpdate)
+                QMessageBox::critical(this, tr("PINN update failed"), tr(""), QMessageBox::Close);
+            return;
+        }
+        else
+        {
+            //Reboot back into PINN
+            QByteArray partition("1");
+            setRebootPartition(partition);
+
+            // Reboot
+            reboot();
+        }
     }
     else if (type=="GROUP") //update categories
     {
@@ -4571,8 +4582,10 @@ void MainWindow::downloadUpdateComplete()
     }
 }
 
-void MainWindow::updatePinn()
+int MainWindow::updatePinn()
 {
+    int error=0;
+
     //When PINN is updated, We don't need these files to be extracted
     QString exclusions = " -x recovery.cmdline -x updatepinn -x exclude.txt";
 
@@ -4597,7 +4610,6 @@ void MainWindow::updatePinn()
 
 
     //In case we need to do some additional upgrade processing
-    int error=0;
     if (QFile::exists("/tmp/preupdate"))
     {
         QProcess::execute("chmod +x /tmp/preupdate");
@@ -4617,8 +4629,13 @@ void MainWindow::updatePinn()
             QProcess::execute("/tmp/updatepinn");
         }
     }
+    else
+        qDebug() << "preupdate failed.";
+
 
     QProcess::execute("mount -o remount,ro /mnt");
+
+    return(error);
 }
 
 void MainWindow::on_newVersion()

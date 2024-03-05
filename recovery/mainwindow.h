@@ -147,7 +147,7 @@ protected:
     void copyConf(const QString &fconf);
     void copyWpa();
     void copyDhcp();
-    void updatePinn();
+    int updatePinn();
     void on_newVersion();
     QString menutext(int index);
     void fullFAT();
