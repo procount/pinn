@@ -246,6 +246,8 @@ if [ $SKIP_KERNEL_REBUILD -ne 1 ]; then
 	gzip -k "$IMAGES_DDIR/Image"
         cp "$IMAGES_DIR/Image.gz"                         "$FINAL_OUTPUT_DIR/kernel8.img"
         for f in "$IMAGES_DIR/*.dtb";                   do cp $f "$FINAL_OUTPUT_DIR"; done
+	mkdir -p "$FINAL_OUTPUT_DIR/overlays6"
+	cp -ra $IMAGES_DIR/rpi-firmware/overlays/* "$FINAL_OUTPUT_DIR/overlays6"
     else
         echo "Warning: kernel armv8 in '$NOOBS_OUTPUT_DIR' directory hasn't been updated"
     fi
