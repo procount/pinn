@@ -1315,7 +1315,7 @@ void MultiImageWriteThread::processEntry(const QString &srcFolder, const QString
         else
         { //URL
             DBG( "Downloading file: " + entry);
-            QString cmd = "wget --retry-connrefused  --read-timeout=120 --no-verbose --tries=inf -O "+_dstFolder + dstSubFolder + "/" +fname + " " +entry;
+            QString cmd = "wget --retry-connrefused  --read-timeout=120 --no-verbose -S --tries=inf -O "+_dstFolder + dstSubFolder + "/" +fname + " " +entry;
             DBG(cmd);
             QProcess::execute(cmd);
         }
