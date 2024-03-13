@@ -33,11 +33,12 @@
 #include "simulate.h"
 #include "dlginstall.h"
 #include "sleepsimulator.h"
+#include "adjustsizes.h"
 
 #define LOCAL_DBG_ON   0
-#define LOCAL_DBG_FUNC 1
-#define LOCAL_DBG_OUT  1
-#define LOCAL_DBG_MSG  1
+#define LOCAL_DBG_FUNC 0
+#define LOCAL_DBG_OUT  0
+#define LOCAL_DBG_MSG  0
 
 #include "mydebug.h"
 
@@ -2425,6 +2426,7 @@ void MainWindow::processJson(QVariant json)
         OverrideJson(os);
 
         QString basename = os.value("os_name").toString();
+        //qDebug() << "#" <<basename << " " << os.value("os_info").toString() << " " << os.value("release_date").toString();
         if (canInstallOs(basename, os))
         {
             if (os.contains("flavours"))
@@ -3147,6 +3149,13 @@ void MainWindow::startImageWrite()
         }
 
     }
+
+
+    adjustSizes dlg(imageWriteThread->getImages(), 0, 0, 0);
+    if (dlg.exec() != QDialog::Accepted)
+        return;
+    ;
+
 
     if (slidesFolders.isEmpty())
         slidesFolder.append("/mnt/defaults/slides");

@@ -25,6 +25,7 @@ LIBS += -lqjson
 system(sh updateqm.sh 2>/dev/null)
 
 SOURCES += \
+    adjustsizes.cpp \
     dlginstall.cpp \
     main.cpp\
     mainwindow.cpp \
@@ -81,6 +82,7 @@ SOURCES += \
     chkperms.cpp
 
 HEADERS  += \
+    adjustsizes.h \
     dlginstall.h \
     mainwindow.h \
     languagedialog.h \
@@ -139,6 +141,7 @@ HEADERS  += \
     chkperms.h
 
 FORMS    += \
+    adjustsizes.ui \
     dlginstall.ui \
     mainwindow.ui \
     languagedialog.ui \

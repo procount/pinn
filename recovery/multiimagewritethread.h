@@ -21,7 +21,10 @@ public:
     void addImage(const QString &folder, const QString &flavour);
     void addInstalledImage(const QString& folder, const QString& flavour, const QVariantMap& sParts, const QString& replacedName="");
     QMessageBox::ButtonRole untar(const QString &tarball, const QString &csumType, const QString &csum, bool bSuppressError=false);
-
+    QList<OsInfo *> getImages(void)
+    {
+        return _images;
+    }
 protected:
     virtual void run();
     QString findTarballExt(QString base, QString exts);
@@ -47,6 +50,8 @@ protected:
 //    QByteArray getPartUUID(const QString &devpart);
     int _checksumError;
     bool _setupError;
+
+
 
     /* key: folder, value: flavour */
     QList<OsInfo *> _images;

@@ -64,6 +64,16 @@ public:
         return _partitionSizeNominal;
     }
 
+    inline uint partitionSizeAdjusted()
+    {
+        return _partitionSizeAdjusted;
+    }
+
+    inline void setPartitionSizeAdjusted(uint sizeAdjusted)
+    {
+        _partitionSizeAdjusted = sizeAdjusted;
+    }
+
     inline bool emptyFS()
     {
         return _emptyFS;
@@ -148,7 +158,7 @@ protected:
     QByteArray _fstype, _mkfsOptions, _label, _partitionDevice, _partitionType;
     QString _tarball, _csum, _csumType;
     int _requiresPartitionNumber;
-    uint _partitionSizeNominal, _offset, _uncompressedTarballSize, _partitionSizeSectors;
+    uint _partitionSizeNominal, _partitionSizeAdjusted, _offset, _uncompressedTarballSize, _partitionSizeSectors;
     bool _emptyFS, _wantMaximised, _active, _requiresLabel;
 };
 

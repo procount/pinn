@@ -2,6 +2,7 @@
 #
 # Recovery init script
 #
+#set -x
 
 # Standard busybox init
 /bin/mount -t proc proc /proc
@@ -14,7 +15,9 @@
 # Newer kernel versions can load firmware from /lib/firmware by themselves without help
 # However that can fail during boot due to our initrd ramdisk not being mounted in time
 # Retry any pending requests
+
 (cd /sys/class/firmware
+ls
 while [ "$(ls | wc -l)" != "1" ]; do
     for F in *; do
         if [ -d "$F" ]; then
@@ -100,6 +103,8 @@ pinndrive=
 mkdir -p /tmp/mnt
 cd /sys/class/block
 
+mount
+
 while [ "$pinndrive" = "" ]
 do
     sleep 1
@@ -115,6 +120,7 @@ do
             ;;
           *)
             echo "$d">>/tmp/init.log
+            umount /dev/$d 2>/dev/null # jus tin case it is already mounted
             mount /dev/$d /tmp/mnt 2>/dev/null
             if [ $? -eq 0 ]; then
               if [ -f "/tmp/mnt/pinn.rfs" ]; then
@@ -208,6 +214,11 @@ fi
     if grep -q dsi /proc/cmdline; then
         DEFAULT_DSI=-dsi
     fi
+
+if [ -n "$pinndrive" ] ; then
+        DEFAULT_DRIVE="-pinndrive=$pinndrive"
+    fi
+
     for p in `cat /proc/cmdline` ; do
         if [ "${p%%=*}" == "lang" ] ; then
             DEFAULT_LANG="-lang ${p#*=}";
@@ -229,9 +240,6 @@ fi
         fi
         if [ "${p%%=*}" == "style" ] ; then
             DEFAULT_STYLE="-style=${p#*=}"
-        fi
-        if [ -n "$pinndrive" ] ; then
-            DEFAULT_DRIVE="-pinndrive=$pinndrive"
         fi
         if [ "${p%%=*}" == "gpiochannel" ] ; then
             GPIO_CHANNEL="-gpiochannel ${p#*=}"

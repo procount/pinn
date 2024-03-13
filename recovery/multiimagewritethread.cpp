@@ -175,6 +175,7 @@ void MultiImageWriteThread::run()
             }
         }
 
+
         if (numexpandparts)
         {
             /* Extra spare space available for partitions that want to be expanded */

@@ -8,6 +8,7 @@
 #fcf8d2f7639ad8d0330db9c8db9b71bd33eaaa28
 #RPI_FIRMWARE_VERSION = 1eb8921ae7158249894f89e8bb6c4bfb04ec7377
 #RPI_FIRMWARE_VERSION = cfdbadea5f74c16b7ed5d3b4866092a054e3c3bf
+#RPI_FIRMWARE_VERSION = 191360eaf2e5933eaa0ed76ac0d62722b6f9a58f
 RPI_FIRMWARE_VERSION = 191360eaf2e5933eaa0ed76ac0d62722b6f9a58f
 RPI_FIRMWARE_SITE = $(call github,raspberrypi,firmware,$(RPI_FIRMWARE_VERSION))
 RPI_FIRMWARE_LICENSE = BSD-3c
@@ -19,7 +20,7 @@ RPI_FIRMWARE_DEPENDENCIES += host-rpi-firmware
 
 ifeq ($(BR2_PACKAGE_RPI_FIRMWARE_INSTALL_DTBS),y)
 define RPI_FIRMWARE_INSTALL_DTB
-	$(INSTALL) -D -m 0644 $(@D)/boot/bcm2708-rpi-0-w.dtb $(BINARIES_DIR)/rpi-firmware/bcm2708-rpi-0-w.dtb
+	$(INSTALL) -D -m 0644 $(@D)/boot/bcm2708-rpi-zero-w.dtb $(BINARIES_DIR)/rpi-firmware/bcm2708-rpi-zero-w.dtb
 	$(INSTALL) -D -m 0644 $(@D)/boot/bcm2708-rpi-b.dtb $(BINARIES_DIR)/rpi-firmware/bcm2708-rpi-b.dtb
 	$(INSTALL) -D -m 0644 $(@D)/boot/bcm2708-rpi-b-plus.dtb $(BINARIES_DIR)/rpi-firmware/bcm2708-rpi-b-plus.dtb
 	$(INSTALL) -D -m 0644 $(@D)/boot/bcm2708-rpi-cm.dtb $(BINARIES_DIR)/rpi-firmware/bcm2708-rpi-cm.dtb
