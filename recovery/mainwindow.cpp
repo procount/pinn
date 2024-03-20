@@ -3151,10 +3151,10 @@ void MainWindow::startImageWrite()
     }
 
 
-    adjustSizes dlg(imageWriteThread->getImages(), 0, 0, 0);
-    if (dlg.exec() != QDialog::Accepted)
-        return;
-    ;
+//    adjustSizes dlg(imageWriteThread->getImages(), 0, 0, 0);
+//    if (dlg.exec() != QDialog::Accepted)
+//        return;
+//    ;
 
 
     if (slidesFolders.isEmpty())

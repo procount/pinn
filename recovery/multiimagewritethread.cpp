@@ -836,15 +836,6 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
         _part++;
     } //next partition
 
-    emit statusUpdate(tr("%1: Mounting FAT partition").arg(os_name));
-    if (QProcess::execute("mount "+partitions->first()->partitionDevice()+" /mnt2") != 0)
-    {
-        emit error(tr("%1: Error mounting file system").arg(os_name));
-        return QMessageBox::RejectRole;
-    }
-
-    emit statusUpdate(tr("%1: Creating os_config.json").arg(os_name));
-
     QString description = getDescription(image->folder(), image->flavour());
     QVariantList vpartitions;
     foreach (PartitionInfo *p, *partitions)
@@ -856,122 +847,135 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
         }
         vpartitions.append(part);
     }
-    QSettings settings("/settings/noobs.conf", QSettings::IniFormat);
-    int videomode = settings.value("display_mode", 0).toInt();
-    QString language = settings.value("language", "en").toString();
-    QString keyboard = settings.value("keyboard_layout", "gb").toString();
 
-    QVariantMap qm;
-    qm.insert("flavour", image->flavour());
-    qm.insert("release_date", image->releaseDate());
-    qm.insert("imagefolder", CORE(image->folder()));
-    qm.insert("description", description);
-    qm.insert("videomode", videomode);
-    qm.insert("partitions", vpartitions);
-    qm.insert("language", language);
-    qm.insert("keyboard", keyboard);
-    qm.insert("bootable", image->bootable());
-    qm.insert("group", image->group());
-
-
-    Json::saveToFile("/mnt2/os_config.json", qm);
-
-    emit statusUpdate(tr("%1: Saving display mode to config.txt").arg(os_name));
-    patchConfigTxt();
-
-    /* Partition setup script can either reside in the image folder
-     * or inside the boot partition tarball */
-    QString postInstallScript = image->folder()+"/partition_setup.sh";
-    if (!QFile::exists(postInstallScript))
-        postInstallScript = "/mnt2/partition_setup.sh";
-
-    if (QFile::exists(postInstallScript))
+    if (partitions->first()->fsType() =="FAT")
     {
-        QString csumType = image->csumType();
-        QString csum     = image->csum();
-
-        if ((csum != "") && (csumType != ""))
+        emit statusUpdate(tr("%1: Mounting FAT partition").arg(os_name));
+        if (QProcess::execute("mount "+partitions->first()->partitionDevice()+" /mnt2") != 0)
         {
-            int errorcode;
-            QString filecsum = readexec(1,csumType+" "+postInstallScript, errorcode).split(" ").first();
-            qDebug()<< "Expected partition_setup.sh csum= "<<csum<<" Calculated= "<<filecsum;
-            if (filecsum != csum)
-            {
-                emit errorContinue(tr("Error in checksum for partition_setup.sh"));
-                _setupError = true;   //Force OS to be non-bootable.
-            }
+            emit error(tr("%1: Error mounting file system").arg(os_name));
+            return QMessageBox::RejectRole;
         }
 
-        if ( !_setupError )
+        emit statusUpdate(tr("%1: Creating os_config.json").arg(os_name));
+
+        QSettings settings("/settings/noobs.conf", QSettings::IniFormat);
+        int videomode = settings.value("display_mode", 0).toInt();
+        QString language = settings.value("language", "en").toString();
+        QString keyboard = settings.value("keyboard_layout", "gb").toString();
+
+        QVariantMap qm;
+        qm.insert("flavour", image->flavour());
+        qm.insert("release_date", image->releaseDate());
+        qm.insert("imagefolder", CORE(image->folder()));
+        qm.insert("description", description);
+        qm.insert("videomode", videomode);
+        qm.insert("partitions", vpartitions);
+        qm.insert("language", language);
+        qm.insert("keyboard", keyboard);
+        qm.insert("bootable", image->bootable());
+        qm.insert("group", image->group());
+
+
+        Json::saveToFile("/mnt2/os_config.json", qm);
+
+        emit statusUpdate(tr("%1: Saving display mode to config.txt").arg(os_name));
+        patchConfigTxt();
+
+        /* Partition setup script can either reside in the image folder
+         * or inside the boot partition tarball */
+        QString postInstallScript = image->folder()+"/partition_setup.sh";
+        if (!QFile::exists(postInstallScript))
+            postInstallScript = "/mnt2/partition_setup.sh";
+
+        if (QFile::exists(postInstallScript))
         {
-            emit statusUpdate(tr("%1: Running partition setup script").arg(os_name));
-            QProcess proc;
-            QProcessEnvironment env;
-            QStringList args(postInstallScript);
-            env.insert("PATH", "/bin:/usr/bin:/sbin:/usr/sbin");
+            QString csumType = image->csumType();
+            QString csum     = image->csum();
 
-            /* - Parameters to the partition-setup script are supplied both as
-             *   command line parameters and set as environement variables
-             * - Boot partition is mounted, working directory is set to its mnt folder
-             *
-             *  partition_setup.sh part1=/dev/mmcblk0p3 id1=LABEL=BOOT part2=/dev/mmcblk0p4
-             *  id2=UUID=550e8400-e29b-41d4-a716-446655440000
-             */
-            int pnr = 1;
-            foreach (PartitionInfo *p, *partitions)
+            if ((csum != "") && (csumType != ""))
             {
-                QString part  = p->partitionDevice();
-                QString nr    = QString::number(pnr);
-                QString uuid  = getUUID(part);
-                QString label = getLabel(part);
-                QString partuuid = getPartUUID(part);
-                QString id;
-                if (!label.isEmpty())
-                    id = "LABEL="+label;
-                else
-                    id = "UUID="+uuid;
-                if ( (_drive != "/dev/mmcblk0") && (image->use_partuuid()) )
-                    part = partuuid;
-
-                qDebug() << "part" << part << uuid << label;
-
-                args << "part"+nr+"="+part << "id"+nr+"="+id;
-                env.insert("part"+nr, part);
-                env.insert("id"+nr, id);
-                env.insert("partuuid"+nr, partuuid);
-                pnr++;
+                int errorcode;
+                QString filecsum = readexec(1,csumType+" "+postInstallScript, errorcode).split(" ").first();
+                qDebug()<< "Expected partition_setup.sh csum= "<<csum<<" Calculated= "<<filecsum;
+                if (filecsum != csum)
+                {
+                    emit errorContinue(tr("Error in checksum for partition_setup.sh"));
+                    _setupError = true;   //Force OS to be non-bootable.
+                }
             }
 
-            //If this is a backup, there maybe things in the partition_setup we don't want to repeat
-            //So set "restore=true"
-            if ( !getNameParts(os_name, eDATE).isEmpty() )
-                env.insert("restore", "true");
-
-            qDebug() << "Executing: sh" << args;
-            qDebug() << "Env:" << env.toStringList();
-            proc.setProcessChannelMode(proc.MergedChannels);
-            proc.setProcessEnvironment(env);
-            proc.setWorkingDirectory("/mnt2");
-            proc.start("/bin/sh", args);
-            proc.waitForFinished(-1);
-            QString output(proc.readAllStandardOutput());
-            qDebug() << output;
-            qDebug() << proc.exitStatus();
-
-            if (proc.exitCode() != 0)
+            if ( !_setupError )
             {
-                QProcess::execute("umount /mnt2");
-                emit statusUpdate(tr("%1: Error executing partition setup script").arg(os_name)+"\n"+proc.readAll());
-                return QMessageBox::RejectRole;
+                emit statusUpdate(tr("%1: Running partition setup script").arg(os_name));
+                QProcess proc;
+                QProcessEnvironment env;
+                QStringList args(postInstallScript);
+                env.insert("PATH", "/bin:/usr/bin:/sbin:/usr/sbin");
+
+                /* - Parameters to the partition-setup script are supplied both as
+                 *   command line parameters and set as environement variables
+                 * - Boot partition is mounted, working directory is set to its mnt folder
+                 *
+                 *  partition_setup.sh part1=/dev/mmcblk0p3 id1=LABEL=BOOT part2=/dev/mmcblk0p4
+                 *  id2=UUID=550e8400-e29b-41d4-a716-446655440000
+                 */
+                int pnr = 1;
+                foreach (PartitionInfo *p, *partitions)
+                {
+                    QString part  = p->partitionDevice();
+                    QString nr    = QString::number(pnr);
+                    QString uuid  = getUUID(part);
+                    QString label = getLabel(part);
+                    QString partuuid = getPartUUID(part);
+                    QString id;
+                    if (!label.isEmpty())
+                        id = "LABEL="+label;
+                    else
+                        id = "UUID="+uuid;
+                    if ( (_drive != "/dev/mmcblk0") && (image->use_partuuid()) )
+                        part = partuuid;
+
+                    qDebug() << "part" << part << uuid << label;
+
+                    args << "part"+nr+"="+part << "id"+nr+"="+id;
+                    env.insert("part"+nr, part);
+                    env.insert("id"+nr, id);
+                    env.insert("partuuid"+nr, partuuid);
+                    pnr++;
+                }
+
+                //If this is a backup, there maybe things in the partition_setup we don't want to repeat
+                //So set "restore=true"
+                if ( !getNameParts(os_name, eDATE).isEmpty() )
+                    env.insert("restore", "true");
+
+                qDebug() << "Executing: sh" << args;
+                qDebug() << "Env:" << env.toStringList();
+                proc.setProcessChannelMode(proc.MergedChannels);
+                proc.setProcessEnvironment(env);
+                proc.setWorkingDirectory("/mnt2");
+                proc.start("/bin/sh", args);
+                proc.waitForFinished(-1);
+                QString output(proc.readAllStandardOutput());
+                qDebug() << output;
+                qDebug() << proc.exitStatus();
+
+                if (proc.exitCode() != 0)
+                {
+                    QProcess::execute("umount /mnt2");
+                    emit statusUpdate(tr("%1: Error executing partition setup script").arg(os_name)+"\n"+proc.readAll());
+                    return QMessageBox::RejectRole;
+                }
             }
+
         }
 
-    }
-
-    emit statusUpdate(tr("%1: Unmounting FAT partition").arg(os_name));
-    if (QProcess::execute("umount /mnt2") != 0)
-    {
-        emit errorContinue(tr("%1: Error unmounting").arg(os_name));
+        emit statusUpdate(tr("%1: Unmounting FAT partition").arg(os_name));
+        if (QProcess::execute("umount /mnt2") != 0)
+        {
+            emit errorContinue(tr("%1: Error unmounting").arg(os_name));
+        }
     }
 
     /* Now see if there are any customisations
@@ -991,19 +995,6 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
         }
     }
 
-    emit statusUpdate(tr("%1: Mounting FAT partition").arg(os_name));
-    QString cmd ="mount "+partitions->first()->partitionDevice()+" /mnt2";
-    if (QProcess::execute(cmd) != 0)
-    {
-        emit error(tr("%1: Error mounting file system").arg(os_name));
-        return QMessageBox::RejectRole;
-    }
-
-    emit statusUpdate(tr("%1: Unmounting FAT partition").arg(os_name));
-    if (QProcess::execute("umount /mnt2") != 0)
-    {
-        emit errorContinue(tr("%1: Error unmounting").arg(os_name));
-    }
 
     /* Save information about installed operating systems in installed_os.json */
     QVariantMap ventry;
