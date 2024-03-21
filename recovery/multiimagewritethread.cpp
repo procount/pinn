@@ -848,7 +848,8 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
         vpartitions.append(part);
     }
 
-    if (partitions->first()->fsType() =="FAT")
+    QByteArray fstype = partitions->first()->fsType();
+    if (fstype.contains("fat"))
     {
         emit statusUpdate(tr("%1: Mounting FAT partition").arg(os_name));
         if (QProcess::execute("mount "+partitions->first()->partitionDevice()+" /mnt2") != 0)
@@ -858,6 +859,7 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
         }
 
         emit statusUpdate(tr("%1: Creating os_config.json").arg(os_name));
+        qDebug() << "Creating os_config.json";
 
         QSettings settings("/settings/noobs.conf", QSettings::IniFormat);
         int videomode = settings.value("display_mode", 0).toInt();
@@ -888,6 +890,8 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
         if (!QFile::exists(postInstallScript))
             postInstallScript = "/mnt2/partition_setup.sh";
 
+        qDebug() << "PostinstallScript = " <<postInstallScript;
+
         if (QFile::exists(postInstallScript))
         {
             QString csumType = image->csumType();
@@ -908,6 +912,7 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
             if ( !_setupError )
             {
                 emit statusUpdate(tr("%1: Running partition setup script").arg(os_name));
+                qDebug()<<"Running partition_setup.sh";
                 QProcess proc;
                 QProcessEnvironment env;
                 QStringList args(postInstallScript);
@@ -980,7 +985,7 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
 
     /* Now see if there are any customisations
      */
-    if ((_noobsconfig) && (getNameParts(os_name, eDATE).isEmpty() )) //Only process flavour if it is NOT a backup
+    if ( (!fstype.contains("swap")) && (_noobsconfig) && (getNameParts(os_name, eDATE).isEmpty() )) //Only process flavour if it is NOT a backup
     {
         emit statusUpdate(tr("%1: Configuring flavour").arg(os_name));
         qDebug() <<"Checking for partition customisations"    ;
