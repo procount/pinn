@@ -98,6 +98,7 @@ void MultiImageWriteThread::run()
                 return;
             }
 
+            /* If RISCOS is selected, it must be placed at partitions 6/7 */
             if (nameMatchesRiscOS( image->folder() ))
             {
                 /* Check the riscos_offset in os.json matches what we're expecting.
@@ -129,6 +130,8 @@ void MultiImageWriteThread::run()
                 partitions->last()->setRequiresPartitionNumber(7);
             }
 
+            /* Check and assign any required partition numbers */
+            /* And calculate any spare space to be distributed */
             foreach (PartitionInfo *partition, *partitions)
             {
                 numparts++;
@@ -475,6 +478,8 @@ bool MultiImageWriteThread::writePartitionTable(const QString &drive, const QMap
 
     partitionMap.insert(1, new PartitionInfo(1, startP1, sizeP1, "0E", NULL)); /* FAT boot partition */
     partitionMap.insert(5, new PartitionInfo(5, startP5, sizeP5, "L", NULL)); /* Ext4 settings partition */
+
+    //@@ change sizeExtended to totalsize - any primary partitions - provision
 
     uint sizeExtended = partitionMap.values().last()->endSector() - startExtended;
     if (!partitionMap.contains(2))

@@ -2727,7 +2727,7 @@ void MainWindow::updateNeeded()
     else
     {
         colorNeededLabel = Qt::black;
-        if (_neededDownloadMB)
+        if (selected.count())
         {
             /* Enable Download button if a selection has been made that fits on the card */
             /* AND all download sizes are calculated */
