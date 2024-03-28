@@ -20,6 +20,8 @@ class InitDriveThread : public QThread
 public:
     explicit InitDriveThread(const QString &drive, QObject *parent = 0, const QString& P1size="+0", const uint provision=0);
     bool formatUsbDrive();
+    static bool saveBootFiles();
+    static bool restoreBootFiles();
 
 protected:
     virtual void run();
@@ -35,8 +37,6 @@ protected:
     bool writeRiscOSblob();
 #endif
     bool method_reformatDrive();
-    bool saveBootFiles();
-    bool restoreBootFiles();
     bool formatBootPartition();
     bool partitionDrive();
     bool setDiskId();

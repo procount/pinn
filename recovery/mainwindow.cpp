@@ -34,6 +34,7 @@
 #include "dlginstall.h"
 #include "sleepsimulator.h"
 #include "adjustsizes.h"
+#include "showlog.h"
 
 #define LOCAL_DBG_ON   0
 #define LOCAL_DBG_FUNC 0
@@ -4616,6 +4617,10 @@ void MainWindow::updatePinn()
         }
     }
 
+    //Save the existing installation in case of failure
+    InitDriveThread::saveBootFiles();
+    showlog dlg(NULL);
+
     //In case we need to do some additional upgrade processing
     if (QFile::exists("/tmp/preupdate"))
     {
@@ -4626,7 +4631,7 @@ void MainWindow::updatePinn()
 
     //Extract all the files to Recovery, except our excluded set
     QString cmd = "unzip /tmp/pinn-lite.zip -o" + exclusions + " -d /mnt";
-    QProcess::execute(cmd);
+//@@  QProcess::execute(cmd);
 
     //In case we need to do some additional upgrade processing
     if (QFile::exists("/tmp/updatepinn"))
@@ -4634,6 +4639,7 @@ void MainWindow::updatePinn()
         QProcess::execute("chmod +x /tmp/updatepinn");
         QProcess::execute("/tmp/updatepinn");
     }
+    dlg.close();
 
     QProcess::execute("mount -o remount,ro /mnt");
 }
