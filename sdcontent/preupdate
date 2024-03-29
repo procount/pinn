@@ -1,0 +1,21 @@
+#!/bin/sh
+
+#orgsize=64366    # orignal 63M size of Pi4 partition
+
+pi5minsize=$(expr 1520 + $(unzip -l pinn-lite.zip|tail -n1 | sed 's|\s\+| |g'| sed 's|^ ||' | cut -d ' ' -f 1) / 1024)
+echo $pi5minsize
+
+#pi5minsize=64000 # required size for new Pi5 beta. Actual= 63784
+
+#get size of the /mnt partition
+mntsize=`df  | grep /mnt | sed  's|\s\+|,|g' | cut -d ',' -f 2`
+
+if [ $mntsize -lt $pi5minsize ]; then
+        echo "Partition size Too small"
+        exit 1
+fi
+
+#cd /mnt
+#rm -rf *
+
+exit 0
