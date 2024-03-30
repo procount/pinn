@@ -383,6 +383,8 @@ int main(int argc, char *argv[])
         QProcess::execute("mount -o ro -t vfat "+drive+" /mnt");
     }
 
+
+
     cec = enableCEC();
     cec->loadMap("cec_keys.json");
 
@@ -519,6 +521,13 @@ int main(int argc, char *argv[])
     QFont font(splash->font().family(),pointsize);
     splash->setFont(font);
 
+    QProcess::execute("mount -o ro "+partdev(drive, SETTINGS_PARTNR)+" /settings");
+    LanguageDialog* ld = new LanguageDialog(defaultLang, defaultKeyboard);
+    ld->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignHCenter | Qt::AlignBottom, ld->size(), a.desktop()->availableGeometry()));
+    qDebug() << ld->currentLanguage();
+    QProcess::execute("umount /settings");
+
+
     splash->showMessage(QMainWindow::tr("For recovery mode, hold SHIFT\nclick mouse\nor press joystick..."),Qt::white);
     QApplication::processEvents();
 
@@ -540,7 +549,7 @@ int main(int argc, char *argv[])
         t.start();
         while (t.elapsed() < 4000)
         {
-            splash->showMessage("For recovery mode, hold SHIFT\nclick mouse\nor press joystick...", Qt::AlignLeft, (t.elapsed()%1000 < 500)?Qt::black : Qt::white);
+            splash->showMessage(QMainWindow::tr("For recovery mode, hold SHIFT\nclick mouse\nor press joystick..."), Qt::AlignLeft, (t.elapsed()%1000 < 500)?Qt::black : Qt::white);
             QApplication::processEvents(QEventLoop::WaitForMoreEvents, 10);
             if (QApplication::queryKeyboardModifiers().testFlag(Qt::ShiftModifier))
             {
@@ -594,14 +603,10 @@ int main(int argc, char *argv[])
     // Main window in the middle of screen
     MainWindow mw(drive, defaultDisplay, splash, noobsconfig);
     gMW = &mw;  //Make it available globally.
-
     mw.setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, mw.size(), a.desktop()->availableGeometry()));
     mw.show();
 
 #ifdef ENABLE_LANGUAGE_CHOOSER
-     // Language chooser at the bottom center
-    LanguageDialog* ld = new LanguageDialog(defaultLang, defaultKeyboard);
-    ld->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignHCenter | Qt::AlignBottom, ld->size(), a.desktop()->availableGeometry()));
     ld->show();
 #endif
 

@@ -4450,6 +4450,7 @@ void MainWindow::downloadUpdateRedirectCheck()
 
 void MainWindow::downloadUpdateComplete()
 {
+    int error=0;
 
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
@@ -4522,7 +4523,7 @@ void MainWindow::downloadUpdateComplete()
             s.sleep(1000);
         }
 
-        updatePinn();
+        error=updatePinn();
 
         QProcess::execute(QString("rm ")+BUILD_IGNORE);
         QProcess::execute("sync");
@@ -4533,12 +4534,24 @@ void MainWindow::downloadUpdateComplete()
             _qpd->deleteLater();
             _qpd = NULL;
         }
-        //Reboot back into PINN
-        QByteArray partition("1");
-        setRebootPartition(partition);
 
-        // Reboot
-        reboot();
+
+        if (error)
+        {
+            if (_bdisplayUpdate)
+                QMessageBox::critical(this, tr("PINN update failed"), tr(""), QMessageBox::Close);
+            return;
+        }
+        else
+        {
+
+            //Reboot back into PINN
+            QByteArray partition("1");
+            setRebootPartition(partition);
+
+            // Reboot
+            reboot();
+        }
     }
     else if (type=="GROUP") //update categories
     {
@@ -4592,8 +4605,9 @@ void MainWindow::downloadUpdateComplete()
     }
 }
 
-void MainWindow::updatePinn()
+int MainWindow::updatePinn()
 {
+    int error=0;
     //When PINN is updated, We don't need these files to be extracted
     QString exclusions = " -x cmdline.txt -x updatepinn -x exclude.txt";
 
@@ -4616,26 +4630,42 @@ void MainWindow::updatePinn()
         }
     }
 
+    //Save the existing installation in case of failure
+    InitDriveThread::saveBootFiles();
+
     //In case we need to do some additional upgrade processing
     if (QFile::exists("/tmp/preupdate"))
     {
         QProcess::execute("chmod +x /tmp/preupdate");
-        QProcess::execute("/tmp/preupdate");
+        error=QProcess::execute("/tmp/preupdate");
     }
-
-
-    //Extract all the files to Recovery, except our excluded set
-    QString cmd = "unzip /tmp/pinn-lite.zip -o" + exclusions + " -d /mnt";
-    QProcess::execute(cmd);
-
-    //In case we need to do some additional upgrade processing
-    if (QFile::exists("/tmp/updatepinn"))
+    if (!error)
     {
-        QProcess::execute("chmod +x /tmp/updatepinn");
-        QProcess::execute("/tmp/updatepinn");
+        //Extract all the files to Recovery, except our excluded set
+        QString cmd = "unzip /tmp/pinn-lite.zip -o" + exclusions + " -d /mnt";
+        QProcess::execute(cmd);
+
+        //In case we need to do some additional upgrade processing
+        if (QFile::exists("/tmp/updatepinn"))
+        {
+            QProcess::execute("chmod +x /tmp/updatepinn");
+            error = QProcess::execute("/tmp/updatepinn");
+        }
+    }
+    else
+    {
+        int dummy;
+        QString cmd;
+
+        qDebug() << "preupdate failed.";
+        cmd = "sh -c \" cd /mnt; rm -rf *\"";
+        QString type = readexec(1,cmd, dummy);
+
+        InitDriveThread::restoreBootFiles();
     }
 
     QProcess::execute("mount -o remount,ro /mnt");
+    return(error);
 }
 
 void MainWindow::on_newVersion()

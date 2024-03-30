@@ -701,175 +701,175 @@ VARNING: Detta kommer radera all data på ditt SD-kort</translation>
         <translation>W</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="367"/>
+        <location filename="mainwindow.cpp" line="369"/>
         <source>Setting up SD card</source>
         <translation>Förbereder SD-kort</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="414"/>
+        <location filename="mainwindow.cpp" line="416"/>
         <source>Error mounting settings partition</source>
         <translation>Fel vid montering av inställningspartition</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="389"/>
+        <location filename="mainwindow.cpp" line="391"/>
         <source>Waiting for SD card (settings partition)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="402"/>
+        <location filename="mainwindow.cpp" line="404"/>
         <source>Mounting settings partition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="415"/>
+        <location filename="mainwindow.cpp" line="417"/>
         <source>Persistent settings partition seems corrupt. Reformat?</source>
         <translation>Inställningspartitionen verkar vara korrupt. Omformatera?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="422"/>
+        <location filename="mainwindow.cpp" line="424"/>
         <source>Reformat failed</source>
         <translation>Omformatering misslyckades</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="422"/>
+        <location filename="mainwindow.cpp" line="424"/>
         <source>SD card might be damaged</source>
         <translation>SD-kortet kan vara skadat</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="668"/>
+        <location filename="mainwindow.cpp" line="679"/>
         <source>Main Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="669"/>
+        <location filename="mainwindow.cpp" line="680"/>
         <source>Archival</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="670"/>
+        <location filename="mainwindow.cpp" line="681"/>
         <source>Maintenance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="687"/>
+        <location filename="mainwindow.cpp" line="698"/>
         <source>Please wait while PINN initialises</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1175"/>
+        <location filename="mainwindow.cpp" line="1186"/>
         <source>install</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1178"/>
+        <location filename="mainwindow.cpp" line="1189"/>
         <source>reinstall</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1181"/>
+        <location filename="mainwindow.cpp" line="1192"/>
         <source>replace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1191"/>
+        <location filename="mainwindow.cpp" line="1202"/>
         <source>USB drive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1192"/>
+        <location filename="mainwindow.cpp" line="1203"/>
         <source>Warning: this will %1 the selected Operating System(s) to %2. All existing data on the %3 will be deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1287"/>
+        <location filename="mainwindow.cpp" line="1298"/>
         <source>The %1 process will begin shortly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4031"/>
-        <location filename="mainwindow.cpp" line="4077"/>
+        <location filename="mainwindow.cpp" line="4052"/>
+        <location filename="mainwindow.cpp" line="4098"/>
         <source>RECOMMENDED</source>
         <translation>REKOMMENDERAD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1071"/>
+        <location filename="mainwindow.cpp" line="1082"/>
         <source>ERROR</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1072"/>
+        <location filename="mainwindow.cpp" line="1083"/>
         <source>Error: Some OSes are not available:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1080"/>
-        <location filename="mainwindow.cpp" line="1089"/>
-        <location filename="mainwindow.cpp" line="1200"/>
-        <location filename="mainwindow.cpp" line="1309"/>
-        <location filename="mainwindow.cpp" line="1319"/>
-        <location filename="mainwindow.cpp" line="1950"/>
-        <location filename="mainwindow.cpp" line="4813"/>
-        <location filename="mainwindow.cpp" line="4888"/>
-        <location filename="mainwindow.cpp" line="4932"/>
+        <location filename="mainwindow.cpp" line="1091"/>
+        <location filename="mainwindow.cpp" line="1100"/>
+        <location filename="mainwindow.cpp" line="1211"/>
+        <location filename="mainwindow.cpp" line="1320"/>
+        <location filename="mainwindow.cpp" line="1330"/>
+        <location filename="mainwindow.cpp" line="1961"/>
+        <location filename="mainwindow.cpp" line="4852"/>
+        <location filename="mainwindow.cpp" line="4927"/>
+        <location filename="mainwindow.cpp" line="4971"/>
         <source>Confirm</source>
         <translation>Bekräfta</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="324"/>
+        <location filename="mainwindow.cpp" line="326"/>
         <source>RUNINSTALLER - Initialise Drive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="325"/>
+        <location filename="mainwindow.cpp" line="327"/>
         <source>There are existing OSes installed.
 Are you sure you want to initialise the drive?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1081"/>
-        <location filename="mainwindow.cpp" line="4814"/>
+        <location filename="mainwindow.cpp" line="1092"/>
+        <location filename="mainwindow.cpp" line="4853"/>
         <source>Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:
 </source>
         <oldsource>Warning: Partial USB support. The following OSes can only be installed to USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1081"/>
-        <location filename="mainwindow.cpp" line="4814"/>
+        <location filename="mainwindow.cpp" line="1092"/>
+        <location filename="mainwindow.cpp" line="4853"/>
         <source>
 
 Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1157"/>
+        <location filename="mainwindow.cpp" line="1168"/>
         <source>ReInstall OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1158"/>
+        <location filename="mainwindow.cpp" line="1169"/>
         <source>Warning: No OSes selected or available
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1196"/>
+        <location filename="mainwindow.cpp" line="1207"/>
         <source>Warning: this will %1 the selected Operating System(s) on %2. The partitions of the selected OSes will first be erased.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1310"/>
+        <location filename="mainwindow.cpp" line="1321"/>
         <source>Warning: this will download the selected Operating System(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1397"/>
+        <location filename="mainwindow.cpp" line="1408"/>
         <source>The download process will begin shortly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1440"/>
+        <location filename="mainwindow.cpp" line="1451"/>
         <source>OS(es) Downloaded with errors.
 See debug log for details.</source>
         <oldsource>OS(es) Downloaded with errors.
@@ -877,12 +877,12 @@ See debug log for details</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1445"/>
+        <location filename="mainwindow.cpp" line="1456"/>
         <source>OS(es) downloaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1459"/>
+        <location filename="mainwindow.cpp" line="1470"/>
         <source>OS(es) Backed up with errors.
 See debug log for details.</source>
         <oldsource>OS(es) Backed up with errors.
@@ -890,18 +890,18 @@ See debug log for details</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1461"/>
+        <location filename="mainwindow.cpp" line="1472"/>
         <source>OS(es) Backed up Successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1463"/>
-        <location filename="mainwindow.cpp" line="5036"/>
+        <location filename="mainwindow.cpp" line="1474"/>
+        <location filename="mainwindow.cpp" line="5075"/>
         <source>Backup OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1470"/>
+        <location filename="mainwindow.cpp" line="1481"/>
         <source>OS(es) Installed with errors.
 See debug log for details.</source>
         <oldsource>OS(es) Installed with errors.
@@ -909,374 +909,374 @@ See debug log for details</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1474"/>
+        <location filename="mainwindow.cpp" line="1485"/>
         <source>Installation complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1587"/>
+        <location filename="mainwindow.cpp" line="1598"/>
         <source>Abort</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1588"/>
+        <location filename="mainwindow.cpp" line="1599"/>
         <source>Discard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1589"/>
+        <location filename="mainwindow.cpp" line="1600"/>
         <source>Retry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1590"/>
+        <location filename="mainwindow.cpp" line="1601"/>
         <source>Keep</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1614"/>
+        <location filename="mainwindow.cpp" line="1625"/>
         <source>Reboot in %1 secs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1925"/>
+        <location filename="mainwindow.cpp" line="1936"/>
         <source>Wiping SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1951"/>
+        <location filename="mainwindow.cpp" line="1962"/>
         <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
         <oldsource>Warning: this will restore your SD card to its initial state. All existing data on the SD card except PINN will be overwritten, including any OSes that are already installed.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1956"/>
+        <location filename="mainwindow.cpp" line="1967"/>
         <source>Drive Wiped!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2259"/>
+        <location filename="mainwindow.cpp" line="2272"/>
         <source>Error parsing repolist.json downloaded from server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2885"/>
+        <location filename="mainwindow.cpp" line="2899"/>
         <source>Error downloading meta file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3254"/>
-        <location filename="mainwindow.cpp" line="4804"/>
-        <location filename="mainwindow.cpp" line="4842"/>
+        <location filename="mainwindow.cpp" line="3275"/>
+        <location filename="mainwindow.cpp" line="4843"/>
+        <location filename="mainwindow.cpp" line="4881"/>
         <source>Replace OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3301"/>
+        <location filename="mainwindow.cpp" line="3322"/>
         <source>Resume partial downloads?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3302"/>
+        <location filename="mainwindow.cpp" line="3323"/>
         <source>Normally select NO, unless your last download was not successful, in which case select YES</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3526"/>
+        <location filename="mainwindow.cpp" line="3547"/>
         <source>This backup may require </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3528"/>
+        <location filename="mainwindow.cpp" line="3549"/>
         <source> MB of backup space, but only </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3530"/>
+        <location filename="mainwindow.cpp" line="3551"/>
         <source> MB is available. This is only an estimate. If you continue, the backup may not complete successfully.
 
 Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3531"/>
+        <location filename="mainwindow.cpp" line="3552"/>
         <source>WARNING: Backup Space</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3538"/>
+        <location filename="mainwindow.cpp" line="3559"/>
         <source>Backup Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3538"/>
+        <location filename="mainwindow.cpp" line="3559"/>
         <source>Always test your backups before relying on them</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3588"/>
+        <location filename="mainwindow.cpp" line="3609"/>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3596"/>
+        <location filename="mainwindow.cpp" line="3617"/>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3928"/>
+        <location filename="mainwindow.cpp" line="3949"/>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4306"/>
+        <location filename="mainwindow.cpp" line="4327"/>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4308"/>
+        <location filename="mainwindow.cpp" line="4329"/>
         <source>Clone SD Card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4310"/>
+        <location filename="mainwindow.cpp" line="4331"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4311"/>
+        <location filename="mainwindow.cpp" line="4332"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4340"/>
+        <location filename="mainwindow.cpp" line="4361"/>
         <source>Clone Completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4341"/>
+        <location filename="mainwindow.cpp" line="4362"/>
         <source>Clone Completed Successfully</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4453"/>
+        <location filename="mainwindow.cpp" line="4474"/>
         <source>Error downloading update file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4460"/>
-        <location filename="mainwindow.cpp" line="4561"/>
+        <location filename="mainwindow.cpp" line="4481"/>
+        <location filename="mainwindow.cpp" line="4590"/>
         <source>PINN Update Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4460"/>
+        <location filename="mainwindow.cpp" line="4481"/>
         <source>Error contacting update server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4561"/>
+        <location filename="mainwindow.cpp" line="4519"/>
+        <source>PINN will now update and reboot in a few secs...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="4590"/>
         <source>No updates available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4607"/>
+        <location filename="mainwindow.cpp" line="4645"/>
         <source>PINN UPDATE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4608"/>
+        <location filename="mainwindow.cpp" line="4646"/>
         <source>A new version of PINN is available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4609"/>
+        <location filename="mainwindow.cpp" line="4647"/>
         <source>Do you want to download this version?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4641"/>
+        <location filename="mainwindow.cpp" line="4679"/>
         <source>Downloading Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4641"/>
-        <source>Press ESC to cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="4805"/>
+        <location filename="mainwindow.cpp" line="4844"/>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4843"/>
+        <location filename="mainwindow.cpp" line="4882"/>
         <source>Warning: No OSes selected
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4889"/>
+        <location filename="mainwindow.cpp" line="4928"/>
         <source>Warning: this will backup the selected Operating System(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="4933"/>
+        <location filename="mainwindow.cpp" line="4972"/>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1191"/>
+        <location filename="mainwindow.cpp" line="1202"/>
         <source>SD card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1090"/>
-        <location filename="mainwindow.cpp" line="1320"/>
+        <location filename="mainwindow.cpp" line="1101"/>
+        <location filename="mainwindow.cpp" line="1331"/>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
         <translation>Varning: Inkompatibelt operativsystem upptäckt. Följande operativsystem stöds ej på denna revision av Raspberry Pi och kan misslyckas med att boota eller fungera korrekt:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1142"/>
-        <location filename="mainwindow.cpp" line="4833"/>
+        <location filename="mainwindow.cpp" line="1153"/>
+        <location filename="mainwindow.cpp" line="4872"/>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1442"/>
+        <location filename="mainwindow.cpp" line="1453"/>
         <source>OS(es) Downloaded Successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1472"/>
+        <location filename="mainwindow.cpp" line="1483"/>
         <source>OS(es) Installed Successfully</source>
         <translation>Installation av operativsystem lyckades</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1511"/>
-        <location filename="mainwindow.cpp" line="1545"/>
-        <location filename="mainwindow.cpp" line="1559"/>
-        <location filename="mainwindow.cpp" line="2259"/>
-        <location filename="mainwindow.cpp" line="2402"/>
-        <location filename="mainwindow.cpp" line="4354"/>
+        <location filename="mainwindow.cpp" line="1522"/>
+        <location filename="mainwindow.cpp" line="1556"/>
+        <location filename="mainwindow.cpp" line="1570"/>
+        <location filename="mainwindow.cpp" line="2272"/>
+        <location filename="mainwindow.cpp" line="2415"/>
+        <location filename="mainwindow.cpp" line="4375"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1616"/>
+        <location filename="mainwindow.cpp" line="1627"/>
         <source>PINN v%1 - Built: %2 (%3) %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1652"/>
+        <location filename="mainwindow.cpp" line="1663"/>
         <source>HDMI preferred mode</source>
         <translation>HDMI föredraget läge</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1656"/>
+        <location filename="mainwindow.cpp" line="1667"/>
         <source>HDMI safe mode</source>
         <translation>HDMI säkert läge</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1660"/>
+        <location filename="mainwindow.cpp" line="1671"/>
         <source>composite PAL mode</source>
         <translation>Kompositvideo PAL-läge</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1664"/>
+        <location filename="mainwindow.cpp" line="1675"/>
         <source>composite NTSC mode</source>
         <translation>Kompositvideo NTSC-läge</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1733"/>
+        <location filename="mainwindow.cpp" line="1744"/>
         <source>Display Mode Changed</source>
         <translation>Bildskärmsläge ändrat</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1734"/>
+        <location filename="mainwindow.cpp" line="1745"/>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>Bildskärmsläge ändrades till %1
 Vill du spara detta som standardinställning?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1957"/>
+        <location filename="mainwindow.cpp" line="1968"/>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1970"/>
-        <location filename="mainwindow.cpp" line="3587"/>
-        <location filename="mainwindow.cpp" line="3595"/>
+        <location filename="mainwindow.cpp" line="1981"/>
+        <location filename="mainwindow.cpp" line="3608"/>
+        <location filename="mainwindow.cpp" line="3616"/>
         <source>No network access</source>
         <translation>Ingen nätverksåtkomst</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1971"/>
+        <location filename="mainwindow.cpp" line="1982"/>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Nätverksåtkomst krävs för att använda denna funktion. Vänligen koppla in en nätverkskabel till din Raspberry Pi.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2240"/>
-        <location filename="mainwindow.cpp" line="2378"/>
+        <location filename="mainwindow.cpp" line="2253"/>
+        <location filename="mainwindow.cpp" line="2391"/>
         <source>Error downloading distribution list from Internet:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2242"/>
-        <location filename="mainwindow.cpp" line="2380"/>
-        <location filename="mainwindow.cpp" line="2899"/>
-        <location filename="mainwindow.cpp" line="2910"/>
-        <location filename="mainwindow.cpp" line="4453"/>
-        <location filename="mainwindow.cpp" line="4475"/>
+        <location filename="mainwindow.cpp" line="2255"/>
+        <location filename="mainwindow.cpp" line="2393"/>
+        <location filename="mainwindow.cpp" line="2913"/>
+        <location filename="mainwindow.cpp" line="2924"/>
+        <location filename="mainwindow.cpp" line="4474"/>
+        <location filename="mainwindow.cpp" line="4496"/>
         <source>Download error</source>
         <translation>Nedladdningsfel</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2402"/>
+        <location filename="mainwindow.cpp" line="2415"/>
         <source>Error parsing list.json downloaded from server</source>
         <translation>Fel vid tolkning av list.json nedladdad från server</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2671"/>
-        <location filename="mainwindow.cpp" line="2674"/>
+        <location filename="mainwindow.cpp" line="2685"/>
+        <location filename="mainwindow.cpp" line="2688"/>
         <source>Needed</source>
         <translation>Krävs</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2672"/>
-        <location filename="mainwindow.cpp" line="2675"/>
+        <location filename="mainwindow.cpp" line="2686"/>
+        <location filename="mainwindow.cpp" line="2689"/>
         <source>Available</source>
         <translation>Tillgängligt</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2899"/>
+        <location filename="mainwindow.cpp" line="2913"/>
         <source>Error downloading meta file</source>
         <translation>Fel vid nedladdning av meta-fil</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2910"/>
-        <location filename="mainwindow.cpp" line="4475"/>
+        <location filename="mainwindow.cpp" line="2924"/>
+        <location filename="mainwindow.cpp" line="4496"/>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
         <translation>Fel vid skrivning av nedladdad fil till SD-kort. SD-kort eller filsystem kan vara skadade.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3022"/>
+        <location filename="mainwindow.cpp" line="3036"/>
         <source>filesize error checking </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3255"/>
+        <location filename="mainwindow.cpp" line="3276"/>
         <source> has an incompatible number of partitions with </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3927"/>
+        <location filename="mainwindow.cpp" line="3948"/>
         <source>Reformat drive?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1327,250 +1327,246 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
         <translation>partitions.json ogiltig</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="121"/>
+        <location filename="multiimagewritethread.cpp" line="122"/>
         <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
         <translation>RISCOS kan inte bli installerad. Återställningspartition för stor.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="189"/>
+        <location filename="multiimagewritethread.cpp" line="193"/>
         <source>Not enough disk space. Need %1 MB, got %2 MB</source>
         <translation>För lite lagringsutrymme. Kräver %1 MB, har %2 MB</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="447"/>
+        <location filename="multiimagewritethread.cpp" line="451"/>
         <source>Finish writing (sync)</source>
         <translation>Avslutar skrivning (sync)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="738"/>
+        <location filename="multiimagewritethread.cpp" line="744"/>
         <source>File &apos;%1&apos; does not exist</source>
         <translation>Filen %1 existerar ej</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="778"/>
-        <location filename="multiimagewritethread.cpp" line="785"/>
+        <location filename="multiimagewritethread.cpp" line="784"/>
+        <location filename="multiimagewritethread.cpp" line="791"/>
         <source>%1: Writing OS image</source>
         <oldsource>Writing image</oldsource>
         <translation>%1: Skriver operativsystemsavbild</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="801"/>
+        <location filename="multiimagewritethread.cpp" line="807"/>
         <source>%1: Mounting file system</source>
         <oldsource>Mounting file system</oldsource>
         <translation>%1: Monterar filsystem</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="804"/>
-        <location filename="multiimagewritethread.cpp" line="841"/>
-        <location filename="multiimagewritethread.cpp" line="997"/>
-        <location filename="multiimagewritethread.cpp" line="1107"/>
+        <location filename="multiimagewritethread.cpp" line="810"/>
+        <location filename="multiimagewritethread.cpp" line="862"/>
+        <location filename="multiimagewritethread.cpp" line="1109"/>
         <source>%1: Error mounting file system</source>
         <oldsource>Error mounting file system</oldsource>
         <translation>%1: Fel vid montering av filsystem</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="792"/>
+        <location filename="multiimagewritethread.cpp" line="798"/>
         <source>%1: Creating filesystem (%2)</source>
         <translation>%1: Skapar filsystem (%2)</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="110"/>
+        <location filename="multiimagewritethread.cpp" line="111"/>
         <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
         <translation>RISCOS kan ej installeras. RISCOS förskjutningsvärde (offset) matchar ej.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="116"/>
+        <location filename="multiimagewritethread.cpp" line="117"/>
         <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
         <translation>RISCOS kan ej installeras. RISCOS förskjutningsvärde (offset) saknas.</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="150"/>
+        <location filename="multiimagewritethread.cpp" line="153"/>
         <source>More than one operating system requires partition number %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="155"/>
+        <location filename="multiimagewritethread.cpp" line="158"/>
         <source>Operating system cannot require a system partition (1,5)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="160"/>
+        <location filename="multiimagewritethread.cpp" line="163"/>
         <source>Operating system cannot claim both primary partitions 2 and 4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="218"/>
+        <location filename="multiimagewritethread.cpp" line="222"/>
         <source>Cannot boot partitions &gt; 62. Reduce the number of OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="240"/>
+        <location filename="multiimagewritethread.cpp" line="244"/>
         <source>Cannot boot partitions &gt; #62. Reduce the number of OSes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="269"/>
+        <location filename="multiimagewritethread.cpp" line="273"/>
         <source>Fixed partition offset too low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="329"/>
+        <location filename="multiimagewritethread.cpp" line="333"/>
         <source>Writing partition table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="344"/>
+        <location filename="multiimagewritethread.cpp" line="348"/>
         <source>Writing boot partition table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="334"/>
-        <location filename="multiimagewritethread.cpp" line="350"/>
+        <location filename="multiimagewritethread.cpp" line="338"/>
+        <location filename="multiimagewritethread.cpp" line="354"/>
         <source>Zero&apos;ing start of each partition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="395"/>
+        <location filename="multiimagewritethread.cpp" line="399"/>
         <source>.
 Partition not big enough for new image.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="395"/>
+        <location filename="multiimagewritethread.cpp" line="399"/>
         <source>Cannot Reinstall/Replace </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="441"/>
+        <location filename="multiimagewritethread.cpp" line="445"/>
         <source>Operation cancelled by user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="468"/>
+        <location filename="multiimagewritethread.cpp" line="472"/>
         <source>Error reading existing partition table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="553"/>
+        <location filename="multiimagewritethread.cpp" line="559"/>
         <source>Error creating partition table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="766"/>
+        <location filename="multiimagewritethread.cpp" line="772"/>
         <source>OS: &apos;%1&apos; needs a partition label of &apos;%2&apos; which is not available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="809"/>
+        <location filename="multiimagewritethread.cpp" line="815"/>
         <source>%1: Downloading and extracting filesystem</source>
         <translation>%1: Laddar ner och extraherar filsystem</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="811"/>
+        <location filename="multiimagewritethread.cpp" line="817"/>
         <source>%1: Extracting filesystem</source>
         <oldsource>%1 Extracting filesystem</oldsource>
         <translation>%1: Extraherar filsystem</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="820"/>
+        <location filename="multiimagewritethread.cpp" line="826"/>
         <source>Syncing Filesystem</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="838"/>
-        <location filename="multiimagewritethread.cpp" line="993"/>
+        <location filename="multiimagewritethread.cpp" line="859"/>
         <source>%1: Mounting FAT partition</source>
         <oldsource>Mouning FAT partition</oldsource>
         <translation>%1: Monterar FAT-partition</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="845"/>
+        <location filename="multiimagewritethread.cpp" line="866"/>
         <source>%1: Creating os_config.json</source>
         <oldsource>Creating os_config.json</oldsource>
         <translation>%1: Skapar os_config.json</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="878"/>
+        <location filename="multiimagewritethread.cpp" line="889"/>
         <source>%1: Saving display mode to config.txt</source>
         <oldsource>Saving display mode to config.txt</oldsource>
         <translation>%1: Sparar bildskärmsläge till config.txt</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="899"/>
+        <location filename="multiimagewritethread.cpp" line="912"/>
         <source>Error in checksum for partition_setup.sh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="906"/>
+        <location filename="multiimagewritethread.cpp" line="919"/>
         <source>%1: Running partition setup script</source>
         <oldsource>Running partition setup script</oldsource>
         <translation>%1: Kör partitioneringsscript</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="963"/>
+        <location filename="multiimagewritethread.cpp" line="977"/>
         <source>%1: Error executing partition setup script</source>
         <oldsource>Error executing partition setup script</oldsource>
         <translation>%1: Fel vid körning av partitioneringsscript</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="980"/>
+        <location filename="multiimagewritethread.cpp" line="995"/>
         <source>%1: Configuring flavour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="970"/>
-        <location filename="multiimagewritethread.cpp" line="1001"/>
+        <location filename="multiimagewritethread.cpp" line="984"/>
         <source>%1: Unmounting FAT partition</source>
         <oldsource>Unmounting FAT partition</oldsource>
         <translation>%1: Avmonterar FAT-partition</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="973"/>
-        <location filename="multiimagewritethread.cpp" line="1004"/>
+        <location filename="multiimagewritethread.cpp" line="987"/>
         <source>%1: Error unmounting</source>
         <oldsource>Error unmounting</oldsource>
         <translation>%1: Fel vid avmontering</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1421"/>
+        <location filename="multiimagewritethread.cpp" line="1423"/>
         <source>Error creating file system</source>
         <translation>Fel vid skapande av filsystem</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1494"/>
-        <location filename="multiimagewritethread.cpp" line="1611"/>
-        <location filename="multiimagewritethread.cpp" line="1704"/>
+        <location filename="multiimagewritethread.cpp" line="1496"/>
+        <location filename="multiimagewritethread.cpp" line="1613"/>
+        <location filename="multiimagewritethread.cpp" line="1706"/>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip.</source>
         <oldsource>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip</oldsource>
         <translation type="unfinished">Okänd filändelse för kompressionsformat. Förväntar .lzo, .gz, .xz, .bz2 eller .zip</translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1534"/>
-        <location filename="multiimagewritethread.cpp" line="1642"/>
-        <location filename="multiimagewritethread.cpp" line="1735"/>
+        <location filename="multiimagewritethread.cpp" line="1536"/>
+        <location filename="multiimagewritethread.cpp" line="1644"/>
+        <location filename="multiimagewritethread.cpp" line="1737"/>
         <source>An incorrect file checksum has been detected in %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1535"/>
-        <location filename="multiimagewritethread.cpp" line="1646"/>
-        <location filename="multiimagewritethread.cpp" line="1739"/>
+        <location filename="multiimagewritethread.cpp" line="1537"/>
+        <location filename="multiimagewritethread.cpp" line="1648"/>
+        <location filename="multiimagewritethread.cpp" line="1741"/>
         <source>Checksum error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1545"/>
+        <location filename="multiimagewritethread.cpp" line="1547"/>
         <source>Checksum OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1548"/>
+        <location filename="multiimagewritethread.cpp" line="1550"/>
         <source>Finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="multiimagewritethread.cpp" line="1656"/>
-        <location filename="multiimagewritethread.cpp" line="1749"/>
+        <location filename="multiimagewritethread.cpp" line="1658"/>
+        <location filename="multiimagewritethread.cpp" line="1751"/>
         <source>Error downloading or writing OS to SD card</source>
         <translation>Fel vid nedladdning eller skrivning av OS till SD-kort</translation>
     </message>
@@ -2340,7 +2336,8 @@ Are you sure?</source>
 <context>
     <name>QMainWindow</name>
     <message>
-        <location filename="main.cpp" line="521"/>
+        <location filename="main.cpp" line="531"/>
+        <location filename="main.cpp" line="552"/>
         <source>For recovery mode, hold SHIFT
 click mouse
 or press joystick...</source>
@@ -3261,6 +3258,49 @@ Break</source>
     <message>
         <location filename="wifisettingsdialog.cpp" line="310"/>
         <source>Connecting</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>adjustSizes</name>
+    <message>
+        <location filename="adjustsizes.ui" line="14"/>
+        <source>Adjust size of OSes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="adjustsizes.ui" line="57"/>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="adjustsizes.cpp" line="62"/>
+        <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
+        <translation type="unfinished">RISCOS kan ej installeras. RISCOS förskjutningsvärde (offset) matchar ej.</translation>
+    </message>
+    <message>
+        <location filename="adjustsizes.cpp" line="68"/>
+        <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
+        <translation type="unfinished">RISCOS kan ej installeras. RISCOS förskjutningsvärde (offset) saknas.</translation>
+    </message>
+    <message>
+        <location filename="adjustsizes.cpp" line="73"/>
+        <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
+        <translation type="unfinished">RISCOS kan inte bli installerad. Återställningspartition för stor.</translation>
+    </message>
+    <message>
+        <location filename="adjustsizes.cpp" line="102"/>
+        <source>More than one operating system requires partition number %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="adjustsizes.cpp" line="107"/>
+        <source>Operating system cannot require a system partition (1,5)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="adjustsizes.cpp" line="112"/>
+        <source>Operating system cannot claim both primary partitions 2 and 4</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
