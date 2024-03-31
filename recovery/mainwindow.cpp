@@ -34,9 +34,9 @@
 #include "dlginstall.h"
 #include "sleepsimulator.h"
 #define LOCAL_DBG_ON   0
-#define LOCAL_DBG_FUNC 1
-#define LOCAL_DBG_OUT  1
-#define LOCAL_DBG_MSG  1
+#define LOCAL_DBG_FUNC 0
+#define LOCAL_DBG_OUT  0
+#define LOCAL_DBG_MSG  0
 
 #include "mydebug.h"
 
@@ -443,6 +443,15 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
 
     setModelInfo();
 
+    if (_model.contains("Pi 5"))
+    {
+        extern QApplication * gApp;
+
+        fontsize=10;
+        QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
+        gApp->setStyleSheet(stylesheet);
+        QWSServer::instance()->refresh();
+    }
 
     if (!cmdline.contains("no_overrides"))
         loadOverrides("/mnt/overrides.json");
@@ -1799,7 +1808,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             QWSServer::instance()->refresh();
             //qDebug() << "Using fontsize "<<fontsize;
         }
-        if (keyEvent->key() == Qt::Key_Minus && fontsize >11)
+        if (keyEvent->key() == Qt::Key_Minus && fontsize >9)
         {
             fontsize--;
             QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
@@ -2713,7 +2722,7 @@ void MainWindow::updateNeeded()
     else
     {
         colorNeededLabel = Qt::black;
-        if (_neededDownloadMB)
+        if (selected.count())
         {
             /* Enable Download button if a selection has been made that fits on the card */
             /* AND all download sizes are calculated */
@@ -4585,14 +4594,14 @@ void MainWindow::downloadUpdateComplete()
 int MainWindow::updatePinn()
 {
     int error=0;
-
+    int dummy;
     //When PINN is updated, We don't need these files to be extracted
     QString exclusions = " -x recovery.cmdline -x updatepinn -x exclude.txt";
 
-    QProcess::execute("mount -o remount,rw /mnt");
+    readexec(1,"mount -o remount,rw /mnt",dummy);
 
     //First we'll extract these 2 files to /tmp to automate hte update process
-    QProcess::execute("unzip /tmp/pinn-lite.zip -o exclude.txt updatepinn -d /tmp");
+    readexec(1,"unzip /tmp/pinn-lite.zip -o exclude.txt updatepinn preupdate -d /tmp",dummy);
 
     if (QFile::exists("/tmp/exclude.txt"))
     {
@@ -4608,30 +4617,38 @@ int MainWindow::updatePinn()
         }
     }
 
+    //Save the existing installation in case of failure
+    InitDriveThread::saveBootFiles();
 
     //In case we need to do some additional upgrade processing
     if (QFile::exists("/tmp/preupdate"))
     {
         QProcess::execute("chmod +x /tmp/preupdate");
-        error = QProcess::execute("/tmp/preupdate");
+        readexec(1,"/tmp/preupdate",error);
     }
-
     if (!error)
     {
         //Extract all the files to Recovery, except our excluded set
         QString cmd = "unzip /tmp/pinn-lite.zip -o" + exclusions + " -d /mnt";
-        QProcess::execute(cmd);
+        readexec(1,cmd,dummy);
 
         //In case we need to do some additional upgrade processing
         if (QFile::exists("/tmp/updatepinn"))
         {
             QProcess::execute("chmod +x /tmp/updatepinn");
-            QProcess::execute("/tmp/updatepinn");
+            error = QProcess::execute("/tmp/updatepinn");
         }
     }
     else
+    {
+        int dummy;
+        QString cmd;
         qDebug() << "preupdate failed.";
+        cmd = "sh -c \" cd /mnt; rm -rf *\"";
+        QString type = readexec(1,cmd, dummy);
 
+        InitDriveThread::restoreBootFiles();
+    }
 
     QProcess::execute("mount -o remount,ro /mnt");
 
