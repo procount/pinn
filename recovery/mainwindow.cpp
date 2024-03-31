@@ -2182,7 +2182,7 @@ void MainWindow::onOnlineStateChanged(bool online)
             UpdateTime();
             QString cmdline = getFileContents("/proc/cmdline");
             if (!cmdline.contains("no_update"))
-                checkForUpdates();
+                checkForUpdates(true);
             else
                 qDebug()<<"Skipping self update check";
 
@@ -4608,13 +4608,14 @@ void MainWindow::downloadUpdateComplete()
 int MainWindow::updatePinn()
 {
     int error=0;
+    int dummy;
     //When PINN is updated, We don't need these files to be extracted
     QString exclusions = " -x cmdline.txt -x updatepinn -x exclude.txt";
 
-    QProcess::execute("mount -o remount,rw /mnt");
+    readexec(1,"mount -o remount,rw /mnt",dummy);
 
     //First we'll extract these 2 files to /tmp to automate hte update process
-    QProcess::execute("unzip /tmp/pinn-lite.zip -o exclude.txt updatepinn preupdate -d /tmp");
+    readexec(1,"unzip /tmp/pinn-lite.zip -o exclude.txt updatepinn preupdate -d /tmp",dummy);
 
     if (QFile::exists("/tmp/exclude.txt"))
     {
@@ -4637,13 +4638,13 @@ int MainWindow::updatePinn()
     if (QFile::exists("/tmp/preupdate"))
     {
         QProcess::execute("chmod +x /tmp/preupdate");
-        error=QProcess::execute("/tmp/preupdate");
+        readexec(1,"/tmp/preupdate",error);
     }
     if (!error)
     {
         //Extract all the files to Recovery, except our excluded set
         QString cmd = "unzip /tmp/pinn-lite.zip -o" + exclusions + " -d /mnt";
-        QProcess::execute(cmd);
+        readexec(1,cmd,dummy);
 
         //In case we need to do some additional upgrade processing
         if (QFile::exists("/tmp/updatepinn"))
