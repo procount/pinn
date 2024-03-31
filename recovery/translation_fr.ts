@@ -2346,7 +2346,9 @@ Are you sure?</source>
         <source>For recovery mode, hold SHIFT
 click mouse
 or press joystick...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">pour le mode de récupération, maintenez SHIFT
+cliquez sur la souris
+ou appuyez sur le joystick...</translation>
     </message>
 </context>
 <context>

@@ -2180,7 +2180,7 @@ void MainWindow::onOnlineStateChanged(bool online)
             UpdateTime();
             QString cmdline = getFileContents("/proc/cmdline");
             if (!cmdline.contains("no_update"))
-                checkForUpdates();
+                checkForUpdates(true);
             else
                 qDebug()<<"Skipping self update check";
 
@@ -4526,7 +4526,7 @@ void MainWindow::downloadUpdateComplete()
         if (error)
         {
             if (_bdisplayUpdate)
-                QMessageBox::critical(this, tr("PINN update failed"), tr(""), QMessageBox::Close);
+                QMessageBox::critical(this, tr("PINN update"), tr("Update failed"), QMessageBox::Close);
             return;
         }
         else
