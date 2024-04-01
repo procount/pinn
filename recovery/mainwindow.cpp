@@ -33,6 +33,7 @@
 #include "simulate.h"
 #include "dlginstall.h"
 #include "sleepsimulator.h"
+
 #define LOCAL_DBG_ON   0
 #define LOCAL_DBG_FUNC 0
 #define LOCAL_DBG_OUT  0
@@ -151,7 +152,7 @@ void MainWindow::expired(void)
 MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSplash *splash, bool noobsconfig, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    _qpd(NULL), _kcpos(0), _defaultDisplay(defaultDisplay),
+    _qpd(NULL), _qpssd(NULL), _qpdup(NULL), _kcpos(0), _defaultDisplay(defaultDisplay),
     _silent(false), _allowSilent(false), _showAll(false), _fixate(false), _splash(splash), _settings(NULL),
     _hasWifi(false), _numInstalledOS(0), _numBootableOS(0), _devlistcount(0), _netaccess(NULL), _displayModeBox(NULL), _drive(drive),
     _bootdrive(drive), _noobsconfig(noobsconfig), _numFilesToCheck(0), _eDownloadMode(MODE_INSTALL), _proc(NULL)
@@ -1113,7 +1114,6 @@ void MainWindow::on_actionReinstall_triggered()
 
 void MainWindow::doReinstall()
 {
-
     _newList.clear();
     QList<QListWidgetItem *> installedList;
 
@@ -1564,7 +1564,9 @@ void MainWindow::onQpdError(const QString &msg)
 
     qDebug() << "Error:" << msg;
     if (_qpd)
+    {
         _qpd->hide();
+    }
     QMessageBox::critical(this, tr("Error"), msg, QMessageBox::Close);
     setEnabled(true);
     _piDrivePollTimer.start(POLLTIME);
@@ -2245,7 +2247,9 @@ void MainWindow::downloadRepoListComplete()
     if (reply->error() != reply->NoError || httpstatuscode < 200 || httpstatuscode > 399)
     {
         if (_qpd)
+        {
             _qpd->hide();
+        }
         QString errstr = tr("Error downloading distribution list from Internet:\n") + reply->url().toString();
         qDebug() << "Error Downloading "<< reply->url()<<" reply: "<< reply->error() << " httpstatus: "<< httpstatuscode;
         QMessageBox::critical(this, tr("Download error"), errstr, QMessageBox::Close);
@@ -2383,7 +2387,9 @@ void MainWindow::downloadListComplete()
     if (reply->error() != reply->NoError || httpstatuscode < 200 || httpstatuscode > 399)
     {
         if (_qpd)
+        {
             _qpd->hide();
+        }
         QString errstr = tr("Error downloading distribution list from Internet:\n") + reply->url().toString();
         qDebug() << "Error Downloading "<< reply->url()<<" reply: "<< reply->error() << " httpstatus: "<< httpstatuscode;
         QMessageBox::critical(this, tr("Download error"), errstr, QMessageBox::Close);
@@ -4342,7 +4348,6 @@ void MainWindow::on_actionClone_triggered()
 
 void MainWindow::onCloneCompleted()
 {
-
     _qpd->hide();
 
     QMessageBox::information(this,
@@ -4357,7 +4362,9 @@ void MainWindow::onCloneError(const QString &msg)
 
     qDebug() << "Error:" << msg;
     if (_qpd)
+    {
         _qpd->hide();
+    }
     _qpd->deleteLater();
     _qpd = NULL;
     QMessageBox::critical(this, tr("Error"), msg, QMessageBox::Close);
@@ -4394,7 +4401,6 @@ void MainWindow::on_actionPassword_triggered()
 
 void MainWindow::checkForUpdates(bool display)
 {
-
     _bdisplayUpdate = display;
     _numBuildsToDownload=0;
     downloadUpdate(BUILD_URL,  "BUILD|" BUILD_NEW);
@@ -4404,7 +4410,6 @@ void MainWindow::checkForUpdates(bool display)
 
 void MainWindow::downloadUpdate(const QString &urlstring, const QString &saveAs)
 {
-
     //NOTE: saveAs=type|filename
     _numBuildsToDownload++;
     qDebug() << "Downloading" << urlstring << "to" << saveAs;
@@ -4418,7 +4423,6 @@ void MainWindow::downloadUpdate(const QString &urlstring, const QString &saveAs)
 
 void MainWindow::downloadUpdateRedirectCheck()
 {
-
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     int httpstatuscode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     QString redirectionurl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
@@ -4505,7 +4509,7 @@ void MainWindow::downloadUpdateComplete()
 
         if (_qpd)
         {
-            ((QProgressDialog*)_qpd)->setLabel( new QLabel(tr("PINN will now update and reboot in a few secs...")));
+            ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("PINN will now update and reboot in a few secs...")));
             QApplication::processEvents();
             SleepSimulator s;
             s.sleep(1000);
@@ -4516,11 +4520,11 @@ void MainWindow::downloadUpdateComplete()
         QProcess::execute(QString("rm ")+BUILD_IGNORE);
         QProcess::execute("sync");
 
-        if (_qpd)
+        if (_qpdup)
         {
-            _qpd->hide();
-            _qpd->deleteLater();
-            _qpd = NULL;
+            _qpdup->hide();
+            _qpdup->deleteLater();
+            _qpdup = NULL;
         }
 
         if (error)
@@ -4618,23 +4622,36 @@ int MainWindow::updatePinn()
     }
 
     //Save the existing installation in case of failure
+    ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Saving current version")));
+    QApplication::processEvents();
+
+
     InitDriveThread::saveBootFiles();
 
     //In case we need to do some additional upgrade processing
     if (QFile::exists("/tmp/preupdate"))
     {
+        ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Executing preupdate")));
+        QApplication::processEvents();
+
         QProcess::execute("chmod +x /tmp/preupdate");
         readexec(1,"/tmp/preupdate",error);
     }
     if (!error)
     {
         //Extract all the files to Recovery, except our excluded set
+        ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Extracting update")));
+        QApplication::processEvents();
+
         QString cmd = "unzip /tmp/pinn-lite.zip -o" + exclusions + " -d /mnt";
         readexec(1,cmd,dummy);
 
         //In case we need to do some additional upgrade processing
         if (QFile::exists("/tmp/updatepinn"))
         {
+            ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Executing updatepinn")));
+            QApplication::processEvents();
+
             QProcess::execute("chmod +x /tmp/updatepinn");
             error = QProcess::execute("/tmp/updatepinn");
         }
@@ -4647,6 +4664,9 @@ int MainWindow::updatePinn()
         cmd = "sh -c \" cd /mnt; rm -rf *\"";
         QString type = readexec(1,cmd, dummy);
 
+        ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Update failed. Restoring previous version")));
+        QApplication::processEvents();
+
         InitDriveThread::restoreBootFiles();
     }
 
@@ -4657,7 +4677,6 @@ int MainWindow::updatePinn()
 
 void MainWindow::on_newVersion()
 {
-
     QMessageBox msgBox;
     msgBox.setWindowTitle(tr("PINN UPDATE"));
     msgBox.setText(tr("A new version of PINN is available"));
@@ -4693,11 +4712,11 @@ void MainWindow::on_newVersion()
         case QMessageBox::Yes:
             // Yes was clicked
             setEnabled(false);
-            _qpd = new QProgressDialog( QString(tr("Downloading Update")), QString(), 0, 0, this);
-            _qpd->setWindowModality(Qt::WindowModal);
-            _qpd->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
-            _qpd->setWindowTitle("Updating PINN");
-            _qpd->show();
+            _qpdup = new QProgressDialog( QString(tr("Downloading Update")), QString(), 0, 0, this);
+            _qpdup->setWindowModality(Qt::WindowModal);
+            _qpdup->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+            _qpdup->setWindowTitle("Updating PINN");
+            _qpdup->show();
             downloadUpdate(UPDATE_URL,  "UPDATE|" UPDATE_NEW);
             break;
         case QMessageBox::No:

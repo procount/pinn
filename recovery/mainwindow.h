@@ -57,6 +57,7 @@ protected:
     OsGroup * ug;
     QDialog *_qpd;
     QDialog *_qpssd;
+    QDialog *_qpdup;
     QList <int> _kc;
     QLabel *_info;
     int _infoDelay;
