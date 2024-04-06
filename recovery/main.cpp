@@ -431,6 +431,7 @@ int main(int argc, char *argv[])
         wallpaperName = "/mnt/wallpaper.png";
 
     QRect screen= a.desktop()->availableGeometry(); //Also used for font scaling
+    qDebug()<< "Geometry: "<< screen;
 
     if (QFile::exists(wallpaperName))
     {
