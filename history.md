@@ -5,6 +5,13 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.8.8
+
+- **Translations**     - Fixed translation of initial messages.
+- **Self-Update**      - upgraded implementation in preparation for Pi5
+- **Partition size **  - Updated to 128MB
+- **mkswap**           - Added support for an additional swap partition
+
 ### V3.8.7f
 
 - **Usability**      - Updated info message when updating PINN'

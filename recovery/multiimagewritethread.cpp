@@ -478,6 +478,7 @@ bool MultiImageWriteThread::writePartitionTable(const QString &drive, const QMap
     partitionMap.insert(1, new PartitionInfo(1, startP1, sizeP1, "0E", NULL)); /* FAT boot partition */
     partitionMap.insert(5, new PartitionInfo(5, startP5, sizeP5, "L", NULL)); /* Ext4 settings partition */
 
+    //@@ if drive ==_drive
     //@@ change sizeExtended to totalsize - any primary partitions - provision
 
     uint sizeExtended = partitionMap.values().last()->endSector() - startExtended;
