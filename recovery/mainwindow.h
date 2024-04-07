@@ -52,6 +52,11 @@ public:
         return ug->allItems();
     }
 
+    enum UpdateMode {
+        EUPDATEMANUAL,
+        EUPDATEAUTO
+    };
+
 protected:
     Ui::MainWindow *ui;
     OsGroup * ug;
@@ -84,7 +89,7 @@ protected:
     QLabel *_checkLabel;
     QProcess * _pbackground;
     int _numFilesToCheck;
-    bool _bdisplayUpdate;
+    enum UpdateMode _updateMode;
     QSize _currentsize;
     CountdownFilter counter;
     int _networkTimeout;
@@ -131,7 +136,7 @@ protected:
     void downloadList(const QString &urlstring);
     void assignPixmap(QString originalurl, QPixmap &pix);
     void downloadLists();
-    void checkForUpdates(bool display = false);
+    void checkForUpdates(enum UpdateMode mode);
     void downloadUpdate(const QString &urlstring, const QString &saveAs);
     void startImageWrite();
     void startImageReinstall();

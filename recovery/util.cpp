@@ -172,18 +172,15 @@ uint readBoardRevision()
     if (revision == 0)
     {
         QProcess proc;
-        proc.start("vcgencmd otp_dump");
-        proc.waitForFinished();
-        QList<QByteArray> lines = proc.readAll().split('\n');
-        for (int i=0; i < lines.size(); i++)
-        {
-            if (lines.at(i).startsWith("30:"))
-            {
-                bool ok;
-                revision = lines.at(i).right(8).toUInt(&ok, 16) & 0xFFFFFF;
-                break;
-            }
-        }
+        proc.start("sh -c \"cat /proc/cpuinfo|grep Revision|cut -d ' ' -f 2\"");
+	qDebug() << "Revision: "<<        proc.waitForFinished();
+        bool bStatus=0;
+        QString MyHexString = "0x"+proc.readAll();
+	MyHexString = MyHexString.trimmed();
+        revision = MyHexString.toUInt(&bStatus,16);
+	if (bStatus ==0)
+            revision=0;
+        qDebug() << "Revision: " << MyHexString << " " << revision;
     }
     return revision;
 }

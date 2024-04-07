@@ -1129,7 +1129,7 @@ void MainWindow::doReinstall()
             //Only check upgrades to PINN if it is the ONLY Os to be reinstalled
             //Because it causes a reboot
             if (requireNetwork())
-                checkForUpdates( true );
+                checkForUpdates( EUPDATEMANUAL );
             return;
         }
         //Otherwise ignore PINN if there are more selected
@@ -1808,7 +1808,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
             gApp->setStyleSheet(stylesheet);
             QWSServer::instance()->refresh();
-            //qDebug() << "Using fontsize "<<fontsize;
+            qDebug() << "Using fontsize "<<fontsize;
         }
         if (keyEvent->key() == Qt::Key_Minus && fontsize >9)
         {
@@ -1816,7 +1816,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
             gApp->setStyleSheet(stylesheet);
             QWSServer::instance()->refresh();
-            //qDebug() << "Using fontsize "<<fontsize;
+            qDebug() << "Using fontsize "<<fontsize;
         }
 
         // Catch Return key to trigger OS boot
@@ -2182,9 +2182,11 @@ void MainWindow::onOnlineStateChanged(bool online)
             UpdateTime();
             QString cmdline = getFileContents("/proc/cmdline");
             if (!cmdline.contains("no_update"))
-                checkForUpdates(true);
+                checkForUpdates( EUPDATEAUTO );
             else
                 qDebug()<<"Skipping self update check";
+
+            qDebug() <<"Online! repo_list= "<<repoList;
 
             downloadRepoList(repoList);
         }
@@ -4399,9 +4401,10 @@ void MainWindow::on_actionPassword_triggered()
     }
 }
 
-void MainWindow::checkForUpdates(bool display)
+void MainWindow::checkForUpdates(enum UpdateMode mode)
 {
-    _bdisplayUpdate = display;
+
+    _updateMode = mode;
     _numBuildsToDownload=0;
     downloadUpdate(BUILD_URL,  "BUILD|" BUILD_NEW);
     downloadUpdate(README_URL, "README|" README_NEW);
@@ -4469,7 +4472,7 @@ void MainWindow::downloadUpdateComplete()
         else
         {
             _numBuildsToDownload--;
-            if (_bdisplayUpdate && type =="BUILD")
+            if ((_updateMode == EUPDATEMANUAL) && (type =="BUILD"))
             {
                 QMessageBox::information(this, tr("PINN Update Check"), tr("Error contacting update server"), QMessageBox::Close);
             }
@@ -4529,8 +4532,8 @@ void MainWindow::downloadUpdateComplete()
 
         if (error)
         {
-            if (_bdisplayUpdate)
-                QMessageBox::critical(this, tr("PINN update"), tr("Update failed"), QMessageBox::Close);
+            if (_updateMode == EUPDATEMANUAL)
+                QMessageBox::critical(this, tr("PINN update failed"), tr(""), QMessageBox::Close);
             return;
         }
         else
@@ -4564,7 +4567,7 @@ void MainWindow::downloadUpdateComplete()
     {
         BuildData currentver, newver, ignorever;
 
-        if (_bdisplayUpdate)
+        if (_updateMode == EUPDATEMANUAL)
         {   //If user manually asks for an update check, then remove the ignore file.
             QProcess::execute(QString("rm ")+BUILD_IGNORE);
             QProcess::execute("sync");
@@ -4588,7 +4591,7 @@ void MainWindow::downloadUpdateComplete()
         {
             on_newVersion();
         }
-        else if (_bdisplayUpdate)
+        else if (_updateMode==EUPDATEMANUAL)
         {
             QMessageBox::information(this, tr("PINN Update Check"), tr("No updates available"), QMessageBox::Close);
         }
@@ -4656,10 +4659,16 @@ int MainWindow::updatePinn()
             error = QProcess::execute("/tmp/updatepinn");
         }
     }
-    else
+    if (error)
     {
         int dummy;
         QString cmd;
+
+        if (_qpd)
+        {
+            ((QProgressDialog*)_qpd)->setLabel( new QLabel(tr("Update failed. Restoring previous version.")));
+            QApplication::processEvents();
+        }
         qDebug() << "preupdate failed.";
         cmd = "sh -c \" cd /mnt; rm -rf *\"";
         QString type = readexec(1,cmd, dummy);
