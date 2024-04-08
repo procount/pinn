@@ -89,7 +89,7 @@ ConfEditDialog::ConfEditDialog(const QVariantMap &map, const QString &partition,
     {  //This is the PINN reference
         QProcess::execute("mount -o remount,rw /mnt");
         _tabs.append(new ConfEditDialogTab("config.txt", "/mnt/config.txt", false, ui->tabWidget));
-        _tabs.append(new ConfEditDialogTab("recovery.cmdline", "/mnt/recovery.cmdline", false, ui->tabWidget));
+        _tabs.append(new ConfEditDialogTab("cmdline.txt", "/mnt/cmdline.txt", false, ui->tabWidget));
         ui->pbEdit->show();
     }
     else
@@ -173,7 +173,7 @@ void ConfEditDialog::options_finished(int result)
 {
     ui->tabWidget->removeTab(_tabs.count()-1);
     _tabs.removeLast();
-    _tabs.append(new ConfEditDialogTab("recovery.cmdline", "/mnt/recovery.cmdline", false, ui->tabWidget));
+    _tabs.append(new ConfEditDialogTab("cmdline.txt", "/mnt/cmdline.txt", false, ui->tabWidget));
 }
 
 void ConfEditDialog::on_cbvk_toggled(bool checked)

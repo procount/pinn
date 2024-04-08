@@ -251,19 +251,19 @@ else
 fi
 
 # copy rootfs
-cp "$IMAGES_DIR/rootfs.squashfs" "$FINAL_OUTPUT_DIR/recovery.rfs"
-#cp "$IMAGES_DIR/rootfs.cpio.lzo" "$FINAL_OUTPUT_DIR/recovery.rfs"
+cp "$IMAGES_DIR/rootfs.squashfs" "$FINAL_OUTPUT_DIR/pinn.rfs"
+#cp "$IMAGES_DIR/rootfs.cpio.lzo" "$FINAL_OUTPUT_DIR/pinn.rfs"
 
 # Ensure that final output dir contains files necessary to boot
-cp "$IMAGES_DIR/rpi-firmware/start.elf" "$FINAL_OUTPUT_DIR/recovery.elf"
+cp "$IMAGES_DIR/rpi-firmware/start.elf" "$FINAL_OUTPUT_DIR/start.elf"
 
-cp "$IMAGES_DIR/rpi-firmware/start4.elf" "$FINAL_OUTPUT_DIR/recover4.elf"
-cp "$IMAGES_DIR/rpi-firmware/fixup.dat" "$FINAL_OUTPUT_DIR/fixup_rc.dat"
-cp "$IMAGES_DIR/rpi-firmware/fixup4.dat" "$FINAL_OUTPUT_DIR/fixup4rc.dat"
+cp "$IMAGES_DIR/rpi-firmware/start4.elf" "$FINAL_OUTPUT_DIR/start4.elf"
+cp "$IMAGES_DIR/rpi-firmware/fixup.dat" "$FINAL_OUTPUT_DIR/fixup.dat"
+cp "$IMAGES_DIR/rpi-firmware/fixup4.dat" "$FINAL_OUTPUT_DIR/fixup4.dat"
 cp "$IMAGES_DIR/rpi-firmware/config.txt" "$FINAL_OUTPUT_DIR"
 cp "$IMAGES_DIR/rpi-firmware/bootcode.bin" "$FINAL_OUTPUT_DIR"
 cp -a $IMAGES_DIR/*.dtb "$IMAGES_DIR/overlays" "$FINAL_OUTPUT_DIR"
-cp "$IMAGES_DIR/cmdline.txt" "$FINAL_OUTPUT_DIR/recovery.cmdline"
+cp "$IMAGES_DIR/cmdline.txt" "$FINAL_OUTPUT_DIR/cmdline.txt"
 cp "$IMAGES_DIR/recovery.cmdline.new" "$FINAL_OUTPUT_DIR"
 touch "$FINAL_OUTPUT_DIR/RECOVERY_FILES_DO_NOT_EDIT"
 

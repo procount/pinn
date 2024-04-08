@@ -69,7 +69,7 @@ void runCustomScript(const QString &driveDev, int partNr, const QString &cmd, bo
     bool mntStillMounted = true ; // suppose yes.
 
     // check if /mnt is still mounted to the recovery partition.
-    if (QFile::exists("/mnt/recovery.rfs"))
+    if (QFile::exists("/mnt/pinn.rfs"))
     {
         mntStillMounted = true ;
     }
@@ -141,7 +141,7 @@ bool hasInstalledOS(const QString &drive)
 
 QString findRecoveryDrive()
 {
-    /* Search for drive with recovery.rfs */
+    /* Search for drive with pinn.rfs */
     QString drive;
     QString dirname  = "/sys/class/block";
     QDir    dir(dirname);
@@ -178,9 +178,9 @@ QString findRecoveryDrive()
         if (QProcess::execute("mount -t vfat -o ro /dev/"+devname+" /mnt") == 0)
         {
 
-            if (QFile::exists("/mnt/recovery.rfs"))
+            if (QFile::exists("/mnt/pinn.rfs"))
             {
-                qDebug() << "Found recovery.rfs at" << devname;
+                qDebug() << "Found pinn.rfs at" << devname;
 
                 // We are interested in the drive, not the exact partition
                 drive = "/dev/"+devname;
@@ -320,6 +320,7 @@ int main(int argc, char *argv[])
             if (argc > i+1)
             {
                   repoList = argv[i+1];
+                  qDebug() <<"Read repo_list from args: "<<repoList;
             }
         }
         // Allow gpio channel to be specified in commandline
@@ -381,6 +382,8 @@ int main(int argc, char *argv[])
         //and partition1 does not exist. But we found a drive, so assume it is mbr-less
         QProcess::execute("mount -o ro -t vfat "+drive+" /mnt");
     }
+
+
 
     cec = enableCEC();
     cec->loadMap("cec_keys.json");
@@ -601,7 +604,6 @@ int main(int argc, char *argv[])
     // Main window in the middle of screen
     MainWindow mw(drive, defaultDisplay, splash, noobsconfig);
     gMW = &mw;  //Make it available globally.
-
     mw.setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, mw.size(), a.desktop()->availableGeometry()));
     mw.show();
 

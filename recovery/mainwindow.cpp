@@ -338,7 +338,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
                     }
                     else
                     {
-                        QString cmdlinefilename = "/mnt/recovery.cmdline";
+                        QString cmdlinefilename = "/mnt/cmdline.txt";
                         if (!QFile::exists(cmdlinefilename))
                             cmdlinefilename = "/mnt/cmdline.txt";
 
@@ -802,7 +802,7 @@ bool MainWindow::canInstallOs(const QString &name, const QVariantMap &values)
         }
     }
 
-    /* Display OS in list if it is supported or "showall" is specified in recovery.cmdline */
+    /* Display OS in list if it is supported or "showall" is specified in cmdline.txt */
     if (_showAll)
     {
         return true;
@@ -4603,7 +4603,7 @@ int MainWindow::updatePinn()
     int error=0;
     int dummy;
     //When PINN is updated, We don't need these files to be extracted
-    QString exclusions = " -x recovery.cmdline -x updatepinn -x exclude.txt";
+    QString exclusions = " -x cmdline.txt -x updatepinn -x exclude.txt";
 
     readexec(1,"mount -o remount,rw /mnt",dummy);
 

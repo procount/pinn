@@ -51,7 +51,7 @@ void FullFatThread::run()
         return;
     }
 
-    QString cmdlinefilename = "/mnt/recovery.cmdline";
+    QString cmdlinefilename = "/mnt/cmdline.txt";
     if (!QFile::exists(cmdlinefilename))
         cmdlinefilename = "/mnt/cmdline.txt";
 
