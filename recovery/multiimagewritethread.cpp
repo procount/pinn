@@ -479,6 +479,7 @@ bool MultiImageWriteThread::writePartitionTable(const QString &drive, const QMap
     partitionMap.insert(1, new PartitionInfo(1, startP1, sizeP1, "0E", NULL)); /* FAT boot partition */
     partitionMap.insert(5, new PartitionInfo(5, startP5, sizeP5, "L", NULL)); /* Ext4 settings partition */
 
+    //@@ if drive ==_drive
     //@@ change sizeExtended to totalsize - any primary partitions - provision
 
     uint sizeExtended = partitionMap.values().last()->endSector() - startExtended;
@@ -820,7 +821,7 @@ QMessageBox::ButtonRole MultiImageWriteThread::processImage(OsInfo *image)
                     emit startAccounting();
                     result = untar(tarball,csumType, csum);
 
-                    //#447 - check the permissions on /media/*
+                    //#447 - check the permissions on /media/ *
                     correct_media_permissions();
 
                     emit statusUpdate(tr("Syncing Filesystem"));

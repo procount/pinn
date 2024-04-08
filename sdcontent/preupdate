@@ -16,6 +16,6 @@ if [ $mntsize -lt $pi5minsize ]; then
 fi
 
 cd /mnt
-rm -rf *
+#rm -rf *
 
 exit 0
