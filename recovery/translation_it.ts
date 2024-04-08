@@ -1178,12 +1178,12 @@ Sei sicuro di voler continuare?</translation>
     <message>
         <location filename="mainwindow.cpp" line="4515"/>
         <source>PINN will now update and reboot in a few secs...</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN ora si aggiornerà e si riavvierà tra pochi secondi...</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4536"/>
         <source>PINN update failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiornamento PINN non riuscito</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4596"/>
@@ -1193,32 +1193,34 @@ Sei sicuro di voler continuare?</translation>
     <message>
         <location filename="mainwindow.cpp" line="4628"/>
         <source>Saving current version</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvataggio versione attuale</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4637"/>
         <source>Executing preupdate</source>
-        <translation type="unfinished"></translation>
+        <translation>Esecuzione pre-aggiornamento</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4646"/>
         <source>Extracting update</source>
-        <translation type="unfinished"></translation>
+        <translation>Estrazione aggiornamento</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4655"/>
         <source>Executing updatepinn</source>
-        <translation type="unfinished"></translation>
+        <translation>Esecuzione aggiornamento PINN</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4669"/>
         <source>Update failed. Restoring previous version.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiornamento non riuscito. 
+Ripristino versione precedente.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4676"/>
         <source>Update failed. Restoring previous version</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiornamento non riuscito. 
+Ripristino della versione precedente</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="4690"/>
