@@ -4510,7 +4510,7 @@ void MainWindow::downloadUpdateComplete()
     {
         qDebug() << "Time to update PINN!";
 
-        if (_qpd)
+        if (_qpdup)
         {
             ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("PINN will now update and reboot in a few secs...")));
             QApplication::processEvents();
@@ -4664,17 +4664,15 @@ int MainWindow::updatePinn()
         int dummy;
         QString cmd;
 
-        if (_qpd)
-        {
-            ((QProgressDialog*)_qpd)->setLabel( new QLabel(tr("Update failed. Restoring previous version.")));
-            QApplication::processEvents();
-        }
         qDebug() << "preupdate failed.";
         cmd = "sh -c \" cd /mnt; rm -rf *\"";
         QString type = readexec(1,cmd, dummy);
 
-        ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Update failed. Restoring previous version")));
-        QApplication::processEvents();
+        if (_qpdup)
+        {
+            ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Update failed. Restoring previous version.")));
+            QApplication::processEvents();
+        }
 
         InitDriveThread::restoreBootFiles();
     }
