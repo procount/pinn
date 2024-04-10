@@ -17,7 +17,6 @@
 # Retry any pending requests
 
 (cd /sys/class/firmware
-ls
 while [ "$(ls | wc -l)" != "1" ]; do
     for F in *; do
         if [ -d "$F" ]; then
@@ -102,8 +101,6 @@ fi
 pinndrive=
 mkdir -p /tmp/mnt
 cd /sys/class/block
-
-mount
 
 while [ "$pinndrive" = "" ]
 do
@@ -215,7 +212,7 @@ fi
         DEFAULT_DSI=-dsi
     fi
 
-if [ -n "$pinndrive" ] ; then
+    if [ -n "$pinndrive" ] ; then
         DEFAULT_DRIVE="-pinndrive=$pinndrive"
     fi
 
