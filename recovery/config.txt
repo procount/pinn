@@ -2,6 +2,7 @@ gpu_mem=16
 start_file=start.elf
 fixup_file=fixup.dat
 
+disable_overscan=1
 initramfs pinn.rfs
 
 [pi4]
@@ -13,3 +14,4 @@ max_framebuffers=2
 kernel=kernel8.img
 overlay_prefix=overlays6/
 dtoverlay=vc4-kms-v3d
+max_framebuffers=2
