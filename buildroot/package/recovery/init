@@ -117,7 +117,7 @@ do
             ;;
           *)
             echo "$d">>/tmp/init.log
-            umount /dev/$d 2>/dev/null # jus tin case it is already mounted
+            umount /dev/$d 2>/dev/null # just in case it is already mounted
             mount /dev/$d /tmp/mnt 2>/dev/null
             if [ $? -eq 0 ]; then
               if [ -f "/tmp/mnt/pinn.rfs" ]; then
