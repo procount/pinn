@@ -28,9 +28,9 @@
 #define DEFAULT_REPO_SERVER  "http://raw.githubusercontent.com/procount/pinn-os/master/os/os_all.json"
 
 /* Location of data for self-updating */
-#define BUILD_URL       "http://downloads.sourceforge.net/project/pinn/pinn64/BUILD-DATA"
-#define UPDATE_URL      "http://downloads.sourceforge.net/project/pinn/pinn64/pinn-lite.zip"
-#define README_URL      "http://downloads.sourceforge.net/project/pinn/pinn64/README.md"
+#define BUILD_URL       "http://downloads.sourceforge.net/project/pinn/beta/BUILD-DATA"
+#define UPDATE_URL      "http://downloads.sourceforge.net/project/pinn/beta/pinn-lite.zip"
+#define README_URL      "http://downloads.sourceforge.net/project/pinn/beta/README.md"
 
 #define GROUP_URL       "http://raw.githubusercontent.com/procount/pinn-os/master/os/overrides.json"
 #define BUILD_CURRENT   "/mnt/BUILD-DATA"
