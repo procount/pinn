@@ -1,21 +1,73 @@
 #!/bin/sh
 
-#orgsize=64366    # orignal 63M size of Pi4 partition
-
-pi5minsize=$(expr 1520 + $(unzip -l /tmp/pinn-lite.zip|tail -n1 | sed 's|\s\+| |g'| sed 's|^ ||' | cut -d ' ' -f 1) / 1024)
-echo $pi5minsize
-
-#pi5minsize=64000 # required size for new Pi5 beta. Actual= 63784
+orgsize=65535    # orignal 63M size of Pi4 partition
 
 #get size of the /mnt partition
 mntsize=`df  | grep /mnt | sed  's|\s\+|,|g' | cut -d ',' -f 2`
+
+cd /mnt
+
+#if partition is still 63M, use the new wallpaper to save space
+if [ $mntsize -lt $orgsize ]; then
+	unzip /tmp/pinn-lite.zip wallpaper2.jpg
+	mv wallpaper2.jpg wallpaper.jpg
+	echo "wallpaper.jpg" >>/tmp/exclude.txt
+fi
+
+#if we have not changed to the new names yet, rename them so we do not run out of space when we unzip
+if [ -f recovery.rfs ]; then
+
+	#record pertinent configurations to avoid loss of remote connection
+	vncshare=""
+	ssh=""
+	forcetrigger=""
+
+	grep "vncshare" recovery.cmdline >/dev/null
+	if [ $? -eq 0 ]; then vncshare="vncshare"; fi
+
+	grep "ssh" recovery.cmdline >/dev/null
+	if [ $? -eq 0 ]; then ssh="ssh"; fi
+
+	grep "forctrigger" recovery.cmdline >/dev/null
+	if [ $? -eq 0 ]; then forcetrigger="forcetrigger"; fi
+
+	mv fixup4rc.dat		fixup4.dat
+	mv fixup_rc.dat 	fixup.dat
+	mv recover4.elf		start4.elf
+	mv recovery.elf 	start.elf
+	mv recovery.img 	kernel.img
+	mv recovery7.img 	kernel7.img
+	mv recovery7l.img	kernel7l.img
+
+	rm recovery.rfs
+	rm changefirmware
+	rm firmware.tar.gz
+
+	#Backup these configurations, just in case
+	mv config.txt config.bak
+	mv recovery.cmdline cmdline.bak
+
+	#Update the new configurations with saved info
+	unzip -o /tmp/pinn-lite.zip config.txt
+	unzip -o /tmp/pinn-lite.zip cmdline.txt
+
+	read a <cmdline.txt
+	echo $a " " $vncshare $ssh $forcetrigger>cmdline.txt
+fi
+
+#Find out how much space we need for unzip
+cd /tmp
+exclude=
+while read a; do
+	if [ ${#a} -gt 0 ]; then
+		exclude="${exclude} -x $a "
+	fi
+done < /tmp/exclude.txt
+pi5minsize=$(expr 1520 + $(unzip -l /tmp/pinn-lite.zip $exclude |tail -n1 | sed 's|\s\+| |g'| sed 's|^ ||' | cut -d ' ' -f 1) / 1024)
 
 if [ $mntsize -lt $pi5minsize ]; then
         echo "Partition size Too small"
         exit 1
 fi
-
-cd /mnt
-#rm -rf *
 
 exit 0
