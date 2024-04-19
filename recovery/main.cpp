@@ -64,6 +64,8 @@ bool timedReboot=false;
 MainWindow * gMW=NULL;
 QApplication * gApp=NULL;
 
+extern int fontsize;
+
 void runCustomScript(const QString &driveDev, int partNr, const QString &cmd, bool inBackground=false )
 {
     bool mntStillMounted = true ; // suppose yes.
@@ -112,6 +114,7 @@ void showBootMenu(const QString &drive, const QString &defaultPartition, bool se
 #endif
     //Just reuse setDisplayMode as indicator for sticky boot direct mode
     BootSelectionDialog bsd(drive, defaultPartition, setDisplayMode, dsi);
+    updateFont(fontsize);
     bsd.setStyleSheet(stylesheet);
     if (setDisplayMode)
         bsd.setDisplayMode();
@@ -512,6 +515,8 @@ int main(int argc, char *argv[])
 
     splash->show();
     splash->resize();
+
+    updateFont(fontsize);
 
     //Adjust font size for size of screen
     int pointsize = screen.width()/80;

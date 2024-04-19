@@ -743,3 +743,13 @@ void OverrideJson(QVariantMap& m)
     }
     DBG(m);
 }
+
+void updateFont(int fontsize)
+{
+    extern QApplication * gApp;
+
+    QString stylesheet = "* {font-size: "+QString::number(fontsize)+"px }";
+    gApp->setStyleSheet(stylesheet);
+    QWSServer::instance()->refresh();
+    qDebug() << "Using fontsize "<<fontsize;
+}

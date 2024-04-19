@@ -445,15 +445,11 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
 
     setModelInfo();
 
-    if (_model.contains("Pi 5"))
-    {
-        extern QApplication * gApp;
-
-        fontsize=10;
-        QString stylesheet = "* {font-size: "+QString::number(fontsize)+"px }";
-        gApp->setStyleSheet(stylesheet);
-        QWSServer::instance()->refresh();
-    }
+//    if (_model.contains("Pi 5"))
+//    {
+//        fontsize=10;
+//        updateFont(fontsize);
+//    }
 
     if (!cmdline.contains("no_overrides"))
         loadOverrides("/mnt/overrides.json");
@@ -1806,18 +1802,12 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         if (keyEvent->key() == Qt::Key_Plus && fontsize < 20)
         {
             fontsize++;
-            QString stylesheet = "* {font-size: "+QString::number(fontsize)+"px }";
-            gApp->setStyleSheet(stylesheet);
-            QWSServer::instance()->refresh();
-            qDebug() << "Using fontsize "<<fontsize;
+            updateFont(fontsize);
         }
         if (keyEvent->key() == Qt::Key_Minus && fontsize >9)
         {
             fontsize--;
-            QString stylesheet = "* {font-size: "+QString::number(fontsize)+"px }";
-            gApp->setStyleSheet(stylesheet);
-            QWSServer::instance()->refresh();
-            qDebug() << "Using fontsize "<<fontsize;
+            updateFont(fontsize);
         }
 
         // Catch Return key to trigger OS boot
