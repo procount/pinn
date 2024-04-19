@@ -519,7 +519,8 @@ int main(int argc, char *argv[])
         pointsize=12;
     if (pointsize>24)
         pointsize=24;
-    QFont font(splash->font().family(),pointsize);
+    QFont font(splash->font().family());
+    font.setPixelSize(pointsize);
     splash->setFont(font);
 
     QProcess::execute("mount -o ro "+partdev(drive, SETTINGS_PARTNR)+" /settings");

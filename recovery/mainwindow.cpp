@@ -33,6 +33,7 @@
 #include "simulate.h"
 #include "dlginstall.h"
 #include "sleepsimulator.h"
+//#include "adjustsizes.h"
 
 #define LOCAL_DBG_ON   0
 #define LOCAL_DBG_FUNC 0
@@ -449,7 +450,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
         extern QApplication * gApp;
 
         fontsize=10;
-        QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
+        QString stylesheet = "* {font-size: "+QString::number(fontsize)+"px }";
         gApp->setStyleSheet(stylesheet);
         QWSServer::instance()->refresh();
     }
@@ -1805,7 +1806,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         if (keyEvent->key() == Qt::Key_Plus && fontsize < 20)
         {
             fontsize++;
-            QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
+            QString stylesheet = "* {font-size: "+QString::number(fontsize)+"px }";
             gApp->setStyleSheet(stylesheet);
             QWSServer::instance()->refresh();
             qDebug() << "Using fontsize "<<fontsize;
@@ -1813,7 +1814,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         if (keyEvent->key() == Qt::Key_Minus && fontsize >9)
         {
             fontsize--;
-            QString stylesheet = "* {font-size: "+QString::number(fontsize)+"pt }";
+            QString stylesheet = "* {font-size: "+QString::number(fontsize)+"px }";
             gApp->setStyleSheet(stylesheet);
             QWSServer::instance()->refresh();
             qDebug() << "Using fontsize "<<fontsize;
@@ -3155,11 +3156,12 @@ void MainWindow::startImageWrite()
     }
 
 
-//    adjustSizes dlg(imageWriteThread->getImages(), 0, 0, 0);
-//    if (dlg.exec() != QDialog::Accepted)
-//        return;
-//    ;
-
+#if 0
+    adjustSizes dlg(_provision, _drive, imageWriteThread->getImages(), 0);
+    if (dlg.exec() != QDialog::Accepted)
+        return;
+    ;
+#endif
 
     if (slidesFolders.isEmpty())
         slidesFolder.append("/mnt/defaults/slides");
