@@ -14,7 +14,7 @@ class adjustSizes : public QDialog
     Q_OBJECT
 
 public:
-    explicit adjustSizes(QList<OsInfo *> _images, ulong totalSize, ulong availableMB, QWidget *parent = 0);
+    explicit adjustSizes(uint provision, const QString & drive, QList<OsInfo *> _images, QWidget *parent = 0);
     ~adjustSizes();
 
 private slots:
@@ -23,6 +23,8 @@ private slots:
 private:
     Ui::adjustSizes *ui;
     QStringList m_TableHeader;
+    const QString &_drive;
+    uint _provision;
 };
 
 #endif // ADJUSTSIZES_H

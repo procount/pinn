@@ -15,16 +15,23 @@
 #include <QListWidgetItem>
 #include <QMessageBox>
 
-adjustSizes::adjustSizes(QList<OsInfo *> _images, ulong totalSize,  ulong availableMB, QWidget *parent) :
-    QDialog(parent),
+adjustSizes::adjustSizes(uint provision, const QString &rootdrive, QList<OsInfo *> _images, QWidget *parent) :
+    _provision(provision),  _drive(rootdrive), QDialog(parent),
     ui(new Ui::adjustSizes)
 {
     TRACE
     ui->setupUi(this);
 
-    ui->tableWidget->setColumnCount(5);
+    uint totalnominalsize = 0, totaluncompressedsize = 0, numparts = 0, numexpandparts = 0;
+    uint startSector = getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toUInt()
+                    + getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toUInt();
+    uint totalSectors = getFileContents(sysclassblock(_drive)+"/size").trimmed().toUInt();
+    uint availableMB = (totalSectors-startSector-_provision)/2048;
+    uint nominalImageSize;
 
-    m_TableHeader << "OS Name" << "Default Size" << "Extra" << "Spare" << "Total";
+    ui->tableWidget->setColumnCount(4);
+
+    m_TableHeader << "OS Name" << "Nominal" << "Extra" << "Total";
     ui->tableWidget->setHorizontalHeaderLabels(m_TableHeader);
     //ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -80,13 +87,17 @@ adjustSizes::adjustSizes(QList<OsInfo *> _images, ulong totalSize,  ulong availa
             partitions->first()->setOffset(RISCOS_SECTOR_OFFSET);
             partitions->last()->setRequiresPartitionNumber(7);
         }
-
+#endif
+        nominalImageSize=0;
         foreach (PartitionInfo *partition, *partitions)
         {
             numparts++;
             if ( partition->wantMaximised() )
                 numexpandparts++;
             uint nominalsize = partition->partitionSizeNominal();
+
+            nominalImageSize += nominalsize;
+
             totalnominalsize += nominalsize;
             totaluncompressedsize += partition->uncompressedTarballSize();
 
@@ -94,38 +105,13 @@ adjustSizes::adjustSizes(QList<OsInfo *> _images, ulong totalSize,  ulong availa
             {
                 totaluncompressedsize += nominalsize / 20 ; /* overhead for file system meta data */
             }
-            int reqPart = partition->requiresPartitionNumber();
-            if (reqPart)
-            {
-                if (partitionMap.contains(reqPart))
-                {
-                    emit error(tr("More than one operating system requires partition number %1").arg(reqPart));
-                    return;
-                }
-                if (reqPart == 1 || reqPart == 5)
-                {
-                    emit error(tr("Operating system cannot require a system partition (1,5)"));
-                    return;
-                }
-                if ((reqPart == 2 && partitionMap.contains(4)) || (reqPart == 4 && partitionMap.contains(2)))
-                {
-                    emit error(tr("Operating system cannot claim both primary partitions 2 and 4"));
-                    return;
-                }
+            //set column 1 to nominal size
+            QTableWidgetItem * iTableItem1= new QTableWidgetItem(QString::number(nominalImageSize));
+            iTableItem1->setTextAlignment(Qt::AlignRight);
+            ui->tableWidget->setItem(i, 1, iTableItem1);
+            ui->tableWidget->editItem(iTableItem1);
 
-                partition->setPartitionDevice(partdev(_drive, reqPart));
-                partitionMap.insert(reqPart, partition);
-            }
-
-            /* Maximum overhead per partition for alignment */
-#ifdef SHRINK_PARTITIONS_TO_MINIMIZE_GAPS
-            if (partition->wantMaximised() || (partition->partitionSizeNominal()*2048) % PARTITION_ALIGNMENT != 0)
-                totalnominalsize += PARTITION_ALIGNMENT/2048;
-#else
-            totalnominalsize += PARTITION_ALIGNMENT/2048;
-#endif
         }
-#endif
     i++;
     }
 
