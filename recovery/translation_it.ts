@@ -2660,6 +2660,44 @@ Verifica la password</translation>
     </message>
 </context>
 <context>
+    <name>adjustSizes</name>
+    <message>
+        <source>Adjust size of OSes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished">1</translation>
+    </message>
+    <message>
+        <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
+        <translation type="unfinished">RISCOS non può essere installato. 
+Errore valore offset RISCOS.</translation>
+    </message>
+    <message>
+        <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
+        <translation type="unfinished">RISCOS non può essere installato. 
+Manca il valore offset RISCOS.</translation>
+    </message>
+    <message>
+        <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
+        <translation type="unfinished">RISCOS non può essere installato. 
+Dimensione partizione recovery troppo grande.</translation>
+    </message>
+    <message>
+        <source>More than one operating system requires partition number %1</source>
+        <translation type="unfinished">Più di un sistema operativo richiede la partizione %1</translation>
+    </message>
+    <message>
+        <source>Operating system cannot require a system partition (1,5)</source>
+        <translation type="unfinished">Il sistema operativo non può richiedere la partizione sistema {1,5)</translation>
+    </message>
+    <message>
+        <source>Operating system cannot claim both primary partitions 2 and 4</source>
+        <translation type="unfinished">Il sistema operativo non può usare entrambe le partizioni primarie 2 e 4</translation>
+    </message>
+</context>
+<context>
     <name>backupdialog</name>
     <message>
         <source>Set Backup Name</source>

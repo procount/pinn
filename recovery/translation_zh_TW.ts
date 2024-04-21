@@ -2607,6 +2607,41 @@ Break</translation>
     </message>
 </context>
 <context>
+    <name>adjustSizes</name>
+    <message>
+        <source>Adjust size of OSes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished">1</translation>
+    </message>
+    <message>
+        <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
+        <translation type="unfinished">RISCOS 無法被安裝。RISCOS 偏移量不符合。</translation>
+    </message>
+    <message>
+        <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
+        <translation type="unfinished">RISCOS 無法被安裝。RISCOS 偏移量遺失。</translation>
+    </message>
+    <message>
+        <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
+        <translation type="unfinished">RISCOS 無法被安裝。recovery 分割區的大小太大。</translation>
+    </message>
+    <message>
+        <source>More than one operating system requires partition number %1</source>
+        <translation type="unfinished">多於一個作業系統需要分割區號碼 %1</translation>
+    </message>
+    <message>
+        <source>Operating system cannot require a system partition (1,5)</source>
+        <translation type="unfinished">作業系統無法要求系統分割區 (1,5)</translation>
+    </message>
+    <message>
+        <source>Operating system cannot claim both primary partitions 2 and 4</source>
+        <translation type="unfinished">作業系統無法同時要求兩個主要分割區 2 與 4</translation>
+    </message>
+</context>
+<context>
     <name>backupdialog</name>
     <message>
         <source>Set Backup Name</source>

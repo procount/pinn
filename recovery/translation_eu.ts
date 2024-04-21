@@ -2597,6 +2597,41 @@ Break</source>
     </message>
 </context>
 <context>
+    <name>adjustSizes</name>
+    <message>
+        <source>Adjust size of OSes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
+        <translation type="unfinished">Ezin da RISCOS instalatu. RISCOS offset balioa ez dator bat.</translation>
+    </message>
+    <message>
+        <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
+        <translation type="unfinished">Ezin da RISCOS instalatu. RISCOS offset balioa falta da.</translation>
+    </message>
+    <message>
+        <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
+        <translation type="unfinished">Ezin da RISCOS instalatu. Berreskuratze-partizio handiegia.</translation>
+    </message>
+    <message>
+        <source>More than one operating system requires partition number %1</source>
+        <translation type="unfinished">Sistema eragile batek baino gehiagok behar dute %1 zenbakidun partizioa</translation>
+    </message>
+    <message>
+        <source>Operating system cannot require a system partition (1,5)</source>
+        <translation type="unfinished">Sistema eragileak ezin du sistemaren partizioa eskatu (1,5)</translation>
+    </message>
+    <message>
+        <source>Operating system cannot claim both primary partitions 2 and 4</source>
+        <translation type="unfinished">Sistema eragileak ezin ditu 2 eta 4 partizio primarioak eskatu</translation>
+    </message>
+</context>
+<context>
     <name>backupdialog</name>
     <message>
         <source>Set Backup Name</source>
