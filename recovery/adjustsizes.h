@@ -9,6 +9,13 @@ namespace Ui {
 class adjustSizes;
 }
 
+struct space_info_t
+{
+    int nominal_mb;
+    int extra_mb;
+    int total_mb;
+};
+
 class adjustSizes : public QDialog
 {
     Q_OBJECT
@@ -19,10 +26,12 @@ public:
 
 private slots:
     void on_buttonBox1_accepted();
+    void on_tableWidget_cellChanged(int row, int column);
 
 private:
     Ui::adjustSizes *ui;
     QStringList m_TableHeader;
+    QStringList m_RowHeader;
     const QString &_drive;
     uint _provision;
 };

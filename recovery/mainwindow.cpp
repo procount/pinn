@@ -33,7 +33,7 @@
 #include "simulate.h"
 #include "dlginstall.h"
 #include "sleepsimulator.h"
-//#include "adjustsizes.h"
+#include "adjustsizes.h"
 
 #define LOCAL_DBG_ON   0
 #define LOCAL_DBG_FUNC 0
@@ -3156,9 +3156,10 @@ void MainWindow::startImageWrite()
     }
 
 
-#if 0
+#if 1
     adjustSizes dlg(_provision, _drive, imageWriteThread->getImages(), 0);
     if (dlg.exec() != QDialog::Accepted)
+        setEnabled(true);
         return;
     ;
 #endif
