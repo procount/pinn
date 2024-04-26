@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>738</width>
-    <height>261</height>
+    <width>500</width>
+    <height>247</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,17 +20,38 @@
    <string>Adjust size of OSes</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0">
+   <item row="4" column="0">
+    <widget class="QLabel" name="capacityLbl">
+     <property name="text">
+      <string>Capacity: 0MB</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="freeLbl">
+     <property name="text">
+      <string>Free: 0MB </string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="usedLbl">
+     <property name="text">
+      <string>Used: 0MB</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
     <widget class="QTableWidget" name="tableWidget">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
      <property name="minimumSize">
       <size>
-       <width>480</width>
+       <width>0</width>
        <height>0</height>
       </size>
      </property>
@@ -40,11 +61,14 @@
        <height>16777215</height>
       </size>
      </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
      <property name="selectionMode">
       <enum>QAbstractItemView::NoSelection</enum>
      </property>
      <property name="columnCount">
-      <number>4</number>
+      <number>3</number>
      </property>
      <attribute name="horizontalHeaderCascadingSectionResizes">
       <bool>false</bool>
@@ -53,7 +77,7 @@
       <number>50</number>
      </attribute>
      <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>180</number>
+      <number>150</number>
      </attribute>
      <attribute name="horizontalHeaderStretchLastSection">
       <bool>true</bool>
@@ -64,11 +88,6 @@
      <attribute name="verticalHeaderStretchLastSection">
       <bool>false</bool>
      </attribute>
-     <column>
-      <property name="text">
-       <string>OS Name</string>
-      </property>
-     </column>
      <column>
       <property name="text">
        <string>Nominal (MB)</string>
@@ -86,7 +105,7 @@
      </column>
     </widget>
    </item>
-   <item row="3" column="0">
+   <item row="5" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <property name="spacing">
       <number>10</number>
@@ -94,27 +113,6 @@
      <property name="leftMargin">
       <number>0</number>
      </property>
-     <item>
-      <widget class="QLabel" name="usedLbl">
-       <property name="text">
-        <string>Used: 0MB</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="freeLbl">
-       <property name="text">
-        <string>Free: 0MB </string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="capacityLbl">
-       <property name="text">
-        <string>Cacpacity: 0MB</string>
-       </property>
-      </widget>
-     </item>
      <item>
       <widget class="QPushButton" name="clearPb">
        <property name="text">
@@ -129,35 +127,35 @@
        </property>
       </widget>
      </item>
+     <item alignment="Qt::AlignBottom">
+      <widget class="QDialogButtonBox" name="buttonBox1">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>41</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>41</height>
+        </size>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+       </property>
+      </widget>
+     </item>
     </layout>
-   </item>
-   <item row="4" column="0">
-    <widget class="QDialogButtonBox" name="buttonBox1">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>41</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>41</height>
-      </size>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
    </item>
   </layout>
  </widget>
@@ -170,8 +168,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>325</x>
-     <y>251</y>
+     <x>487</x>
+     <y>211</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
@@ -186,8 +184,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>257</x>
-     <y>251</y>
+     <x>438</x>
+     <y>211</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>

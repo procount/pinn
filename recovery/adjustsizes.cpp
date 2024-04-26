@@ -35,7 +35,7 @@ adjustSizes::adjustSizes(uint provision, const QString &rootdrive, QList<OsInfo 
 
 
 
-    ui->tableWidget->setColumnCount(4);
+    ui->tableWidget->setColumnCount(3);
 
     //ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -80,42 +80,38 @@ adjustSizes::adjustSizes(uint provision, const QString &rootdrive, QList<OsInfo 
 
         QSize size(10,10);
         QColor bgnd(200,200,200);
+
         os_space->name = image->name();
-        m_RowHeader = m_RowHeader << QString(image->name());
-        //set column 0 to OSname
-        QTableWidgetItem * iTableItem= new QTableWidgetItem();
-        iTableItem->setFlags(iTableItem->flags() & ~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
-        iTableItem->setBackgroundColor(bgnd);
-        ui->tableWidget->setItem(i, 0, iTableItem);
+        m_RowHeader = m_RowHeader << QString(os_space->name);
 
         os_space->nominal_mb = nominalImageSize;
 
-        //set column 1 to nominal size
+        //set column 0 to nominal size
         QTableWidgetItem * iTableItem1= new QTableWidgetItem();
-        iTableItem1->setFlags(iTableItem->flags() & ~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
+        iTableItem1->setFlags(iTableItem1->flags() & ~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
         iTableItem1->setSizeHint(size);
         iTableItem1->setTextAlignment(Qt::AlignCenter);
         iTableItem1->setBackgroundColor(bgnd);
-        ui->tableWidget->setItem(i, 1, iTableItem1);
+        ui->tableWidget->setItem(i, 0, iTableItem1);
 
         os_space->extra_mb = 0;
 
-        //set column 2 to Extra size
+        //set column 1 to Extra size
         QTableWidgetItem * iTableItem2= new QTableWidgetItem();
-        //iTableItem2->setFlags(iTableItem->flags() & ~Qt::ItemIsEditable);
+        //iTableItem2->setFlags(iTableItem2->flags() & ~Qt::ItemIsEditable);
         iTableItem2->setTextAlignment(Qt::AlignCenter);
         iTableItem2->setSizeHint(size);
-        ui->tableWidget->setItem(i, 2, iTableItem2);
+        ui->tableWidget->setItem(i, 1, iTableItem2);
 
         os_space->total_mb = os_space->nominal_mb + os_space->extra_mb;
 
-        //set column 3 to Total size
+        //set column 2 to Total size
         QTableWidgetItem * iTableItem3= new QTableWidgetItem();
-        iTableItem3->setFlags(iTableItem->flags() & ~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
+        iTableItem3->setFlags(iTableItem3->flags() & ~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
         iTableItem3->setTextAlignment(Qt::AlignCenter);
         iTableItem3->setSizeHint(size);
         iTableItem3->setBackgroundColor(bgnd);
-        ui->tableWidget->setItem(i, 3, iTableItem3);
+        ui->tableWidget->setItem(i, 2, iTableItem3);
 
         _spaces.append(os_space);
 
@@ -138,10 +134,9 @@ void adjustSizes::displayTable()
     TRACE
     for (int row=0; row <_spaces.count(); row++)
     {
-        ui->tableWidget->item(row,0)->setText(_spaces.at(row)->name);
-        ui->tableWidget->item(row,1)->setText(QString::number(_spaces.at(row)->nominal_mb));
-        ui->tableWidget->item(row,2)->setText(QString::number(_spaces.at(row)->extra_mb));
-        ui->tableWidget->item(row,3)->setText(QString::number(_spaces.at(row)->total_mb));
+        ui->tableWidget->item(row,0)->setText(QString::number(_spaces.at(row)->nominal_mb));
+        ui->tableWidget->item(row,1)->setText(QString::number(_spaces.at(row)->extra_mb));
+        ui->tableWidget->item(row,2)->setText(QString::number(_spaces.at(row)->total_mb));
     }
 
     ui->usedLbl->setText(QString("%1: %2 MB").arg(tr("Used"), QString::number(_usedMB)));
@@ -155,9 +150,9 @@ void adjustSizes::on_tableWidget_cellChanged(int row, int column)
     TRACE
     qDebug()<< "Table widget changed row,col="<<row<<","<<column;
 
-    if ((_initialised) && (column==2)) //
+    if ((_initialised) && (column==1)) //
     {
-        _spaces.at(row)->extra_mb =  ui->tableWidget->item(row,2)->text().toInt();
+        _spaces.at(row)->extra_mb =  ui->tableWidget->item(row,1)->text().toInt();
 
         //_initialised=false;
         calcTable();
