@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>247</height>
+    <width>520</width>
+    <height>360</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,28 +19,7 @@
   <property name="windowTitle">
    <string>Adjust size of OSes</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="4" column="0">
-    <widget class="QLabel" name="capacityLbl">
-     <property name="text">
-      <string>Capacity: 0MB</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="freeLbl">
-     <property name="text">
-      <string>Free: 0MB </string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="usedLbl">
-     <property name="text">
-      <string>Used: 0MB</string>
-     </property>
-    </widget>
-   </item>
+  <layout class="QGridLayout" name="gridLayout" columnstretch="0">
    <item row="0" column="0">
     <widget class="QTableWidget" name="tableWidget">
      <property name="sizePolicy">
@@ -62,7 +41,7 @@
       </size>
      </property>
      <property name="alternatingRowColors">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="selectionMode">
       <enum>QAbstractItemView::NoSelection</enum>
@@ -74,7 +53,7 @@
       <bool>false</bool>
      </attribute>
      <attribute name="horizontalHeaderMinimumSectionSize">
-      <number>50</number>
+      <number>30</number>
      </attribute>
      <attribute name="horizontalHeaderDefaultSectionSize">
       <number>150</number>
@@ -105,7 +84,7 @@
      </column>
     </widget>
    </item>
-   <item row="5" column="0">
+   <item row="7" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <property name="spacing">
       <number>10</number>
@@ -124,6 +103,13 @@
       <widget class="QPushButton" name="balancePb">
        <property name="text">
         <string>Balance</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>(*) non-expanding</string>
        </property>
       </widget>
      </item>
@@ -152,6 +138,31 @@
        </property>
        <property name="standardButtons">
         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="capacityLbl">
+       <property name="text">
+        <string>Capacity: 0MB</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="freeLbl">
+       <property name="text">
+        <string>Free: 0MB </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="usedLbl">
+       <property name="text">
+        <string>Used: 0MB</string>
        </property>
       </widget>
      </item>

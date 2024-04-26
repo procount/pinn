@@ -51,6 +51,7 @@ private:
     QList<SpaceInfo *> _spaces;
     uint _numparts;
     uint _numexpandparts;
+    QList<OsInfo *> _images;
 
 };
 

@@ -289,8 +289,13 @@ void MultiImageWriteThread::run()
             }
 
             uint partsizeMB = p->partitionSizeNominal();
+#if 0
             if ( p->wantMaximised() )
                 partsizeMB += _extraSpacePerPartition;
+#else
+            partsizeMB += p->partitionSizeExtra();
+           //qDebug()<< "Partsize = "<< p->partitionSizeNominal() << " + " << p->partitionSizeExtra() << " = " << partsizeMB;
+#endif
             uint partsizeSectors = partsizeMB * 2048;
 
             if (p == log_before_prim.last())
@@ -323,6 +328,7 @@ void MultiImageWriteThread::run()
             }
 
             p->setPartitionSizeSectors(partsizeSectors);
+            //qDebug()<<"partsizesectors: "<<partsizeSectors;
             offset += partsizeSectors;
         }
         /* Delete information about previously installed operating systems */

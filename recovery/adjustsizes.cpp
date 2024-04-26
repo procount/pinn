@@ -3,9 +3,9 @@
 #include "ui_adjustsizes.h"
 #include "util.h"
 
-#define LOCAL_DBG_ON   1
-#define LOCAL_DBG_FUNC 1
-#define LOCAL_DBG_OUT  1
+#define LOCAL_DBG_ON   0
+#define LOCAL_DBG_FUNC 0
+#define LOCAL_DBG_OUT  0
 #define LOCAL_DBG_MSG  0
 
 #include "mydebug.h"
@@ -16,8 +16,8 @@
 #include <QListWidgetItem>
 #include <QMessageBox>
 
-adjustSizes::adjustSizes(uint provision, const QString &rootdrive, QList<OsInfo *> _images, QWidget *parent) :
-    _provision(provision),  _drive(rootdrive), QDialog(parent),
+adjustSizes::adjustSizes(uint provision, const QString &rootdrive, QList<OsInfo *> images, QWidget *parent) :
+    _provision(provision),  _drive(rootdrive), _images(images), QDialog(parent),
     ui(new Ui::adjustSizes)
 {
     TRACE
@@ -133,8 +133,10 @@ void adjustSizes::displayTable()
 {
     TRACE
     for (int row=0; row <_spaces.count(); row++)
-    {
-        ui->tableWidget->item(row,0)->setText(QString::number(_spaces.at(row)->nominal_mb));
+    {   QString nominal = QString::number(_spaces.at(row)->nominal_mb);
+        if (_spaces.at(row)->numexpandparts==0)
+            nominal += " (*)";
+        ui->tableWidget->item(row,0)->setText(nominal);
         ui->tableWidget->item(row,1)->setText(QString::number(_spaces.at(row)->extra_mb));
         ui->tableWidget->item(row,2)->setText(QString::number(_spaces.at(row)->total_mb));
     }
@@ -150,7 +152,7 @@ void adjustSizes::on_tableWidget_cellChanged(int row, int column)
     TRACE
     qDebug()<< "Table widget changed row,col="<<row<<","<<column;
 
-    if ((_initialised) && (column==1)) //
+    if ((_initialised) && (column==1))
     {
         _spaces.at(row)->extra_mb =  ui->tableWidget->item(row,1)->text().toInt();
 
@@ -208,6 +210,30 @@ void adjustSizes::on_buttonBox1_accepted()
 {
     TRACE
     //qDebug() << "on_buttonBox_accepted";
+    int row=0;
+    foreach (OsInfo *image, _images)
+    {
+        SpaceInfo * os_space = _spaces.at(row);
+        int extra = os_space->extra_mb;
+        int eachpart = 0;
+        if (extra>0)
+        {
+            int numexpands = (os_space->numexpandparts==0) ? 1 : os_space->numexpandparts;
+            eachpart = extra/numexpands;
+        }
+
+        QList<PartitionInfo *> *partitions = image->partitions();
+        foreach (PartitionInfo *partition, *partitions)
+        {
+            partition->setPartitionSizeExtra(0);
+            if ((os_space->numexpandparts==0) && (extra>0) && partition == partitions->last())
+                partition->setPartitionSizeExtra(extra);
+            if (partition->wantMaximised())
+                partition->setPartitionSizeExtra(eachpart);
+        }
+        row++;
+    }
+    QDialog::accepted();
 }
 
 void adjustSizes::on_buttonBox1_rejected()

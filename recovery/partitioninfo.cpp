@@ -12,7 +12,7 @@ PartitionInfo::PartitionInfo(const QVariantMap &m, QObject *parent) :
     _emptyFS       = m.value("empty_fs", false).toBool();
     _offset        = m.value("offset_in_sectors").toUInt();
     _partitionSizeNominal = m.value("partition_size_nominal").toUInt();
-    _partitionSizeAdjusted =_partitionSizeNominal;
+    _partitionSizeExtra =0;
     _requiresPartitionNumber = m.value("requires_partition_number").toUInt();
     _uncompressedTarballSize = m.value("uncompressed_tarball_size").toUInt();
     _active        = m.value("active", false).toBool();

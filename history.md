@@ -5,6 +5,34 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.8.9M
+
+- **Adjust OS size** - beta version to test adjustment of partition sizes
+
+### V3.8.9l
+
+- **fonts**        - Fix font size when using KMS
+
+### V3.8.9j
+
+- **Update**       - Added preupdate script
+- **Update**       - Update dialogs improved
+- **Update**       - Maintain settings over update
+- **Translations** - Startup translations
+- **Wallpaper**    - Fix blue wallpaper size
+- **Background**   - Disabled overscan
+
+### V3.8.9f
+- **update**         - Added preupdate script
+- **wallpaper**      - Changed wallpaper to reduce size
+
+### V3.8.9e
+
+- **Pi5 Beta**       - Added Pi5 beta to original PINN.
+- **mkswap**         - Fixed Mkswap
+- **recovery**       - Renamed recovery files
+
+
 ### V3.8.9d
 
 - **Pi5 Beta**       - Added Pi5 beta to original PINN.

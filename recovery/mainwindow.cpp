@@ -445,11 +445,11 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
 
     setModelInfo();
 
-    if (_model.contains("Pi 5"))
+    //if (_model.contains("Pi 5"))
     {
         extern QApplication * gApp;
 
-        fontsize=10;
+        fontsize=12;
         QString stylesheet = "* {font-size: "+QString::number(fontsize)+"px }";
         gApp->setStyleSheet(stylesheet);
         QWSServer::instance()->refresh();
@@ -2162,7 +2162,7 @@ void MainWindow::pollNetworkStatus()
 
 void MainWindow::onOnlineStateChanged(bool online)
 {
-
+    TRACE
     if (online)
     {
         qDebug() << "Network up in" << _time.elapsed()/1000.0 << "seconds";
@@ -3159,12 +3159,13 @@ void MainWindow::startImageWrite()
 #if 1
     adjustSizes dlg(_provision, _drive, imageWriteThread->getImages(), 0);
     if (dlg.exec() != QDialog::Accepted)
+    {
         setEnabled(true);
+        _piDrivePollTimer.start(POLLTIME);
         return;
-    ;
+    }
 #endif
-
-    if (slidesFolders.isEmpty())
+   if (slidesFolders.isEmpty())
         slidesFolder.append("/mnt/defaults/slides");
 
     _qpssd = new ProgressSlideshowDialog(slidesFolders, "", 20, this); //_drive
@@ -3647,6 +3648,7 @@ void MainWindow::on_actionWifi_triggered()
 
 void MainWindow::pollForNewDisks()
 {
+    TRACE
     QString dirname = "/sys/class/block";
     QDir dir(dirname);
     QStringList list = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
