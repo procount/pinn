@@ -120,7 +120,8 @@ adjustSizes::adjustSizes(uint provision, const QString &rootdrive, QList<OsInfo 
 
         i++;
     }
-    displayTable();
+    calcTable();
+    on_balancePb_clicked();
     _initialised=true;
 
 
@@ -131,16 +132,13 @@ adjustSizes::adjustSizes(uint provision, const QString &rootdrive, QList<OsInfo 
 void adjustSizes::displayTable()
 {
     TRACE
-    _usedMB = 0;
     for (int row=0; row <_spaces.count(); row++)
     {
         ui->tableWidget->item(row,0)->setText(_spaces.at(row)->name);
         ui->tableWidget->item(row,1)->setText(QString::number(_spaces.at(row)->nominal_mb));
         ui->tableWidget->item(row,2)->setText(QString::number(_spaces.at(row)->extra_mb));
         ui->tableWidget->item(row,3)->setText(QString::number(_spaces.at(row)->total_mb));
-        _usedMB += _spaces.at(row)->total_mb;
     }
-    _freeMB = _availableMB - _usedMB;
 
     ui->usedLbl->setText(QString("%1: %2 MB").arg(tr("Used"), QString::number(_usedMB)));
     ui->freeLbl->setText(QString("%1: %2 MB").arg(tr("Free"), QString::number(_freeMB)));
@@ -152,13 +150,21 @@ void adjustSizes::on_tableWidget_cellChanged(int row, int column)
 {
     TRACE
     qDebug()<< "Table widget changed row,col="<<row<<","<<column;
-    if ((_initialised) && (column==2))
+
+    if ((_initialised) && (column==2)) //
     {
-        int nominal = ui->tableWidget->item(row,1)->text().toInt();
-        int extra   = ui->tableWidget->item(row,2)->text().toInt();
-        int total = nominal + extra;
-        qDebug()<< "TOtal = "<<total;
-        ui->tableWidget->item(row,3)->setText(QString::number(total));
+        _spaces.at(row)->extra_mb =  ui->tableWidget->item(row,2)->text().toInt();
+
+        //_initialised=false;
+        calcTable();
+
+        if (_freeMB<0)
+        {
+            _spaces.at(row)->extra_mb += _freeMB ;
+            calcTable();
+        }
+        displayTable();
+        //_initialised=true;
     }
 }
 
@@ -167,14 +173,25 @@ adjustSizes::~adjustSizes()
     delete ui;
 }
 
+void adjustSizes::calcTable()
+{
+    _usedMB=0;
+    for (int row=0; row <_spaces.count(); row++)
+    {
+        _spaces.at(row)->total_mb  = _spaces.at(row)->nominal_mb + _spaces.at(row)->extra_mb;
+        _usedMB += _spaces.at(row)->total_mb;
+    }
+    _freeMB = _availableMB - _usedMB;
+}
+
 void adjustSizes::on_balancePb_clicked()
 {
     uint extra = _freeMB / _numexpandparts;
     for (int row=0; row <_spaces.count(); row++)
     {
         _spaces.at(row)->extra_mb += extra * _spaces.at(row)->numexpandparts;
-        _spaces.at(row)->total_mb  = _spaces.at(row)->nominal_mb + _spaces.at(row)->extra_mb;
     }
+    calcTable();
     displayTable();
 }
 
@@ -183,8 +200,8 @@ void adjustSizes::on_clearPb_clicked()
     for (int row=0; row <_spaces.count(); row++)
     {
         _spaces.at(row)->extra_mb=0;
-        _spaces.at(row)->total_mb  = _spaces.at(row)->nominal_mb + _spaces.at(row)->extra_mb;
     }
+    calcTable();
     displayTable();
 }
 

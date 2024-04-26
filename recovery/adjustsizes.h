@@ -28,6 +28,7 @@ public:
     explicit adjustSizes(uint provision, const QString & drive, QList<OsInfo *> _images, QWidget *parent = 0);
     ~adjustSizes();
     void displayTable();
+    void calcTable();
 
 private slots:
     void on_buttonBox1_accepted();
@@ -39,9 +40,9 @@ private slots:
 
 private:
     bool _initialised;
-    uint _availableMB;
-    uint _freeMB;
-    uint _usedMB;
+    int _availableMB;
+    int _freeMB;
+    int _usedMB;
     Ui::adjustSizes *ui;
     QStringList m_TableHeader;
     QStringList m_RowHeader;
