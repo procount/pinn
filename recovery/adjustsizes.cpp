@@ -79,12 +79,13 @@ adjustSizes::adjustSizes(uint provision, const QString &rootdrive, QList<OsInfo 
         _numexpandparts += os_space->numexpandparts;
 
         QSize size(10,10);
-
+        QColor bgnd(200,200,200);
         os_space->name = image->name();
-
+        m_RowHeader = m_RowHeader << QString(image->name());
         //set column 0 to OSname
         QTableWidgetItem * iTableItem= new QTableWidgetItem();
         iTableItem->setFlags(iTableItem->flags() & ~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
+        iTableItem->setBackgroundColor(bgnd);
         ui->tableWidget->setItem(i, 0, iTableItem);
 
         os_space->nominal_mb = nominalImageSize;
@@ -94,6 +95,7 @@ adjustSizes::adjustSizes(uint provision, const QString &rootdrive, QList<OsInfo 
         iTableItem1->setFlags(iTableItem->flags() & ~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
         iTableItem1->setSizeHint(size);
         iTableItem1->setTextAlignment(Qt::AlignCenter);
+        iTableItem1->setBackgroundColor(bgnd);
         ui->tableWidget->setItem(i, 1, iTableItem1);
 
         os_space->extra_mb = 0;
@@ -112,6 +114,7 @@ adjustSizes::adjustSizes(uint provision, const QString &rootdrive, QList<OsInfo 
         iTableItem3->setFlags(iTableItem->flags() & ~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
         iTableItem3->setTextAlignment(Qt::AlignCenter);
         iTableItem3->setSizeHint(size);
+        iTableItem3->setBackgroundColor(bgnd);
         ui->tableWidget->setItem(i, 3, iTableItem3);
 
         _spaces.append(os_space);
@@ -122,10 +125,11 @@ adjustSizes::adjustSizes(uint provision, const QString &rootdrive, QList<OsInfo 
     }
     calcTable();
     on_balancePb_clicked();
+    ui->tableWidget->setCurrentCell(0,2);
     _initialised=true;
 
 
-    //ui->tableWidget->setVerticalHeaderLabels(m_RowHeader);
+    ui->tableWidget->setVerticalHeaderLabels(m_RowHeader);
 
 }
 
