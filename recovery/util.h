@@ -8,6 +8,11 @@
 #include <QListWidgetItem>
 #include <sys/syscall.h>
 #include <linux/reboot.h>
+#include <QApplication>
+
+#ifdef Q_WS_QWS
+#include <QWSServer>
+#endif
 
 /*
  * Convenience functions
@@ -74,6 +79,9 @@ void OverrideJson(QVariantMap& m);
 void loadOverrides(const QString &filename);
 
 bool updatePartitionScript(QVariantMap & entry, QListWidgetItem * witem);
+
+void updateFont(int fontsize);
+
 
 #define NICKNAME(x) getNickNameParts(x, eCORE|eSPLIT);
 

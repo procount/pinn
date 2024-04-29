@@ -2603,6 +2603,41 @@ Break</source>
     </message>
 </context>
 <context>
+    <name>adjustSizes</name>
+    <message>
+        <source>Adjust size of OSes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
+        <translation type="unfinished">RISCOS não pode ser instalado. Desajuste do valor offset do RISCOS.</translation>
+    </message>
+    <message>
+        <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
+        <translation type="unfinished">RISCOS não pode ser instalado. Valor de offset do RISCOS faltando.</translation>
+    </message>
+    <message>
+        <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
+        <translation type="unfinished">RISCOS não pôde ser instalado. O tamanho da partição de recuperação é muito grande.</translation>
+    </message>
+    <message>
+        <source>More than one operating system requires partition number %1</source>
+        <translation type="unfinished">Mais do que um sistema operacional requere a partição número %1</translation>
+    </message>
+    <message>
+        <source>Operating system cannot require a system partition (1,5)</source>
+        <translation type="unfinished">O sistema operacional não pode requerer uma partição do sistema (1,5)</translation>
+    </message>
+    <message>
+        <source>Operating system cannot claim both primary partitions 2 and 4</source>
+        <translation type="unfinished">O sistema operacional não pode requerer ambas as partições primárias 2 e 4</translation>
+    </message>
+</context>
+<context>
     <name>backupdialog</name>
     <message>
         <source>Set Backup Name</source>

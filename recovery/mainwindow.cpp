@@ -450,9 +450,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
         extern QApplication * gApp;
 
         fontsize=12;
-        QString stylesheet = "* {font-size: "+QString::number(fontsize)+"px }";
-        gApp->setStyleSheet(stylesheet);
-        QWSServer::instance()->refresh();
+        updateFont(fontsize);
     }
 
     if (!cmdline.contains("no_overrides"))
@@ -1806,18 +1804,12 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         if (keyEvent->key() == Qt::Key_Plus && fontsize < 20)
         {
             fontsize++;
-            QString stylesheet = "* {font-size: "+QString::number(fontsize)+"px }";
-            gApp->setStyleSheet(stylesheet);
-            QWSServer::instance()->refresh();
-            qDebug() << "Using fontsize "<<fontsize;
+            updateFont(fontsize);
         }
         if (keyEvent->key() == Qt::Key_Minus && fontsize >9)
         {
             fontsize--;
-            QString stylesheet = "* {font-size: "+QString::number(fontsize)+"px }";
-            gApp->setStyleSheet(stylesheet);
-            QWSServer::instance()->refresh();
-            qDebug() << "Using fontsize "<<fontsize;
+            updateFont(fontsize);
         }
 
         // Catch Return key to trigger OS boot
