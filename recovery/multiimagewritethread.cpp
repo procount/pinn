@@ -289,13 +289,14 @@ void MultiImageWriteThread::run()
             }
 
             uint partsizeMB = p->partitionSizeNominal();
-#if 0
+#if 1
             if ( p->wantMaximised() )
                 partsizeMB += _extraSpacePerPartition;
 #else
             partsizeMB += p->partitionSizeExtra();
-           //qDebug()<< "Partsize = "<< p->partitionSizeNominal() << " + " << p->partitionSizeExtra() << " = " << partsizeMB;
 #endif
+            //qDebug()<< "Partsize = "<< p->partitionSizeNominal() << " + " << partsizeMB - p->partitionSizeNominal() << " = " << partsizeMB;
+
             uint partsizeSectors = partsizeMB * 2048;
 
             if (p == log_before_prim.last())
@@ -485,10 +486,14 @@ bool MultiImageWriteThread::writePartitionTable(const QString &drive, const QMap
     partitionMap.insert(1, new PartitionInfo(1, startP1, sizeP1, "0E", NULL)); /* FAT boot partition */
     partitionMap.insert(5, new PartitionInfo(5, startP5, sizeP5, "L", NULL)); /* Ext4 settings partition */
 
-    //@@ if drive ==_drive
-    //@@ change sizeExtended to totalsize - any primary partitions - provision
 
     uint sizeExtended = partitionMap.values().last()->endSector() - startExtended;
+    //if (drive ==_drive)
+    {
+        //@@ change sizeExtended to totalsize - any primary partitions - provision
+        //sizeExtended = partitionMap.values().last()->endSector() - startExtended;
+    }
+
     if (!partitionMap.contains(2))
     {
         partitionMap.insert(2, new PartitionInfo(2, startExtended, sizeExtended, "E", NULL));
