@@ -3149,7 +3149,7 @@ void MainWindow::startImageWrite()
 
 
 #if 1
-    adjustSizes dlg(_provision, _drive, imageWriteThread->getImages(), 0);
+    adjustSizes dlg(_provision, _bootdrive, _drive, imageWriteThread->getImages(), 0);
     if (dlg.exec() != QDialog::Accepted)
     {
         setEnabled(true);
