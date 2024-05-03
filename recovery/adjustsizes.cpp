@@ -187,7 +187,9 @@ void adjustSizes::calcTable()
 
 void adjustSizes::on_balancePb_clicked()
 {
-    uint extra = _freeMB / _numexpandparts;
+
+    uint extra;
+    extra = (_numexpandparts) ? _freeMB / _numexpandparts : _freeMB;
     for (int row=0; row <_spaces.count(); row++)
     {
         _spaces.at(row)->extra_mb += extra * _spaces.at(row)->numexpandparts;

@@ -289,7 +289,7 @@ void MultiImageWriteThread::run()
             }
 
             uint partsizeMB = p->partitionSizeNominal();
-#if 1
+#if 0
             if ( p->wantMaximised() )
                 partsizeMB += _extraSpacePerPartition;
 #else
