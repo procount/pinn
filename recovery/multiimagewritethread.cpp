@@ -80,7 +80,7 @@ void MultiImageWriteThread::run()
     if (_partition)
     {
         /* Calculate space requirements, and check special requirements */
-        uint totalnominalsize = 0, totaluncompressedsize = 0, numparts = 0, numexpandparts = 0;
+        uint totalnominalsize = 0, totaluncompressedsize = 0;
         uint startSector = getFileContents(sysclassblock(_drive, 5)+"/start").trimmed().toUInt()
                         + getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toUInt();
         uint totalSectors = getFileContents(sysclassblock(_drive)+"/size").trimmed().toUInt();
@@ -134,9 +134,6 @@ void MultiImageWriteThread::run()
             /* And calculate any spare space to be distributed */
             foreach (PartitionInfo *partition, *partitions)
             {
-                numparts++;
-                if ( partition->wantMaximised() )
-                    numexpandparts++;
                 uint nominalsize = partition->partitionSizeNominal();
                 totalnominalsize += nominalsize;
                 totaluncompressedsize += partition->uncompressedTarballSize();
@@ -176,14 +173,6 @@ void MultiImageWriteThread::run()
                 totalnominalsize += PARTITION_ALIGNMENT/2048;
     #endif
             }
-        }
-
-
-        if (numexpandparts)
-        {
-            /* Extra spare space available for partitions that want to be expanded */
-            _extraSpacePerPartition = (availableMB-totalnominalsize)/numexpandparts;
-
         }
 
         emit parsedImagesize(qint64(totaluncompressedsize)*1024*1024);
@@ -289,13 +278,7 @@ void MultiImageWriteThread::run()
             }
 
             uint partsizeMB = p->partitionSizeNominal();
-#if 0
-            if ( p->wantMaximised() )
-                partsizeMB += _extraSpacePerPartition;
-#else
             partsizeMB += p->partitionSizeExtra();
-#endif
-            //qDebug()<< "Partsize = "<< p->partitionSizeNominal() << " + " << partsizeMB - p->partitionSizeNominal() << " = " << partsizeMB;
 
             uint partsizeSectors = partsizeMB * 2048;
 

@@ -30,7 +30,6 @@ public:
     ~adjustSizes();
     void displayTable();
     void calcTable();
-    void calcSpace();
 
 private slots:
     void on_buttonBox1_accepted();

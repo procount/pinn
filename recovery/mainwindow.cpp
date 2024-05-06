@@ -1125,6 +1125,26 @@ void MainWindow::doReinstall()
     {
         if (installedList.count()==1)
         {
+            if (QFile::exists("/tmp/pinn-lite.zip"))
+            {
+                _qpdup = new QProgressDialog( QString(tr("Downloading Update")), QString(), 0, 0, this);
+                _qpdup->setWindowModality(Qt::WindowModal);
+                _qpdup->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+                _qpdup->setWindowTitle("Updating PINN");
+                _qpdup->show();
+
+                int error = updatePinn();
+                if (!error)
+                {
+                    //Reboot back into PINN
+                    QByteArray partition("1");
+                    setRebootPartition(partition);
+
+                    // Reboot
+                    reboot();
+                }
+            }
+
             //Only check upgrades to PINN if it is the ONLY Os to be reinstalled
             //Because it causes a reboot
             if (requireNetwork())
@@ -4630,7 +4650,8 @@ int MainWindow::updatePinn()
     }
 
     //Save the existing installation in case of failure
-    ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Saving current version")));
+    if (_qpdup)
+        ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Saving current version")));
     QApplication::processEvents();
 
 
@@ -4639,7 +4660,8 @@ int MainWindow::updatePinn()
     //In case we need to do some additional upgrade processing
     if (QFile::exists("/tmp/preupdate"))
     {
-        ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Executing preupdate")));
+        if (_qpdup)
+            ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Executing preupdate")));
         QApplication::processEvents();
 
         QProcess::execute("chmod +x /tmp/preupdate");
@@ -4648,7 +4670,8 @@ int MainWindow::updatePinn()
     if (!error)
     {
         //Extract all the files to Recovery, except our excluded set
-        ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Extracting update")));
+        if (_qpdup)
+            ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Extracting update")));
         QApplication::processEvents();
 
         QString cmd = "unzip /tmp/pinn-lite.zip -o" + exclusions + " -d /mnt";
@@ -4657,7 +4680,8 @@ int MainWindow::updatePinn()
         //In case we need to do some additional upgrade processing
         if (QFile::exists("/tmp/updatepinn"))
         {
-            ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Executing updatepinn")));
+            if (_qpdup)
+                ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Executing updatepinn")));
             QApplication::processEvents();
 
             QProcess::execute("chmod +x /tmp/updatepinn");
