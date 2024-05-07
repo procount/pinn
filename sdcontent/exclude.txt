@@ -4,5 +4,4 @@ config.hyp4
 config.dsi
 config.hdmi
 cmdline.txt
-wallpaper.jpg
 wallpaper2.jpg

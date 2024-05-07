@@ -2595,32 +2595,52 @@ Break</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>1</source>
+        <source>Nominal (MB)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
-        <translation type="unfinished">RISCOS kan ikke installeres. Mismatch i RISCOS offsetverdi.</translation>
+        <source>Extra (MB)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
-        <translation type="unfinished">RISCOS kan ikke installeres. RISCOS offsetverdi mangler.</translation>
+        <source>Total (MB)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
-        <translation type="unfinished">RISCOS kan ikke installeres. Størrelse på opprettingspartisjonen er for stor.</translation>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>More than one operating system requires partition number %1</source>
-        <translation type="unfinished">Mer enn et OS trenger partisjon nummer %1</translation>
+        <source>Balance</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Operating system cannot require a system partition (1,5)</source>
-        <translation type="unfinished">Operativsystemet kan ikke kreve en systempartisjon (1,5)</translation>
+        <source>(*) non-expanding</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Operating system cannot claim both primary partitions 2 and 4</source>
-        <translation type="unfinished">Operativsystemet kan ikke kreve begge primærpartisjoner 2 og 4</translation>
+        <source>Capacity: 0MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Free: 0MB </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Used: 0MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Used</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Capacity</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

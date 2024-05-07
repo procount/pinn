@@ -2666,35 +2666,52 @@ Verifica la password</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>1</source>
-        <translation type="unfinished">1</translation>
+        <source>Nominal (MB)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
-        <translation type="unfinished">RISCOS non può essere installato. 
-Errore valore offset RISCOS.</translation>
+        <source>Extra (MB)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
-        <translation type="unfinished">RISCOS non può essere installato. 
-Manca il valore offset RISCOS.</translation>
+        <source>Total (MB)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
-        <translation type="unfinished">RISCOS non può essere installato. 
-Dimensione partizione recovery troppo grande.</translation>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>More than one operating system requires partition number %1</source>
-        <translation type="unfinished">Più di un sistema operativo richiede la partizione %1</translation>
+        <source>Balance</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Operating system cannot require a system partition (1,5)</source>
-        <translation type="unfinished">Il sistema operativo non può richiedere la partizione sistema {1,5)</translation>
+        <source>(*) non-expanding</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Operating system cannot claim both primary partitions 2 and 4</source>
-        <translation type="unfinished">Il sistema operativo non può usare entrambe le partizioni primarie 2 e 4</translation>
+        <source>Capacity: 0MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Free: 0MB </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Used: 0MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Used</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Capacity</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -2596,32 +2596,52 @@ Break</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>1</source>
+        <source>Nominal (MB)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
-        <translation type="unfinished">لا يمكن تثبيت RISCOS . RISCOS  تعويض عدم تطابق القيمة.</translation>
+        <source>Extra (MB)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
-        <translation type="unfinished">لا يمكن تثبيت RISCOS . قيمه أزاحه RISCOS  مفقوده.</translation>
+        <source>Total (MB)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
-        <translation type="unfinished">لا يمكن تثبيت RISCOS  حجم قسم الاسترداد كبير جدا.</translation>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>More than one operating system requires partition number %1</source>
-        <translation type="unfinished">يتطلب أكثر من نظام تشغيل رقم القسم %1</translation>
+        <source>Balance</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Operating system cannot require a system partition (1,5)</source>
-        <translation type="unfinished">نظام التشغيل لا يمكن أن يتطلب قسم النظام (1،5)</translation>
+        <source>(*) non-expanding</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Operating system cannot claim both primary partitions 2 and 4</source>
-        <translation type="unfinished">يتعذر على نظام التشغيل المطالبة بكل من القسمين الأساسيين 2 و 4</translation>
+        <source>Capacity: 0MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Free: 0MB </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Used: 0MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Used</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Capacity</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

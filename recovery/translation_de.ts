@@ -2630,32 +2630,52 @@ Untbr</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>1</source>
+        <source>Nominal (MB)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
-        <translation type="unfinished">RISCOS kann nicht installiert werden. Wert des RISCOS-Offsets stimmt nicht überein.</translation>
+        <source>Extra (MB)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
-        <translation type="unfinished">RISCOS kann nicht installiert werden. Wert für RISCOS-Offset fehlt.</translation>
+        <source>Total (MB)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
-        <translation type="unfinished">RISCOS kann nicht installiert werden. Die Recovery-Partition ist zu groß.</translation>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>More than one operating system requires partition number %1</source>
-        <translation type="unfinished">Mehr als ein Betriebssystem benötigt Partition Nummer %1</translation>
+        <source>Balance</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Operating system cannot require a system partition (1,5)</source>
-        <translation type="unfinished">Betriebssystem kann keine Systempartition erfordern (1,5)</translation>
+        <source>(*) non-expanding</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Operating system cannot claim both primary partitions 2 and 4</source>
-        <translation type="unfinished">Das Betriebssystem kann nicht beide primären Partitionen 2 und 4 beanspruchen</translation>
+        <source>Capacity: 0MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Free: 0MB </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Used: 0MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Used</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Capacity</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

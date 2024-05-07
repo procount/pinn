@@ -2609,32 +2609,52 @@ Break</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>1</source>
-        <translation type="unfinished">1</translation>
+        <source>Nominal (MB)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
-        <translation type="unfinished">RISCOS를 설치할 수 없습니다. RISCOS의 오프셋 값이 맞지 않습니다.</translation>
+        <source>Extra (MB)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
-        <translation type="unfinished">RISCOS를 설치할 수 없습니다. RISCOS의 오프셋 값이 없습니다.</translation>
+        <source>Total (MB)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
-        <translation type="unfinished">RISCOS를 설치할 수 없습니다. 복구 파티션의 크기가 너무 큽니다.</translation>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>More than one operating system requires partition number %1</source>
-        <translation type="unfinished">하나 이상의 운영체제에 파티션 %1번이 필요합니다</translation>
+        <source>Balance</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Operating system cannot require a system partition (1,5)</source>
-        <translation type="unfinished">운영체제가 시스템 파티션 (1,5) 을 요청할 수 없습니다</translation>
+        <source>(*) non-expanding</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Operating system cannot claim both primary partitions 2 and 4</source>
-        <translation type="unfinished">운영체제가 주 파티션 2와 4를 모두 요구할 수는 없습니다</translation>
+        <source>Capacity: 0MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Free: 0MB </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Used: 0MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Used</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Capacity</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
