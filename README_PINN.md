@@ -78,26 +78,11 @@ It is also possible for PINN to be bypassed altogether and one of the OSes boote
 
 The following Quick Start instructions detail the most common and quickest way to start using PINN. For more details on the other features that PINN provides, please continue reading the rest of this document.
 
-## Format your SD card as FAT32
+## Using Raspberry Pi Imager
 
-For **Windows** users, we recommend formatting your SD card using the SD Association's Formatting Tool, which can be downloaded from https://www.sdcard.org/downloads/formatter_4/ .
-If you are still using v4 of this tool, you will need to set the "FORMAT SIZE ADJUSTMENT" option to "ON" in the "Options" menu to ensure that the entire SD card volume is formatted - not just a single partition. However, this tool has now been upgraded to v5 where this feature is now the default and is no longer selectable. For more detailed and beginner-friendly formatting instructions, please refer to http://www.raspberrypi.org/quick-start-guide .
+The easiest way to install PINN is from the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) tool. This can be run from Windows, Ubuntu x86, macOS, or even Raspberry Pi OS on a Raspberry Pi.
 
-The SD Association's Formatting Tool is also available for <b>Mac</b> users. However, note that the default OSX Disk Utility is also capable of formatting the entire disk (select the SD card volume and choose "Erase" with "MS-DOS" format).
-
-For **Linux** users, we recommend `gparted` (or the command line version `parted`). (Update: Norman Dunbar has written up the following formatting instructions for Linux users: http://qdosmsq.dunbar-it.co.uk/blog/2013/06/NOOBS-for-raspberry-pi/)
-
-## Copy the PINN files to your SD card.
-
-- Download **[pinn-lite.zip](http://sourceforge.net/projects/pinn/files/pinn-lite.zip)** from [sourceforge](http://www.sourceforge.net/projects/pinn)
-- Extract the files from pinn-lite.zip file onto the SD card. (Windows built-in zip features may have trouble with this file. If so, use another program such as 7zip.) **In some cases, the files may be extracted into a folder. If this is the case, please copy the files from inside the folder rather than copying the folder itself.**
-
-## Using Etcher
-
-An alternative to unzipping the pinn-lite.zip file to a FAT32 formatted drive is to use the popular Etcher program 
-to burn an image directly to the SD card.
-
-The [pinn-lite.img.zip](http://sourceforge.net/projects/pinn/files/Etcher/pinn-lite.img.zip) image file you need to burn can be found on [sourceforge](http://www.sourceforge.net/projects/pinn) in the Etcher folder.
+You can find PINN under the "Misc utility images". PINN should be installed onto the drive you want to boot your OSes from.
 
 ## Boot PINN on your PI
 
@@ -671,6 +656,20 @@ Once USB boot mode is enabled, proceed as follows:
 1. Format the USB device as FAT 32 and copy the PINN files to it, just as you would for a normal PINN installation on an SD card.
 2. Boot PINN on the Pi from the USB device.
 3. Install your required OSes as normal.
+
+## Setting OS Partition Sizes
+
+Once the OSes have been selected, they will be displayed in a table to allow their partition sizes to ba adjusted according to your personal requirements.
+
+Against each OS name is a Nominal figure which denotes the absolute minimum size required by that OS. Any remaining available space will be divided equally between the expandable partitions across all the OSes. This figure is shown in the Extra column, with the Total column showing the sum of the Nominal and Extra amounts.
+
+Only the Extra column can be edited. If too large a size is entered, it will be adjusted to the maximum permissable size. To increase the size of an OS, it is first necessary to make some space available by reducing the size of the other OSes. The `Clear` and `balance` buttons can help with this. 
+
+The `clear` button will zero all the Extra fields, allowing each OS's additional size to be specified. It is even possible to set the Extra size for OSes that are not expandable. 
+
+The `balance` button will distribute any remaining space equally amongst any expandable partitions across all the OSes.
+
+
 
 ## Project Spaces
 
