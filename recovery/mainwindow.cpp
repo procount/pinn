@@ -4635,19 +4635,6 @@ int MainWindow::updatePinn()
     //First we'll extract these 2 files to /tmp to automate hte update process
     readexec(1,"unzip /tmp/pinn-lite.zip -o exclude.txt updatepinn preupdate -d /tmp",dummy);
 
-    if (QFile::exists("/tmp/exclude.txt"))
-    {
-        //exclude.txt can avoid extracting addtional files to RECOVERY that we don't want updating
-        QString contents = getFileContents("/tmp/exclude.txt");
-        QStringList fileList = contents.split("\n");
-        foreach (QString file, fileList)
-        {
-            //Add each filename to the list of file extraction exclusios
-            file=file.trimmed();
-            if (file.length()>0)
-                exclusions += " -x "+file;
-        }
-    }
 
     //Save the existing installation in case of failure
     if (_qpdup)
@@ -4669,6 +4656,20 @@ int MainWindow::updatePinn()
     }
     if (!error)
     {
+
+        if (QFile::exists("/tmp/exclude.txt"))
+        {
+            //exclude.txt can avoid extracting addtional files to RECOVERY that we don't want updating
+            QString contents = getFileContents("/tmp/exclude.txt");
+            QStringList fileList = contents.split("\n");
+            foreach (QString file, fileList)
+            {
+                //Add each filename to the list of file extraction exclusios
+                file=file.trimmed();
+                if (file.length()>0)
+                    exclusions += " -x "+file;
+            }
+        }
         //Extract all the files to Recovery, except our excluded set
         if (_qpdup)
             ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Extracting update")));

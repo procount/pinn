@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -x
 orgsize=65535    # orignal 63M size of Pi4 partition
 
 #get size of the /mnt partition
@@ -12,6 +13,7 @@ if [ $mntsize -lt $orgsize ]; then
 	unzip /tmp/pinn-lite.zip wallpaper2.jpg
 	mv wallpaper2.jpg wallpaper.jpg
 	echo "wallpaper.jpg" >>/tmp/exclude.txt
+	sync
 fi
 
 if [ -f recovery.rfs ]; then
@@ -24,7 +26,7 @@ if [ -f recovery.rfs ]; then
 	mv recovery.img 	kernel.img
 	mv recovery7.img 	kernel7.img
 	mv recovery7l.img	kernel7l.img
-	mv recovery.cmdline    cmdline.txt
+	mv recovery.cmdline     cmdline.txt
 
 	rm recovery.rfs
 	rm changefirmware
@@ -32,31 +34,17 @@ if [ -f recovery.rfs ]; then
 
 fi
 
-#record pertinent configurations to avoid loss of remote connection
-vncshare=""
-ssh=""
-forcetrigger=""
-
-grep "vncshare" cmdline.txt >/dev/null
-if [ $? -eq 0 ]; then vncshare="vncshare"; fi
-
-grep "ssh" cmdline.txt >/dev/null
-if [ $? -eq 0 ]; then ssh="ssh"; fi
-
-grep "forcetrigger" cmdline.txt >/dev/null
-if [ $? -eq 0 ]; then forcetrigger="forcetrigger"; fi
-
-
 #Backup these configurations, just in case
 mv config.txt  config.bak
-mv cmdline.txt cmdline.bak
+cp cmdline.txt cmdline.bak
+
 
 #Update the new configurations with saved info
 unzip -o /tmp/pinn-lite.zip config.txt
-unzip -o /tmp/pinn-lite.zip cmdline.txt
-read a <cmdline.txt
-echo  $vncshare $ssh $forcetrigger " " $a >cmdline.txt
+
+#Just change the ramdisk_size
 sed -i -e 's|runinstaller||' cmdline.txt
+sed -i -e "s|ramdisk_size=32768|ramdisk_size=65536|" cmdline.txt
 
 #Find out how much space we need for unzip
 cd /tmp
@@ -67,6 +55,8 @@ while read a; do
 	fi
 done < /tmp/exclude.txt
 pi5minsize=$(expr 1520 + $(unzip -l /tmp/pinn-lite.zip $exclude |tail -n1 | sed 's|\s\+| |g'| sed 's|^ ||' | cut -d ' ' -f 1) / 1024)
+
+sync
 
 if [ $mntsize -lt $pi5minsize ]; then
         echo "Partition size Too small"
