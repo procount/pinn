@@ -2663,55 +2663,55 @@ Verifica la password</translation>
     <name>adjustSizes</name>
     <message>
         <source>Adjust size of OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>Regola dimensioni sistemi operativi</translation>
     </message>
     <message>
         <source>Nominal (MB)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nominale (MB)</translation>
     </message>
     <message>
         <source>Extra (MB)</source>
-        <translation type="unfinished"></translation>
+        <translation>Extra (MB)</translation>
     </message>
     <message>
         <source>Total (MB)</source>
-        <translation type="unfinished"></translation>
+        <translation>Totale (MB)</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Azzera</translation>
     </message>
     <message>
         <source>Balance</source>
-        <translation type="unfinished"></translation>
+        <translation>Bilancia</translation>
     </message>
     <message>
         <source>(*) non-expanding</source>
-        <translation type="unfinished"></translation>
+        <translation>(*) non espandibile</translation>
     </message>
     <message>
         <source>Capacity: 0MB</source>
-        <translation type="unfinished"></translation>
+        <translation>Capacità: 0MB</translation>
     </message>
     <message>
         <source>Free: 0MB </source>
-        <translation type="unfinished"></translation>
+        <translation>Disponibili: 0 MB </translation>
     </message>
     <message>
         <source>Used: 0MB</source>
-        <translation type="unfinished"></translation>
+        <translation>Usati: 0MB</translation>
     </message>
     <message>
         <source>Used</source>
-        <translation type="unfinished"></translation>
+        <translation>Usati</translation>
     </message>
     <message>
         <source>Free</source>
-        <translation type="unfinished"></translation>
+        <translation>Disponibili</translation>
     </message>
     <message>
         <source>Capacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Capacità</translation>
     </message>
 </context>
 <context>

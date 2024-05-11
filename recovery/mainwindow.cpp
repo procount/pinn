@@ -1134,6 +1134,14 @@ void MainWindow::doReinstall()
                 _qpdup->show();
 
                 int error = updatePinn();
+
+                if (_qpdup)
+                {
+                    _qpdup->hide();
+                    _qpdup->deleteLater();
+                    _qpdup = NULL;
+                }
+
                 if (!error)
                 {
                     //Reboot back into PINN
@@ -4705,6 +4713,7 @@ int MainWindow::updatePinn()
         }
 
         InitDriveThread::restoreBootFiles();
+
     }
 
     QProcess::execute("mount -o remount,ro /mnt");

@@ -431,6 +431,7 @@ bool InitDriveThread::restoreBootFiles()
     TRACE
     bool status = QProcess::execute("cp -a /tmp/mnt /") == 0;
     QProcess::execute("rm -rf /tmp/mnt");
+    QProcess::execute("sync");
     return status;
 }
 

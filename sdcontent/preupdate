@@ -8,40 +8,34 @@ mntsize=`df  | grep /mnt | sed  's|\s\+|,|g' | cut -d ',' -f 2`
 
 cd /mnt
 
+if [ -f recovery.rfs ]; then
+	cp recovery.cmdline     /tmp/cmdline.txt
+else
+	cp cmdline.txt		/tmp/cmdline.txt
+fi
+cp config.txt		/tmp/config.bak
+
+#REMOVE ALL BOOT FILES!
+rm -rf *
+
+#Restore saved settings
+cp /tmp/cmdline.txt /mnt
+cp /tmp/cmdline.txt /mnt/cmdline.bak
+cp /tmp/config.bak /mnt
+
 #if partition is still 63M, use the new wallpaper to save space
 if [ $mntsize -lt $orgsize ]; then
 	unzip /tmp/pinn-lite.zip wallpaper2.jpg
 	mv wallpaper2.jpg wallpaper.jpg
 	echo "wallpaper.jpg" >>/tmp/exclude.txt
+	echo "cmdline.txt" >>/tmp/exclude.txt
 	sync
 fi
 
-if [ -f recovery.rfs ]; then
-
-	#if we have not changed to the new names yet, rename them so we do not run out of space when we unzip
-	mv fixup4rc.dat		fixup4.dat
-	mv fixup_rc.dat 	fixup.dat
-	mv recover4.elf		start4.elf
-	mv recovery.elf 	start.elf
-	mv recovery.img 	kernel.img
-	mv recovery7.img 	kernel7.img
-	mv recovery7l.img	kernel7l.img
-	mv recovery.cmdline     cmdline.txt
-
-	rm recovery.rfs
-	rm changefirmware
-	rm firmware.tar.gz
-
-fi
-
-#Backup these configurations, just in case
-mv config.txt  config.bak
-cp cmdline.txt cmdline.bak
-
-
-#Update the new configurations with saved info
+#Use new configuration
 unzip -o /tmp/pinn-lite.zip config.txt
 
+#Update the cmdline with saved info
 #Just change the ramdisk_size
 sed -i -e 's|runinstaller||' cmdline.txt
 sed -i -e "s|ramdisk_size=32768|ramdisk_size=65536|" cmdline.txt
@@ -56,9 +50,12 @@ while read a; do
 done < /tmp/exclude.txt
 pi5minsize=$(expr 1520 + $(unzip -l /tmp/pinn-lite.zip $exclude |tail -n1 | sed 's|\s\+| |g'| sed 's|^ ||' | cut -d ' ' -f 1) / 1024)
 
+freesize=`df  | grep /mnt | sed  's|\s\+|,|g' | cut -d ',' -f 4`
+
+
 sync
 
-if [ $mntsize -lt $pi5minsize ]; then
+if [ $freesize -lt $pi5minsize ]; then
         echo "Partition size Too small"
         exit 1
 fi
