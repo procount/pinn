@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -x
+error=$1
+output="/tmp/mnt"
+
+if [ ! $error -eq 0 ]; then
+	#preupdate failed, so restore saved files.
+	cp -a $output/* /mnt
+	exit 1
+fi
+

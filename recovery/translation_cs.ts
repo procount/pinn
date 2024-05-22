@@ -93,7 +93,7 @@
     </message>
     <message>
         <source>composite NTSC mode</source>
-        <translation>Kompozitní NTSC mód</translation>
+        <translation>kompozitní NTSC mód</translation>
     </message>
     <message>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
@@ -128,7 +128,7 @@
     <name>DateTimeDialog</name>
     <message>
         <source>Set Date &amp; Time</source>
-        <translation>Nastavení Datumu &amp; Času</translation>
+        <translation>Nastav Da&amp;tum a Čas</translation>
     </message>
     <message>
         <source>Please set the correct UTC date and time below.</source>
@@ -243,7 +243,7 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
     </message>
     <message>
         <source>Error zero&apos;ing MBR/GPT. SD card may be broken or advertising wrong capacity.</source>
-        <translation>Chyba zero&apos;ing MBR/GPT. SD karta může být poškozena nebo vykazuje špatnou velikost.</translation>
+        <translation>Chyba mazan&apos;i MBR/GPT. SD karta může být poškozena nebo vykazuje špatnou velikost.</translation>
     </message>
     <message>
         <source>Writing new MBR</source>
@@ -399,7 +399,7 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
     </message>
     <message>
         <source>Online help (h)</source>
-        <translation>Dokumentace RPi</translation>
+        <translation>Online pomoc (h)</translation>
     </message>
     <message>
         <source>Opens a web browser displaying the Raspberry Pi Forum.</source>
@@ -419,7 +419,7 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
     </message>
     <message>
         <source>Download (d)</source>
-        <translation>Stahování (d)</translation>
+        <translation>Stahovat (d)</translation>
     </message>
     <message>
         <source>Downloads the selected operating system image to USB for local installation</source>
@@ -471,7 +471,7 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
     <message>
         <source>Set Date &amp; Time</source>
         <oldsource>Set Data &amp; Time</oldsource>
-        <translation type="unfinished">Nastavit Datum &amp; Čas</translation>
+        <translation>Nastavit Da&amp;tum a Čas</translation>
     </message>
     <message>
         <source>T</source>
@@ -479,7 +479,7 @@ UPOZORNĚNÍ: Toto smaže všechna data na Vaší SD kartě</translation>
     </message>
     <message>
         <source>Alias (a)</source>
-        <translation>Přejmenovat systém (a)</translation>
+        <translation>Pojmenovat jako (a)</translation>
     </message>
     <message>
         <source>Rename an OS with an alias</source>
@@ -673,7 +673,7 @@ Opravdu chcete pokračovat?</translation>
     </message>
     <message>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
-        <translation>Upozornění: Zjištěn(y) nekompatibilní Operační Systém(y). Následující OS aren&apos;t nejsou podporovány tímto Raspberry Pi a mohou selhat při startu nebo nefungovat správně:</translation>
+        <translation>Upozornění: Zjištěn(y) nekompatibilní Operační Systém(y). Následující OS nejsou podporovány tímto Raspberry Pi a mohou selhat při startu nebo nefungovat správně:</translation>
     </message>
     <message>
         <source>ReInstall OSes</source>
@@ -866,36 +866,36 @@ Chcete pokračovat?</translation>
     </message>
     <message>
         <source>PINN will now update and reboot in a few secs...</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN se nyní začne aktualizovat ...</translation>
     </message>
     <message>
         <source>PINN update failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizace PINNu selhala</translation>
     </message>
     <message>
         <source>Saving current version</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložení současné verze</translation>
     </message>
     <message>
         <source>Executing preupdate</source>
-        <translation type="unfinished"></translation>
+        <translation>Probíhá předaktualizace</translation>
     </message>
     <message>
         <source>Extracting update</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozbalení aktualizace</translation>
     </message>
     <message>
         <source>Executing updatepinn</source>
-        <translation type="unfinished"></translation>
+        <translation>Probíhá aktualizace PINNu</translation>
     </message>
     <message>
         <source>Update failed. Restoring previous version.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizace selhala. Obnovuji předchozí verzi.</translation>
     </message>
     <message>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
-        <translation>Žádné systémy nejsou vybrány
+        <translation>Chyba: Žádné systémy nejsou vybrány
 (Nevybírejte RISC OS ani PINN)</translation>
     </message>
     <message>
@@ -1121,7 +1121,7 @@ Další start jednotky obnoví původní strukturu oddílů PINN&apos;s</transla
     </message>
     <message>
         <source>Zero&apos;ing start of each partition</source>
-        <translation>Zero&apos;ing start každého oddílu</translation>
+        <translation>Nulovan&apos;i startu každého oddílu</translation>
     </message>
     <message>
         <source>.
@@ -1268,7 +1268,7 @@ Oddíl není dost velký pro nový obraz.</translation>
     <message>
         <source>noobs&amp;config</source>
         <oldsource>noobsconfig</oldsource>
-        <translation>noobs nastavení (&amp;c)</translation>
+        <translation>noobs&amp;config</translation>
     </message>
     <message>
         <source>Reserve some space on PINN&apos;s partition (MB)</source>
@@ -1277,7 +1277,7 @@ Oddíl není dost velký pro nový obraz.</translation>
     <message>
         <source>re&amp;serve=</source>
         <oldsource>reserve=</oldsource>
-        <translation>re&amp;serva=</translation>
+        <translation>re&amp;serve=</translation>
     </message>
     <message>
         <source>Specifies a path or URL where the noobsconfig customisation files can be found (rather than being in /os/&amp;lt;distro&amp;gt;/)</source>
@@ -1328,7 +1328,7 @@ Oddíl není dost velký pro nový obraz.</translation>
     </message>
     <message>
         <source>Waits for all OS lists to be downloaded from the internet before checking the list of OSes</source>
-        <translation>Před kontrolou seznamu OS čeká na stažení všech seznamů OSů z internetu</translation>
+        <translation>Před kontrolou seznamu OS čeká na stažení všech seznamů systémů z internetu</translation>
     </message>
     <message>
         <source>Waits for OSes from all sources to be listed</source>
@@ -1390,7 +1390,7 @@ Oddíl není dost velký pro nový obraz.</translation>
     </message>
     <message>
         <source>Booting</source>
-        <translation>Startování</translation>
+        <translation>Startuji</translation>
     </message>
     <message>
         <source>When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
@@ -1678,7 +1678,7 @@ Oddíl není dost velký pro nový obraz.</translation>
         <source>Warning: You have chosen the &apos;runinstaller&apos; option.
 This will erase all your OSes on next boot.
 Are you sure?</source>
-        <translation>Upozornění: Vybrali jste &apos;runinstaller&apos; option.
+        <translation>Upozornění: Vybrali jste volbu &apos;runinstaller&apos; .
 Toto vymaže všechny vaše systémy při dalším startu.
 Jste si jistý?</translation>
     </message>
@@ -1715,15 +1715,15 @@ Jste si jistý?</translation>
     </message>
     <message>
         <source>Testing</source>
-        <translation type="unfinished"></translation>
+        <translation>Testovací</translation>
     </message>
     <message>
         <source>Legacy</source>
-        <translation type="unfinished"></translation>
+        <translation>Postarší</translation>
     </message>
     <message>
         <source>Sailing</source>
-        <translation type="unfinished"></translation>
+        <translation>Plachtění</translation>
     </message>
     <message>
         <source>RECOMMENDED</source>
@@ -1740,7 +1740,7 @@ Jste si jistý?</translation>
     <message>
         <source>INSTALLED</source>
         <oldsource>INSTALOVÁNO</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>INSTALOVÁNO</translation>
     </message>
 </context>
 <context>
@@ -2561,7 +2561,7 @@ Break</source>
     </message>
     <message>
         <source>&amp;Show Password</source>
-        <translation>Zobrazit He&amp;Slo</translation>
+        <translation>Zobrazit He&amp;slo</translation>
     </message>
     <message>
         <source>&amp;Virtual Keyboard</source>
@@ -2612,55 +2612,55 @@ Break</source>
     <name>adjustSizes</name>
     <message>
         <source>Adjust size of OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavení velikosti OS(ů)</translation>
     </message>
     <message>
         <source>Nominal (MB)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jmenovitá (MB)</translation>
     </message>
     <message>
         <source>Extra (MB)</source>
-        <translation type="unfinished"></translation>
+        <translation>Navíc (MB)</translation>
     </message>
     <message>
         <source>Total (MB)</source>
-        <translation type="unfinished"></translation>
+        <translation>Celkem (MB)</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazat</translation>
     </message>
     <message>
         <source>Balance</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyvážit</translation>
     </message>
     <message>
         <source>(*) non-expanding</source>
-        <translation type="unfinished"></translation>
+        <translation>(*) nerozšiřitelné</translation>
     </message>
     <message>
         <source>Capacity: 0MB</source>
-        <translation type="unfinished"></translation>
+        <translation>Kapacita: 0MB</translation>
     </message>
     <message>
         <source>Free: 0MB </source>
-        <translation type="unfinished"></translation>
+        <translation>Volno: 0MB</translation>
     </message>
     <message>
         <source>Used: 0MB</source>
-        <translation type="unfinished"></translation>
+        <translation>Použito: 0MB</translation>
     </message>
     <message>
         <source>Used</source>
-        <translation type="unfinished"></translation>
+        <translation>Použito</translation>
     </message>
     <message>
         <source>Free</source>
-        <translation type="unfinished"></translation>
+        <translation>Volno</translation>
     </message>
     <message>
         <source>Capacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Kapacita</translation>
     </message>
 </context>
 <context>
@@ -2802,7 +2802,7 @@ Break</source>
     </message>
     <message>
         <source>Maybe insert source USB stick</source>
-        <translation>Můžete vložit jako zdroj USB disk</translation>
+        <translation>Můžete vložit zdrojový USB disk</translation>
     </message>
     <message>
         <source>does not support re-running the setup script.</source>

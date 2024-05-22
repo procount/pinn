@@ -8,6 +8,7 @@ mntsize=`df  | grep /mnt | sed  's|\s\+|,|g' | cut -d ',' -f 2`
 
 cd /mnt
 
+#Save these files
 if [ -f recovery.rfs ]; then
 	cp recovery.cmdline     /tmp/cmdline.txt
 else
@@ -15,8 +16,25 @@ else
 fi
 cp config.txt		/tmp/config.bak
 
-#REMOVE ALL BOOT FILES!
-rm -rf *
+#Move all files/folders except /os to tmp
+output="/tmp/mnt"
+mkdir -p $output
+
+for f in *
+do
+	if [ -f $f ]; then
+		mv $f  $output
+	fi
+	if [ -d $f ]; then
+		case $f in
+			defaults | overlays | overlays6)
+				mv $f $output
+				;;
+			*)
+				;;
+		esac
+	fi
+done
 
 #Restore saved settings
 cp /tmp/cmdline.txt /mnt
@@ -32,7 +50,7 @@ if [ $mntsize -lt $orgsize ]; then
 	sync
 fi
 
-#Use new configuration
+#Use new config.txt file
 unzip -o /tmp/pinn-lite.zip config.txt
 
 #Update the cmdline with saved info
@@ -50,8 +68,8 @@ while read a; do
 done < /tmp/exclude.txt
 pi5minsize=$(expr 1520 + $(unzip -l /tmp/pinn-lite.zip $exclude |tail -n1 | sed 's|\s\+| |g'| sed 's|^ ||' | cut -d ' ' -f 1) / 1024)
 
+#Find out how much free spaces is left now on /mnt
 freesize=`df  | grep /mnt | sed  's|\s\+|,|g' | cut -d ',' -f 4`
-
 
 sync
 

@@ -4636,23 +4636,15 @@ int MainWindow::updatePinn()
     int error=0;
     int dummy;
     //When PINN is updated, We don't need these files to be extracted
-    QString exclusions = " -x cmdline.txt -x updatepinn -x exclude.txt";
+    QString exclusions = " -x cmdline.txt -x preupdate -x postupdate -x exclude.txt";
 
     readexec(1,"mount -o remount,rw /mnt",dummy);
 
-    //First we'll extract these 2 files to /tmp to automate hte update process
-    readexec(1,"unzip /tmp/pinn-lite.zip -o exclude.txt updatepinn preupdate -d /tmp",dummy);
+    //First we'll extract these 2 files to /tmp to automate the update process
+    readexec(1,"unzip /tmp/pinn-lite.zip -o exclude.txt preupdate postupdate -d /tmp",dummy);
 
 
-    //Save the existing installation in case of failure
-    if (_qpdup)
-        ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Saving current version")));
-    QApplication::processEvents();
-
-
-    InitDriveThread::saveBootFiles();
-
-    //In case we need to do some additional upgrade processing
+    //In case we need to do some additional pre-update processing
     if (QFile::exists("/tmp/preupdate"))
     {
         if (_qpdup)
@@ -4685,35 +4677,23 @@ int MainWindow::updatePinn()
 
         QString cmd = "unzip /tmp/pinn-lite.zip -o" + exclusions + " -d /mnt";
         readexec(1,cmd,dummy);
-
-        //In case we need to do some additional upgrade processing
-        if (QFile::exists("/tmp/updatepinn"))
-        {
-            if (_qpdup)
-                ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Executing updatepinn")));
-            QApplication::processEvents();
-
-            QProcess::execute("chmod +x /tmp/updatepinn");
-            error = QProcess::execute("/tmp/updatepinn");
-        }
     }
+
+    //In case we need to do some additional upgrade processing
+    if (QFile::exists("/tmp/postupdate"))
+    {
+        if (_qpdup)
+            ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Executing postupdate")));
+        QApplication::processEvents();
+
+        QProcess::execute("chmod +x /tmp/postupdate");
+        QString cmd = "/tmp/postupdate " + QString::number(error);
+        QProcess::execute(cmd);
+    }
+
     if (error)
     {
-        int dummy;
-        QString cmd;
-
-        qDebug() << "preupdate failed.";
-        cmd = "sh -c \" cd /mnt; rm -rf *\"";
-        QString type = readexec(1,cmd, dummy);
-
-        if (_qpdup)
-        {
-            ((QProgressDialog*)_qpdup)->setLabel( new QLabel(tr("Update failed. Restoring previous version.")));
-            QApplication::processEvents();
-        }
-
-        InitDriveThread::restoreBootFiles();
-
+        qDebug() << "update failed.";
     }
 
     QProcess::execute("mount -o remount,ro /mnt");

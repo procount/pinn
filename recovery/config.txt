@@ -5,6 +5,9 @@ fixup_file=fixup.dat
 disable_overscan=1
 initramfs pinn.rfs
 
+[HDMI1]
+hdmi_force_hotplug=1
+
 [pi4]
 start_file=start4.elf
 fixup_file=fixup4.dat

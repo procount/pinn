@@ -5,6 +5,11 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.9.2
+
+- **HDMI2**         - fixed crash when using HDMI2 on Pi4
+- **Translation**   - Updated Czech translation
+
 ### V3.9.1
 
 - **Update**        - Update Italian. Update process deletes all of boot.

@@ -22,12 +22,12 @@ public:
     bool formatUsbDrive();
     static bool saveBootFiles();
     static bool restoreBootFiles();
+    static int sizeofBootFilesInKB();
 
 protected:
     virtual void run();
 
     bool method_resizePartitions();
-    int sizeofBootFilesInKB();
     uint sizeofSDCardInBlocks();
     bool mountSystemPartition();
     bool umountSystemPartition();
