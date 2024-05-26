@@ -3942,17 +3942,24 @@ void MainWindow::recalcAvailableMB()
 //    QString result = readexec(0,cmd,errorcode);
 //    _availableMB = (result.toULongLong() - getFileContents(sysclassblock(_drive, 5)+"/size").trimmed().toULongLong())/ 2048;
 
-    QString classdev = sysclassblock(_osdrive, 1);
-    if (QFile::exists(classdev))
+    if (_osdrive!="")
     {
-        QProcess proc;
-        QString cmd = "sh -c \"df -m /dev/" + partdev(_osdrive,1) + " | grep  /dev/" + partdev(_osdrive,1) + " | sed 's| \\+| |g' | cut -d' ' -f 4 \"";
+        QString classdev = sysclassblock(_osdrive, 1);
+        if (QFile::exists(classdev))
+        {
+            QProcess proc;
+            QString cmd = "sh -c \"df -m /dev/" + partdev(_osdrive,1) + " | grep  /dev/" + partdev(_osdrive,1) + " | sed 's| \\+| |g' | cut -d' ' -f 4 \"";
 
-        proc.start(cmd);
-        proc.waitForFinished();
-        QString result = proc.readAll();
+            proc.start(cmd);
+            proc.waitForFinished();
+            QString result = proc.readAll();
 
-        _availableDownloadMB = result.toInt();
+            _availableDownloadMB = result.toInt();
+        }
+        else
+        {
+            _availableDownloadMB = 0;
+        }
     }
     else
     {
@@ -4687,8 +4694,12 @@ int MainWindow::updatePinn()
         QApplication::processEvents();
 
         QProcess::execute("chmod +x /tmp/postupdate");
-        QString cmd = "/tmp/postupdate " + QString::number(error);
-        QProcess::execute(cmd);
+
+        QStringList args("/tmp/postupdate");
+        args << QString::number(error);
+
+        QString cmd = "/bin/sh";
+        QProcess::execute(cmd,args);
     }
 
     if (error)
