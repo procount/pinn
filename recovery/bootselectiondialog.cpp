@@ -312,7 +312,6 @@ void BootSelectionDialog::accept()
 
 void BootSelectionDialog::setDisplayMode()
 {
-    MSG();
 
 #ifdef Q_WS_QWS
     QString cmd, mode;
