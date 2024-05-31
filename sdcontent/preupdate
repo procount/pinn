@@ -28,7 +28,8 @@ do
 	if [ -d $f ]; then
 		case $f in
 			defaults | overlays | overlays6)
-				mv $f $output
+				cp -a $f $output
+				rm -rf $f
 				;;
 			*)
 				;;

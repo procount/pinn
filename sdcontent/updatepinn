@@ -2,6 +2,11 @@
 
 set -x
 error=$1
+
+if [ "x$error" == "x" ]; then
+        error=0
+fi
+
 output="/tmp/mnt"
 
 if [ ! $error -eq 0 ]; then
