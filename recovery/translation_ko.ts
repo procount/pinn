@@ -2821,12 +2821,14 @@ Break</source>
     <message>
         <source> partions_setup.sh script error
 </source>
-        <translation> partions_setup.sh 스크립트 오류</translation>
+        <translation> partions_setup.sh 스크립트 오류
+</translation>
     </message>
     <message>
         <source> partition_setup.sh script OK
 </source>
-        <translation> partions_setup.sh 스크립트 확인 완료</translation>
+        <translation> partions_setup.sh 스크립트 확인 완료
+</translation>
     </message>
     <message>
         <source>DONE - some setup script errors detected</source>
