@@ -975,23 +975,11 @@ Do you want to continue?</source>
         <translation>새로운 업데이트가 없습니다.</translation>
     </message>
     <message>
-        <source>Saving current version</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Executing preupdate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Extracting update</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Executing updatepinn</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Update failed. Restoring previous version.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1029,6 +1017,10 @@ Do you want to continue?</source>
     <message>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
         <translation>경고: 지원하지 않는 운영체제를 발견하였습니다. PINN은 이 운영체제에 대한 백업을 제대로 생성하지 못할 수 있습니다. 대상 운영체제:</translation>
+    </message>
+    <message>
+        <source>Executing postupdate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

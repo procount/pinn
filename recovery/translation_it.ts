@@ -935,25 +935,12 @@ Sei sicuro di voler continuare?</translation>
         <translation>Il software PINN è aggiornato</translation>
     </message>
     <message>
-        <source>Saving current version</source>
-        <translation>Salvataggio versione attuale</translation>
-    </message>
-    <message>
         <source>Executing preupdate</source>
         <translation>Esecuzione pre-aggiornamento</translation>
     </message>
     <message>
         <source>Extracting update</source>
         <translation>Estrazione aggiornamento</translation>
-    </message>
-    <message>
-        <source>Executing updatepinn</source>
-        <translation>Esecuzione aggiornamento PINN</translation>
-    </message>
-    <message>
-        <source>Update failed. Restoring previous version.</source>
-        <translation>Aggiornamento non riuscito. 
-Ripristino versione precedente.</translation>
     </message>
     <message>
         <source>PINN UPDATE</source>
@@ -1055,6 +1042,10 @@ La scheda SD o il file system potrebbero essere danneggiati.</translation>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Per questa funzione è richiesto l&apos;accesso alla rete cablata. 
 Inserisci un cavo di rete nella porta ethernet.</translation>
+    </message>
+    <message>
+        <source>Executing postupdate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

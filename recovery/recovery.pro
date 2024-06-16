@@ -189,7 +189,8 @@ TRANSLATIONS += \
     translation_ru.ts \
     translation_sv.ts \
     translation_tr.ts \
-    translation_zh_TW.ts
+    translation_zh_TW.ts \
+    translation_zh_CN.ts
 
 OTHER_FILES += \
     README.txt \

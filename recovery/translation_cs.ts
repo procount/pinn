@@ -873,24 +873,12 @@ Chcete pokračovat?</translation>
         <translation>Aktualizace PINNu selhala</translation>
     </message>
     <message>
-        <source>Saving current version</source>
-        <translation>Uložení současné verze</translation>
-    </message>
-    <message>
         <source>Executing preupdate</source>
         <translation>Probíhá předaktualizace</translation>
     </message>
     <message>
         <source>Extracting update</source>
         <translation>Rozbalení aktualizace</translation>
-    </message>
-    <message>
-        <source>Executing updatepinn</source>
-        <translation>Probíhá aktualizace PINNu</translation>
-    </message>
-    <message>
-        <source>Update failed. Restoring previous version.</source>
-        <translation>Aktualizace selhala. Obnovuji předchozí verzi.</translation>
     </message>
     <message>
         <source>Error: No OSes selected
@@ -1032,6 +1020,10 @@ Další start jednotky obnoví původní strukturu oddílů PINN&apos;s</transla
     <message>
         <source>Downloading Update</source>
         <translation>Stahuji Aktualizaci</translation>
+    </message>
+    <message>
+        <source>Executing postupdate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

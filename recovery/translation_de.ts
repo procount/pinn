@@ -895,23 +895,11 @@ Soll fortgesetzt werden?</translation>
         <translation>Kein Update verfügbar</translation>
     </message>
     <message>
-        <source>Saving current version</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Executing preupdate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Extracting update</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Executing updatepinn</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Update failed. Restoring previous version.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1036,6 +1024,10 @@ Ein erneutes Booten dieses Laufwerks stellt die Partitionsstruktur von PINN wied
     <message>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Für diese Funktion ist eine kabelgebundene Netzwerkverbindung erforderlich. Bitte ein Netzwerkkabel einstecken.</translation>
+    </message>
+    <message>
+        <source>Executing postupdate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

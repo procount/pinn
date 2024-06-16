@@ -857,23 +857,11 @@ Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Saving current version</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Executing preupdate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Extracting update</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Executing updatepinn</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Update failed. Restoring previous version.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1017,6 +1005,10 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     </message>
     <message>
         <source>Reformat drive?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Executing postupdate</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
