@@ -1207,86 +1207,86 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip.</source>
-        <translation type="unfinished"></translation>
+        <translation>压缩文件格式不支持。仅支持 .lzo、.gz、.xz、.bz2 和 .zip。</translation>
     </message>
     <message>
         <source>An incorrect file checksum has been detected in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>检测到 %1 中的文件校验错误。</translation>
     </message>
     <message>
         <source>Checksum error</source>
-        <translation type="unfinished"></translation>
+        <translation>校验错误</translation>
     </message>
     <message>
         <source>Checksum OK</source>
-        <translation type="unfinished"></translation>
+        <translation>校验成功</translation>
     </message>
     <message>
         <source>Finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>下载完成</translation>
     </message>
 </context>
 <context>
     <name>OptionsDialog</name>
     <message>
         <source>PINN Options</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN 选项</translation>
     </message>
     <message>
         <source>Installation</source>
-        <translation type="unfinished"></translation>
+        <translation>安装</translation>
     </message>
     <message>
         <source>PREVENTS any noobsconfig customisations from being applied to an OS on installation</source>
-        <translation type="unfinished"></translation>
+        <translation>安装过程不应用自定义 noobsconfig 到操作系统。</translation>
     </message>
     <message>
         <source>noobs&amp;config</source>
-        <translation type="unfinished"></translation>
+        <translation>noobs 的配置</translation>
     </message>
     <message>
         <source>Reserve some space on PINN&apos;s partition (MB)</source>
-        <translation type="unfinished"></translation>
+        <translation>在 PINN 分区上的预留空间（MB）。</translation>
     </message>
     <message>
         <source>re&amp;serve=</source>
-        <translation type="unfinished"></translation>
+        <translation>re&amp;服务器=</translation>
     </message>
     <message>
         <source>Specifies a path or URL where the noobsconfig customisation files can be found (rather than being in /os/&amp;lt;distro&amp;gt;/)</source>
-        <translation type="unfinished"></translation>
+        <translation>指定路径或 URL，用于存放 noobsconfig 自定义文件（默认为 /os/&amp;lt;distro&amp;gt;/）</translation>
     </message>
     <message>
         <source>&amp;configpath=</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;配置路径=</translation>
     </message>
     <message>
         <source>Amount of space to reserve (MB) on PINN&apos;s partition</source>
-        <translation type="unfinished"></translation>
+        <translation>在 PINN 分区上的预留空间（MB）。</translation>
     </message>
     <message>
         <source>Selecting this will erase all of your OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>该操作将删除您所有的操作系统</translation>
     </message>
     <message>
         <source>&amp;runinstaller</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;运行安装</translation>
     </message>
     <message>
         <source>Prevents PINN from checking for self updates</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭 PINN 自动更新检查</translation>
     </message>
     <message>
         <source>no_&amp;update</source>
-        <translation type="unfinished"></translation>
+        <translation>no_&amp;更新</translation>
     </message>
     <message>
         <source>Force PINN to self-update whenever a new version is detected</source>
-        <translation type="unfinished"></translation>
+        <translation>强制在 PINN 检测到新版本时自动更新</translation>
     </message>
     <message>
         <source>&amp;forceupdatepinn</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;强制更新</translation>
     </message>
     <message>
         <source>Selects all OSes where the most recent one is on the SD card</source>
