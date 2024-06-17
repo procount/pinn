@@ -5,43 +5,43 @@
     <name>BackupThread</name>
     <message>
         <source>Finish writing (sync)</source>
-        <translation type="unfinished">写入完成 (sync)</translation>
+        <translation>写入完成 (sync)</translation>
     </message>
     <message>
         <source>Cannot backup </source>
-        <translation type="unfinished"></translation>
+        <translation>无法备份</translation>
     </message>
     <message>
         <source> :BTRFS file format</source>
-        <translation type="unfinished"></translation>
+        <translation>:BTRFS 文件格式</translation>
     </message>
     <message>
         <source>%1: Writing image (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: 写入镜像 (%2)</translation>
     </message>
     <message>
         <source>%1: Archiving (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: 归档镜像 (%2)</translation>
     </message>
     <message>
         <source>Error writing </source>
-        <translation type="unfinished"></translation>
+        <translation>写入时发生错误</translation>
     </message>
     <message>
         <source>: Disk full?</source>
-        <translation type="unfinished"></translation>
+        <translation>: 磁盘无空余空间？</translation>
     </message>
     <message>
         <source>%1: Checksumming (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: 校验中 (%2)</translation>
     </message>
     <message>
         <source>%1: Updating partitions.json</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: 更新 partitions.json</translation>
     </message>
     <message>
         <source>%1: Updating os.json</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: 更新 os.json</translation>
     </message>
 </context>
 <context>
@@ -52,7 +52,7 @@
     </message>
     <message>
         <source>Error mounting settings partition</source>
-        <translation>挂载 settings 分区时发生错误</translation>
+        <translation>挂载所选分区时发生错误</translation>
     </message>
     <message>
         <source>HDMI safe mode</source>
@@ -68,42 +68,42 @@
     </message>
     <message>
         <source>PINN - Select OS to boot</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN - 选择启动系统</translation>
     </message>
     <message>
         <source>Sticky default</source>
-        <translation type="unfinished"></translation>
+        <translation>粘滞位设置</translation>
     </message>
     <message>
         <source>&amp;Up</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Up</translation>
     </message>
     <message>
         <source>U</source>
-        <translation type="unfinished"></translation>
+        <translation>U</translation>
     </message>
     <message>
         <source>&amp;Down</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Down</translation>
     </message>
     <message>
         <source>D</source>
-        <translation type="unfinished"></translation>
+        <translation>D</translation>
     </message>
     <message>
         <source>BOOT</source>
-        <translation type="unfinished"></translation>
+        <translation>启动</translation>
     </message>
     <message>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN - 将在 %1 秒后从先前所选的系统启动</translation>
     </message>
 </context>
 <context>
     <name>ConfEditDialog</name>
     <message>
         <source>Config editor</source>
-        <translation>配置编辑器</translation>
+        <translation>配置编辑</translation>
     </message>
     <message>
         <source>Error</source>
@@ -111,61 +111,61 @@
     </message>
     <message>
         <source>Error mounting boot partition</source>
-        <translation>挂载 boot 分区时发生错误</translation>
+        <translation>挂载启动分区时发生错误</translation>
     </message>
     <message>
         <source>&amp;Edit Options</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;编辑选项</translation>
     </message>
     <message>
         <source>Virtual Keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>虚拟键盘</translation>
     </message>
 </context>
 <context>
     <name>DateTimeDialog</name>
     <message>
         <source>Set Date &amp; Time</source>
-        <translation type="unfinished"></translation>
+        <translation>设置日期与时间</translation>
     </message>
     <message>
-        <source>Please set the correct UTC date and time below.</source>
-        <translation type="unfinished"></translation>
+        <source>请于下方设置正确的 UTC 日期和时间。</source>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>FullFatThread</name>
     <message>
         <source>Mounting FAT partition</source>
-        <translation type="unfinished">正在挂载 FAT 分区</translation>
+        <translation>正在挂载 FAT 分区</translation>
     </message>
     <message>
         <source>Error mounting system partition.</source>
-        <translation type="unfinished">挂载系统分区时发生错误。</translation>
+        <translation>挂载系统分区时发生错误。</translation>
     </message>
     <message>
         <source>Error opening %1</source>
-        <translation type="unfinished">打开 %1 时发生错误</translation>
+        <translation打开 %1 时发生错误</translation>
     </message>
     <message>
         <source>Finish writing to disk (sync)</source>
-        <translation type="unfinished">写入磁盘完成 (sync)</translation>
+        <translation>成功写入磁盘（sync）</translation>
     </message>
     <message>
         <source>Error unmounting system partition.</source>
-        <translation type="unfinished">卸载系统分区时发生错误。</translation>
+        <translation>卸载系统分区时发生错误。</translation>
     </message>
     <message>
         <source>Removing partitions 2,3,4</source>
-        <translation type="unfinished">正在移除分区 2,3,4</translation>
+        <translation>正在移除分区 2,3,4</translation>
     </message>
     <message>
         <source>Resizing FAT partition</source>
-        <translation type="unfinished">正在调整 FAT 分区的大小</translation>
+        <translation>正在调整 FAT 分区的大小</translation>
     </message>
     <message>
         <source>Error resizing existing FAT partition</source>
-        <translation type="unfinished">调整 FAT 分区大小时发生错误</translation>
+        <translation>调整 FAT 分区大小时发生错误</translation>
     </message>
 </context>
 <context>
@@ -180,7 +180,7 @@
     </message>
     <message>
         <source>Error formatting settings partition</source>
-        <translation>格式化 settings 分区发生错误</translation>
+        <translation>格式化所选分区时发生错误</translation>
     </message>
     <message>
         <source>Error mounting system partition.</source>
@@ -196,11 +196,11 @@
     </message>
     <message>
         <source>Writing RiscOS blob</source>
-        <translation>正在写入RiscOS blob</translation>
+        <translation>正在写入 RiscOS blob</translation>
     </message>
     <message>
         <source>Error writing RiscOS blob</source>
-        <translation>写入RiscOS blob 发生错误</translation>
+        <translation>写入 RiscOS blob 时发生错误</translation>
     </message>
     <message>
         <source>Unmounting boot partition</source>
@@ -208,15 +208,15 @@
     </message>
     <message>
         <source>Finish writing to disk (sync)</source>
-        <translation>写入磁盘完成 (sync)</translation>
+        <translation>成功写入磁盘（sync）</translation>
     </message>
     <message>
         <source>Mounting boot partition again</source>
-        <translation>正在再次挂载启动分区</translation>
+        <translation>再次挂载启动分区中</translation>
     </message>
     <message>
         <source>SD card broken (writes do not persist)</source>
-        <translation>SD 卡损坏 (写入的不会保留)</translation>
+        <translation>SD 卡已损坏（无法写入）</translation>
     </message>
     <message>
         <source>Error unmounting system partition.</source>
@@ -224,15 +224,15 @@
     </message>
     <message>
         <source>Error: No MBR present on SD Card</source>
-        <translation>错误： SD 卡上没有 MBR</translation>
+        <translation>错误：SD 卡上无 MBR</translation>
     </message>
     <message>
         <source>Zeroing partition table</source>
-        <translation>正在将分区表归零</translation>
+        <translation>正在将分区表清零</translation>
     </message>
     <message>
         <source>Error zero&apos;ing MBR/GPT. SD card may be broken or advertising wrong capacity.</source>
-        <translation>将 MBR/GPT 归零时发生错误。SD 卡也许坏了或是标示的容量不正确。</translation>
+        <translation>在 MBR/GPT 清零时发生错误。SD 卡已损坏或标称容量错误。</translation>
     </message>
     <message>
         <source>Writing new MBR</source>
@@ -284,15 +284,15 @@
     </message>
     <message>
         <source>Formatting boot partition (fat)</source>
-        <translation>正在格式化启动分区 (fat)</translation>
+        <translation>正在格式化启动分区（fat）</translation>
     </message>
     <message>
         <source>Error formatting boot partition (fat)</source>
-        <translation>格式化启动分区 (fat) 时发生错误</translation>
+        <translation>格式化启动分区（fat）时发生错误</translation>
     </message>
     <message>
         <source>Copying boot files to storage</source>
-        <translation>复制启动文件到存储空间</translation>
+        <translation>复制启动文件到存储设备</translation>
     </message>
     <message>
         <source>Setting disk volume ID</source>
@@ -301,11 +301,12 @@
     <message>
         <source>Would you like PINN to create one for you?
 WARNING: This will erase all data on your SD card.</source>
-        <translation type="unfinished"></translation>
+        <translation>您希望 PINN 为您创建一个吗？
+警告：这将删除 SD 卡上的所有数据</translation>
     </message>
     <message>
         <source>SD card has now been formatted ready for PINN installation. Please re-copy the PINN files onto the card and reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>SD 卡现已格式化，可以安装 PINN 了。请将 PINN 有关文件重新复制到卡上并重启</translation>
     </message>
 </context>
 <context>
@@ -339,7 +340,7 @@ WARNING: This will erase all data on your SD card.</source>
     </message>
     <message>
         <source>Installs the selected operating system image onto this SD card.</source>
-        <translation>安装选定的操作系统到这张 SD 卡。</translation>
+        <translation>在此 SD 卡安装所选操作系统。</translation>
     </message>
     <message>
         <source>I</source>
@@ -371,7 +372,7 @@ WARNING: This will erase all data on your SD card.</source>
     </message>
     <message>
         <source>Opens a web browser displaying the Raspberry Pi Forum.</source>
-        <translation>打开浏览器显示 Raspberry Pi 论坛。</translation>
+        <translation>打开浏览器访问 Raspberry Pi 论坛。</translation>
     </message>
     <message>
         <source>Select a wifi network to connect to</source>
@@ -387,11 +388,11 @@ WARNING: This will erase all data on your SD card.</source>
     </message>
     <message>
         <source>Waiting for SD card (settings partition)</source>
-        <translation>正在等待 SD 卡 (settings 分区)</translation>
+        <translation>正在等待 SD 卡（所选分区）</translation>
     </message>
     <message>
         <source>Mounting settings partition</source>
-        <translation>正在挂载 settings 分区</translation>
+        <translation>正在挂载所选分区</translation>
     </message>
     <message>
         <source>Error mounting settings partition</source>
@@ -407,7 +408,7 @@ WARNING: This will erase all data on your SD card.</source>
     </message>
     <message>
         <source>SD card might be damaged</source>
-        <translation>SD 卡也许可能已被损坏</translation>
+        <translation>SD 卡可能已损坏</translation>
     </message>
     <message>
         <source>RECOMMENDED</source>
@@ -423,11 +424,11 @@ WARNING: This will erase all data on your SD card.</source>
     </message>
     <message>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
-        <translation>警告：检测到不兼容的操作系统。此版本 Raspberry Pi 不支持以下操作系统，可能会启动失败或有功能不正常：</translation>
+        <translation>警告：检测到不兼容的操作系统。该型号的树莓派不支持以下操作系统，可能会启动失败或功能异常：</translation>
     </message>
     <message>
         <source>OS(es) Installed Successfully</source>
-        <translation>操作系统已成功安装</translation>
+        <translation>已成功安装操作系统</translation>
     </message>
     <message>
         <source>Error</source>
@@ -451,21 +452,21 @@ WARNING: This will erase all data on your SD card.</source>
     </message>
     <message>
         <source>Display Mode Changed</source>
-        <translation>显示模式已改动</translation>
+        <translation>显示模式已变更</translation>
     </message>
     <message>
         <source>Display mode changed to %1
 Would you like to make this setting permanent?</source>
         <translation>显示模式已改为 %1
-您想要让这个改动永久生效吗？</translation>
+您想要让这个改动默认生效吗？</translation>
     </message>
     <message>
         <source>No network access</source>
-        <translation>无法访问网络</translation>
+        <translation>无网络</translation>
     </message>
     <message>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
-        <translation>这个功能需要联网。请插入网线到有线网口。</translation>
+        <translation>该功能需要联网。请将网线插入到网口。</translation>
     </message>
     <message>
         <source>Download error</source>
@@ -473,7 +474,7 @@ Would you like to make this setting permanent?</source>
     </message>
     <message>
         <source>Error parsing list.json downloaded from server</source>
-        <translation>解析从服务器上下载的 list.jsong上发生错误</translation>
+        <translation>对从服务器上下载的 list.jsong 解析时发生错误</translation>
     </message>
     <message>
         <source>Needed</source>
@@ -485,7 +486,7 @@ Would you like to make this setting permanent?</source>
     </message>
     <message>
         <source>Error downloading meta file</source>
-        <translation>下载 meta 文件时发生错误</translation>
+        <translation>下载元文件时发生错误</translation>
     </message>
     <message>
         <source>Error writing downloaded file to SD card. SD card or file system may be damaged.</source>
@@ -497,550 +498,566 @@ Would you like to make this setting permanent?</source>
     </message>
     <message>
         <source>Install space</source>
-        <translation type="unfinished"></translation>
+        <translation>安装位置</translation>
     </message>
     <message>
         <source>Model</source>
-        <translation type="unfinished"></translation>
+        <translation>型号</translation>
     </message>
     <message>
         <source>Memory</source>
-        <translation type="unfinished"></translation>
+        <translation>内存</translation>
     </message>
     <message>
         <source>Download space</source>
-        <translation type="unfinished"></translation>
+        <translation>下载位置</translation>
     </message>
     <message>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation>工具栏</translation>
     </message>
     <message>
         <source>More (m)</source>
-        <translation type="unfinished"></translation>
+        <translation>更多 (m)</translation>
     </message>
     <message>
         <source>More menus</source>
-        <translation type="unfinished"></translation>
+        <translation>更多菜单</translation>
     </message>
     <message>
         <source>M</source>
-        <translation type="unfinished"></translation>
+        <translation>M</translation>
     </message>
     <message>
         <source>Info (n)</source>
-        <translation type="unfinished"></translation>
+        <translation>信息 (n)</translation>
     </message>
     <message>
         <source>Information about the selected OS</source>
-        <translation type="unfinished"></translation>
+        <translatio>关于所选系统</translation>
     </message>
     <message>
         <source>N</source>
-        <translation type="unfinished"></translation>
+        <translation>N</translation>
     </message>
     <message>
         <source>Wifi (w)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wifi (w)</translation>
     </message>
     <message>
         <source>Password (p)</source>
-        <translation type="unfinished"></translation>
+        <translation>密码 (p)</translation>
     </message>
     <message>
         <source>Change password</source>
-        <translation type="unfinished"></translation>
+        <translation>修改密码</translation>
     </message>
     <message>
         <source>P</source>
-        <translation type="unfinished"></translation>
+        <translation>P</translation>
     </message>
     <message>
         <source>Download (d)</source>
-        <translation type="unfinished"></translation>
+        <translation>下载 (d)</translation>
     </message>
     <message>
-        <source>Downloads the selected operating system image to USB for local installation</source>
-        <translation type="unfinished"></translation>
+        <source>将所选操作系统镜像下载至 USB 设备，以便本地安装</source>
+        <translation></translation>
     </message>
     <message>
         <source>D</source>
-        <translation type="unfinished"></translation>
+        <translation>D</translation>
     </message>
     <message>
         <source>Backup (b)</source>
-        <translation type="unfinished"></translation>
+        <translation>备份 (b)</translation>
     </message>
     <message>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <source>Reinstall (r)</source>
-        <translation type="unfinished"></translation>
+        <translation>重装 (r)</translation>
     </message>
     <message>
         <source>R</source>
-        <translation type="unfinished"></translation>
+        <translation>R</translation>
     </message>
     <message>
         <source>Replace (c)</source>
-        <translation type="unfinished"></translation>
+        <translation>修改 (c)</translation>
     </message>
     <message>
         <source>C</source>
-        <translation type="unfinished"></translation>
+        <translation>C</translation>
     </message>
     <message>
         <source>fsck (f)</source>
-        <translation type="unfinished"></translation>
+        <translation>fsck (f)</translation>
     </message>
     <message>
         <source>F</source>
-        <translation type="unfinished"></translation>
+        <translation>F</translation>
     </message>
     <message>
         <source>Fix (f)</source>
-        <translation type="unfinished"></translation>
+        <translation>修复 (f)</translation>
     </message>
     <message>
         <source>Wipe (w)</source>
-        <translation type="unfinished"></translation>
+        <translation>擦写 (w)</translation>
     </message>
     <message>
         <source>Clone (c)</source>
-        <translation type="unfinished"></translation>
+        <translation>克隆 (c)</translation>
     </message>
     <message>
         <source>Information about the installed OS</source>
-        <translation type="unfinished"></translation>
+        <translation>关于已安装系统</translation>
     </message>
     <message>
         <source>Clear (c)</source>
-        <translation type="unfinished"></translation>
+        <translation>清除 (c)</translation>
     </message>
     <message>
         <source>Clear selection</source>
-        <translation type="unfinished"></translation>
+        <translation>清除所选分区</translation>
     </message>
     <message>
         <source>Time (t)</source>
-        <translation type="unfinished"></translation>
+        <translation>时间 (t)</translation>
     </message>
     <message>
         <source>Set Date &amp; Time</source>
-        <translation type="unfinished"></translation>
+        <translation>设置日期与时间</translation>
     </message>
     <message>
         <source>T</source>
-        <translation type="unfinished"></translation>
+        <translation>T</translation>
     </message>
     <message>
         <source>Alias (a)</source>
-        <translation type="unfinished"></translation>
+        <translatio>设置别名 (a)</translation>
     </message>
     <message>
         <source>Rename an OS with an alias</source>
-        <translation type="unfinished"></translation>
+        <translation>使用别名重命名系统</translation>
     </message>
     <message>
         <source>A</source>
-        <translation type="unfinished"></translation>
+        <translation>A</translation>
     </message>
     <message>
         <source>Reload Repos (r)</source>
-        <translation type="unfinished"></translation>
+        <translation>重新读取存储库 (r)</translation>
     </message>
     <message>
         <source>Scans Repositories and reloads lists of new OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>扫描存储库并重新读取新的系统列表</translation>
     </message>
     <message>
         <source>RUNINSTALLER - Initialise Drive</source>
-        <translation type="unfinished"></translation>
+        <translation>运行安装程序 - 初始化磁盘设备</translation>
     </message>
     <message>
         <source>There are existing OSes installed.
 Are you sure you want to initialise the drive?</source>
-        <translation type="unfinished"></translation>
+        <translation>发现已安装的操作系统。
+你确定要初始化磁盘设备吗？</translation>
     </message>
     <message>
         <source>Main Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>主菜单</translation>
     </message>
     <message>
-        <source>Archival</source>
-        <translation type="unfinished"></translation>
+        <source>压缩格式</source>
+        <translation></translation>
     </message>
     <message>
         <source>Maintenance</source>
-        <translation type="unfinished"></translation>
+        <translation>维护者</translation>
     </message>
     <message>
         <source>Please wait while PINN initialises</source>
-        <translation type="unfinished"></translation>
+        <translation>请等待 PINN 初始化</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation type="unfinished"></translation>
+        <translation>错误</translation>
     </message>
     <message>
         <source>Error: Some OSes are not available:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>错误：某些操作系统不可用：
+</translation>
     </message>
     <message>
         <source>Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>警告：不是所有的 USB 都支持。以下操作系统只能从位于 /dev/sda 的 USB 设备启动，否则可能无法正确启动或运行：
+</translation>
     </message>
     <message>
         <source>
 
 Do you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>
+
+你想继续吗？</translation>
     </message>
     <message>
         <source>Downloading Update</source>
-        <translation type="unfinished"></translation>
+        <translation>正在下载更新</translation>
     </message>
     <message>
         <source> is not available.
 Please provide it locally or connect to the internet.</source>
-        <translation type="unfinished"></translation>
+        <translation> 不可用。
+请接入局域网或互联网。</translation>
     </message>
     <message>
         <source>ReInstall OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>重装操作系统</translation>
     </message>
     <message>
         <source>Warning: No OSes selected or available
 </source>
-        <translation type="unfinished"></translation>
+        <translation>警告：未选择或没有无可用的操作系统
+</translation>
     </message>
     <message>
         <source>install</source>
-        <translation type="unfinished"></translation>
+        <translation>安装</translation>
     </message>
     <message>
         <source>reinstall</source>
-        <translation type="unfinished"></translation>
+        <translation>重装</translation>
     </message>
     <message>
         <source>replace</source>
-        <translation type="unfinished"></translation>
+        <translation>修改</translation>
     </message>
     <message>
         <source>USB drive</source>
-        <translation type="unfinished"></translation>
+        <translation>USB 磁盘设备</translation>
     </message>
     <message>
         <source>Warning: this will %1 the selected Operating System(s) to %2. All existing data on the %3 will be deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：将把所选操作系统 %1 安装到 %2。%3 上的全部现有数据将被删除。</translation>
     </message>
     <message>
         <source>Warning: this will %1 the selected Operating System(s) on %2. The partitions of the selected OSes will first be erased.</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：这将把所选操作系统 %1 安装到 %2。所选系统分区将被清除。</translation>
     </message>
     <message>
         <source>The %1 process will begin shortly.</source>
-        <translation type="unfinished"></translation>
+        <translation>操作 %1 将很快开始。</translation>
     </message>
     <message>
         <source>Warning: this will download the selected Operating System(s).</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：将下载所选操作系统。</translation>
     </message>
     <message>
         <source>The download process will begin shortly.</source>
-        <translation type="unfinished"></translation>
+        <translation>下载过程很快就会开始</translation>
     </message>
     <message>
         <source>OS(es) Downloaded with errors.
 See debug log for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>操作系统下载错误。
+请使用调试日志查看详情。</translation>
     </message>
     <message>
         <source>OS(es) Downloaded Successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>操作系统下载成功</translation>
     </message>
     <message>
         <source>OS(es) downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>操作系统已下载</translation>
     </message>
     <message>
         <source>OS(es) Backed up with errors.
 See debug log for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>操作系统备份错误。
+请使用调试日志查看详情。</translation>
     </message>
     <message>
         <source>OS(es) Backed up Successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>操作系统备份成功</translation>
     </message>
     <message>
         <source>Backup OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>备份操作系统</translation>
     </message>
     <message>
         <source>OS(es) Installed with errors.
 See debug log for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>操作系统安装错误。
+请使用调试日志查看详情。</translation>
     </message>
     <message>
         <source>Installation complete</source>
-        <translation type="unfinished"></translation>
+        <translation>安装完成</translation>
     </message>
     <message>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>暂停</translation>
     </message>
     <message>
         <source>Discard</source>
-        <translation type="unfinished"></translation>
+        <translation>丢弃</translation>
     </message>
     <message>
         <source>Retry</source>
-        <translation type="unfinished"></translation>
+        <translation>重试</translation>
     </message>
     <message>
         <source>Keep</source>
-        <translation type="unfinished"></translation>
+        <translation>继续</translation>
     </message>
     <message>
         <source>Reboot in %1 secs</source>
-        <translation type="unfinished"></translation>
+        <translation>将在 %1 后重启</translation>
     </message>
     <message>
         <source>PINN v%1 - Built: %2 (%3) %4</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN v%1 - 构建：%2 (%3) %4</translation>
     </message>
     <message>
         <source>Wiping SD card</source>
-        <translation type="unfinished"></translation>
+        <translation>擦除 SD 卡</translation>
     </message>
     <message>
         <source>Warning: this will restore your PINN drive to its initial state. All existing data on the drive except PINN will be overwritten, including any OSes that are already installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：这将把您的 PINN 存储设备恢复初始化。磁盘设备上的所有现有数据（除了 PINN 之外）都将被清除（包括已安装的操作系统）。</translation>
     </message>
     <message>
         <source>Drive Wiped!</source>
-        <translation type="unfinished"></translation>
+        <translation>磁盘已擦除！</translation>
     </message>
     <message>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：所有已安装的操作系统都被清除了，磁盘设备已恢复至原始大小。
+在重新启动此设备之前，无法进行安装和下载的操作。
+再次启动此驱动器将将恢复 PINN 的分区结构。</translation>
     </message>
     <message>
         <source>Error downloading distribution list from Internet:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>联网下载发行版列表时发生错误：
+</translation>
     </message>
     <message>
         <source>Error parsing repolist.json downloaded from server</source>
-        <translation type="unfinished"></translation>
+        <translation>对从服务器下载的 repolist.json 解析时发生错误</translation>
     </message>
     <message>
         <source>Error downloading meta file: </source>
-        <translation type="unfinished"></translation>
+        <translation>下载元文件时发生错误：</translation>
     </message>
     <message>
         <source>filesize error checking </source>
-        <translation type="unfinished"></translation>
+        <translation>文件大小校验错误</translation>
     </message>
     <message>
         <source>Replace OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>修改操作系统</translation>
     </message>
     <message>
         <source> has an incompatible number of partitions with </source>
-        <translation type="unfinished"></translation>
+        <translation>的分区数量不兼容</translation>
     </message>
     <message>
         <source>Resume partial downloads?</source>
-        <translation type="unfinished"></translation>
+        <translation>恢复部分下载？</translation>
     </message>
     <message>
         <source>Normally select NO, unless your last download was not successful, in which case select YES</source>
-        <translation type="unfinished"></translation>
+        <translation>通常选择“否”，除非您上次的下载失败才选择“确认（是）”。</translation>
     </message>
     <message>
         <source>This backup may require </source>
-        <translation type="unfinished"></translation>
+        <translation>该备份可能需要</translation>
     </message>
     <message>
         <source> MB of backup space, but only </source>
-        <translation type="unfinished"></translation>
+        <translation> MB 的备份空间，但是只有 </translation>
     </message>
     <message>
         <source> MB is available. This is only an estimate. If you continue, the backup may not complete successfully.
 
 Do you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation> MB 可用。但这只是估计值。如果继续，备份可能会失败。
+
+要继续吗？</translation>
     </message>
     <message>
         <source>WARNING: Backup Space</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：备份空间</translation>
     </message>
     <message>
         <source>Backup Info</source>
-        <translation type="unfinished"></translation>
+        <translation>备份信息</translation>
     </message>
     <message>
         <source>Always test your backups before relying on them</source>
-        <translation type="unfinished"></translation>
+        <translation>在依靠备份之前，请始终先进行测试。</translation>
     </message>
     <message>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
-        <translation type="unfinished"></translation>
+        <translation>在没有本地镜像的情况下使用 PINN 需要网络连接。请在下一界面中选择您的 Wifi 网络。</translation>
     </message>
     <message>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
-        <translation type="unfinished"></translation>
+        <translation>在没有本地镜像的情况下使用 PINN 需要网络连接。请把网线插入网口。</translation>
     </message>
     <message>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
-        <translation type="unfinished"></translation>
+        <translation>您确定要重新格式化磁盘设备“%1”以便与 PINN 配合使用吗？硬盘上的所有现有数据都将被删除！</translation>
     </message>
     <message>
         <source>This will erase all content on the device &apos;%s&apos;. Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>这将删除设备“%s”上的所有内容。你确定吗？</translation>
     </message>
     <message>
         <source>Clone SD Card</source>
-        <translation type="unfinished"></translation>
+        <translation>克隆 SD 卡</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>确认</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>否</translation>
     </message>
     <message>
         <source>Clone Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>克隆完成</translation>
     </message>
     <message>
         <source>Clone Completed Successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>克隆成功</translation>
     </message>
     <message>
         <source>Error downloading update file</source>
-        <translation type="unfinished"></translation>
+        <translation>下载更新文件时发生错误</translation>
     </message>
     <message>
         <source>PINN Update Check</source>
-        <translation type="unfinished"></translation>
+        <translation>检查 PINN 更新</translation>
     </message>
     <message>
         <source>Error contacting update server</source>
-        <translation type="unfinished"></translation>
+        <translation>连接到服务器时发生错误</translation>
     </message>
     <message>
         <source>PINN will now update and reboot in a few secs...</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN 将在现在进行更新并在几秒钟内重新启动……</translation>
     </message>
     <message>
         <source>PINN update failed</source>
-        <translation type="unfinished"></translation>
+        <translation>PINN 更新失败</translation>
     </message>
     <message>
         <source>No updates available</source>
-        <translation type="unfinished"></translation>
+        <translation>已经是最新版本</translation>
     </message>
     <message>
         <source>Executing preupdate</source>
-        <translation type="unfinished"></translation>
+        <translation>正在准备更新</translation>
     </message>
     <message>
         <source>Extracting update</source>
-        <translation type="unfinished"></translation>
+        <translation>正在解压更新</translation>
     </message>
     <message>
         <source>Executing postupdate</source>
-        <translation type="unfinished"></translation>
+        <translation>正在执行更新后操作</translation>
     </message>
     <message>
         <source>PINN UPDATE</source>
-        <translation type="unfinished"></translation>
+        <translation>更新 PINN</translation>
     </message>
     <message>
         <source>A new version of PINN is available</source>
-        <translation type="unfinished"></translation>
+        <translation>发现新版本 PINN</translation>
     </message>
     <message>
         <source>Do you want to download this version?</source>
-        <translation type="unfinished"></translation>
+        <translation>你想下载该版本吗？</translation>
     </message>
     <message>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：未选择操作系统
+(请勿选择 RISC OS 或 PINN）</translation>
     </message>
     <message>
         <source>Warning: No OSes selected
 </source>
-        <translation type="unfinished"></translation>
+        <translation>警告：未选择操作系统</translation>
     </message>
     <message>
         <source>Warning: this will backup the selected Operating System(s).</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：该操作将备份所选操作系统。</translation>
     </message>
     <message>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
-        <translation type="unfinished"></translation>
+        <translation>警告：检测到不支持的操作系统。PINN 目前无法正常备份以下操作系统：</translation>
     </message>
 </context>
 <context>
     <name>MultiImageDownloadThread</name>
     <message>
         <source>Finish writing (sync)</source>
-        <translation type="unfinished">写入完成 (sync)</translation>
+        <translation>写入完成（sync）</translation>
     </message>
     <message>
         <source>File &apos;%1&apos; does not need downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>无需下载文件“%1”</translation>
     </message>
     <message>
         <source>Downloading %1:%2</source>
-        <translation type="unfinished"></translation>
+        <translation>正在下载 %1:%2</translation>
     </message>
     <message>
         <source>Checking %1:%2</source>
-        <translation type="unfinished"></translation>
+        <translation>正在校验 %1:%2</translation>
     </message>
     <message>
         <source>Error in checksum</source>
-        <translation type="unfinished"></translation>
+        <translation>校验值错误</translation>
     </message>
     <message>
         <source>Error downloading or extracting tarball</source>
-        <translation type="unfinished">下载或解压缩 tarball 时发生错误</translation>
+        <translation>下载或解压缩文件时发生错误</translation>
     </message>
     <message>
         <source>Finished downloading %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 下载完成</translation>
     </message>
 </context>
 <context>
     <name>MultiImageWriteThread</name>
     <message>
         <source>partitions.json invalid</source>
-        <translation>partitions.json 无效</translation>
+        <translation>无效的 partitions.json</translation>
     </message>
     <message>
         <source>RISCOS cannot be installed. RISCOS offset value mismatch.</source>
-        <translation>RISCOS 无法被安装。RISCOS 偏移量不符合。</translation>
+        <translation>无法安装 RISCOS。RISCOS 偏移量不符合。</translation>
     </message>
     <message>
         <source>RISCOS cannot be installed. RISCOS offset value missing.</source>
-        <translation>RISCOS 无法被安装。RISCOS 偏移量缺失。</translation>
+        <translation>无法安装 RISCOS。RISCOS 偏移量缺失。</translation>
     </message>
     <message>
         <source>RISCOS cannot be installed. Size of recovery partition too large.</source>
-        <translation>RISCOS 无法被安装。recovery 分区的大小太大。</translation>
+        <translation>无法安装 RISCOS。recovery 分区太大了。</translation>
     </message>
     <message>
         <source>More than one operating system requires partition number %1</source>
@@ -1056,7 +1073,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Not enough disk space. Need %1 MB, got %2 MB</source>
-        <translation>磁盘空间不足。需要 %1 MB，剩余 %2 MB</translation>
+        <translation>磁盘空间不足。需要 %1 MB，但只有 %2 MB</translation>
     </message>
     <message>
         <source>Fixed partition offset too low</source>
@@ -1072,7 +1089,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Zero&apos;ing start of each partition</source>
-        <translation>正在将每个分区的开头归零</translation>
+        <translation>正在将每个分区的开头清零</translation>
     </message>
     <message>
         <source>Finish writing (sync)</source>
@@ -1088,11 +1105,11 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>File &apos;%1&apos; does not exist</source>
-        <translation>文件 &apos;%1&apos; 不存在</translation>
+        <translation>文件“%1“不存在</translation>
     </message>
     <message>
         <source>%1: Writing OS image</source>
-        <translation>%1：正在写入操作系统映像文件</translation>
+        <translation>正在写入操作系统镜像文件：%1</translation>
     </message>
     <message>
         <source>%1: Creating filesystem (%2)</source>
@@ -1120,11 +1137,11 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>%1: Creating os_config.json</source>
-        <translation>%1：正在创建 os_config.json </translation>
+        <translation>%1：正在创建 os_config.json</translation>
     </message>
     <message>
         <source>%1: Saving display mode to config.txt</source>
-        <translation>%1：正在将显示模式保存到 config.txt</translation>
+        <translation>%1：正在将显示模式保存至 config.txt</translation>
     </message>
     <message>
         <source>%1: Running partition setup script</source>
@@ -1152,40 +1169,41 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Cannot boot partitions &gt; 62. Reduce the number of OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>无法引导分区数量 &gt; 62 的设备。请减少操作系统数量。</translation>
     </message>
     <message>
         <source>Cannot boot partitions &gt; #62. Reduce the number of OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>无法引导分区数量 &gt; #62 的设备。请减少操作系统数量。</translation>
     </message>
     <message>
         <source>Cannot Reinstall/Replace </source>
-        <translation type="unfinished"></translation>
+        <translation>无法重装或修改</translation>
     </message>
     <message>
         <source>.
 Partition not big enough for new image.</source>
-        <translation type="unfinished"></translation>
+        <translation>
+分区大小不满足所选镜像的大小需求</translation>
     </message>
     <message>
         <source>Operation cancelled by user</source>
-        <translation type="unfinished"></translation>
+        <translation>用户已取消该操作</translation>
     </message>
     <message>
         <source>OS: &apos;%1&apos; needs a partition label of &apos;%2&apos; which is not available</source>
-        <translation type="unfinished"></translation>
+        <translation>操作系统“%1”需要一个名为“%2”的分区标签，但该标签不可用。</translation>
     </message>
     <message>
         <source>Syncing Filesystem</source>
-        <translation type="unfinished"></translation>
+        <translation>正在刷新文件系统</translation>
     </message>
     <message>
         <source>Error in checksum for partition_setup.sh</source>
-        <translation type="unfinished"></translation>
+        <translation>partition_setup.sh 校验值错误</translation>
     </message>
     <message>
         <source>%1: Configuring flavour</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: 配置偏好</translation>
     </message>
     <message>
         <source>Unknown compression format file extension. Expecting .lzo, .gz, .xz, .bz2 or .zip.</source>
