@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>Error opening %1</source>
-        <translation打开 %1 时发生错误</translation>
+        <translation>打开 %1 时发生错误</translation>
     </message>
     <message>
         <source>Finish writing to disk (sync)</source>
