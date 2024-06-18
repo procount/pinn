@@ -1290,307 +1290,307 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <source>Selects all OSes where the most recent one is on the SD card</source>
-        <translation type="unfinished"></translation>
+        <translation>SD 卡上的操作系统已是最新版本</translation>
     </message>
     <message>
         <source>&amp;allsd</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;所有 SD 卡</translation>
     </message>
     <message>
         <source>Selects all OSes where the most recent one is on a local USB drive</source>
-        <translation type="unfinished"></translation>
+        <translation>USB 存储设备上的操作系统已是最新版本</translation>
     </message>
     <message>
         <source>all&amp;usb</source>
-        <translation type="unfinished"></translation>
+        <translation>all&amp;usb</translation>
     </message>
     <message>
         <source>Selects all OSes where the most recent one is on remote repositories.</source>
-        <translation type="unfinished"></translation>
+        <translation>远程存储库中有更新版本的系统可用</translation>
     </message>
     <message>
         <source>all&amp;network</source>
-        <translation type="unfinished"></translation>
+        <translation>all&amp;network</translation>
     </message>
     <message>
         <source>Ensures all installed OSes are selected again.</source>
-        <translation type="unfinished"></translation>
+        <translation>确保已选中所有已安装的操作系统。</translation>
     </message>
     <message>
         <source>all&amp;installed</source>
-        <translation type="unfinished"></translation>
+        <translation>all&amp;installed</translation>
     </message>
     <message>
         <source>Waits for all OSes on the SD card to be listed</source>
-        <translation type="unfinished"></translation>
+        <translation>等待列出 SD 卡上的所有操作系统</translation>
     </message>
     <message>
         <source>&amp;waitsd</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;waitsd</translation>
     </message>
     <message>
         <source>Waits for all OSes on local USBs to be listed</source>
-        <translation type="unfinished"></translation>
+        <translation>等待列出 USB 设备上的所有操作系统</translation>
     </message>
     <message>
         <source>waitus&amp;b</source>
-        <translation type="unfinished"></translation>
+        <translation>waitus&amp;b</translation>
     </message>
     <message>
         <source>Waits for all OS lists to be downloaded from the internet before checking the list of OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>在检查操作系统列表之前，等待所有操作系统列表从互联网下载完成。</translation>
     </message>
     <message>
         <source>waitnetwor&amp;k</source>
-        <translation type="unfinished"></translation>
+        <translation>waitnetwor&amp;k</translation>
     </message>
     <message>
         <source>Waits for OSes from all sources to be listed</source>
-        <translation type="unfinished"></translation>
+        <translation>等待列出源中所有的操作系统。</translation>
     </message>
     <message>
         <source>waita&amp;ll</source>
-        <translation type="unfinished"></translation>
+        <translation>waita&amp;ll</translation>
     </message>
     <message>
         <source>The list of OSes that will be selected at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>启动时所选的操作系统列表</translation>
     </message>
     <message>
         <source>Reserve an ADDITIONAL amount of space</source>
-        <translation type="unfinished"></translation>
+        <translation>预留额外空间</translation>
     </message>
     <message>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation>+</translation>
     </message>
     <message>
         <source>Automatically reinstalls any selected OSes if newer versions exist</source>
-        <translation type="unfinished"></translation>
+        <translation>如果存在更新的版本，可自动重新安装所选定的操作系统</translation>
     </message>
     <message>
         <source>sil&amp;entreinstallnewer</source>
-        <translation type="unfinished"></translation>
+        <translation>sil&amp;entreinstallnewer</translation>
     </message>
     <message>
         <source>Allows a single or multiple OSes to be installed automatically, useful during headless installs. </source>
-        <translation type="unfinished"></translation>
+        <translation>允许自动安装单个或多个操作系统（在无头安装时非常有用）。</translation>
     </message>
     <message>
         <source>&amp;silentinstall</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;silentinstall</translation>
     </message>
     <message>
         <source>selec&amp;t=</source>
-        <translation type="unfinished"></translation>
+        <translation>selec&amp;t=</translation>
     </message>
     <message>
         <source>Source</source>
-        <translation type="unfinished"></translation>
+        <translation>源</translation>
     </message>
     <message>
         <source>Prevents the default RaspberryPi Foundation repository from being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>不使用默认的树莓派基金会的存储库。</translation>
     </message>
     <message>
         <source>no_&amp;default_source</source>
-        <translation type="unfinished"></translation>
+        <translation>no_&amp;default_source</translation>
     </message>
     <message>
         <source>Prevents OSes stored on local USB memory devices from being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>不使用存储在本地 USB 存储设备上的操作系统。</translation>
     </message>
     <message>
         <source>disable&amp;usbimages</source>
-        <translation type="unfinished"></translation>
+        <translation>disable&amp;usbimages</translation>
     </message>
     <message>
         <source>Prevent OSes stored on the SD card from being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>不使用存储在 SD 卡上的操作系统。</translation>
     </message>
     <message>
         <source>disable&amp;sdimages</source>
-        <translation type="unfinished"></translation>
+        <translation>disable&amp;sdimages</translation>
     </message>
     <message>
         <source>Shows all available installable OSes, whether they are suitable for the current model of Pi or not. Useful for preparing SD cards to be used in other RPis.</source>
-        <translation type="unfinished"></translation>
+        <translation>显示所有可用的可安装操作系统，以及它们是否适用于当前型号的树莓派。用于将 SD 卡用于其他树莓派。</translation>
     </message>
     <message>
         <source>&amp;showall</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;showall</translation>
     </message>
     <message>
         <source>Provides the URL of a repo_list.json file that contains a list of URLs to other os-list_v3.json files. This allows easy remote management of Internet repositories.</source>
-        <translation type="unfinished"></translation>
+        <translation>提供 repo_list.json 文件的 URL，该文件包含其他 os-list_v3.json 文件的 URL 列表。这样就能便捷地远程管理互联网软件源。</translation>
     </message>
     <message>
         <source>repo_&amp;list=</source>
-        <translation type="unfinished"></translation>
+        <translation>repo_&amp;list=</translation>
     </message>
     <message>
         <source>Similar to alt_image_source but it matches the NOOBS method of specifying a list of additional respositories as a space separated quoted string.</source>
-        <translation type="unfinished"></translation>
+        <translation>类似于 alt_image_source，但它使用了 NOOBS 的配置方式，将额外的存储库列表作为空格分隔的引用字符串指定。</translation>
     </message>
     <message>
         <source>&amp;repo=</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;repo=</translation>
     </message>
     <message>
         <source>: Provides the URL of an additional os_list_v3.json file indicating the location of other OSes that can be downloaded from the Internet. Multiple instances of this option can be used.</source>
-        <translation type="unfinished"></translation>
+        <translation>: 使用额外 os_list_v3.json 文件的 URL，指示可以从互联网下载的其他操作系统的位置。此选项可以同使用多个 URL。</translation>
     </message>
     <message>
         <source>alt_&amp;image_source=</source>
-        <translation type="unfinished"></translation>
+        <translation>alt_&amp;image_source=</translation>
     </message>
     <message>
         <source>Booting</source>
-        <translation type="unfinished"></translation>
+        <translation>正在启动</translation>
     </message>
     <message>
         <source>When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
-        <translation type="unfinished"></translation>
+        <translation>当与 forcetrigger 结合使用时，它可以设置恢复菜单显示的最长超时时间（以秒为单位），然后才能继续进入启动选择对话框，并可选择默认启动的操作系统。</translation>
     </message>
     <message>
         <source>&amp;remotetimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;remotetimeout=&lt;secs&gt;</translation>
     </message>
     <message>
         <source>Forces the PINN interface to be entered on startup (as if the shift key had been pressed). This is very useful when using a VNC connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>强制在启动时显示 PINN 界面（就像按下 shift 键一样）。这在使用 VNC 连接时非常有用。</translation>
     </message>
     <message>
         <source>&amp;forcetrigger</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;forcetrigger</translation>
     </message>
     <message>
         <source>Forces Recovery Mode to be entered on boot if GPIO pin 3 on header P1 is connected to GND (pin 25).</source>
-        <translation type="unfinished"></translation>
+        <translation>如果使排针上的 GPIO 引脚 3 接地 (即引脚 25)，则在启动时强制进入恢复模式。</translation>
     </message>
     <message>
         <source>&amp;gpiotriggerenable</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;gpiotriggerenable</translation>
     </message>
     <message>
         <source>This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish.</source>
-        <translation type="unfinished"></translation>
+        <translation>此设置可指定网络超时时长（秒），特别适用于需要更长时间建立的网络。</translation>
     </message>
     <message>
         <source>&amp;networktimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;networktimeout=&lt;secs&gt;</translation>
     </message>
     <message>
         <source>Prevents a SHIFT keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot)</source>
-        <translation type="unfinished"></translation>
+        <translation>禁止在启动时按下 SHIFT 键进入恢复模式（如果您键盘有某些缺陷，每次启动时都会触发错误，该选项可能会有帮助）。</translation>
     </message>
     <message>
         <source>&amp;keyboardtriggerdisable</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;keyboardtriggerdisable</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>接口</translation>
     </message>
     <message>
         <source>Uses a VNC network connection to control PINN instead of any locally attached keyboard, mouse and display. When this is used, any local display will remain blank.</source>
-        <translation type="unfinished"></translation>
+        <translation>使用 VNC 通过网络连接控制 PINN，而非连接至树莓派的键盘、鼠标和显示器。在使用该功能时，任何接入树莓派的显示屏都将保持空白输出。</translation>
     </message>
     <message>
         <source>v&amp;ncinstall</source>
-        <translation type="unfinished"></translation>
+        <translation>v&amp;ncinstall</translation>
     </message>
     <message>
         <source>Uses a VNC network connection to control PINN. However, unlike vncinstall, any locally attached keyboard and mouse will still be active and the display will be duplicated to the local screen and the VNC connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>使用 VNC 通过网络连接控制 PINN。不过，与 vncinstall 不同的是，任何接入树莓派的键盘和鼠标仍将处于激活状态，显示内容将复制到本地屏幕及 VNC。</translation>
     </message>
     <message>
         <source>&amp;vncshare</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;vncshare</translation>
     </message>
     <message>
         <source>Enables an SSH connection to the rescueshell in PINN. It cannot be used to control PINN, but having a shell is very useful to perform remote maintenance on any of the SD card partitions.</source>
-        <translation type="unfinished"></translation>
+        <translation>开启 PINN 急救 shell 的 SSH 连接。它不能用于控制 PINN，但其 shell 对执行有关 SD 卡分区的远程维护非常有用。</translation>
     </message>
     <message>
         <source>&amp;ssh</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ssh</translation>
     </message>
     <message>
         <source>This option causes a local command shell to be opened when PINN is booted. When the shell is exited, PINN will then be booted as normal.</source>
-        <translation type="unfinished"></translation>
+        <translation>该选项会在 PINN 启动时打开一个本地 shell。退出 shell 后，PINN 将正常启动。</translation>
     </message>
     <message>
         <source>&amp;rescueshell</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;rescueshell</translation>
     </message>
     <message>
         <source>Prevents safemode being entered if you have external hardware that pulls pin 5 low.</source>
-        <translation type="unfinished"></translation>
+        <translation>如果将树莓派硬件的 5 号引脚拉低，则可阻止进入安全模式。</translation>
     </message>
     <message>
         <source>disablesafe&amp;mode</source>
-        <translation type="unfinished"></translation>
+        <translation>disablesafe&amp;mode</translation>
     </message>
     <message>
         <source>A special boot feature to swap the priority of the DSI and HDMI video outputs, allowing an OS to give priority to a HDMI screen if attached.</source>
-        <translation type="unfinished"></translation>
+        <translation>特殊的启动功能，用于调整 DSI 和 HDMI 视频输出的优先级，可使操作系统优先使用接入的 HDMI 屏幕。</translation>
     </message>
     <message>
         <source>&amp;dsi</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;dsi</translation>
     </message>
     <message>
         <source>Prevents the list of OSes from being grouped into categories.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">不将操作系统列表进行分类。</translation>
     </message>
     <message>
         <source>no_&amp;group</source>
-        <translation type="unfinished"></translation>
+        <translation>no_&amp;group</translation>
     </message>
     <message>
         <source>Prevents the cursor from being shown on the boot selection dialog (requested for touchscreen devices)</source>
-        <translation type="unfinished"></translation>
+        <translation>不使在启动选择对话框上显示光标（用于触摸屏设备）</translation>
     </message>
     <message>
         <source>no_&amp;cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>no_&amp;cursor</translation>
     </message>
     <message>
         <source>Causes a customised wallpaper.jpg or wallpaper.png file to be resized to fill the entire desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>调整自定义文件 wallpaper.jpg 或 wallpaper.png 的大小，使其充满整个桌面</translation>
     </message>
     <message>
         <source>&amp;wallpaper_resize</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;wallpaper_resize</translation>
     </message>
     <message>
         <source>Sets one of 4 simple display modes: 0=HDMI preferred, 1=HDMI safe, 2= PAL 4:3, 3=NTSC  4:3</source>
-        <translation type="unfinished"></translation>
+        <translation>选择设置 4 种简单显示模式：0=首选 HDMI，1=HDMI 安全模式，2= PAL 4:3，3=NTSC 4:3</translation>
     </message>
     <message>
         <source>dis&amp;play=</source>
-        <translation type="unfinished"></translation>
+        <translation>dis&amp;play=</translation>
     </message>
     <message>
         <source>Changes the style of the windows</source>
-        <translation type="unfinished"></translation>
+        <translation>改变窗口样式</translation>
     </message>
     <message>
         <source>s&amp;tyle=</source>
-        <translation type="unfinished"></translation>
+        <translation>s&amp;tyle=</translation>
     </message>
     <message>
         <source>Changes the default timeout allowed before an OS is booted without any selection. </source>
-        <translation type="unfinished"></translation>
+        <translation>更改操作系统启动前允许的默认超时时间（如未进行任何选择）。</translation>
     </message>
     <message>
         <source>b&amp;ootmenutimeout=&lt;secs&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>b&amp;ootmenutimeout=&lt;secs&gt;</translation>
     </message>
     <message>
         <source>To change the background colour for the screen and most windows, add background=r,g,b, where 0,0,0 is black and 255,255,255 is white. I suggest to use values above 127.</source>
-        <translation type="unfinished"></translation>
+        <translation>要更改屏幕和大部分窗口的背景颜色，可添加 background=r,g,b，其中 0,0,0 为黑色，255,255,255 为白色。建议使用大于 127 的值。</translation>
     </message>
     <message>
         <source>&amp;background=&lt;r,g,b&gt;</source>
