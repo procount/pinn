@@ -5,7 +5,7 @@
     <name>BackupThread</name>
     <message>
         <source>Finish writing (sync)</source>
-        <translation>写入完成 (sync)</translation>
+        <translation>写入（sync）完成</translation>
     </message>
     <message>
         <source>Cannot backup </source>
@@ -13,15 +13,15 @@
     </message>
     <message>
         <source> :BTRFS file format</source>
-        <translation>:BTRFS 文件格式</translation>
+        <translation>：BTRFS 文件格式</translation>
     </message>
     <message>
         <source>%1: Writing image (%2)</source>
-        <translation>%1: 写入镜像 (%2)</translation>
+        <translation>%1: 正在写入镜像 (%2)</translation>
     </message>
     <message>
         <source>%1: Archiving (%2)</source>
-        <translation>%1: 归档镜像 (%2)</translation>
+        <translation>%1: 正在压缩镜像 (%2)</translation>
     </message>
     <message>
         <source>Error writing </source>
@@ -37,11 +37,11 @@
     </message>
     <message>
         <source>%1: Updating partitions.json</source>
-        <translation>%1: 更新 partitions.json</translation>
+        <translation>%1: 正在更新 partitions.json</translation>
     </message>
     <message>
         <source>%1: Updating os.json</source>
-        <translation>%1: 更新 os.json</translation>
+        <translation>%1: 正在更新 os.json</translation>
     </message>
 </context>
 <context>
@@ -52,7 +52,7 @@
     </message>
     <message>
         <source>Error mounting settings partition</source>
-        <translation>挂载所选分区时发生错误</translation>
+        <translation>挂载 settings 分区时发生错误</translation>
     </message>
     <message>
         <source>HDMI safe mode</source>
@@ -68,11 +68,11 @@
     </message>
     <message>
         <source>PINN - Select OS to boot</source>
-        <translation>PINN - 选择启动系统</translation>
+        <translation>PINN——选择启动的操作系统</translation>
     </message>
     <message>
         <source>Sticky default</source>
-        <translation>粘滞位设置</translation>
+        <translation>默认粘滞位</translation>
     </message>
     <message>
         <source>&amp;Up</source>
@@ -96,7 +96,7 @@
     </message>
     <message>
         <source>PINN - Previously selected OS will boot in %1 seconds</source>
-        <translation>PINN - 将在 %1 秒后从先前所选的系统启动</translation>
+        <translation>PINN——将在 %1 秒后从先前所选的系统启动</translation>
     </message>
 </context>
 <context>
@@ -149,7 +149,7 @@
     </message>
     <message>
         <source>Finish writing to disk (sync)</source>
-        <translation>成功写入磁盘（sync）</translation>
+        <translation>成功写入（sync）磁盘</translation>
     </message>
     <message>
         <source>Error unmounting system partition.</source>
@@ -180,7 +180,7 @@
     </message>
     <message>
         <source>Error formatting settings partition</source>
-        <translation>格式化所选分区时发生错误</translation>
+        <translation>格式化 settings 分区时发生错误</translation>
     </message>
     <message>
         <source>Error mounting system partition.</source>
@@ -208,11 +208,11 @@
     </message>
     <message>
         <source>Finish writing to disk (sync)</source>
-        <translation>成功写入磁盘（sync）</translation>
+        <translation>成功写入（sync）磁盘</translation>
     </message>
     <message>
         <source>Mounting boot partition again</source>
-        <translation>再次挂载启动分区中</translation>
+        <translation>正在再次挂载启动分区</translation>
     </message>
     <message>
         <source>SD card broken (writes do not persist)</source>
@@ -232,7 +232,7 @@
     </message>
     <message>
         <source>Error zero&apos;ing MBR/GPT. SD card may be broken or advertising wrong capacity.</source>
-        <translation>在 MBR/GPT 清零时发生错误。SD 卡已损坏或标称容量错误。</translation>
+        <translation>在清零 MBR/GPT 时发生错误。SD 卡已损坏或标称容量错误。</translation>
     </message>
     <message>
         <source>Writing new MBR</source>
@@ -244,7 +244,7 @@
     </message>
     <message>
         <source>SD card has not been formatted correctly. Please reformat using the SD Association Formatting Tool and try again.</source>
-        <translation>SD 卡没有被正确地格式化。请使用 SD 卡相关的格式化工具重新格式化然后再试一次。</translation>
+        <translation>SD 卡没有被正确地格式化。请使用有关 SD 卡的格式化工具重新格式化然后再试一次。</translation>
     </message>
     <message>
         <source>Removing partitions 2,3,4</source>
@@ -324,7 +324,7 @@ WARNING: This will erase all data on your SD card.</source>
     <name>MainWindow</name>
     <message>
         <source>Destination drive:</source>
-        <translation>目标磁盘：</translation>
+        <translation>目标磁盘设备：</translation>
     </message>
     <message>
         <source>Needed:</source>
@@ -372,7 +372,7 @@ WARNING: This will erase all data on your SD card.</source>
     </message>
     <message>
         <source>Opens a web browser displaying the Raspberry Pi Forum.</source>
-        <translation>打开浏览器访问 Raspberry Pi 论坛。</translation>
+        <translation>打开浏览器访问树莓派论坛。</translation>
     </message>
     <message>
         <source>Select a wifi network to connect to</source>
@@ -388,11 +388,11 @@ WARNING: This will erase all data on your SD card.</source>
     </message>
     <message>
         <source>Waiting for SD card (settings partition)</source>
-        <translation>正在等待 SD 卡（所选分区）</translation>
+        <translation>正在等待 SD 卡（settings 分区）</translation>
     </message>
     <message>
         <source>Mounting settings partition</source>
-        <translation>正在挂载所选分区</translation>
+        <translation>正在挂载 settings 分区</translation>
     </message>
     <message>
         <source>Error mounting settings partition</source>
@@ -400,7 +400,7 @@ WARNING: This will erase all data on your SD card.</source>
     </message>
     <message>
         <source>Persistent settings partition seems corrupt. Reformat?</source>
-        <translation>持久的 settings 分区似乎已损坏。重新格式化？</translation>
+        <translation>固定的 settings 分区似乎已损坏。要重新格式化吗？</translation>
     </message>
     <message>
         <source>Reformat failed</source>
@@ -424,11 +424,11 @@ WARNING: This will erase all data on your SD card.</source>
     </message>
     <message>
         <source>Warning: incompatible Operating System(s) detected. The following OSes aren&apos;t supported on this revision of Raspberry Pi and may fail to boot or function correctly:</source>
-        <translation>警告：检测到不兼容的操作系统。该型号的树莓派不支持以下操作系统，可能会启动失败或功能异常：</translation>
+        <translation>警告：检测到不兼容的操作系统。该型号的树莓派不支持以下操作系统（可能会启动失败或功能异常）：</translation>
     </message>
     <message>
         <source>OS(es) Installed Successfully</source>
-        <translation>已成功安装操作系统</translation>
+        <translation>操作系统已成功安装</translation>
     </message>
     <message>
         <source>Error</source>
@@ -586,7 +586,7 @@ Would you like to make this setting permanent?</source>
     </message>
     <message>
         <source>Replace (c)</source>
-        <translation>修改 (c)</translation>
+        <translation>替换 (c)</translation>
     </message>
     <message>
         <source>C</source>
@@ -658,7 +658,7 @@ Would you like to make this setting permanent?</source>
     </message>
     <message>
         <source>RUNINSTALLER - Initialise Drive</source>
-        <translation>运行安装程序 - 初始化磁盘设备</translation>
+        <translation>运行安装程序——初始化磁盘设备</translation>
     </message>
     <message>
         <source>There are existing OSes installed.
@@ -680,7 +680,7 @@ Are you sure you want to initialise the drive?</source>
     </message>
     <message>
         <source>Please wait while PINN initialises</source>
-        <translation>请等待 PINN 初始化</translation>
+        <translation>PINN 正在初始化，请等待</translation>
     </message>
     <message>
         <source>ERROR</source>
@@ -695,7 +695,7 @@ Are you sure you want to initialise the drive?</source>
     <message>
         <source>Warning: Partial USB support. The following OSes can only be executed from USB when it is /dev/sda and may fail to boot or function correctly if that is not the case:
 </source>
-        <translation>警告：不是所有的 USB 都支持。以下操作系统只能从位于 /dev/sda 的 USB 设备启动，否则可能无法正确启动或运行：
+        <translation>警告：不是所有的 USB 都被支持。以下操作系统只能从位于 /dev/sda 的 USB 设备启动，否则可能无法正确启动或运行：
 </translation>
     </message>
     <message>
@@ -723,7 +723,7 @@ Please provide it locally or connect to the internet.</source>
     <message>
         <source>Warning: No OSes selected or available
 </source>
-        <translation>警告：未选择或没有无可用的操作系统
+        <translation>警告：未选择或无可用的操作系统
 </translation>
     </message>
     <message>
@@ -740,7 +740,7 @@ Please provide it locally or connect to the internet.</source>
     </message>
     <message>
         <source>USB drive</source>
-        <translation>USB 磁盘设备</translation>
+        <translation>USB 存储设备</translation>
     </message>
     <message>
         <source>Warning: this will %1 the selected Operating System(s) to %2. All existing data on the %3 will be deleted.</source>
@@ -840,14 +840,14 @@ See debug log for details.</source>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
-        <translation>警告：所有已安装的操作系统都被清除了，磁盘设备已恢复至原始大小。
+        <translation>警告：所有已安装的操作系统都被删除了，磁盘设备已恢复至原始大小。
 在重新启动此设备之前，无法进行安装和下载的操作。
 再次启动此驱动器将将恢复 PINN 的分区结构。</translation>
     </message>
     <message>
         <source>Error downloading distribution list from Internet:
 </source>
-        <translation>联网下载发行版列表时发生错误：
+        <translation>联网获取发行版列表时发生错误：
 </translation>
     </message>
     <message>
@@ -884,13 +884,13 @@ Booting this drive again will re-instate PINN&apos;s partition structure.</sourc
     </message>
     <message>
         <source> MB of backup space, but only </source>
-        <translation> MB 的备份空间，但是只有 </translation>
+        <translation> M 的备份空间，但是只有 </translation>
     </message>
     <message>
         <source> MB is available. This is only an estimate. If you continue, the backup may not complete successfully.
 
 Do you want to continue?</source>
-        <translation> MB 可用。但这只是估计值。如果继续，备份可能会失败。
+        <translation> M 可用。但这只是估计值。如果继续，备份可能会失败。
 
 要继续吗？</translation>
     </message>
@@ -994,12 +994,13 @@ Do you want to continue?</source>
         <source>Error: No OSes selected
 (Do not choose RISC OS or PINN)</source>
         <translation>错误：未选择操作系统
-(请勿选择 RISC OS 或 PINN）</translation>
+（请勿选择 RISC OS 及 PINN）</translation>
     </message>
     <message>
         <source>Warning: No OSes selected
 </source>
-        <translation>警告：未选择操作系统</translation>
+        <translation>警告：未选择操作系统
+</translation>
     </message>
     <message>
         <source>Warning: this will backup the selected Operating System(s).</source>
@@ -1014,7 +1015,7 @@ Do you want to continue?</source>
     <name>MultiImageDownloadThread</name>
     <message>
         <source>Finish writing (sync)</source>
-        <translation>写入完成（sync）</translation>
+        <translation>写入（sync）完成</translation>
     </message>
     <message>
         <source>File &apos;%1&apos; does not need downloading</source>
@@ -1093,7 +1094,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Finish writing (sync)</source>
-        <translation>写入完成 (sync)</translation>
+        <translation>写入（sync）完成</translation>
     </message>
     <message>
         <source>Error reading existing partition table</source>
@@ -1183,7 +1184,7 @@ Do you want to continue?</source>
         <source>.
 Partition not big enough for new image.</source>
         <translation>
-分区大小不满足所选镜像的大小需求</translation>
+分区大小不满足所选镜像的需求</translation>
     </message>
     <message>
         <source>Operation cancelled by user</source>
@@ -1199,7 +1200,7 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <source>Error in checksum for partition_setup.sh</source>
-        <translation>partition_setup.sh 校验值错误</translation>
+        <translation>partition_setup.sh 校验错误</translation>
     </message>
     <message>
         <source>%1: Configuring flavour</source>
@@ -1250,7 +1251,7 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <source>re&amp;serve=</source>
-        <translation>re&amp;服务器=</translation>
+        <translation>re&amp;serve=</translation>
     </message>
     <message>
         <source>Specifies a path or URL where the noobsconfig customisation files can be found (rather than being in /os/&amp;lt;distro&amp;gt;/)</source>
@@ -1258,7 +1259,7 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <source>&amp;configpath=</source>
-        <translation>&amp;配置路径=</translation>
+        <translation>&amp;configpath=</translation>
     </message>
     <message>
         <source>Amount of space to reserve (MB) on PINN&apos;s partition</source>
@@ -1270,7 +1271,7 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <source>&amp;runinstaller</source>
-        <translation>&amp;运行安装</translation>
+        <translation>&amp;runinstaller</translation>
     </message>
     <message>
         <source>Prevents PINN from checking for self updates</source>
@@ -1278,7 +1279,7 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <source>no_&amp;update</source>
-        <translation>no_&amp;更新</translation>
+        <translation>no_&amp;update</translation>
     </message>
     <message>
         <source>Force PINN to self-update whenever a new version is detected</source>
@@ -1286,7 +1287,7 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <source>&amp;forceupdatepinn</source>
-        <translation>&amp;强制更新</translation>
+        <translation>&amp;forceupdatepinn</translation>
     </message>
     <message>
         <source>Selects all OSes where the most recent one is on the SD card</source>
@@ -1294,7 +1295,7 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <source>&amp;allsd</source>
-        <translation>&amp;所有 SD 卡</translation>
+        <translation>&amp;allsd</translation>
     </message>
     <message>
         <source>Selects all OSes where the most recent one is on a local USB drive</source>
@@ -1778,11 +1779,11 @@ Are you sure?</source>
     <name>QDialogButtonBox</name>
     <message>
         <source>OK</source>
-        <translation>确定</translation>
+        <translation>确认</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation>确定</translation>
+        <translation>确认</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -1802,7 +1803,7 @@ Are you sure?</source>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation>确定</translation>
+        <translation>确认</translation>
     </message>
     <message>
         <source>&amp;No</source>
