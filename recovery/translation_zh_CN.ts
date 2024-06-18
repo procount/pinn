@@ -129,8 +129,8 @@
         <translation>设置日期与时间</translation>
     </message>
     <message>
-        <source>请于下方设置正确的 UTC 日期和时间。</source>
-        <translation></translation>
+        <source>Please set the correct UTC date and time below.</source>
+        <translation>请于下方设置正确的 UTC 日期和时间。</translation>
     </message>
 </context>
 <context>
@@ -561,8 +561,8 @@ Would you like to make this setting permanent?</source>
         <translation>下载 (d)</translation>
     </message>
     <message>
-        <source>将所选操作系统镜像下载至 USB 设备，以便本地安装</source>
-        <translation></translation>
+        <source>Downloads the selected operating system image to USB for local installation</source>
+        <translation>将所选操作系统镜像下载至 USB 设备，以便本地安装</translation>
     </message>
     <message>
         <source>D</source>
@@ -671,8 +671,8 @@ Are you sure you want to initialise the drive?</source>
         <translation>主菜单</translation>
     </message>
     <message>
-        <source>压缩格式</source>
-        <translation></translation>
+        <source>Archival</source>
+        <translation>压缩格式</translation>
     </message>
     <message>
         <source>Maintenance</source>
@@ -1542,7 +1542,7 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <source>Prevents the list of OSes from being grouped into categories.</source>
-        <translation type="unfinished">不将操作系统列表进行分类。</translation>
+        <translation>不将操作系统列表进行分类。</translation>
     </message>
     <message>
         <source>no_&amp;group</source>
@@ -1594,182 +1594,184 @@ Partition not big enough for new image.</source>
     </message>
     <message>
         <source>&amp;background=&lt;r,g,b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;background=&lt;r,g,b&gt;</translation>
     </message>
     <message>
         <source>none</source>
-        <translation type="unfinished"></translation>
+        <translation>none</translation>
     </message>
     <message>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <source>2</source>
-        <translation type="unfinished"></translation>
+        <translation>2</translation>
     </message>
     <message>
         <source>3</source>
-        <translation type="unfinished"></translation>
+        <translation>3</translation>
     </message>
     <message>
         <source>windows</source>
-        <translation type="unfinished"></translation>
+        <translation>窗口</translation>
     </message>
     <message>
         <source>motif</source>
-        <translation type="unfinished"></translation>
+        <translation>主题</translation>
     </message>
     <message>
         <source>platinum</source>
-        <translation type="unfinished"></translation>
+        <translation>铂金</translation>
     </message>
     <message>
         <source>Virtual Keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>虚拟键盘</translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation type="unfinished"></translation>
+        <translation>警告</translation>
     </message>
     <message>
         <source>Warning: You have chosen the &apos;runinstaller&apos; option.
 This will erase all your OSes on next boot.
 Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>警告： 您选择了运行安装程序这个选项。
+这将在下次启动时清除所有已有操作系统。
+你确定吗？</translation>
     </message>
 </context>
 <context>
     <name>OsGroup</name>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>通用</translation>
     </message>
     <message>
         <source>Media</source>
-        <translation type="unfinished"></translation>
+        <translation>媒体</translation>
     </message>
     <message>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>游戏</translation>
     </message>
     <message>
         <source>Minimal</source>
-        <translation type="unfinished"></translation>
+        <translation>迷你系统</translation>
     </message>
     <message>
         <source>Education</source>
-        <translation type="unfinished"></translation>
+        <translation>教育</translation>
     </message>
     <message>
         <source>Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>已安装</translation>
     </message>
     <message>
         <source>Utility</source>
-        <translation type="unfinished"></translation>
+        <translation>工具</translation>
     </message>
     <message>
         <source>Testing</source>
-        <translation type="unfinished"></translation>
+        <translation>测试</translation>
     </message>
     <message>
         <source>Legacy</source>
-        <translation type="unfinished"></translation>
+        <translation>兼容</translation>
     </message>
     <message>
         <source>Sailing</source>
-        <translation type="unfinished"></translation>
+        <translation>舵机</translation>
     </message>
     <message>
         <source>RECOMMENDED</source>
-        <translation type="unfinished">建议</translation>
+        <translation>建议</translation>
     </message>
     <message>
         <source>NEW VERSION</source>
-        <translation type="unfinished"></translation>
+        <translation>新版本</translation>
     </message>
     <message>
         <source>UPDATE</source>
-        <translation type="unfinished"></translation>
+        <translation>更新</translation>
     </message>
     <message>
         <source>INSTALLED</source>
-        <translation type="unfinished">已安装</translation>
+        <translation>已安装</translation>
     </message>
 </context>
 <context>
     <name>Passwd</name>
     <message>
         <source>Reset Password</source>
-        <translation type="unfinished"></translation>
+        <translation>重置密码</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>用户名</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">密码</translation>
+        <translation>密码</translation>
     </message>
     <message>
         <source>Retype Password</source>
-        <translation type="unfinished"></translation>
+        <translation>请再次输入密码</translation>
     </message>
     <message>
         <source>Strength</source>
-        <translation type="unfinished"></translation>
+        <translation>强度</translation>
     </message>
     <message>
         <source>Show Password</source>
-        <translation type="unfinished"></translation>
+        <translation>显示密码</translation>
     </message>
     <message>
         <source>Use Default</source>
-        <translation type="unfinished"></translation>
+        <translation>用户默认</translation>
     </message>
     <message>
         <source>Very Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>非常弱</translation>
     </message>
     <message>
         <source>Weak</source>
-        <translation type="unfinished"></translation>
+        <translation>弱</translation>
     </message>
     <message>
         <source>Good</source>
-        <translation type="unfinished"></translation>
+        <translation>中等</translation>
     </message>
     <message>
         <source>Strong</source>
-        <translation type="unfinished"></translation>
+        <translation>强</translation>
     </message>
     <message>
         <source>Very Strong</source>
-        <translation type="unfinished"></translation>
+        <translation>非常强</translation>
     </message>
 </context>
 <context>
     <name>ProgressSlideshowDialog</name>
     <message>
         <source>%1 MB written (%2 MB/sec)</source>
-        <translation>%1 MB 已写入 (%2 MB/秒)</translation>
+        <translation>已写入 %1 MB（%2 MB/s）</translation>
     </message>
     <message>
         <source>%1 MB of %2 MB read (%3 MB/sec) Remaining: %4:%5:%6</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MB 已读取 %2 MB（%3 MB/s）剩余：%4:%5:%6</translation>
     </message>
     <message>
         <source>%1 MB of %2 MB written (%3 MB/sec) Remaining: %4:%5:%6</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MB 已写入 %2 MB（%3 MB/sec）剩余：%4:%5:%6<</translation>
     </message>
     <message>
         <source>%1 MB read (%2 MB/sec)</source>
-        <translation type="unfinished"></translation>
+        <translation>已读取 %1 MB（%2 MB/s）</translation>
     </message>
 </context>
 <context>
@@ -1780,7 +1782,7 @@ Are you sure?</source>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation>确定(&amp;O)</translation>
+        <translation>确定</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -1788,7 +1790,7 @@ Are you sure?</source>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>取消(&amp;C)</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <source>Close</source>
@@ -1796,27 +1798,27 @@ Are you sure?</source>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>关闭(&amp;C)</translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation>是(&amp;Y)</translation>
+        <translation>确定</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation>否(&amp;N)</translation>
+        <translation>否</translation>
     </message>
     <message>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>忽略</translation>
     </message>
     <message>
         <source>Show Details...</source>
-        <translation type="unfinished"></translation>
+        <translation>显示详情……</translation>
     </message>
     <message>
         <source>Hide Details...</source>
-        <translation type="unfinished"></translation>
+        <translation>隐藏详情……</translation>
     </message>
 </context>
 <context>
@@ -1825,671 +1827,676 @@ Are you sure?</source>
         <source>For recovery mode, hold SHIFT
 click mouse
 or press joystick...</source>
-        <translation type="unfinished"></translation>
+        <translation>要进入恢复模式，请按住 SHIFT
+点击鼠标
+或控制摇杆</translation>
     </message>
 </context>
 <context>
     <name>TermsDialog</name>
     <message>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>对话框</translation>
     </message>
     <message>
         <source>Please accept these T &amp; Cs to continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>请接受许可协议以继续。</translation>
     </message>
 </context>
 <context>
     <name>WidgetKeyboard</name>
     <message>
         <source>Virtual Keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>虚拟键盘</translation>
     </message>
     <message>
         <source>0x01000000</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000000</translation>
     </message>
     <message>
         <source>Esc</source>
-        <translation type="unfinished"></translation>
+        <translation>Esc</translation>
     </message>
     <message>
         <source>0x01000030</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000030</translation>
     </message>
     <message>
         <source>F1</source>
-        <translation type="unfinished"></translation>
+        <translation>F1</translation>
     </message>
     <message>
         <source>0x01000031</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000031</translation>
     </message>
     <message>
         <source>F2</source>
-        <translation type="unfinished"></translation>
+        <translation>F2</translation>
     </message>
     <message>
         <source>0x01000032</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000032</translation>
     </message>
     <message>
         <source>F3</source>
-        <translation type="unfinished"></translation>
+        <translation>F3</translation>
     </message>
     <message>
         <source>0x01000033</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000033</translation>
     </message>
     <message>
         <source>F4</source>
-        <translation type="unfinished"></translation>
+        <translation>F4</translation>
     </message>
     <message>
         <source>0x01000034</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000034</translation>
     </message>
     <message>
         <source>F5</source>
-        <translation type="unfinished"></translation>
+        <translation>F5</translation>
     </message>
     <message>
         <source>0x01000035</source>
-        <translation type="unfinished"></translation>
+        <translatio>0x01000035</translation>
     </message>
     <message>
         <source>F6</source>
-        <translation type="unfinished"></translation>
+        <translation>F6</translation>
     </message>
     <message>
         <source>F7</source>
-        <translation type="unfinished"></translation>
+        <translation>F7</translation>
     </message>
     <message>
         <source>0x01000037</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000037</translation>
     </message>
     <message>
         <source>F8</source>
-        <translation type="unfinished"></translation>
+        <translation>F8</translation>
     </message>
     <message>
         <source>0x01000038</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000038</translation>
     </message>
     <message>
         <source>F9</source>
-        <translation type="unfinished"></translation>
+        <translation>F9</translation>
     </message>
     <message>
         <source>0x01000039</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000039</translation>
     </message>
     <message>
         <source>F10</source>
-        <translation type="unfinished"></translation>
+        <translation>F10</translation>
     </message>
     <message>
         <source>0x0100003a</source>
-        <translation type="unfinished"></translation>
+        <translation>0x0100003a</translation>
     </message>
     <message>
         <source>F11</source>
-        <translation type="unfinished"></translation>
+        <translation>F11</translation>
     </message>
     <message>
         <source>0x0100003b</source>
-        <translation type="unfinished"></translation>
+        <translation>0x0100003b</translation>
     </message>
     <message>
         <source>F12</source>
-        <translation type="unfinished"></translation>
+        <translation>F12</translation>
     </message>
     <message>
         <source>0x01000006</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000006</translation>
     </message>
     <message>
         <source>Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>Insert</translation>
     </message>
     <message>
         <source>0x01000010</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000010</translation>
     </message>
     <message>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Home</translation>
     </message>
     <message>
         <source>0x01000016</source>
-        <translation type="unfinished"></translation>
+        <translatio>0x01000016</translation>
     </message>
     <message>
         <source>PgUP</source>
-        <translation type="unfinished"></translation>
+        <translation>PgUP</translation>
     </message>
     <message>
         <source>0x01000007</source>
-        <translation type="unfinished"></translation>
+        <translatio>0x01000007</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete</translation>
     </message>
     <message>
         <source>0x01000011</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000011</translation>
     </message>
     <message>
         <source>End</source>
-        <translation type="unfinished"></translation>
+        <translation>End</translation>
     </message>
     <message>
         <source>0x01000017</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000017</translation>
     </message>
     <message>
         <source>PgDn</source>
-        <translation type="unfinished"></translation>
+        <translation>PgDn</translation>
     </message>
     <message>
         <source>0x01000013</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000013</translation>
     </message>
     <message>
         <source>0x01000012</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000012</translation>
     </message>
     <message>
         <source>0x01000015</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000015</translation>
     </message>
     <message>
         <source>0x01000014</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000014</translation>
     </message>
     <message>
         <source>0x60</source>
-        <translation type="unfinished"></translation>
+        <translation>0x60</translation>
     </message>
     <message>
         <source>`</source>
-        <translation type="unfinished"></translation>
+        <translation>`</translation>
     </message>
     <message>
         <source>0x31</source>
-        <translation type="unfinished"></translation>
+        <translation>0x31</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <source>0x32</source>
-        <translation type="unfinished"></translation>
+        <translation>0x32</translation>
     </message>
     <message>
         <source>2</source>
-        <translation type="unfinished"></translation>
+        <translation>2</translation>
     </message>
     <message>
         <source>0x33</source>
-        <translation type="unfinished"></translation>
+        <translation>0x33</translation>
     </message>
     <message>
         <source>3</source>
-        <translation type="unfinished"></translation>
+        <translation>3</translation>
     </message>
     <message>
         <source>0x34</source>
-        <translation type="unfinished"></translation>
+        <translation>0x34</translation>
     </message>
     <message>
         <source>4</source>
-        <translation type="unfinished"></translation>
+        <translation>4</translation>
     </message>
     <message>
         <source>0x35</source>
-        <translation type="unfinished"></translation>
+        <translation>0x35</translation>
     </message>
     <message>
         <source>5</source>
-        <translation type="unfinished"></translation>
+        <translation>5</translation>
     </message>
     <message>
         <source>0x36</source>
-        <translation type="unfinished"></translation>
+        <translation>0x36</translation>
     </message>
     <message>
         <source>6</source>
-        <translation type="unfinished"></translation>
+        <translation>6</translation>
     </message>
     <message>
         <source>0x37</source>
-        <translation type="unfinished"></translation>
+        <translation>0x37</translation>
     </message>
     <message>
         <source>7</source>
-        <translation type="unfinished"></translation>
+        <translation>7</translation>
     </message>
     <message>
         <source>0x38</source>
-        <translation type="unfinished"></translation>
+        <translation>0x38</translation>
     </message>
     <message>
         <source>8</source>
-        <translation type="unfinished"></translation>
+        <translation>8</translation>
     </message>
     <message>
         <source>0x39</source>
-        <translation type="unfinished"></translation>
+        <translation>0x39</translation>
     </message>
     <message>
         <source>9</source>
-        <translation type="unfinished"></translation>
+        <translation>9</translation>
     </message>
     <message>
         <source>0x30</source>
-        <translation type="unfinished"></translation>
+        <translation>0x30</translation>
     </message>
     <message>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <source>0x2d</source>
-        <translation type="unfinished"></translation>
+        <translation>0x2d</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
     <message>
         <source>13</source>
-        <translation type="unfinished"></translation>
+        <translation>13</translation>
     </message>
     <message>
         <source>=</source>
-        <translation type="unfinished"></translation>
+        <translation>=</translation>
     </message>
     <message>
         <source>0x01000003</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000003</translation>
     </message>
     <message>
         <source>Backspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Backspace</translation>
     </message>
     <message>
         <source>0x01000024</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000024</translation>
     </message>
     <message>
         <source>    Caps   </source>
-        <translation type="unfinished"></translation>
+        <translation>    Caps   </translation>
     </message>
     <message>
         <source>0x41</source>
-        <translation type="unfinished"></translation>
+        <translation>0x41</translation>
     </message>
     <message>
         <source>A</source>
-        <translation type="unfinished"></translation>
+        <translation>A</translation>
     </message>
     <message>
         <source>0x53</source>
-        <translation type="unfinished"></translation>
+        <translation>0x53</translation>
     </message>
     <message>
         <source>S</source>
-        <translation type="unfinished"></translation>
+        <translation>S</translation>
     </message>
     <message>
         <source>0x44</source>
-        <translation type="unfinished"></translation>
+        <translation>0x44</translation>
     </message>
     <message>
         <source>D</source>
-        <translation type="unfinished"></translation>
+        <translation>D</translation>
     </message>
     <message>
         <source>0x46</source>
-        <translation type="unfinished"></translation>
+        <translation>0x46</translation>
     </message>
     <message>
         <source>F</source>
-        <translation type="unfinished"></translation>
+        <translation>F</translation>
     </message>
     <message>
         <source>0x47</source>
-        <translation type="unfinished"></translation>
+        <translation>0x47</translation>
     </message>
     <message>
         <source>G</source>
-        <translation type="unfinished"></translation>
+        <translation>G</translation>
     </message>
     <message>
         <source>0x48</source>
-        <translation type="unfinished"></translation>
+        <translation>0x48</translation>
     </message>
     <message>
         <source>H</source>
-        <translation type="unfinished"></translation>
+        <translation>H</translation>
     </message>
     <message>
         <source>0x4a</source>
-        <translation type="unfinished"></translation>
+        <translation>0x4a</translation>
     </message>
     <message>
         <source>J</source>
-        <translation type="unfinished"></translation>
+        <translation>J</translation>
     </message>
     <message>
         <source>0x4b</source>
-        <translation type="unfinished"></translation>
+        <translation>0x4b</translation>
     </message>
     <message>
         <source>K</source>
-        <translation type="unfinished"></translation>
+        <translation>K</translation>
     </message>
     <message>
         <source>0x4c</source>
-        <translation type="unfinished"></translation>
+        <translation>0x4c</translation>
     </message>
     <message>
         <source>L</source>
-        <translation type="unfinished"></translation>
+        <translation>L</translation>
     </message>
     <message>
         <source>0x3b</source>
-        <translation type="unfinished"></translation>
+        <translation>0x3b</translation>
     </message>
     <message>
         <source>;</source>
-        <translation type="unfinished"></translation>
+        <translation>;</translation>
     </message>
     <message>
         <source>0x27</source>
-        <translation type="unfinished"></translation>
+        <translation>0x27</translation>
     </message>
     <message>
         <source>&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;</translation>
     </message>
     <message>
         <source>0x01000004</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000004</translation>
     </message>
     <message>
         <source>    Return   </source>
-        <translation type="unfinished"></translation>
+        <translation>    Return   </translation>
     </message>
     <message>
         <source>0x01000020</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000020</translation>
     </message>
     <message>
         <source>     Shift     </source>
-        <translation type="unfinished"></translation>
+        <translation>     Shift     </translation>
     </message>
     <message>
         <source>0x5a</source>
-        <translation type="unfinished"></translation>
+        <translation>0x5a</translation>
     </message>
     <message>
         <source>Z</source>
-        <translation type="unfinished"></translation>
+        <translation>Z</translation>
     </message>
     <message>
         <source>0x58</source>
-        <translation type="unfinished"></translation>
+        <translation>0x58</translation>
     </message>
     <message>
         <source>X</source>
-        <translation type="unfinished"></translation>
+        <translation>X</translation>
     </message>
     <message>
         <source>0x43</source>
-        <translation type="unfinished"></translation>
+        <translation>0x43</translation>
     </message>
     <message>
         <source>C</source>
-        <translation type="unfinished"></translation>
+        <translation>C</translation>
     </message>
     <message>
         <source>0x56</source>
-        <translation type="unfinished"></translation>
+        <translation>0x56</translation>
     </message>
     <message>
         <source>V</source>
-        <translation type="unfinished"></translation>
+        <translation>V</translation>
     </message>
     <message>
         <source>0x42</source>
-        <translation type="unfinished"></translation>
+        <translation>0x42</translation>
     </message>
     <message>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <source>0x4e</source>
-        <translation type="unfinished"></translation>
+        <translation>0x4e</translation>
     </message>
     <message>
         <source>N</source>
-        <translation type="unfinished"></translation>
+        <translation>N</translation>
     </message>
     <message>
         <source>0x4d</source>
-        <translation type="unfinished"></translation>
+        <translation>0x4d</translation>
     </message>
     <message>
         <source>M</source>
-        <translation type="unfinished"></translation>
+        <translation>M</translation>
     </message>
     <message>
         <source>0x2c</source>
-        <translation type="unfinished"></translation>
+        <translation>0x2c</translation>
     </message>
     <message>
         <source>,</source>
-        <translation type="unfinished"></translation>
+        <translation>,</translation>
     </message>
     <message>
         <source>0x2e</source>
-        <translation type="unfinished"></translation>
+        <translation>0x2e</translation>
     </message>
     <message>
         <source>.</source>
-        <translation type="unfinished"></translation>
+        <translation>.</translation>
     </message>
     <message>
         <source>0x2f</source>
-        <translation type="unfinished"></translation>
+        <translation>0x2f</translation>
     </message>
     <message>
         <source>/</source>
-        <translation type="unfinished"></translation>
+        <translation>/</translation>
     </message>
     <message>
         <source>     Shift      </source>
-        <translation type="unfinished"></translation>
+        <translation>     Shift      </translation>
     </message>
     <message>
         <source>0x01000021</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000021</translation>
     </message>
     <message>
         <source>    Ctrl     </source>
-        <translation type="unfinished"></translation>
+        <translation>    Ctrl     </translation>
     </message>
     <message>
         <source>0x01000023</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000023</translation>
     </message>
     <message>
         <source>   Alt  </source>
-        <translation type="unfinished"></translation>
+        <translation>   Alt  </translation>
     </message>
     <message>
         <source>0x20</source>
-        <translation type="unfinished"></translation>
+        <translation>0x20</translation>
     </message>
     <message>
         <source>Transparency</source>
-        <translation type="unfinished"></translation>
+        <translation>Transparency</translation>
     </message>
     <message>
         <source>0x01000001</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000001</translation>
     </message>
     <message>
         <source>  Tab   </source>
-        <translation type="unfinished"></translation>
+        <translation>  Tab   </translation>
     </message>
     <message>
         <source>0x51</source>
-        <translation type="unfinished"></translation>
+        <translation>0x51</translation>
     </message>
     <message>
         <source>Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Q</translation>
     </message>
     <message>
         <source>0x57</source>
-        <translation type="unfinished"></translation>
+        <translation>0x57</translation>
     </message>
     <message>
         <source>W</source>
-        <translation type="unfinished">W</translation>
+        <translation>W</translation>
     </message>
     <message>
         <source>0x45</source>
-        <translation type="unfinished"></translation>
+        <translation>0x45</translation>
     </message>
     <message>
         <source>E</source>
-        <translation type="unfinished"></translation>
+        <translation>E</translation>
     </message>
     <message>
         <source>0x52</source>
-        <translation type="unfinished"></translation>
+        <translation>0x52</translation>
     </message>
     <message>
         <source>R</source>
-        <translation type="unfinished"></translation>
+        <translation>R</translation>
     </message>
     <message>
         <source>0x54</source>
-        <translation type="unfinished"></translation>
+        <translation>0x54</translation>
     </message>
     <message>
         <source>T</source>
-        <translation type="unfinished"></translation>
+        <translation>T</translation>
     </message>
     <message>
         <source>0x59</source>
-        <translation type="unfinished"></translation>
+        <translation>0x59</translation>
     </message>
     <message>
         <source>Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Y</translation>
     </message>
     <message>
         <source>0x55</source>
-        <translation type="unfinished"></translation>
+        <translation>0x55</translation>
     </message>
     <message>
         <source>U</source>
-        <translation type="unfinished"></translation>
+        <translation>U</translation>
     </message>
     <message>
         <source>0x49</source>
-        <translation type="unfinished"></translation>
+        <translation>0x49</translation>
     </message>
     <message>
         <source>I</source>
-        <translation type="unfinished">I</translation>
+        <translation>I</translation>
     </message>
     <message>
         <source>0x4f</source>
-        <translation type="unfinished"></translation>
+        <translation>0x4f</translation>
     </message>
     <message>
         <source>O</source>
-        <translation type="unfinished"></translation>
+        <translation>O</translation>
     </message>
     <message>
         <source>0x50</source>
-        <translation type="unfinished"></translation>
+        <translation>0x50</translation>
     </message>
     <message>
         <source>P</source>
-        <translation type="unfinished"></translation>
+        <translation>P</translation>
     </message>
     <message>
         <source>0x5b</source>
-        <translation type="unfinished"></translation>
+        <translation>0x5b</translation>
     </message>
     <message>
         <source>[</source>
-        <translation type="unfinished"></translation>
+        <translation>[</translation>
     </message>
     <message>
         <source>0x5d</source>
-        <translation type="unfinished"></translation>
+        <translation>0x5d</translation>
     </message>
     <message>
         <source>]</source>
-        <translation type="unfinished"></translation>
+        <translation>]</translation>
     </message>
     <message>
         <source>0x5c</source>
-        <translation type="unfinished"></translation>
+        <translation>0x5c</translation>
     </message>
     <message>
         <source>\</source>
-        <translation type="unfinished"></translation>
+        <translation>\</translation>
     </message>
     <message>
         <source>0x01000009</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000009</translation>
     </message>
     <message>
         <source>Print
 Screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Print
+Screen</translation>
     </message>
     <message>
         <source>0x01000026</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000026</translation>
     </message>
     <message>
         <source>Scroll
 Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>Scroll
+Lock</translation>
     </message>
     <message>
         <source>0x01000008</source>
-        <translation type="unfinished"></translation>
+        <translation>0x01000008</translation>
     </message>
     <message>
         <source>Pause
 Break</source>
-        <translation type="unfinished"></translation>
+        <translation>Pause
+Break</translation>
     </message>
 </context>
 <context>
     <name>WifiSettingsDialog</name>
     <message>
         <source>Wifi network selection</source>
-        <translation>无线网络选择</translation>
+        <translation>选择 WIFI 网络</translation>
     </message>
     <message>
         <source>Wifi network</source>
-        <translation>无线网络</translation>
+        <translation>WIFI 网络</translation>
     </message>
     <message>
         <source>Authentication method</source>
@@ -2497,18 +2504,15 @@ Break</source>
     </message>
     <message>
         <source>Pressing the &amp;WPS button on my wifi router</source>
-        <oldsource>Pressing the WPS button on my wifi router</oldsource>
-        <translation type="unfinished">按下我的无线路由器上的 WPS 按钮</translation>
+        <translation>请按下你无线路由器上的 WPS 按钮</translation>
     </message>
     <message>
         <source>Password &amp;authentication</source>
-        <oldsource>Password authentication</oldsource>
-        <translation type="unfinished">密码认证</translation>
+        <translation>密码认证</translation>
     </message>
     <message>
         <source>&amp;Username</source>
-        <oldsource>Username</oldsource>
-        <translation type="unfinished">用户名</translation>
+        <translation>用户名</translation>
     </message>
     <message>
         <source>No wifi interfaces</source>
@@ -2516,7 +2520,7 @@ Break</source>
     </message>
     <message>
         <source>No wifi interfaces available</source>
-        <translation>未提供 Wifi 接口</translation>
+        <translation>未找到 Wifi 接口</translation>
     </message>
     <message>
         <source>Authenticated but still waiting for DHCP lease</source>
@@ -2524,11 +2528,11 @@ Break</source>
     </message>
     <message>
         <source>Connecting to wifi failed</source>
-        <translation>连接 Wifi 失败</translation>
+        <translation>Wifi 连接失败</translation>
     </message>
     <message>
         <source>Connecting to the wifi access point failed. Check your password</source>
-        <translation>连接到 Wifi 接入点失败。检查您的密码</translation>
+        <translation>连接到 Wifi 接入点失败。请检查密码</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -2548,269 +2552,271 @@ Break</source>
     </message>
     <message>
         <source>&amp;Password</source>
-        <translation type="unfinished"></translation>
+        <translation>密码</translation>
     </message>
     <message>
         <source>&amp;Show Password</source>
-        <translation type="unfinished"></translation>
+        <translation>显示密码</translation>
     </message>
     <message>
         <source>&amp;Virtual Keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>虚拟键盘</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>删除</translation>
     </message>
 </context>
 <context>
     <name>adjustSizes</name>
     <message>
         <source>Adjust size of OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>调整操作系统大小</translation>
     </message>
     <message>
         <source>Nominal (MB)</source>
-        <translation type="unfinished"></translation>
+        <translation>标准（M）</translation>
     </message>
     <message>
         <source>Extra (MB)</source>
-        <translation type="unfinished"></translation>
+        <translation>额外（M）</translation>
     </message>
     <message>
         <source>Total (MB)</source>
-        <translation type="unfinished"></translation>
+        <translation>全部（M）</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>清楚</translation>
     </message>
     <message>
         <source>Balance</source>
-        <translation type="unfinished"></translation>
+        <translation>剩余</translation>
     </message>
     <message>
         <source>(*) non-expanding</source>
-        <translation type="unfinished"></translation>
+        <translation>（*）非扩展</translation>
     </message>
     <message>
         <source>Capacity: 0MB</source>
-        <translation type="unfinished"></translation>
+        <translation>容量：0 M</translation>
     </message>
     <message>
         <source>Free: 0MB </source>
-        <translation type="unfinished"></translation>
+        <translation>剩余：0 M</translation>
     </message>
     <message>
         <source>Used: 0MB</source>
-        <translation type="unfinished"></translation>
+        <translation>已使用：0 M</translation>
     </message>
     <message>
         <source>Used</source>
-        <translation type="unfinished"></translation>
+        <translation>已使用</translation>
     </message>
     <message>
         <source>Free</source>
-        <translation type="unfinished"></translation>
+        <translation>剩余</translation>
     </message>
     <message>
         <source>Capacity</source>
-        <translation type="unfinished"></translation>
+        <translation>容量</translation>
     </message>
 </context>
 <context>
     <name>backupdialog</name>
     <message>
         <source>Set Backup Name</source>
-        <translation type="unfinished"></translation>
+        <translation>设置备份名称</translation>
     </message>
     <message>
         <source>ID (date/time)</source>
-        <translation type="unfinished"></translation>
+        <translation>ID（日期/时间)</translation>
     </message>
     <message>
         <source>OS name</source>
-        <translation type="unfinished"></translation>
+        <translation>操作系统名称</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>备注</translation>
     </message>
 </context>
 <context>
     <name>chkperms</name>
     <message>
         <source>File System Check</source>
-        <translation type="unfinished"></translation>
+        <translation>文件系统检查（FSCK）</translation>
     </message>
 </context>
 <context>
     <name>dlgInstall</name>
     <message>
         <source>Confirm</source>
-        <translation type="unfinished">确认</translation>
+        <translation>确认</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;WARNING: Some OSes are already installed!&lt;/p&gt;&lt;p&gt;Continuing to install new OSes will delete your previous installation. Consider using the Replace function if you just want to replace one OS &lt;/p&gt;&lt;p&gt;To continue installing, enter &amp;quot;DELETE&amp;quot; in the box below&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;警告：检查到操作系统已安装！&lt;/p&gt;&lt;p&gt;继续安装新的系统将会覆盖旧的操作系统如果只想替换一个操作系统，请考虑使用替换功能 &lt;/p&gt;&lt;p&gt;要继续，请键入 &amp;quot;DELETE&amp;quot; 到下方窗口&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Virtual Keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>虚拟键盘</translation>
     </message>
 </context>
 <context>
     <name>fscheck</name>
     <message>
         <source>File System Check</source>
-        <translation type="unfinished"></translation>
+        <translation>文件系统检查（FSCK）</translation>
     </message>
 </context>
 <context>
     <name>piCloneThread</name>
     <message>
         <source>Preparing target...</source>
-        <translation type="unfinished"></translation>
+        <translation>准备设备...</translation>
     </message>
     <message>
         <source>Reading Partitions...</source>
-        <translation type="unfinished"></translation>
+        <translation>正在读取分区……</translation>
     </message>
     <message>
         <source>Preparing Partitions...</source>
-        <translation type="unfinished"></translation>
+        <translation>正在准备分区……</translation>
     </message>
     <message>
         <source>Creating partition %1 of %2 </source>
-        <translation type="unfinished"></translation>
+        <translation>正在创建分区 %1 共 %2</translation>
     </message>
     <message>
         <source>Copying partition %d of %d...</source>
-        <translation type="unfinished"></translation>
+        <translation>正在复制分区 %d 共 %d……</translation>
     </message>
     <message>
         <source>Copying %1 MB of %2 MB</source>
-        <translation type="unfinished"></translation>
+        <translatio>正在复制 %1 M 共 %2 M</translation>
     </message>
 </context>
 <context>
     <name>piclonedialog</name>
     <message>
         <source>Clone SD Card</source>
-        <translation type="unfinished"></translation>
+        <translation>克隆 SD 卡</translation>
     </message>
     <message>
         <source>Copy From Device:</source>
-        <translation type="unfinished"></translation>
+        <translation>从设备复制：</translation>
     </message>
     <message>
         <source>Copy To Device:</source>
-        <translation type="unfinished"></translation>
+        <translation>复制到设备：</translation>
     </message>
     <message>
         <source>Resize Last Partition</source>
-        <translation type="unfinished"></translation>
+        <translation>调整最后一个分区的大小</translation>
     </message>
 </context>
 <context>
     <name>renamedialog</name>
     <message>
         <source>Alias</source>
-        <translation type="unfinished"></translation>
+        <translation>别名</translation>
     </message>
     <message>
         <source>OS name</source>
-        <translation type="unfinished"></translation>
+        <translation>操作系统名称</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>备注</translation>
     </message>
 </context>
 <context>
     <name>repair</name>
     <message>
         <source>Repair OS</source>
-        <translation type="unfinished"></translation>
+        <translation>修复操作系统</translation>
     </message>
 </context>
 <context>
     <name>replace</name>
     <message>
         <source>Replace Installed OSes</source>
-        <translation type="unfinished"></translation>
+        <translation>替换已安装的操作系统</translation>
     </message>
 </context>
 <context>
     <name>rerunsetup</name>
     <message>
         <source>re-run partition_setup</source>
-        <translation type="unfinished"></translation>
+        <translation>重新运行 partition_setup</translation>
     </message>
     <message>
         <source>No OSes to check</source>
-        <translation type="unfinished"></translation>
+        <translation>无操作系统可检查</translation>
     </message>
     <message>
         <source>Checking for partition_setup.sh scripts...</source>
-        <translation type="unfinished"></translation>
+        <translation>正在检查 partition_setup.sh 脚本……</translation>
     </message>
     <message>
         <source>Cannot find setup script for </source>
-        <translation type="unfinished"></translation>
+        <translation>找不到设置脚本用于</translation>
     </message>
     <message>
         <source>Maybe insert source USB stick</source>
-        <translation type="unfinished"></translation>
+        <translation>可能需要插入源 USB 存储设备</translation>
     </message>
     <message>
         <source>does not support re-running the setup script.</source>
-        <translation type="unfinished"></translation>
+        <translation>不支持重新运行设置脚本。</translation>
     </message>
     <message>
         <source> setup script needs to be updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>设置脚本需要更新</translation>
     </message>
     <message>
         <source>Error in checksum for partition_setup.sh</source>
-        <translation type="unfinished"></translation>
+        <translation>partition_setup.sh 校验错误</translation>
     </message>
     <message>
         <source>Expected csum= %1 Calculated= %2</source>
-        <translation type="unfinished"></translation>
+        <translation>正常的校验值为 %1 实际上为 %2</translation>
     </message>
     <message>
         <source>%1: Error executing partition setup script</source>
-        <translation type="unfinished">%1：运行分区设置脚本时发生错误</translation>
+        <translation>%1：运行分区设置脚本时发生错误</translation>
     </message>
     <message>
         <source> partions_setup.sh script error
 </source>
-        <translation type="unfinished"></translation>
+        <translation> partions_setup.sh 脚本错误
+</translation>
     </message>
     <message>
         <source> partition_setup.sh script OK
 </source>
-        <translation type="unfinished"></translation>
+        <translation> partition_setup.sh 脚本正常
+</translation>
     </message>
     <message>
         <source>DONE - some setup script errors detected</source>
-        <translation type="unfinished"></translation>
+        <translation>已完成——但检测某些脚本设置出错</translation>
     </message>
     <message>
         <source>DONE - SUCCESSFUL setup scripts exeuted</source>
-        <translation type="unfinished"></translation>
+        <translation>已完成——成功运行安装脚本</translation>
     </message>
 </context>
 <context>
     <name>showlog</name>
     <message>
         <source>Show Log</source>
-        <translation type="unfinished"></translation>
+        <translation>显示日志</translation>
     </message>
     <message>
         <source>&amp;Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>刷新</translation>
     </message>
 </context>
 </TS>
