@@ -10,6 +10,7 @@
 
 /* Extra strings for lupdate to detect and hand over to translator to translate */
 #if 0
+QT_TRANSLATE_NOOP("OsGroup","Backups")
 QT_TRANSLATE_NOOP("OsGroup","General")
 QT_TRANSLATE_NOOP("OsGroup","Media")
 QT_TRANSLATE_NOOP("OsGroup","Games")

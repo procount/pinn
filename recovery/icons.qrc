@@ -86,5 +86,6 @@
         <file>joy_keys.json</file>
         <file>icons/skull_old.png</file>
         <file>translation_cs.ts</file>
+        <file>icons/zh_CN.png</file>
     </qresource>
 </RCC>
