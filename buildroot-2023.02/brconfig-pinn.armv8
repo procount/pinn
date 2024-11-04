@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Buildroot p3.8.7f-45-g27b937ee-dirty Configuration
+# Buildroot p3.9.3-dirty Configuration
 #
 BR2_HAVE_DOT_CONFIG=y
 BR2_HOST_GCC_AT_LEAST_4_9=y
@@ -520,7 +520,7 @@ BR2_LINUX_KERNEL_CUSTOM_TARBALL=y
 # BR2_LINUX_KERNEL_CUSTOM_GIT is not set
 # BR2_LINUX_KERNEL_CUSTOM_HG is not set
 # BR2_LINUX_KERNEL_CUSTOM_SVN is not set
-BR2_LINUX_KERNEL_CUSTOM_TARBALL_LOCATION="$(call github,raspberrypi,linux,a1caea3c996f6bfa8c9568f521257f4e473285fb)/linux-a1caea3c996f6bfa8c9568f521257f4e473285fb.tar.gz"
+BR2_LINUX_KERNEL_CUSTOM_TARBALL_LOCATION="$(call github,raspberrypi,linux,5aeecea9f4a45248bcf564dec924965e066a7bfd)/linux-5aeecea9f4a45248bcf564dec924965e066a7bfd.tar.gz"
 BR2_LINUX_KERNEL_VERSION="custom"
 BR2_LINUX_KERNEL_PATCH=""
 # BR2_LINUX_KERNEL_USE_DEFCONFIG is not set
@@ -541,7 +541,7 @@ BR2_LINUX_KERNEL_GZIP=y
 # BR2_LINUX_KERNEL_ZSTD is not set
 BR2_LINUX_KERNEL_DTS_SUPPORT=y
 # BR2_LINUX_KERNEL_DTB_IS_SELF_BUILT is not set
-BR2_LINUX_KERNEL_INTREE_DTS_NAME="broadcom/bcm2711-rpi-4-b broadcom/bcm2712-rpi-5-b broadcom/bcm2711-rpi-400"
+BR2_LINUX_KERNEL_INTREE_DTS_NAME="broadcom/bcm2711-rpi-4-b broadcom/bcm2712-rpi-5-b broadcom/bcm2711-rpi-400 broadcom/bcm2712d0-rpi-5-b"
 BR2_LINUX_KERNEL_CUSTOM_DTS_PATH=""
 # BR2_LINUX_KERNEL_DTB_KEEP_DIRNAME is not set
 BR2_LINUX_KERNEL_DTB_OVERLAY_SUPPORT=y
