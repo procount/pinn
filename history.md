@@ -5,6 +5,12 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.9.3
+
+- **Translation**   - Updated Chinese translation
+- **Kernel**        - Updated Pi5 kernel to 6.6.51
+- **2GB**           - Included support for 2712d0 stepping for 2GB Pi5 model
+
 ### V3.9.2
 
 - **HDMI2**         - fixed crash when using HDMI2 on Pi4

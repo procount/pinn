@@ -13,7 +13,7 @@ start_file=start4.elf
 fixup_file=fixup4.dat
 max_framebuffers=2
 
-[board-type=0x17]
+[pi5]
 kernel=kernel8.img
 overlay_prefix=overlays6/
 dtoverlay=vc4-kms-v3d
