@@ -1045,7 +1045,7 @@ Inserisci un cavo di rete nella porta ethernet.</translation>
     </message>
     <message>
         <source>Executing postupdate</source>
-        <translation type="unfinished"></translation>
+        <translation>Esecuzioe post aggiornamento</translation>
     </message>
 </context>
 <context>
