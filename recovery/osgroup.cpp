@@ -151,7 +151,8 @@ void OsGroup::newTab(const QString &tabName)
         connect(list, SIGNAL(itemChanged(QListWidgetItem *)), _mw, SLOT(on_list_itemChanged(QListWidgetItem *)));
 
         //Add the new tab to TW
-        tabs->addTab(list,tabName);
+        QString title(tabName);
+        tabs->addTab(list,qApp->translate("OsGroup", qPrintable(title)));
         tabMap[tabName] = list;
     }
 }
