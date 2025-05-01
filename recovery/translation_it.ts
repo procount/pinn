@@ -2187,7 +2187,7 @@ or press joystick...</source>
     </message>
     <message>
         <source>-</source>
-        <translation></translation>
+        <translation>-</translation>
     </message>
     <message>
         <source>13</source>
