@@ -50,7 +50,7 @@
           </font>
          </property>
          <property name="whatsThis">
-          <string>0x01000000</string>
+          <string notr="true">0x01000000</string>
          </property>
          <property name="accessibleDescription">
           <string/>
@@ -82,10 +82,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000030</string>
+            <string notr="true">0x01000030</string>
            </property>
            <property name="text">
-            <string>F1</string>
+            <string notr="true">F1</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -106,10 +106,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000031</string>
+            <string notr="true">0x01000031</string>
            </property>
            <property name="text">
-            <string>F2</string>
+            <string notr="true">F2</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -130,10 +130,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000032</string>
+            <string notr="true">0x01000032</string>
            </property>
            <property name="text">
-            <string>F3</string>
+            <string notr="true">F3</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -154,10 +154,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000033</string>
+            <string notr="true">0x01000033</string>
            </property>
            <property name="text">
-            <string>F4</string>
+            <string notr="true">F4</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -185,10 +185,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000034</string>
+            <string notr="true">0x01000034</string>
            </property>
            <property name="text">
-            <string>F5</string>
+            <string notr="true">F5</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -209,10 +209,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000035</string>
+            <string notr="true">0x01000035</string>
            </property>
            <property name="text">
-            <string>F6</string>
+            <string notr="true">F6</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -236,7 +236,7 @@
             <string notr="true">0x01000036</string>
            </property>
            <property name="text">
-            <string>F7</string>
+            <string notr="true">F7</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -257,10 +257,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000037</string>
+            <string notr="true">0x01000037</string>
            </property>
            <property name="text">
-            <string>F8</string>
+            <string notr="true">F8</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -288,10 +288,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000038</string>
+            <string notr="true">0x01000038</string>
            </property>
            <property name="text">
-            <string>F9</string>
+            <string notr="true">F9</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -312,10 +312,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000039</string>
+            <string notr="true">0x01000039</string>
            </property>
            <property name="text">
-            <string>F10</string>
+            <string notr="true">F10</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -336,10 +336,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x0100003a</string>
+            <string notr="true">0x0100003a</string>
            </property>
            <property name="text">
-            <string>F11</string>
+            <string notr="true">F11</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -360,10 +360,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x0100003b</string>
+            <string notr="true">0x0100003b</string>
            </property>
            <property name="text">
-            <string>F12</string>
+            <string notr="true">F12</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -398,7 +398,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000006</string>
+            <string notr="true">0x01000006</string>
            </property>
            <property name="text">
             <string>Insert</string>
@@ -425,7 +425,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000010</string>
+            <string notr="true">0x01000010</string>
            </property>
            <property name="text">
             <string>Home</string>
@@ -449,7 +449,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000016</string>
+            <string notr="true">0x01000016</string>
            </property>
            <property name="text">
             <string>PgUP</string>
@@ -473,7 +473,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000007</string>
+            <string notr="true">0x01000007</string>
            </property>
            <property name="text">
             <string>Delete</string>
@@ -497,7 +497,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000011</string>
+            <string notr="true">0x01000011</string>
            </property>
            <property name="text">
             <string>End</string>
@@ -521,7 +521,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000017</string>
+            <string notr="true">0x01000017</string>
            </property>
            <property name="text">
             <string>PgDn</string>
@@ -549,7 +549,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000013</string>
+            <string notr="true">0x01000013</string>
            </property>
            <property name="text">
             <string/>
@@ -577,7 +577,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000012</string>
+            <string notr="true">0x01000012</string>
            </property>
            <property name="text">
             <string/>
@@ -605,7 +605,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000015</string>
+            <string notr="true">0x01000015</string>
            </property>
            <property name="text">
             <string/>
@@ -633,7 +633,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000014</string>
+            <string notr="true">0x01000014</string>
            </property>
            <property name="text">
             <string/>
@@ -675,10 +675,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x60</string>
+            <string notr="true">0x60</string>
            </property>
            <property name="text">
-            <string>`</string>
+            <string notr="true">`</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -699,10 +699,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x31</string>
+            <string notr="true">0x31</string>
            </property>
            <property name="text">
-            <string>1</string>
+            <string notr="true">1</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -723,10 +723,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x32</string>
+            <string notr="true">0x32</string>
            </property>
            <property name="text">
-            <string>2</string>
+            <string notr="true">2</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -747,10 +747,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x33</string>
+            <string notr="true">0x33</string>
            </property>
            <property name="text">
-            <string>3</string>
+            <string notr="true">3</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -771,10 +771,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x34</string>
+            <string notr="true">0x34</string>
            </property>
            <property name="text">
-            <string>4</string>
+            <string notr="true">4</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -795,10 +795,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x35</string>
+            <string notr="true">0x35</string>
            </property>
            <property name="text">
-            <string>5</string>
+            <string notr="true">5</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -819,10 +819,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x36</string>
+            <string notr="true">0x36</string>
            </property>
            <property name="text">
-            <string>6</string>
+            <string notr="true">6</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -843,10 +843,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x37</string>
+            <string notr="true">0x37</string>
            </property>
            <property name="text">
-            <string>7</string>
+            <string notr="true">7</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -867,10 +867,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x38</string>
+            <string notr="true">0x38</string>
            </property>
            <property name="text">
-            <string>8</string>
+            <string notr="true">8</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -891,10 +891,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x39</string>
+            <string notr="true">0x39</string>
            </property>
            <property name="text">
-            <string>9</string>
+            <string notr="true">9</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -915,10 +915,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x30</string>
+            <string notr="true">0x30</string>
            </property>
            <property name="text">
-            <string>0</string>
+            <string notr="true">0</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -939,10 +939,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x2d</string>
+            <string notr="true">0x2d</string>
            </property>
            <property name="text">
-            <string>-</string>
+            <string notr="true">-</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -963,10 +963,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>13</string>
+            <string notr="true">13</string>
            </property>
            <property name="text">
-            <string>=</string>
+            <string notr="true">=</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -987,7 +987,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000003</string>
+            <string notr="true">0x01000003</string>
            </property>
            <property name="text">
             <string>Backspace</string>
@@ -1018,7 +1018,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000024</string>
+            <string notr="true">0x01000024</string>
            </property>
            <property name="text">
             <string>    Caps   </string>
@@ -1045,10 +1045,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x41</string>
+            <string notr="true">0x41</string>
            </property>
            <property name="text">
-            <string>A</string>
+            <string notr="true">A</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1069,10 +1069,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x53</string>
+            <string notr="true">0x53</string>
            </property>
            <property name="text">
-            <string>S</string>
+            <string notr="true">S</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1093,10 +1093,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x44</string>
+            <string notr="true">0x44</string>
            </property>
            <property name="text">
-            <string>D</string>
+            <string notr="true">D</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1117,10 +1117,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x46</string>
+            <string notr="true">0x46</string>
            </property>
            <property name="text">
-            <string>F</string>
+            <string notr="true">F</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1141,10 +1141,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x47</string>
+            <string notr="true">0x47</string>
            </property>
            <property name="text">
-            <string>G</string>
+            <string notr="true">G</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1165,10 +1165,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x48</string>
+            <string notr="true">0x48</string>
            </property>
            <property name="text">
-            <string>H</string>
+            <string notr="true">H</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1189,10 +1189,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x4a</string>
+            <string notr="true">0x4a</string>
            </property>
            <property name="text">
-            <string>J</string>
+            <string notr="true">J</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1213,10 +1213,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x4b</string>
+            <string notr="true">0x4b</string>
            </property>
            <property name="text">
-            <string>K</string>
+            <string notr="true">K</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1237,10 +1237,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x4c</string>
+            <string notr="true">0x4c</string>
            </property>
            <property name="text">
-            <string>L</string>
+            <string notr="true">L</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1261,10 +1261,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x3b</string>
+            <string notr="true">0x3b</string>
            </property>
            <property name="text">
-            <string>;</string>
+            <string notr="true">;</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1285,10 +1285,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x27</string>
+            <string notr="true">0x27</string>
            </property>
            <property name="text">
-            <string>'</string>
+            <string notr="true">'</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1309,7 +1309,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000004</string>
+            <string notr="true">0x01000004</string>
            </property>
            <property name="text">
             <string>    Return   </string>
@@ -1340,7 +1340,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000020</string>
+            <string notr="true">0x01000020</string>
            </property>
            <property name="text">
             <string>     Shift     </string>
@@ -1367,10 +1367,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x5a</string>
+            <string notr="true">0x5a</string>
            </property>
            <property name="text">
-            <string>Z</string>
+            <string notr="true">Z</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1391,10 +1391,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x58</string>
+            <string notr="true">0x58</string>
            </property>
            <property name="text">
-            <string>X</string>
+            <string notr="true">X</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1415,10 +1415,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x43</string>
+            <string notr="true">0x43</string>
            </property>
            <property name="text">
-            <string>C</string>
+            <string notr="true">C</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1439,10 +1439,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x56</string>
+            <string notr="true">0x56</string>
            </property>
            <property name="text">
-            <string>V</string>
+            <string notr="true">V</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1463,10 +1463,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x42</string>
+            <string notr="true">0x42</string>
            </property>
            <property name="text">
-            <string>B</string>
+            <string notr="true">B</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1487,10 +1487,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x4e</string>
+            <string notr="true">0x4e</string>
            </property>
            <property name="text">
-            <string>N</string>
+            <string notr="true">N</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1511,10 +1511,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x4d</string>
+            <string notr="true">0x4d</string>
            </property>
            <property name="text">
-            <string>M</string>
+            <string notr="true">M</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1535,10 +1535,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x2c</string>
+            <string notr="true">0x2c</string>
            </property>
            <property name="text">
-            <string>,</string>
+            <string notr="true">,</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1559,10 +1559,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x2e</string>
+            <string notr="true">0x2e</string>
            </property>
            <property name="text">
-            <string>.</string>
+            <string notr="true">.</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1583,10 +1583,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x2f</string>
+            <string notr="true">0x2f</string>
            </property>
            <property name="text">
-            <string>/</string>
+            <string notr="true">/</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1607,7 +1607,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000020</string>
+            <string notr="true">0x01000020</string>
            </property>
            <property name="text">
             <string>     Shift      </string>
@@ -1641,7 +1641,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000021</string>
+            <string notr="true">0x01000021</string>
            </property>
            <property name="text">
             <string>    Ctrl     </string>
@@ -1668,7 +1668,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000023</string>
+            <string notr="true">0x01000023</string>
            </property>
            <property name="text">
             <string>   Alt  </string>
@@ -1695,7 +1695,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x20</string>
+            <string notr="true">0x20</string>
            </property>
            <property name="text">
             <string/>
@@ -1742,7 +1742,7 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x01000001</string>
+            <string notr="true">0x01000001</string>
            </property>
            <property name="text">
             <string>  Tab   </string>
@@ -1766,10 +1766,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x51</string>
+            <string notr="true">0x51</string>
            </property>
            <property name="text">
-            <string>Q</string>
+            <string notr="true">Q</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1790,10 +1790,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x57</string>
+            <string notr="true">0x57</string>
            </property>
            <property name="text">
-            <string>W</string>
+            <string notr="true">W</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1814,10 +1814,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x45</string>
+            <string notr="true">0x45</string>
            </property>
            <property name="text">
-            <string>E</string>
+            <string notr="true">E</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1838,10 +1838,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x52</string>
+            <string notr="true">0x52</string>
            </property>
            <property name="text">
-            <string>R</string>
+            <string notr="true">R</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1862,10 +1862,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x54</string>
+            <string notr="true">0x54</string>
            </property>
            <property name="text">
-            <string>T</string>
+            <string notr="true">T</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1886,10 +1886,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x59</string>
+            <string notr="true">0x59</string>
            </property>
            <property name="text">
-            <string>Y</string>
+            <string notr="true">Y</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1910,10 +1910,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x55</string>
+            <string notr="true">0x55</string>
            </property>
            <property name="text">
-            <string>U</string>
+            <string notr="true">U</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1934,10 +1934,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x49</string>
+            <string notr="true">0x49</string>
            </property>
            <property name="text">
-            <string>I</string>
+            <string notr="true">I</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1958,10 +1958,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x4f</string>
+            <string notr="true">0x4f</string>
            </property>
            <property name="text">
-            <string>O</string>
+            <string notr="true">O</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -1982,10 +1982,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x50</string>
+            <string notr="true">0x50</string>
            </property>
            <property name="text">
-            <string>P</string>
+            <string notr="true">P</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -2006,10 +2006,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x5b</string>
+            <string notr="true">0x5b</string>
            </property>
            <property name="text">
-            <string>[</string>
+            <string notr="true">[</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -2030,10 +2030,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x5d</string>
+            <string notr="true">0x5d</string>
            </property>
            <property name="text">
-            <string>]</string>
+            <string notr="true">]</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -2054,10 +2054,10 @@
             </font>
            </property>
            <property name="whatsThis">
-            <string>0x5c</string>
+            <string notr="true">0x5c</string>
            </property>
            <property name="text">
-            <string>\</string>
+            <string notr="true">\</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>
@@ -2090,7 +2090,7 @@
           </font>
          </property>
          <property name="whatsThis">
-          <string>0x01000009</string>
+          <string notr="true">0x01000009</string>
          </property>
          <property name="text">
           <string>Print
@@ -2118,7 +2118,7 @@ Screen</string>
           </font>
          </property>
          <property name="whatsThis">
-          <string>0x01000026</string>
+          <string notr="true">0x01000026</string>
          </property>
          <property name="text">
           <string>Scroll
@@ -2146,7 +2146,7 @@ Lock</string>
           </font>
          </property>
          <property name="whatsThis">
-          <string>0x01000008</string>
+          <string notr="true">0x01000008</string>
          </property>
          <property name="text">
           <string>Pause
