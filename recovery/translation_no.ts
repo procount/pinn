@@ -1717,6 +1717,10 @@ Are you sure?</source>
         <source>INSTALLED</source>
         <translation type="unfinished">INSTALLERT</translation>
     </message>
+    <message>
+        <source>Backups</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Passwd</name>
@@ -1863,107 +1867,7 @@ or press joystick...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>0x01000000</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Esc</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000030</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>F1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000031</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>F2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000032</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>F3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000033</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>F4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000034</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>F5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000035</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>F6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>F7</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000037</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>F8</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000038</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>F9</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000039</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>F10</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x0100003a</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>F11</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x0100003b</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>F12</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000006</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1971,15 +1875,7 @@ or press joystick...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>0x01000010</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Home</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000016</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1987,15 +1883,7 @@ or press joystick...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>0x01000007</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000011</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2003,135 +1891,7 @@ or press joystick...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>0x01000017</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>PgDn</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000013</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000012</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000015</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000014</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x60</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>`</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x31</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x32</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x33</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x34</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x35</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x36</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x37</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>7</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x38</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>8</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x39</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>9</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x30</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x2d</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>13</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>=</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000003</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2139,103 +1899,7 @@ or press joystick...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>0x01000024</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>    Caps   </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x41</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>A</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x53</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x44</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>D</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x46</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>F</source>
-        <translation type="unfinished">F</translation>
-    </message>
-    <message>
-        <source>0x47</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>G</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x48</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>H</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x4a</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>J</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x4b</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>K</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x4c</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>L</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x3b</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x27</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000004</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2243,91 +1907,7 @@ or press joystick...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>0x01000020</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>     Shift     </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x5a</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Z</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x58</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>X</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x43</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>C</source>
-        <translation type="unfinished">C</translation>
-    </message>
-    <message>
-        <source>0x56</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>V</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x42</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>B</source>
-        <translation type="unfinished">B</translation>
-    </message>
-    <message>
-        <source>0x4e</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>N</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x4d</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>M</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x2c</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>,</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x2e</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x2f</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>/</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2335,15 +1915,7 @@ or press joystick...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>0x01000021</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>    Ctrl     </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000023</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2351,127 +1923,11 @@ or press joystick...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>0x20</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Transparency</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>0x01000001</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>  Tab   </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x51</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x57</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>W</source>
-        <translation type="unfinished">W</translation>
-    </message>
-    <message>
-        <source>0x45</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>E</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x52</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>R</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x54</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>T</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x59</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Y</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x55</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>U</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x49</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>I</source>
-        <translation type="unfinished">I</translation>
-    </message>
-    <message>
-        <source>0x4f</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>O</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x50</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>P</source>
-        <translation type="unfinished">P</translation>
-    </message>
-    <message>
-        <source>0x5b</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>[</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x5d</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x5c</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>\</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000009</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2480,16 +1936,8 @@ Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>0x01000026</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Scroll
 Lock</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000008</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
