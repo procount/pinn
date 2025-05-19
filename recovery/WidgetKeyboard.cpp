@@ -524,9 +524,14 @@ bool WidgetKeyboard::eventFilter(QObject *, QEvent *event)
             QWidget::keyPressEvent(keyEvent);
     }
 
+    if (event && event->type() == QEvent::LanguageChange)
+    {
+        retranslateUi(this);
+    }
     return false;
 }
 #endif
+
 
 void WidgetKeyboard::keyPressEvent(QKeyEvent *keyEvent)
 {
