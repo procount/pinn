@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it_IT" sourcelanguage="en">
+<TS version="2.1" language="it_IT" sourcelanguage="en">
 <context>
     <name>BackupThread</name>
     <message>
@@ -164,11 +164,11 @@
     </message>
     <message>
         <source>Resizing FAT partition</source>
-        <translation>Ridmensionamento partizione FAT</translation>
+        <translation>Ridimensionamento partizione FAT</translation>
     </message>
     <message>
         <source>Error resizing existing FAT partition</source>
-        <translation>Errore ridmensionamento partizione FAT</translation>
+        <translation>Errore ridimensionamento partizione FAT</translation>
     </message>
 </context>
 <context>
@@ -235,11 +235,11 @@ Riformattala usando il programma della SD Association e riprova.</translation>
     </message>
     <message>
         <source>Resizing FAT partition</source>
-        <translation>Ridmensionamento partizione FAT</translation>
+        <translation>Ridimensionamento partizione FAT</translation>
     </message>
     <message>
         <source>Error resizing existing FAT partition</source>
-        <translation>Errore ridmensionamento partizione FAT</translation>
+        <translation>Errore ridimensionamento partizione FAT</translation>
     </message>
     <message>
         <source>Creating extended partition</source>
@@ -354,7 +354,7 @@ Riformattala usando il programma della SD Association e riprova.</translation>
     </message>
     <message>
         <source>Download space</source>
-        <translation>Soazio download</translation>
+        <translation>Spazio download</translation>
     </message>
     <message>
         <source>toolBar</source>
@@ -831,7 +831,7 @@ Tutti i dati esistenti nell&apos;unità, eccetto PINN, verranno sovrascritti inc
     </message>
     <message>
         <source>Replace OSes</source>
-        <translation>Sostiuisci SO</translation>
+        <translation>Sostituisci SO</translation>
     </message>
     <message>
         <source>Resume partial downloads?</source>
@@ -868,7 +868,7 @@ Vuoi continuare?</translation>
     </message>
     <message>
         <source>Always test your backups before relying on them</source>
-        <translation>Prova semrpe i backup prima di usarli</translation>
+        <translation>Verifica sempre i backup prima di usarli</translation>
     </message>
     <message>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
@@ -878,7 +878,7 @@ Seleziona nella finestra successiva la rete Wi-Fi.</translation>
     <message>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>Per usare PINN senza immagini locali è richiesto l&apos;accesso alla rete cablata. 
-Inserisci un cavo di rete nella porta ethernet.</translation>
+Inserisci un cavo di rete nella porta Ethernet.</translation>
     </message>
     <message>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
@@ -977,7 +977,7 @@ Sei sicuro di voler continuare?</translation>
     <message>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
         <translation>Attenzione: rilevati sistemi operativi non supportati.
-PINN attualmente non può efefttuare il backup dei seguenti SO:</translation>
+PINN attualmente non può effettuare il backup dei seguenti S.O.:</translation>
     </message>
     <message>
         <source>Error parsing list.json downloaded from server</source>
@@ -1001,7 +1001,7 @@ Copialo localmente o collegati ad internet.</translation>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
-        <translation>Attenzione: quaslasi sistema operativo verrà rimosso e l&apos;unità verrà ripristinata al suo stato iniziale.
+        <translation>Attenzione: qualsiasi sistema operativo verrà rimosso e l&apos;unità verrà ripristinata al suo stato iniziale.
 Installazione e download non saranno più disponibili fino a che l&apos;unità non sarà riavviata.
 Riavviando l&apos;unità verrà re-installata la struttura di PINN.</translation>
     </message>
@@ -1041,11 +1041,11 @@ La scheda SD o il file system potrebbero essere danneggiati.</translation>
     <message>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Per questa funzione è richiesto l&apos;accesso alla rete cablata. 
-Inserisci un cavo di rete nella porta ethernet.</translation>
+Inserisci un cavo di rete nella porta Ethernet.</translation>
     </message>
     <message>
         <source>Executing postupdate</source>
-        <translation>Esecuzioe post aggiornamento</translation>
+        <translation>Esecuzione post aggiornamento</translation>
     </message>
 </context>
 <context>
@@ -1329,7 +1329,7 @@ Attesi: .lzo, .gz, .xz, .bz2,o .zip.</translation>
     </message>
     <message>
         <source>Force PINN to self-update whenever a new version is detected</source>
-        <translation>Forza PINN all&apos;aggiornamento automaticato quando viene rilevata una nuova versione</translation>
+        <translation>Quando viene rilevata una nuova versione forza aggiornamento automatico di PINN</translation>
     </message>
     <message>
         <source>Selects all OSes where the most recent one is on the SD card</source>
@@ -1425,7 +1425,7 @@ Possono essere usate istanze multiple di questa opzione.</translation>
     </message>
     <message>
         <source>Booting</source>
-        <translation>Booting</translation>
+        <translation>Avvio</translation>
     </message>
     <message>
         <source>When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
@@ -1784,7 +1784,7 @@ Vuoi proseguire?</translation>
     </message>
     <message>
         <source>Backups</source>
-        <translation type="unfinished"></translation>
+        <translation>Backup</translation>
     </message>
 </context>
 <context>
@@ -1924,7 +1924,7 @@ or press joystick...</source>
     <message>
         <source>Please accept these T &amp; Cs to continue.</source>
         <oldsource>Please accept these T&amp;Cs to continue.</oldsource>
-        <translation>Per continuare accetta i Termini e condidizoni.</translation>
+        <translation>Per continuare accetta i &apos;Termini e condizioni&apos;.</translation>
     </message>
 </context>
 <context>
@@ -2064,7 +2064,7 @@ Verifica la password</translation>
     </message>
     <message>
         <source>Authentication method</source>
-        <translation>Metodo autentificazione</translation>
+        <translation>Metodo autenticazione</translation>
     </message>
     <message>
         <source>Pressing the &amp;WPS button on my wifi router</source>
@@ -2074,7 +2074,7 @@ Verifica la password</translation>
     <message>
         <source>Password &amp;authentication</source>
         <oldsource>Password authentication</oldsource>
-        <translation>Password &amp;autentificazione</translation>
+        <translation>Password &amp;autenticazione</translation>
     </message>
     <message>
         <source>&amp;Username</source>
@@ -2187,7 +2187,7 @@ Verifica la password</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;WARNING: Some OSes are already installed!&lt;/p&gt;&lt;p&gt;Continuing to install new OSes will delete your previous installation. Consider using the Replace function if you just want to replace one OS &lt;/p&gt;&lt;p&gt;To continue installing, enter &amp;quot;DELETE&amp;quot; in the box below&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ATTENZIONE: Alcuni sistemi operativi sono già installati!&lt;/p&gt;&lt;p&gt;Continuando ad installare nuovi sistemi operativi cancellerài l&apos;installazione precedente. Considera l&apos;uso della funzione &apos;Sostituisc&apos;i se vuoi solo sostituire un sistema operativo.&lt;/p&gt;&lt;p&gt;Per continuare l&apos;installazione, inserisci &amp; quot; ELIMINA &amp; quot; nella casella qui sotto&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ATTENZIONE: Alcuni sistemi operativi sono già installati!&lt;/p&gt;&lt;p&gt;Continuando ad installare nuovi sistemi operativi cancellerà l&apos;installazione precedente. Se vuoi solo sostituire un sistema operativo considera l&apos;uso della funzione &apos;Sostituisci&apos;.&lt;/p&gt;&lt;p&gt;Per continuare l&apos;installazione, inserisci &amp;quot;ELIMINA&amp;quot; nella casella qui sotto.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Virtual Keyboard</source>
@@ -2296,7 +2296,7 @@ Verifica la password</translation>
     </message>
     <message>
         <source>does not support re-running the setup script.</source>
-        <translation>non supporta la ri-esceuzione dello scritp installazione.</translation>
+        <translation>non supporta la ri-esceuzione dello script installazione.</translation>
     </message>
     <message>
         <source> setup script needs to be updated.</source>
