@@ -90,6 +90,9 @@ WifiSettingsDialog::WifiSettingsDialog(const QString &preferredInterface, QWidge
         cni->deleteLater();
     }
 
+    installEventFilter(this);
+
+
     QVariantMap args;
     args.insert("Type", "passive");
     _interface->Scan(args);
@@ -449,5 +452,13 @@ void WifiSettingsDialog::on_pbDelete_clicked()
         {
             wi->setData(SecondIconRole, QVariant() );
         }
+    }
+}
+
+bool WifiSettingsDialog::eventFilter(QObject *obj, QEvent *event)
+{
+    if (event && event->type() == QEvent::LanguageChange)
+    {
+        ui->retranslateUi(this);
     }
 }

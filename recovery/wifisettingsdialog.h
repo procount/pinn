@@ -43,6 +43,7 @@ protected:
     bool _connecting;
     void msleep(int msec);
     QString removeQuotes(QString str);
+    virtual bool eventFilter(QObject *obj, QEvent *event);
 
 private:
     WidgetKeyboard *virtualKeyBoard;
