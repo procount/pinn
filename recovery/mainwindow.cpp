@@ -3182,12 +3182,16 @@ void MainWindow::startImageWrite()
 
 
 #if 1
-    adjustSizes dlg(_provision, _bootdrive, _drive, imageWriteThread->getImages(), 0);
-    if (dlg.exec() != QDialog::Accepted)
+    QString cmdline = getFileContents("/proc/cmdline");
+    if (! cmdline.contains("silentinstall"))
     {
-        setEnabled(true);
-        _piDrivePollTimer.start(POLLTIME);
-        return;
+        adjustSizes dlg(_provision, _bootdrive, _drive, imageWriteThread->getImages(), 0);
+        if (dlg.exec() != QDialog::Accepted)
+        {
+            setEnabled(true);
+            _piDrivePollTimer.start(POLLTIME);
+            return;
+        }
     }
 #endif
    if (slidesFolders.isEmpty())
