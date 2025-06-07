@@ -182,7 +182,7 @@ void adjustSizes::calcTable()
         _spaces.at(row)->total_mb  = _spaces.at(row)->nominal_mb + _spaces.at(row)->extra_mb;
         _usedMB += _spaces.at(row)->total_mb;
     }
-    _freeMB = _availableMB - _usedMB;
+    _freeMB = _availableMB - _usedMB-1;
 }
 
 void adjustSizes::on_balancePb_clicked()
