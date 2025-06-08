@@ -1748,6 +1748,10 @@ Sicher, dass das gewollt ist?</translation>
         <source>INSTALLED</source>
         <translation>INSTALLIERT</translation>
     </message>
+    <message>
+        <source>Backups</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Passwd</name>
@@ -1896,616 +1900,68 @@ Maustaste oder Joystick drücken&quot;</translation>
         <translation>Bildschirmtastatur</translation>
     </message>
     <message>
-        <source>0x01000000</source>
-        <translation type="unfinished">0x5a {0x?} {01000000?}</translation>
-    </message>
-    <message>
         <source>Esc</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000030</source>
-        <translation type="unfinished">0x5a {0x?} {01000030?}</translation>
-    </message>
-    <message>
-        <source>F1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000031</source>
-        <translation type="unfinished">0x5a {0x?} {01000031?}</translation>
-    </message>
-    <message>
-        <source>F2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000032</source>
-        <translation type="unfinished">0x5a {0x?} {01000032?}</translation>
-    </message>
-    <message>
-        <source>F3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000033</source>
-        <translation type="unfinished">0x5a {0x?} {01000033?}</translation>
-    </message>
-    <message>
-        <source>F4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000034</source>
-        <translation type="unfinished">0x5a {0x?} {01000034?}</translation>
-    </message>
-    <message>
-        <source>F5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000035</source>
-        <translation type="unfinished">0x5a {0x?} {01000035?}</translation>
-    </message>
-    <message>
-        <source>F6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>F7</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000037</source>
-        <translation type="unfinished">0x5a {0x?} {01000037?}</translation>
-    </message>
-    <message>
-        <source>F8</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000038</source>
-        <translation type="unfinished">0x5a {0x?} {01000038?}</translation>
-    </message>
-    <message>
-        <source>F9</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000039</source>
-        <translation type="unfinished">0x5a {0x?} {01000039?}</translation>
-    </message>
-    <message>
-        <source>F10</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x0100003a</source>
-        <translation type="unfinished">0x5a {0x?} {0100003a?}</translation>
-    </message>
-    <message>
-        <source>F11</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x0100003b</source>
-        <translation type="unfinished">0x5a {0x?} {0100003b?}</translation>
-    </message>
-    <message>
-        <source>F12</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000006</source>
-        <translation type="unfinished">0x5a {0x?} {01000006?}</translation>
     </message>
     <message>
         <source>Insert</source>
         <translation>Einfg</translation>
     </message>
     <message>
-        <source>0x01000010</source>
-        <translation type="unfinished">0x5a {0x?} {01000010?}</translation>
-    </message>
-    <message>
         <source>Home</source>
         <translation>Pos1</translation>
-    </message>
-    <message>
-        <source>0x01000016</source>
-        <translation type="unfinished">0x5a {0x?} {01000016?}</translation>
     </message>
     <message>
         <source>PgUP</source>
         <translation>Bild Auf</translation>
     </message>
     <message>
-        <source>0x01000007</source>
-        <translation type="unfinished">0x5a {0x?} {01000007?}</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Entf</translation>
-    </message>
-    <message>
-        <source>0x01000011</source>
-        <translation type="unfinished">0x5a {0x?} {01000011?}</translation>
     </message>
     <message>
         <source>End</source>
         <translation>Ende</translation>
     </message>
     <message>
-        <source>0x01000017</source>
-        <translation type="unfinished">0x5a {0x?} {01000017?}</translation>
-    </message>
-    <message>
         <source>PgDn</source>
         <translation>Bild Ab</translation>
-    </message>
-    <message>
-        <source>0x01000013</source>
-        <translation type="unfinished">0x5a {0x?} {01000013?}</translation>
-    </message>
-    <message>
-        <source>0x01000012</source>
-        <translation type="unfinished">0x5a {0x?} {01000012?}</translation>
-    </message>
-    <message>
-        <source>0x01000015</source>
-        <translation type="unfinished">0x5a {0x?} {01000015?}</translation>
-    </message>
-    <message>
-        <source>0x01000014</source>
-        <translation type="unfinished">0x5a {0x?} {01000014?}</translation>
-    </message>
-    <message>
-        <source>0x60</source>
-        <translation type="unfinished">0x5a {0x?} {60?}</translation>
-    </message>
-    <message>
-        <source>`</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x31</source>
-        <translation type="unfinished">0x5a {0x?} {31?}</translation>
-    </message>
-    <message>
-        <source>1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x32</source>
-        <translation type="unfinished">0x5a {0x?} {32?}</translation>
-    </message>
-    <message>
-        <source>2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x33</source>
-        <translation type="unfinished">0x5a {0x?} {33?}</translation>
-    </message>
-    <message>
-        <source>3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x34</source>
-        <translation type="unfinished">0x5a {0x?} {34?}</translation>
-    </message>
-    <message>
-        <source>4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x35</source>
-        <translation type="unfinished">0x5a {0x?} {35?}</translation>
-    </message>
-    <message>
-        <source>5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x36</source>
-        <translation type="unfinished">0x5a {0x?} {36?}</translation>
-    </message>
-    <message>
-        <source>6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x37</source>
-        <translation type="unfinished">0x5a {0x?} {37?}</translation>
-    </message>
-    <message>
-        <source>7</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x38</source>
-        <translation type="unfinished">0x5a {0x?} {38?}</translation>
-    </message>
-    <message>
-        <source>8</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x39</source>
-        <translation type="unfinished">0x5a {0x?} {39?}</translation>
-    </message>
-    <message>
-        <source>9</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x30</source>
-        <translation type="unfinished">0x5a {0x?} {30?}</translation>
-    </message>
-    <message>
-        <source>0</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x2d</source>
-        <translation type="unfinished">0x5a {0x?} {2d?}</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>13</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>=</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000003</source>
-        <translation type="unfinished">0x5a {0x?} {01000003?}</translation>
     </message>
     <message>
         <source>Backspace</source>
         <translation>Rücktaste</translation>
     </message>
     <message>
-        <source>0x01000024</source>
-        <translation type="unfinished">0x5a {0x?} {01000024?}</translation>
-    </message>
-    <message>
         <source>    Caps   </source>
         <translation>Feststelltaste</translation>
-    </message>
-    <message>
-        <source>0x41</source>
-        <translation type="unfinished">0x5a {0x?} {41?}</translation>
-    </message>
-    <message>
-        <source>A</source>
-        <translation>A</translation>
-    </message>
-    <message>
-        <source>0x53</source>
-        <translation type="unfinished">0x5a {0x?} {53?}</translation>
-    </message>
-    <message>
-        <source>S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x44</source>
-        <translation type="unfinished">0x5a {0x?} {44?}</translation>
-    </message>
-    <message>
-        <source>D</source>
-        <translation>D</translation>
-    </message>
-    <message>
-        <source>0x46</source>
-        <translation type="unfinished">0x5a {0x?} {46?}</translation>
-    </message>
-    <message>
-        <source>F</source>
-        <translation>F</translation>
-    </message>
-    <message>
-        <source>0x47</source>
-        <translation type="unfinished">0x5a {0x?} {47?}</translation>
-    </message>
-    <message>
-        <source>G</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x48</source>
-        <translation type="unfinished">0x5a {0x?} {48?}</translation>
-    </message>
-    <message>
-        <source>H</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x4a</source>
-        <translation type="unfinished">0x5a {0x?} {4a?}</translation>
-    </message>
-    <message>
-        <source>J</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x4b</source>
-        <translation type="unfinished">0x5a {0x?} {4b?}</translation>
-    </message>
-    <message>
-        <source>K</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x4c</source>
-        <translation type="unfinished">0x5a {0x?} {4c?}</translation>
-    </message>
-    <message>
-        <source>L</source>
-        <translation>L</translation>
-    </message>
-    <message>
-        <source>0x3b</source>
-        <translation type="unfinished">0x5a {0x?} {3b?}</translation>
-    </message>
-    <message>
-        <source>;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x27</source>
-        <translation type="unfinished">0x5a {0x?} {27?}</translation>
-    </message>
-    <message>
-        <source>&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000004</source>
-        <translation type="unfinished">0x5a {0x?} {01000004?}</translation>
     </message>
     <message>
         <source>    Return   </source>
         <translation>   Eingabe   </translation>
     </message>
     <message>
-        <source>0x01000020</source>
-        <translation type="unfinished">0x5a {0x?} {01000020?}</translation>
-    </message>
-    <message>
         <source>     Shift     </source>
         <translation>   Umschalt   </translation>
-    </message>
-    <message>
-        <source>0x5a</source>
-        <translation>0x59</translation>
-    </message>
-    <message>
-        <source>Z</source>
-        <translation>Y</translation>
-    </message>
-    <message>
-        <source>0x58</source>
-        <translation type="unfinished">0x5a {0x?} {58?}</translation>
-    </message>
-    <message>
-        <source>X</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x43</source>
-        <translation type="unfinished">0x5a {0x?} {43?}</translation>
-    </message>
-    <message>
-        <source>C</source>
-        <translation type="unfinished">e</translation>
-    </message>
-    <message>
-        <source>0x56</source>
-        <translation type="unfinished">0x5a {0x?} {56?}</translation>
-    </message>
-    <message>
-        <source>V</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x42</source>
-        <translation type="unfinished">0x5a {0x?} {42?}</translation>
-    </message>
-    <message>
-        <source>B</source>
-        <translation type="unfinished">B</translation>
-    </message>
-    <message>
-        <source>0x4e</source>
-        <translation type="unfinished">0x5a {0x?} {4e?}</translation>
-    </message>
-    <message>
-        <source>N</source>
-        <translation type="unfinished">N</translation>
-    </message>
-    <message>
-        <source>0x4d</source>
-        <translation type="unfinished">0x5a {0x?} {4d?}</translation>
-    </message>
-    <message>
-        <source>M</source>
-        <translation type="unfinished">M</translation>
-    </message>
-    <message>
-        <source>0x2c</source>
-        <translation type="unfinished">0x5a {0x?} {2c?}</translation>
-    </message>
-    <message>
-        <source>,</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x2e</source>
-        <translation type="unfinished">0x5a {0x?} {2e?}</translation>
-    </message>
-    <message>
-        <source>.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x2f</source>
-        <translation type="unfinished">0x5a {0x?} {2f?}</translation>
-    </message>
-    <message>
-        <source>/</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>     Shift      </source>
         <translation>   Umschalt   </translation>
     </message>
     <message>
-        <source>0x01000021</source>
-        <translation type="unfinished">0x5a {0x?} {01000021?}</translation>
-    </message>
-    <message>
         <source>    Ctrl     </source>
         <translation>   Strg    </translation>
-    </message>
-    <message>
-        <source>0x01000023</source>
-        <translation type="unfinished">0x5a {0x?} {01000023?}</translation>
     </message>
     <message>
         <source>   Alt  </source>
         <translation>   Alt  </translation>
     </message>
     <message>
-        <source>0x20</source>
-        <translation type="unfinished">0x5a {0x?} {20?}</translation>
-    </message>
-    <message>
         <source>Transparency</source>
         <translation type="unfinished">Transparenz</translation>
     </message>
     <message>
-        <source>0x01000001</source>
-        <translation type="unfinished">0x5a {0x?} {01000001?}</translation>
-    </message>
-    <message>
         <source>  Tab   </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x51</source>
-        <translation type="unfinished">0x5a {0x?} {51?}</translation>
-    </message>
-    <message>
-        <source>Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x57</source>
-        <translation type="unfinished">0x5a {0x?} {57?}</translation>
-    </message>
-    <message>
-        <source>W</source>
-        <translation type="unfinished">W</translation>
-    </message>
-    <message>
-        <source>0x45</source>
-        <translation type="unfinished">0x5a {0x?} {45?}</translation>
-    </message>
-    <message>
-        <source>E</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x52</source>
-        <translation type="unfinished">0x5a {0x?} {52?}</translation>
-    </message>
-    <message>
-        <source>R</source>
-        <translation type="unfinished">R</translation>
-    </message>
-    <message>
-        <source>0x54</source>
-        <translation type="unfinished">0x5a {0x?} {54?}</translation>
-    </message>
-    <message>
-        <source>T</source>
-        <translation type="unfinished">T</translation>
-    </message>
-    <message>
-        <source>0x59</source>
-        <translation>0x5a</translation>
-    </message>
-    <message>
-        <source>Y</source>
-        <translation>Z</translation>
-    </message>
-    <message>
-        <source>0x55</source>
-        <translation type="unfinished">0x5a {0x?} {55?}</translation>
-    </message>
-    <message>
-        <source>U</source>
-        <translation type="unfinished">O</translation>
-    </message>
-    <message>
-        <source>0x49</source>
-        <translation type="unfinished">0x5a {0x?} {49?}</translation>
-    </message>
-    <message>
-        <source>I</source>
-        <translation type="unfinished">I</translation>
-    </message>
-    <message>
-        <source>0x4f</source>
-        <translation type="unfinished">0x5a {0x?} {4f?}</translation>
-    </message>
-    <message>
-        <source>O</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x50</source>
-        <translation type="unfinished">0x5a {0x?} {50?}</translation>
-    </message>
-    <message>
-        <source>P</source>
-        <translation type="unfinished">P</translation>
-    </message>
-    <message>
-        <source>0x5b</source>
-        <translation type="unfinished">0x5a {0x?} {5b?}</translation>
-    </message>
-    <message>
-        <source>[</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x5d</source>
-        <translation type="unfinished">0x5a {0x?} {5d?}</translation>
-    </message>
-    <message>
-        <source>]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x5c</source>
-        <translation type="unfinished">0x5a {0x?} {5c?}</translation>
-    </message>
-    <message>
-        <source>\</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>0x01000009</source>
-        <translation type="unfinished">0x5a {0x?} {01000009?}</translation>
     </message>
     <message>
         <source>Print
@@ -2514,17 +1970,9 @@ Screen</source>
 S-Abf</translation>
     </message>
     <message>
-        <source>0x01000026</source>
-        <translation type="unfinished">0x5a {0x?} {01000026?}</translation>
-    </message>
-    <message>
         <source>Scroll
 Lock</source>
         <translation>Rollen</translation>
-    </message>
-    <message>
-        <source>0x01000008</source>
-        <translation type="unfinished">0x5a {0x?} {01000008?}</translation>
     </message>
     <message>
         <source>Pause

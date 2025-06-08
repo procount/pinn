@@ -102,6 +102,7 @@ protected:
     bool timeset;
     enum ModeTag _eDownloadMode;
     uint _provision;
+    bool _skipformat;
 
     QMap<QString,QVariantMap> listImages(const QString &folder = "/mnt/os");
 

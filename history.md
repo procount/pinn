@@ -5,6 +5,20 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.9.6
+
+- **Adjustsizes**   - Left an extra 1MB at the end of the disk
+- **Pigz**          - bumped pigs to v2.8
+- **silentinstall** - Fixed silentinstall by hiding adjust sizes dialog #907
+- **Translation**   - Fixed Italian language definition (EN)
+
+### V3.9.5
+
+- **Translation**   - Italian updates
+- **Translation**   - dynamic updates for wifidialog and virtual keyboard
+- **Translation**   - Virtual keyboard single keys removed from translation
+- **skipformat**    - Adding `skipformat` option to cmdline.txt prevents reformatting dialog from showing.
+
 ### V3.9.4
 
 - **Firmware**      - Updated firmware to allow [pi5] condition

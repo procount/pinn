@@ -187,6 +187,7 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
     _waitforImages = 0;
     _processedImages = 0;
     _numListsToDownload=0;
+    _skipformat=false;
 
 
     QWidget* spacer = new QWidget();
@@ -258,6 +259,10 @@ MainWindow::MainWindow(const QString &drive, const QString &defaultDisplay, KSpl
         if (s.contains("forceruninstaller"))
         {
             forceruninstaller = 1;
+        }
+        if (s.contains("skipformat"))
+        {
+            _skipformat=true;
         }
     }
 
@@ -3177,12 +3182,16 @@ void MainWindow::startImageWrite()
 
 
 #if 1
-    adjustSizes dlg(_provision, _bootdrive, _drive, imageWriteThread->getImages(), 0);
-    if (dlg.exec() != QDialog::Accepted)
+    QString cmdline = getFileContents("/proc/cmdline");
+    if (! cmdline.contains("silentinstall"))
     {
-        setEnabled(true);
-        _piDrivePollTimer.start(POLLTIME);
-        return;
+        adjustSizes dlg(_provision, _bootdrive, _drive, imageWriteThread->getImages(), 0);
+        if (dlg.exec() != QDialog::Accepted)
+        {
+            setEnabled(true);
+            _piDrivePollTimer.start(POLLTIME);
+            return;
+        }
     }
 #endif
    if (slidesFolders.isEmpty())
@@ -3970,7 +3979,6 @@ void MainWindow::recalcAvailableMB()
 
 void MainWindow::on_targetCombo_currentIndexChanged(int index)
 {
-
     if (index != -1)
     {
         QString devname = ui->targetCombo->itemData(index).toString();
@@ -3980,7 +3988,7 @@ void MainWindow::on_targetCombo_currentIndexChanged(int index)
                 || !QFile::exists(sysclassblock(devname, 5))
                 || getFileContents(sysclassblock(devname, 5)+"/size").trimmed().toInt() != SETTINGS_PARTITION_SIZE))
         {
-            if (QMessageBox::question(this,
+            if ( !_skipformat && QMessageBox::question(this,
                                       tr("Reformat drive?"),
                                       tr("Are you sure you want to reformat the drive '%1' for use with PINN? All existing data on the drive will be deleted!").arg(devname),
                                       QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes)

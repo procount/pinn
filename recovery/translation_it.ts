@@ -164,11 +164,11 @@
     </message>
     <message>
         <source>Resizing FAT partition</source>
-        <translation>Ridmensionamento partizione FAT</translation>
+        <translation>Ridimensionamento partizione FAT</translation>
     </message>
     <message>
         <source>Error resizing existing FAT partition</source>
-        <translation>Errore ridmensionamento partizione FAT</translation>
+        <translation>Errore ridimensionamento partizione FAT</translation>
     </message>
 </context>
 <context>
@@ -235,11 +235,11 @@ Riformattala usando il programma della SD Association e riprova.</translation>
     </message>
     <message>
         <source>Resizing FAT partition</source>
-        <translation>Ridmensionamento partizione FAT</translation>
+        <translation>Ridimensionamento partizione FAT</translation>
     </message>
     <message>
         <source>Error resizing existing FAT partition</source>
-        <translation>Errore ridmensionamento partizione FAT</translation>
+        <translation>Errore ridimensionamento partizione FAT</translation>
     </message>
     <message>
         <source>Creating extended partition</source>
@@ -354,7 +354,7 @@ Riformattala usando il programma della SD Association e riprova.</translation>
     </message>
     <message>
         <source>Download space</source>
-        <translation>Soazio download</translation>
+        <translation>Spazio download</translation>
     </message>
     <message>
         <source>toolBar</source>
@@ -831,7 +831,7 @@ Tutti i dati esistenti nell&apos;unità, eccetto PINN, verranno sovrascritti inc
     </message>
     <message>
         <source>Replace OSes</source>
-        <translation>Sostiuisci SO</translation>
+        <translation>Sostituisci SO</translation>
     </message>
     <message>
         <source>Resume partial downloads?</source>
@@ -868,7 +868,7 @@ Vuoi continuare?</translation>
     </message>
     <message>
         <source>Always test your backups before relying on them</source>
-        <translation>Prova semrpe i backup prima di usarli</translation>
+        <translation>Verifica sempre i backup prima di usarli</translation>
     </message>
     <message>
         <source>Network access is required to use PINN without local images. Please select your wifi network in the next screen.</source>
@@ -878,7 +878,7 @@ Seleziona nella finestra successiva la rete Wi-Fi.</translation>
     <message>
         <source>Wired network access is required to use PINN without local images. Please insert a network cable into the network port.</source>
         <translation>Per usare PINN senza immagini locali è richiesto l&apos;accesso alla rete cablata. 
-Inserisci un cavo di rete nella porta ethernet.</translation>
+Inserisci un cavo di rete nella porta Ethernet.</translation>
     </message>
     <message>
         <source>Are you sure you want to reformat the drive &apos;%1&apos; for use with PINN? All existing data on the drive will be deleted!</source>
@@ -977,7 +977,7 @@ Sei sicuro di voler continuare?</translation>
     <message>
         <source>Warning: Unsupported Operating System(s) detected. PINN currently cannot backup the following OSes correctly:</source>
         <translation>Attenzione: rilevati sistemi operativi non supportati.
-PINN attualmente non può efefttuare il backup dei seguenti SO:</translation>
+PINN attualmente non può effettuare il backup dei seguenti S.O.:</translation>
     </message>
     <message>
         <source>Error parsing list.json downloaded from server</source>
@@ -1001,7 +1001,7 @@ Copialo localmente o collegati ad internet.</translation>
         <source>Warning: Any installed OSes have been wiped and the drive has been restored to its original size.
 Install and download will no longer work until this drive is re-booted.
 Booting this drive again will re-instate PINN&apos;s partition structure.</source>
-        <translation>Attenzione: quaslasi sistema operativo verrà rimosso e l&apos;unità verrà ripristinata al suo stato iniziale.
+        <translation>Attenzione: qualsiasi sistema operativo verrà rimosso e l&apos;unità verrà ripristinata al suo stato iniziale.
 Installazione e download non saranno più disponibili fino a che l&apos;unità non sarà riavviata.
 Riavviando l&apos;unità verrà re-installata la struttura di PINN.</translation>
     </message>
@@ -1041,11 +1041,11 @@ La scheda SD o il file system potrebbero essere danneggiati.</translation>
     <message>
         <source>Wired network access is required for this feature. Please insert a network cable into the network port.</source>
         <translation>Per questa funzione è richiesto l&apos;accesso alla rete cablata. 
-Inserisci un cavo di rete nella porta ethernet.</translation>
+Inserisci un cavo di rete nella porta Ethernet.</translation>
     </message>
     <message>
         <source>Executing postupdate</source>
-        <translation>Esecuzioe post aggiornamento</translation>
+        <translation>Esecuzione post aggiornamento</translation>
     </message>
 </context>
 <context>
@@ -1329,7 +1329,7 @@ Attesi: .lzo, .gz, .xz, .bz2,o .zip.</translation>
     </message>
     <message>
         <source>Force PINN to self-update whenever a new version is detected</source>
-        <translation>Forza PINN all&apos;aggiornamento automaticato quando viene rilevata una nuova versione</translation>
+        <translation>Quando viene rilevata una nuova versione forza aggiornamento automatico di PINN</translation>
     </message>
     <message>
         <source>Selects all OSes where the most recent one is on the SD card</source>
@@ -1425,7 +1425,7 @@ Possono essere usate istanze multiple di questa opzione.</translation>
     </message>
     <message>
         <source>Booting</source>
-        <translation>Booting</translation>
+        <translation>Avvio</translation>
     </message>
     <message>
         <source>When used in conjunction with forcetrigger it sets a maximum timeout period in seconds for the recovery menu to be displayed before continuing to the boot selection dialog and potentially selecting a default OS to boot.</source>
@@ -1782,6 +1782,10 @@ Vuoi proseguire?</translation>
         <source>INSTALLED</source>
         <translation>INSTALLATO</translation>
     </message>
+    <message>
+        <source>Backups</source>
+        <translation>Backup</translation>
+    </message>
 </context>
 <context>
     <name>Passwd</name>
@@ -1920,7 +1924,7 @@ or press joystick...</source>
     <message>
         <source>Please accept these T &amp; Cs to continue.</source>
         <oldsource>Please accept these T&amp;Cs to continue.</oldsource>
-        <translation>Per continuare accetta i Termini e condidizoni.</translation>
+        <translation>Per continuare accetta i &apos;Termini e condizioni&apos;.</translation>
     </message>
 </context>
 <context>
@@ -1930,616 +1934,68 @@ or press joystick...</source>
         <translation>Tastiera virtuale</translation>
     </message>
     <message>
-        <source>0x01000000</source>
-        <translation>0x01000000</translation>
-    </message>
-    <message>
         <source>Esc</source>
         <translation>Esc</translation>
-    </message>
-    <message>
-        <source>0x01000030</source>
-        <translation>0x01000030</translation>
-    </message>
-    <message>
-        <source>F1</source>
-        <translation>F1</translation>
-    </message>
-    <message>
-        <source>0x01000031</source>
-        <translation>0x01000031</translation>
-    </message>
-    <message>
-        <source>F2</source>
-        <translation>F2</translation>
-    </message>
-    <message>
-        <source>0x01000032</source>
-        <translation>0x01000032</translation>
-    </message>
-    <message>
-        <source>F3</source>
-        <translation>F3</translation>
-    </message>
-    <message>
-        <source>0x01000033</source>
-        <translation>0x01000033</translation>
-    </message>
-    <message>
-        <source>F4</source>
-        <translation>F4</translation>
-    </message>
-    <message>
-        <source>0x01000034</source>
-        <translation>0x01000034</translation>
-    </message>
-    <message>
-        <source>F5</source>
-        <translation>F5</translation>
-    </message>
-    <message>
-        <source>0x01000035</source>
-        <translation>0x01000035</translation>
-    </message>
-    <message>
-        <source>F6</source>
-        <translation>F6</translation>
-    </message>
-    <message>
-        <source>F7</source>
-        <translation>F7</translation>
-    </message>
-    <message>
-        <source>0x01000037</source>
-        <translation>0x01000037</translation>
-    </message>
-    <message>
-        <source>F8</source>
-        <translation>F8</translation>
-    </message>
-    <message>
-        <source>0x01000038</source>
-        <translation>0x01000038</translation>
-    </message>
-    <message>
-        <source>F9</source>
-        <translation>F9</translation>
-    </message>
-    <message>
-        <source>0x01000039</source>
-        <translation>0x01000039</translation>
-    </message>
-    <message>
-        <source>F10</source>
-        <translation>F10</translation>
-    </message>
-    <message>
-        <source>0x0100003a</source>
-        <translation>0x0100003a</translation>
-    </message>
-    <message>
-        <source>F11</source>
-        <translation>F11</translation>
-    </message>
-    <message>
-        <source>0x0100003b</source>
-        <translation>0x0100003b</translation>
-    </message>
-    <message>
-        <source>F12</source>
-        <translation>F12</translation>
-    </message>
-    <message>
-        <source>0x01000006</source>
-        <translation>0x01000006</translation>
     </message>
     <message>
         <source>Insert</source>
         <translation>Inserisci</translation>
     </message>
     <message>
-        <source>0x01000010</source>
-        <translation>0x01000010</translation>
-    </message>
-    <message>
         <source>Home</source>
         <translation>Home</translation>
-    </message>
-    <message>
-        <source>0x01000016</source>
-        <translation>0x01000016</translation>
     </message>
     <message>
         <source>PgUP</source>
         <translation>PgSu</translation>
     </message>
     <message>
-        <source>0x01000007</source>
-        <translation>0x01000007</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Elimina</translation>
-    </message>
-    <message>
-        <source>0x01000011</source>
-        <translation>0x01000011</translation>
     </message>
     <message>
         <source>End</source>
         <translation>Fine</translation>
     </message>
     <message>
-        <source>0x01000017</source>
-        <translation>0x01000017</translation>
-    </message>
-    <message>
         <source>PgDn</source>
         <translation>PgGiù</translation>
-    </message>
-    <message>
-        <source>0x01000013</source>
-        <translation>0x01000013</translation>
-    </message>
-    <message>
-        <source>0x01000012</source>
-        <translation>0x01000012</translation>
-    </message>
-    <message>
-        <source>0x01000015</source>
-        <translation>0x01000015</translation>
-    </message>
-    <message>
-        <source>0x01000014</source>
-        <translation>0x01000014</translation>
-    </message>
-    <message>
-        <source>0x60</source>
-        <translation>0x60</translation>
-    </message>
-    <message>
-        <source>`</source>
-        <translation>`</translation>
-    </message>
-    <message>
-        <source>0x31</source>
-        <translation>0x31</translation>
-    </message>
-    <message>
-        <source>1</source>
-        <translation>1</translation>
-    </message>
-    <message>
-        <source>0x32</source>
-        <translation>0x32</translation>
-    </message>
-    <message>
-        <source>2</source>
-        <translation>2</translation>
-    </message>
-    <message>
-        <source>0x33</source>
-        <translation>0x33</translation>
-    </message>
-    <message>
-        <source>3</source>
-        <translation>3</translation>
-    </message>
-    <message>
-        <source>0x34</source>
-        <translation>0x34</translation>
-    </message>
-    <message>
-        <source>4</source>
-        <translation>4</translation>
-    </message>
-    <message>
-        <source>0x35</source>
-        <translation>0x35</translation>
-    </message>
-    <message>
-        <source>5</source>
-        <translation>5</translation>
-    </message>
-    <message>
-        <source>0x36</source>
-        <translation>0x36</translation>
-    </message>
-    <message>
-        <source>6</source>
-        <translation>6</translation>
-    </message>
-    <message>
-        <source>0x37</source>
-        <translation>0x37</translation>
-    </message>
-    <message>
-        <source>7</source>
-        <translation>7</translation>
-    </message>
-    <message>
-        <source>0x38</source>
-        <translation>0x38</translation>
-    </message>
-    <message>
-        <source>8</source>
-        <translation>8</translation>
-    </message>
-    <message>
-        <source>0x39</source>
-        <translation>0x39</translation>
-    </message>
-    <message>
-        <source>9</source>
-        <translation>9</translation>
-    </message>
-    <message>
-        <source>0x30</source>
-        <translation>0x30</translation>
-    </message>
-    <message>
-        <source>0</source>
-        <translation>0</translation>
-    </message>
-    <message>
-        <source>0x2d</source>
-        <translation>0x2d</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>13</source>
-        <translation>13</translation>
-    </message>
-    <message>
-        <source>=</source>
-        <translation>=</translation>
-    </message>
-    <message>
-        <source>0x01000003</source>
-        <translation>0x01000003</translation>
     </message>
     <message>
         <source>Backspace</source>
         <translation>Backspace</translation>
     </message>
     <message>
-        <source>0x01000024</source>
-        <translation>0x01000024</translation>
-    </message>
-    <message>
         <source>    Caps   </source>
         <translation>    Maiusc   </translation>
-    </message>
-    <message>
-        <source>0x41</source>
-        <translation>0x41</translation>
-    </message>
-    <message>
-        <source>A</source>
-        <translation>A</translation>
-    </message>
-    <message>
-        <source>0x53</source>
-        <translation>0x53</translation>
-    </message>
-    <message>
-        <source>S</source>
-        <translation>S</translation>
-    </message>
-    <message>
-        <source>0x44</source>
-        <translation>0x44</translation>
-    </message>
-    <message>
-        <source>D</source>
-        <translation>D</translation>
-    </message>
-    <message>
-        <source>0x46</source>
-        <translation>0x46</translation>
-    </message>
-    <message>
-        <source>F</source>
-        <translation>F</translation>
-    </message>
-    <message>
-        <source>0x47</source>
-        <translation>0x47</translation>
-    </message>
-    <message>
-        <source>G</source>
-        <translation>G</translation>
-    </message>
-    <message>
-        <source>0x48</source>
-        <translation>0x48</translation>
-    </message>
-    <message>
-        <source>H</source>
-        <translation>H</translation>
-    </message>
-    <message>
-        <source>0x4a</source>
-        <translation>0x4a</translation>
-    </message>
-    <message>
-        <source>J</source>
-        <translation>J</translation>
-    </message>
-    <message>
-        <source>0x4b</source>
-        <translation>0x4b</translation>
-    </message>
-    <message>
-        <source>K</source>
-        <translation>K</translation>
-    </message>
-    <message>
-        <source>0x4c</source>
-        <translation>0x4c</translation>
-    </message>
-    <message>
-        <source>L</source>
-        <translation>L</translation>
-    </message>
-    <message>
-        <source>0x3b</source>
-        <translation>0x3b</translation>
-    </message>
-    <message>
-        <source>;</source>
-        <translation>;</translation>
-    </message>
-    <message>
-        <source>0x27</source>
-        <translation>0x27</translation>
-    </message>
-    <message>
-        <source>&apos;</source>
-        <translation>&apos;</translation>
-    </message>
-    <message>
-        <source>0x01000004</source>
-        <translation>0x01000004</translation>
     </message>
     <message>
         <source>    Return   </source>
         <translation>    Invio   </translation>
     </message>
     <message>
-        <source>0x01000020</source>
-        <translation>0x01000020</translation>
-    </message>
-    <message>
         <source>     Shift     </source>
         <translation>     Maiusc     </translation>
-    </message>
-    <message>
-        <source>0x5a</source>
-        <translation>0x5a</translation>
-    </message>
-    <message>
-        <source>Z</source>
-        <translation>Z</translation>
-    </message>
-    <message>
-        <source>0x58</source>
-        <translation>0x58</translation>
-    </message>
-    <message>
-        <source>X</source>
-        <translation>X</translation>
-    </message>
-    <message>
-        <source>0x43</source>
-        <translation>0x43</translation>
-    </message>
-    <message>
-        <source>C</source>
-        <translation>C</translation>
-    </message>
-    <message>
-        <source>0x56</source>
-        <translation>0x56</translation>
-    </message>
-    <message>
-        <source>V</source>
-        <translation>V</translation>
-    </message>
-    <message>
-        <source>0x42</source>
-        <translation>0x42</translation>
-    </message>
-    <message>
-        <source>B</source>
-        <translation>B</translation>
-    </message>
-    <message>
-        <source>0x4e</source>
-        <translation>0x4e</translation>
-    </message>
-    <message>
-        <source>N</source>
-        <translation>N</translation>
-    </message>
-    <message>
-        <source>0x4d</source>
-        <translation>0x4d</translation>
-    </message>
-    <message>
-        <source>M</source>
-        <translation>M</translation>
-    </message>
-    <message>
-        <source>0x2c</source>
-        <translation>0x2c</translation>
-    </message>
-    <message>
-        <source>,</source>
-        <translation>,</translation>
-    </message>
-    <message>
-        <source>0x2e</source>
-        <translation>0x2e</translation>
-    </message>
-    <message>
-        <source>.</source>
-        <translation>.</translation>
-    </message>
-    <message>
-        <source>0x2f</source>
-        <translation>0x2f</translation>
-    </message>
-    <message>
-        <source>/</source>
-        <translation>/</translation>
     </message>
     <message>
         <source>     Shift      </source>
         <translation>     Maiusc      </translation>
     </message>
     <message>
-        <source>0x01000021</source>
-        <translation>0x01000021</translation>
-    </message>
-    <message>
         <source>    Ctrl     </source>
         <translation>    Ctrl     </translation>
-    </message>
-    <message>
-        <source>0x01000023</source>
-        <translation>0x01000023</translation>
     </message>
     <message>
         <source>   Alt  </source>
         <translation>   Alt  </translation>
     </message>
     <message>
-        <source>0x20</source>
-        <translation>0x20</translation>
-    </message>
-    <message>
         <source>Transparency</source>
         <translation>Trasparenza</translation>
     </message>
     <message>
-        <source>0x01000001</source>
-        <translation>0x01000001</translation>
-    </message>
-    <message>
         <source>  Tab   </source>
         <translation>  Tab   </translation>
-    </message>
-    <message>
-        <source>0x51</source>
-        <translation>0x51</translation>
-    </message>
-    <message>
-        <source>Q</source>
-        <translation>Q</translation>
-    </message>
-    <message>
-        <source>0x57</source>
-        <translation>0x57</translation>
-    </message>
-    <message>
-        <source>W</source>
-        <translation>W</translation>
-    </message>
-    <message>
-        <source>0x45</source>
-        <translation>0x45</translation>
-    </message>
-    <message>
-        <source>E</source>
-        <translation>E</translation>
-    </message>
-    <message>
-        <source>0x52</source>
-        <translation>0x52</translation>
-    </message>
-    <message>
-        <source>R</source>
-        <translation>R</translation>
-    </message>
-    <message>
-        <source>0x54</source>
-        <translation>0x54</translation>
-    </message>
-    <message>
-        <source>T</source>
-        <translation>T</translation>
-    </message>
-    <message>
-        <source>0x59</source>
-        <translation>0x59</translation>
-    </message>
-    <message>
-        <source>Y</source>
-        <translation>Y</translation>
-    </message>
-    <message>
-        <source>0x55</source>
-        <translation>0x55</translation>
-    </message>
-    <message>
-        <source>U</source>
-        <translation>S</translation>
-    </message>
-    <message>
-        <source>0x49</source>
-        <translation>0x49</translation>
-    </message>
-    <message>
-        <source>I</source>
-        <translation>I</translation>
-    </message>
-    <message>
-        <source>0x4f</source>
-        <translation>0x4f</translation>
-    </message>
-    <message>
-        <source>O</source>
-        <translation>O</translation>
-    </message>
-    <message>
-        <source>0x50</source>
-        <translation>0x50</translation>
-    </message>
-    <message>
-        <source>P</source>
-        <translation>P</translation>
-    </message>
-    <message>
-        <source>0x5b</source>
-        <translation>0x5b</translation>
-    </message>
-    <message>
-        <source>[</source>
-        <translation>[</translation>
-    </message>
-    <message>
-        <source>0x5d</source>
-        <translation>0x5d</translation>
-    </message>
-    <message>
-        <source>]</source>
-        <translation>]</translation>
-    </message>
-    <message>
-        <source>0x5c</source>
-        <translation>0x5c</translation>
-    </message>
-    <message>
-        <source>\</source>
-        <translation>\</translation>
-    </message>
-    <message>
-        <source>0x01000009</source>
-        <translation>0x01000009</translation>
     </message>
     <message>
         <source>Print
@@ -2547,18 +2003,10 @@ Screen</source>
         <translation>Stamp</translation>
     </message>
     <message>
-        <source>0x01000026</source>
-        <translation>0x01000026</translation>
-    </message>
-    <message>
         <source>Scroll
 Lock</source>
         <translation>Blocca
 Maiusc</translation>
-    </message>
-    <message>
-        <source>0x01000008</source>
-        <translation>0x01000008</translation>
     </message>
     <message>
         <source>Pause
@@ -2616,7 +2064,7 @@ Verifica la password</translation>
     </message>
     <message>
         <source>Authentication method</source>
-        <translation>Metodo autentificazione</translation>
+        <translation>Metodo autenticazione</translation>
     </message>
     <message>
         <source>Pressing the &amp;WPS button on my wifi router</source>
@@ -2626,7 +2074,7 @@ Verifica la password</translation>
     <message>
         <source>Password &amp;authentication</source>
         <oldsource>Password authentication</oldsource>
-        <translation>Password &amp;autentificazione</translation>
+        <translation>Password &amp;autenticazione</translation>
     </message>
     <message>
         <source>&amp;Username</source>
@@ -2739,7 +2187,7 @@ Verifica la password</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;WARNING: Some OSes are already installed!&lt;/p&gt;&lt;p&gt;Continuing to install new OSes will delete your previous installation. Consider using the Replace function if you just want to replace one OS &lt;/p&gt;&lt;p&gt;To continue installing, enter &amp;quot;DELETE&amp;quot; in the box below&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ATTENZIONE: Alcuni sistemi operativi sono già installati!&lt;/p&gt;&lt;p&gt;Continuando ad installare nuovi sistemi operativi cancellerài l&apos;installazione precedente. Considera l&apos;uso della funzione &apos;Sostituisc&apos;i se vuoi solo sostituire un sistema operativo.&lt;/p&gt;&lt;p&gt;Per continuare l&apos;installazione, inserisci &amp; quot; ELIMINA &amp; quot; nella casella qui sotto&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ATTENZIONE: Alcuni sistemi operativi sono già installati!&lt;/p&gt;&lt;p&gt;Continuando ad installare nuovi sistemi operativi cancellerà l&apos;installazione precedente. Se vuoi solo sostituire un sistema operativo considera l&apos;uso della funzione &apos;Sostituisci&apos;.&lt;/p&gt;&lt;p&gt;Per continuare l&apos;installazione, inserisci &amp;quot;ELIMINA&amp;quot; nella casella qui sotto.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Virtual Keyboard</source>
@@ -2848,7 +2296,7 @@ Verifica la password</translation>
     </message>
     <message>
         <source>does not support re-running the setup script.</source>
-        <translation>non supporta la ri-esceuzione dello scritp installazione.</translation>
+        <translation>non supporta la ri-esceuzione dello script installazione.</translation>
     </message>
     <message>
         <source> setup script needs to be updated.</source>
