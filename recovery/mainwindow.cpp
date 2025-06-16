@@ -2342,7 +2342,12 @@ void MainWindow::downloadLists()
         foreach (QString url, urls)
         {
             if (url.startsWith("/"))
-                processJson( Json::parse(getFileContents(url)) );
+            {
+                QByteArray org_file (getFileContents(url));
+                QByteArray base_file(expandBaseUrl(org_file));
+
+                processJson( Json::parse(base_file) );
+            }
             else
                 downloadList(url);
         }
@@ -2424,7 +2429,10 @@ void MainWindow::downloadListComplete()
     }
     else
     {
-        processJson(Json::parse( reply->readAll() ));
+        QByteArray org_file (reply->readAll());
+        QByteArray base_file(expandBaseUrl(org_file));
+
+        processJson(Json::parse( base_file ));
     }
 
     ug->setFocus();
@@ -2437,9 +2445,39 @@ void MainWindow::downloadListComplete()
     reply->deleteLater();
 }
 
+QByteArray MainWindow::expandBaseUrl(QByteArray org_file)
+{
+    QByteArray pattern("baseurl");
+    int pos = org_file.indexOf(pattern);
+    if (-1 == pos)
+        return (org_file);
+
+    pos += 2+pattern.size();
+    int i=0;
+    while ((org_file[pos+i]!='\"') && (i<10))
+    {
+        i++;
+    }
+    i++;
+    int j=0;
+    QByteArray baseurl;
+    while (org_file[pos+i+j]!='\"')
+    {
+        baseurl += org_file[pos+i+j];
+        j++;
+    }
+
+    //replace baseurl in string
+    const char * key="${baseurl}";
+    org_file.replace(key,strlen(key),baseurl,baseurl.size());
+
+    return (org_file);
+}
+
+
 void MainWindow::processJson(QVariant json)
 {
-
+    TRACE
     if (json.isNull())
     {
         QMessageBox::critical(this, tr("Error"), tr("Error parsing list.json downloaded from server"), QMessageBox::Close);
@@ -2447,6 +2485,9 @@ void MainWindow::processJson(QVariant json)
     }
 
     QSet<QString> iconurls;
+
+    QString baseurl = json.toMap().value("baseurl").toString();
+
     QVariantList list = json.toMap().value("os_list").toList();
 
     foreach (QVariant osv, list)

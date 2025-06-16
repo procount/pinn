@@ -187,6 +187,7 @@ protected slots:
     void pollNetworkStatus();
     void onOnlineStateChanged(bool online);
     void downloadListComplete();
+    QByteArray expandBaseUrl(QByteArray org_file);
     void processJson(QVariant json);
     void processJsonOs(const QString &name, QVariantMap &details, QSet<QString> &iconurls);
     /* Events from ImageWriterThread */
