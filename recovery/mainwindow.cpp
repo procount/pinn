@@ -645,6 +645,9 @@ void MainWindow::setModelInfo()
         case 5:
             ui->memory->setText("8GB");
             break;
+        case 6:
+            ui->memory->setText("16GB");
+            break;
         default:
             ui->memory->setText("");
             break;
