@@ -5,6 +5,11 @@ PINN is a version of the NOOBS Operating System Installer for the Raspberry Pi w
 
 ## Change History
 
+### V3.9.7
+
+- **16GB**          - Add 16GB Memory size
+- **baseurl**       - Added baseurl in json (for future use)
+
 ### V3.9.6
 
 - **Adjustsizes**   - Left an extra 1MB at the end of the disk
