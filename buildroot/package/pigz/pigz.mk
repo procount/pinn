@@ -5,7 +5,7 @@
 #############################################################
 PIGZ_VERSION = 2.8
 PIGZ_SOURCE = pigz-$(PIGZ_VERSION).tar.gz
-PIGZ_SITE = zlib.net/pigz
+PIGZ_SITE = sources.buildroot.net/pigz
 #download.freenas.org/distfiles
 PIGZ_CAT = $(ZCAT)
 PIGZ_DIR = $(BUILD_DIR)/pigz-$(PIGZ_VERSION)
