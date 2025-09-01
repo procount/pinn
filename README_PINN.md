@@ -104,9 +104,9 @@ If you select "ignore", this version will be ignored and no dialogs will pop up 
 
 If you choose to download this update, the zip file will be downloaded and will overwrite your current version of PINN. PINN will then reboot the RPi and restart PINN.
 
-It is possible to disable self-update checks by adding the `no_update` option to `recovery.cmdline`. In this case you will have to delete this option to enable self-updates again. Or you can manually check for updates at any time by choosing to `reinstall` the PINN item in the archival menu, but it must be the only item selected.
+It is possible to disable self-update checks by adding the `no_update` option to `cmdline.txt`. In this case you will have to delete this option to enable self-updates again. Or you can manually check for updates at any time by choosing to `reinstall` the PINN item in the archival menu, but it must be the only item selected.
 
-You can force new updates to be automatically installed without user interaction by adding the `forceupdatepinn` to `recovery.cmdline`.
+You can force new updates to be automatically installed without user interaction by adding the `forceupdatepinn` to `cmdline.txt`.
 
 ---
 
@@ -149,7 +149,7 @@ The `more` button can be used to cycle through the 3 toolbars. (shortcuts = M)
 
 Beneath the toolbar is the main list of Operating Systems which displays the name and a short description of each OS. At the right hand side is an icon indicating the source where the latest version will be installed from (Internet, SD card or USB drive).
 
-OSes are grouped onto tabs which categorise the type of OS they are. This grouping includes the following categories: General, Media, Gaming, Education, Minimal & Utility. To avoid this grouping, specify **`no_group`** on recovery.cmdline and the OSes will all appear in one list.
+OSes are grouped onto tabs which categorise the type of OS they are. This grouping includes the following categories: General, Media, Gaming, Education, Minimal & Utility. To avoid this grouping, specify **`no_group`** on cmdline.txt and the OSes will all appear in one list.
 
 Each OS has a checkbox at the left hand side to select whether it will be installed or not. When PINN is booted with OSes already installed, these OSes will normally have their checkbox automatically ticked (but see the `select` option) and their background will also be light green in colour, along with the word **[installed]** next to their name. Note that installed OSes may be selected in multiple tabs.
 
@@ -172,8 +172,8 @@ In addition to the toolbars, the following functionality is provided:
  - <b>Keyboard Layout Selection</b>: Allows you to select the keyboard layout to be used.
  - <b>Display Mode Selection</b>: By default, PINN will output over HDMI at your display's preferred resolution, even if no HDMI display is connected. If you do not see any output on your HDMI display or are using the composite output, press 1, 2, 3 or 4 on your keyboard to select HDMI preferred mode (1), HDMI safe mode (2), composite PAL mode (3), or composite NTSC mode (4), respectively.
  - <b>Font size</b>: Some rudimentary adjustment of the font size can be made using the +/- keys. (This can cause text to overflow, but this will be addressed in a later version).
- - <b>Background colour</b>: To change the background colour for the screen and most windows, add `background=r,g,b` to recovery.cmdline, where 0,0,0 is black and 255,255,255 is white.
- - <b>style</b>: The style of the windows display can be modified  by adding `style=motif/windows/platinum` to recovery.cmdline
+ - <b>Background colour</b>: To change the background colour for the screen and most windows, add `background=r,g,b` to cmdline.txt, where 0,0,0 is black and 255,255,255 is white.
+ - <b>style</b>: The style of the windows display can be modified  by adding `style=motif/windows/platinum` to cmdline.txt
  - <b>Wallpaper</b>: The background wallpaper of PINN can be changed by adding your own `wallpaper.jpg` or `wallpaper.png` file to PINN's recovery partition.
  - <b>wallpaper_resize</b>: A custom wallpaper can be resized to fill the entire desktop by adding this option.
 
@@ -257,7 +257,7 @@ display_default_lcd=1
 dpi_group=<group> (e.g. dpi_group=1, or dpi_group=2)
 dpi_mode=<mode> (e.g. dpi_mode=28 - see tvservice for a list of possible modes)
 ```
-In addition, the `recovery.cmdline` file should have `disablesafemode` added as a parameter. Without it, the VGA666 will force PINN into safe mode, due to its connections to the GPIO header.
+In addition, the `cmdline.txt` file should have `disablesafemode` added as a parameter. Without it, the VGA666 will force PINN into safe mode, due to its connections to the GPIO header.
 
 Remember to also enable the display in each OS that you want to use it with.
 
@@ -300,7 +300,7 @@ Remember to also enable the display in each OS that you want to use it with.
 
 It is possible to access PINN without a keyboard and mouse using VNC over a network.
 
-Append `vncinstall` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory. Using `forcetrigger` in addition can be useful as it is not always easy to connect quickly enough to see the splash screen and hold the shift key remotely. This will force you to use VNC to continue the boot process into your installed OS on each boot, so it is best to remove `forcetrigger` once the required OS's have been installed. Alternatively you could use `gpiotriggerenable` (see later).
+Append `vncinstall` to the argument list in the `cmdline.txt` file which is found in the root PINN directory. Using `forcetrigger` in addition can be useful as it is not always easy to connect quickly enough to see the splash screen and hold the shift key remotely. This will force you to use VNC to continue the boot process into your installed OS on each boot, so it is best to remove `forcetrigger` once the required OS's have been installed. Alternatively you could use `gpiotriggerenable` (see later).
 
 To connect over VNC, you need to know the IP address of the Pi. If you are using DHCP, then you should see your router for a list of the devices connected to it and the IP addresses that have been assigned, or use an IP scanner like Fing to identify your device. If you have a monitor attached and are using `vncshare`, the IP address of the PI is shown in the window title bar for ease of connection. Connect to port 5900 of this IP address. Using tightvnc, you need to specify this as <ip address>:5900 e.g. 192.168.1.0:5900.
 
@@ -312,9 +312,9 @@ Note 2: The `remotetimeout` option is useful to gain remote access within a time
 
 ### How to access the shell or SSH into PINN
 
-1. Once the PINN GUI is launched, the busybox shell can be accessed by pressing CTRL-ALT-F2. Use the Username of `root` and password of `raspberry`. Use CTRL-ALT-F1 to get back to the GUI. This can be useful for editing recovery.cmdline locally or performing other maintenance tasks on your SD card.
+1. Once the PINN GUI is launched, the busybox shell can be accessed by pressing CTRL-ALT-F2. Use the Username of `root` and password of `raspberry`. Use CTRL-ALT-F1 to get back to the GUI. This can be useful for editing cmdline.txt locally or performing other maintenance tasks on your SD card.
 
-2. You can also SSH into the PINN basic busybox shell. To enable this feature, add `ssh` to the argument list in the `recovery.cmdline` file. SSH is also accessible from the rescueshell, but allow 5 seconds after boot to allow the network to establish. PINN generates host keys on first use, so it may take a little while to connect on the first attempt.
+2. You can also SSH into the PINN basic busybox shell. To enable this feature, add `ssh` to the argument list in the `cmdline.txt` file. SSH is also accessible from the rescueshell, but allow 5 seconds after boot to allow the network to establish. PINN generates host keys on first use, so it may take a little while to connect on the first attempt.
 
 The IP address of the PI is shown in the window title bar for ease of connection.
 
@@ -365,7 +365,7 @@ By default, PINN will output over HDMI at your display’s preferred resolution,
 
 From v3.5.2, PINN can automatically detect which of the 2 HDMI ports are connected and switch to using the correct one. If both are connected, it will use HDMI 0. If the DSI touchscreen is attached, this will take precedence over the 2 HDMI ports.
 
-If you don't have a keyboard, you can still change the display mode used by PINN through editing the `recovery.cmdline` file in the root PINN directory prior to first boot and appending the following argument:
+If you don't have a keyboard, you can still change the display mode used by PINN through editing the `cmdline.txt` file in the root PINN directory prior to first boot and appending the following argument:
 - `display=<display mode number>` (e.g. `display=1` or `display=3`)
 
 ---
@@ -426,11 +426,11 @@ NOTE: Realtek wifi drivers (rtl8188eu, rtl8192cu) are added back in from v3.2.4b
 
 In recent Raspbian releases, SSH has been disabled by default for security reasons. To override this and enable SSH from first boot, it is necessary to create a file called `ssh` or `ssh.txt` in the Raspbian boot partition. If PINN detects such a file in the PINN recovery partition, it will copy it across to the Raspbian boot partition whenever it is installed, enabling SSH to be enabled immediately, which is very useful especially for headless installs.
 
-NOTE: this file does not enable SSH access to PINN. To enable that the 'ssh' keyword must be added to `recovery.cmdline`.
+NOTE: this file does not enable SSH access to PINN. To enable that the 'ssh' keyword must be added to `cmdline.txt`.
 
 ### How to change the default Language, Keyboard layout, Display mode, or Boot Partition etc.
 
-Edit the `recovery.cmdline` file in the root PINN directory and append the following arguments where relevant:
+Edit the `cmdline.txt` file in the root PINN directory and append the following arguments where relevant:
 - `lang=<two-letter language code>` (e.g. `lang=de` or `lang=en`)
 - `keyboard=<two-letter layout code>` (e.g. `keyboard=de` or `keyboard=us`)
 - `display=<display mode number>` (e.g. `display=1` or `display=3`)
@@ -441,7 +441,7 @@ Note that these defaults will be overwritten by any changes made in the GUI to t
 
 ## Cmdline Options
 
-The following is a complete list of all the PINN options that can be added to the `recovery.cmdline` file on the PINN recovery partition to affect its operation:
+The following is a complete list of all the PINN options that can be added to the `cmdline.txt` file on the PINN recovery partition to affect its operation:
 
 - **runinstaller**: This option is present when PINN is first installed to cause it to reformat the SD card. Once reformatted, PINN will delete this option. Manually adding it back in will cause PINN to reformat the SD card on next boot. (See also `forceruninstaller`) The `reserve` and `provision` options will be used to adjust the size of the partitions as instructed. If there is a wpa_supplicant.conf or dhcpcd.conf file in the /settings partition, they will be preserved across this repartitioning action so that the network is not lost when performing it remotely.
 
@@ -485,7 +485,7 @@ The following is a complete list of all the PINN options that can be added to th
 
 - **networktimeout=\<time in secs\>**: PINN will wait for a default timeout of 8 seconds to detect whether a network is connected or not. (This is extended by an additional 4 seconds if wifi is configured). This setting allows the network timeout to be specified in seconds, especially for networks that take longer to establish. Setting a value of 0 will disable the "Please wait while PINN initialises" progress box and will wait indefinitely for the network before installing any required OSes.
 
-- **disablesafemode**: If you have external hardware or an addon board connected to the GPIO header, you may find that pin 5 is being pulled low and accidentally triggering "Safe Mode" by entering the rescueshell. To prevent this, you can append `disablesafemode` to the `recovery.cmdline` file.
+- **disablesafemode**: If you have external hardware or an addon board connected to the GPIO header, you may find that pin 5 is being pulled low and accidentally triggering "Safe Mode" by entering the rescueshell. To prevent this, you can append `disablesafemode` to the `cmdline.txt` file.
 
 - **silentinstall**: Allows a single or multiple OSes to be installed automatically, useful during headless installs. See [How to Automatically Install OSes](#how-to-automatically-install-oses)
 
@@ -539,7 +539,7 @@ In addition to specifying a list of OS names, some reserved words are also avail
 - **dsi**: A special boot feature to swap the priority of the DSI and HDMI video outputs, allowing an OS to give priority to a HDMI screen if attached.
 
 
-The recovery.cmdline can be edited using the [Edit Config](#easy-config-file-editor) option on the maintenance menu. From v3.2, this now includes an Edit Options button which launches a dialog to set all the options more easily using simpler checkboxes.
+The cmdline.txt can be edited using the [Edit Config](#easy-config-file-editor) option on the maintenance menu. From v3.2, this now includes an Edit Options button which launches a dialog to set all the options more easily using simpler checkboxes.
 
 ---
 
@@ -576,7 +576,7 @@ The keys: "sha512sum", "sha256sum", "sha1sum" and "md5sum" indicate the type of 
 
 PINN allows additional operating systems to be downloaded from a remote repository. To do this, the Raspberry Pi must be connected to a wired network, or it can connect over Wi-Fi using the [Raspberry Pi USB wifi dongle](https://www.raspberrypi.org/products/usb-wifi-dongle/) or the Raspberry Pi 3 Model B built-in Wi-Fi.
 
-Once connected, the Pi will only show a list of operating systems that are appropriate to your Pi Model. If you want to see _all_ available OSes, edit the `recovery.cmdline` file in the root PINN directory and append `showall` to the arguments list.
+Once connected, the Pi will only show a list of operating systems that are appropriate to your Pi Model. If you want to see _all_ available OSes, edit the `cmdline.txt` file in the root PINN directory and append `showall` to the arguments list.
 
 Once PINN has connected to your network, the IP address of the PI is shown in the window title bar.
 
@@ -584,7 +584,7 @@ Once PINN has connected to your network, the IP address of the PI is shown in th
 
 If your Pi is connected to the Internet, PINN will present a list of OSes that are available for installation from the internet. By default, this list includes all of those available through the Raspberry Pi website, plus some others that have been converted specifically for PINN through the repo_list cmdline option.
 
-PINN provides many options to customise the list of repositories that it will use for sources of OSes by using the following recovery.cmdline options:
+PINN provides many options to customise the list of repositories that it will use for sources of OSes by using the following cmdline.txt options:
 
 - If no specific cmdline option is given, PINN will use the list on the Raspberry Pi Website.
 
@@ -699,7 +699,7 @@ Even if you are using your Pi without a display, you can still use PINN to easil
 
 1. Copy the OS folder for the OS you want to install into the `/os` dir (alternatively, delete all other OSes contained in the `/os` dir so that only your chosen OS remains).
 2. If the OS you want to automatically install has multiple flavours available, edit the `flavours.json` file so that it only contains the entry for the flavour that you want to install.
-3. Edit the `recovery.cmdline` file in the root PINN directory and append `silentinstall` to the arguments list.
+3. Edit the `cmdline.txt` file in the root PINN directory and append `silentinstall` to the arguments list.
 
 When you now boot your Pi using an SD card containing the modified version of PINN that you just created, it will automatically install the OS you chose and boot into it after the installation has finished. 
 NOTE: `Silentinstall` only works if there are no OSes installed already to prevent accidental OS deletion.
@@ -795,7 +795,7 @@ If only one OS is installed, the boot selector will not be displayed and the OS 
 
 ## OS Boot Selector
 
-After multiple OSes have been installed, a boot selection dialog is presented to list all the installed OSes for the user to choose one to boot. PINN will remember this OS choice and boot this OS by default each time unless a different option is selected within a timeout of 10 seconds. It is possible to change this menu timeout by adding `bootmenutimeout=X` in the `recovery.cmdline` file, where `X` is the desired timeout in seconds.
+After multiple OSes have been installed, a boot selection dialog is presented to list all the installed OSes for the user to choose one to boot. PINN will remember this OS choice and boot this OS by default each time unless a different option is selected within a timeout of 10 seconds. It is possible to change this menu timeout by adding `bootmenutimeout=X` in the `cmdline.txt` file, where `X` is the desired timeout in seconds.
 
 A Boot button has been added for easier selection with limited CEC TV remotes, mice or touchscreens.
 Also a Cancel button (Shortcut=Esc) is provided to boot back into PINN again.
@@ -928,7 +928,7 @@ but PINN will remain on the card. This allows you to manually copy additional OS
 
 After wiping a drive, the Install and Download functions should no longer be used until the drive has been properly partitioned again since the drive is no longer in the correct format. 
 
-This function also adds the `runinstaller` option to the recovery.cmdline file, so on next boot of this card, the full PINN partition structure will be restored allowing OSes to be installed or downloaded again.
+This function also adds the `runinstaller` option to the cmdline.txt file, so on next boot of this card, the full PINN partition structure will be restored allowing OSes to be installed or downloaded again.
 -->
 ---
 
@@ -938,13 +938,13 @@ This function also adds the `runinstaller` option to the recovery.cmdline file, 
 
 The maintenance toolbar contains commands to execute on installed OSes only, so the main window will only show a list of those OSes that are installed.
 
-The first entry is a dummy fixed entry called `PINN` which represents the PINN recovery partition. This enables the same toolbar commands to be carried out on the PINN recovery partition, such as doing a file system check or editing recovery.cmdline or config.txt files. Of course, changing the password will have no effect.
+The first entry is a dummy fixed entry called `PINN` which represents the PINN recovery partition. This enables the same toolbar commands to be carried out on the PINN recovery partition, such as doing a file system check or editing cmdline.txt or config.txt files. Of course, changing the password will have no effect.
 
 ## Easy Config File Editor
 
 The built-in config file editor allows you to edit the config file of the OS that is currently highlighted in the OS list. This allows you to easily add license keys to different OS installs through the same interface.
 
-When the PINN entry is selected, it allows you to edit the recovery.cmdline instead of the cmdline.txt file. A button called "Edit Options" will also appear which can launch a dialog box with all the possible options laid out amongst 4 tabs. This means you no longer need to remember all the option names as check and edit boxes are used instead.
+When the PINN entry is selected, it allows you to edit the cmdline.txt instead of the cmdline.txt file. A button called "Edit Options" will also appear which can launch a dialog box with all the possible options laid out amongst 4 tabs. This means you no longer need to remember all the option names as check and edit boxes are used instead.
 
 Note that the output mode selected by the user through pressing one of number keys 1 to 4 (for HDMI preferred, HDMI VGA, Composite PAL, and Composite NTSC, respectively), will be automatically set in the `config.txt` files of your installed OSes. This means that you shouldn't have to worry about manually changing your display settings to get your installed OS to display correctly on your display device.
 
@@ -1103,7 +1103,7 @@ If an HDMI and a DSI screen (such as the Raspberry Pi Touch Screen) are both con
 This use case assumes that the DSI screen is always connected, and is normally used. But if an HDMI screen is connected, then the display will automatically switch to it. 
 
 1. Create a `config.txt` file in the PINN root partition. Ensure it has the line `ignore_lcd=1` to disable the DSI screen and select the HDMI screen.
-2. Edit `recovery.cmdline` and add the `dsi` keyword.
+2. Edit `cmdline.txt` and add the `dsi` keyword.
 3. In the boot partition of any installed OS, create a `config.dsi` file to configure the DSI screen, and a `config.hdmi` file to configure the hdmi screen. (This can mostly be setup using a custom flavour with the `noobsconfig` feature so it can be installed automatically.)
 
 When PINN boots, the HDMI screen will be selected, so to use any PINN feature, an HDMI screen **must** be connected. 
@@ -1138,10 +1138,10 @@ Try pressing shift only when the grey splash screen is displayed, rather than ho
 
 Alternatively, if you are unable to use either the GPIO or keyboard to trigger entering Recovery Mode, you can:
 
-1. Append `forcetrigger` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory.
+1. Append `forcetrigger` to the argument list in the `cmdline.txt` file which is found in the root PINN directory.
 2. Reboot.
 
-Note that with this option enabled, the Recovery Mode will be displayed <b>every</b> time you boot from your PINN card (until you edit `recovery.cmdline` again).
+Note that with this option enabled, the Recovery Mode will be displayed <b>every</b> time you boot from your PINN card (until you edit `cmdline.txt` again).
 
 ## How to disable using the keyboard to trigger entering Recovery Mode
 
@@ -1149,14 +1149,14 @@ In some rare cases, you may find that PINN incorrectly detects a `SHIFT` keypres
 
 To prevent a `SHIFT` keypress from entering Recovery Mode on boot (maybe you have a problematic keyboard which is erroneously triggering every time you boot), you can:
 
-1. Append `keyboardtriggerdisable` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory.
+1. Append `keyboardtriggerdisable` to the argument list in the `cmdline.txt` file which is found in the root PINN directory.
 2. Reboot.
 
 ## How to enable using the GPIO to trigger entering Recovery Mode
 
 To force Recovery Mode to be entered on boot and to show the PINN interface, you normally press the `SHIFT` key during bootup. If you don't have a keyboard or the `SHIFT` keypress isn't being detected, you should complete the following steps to force the PINN interface to be displayed on boot:
 
-1. Append `gpiotriggerenable` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory.
+1. Append `gpiotriggerenable` to the argument list in the `cmdline.txt` file which is found in the root PINN directory.
 2. Reboot.
 
 To force Recovery Mode being entered on boot, connect GPIO pin 3 on header P1 to GND (pin 25). If GPIO pin 3 remains unconnected then it will boot through to the installed OS as normal.
@@ -1165,8 +1165,8 @@ To force Recovery Mode being entered on boot, connect GPIO pin 3 on header P1 to
 
 To boot into a basic busybox shell rather than launching the PINN GUI, you can *either*:
 
-1. Append `rescueshell` to the argument list in the `recovery.cmdline` file which is found in the root PINN directory. Exiting from this shell will now enter the PINN recovery program.
-2. Insert a physical jumper between pins 5 & 6 of GPIO header P1. If you have external hardware or an addon board connected to the GPIO header, you may find that pin 5 is being pulled low and accidentally triggering "Safe Mode". To prevent this, you can append `disablesafemode` to the argument list in the `recovery.cmdline` file (which is found in the root PINN directory).
+1. Append `rescueshell` to the argument list in the `cmdline.txt` file which is found in the root PINN directory. Exiting from this shell will now enter the PINN recovery program.
+2. Insert a physical jumper between pins 5 & 6 of GPIO header P1. If you have external hardware or an addon board connected to the GPIO header, you may find that pin 5 is being pulled low and accidentally triggering "Safe Mode". To prevent this, you can append `disablesafemode` to the argument list in the `cmdline.txt` file (which is found in the root PINN directory).
 
 ## Debug Information
 
@@ -1178,7 +1178,7 @@ PINN produces a debug log which can be helpful if something goes wrong. Please s
 
 Q1. After using the Wipe Disk command, PINN will halt "Waiting for the settings partition" on next boot.
 
-A1. Sometimes the repartitioning will not satisfy all constraints and fails. In this case, add `runinstaller` to recovery.cmdline and reboot. This will cause PINN to repartition the card again for use by PINN.
+A1. Sometimes the repartitioning will not satisfy all constraints and fails. In this case, add `runinstaller` to cmdline.txt and reboot. This will cause PINN to repartition the card again for use by PINN.
 
 ---
 
