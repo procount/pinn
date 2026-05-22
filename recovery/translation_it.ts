@@ -1725,7 +1725,7 @@ Vuoi proseguire?</translation>
     </message>
     <message>
         <source>silentbacku&amp;p</source>
-        <translation type="unfinished"></translation>
+        <translation>Backu&amp;p silenzioso</translation>
     </message>
 </context>
 <context>
@@ -1843,7 +1843,7 @@ Vuoi proseguire?</translation>
     </message>
     <message>
         <source>Virtual Keyboard</source>
-        <translation type="unfinished">Tastiera virtuale</translation>
+        <translation>Tastiera virtuale</translation>
     </message>
 </context>
 <context>
@@ -1927,11 +1927,11 @@ or press joystick...</source>
     <name>SilentBackupDlg</name>
     <message>
         <source>SilentBackup in %1 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>Backup silezioso tra %1 secondi</translation>
     </message>
     <message>
         <source>SilentBackup Cancelled</source>
-        <translation type="unfinished"></translation>
+        <translation>Backup silenzioso annullato</translation>
     </message>
 </context>
 <context>
@@ -2173,7 +2173,7 @@ Verifica la password</translation>
     </message>
     <message>
         <source>Virtual Keyboard</source>
-        <translation type="unfinished">Tastiera virtuale</translation>
+        <translation>Tastiera virtuale</translation>
     </message>
 </context>
 <context>
@@ -2196,7 +2196,7 @@ Verifica la password</translation>
     </message>
     <message>
         <source>Virtual Keyboard</source>
-        <translation type="unfinished">Tastiera virtuale</translation>
+        <translation>Tastiera virtuale</translation>
     </message>
 </context>
 <context>
@@ -2290,7 +2290,7 @@ Verifica la password</translation>
     </message>
     <message>
         <source>Virtual Keyboard</source>
-        <translation type="unfinished">Tastiera virtuale</translation>
+        <translation>Tastiera virtuale</translation>
     </message>
 </context>
 <context>
