@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  build-stp-os-multiboot:
+    image: ubuntu:20.04
+    build: .
+    volumes:
+      - path/to/local/pinn/repo:/home/dev/PINN
